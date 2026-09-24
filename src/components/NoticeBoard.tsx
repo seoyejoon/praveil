@@ -11,8 +11,10 @@ const filters = [
 ] as const;
 
 // 공지 · 이벤트 목록 (종류별로 걸러 보기)
-export default function NoticeBoard({ notices }: { notices: Notice[] }) {
-  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>("all");
+type FilterKey = (typeof filters)[number]["key"];
+
+export default function NoticeBoard({ notices, initial = "all" }: { notices: Notice[]; initial?: FilterKey }) {
+  const [filter, setFilter] = useState<FilterKey>(initial);
   const list = filter === "all" ? notices : notices.filter((n) => n.type === filter);
 
   return (

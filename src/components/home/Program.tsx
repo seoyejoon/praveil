@@ -48,83 +48,86 @@ export default function Program({ items }: { items: ProgramItem[] }) {
 
   const item = items[active];
 
+  // 바깥 div: GSAP가 고정(pin)할 때 section을 감싸는 상자를 넣으므로, React가 지울 대상을 따로 둔다 (페이지 이동 시 오류 방지)
   return (
-    <section ref={sectionRef} className="overflow-hidden bg-espresso text-cream lg:h-svh">
-      <div className="mx-auto grid h-full max-w-[1440px] items-center gap-10 px-5 py-24 md:px-10 lg:grid-cols-2 lg:gap-20 lg:py-0">
-        {/* 사진: 겹쳐 두고 선택된 것만 보이게 */}
-        <div className="relative aspect-[4/5] overflow-hidden lg:aspect-auto lg:h-[72vh]">
-          {items.map((it, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={it.href}
-              src={it.image}
-              alt=""
-              loading="lazy"
-              className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-out ${
-                i === active ? "scale-100 opacity-100" : "scale-110 opacity-0"
-              }`}
-            />
-          ))}
-          <p className="absolute bottom-5 left-5 font-display text-sm tracking-[0.2em] text-cream/80">
-            0{active + 1} / 0{items.length}
-          </p>
-        </div>
-
-        <div>
-          <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">Signature Program</p>
-          <h2 className="mt-4 font-serif text-[28px] leading-snug font-medium tracking-tight md:text-[40px]">
-            프라베일이 자신 있게
-            <br />
-            권하는 네 가지 시술
-          </h2>
-
-          <div className="mt-10 flex gap-6 border-b border-cream/15 md:mt-14">
+    <div>
+      <section ref={sectionRef} className="overflow-hidden bg-espresso text-cream lg:h-svh">
+        <div className="mx-auto grid h-full max-w-[1440px] items-center gap-10 px-5 py-24 md:px-10 lg:grid-cols-2 lg:gap-20 lg:py-0">
+          {/* 사진: 겹쳐 두고 선택된 것만 보이게 */}
+          <div className="relative aspect-[4/5] overflow-hidden lg:aspect-auto lg:h-[72vh]">
             {items.map((it, i) => (
-              <button
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
                 key={it.href}
-                type="button"
-                onClick={() => select(i)}
-                className={`relative -mb-px pb-3 font-display text-lg tracking-widest transition md:text-xl ${
-                  i === active ? "text-cream" : "text-cream/35 hover:text-cream/70"
+                src={it.image}
+                alt=""
+                loading="lazy"
+                className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-out ${
+                  i === active ? "scale-100 opacity-100" : "scale-110 opacity-0"
                 }`}
-              >
-                0{i + 1}
-                <span
-                  className={`absolute inset-x-0 bottom-0 h-px bg-[#ffd899] transition-transform duration-500 ${
-                    i === active ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
-              </button>
+              />
             ))}
+            <p className="absolute bottom-5 left-5 font-display text-sm tracking-[0.2em] text-cream/80">
+              0{active + 1} / 0{items.length}
+            </p>
           </div>
 
-          <div key={active} className="animate-rise mt-10 md:mt-12">
-            <p className="text-sm text-taupe">{item.category}</p>
-            <p className="mt-2 font-serif text-4xl font-medium md:text-5xl">{item.name}</p>
-            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/70 md:text-base">{item.description}</p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {item.tags.map((t) => (
-                <li key={t} className="rounded-full border border-cream/25 px-4 py-1.5 text-[13px] text-cream/80">
-                  #{t}
-                </li>
+          <div>
+            <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">Signature Program</p>
+            <h2 className="mt-4 font-serif text-[28px] leading-snug font-medium tracking-tight md:text-[40px]">
+              프라베일이 자신 있게
+              <br />
+              권하는 네 가지 시술
+            </h2>
+
+            <div className="mt-10 flex gap-6 border-b border-cream/15 md:mt-14">
+              {items.map((it, i) => (
+                <button
+                  key={it.href}
+                  type="button"
+                  onClick={() => select(i)}
+                  className={`relative -mb-px pb-3 font-display text-lg tracking-widest transition md:text-xl ${
+                    i === active ? "text-cream" : "text-cream/35 hover:text-cream/70"
+                  }`}
+                >
+                  0{i + 1}
+                  <span
+                    className={`absolute inset-x-0 bottom-0 h-px bg-[#ffd899] transition-transform duration-500 ${
+                      i === active ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </button>
               ))}
-            </ul>
-            <Link
-              href={item.href}
-              className="mt-10 inline-block border-b border-cream/40 pb-1 font-display text-xs tracking-[0.2em] transition hover:border-[#ffd899] hover:text-[#ffd899]"
-            >
-              VIEW MORE
-            </Link>
-          </div>
+            </div>
 
-          <div className="mt-12 h-px bg-cream/15">
-            <div
-              className="h-px bg-[#ffd899] transition-all duration-500"
-              style={{ width: `${((active + 1) / items.length) * 100}%` }}
-            />
+            <div key={active} className="animate-rise mt-10 md:mt-12">
+              <p className="text-sm text-taupe">{item.category}</p>
+              <p className="mt-2 font-serif text-4xl font-medium md:text-5xl">{item.name}</p>
+              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/70 md:text-base">{item.description}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {item.tags.map((t) => (
+                  <li key={t} className="rounded-full border border-cream/25 px-4 py-1.5 text-[13px] text-cream/80">
+                    #{t}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={item.href}
+                className="mt-10 inline-block border-b border-cream/40 pb-1 font-display text-xs tracking-[0.2em] transition hover:border-[#ffd899] hover:text-[#ffd899]"
+              >
+                VIEW MORE
+              </Link>
+            </div>
+
+            <div className="mt-12 h-px bg-cream/15">
+              <div
+                className="h-px bg-[#ffd899] transition-all duration-500"
+                style={{ width: `${((active + 1) / items.length) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

@@ -22,17 +22,17 @@ export default async function AboutPage() {
 
   return (
     <SubPage en={hero.en} title={hero.title} description={hero.description} image={hero.image} crumbs={[{ label: "병원소개" }]}>
-      <section className="py-28 md:py-44">
+      <section id="standard" className="scroll-mt-16 md:scroll-mt-20 py-28 md:py-44">
         <ScrollStatement en="Our Standard" text={aboutPage.statement} />
       </section>
 
       <Philosophy />
 
-      <section>
+      <section id="doctor" className="scroll-mt-16 md:scroll-mt-20">
         <DoctorProfile doctor={doctor} />
       </section>
 
-      <section className="bg-ivory py-28 md:py-40">
+      <section id="why" className="scroll-mt-16 md:scroll-mt-20 bg-ivory py-28 md:py-40">
         <div className={wide}>
           <SectionTitle en="Why Praveil" title="프라베일이 다른 이유" />
           <FeatureList features={features} />
@@ -40,7 +40,7 @@ export default async function AboutPage() {
       </section>
 
       {/* 병원 둘러보기: 크기가 다른 사진을 엇갈려 배치 */}
-      <section className="py-28 md:py-40">
+      <section id="tour" className="scroll-mt-16 md:scroll-mt-20 py-28 md:py-40">
         <div className={wide}>
           <SectionTitle en="Clinic Tour" title="병원 둘러보기" description="상담부터 회복까지, 편안하게 머무를 수 있도록 준비했습니다." />
           <div className="grid grid-cols-2 gap-3 md:grid-cols-12 md:gap-6">
@@ -65,7 +65,7 @@ export default async function AboutPage() {
       </section>
 
       {/* 보유 장비 */}
-      <section className="bg-espresso py-28 text-cream md:py-40">
+      <section id="equipment" className="scroll-mt-16 md:scroll-mt-20 bg-espresso py-28 text-cream md:py-40">
         <div className={wide}>
           <Reveal variant="zoom" className="mb-12 text-center md:mb-20">
             <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">Equipment</p>

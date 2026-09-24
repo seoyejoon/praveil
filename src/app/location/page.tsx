@@ -15,14 +15,14 @@ export default async function LocationPage() {
 
   return (
     <SubPage en={hero.en} title={hero.title} description={hero.description} image={hero.image} crumbs={[{ label: "오시는 길" }]}>
-      <section className="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
+      <section id="hours" className="mx-auto max-w-[1440px] scroll-mt-16 md:scroll-mt-20 px-5 py-20 md:px-10 md:py-28">
         <SectionTitle en="Hours & Location" title="진료시간 · 오시는 길" />
         <Reveal>
           <LocationInfo hospital={hospital} />
         </Reveal>
       </section>
 
-      <section className="bg-ivory py-20 md:py-28">
+      <section id="directions" className="scroll-mt-16 md:scroll-mt-20 bg-ivory py-20 md:py-28">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <SectionTitle en="Directions" title="찾아오시는 방법" />
           <ul className="grid gap-px border-y border-ink/15 bg-ink/15 md:grid-cols-3">

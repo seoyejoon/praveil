@@ -19,6 +19,7 @@
   --font-display: "Marcellus", "Noto Serif KR Variable", serif;
 
   --animate-hero-reveal: hero-reveal 1.8s cubic-bezier(0.76, 0, 0.24, 1) both;
+  --animate-hero-zoom: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-marquee: marquee 60s linear infinite;
   --animate-rise: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -41,6 +42,15 @@
     to {
       clip-path: inset(0 0 0 0 round 0 0 0 0);
     }
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
   }
 }
 
@@ -120,6 +130,7 @@
     transition: none;
   }
   .animate-marquee,
+  .animate-hero-zoom,
   .animate-hero-reveal {
     animation: none;
   }

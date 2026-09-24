@@ -5,11 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navItems } from "@/lib/nav";
 
-// 메인 첫 화면 위에서는 투명(흰 글씨), 스크롤하거나 다른 페이지에서는 크림 배경.
+// 어두운 상단 사진([data-dark-hero]) 위에서는 투명(흰 글씨), 스크롤하거나 사진이 없는 페이지에서는 크림 배경.
 export default function Header({ phone, reservationUrl }: { phone: string; reservationUrl: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // 첫 렌더에서 깜빡이지 않도록: 상단 사진이 없는 페이지(공지 상세)만 처음부터 크림 배경
+  const [hasHero, setHasHero] = useState(!/^\/notice\/.+/.test(pathname));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -18,9 +20,12 @@ export default function Header({ phone, reservationUrl }: { phone: string; reser
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setHasHero(Boolean(document.querySelector("[data-dark-hero]")));
+  }, [pathname]);
 
-  const overHero = pathname === "/" && !scrolled && !open;
+  const overHero = hasHero && !scrolled && !open;
 
   return (
     <header

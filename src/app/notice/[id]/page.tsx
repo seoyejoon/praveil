@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 import { getNotice, getNotices } from "@/lib/data";
 
 type Props = { params: Promise<{ id: string }> };
@@ -21,14 +21,23 @@ export default async function NoticeDetailPage({ params }: Props) {
   if (!notice) notFound();
 
   return (
-    <Container className="max-w-3xl pt-32 pb-16 md:pt-44 md:pb-24">
-      <p className="text-xs text-mocha">{notice.type === "event" ? "이벤트" : "공지"}</p>
-      <h1 className="mt-2 font-serif text-2xl md:text-3xl">{notice.title}</h1>
-      <p className="mt-3 text-xs text-taupe">{notice.createdAt}</p>
-      <div className="mt-10 border-t border-line pt-10 leading-relaxed whitespace-pre-line">{notice.body}</div>
-      <Link href="/notice" className="mt-16 inline-block text-sm underline underline-offset-4">
-        목록으로
-      </Link>
-    </Container>
+    <article className="mx-auto max-w-3xl px-5 pt-36 pb-24 md:px-10 md:pt-48 md:pb-36">
+      <Reveal variant="zoom" className="text-center">
+        <p className="font-display text-base tracking-[0.15em] text-gold">{notice.type === "event" ? "Event" : "Notice"}</p>
+        <h1 className="mt-4 font-serif text-3xl leading-snug font-medium tracking-tight md:text-[44px]">{notice.title}</h1>
+        <p className="mt-5 font-display text-sm tracking-widest text-taupe">{notice.createdAt}</p>
+      </Reveal>
+      <div className="mt-12 border-t border-ink pt-12 text-[15px] leading-[1.9] whitespace-pre-line text-muted md:text-base">
+        {notice.body}
+      </div>
+      <div className="mt-20 border-t border-ink/15 pt-10 text-center">
+        <Link
+          href="/notice"
+          className="inline-block rounded-full border border-ink/40 px-10 py-3 text-sm transition hover:bg-ink hover:text-cream"
+        >
+          목록으로
+        </Link>
+      </div>
+    </article>
   );
 }

@@ -1,29 +1,43 @@
 import type { Metadata } from "next";
-import Container from "@/components/Container";
-import PageHeader from "@/components/PageHeader";
+import ContactCta from "@/components/ContactCta";
 import LocationInfo from "@/components/LocationInfo";
+import Reveal from "@/components/Reveal";
+import SectionTitle from "@/components/SectionTitle";
+import SubPage from "@/components/SubPage";
+import { locationPage } from "@/content/pages";
 import { getHospital } from "@/lib/data";
 
 export const metadata: Metadata = { title: "오시는 길" };
 
 export default async function LocationPage() {
   const hospital = await getHospital();
+  const { hero } = locationPage;
 
   return (
-    <>
-      <PageHeader en="Location" title="오시는 길" />
-      <Container className="py-12 md:py-16">
-        <LocationInfo hospital={hospital} />
+    <SubPage en={hero.en} title={hero.title} description={hero.description} image={hero.image} crumbs={[{ label: "오시는 길" }]}>
+      <section className="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
+        <SectionTitle en="Hours & Location" title="진료시간 · 오시는 길" />
+        <Reveal>
+          <LocationInfo hospital={hospital} />
+        </Reveal>
+      </section>
 
-        <dl className="mt-14 grid gap-6 border-t border-line pt-10 md:grid-cols-2">
-          {hospital.directions.map((d) => (
-            <div key={d.title}>
-              <dt className="font-medium">{d.title}</dt>
-              <dd className="mt-1 text-sm text-mocha">{d.body}</dd>
-            </div>
-          ))}
-        </dl>
-      </Container>
-    </>
+      <section className="bg-ivory py-20 md:py-28">
+        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+          <SectionTitle en="Directions" title="찾아오시는 방법" />
+          <ul className="grid gap-px border-y border-ink/15 bg-ink/15 md:grid-cols-3">
+            {hospital.directions.map((d, i) => (
+              <Reveal as="li" key={d.title} delay={i * 120} className="bg-ivory p-8 md:p-12">
+                <p className="font-display text-sm tracking-[0.15em] text-gold">{String(i + 1).padStart(2, "0")}</p>
+                <p className="mt-4 font-serif text-xl font-medium md:text-2xl">{d.title}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted">{d.body}</p>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <ContactCta hospital={hospital} />
+    </SubPage>
   );
 }

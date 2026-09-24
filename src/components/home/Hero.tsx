@@ -99,6 +99,7 @@ export default function Hero({ eyebrow, title, description, image, video, reserv
   return (
     <section
       ref={rootRef}
+      data-dark-hero
       className="relative h-[calc(100svh-3.5rem)] min-h-[560px] overflow-hidden bg-[#1f1b18] text-white md:h-svh md:min-h-[680px]"
     >
       {/* 1) 아치 → 전체 화면 */}

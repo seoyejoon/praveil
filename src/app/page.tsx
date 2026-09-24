@@ -1,8 +1,10 @@
 import Link from "next/link";
+import ContactCta from "@/components/ContactCta";
 import Container from "@/components/Container";
 import DoctorProfile from "@/components/DoctorProfile";
 import ImageSlot from "@/components/ImageSlot";
 import LocationInfo from "@/components/LocationInfo";
+import Philosophy from "@/components/Philosophy";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
 import BigLetters from "@/components/home/BigLetters";
@@ -15,10 +17,8 @@ import WhyHorizontal from "@/components/home/WhyHorizontal";
 import {
   bigLetters,
   clinic,
-  contact,
   hero,
   images,
-  philosophy,
   programs,
   statement,
   stats,
@@ -75,33 +75,7 @@ export default async function Home() {
       </div>
 
       {/* 철학: 3칸 카드 */}
-      <section className="relative z-10 grid md:grid-cols-3">
-        {philosophy.map((p, i) => (
-          <Reveal
-            key={p.en}
-            delay={i * 120}
-            className={`flex min-h-[300px] flex-col p-8 md:min-h-[420px] md:p-12 lg:p-16 ${
-              p.tone === "dark"
-                ? "bg-[linear-gradient(97deg,#342f2a_0%,#4a433c_42%,#5a5148_63%,#39342f_100%)] text-white"
-                : "bg-[linear-gradient(84deg,#d6caba_0%,#f1ebe1_46%,#e7ded1_68%,#cdbead_100%)] text-ink"
-            }`}
-          >
-            <span
-              aria-hidden
-              className={`block h-20 w-20 rounded-full border md:h-28 md:w-28 ${
-                p.tone === "dark" ? "border-[#ffd899]/50" : "border-ink/30"
-              }`}
-            />
-            <div className="mt-auto pt-10">
-              <p className={`font-display text-sm tracking-[0.2em] ${p.tone === "dark" ? "text-[#ffd899]" : "text-mocha"}`}>
-                {p.en}
-              </p>
-              <p className="mt-3 font-serif text-2xl font-medium tracking-tight md:text-[28px]">{p.title}</p>
-              <p className={`mt-3 text-[15px] ${p.tone === "dark" ? "text-cream/70" : "text-muted"}`}>{p.body}</p>
-            </div>
-          </Reveal>
-        ))}
-      </section>
+      <Philosophy />
 
       {/* 숫자로 보는 프라베일 */}
       <section className="bg-ivory py-28 md:py-40">
@@ -227,31 +201,7 @@ export default async function Home() {
       </section>
 
       {/* 예약 안내 */}
-      <section className="relative grid min-h-[500px] place-items-center overflow-hidden px-5 py-28 text-center text-white md:min-h-[640px]">
-        <ImageSlot src={images.contact} tone="dark" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-[#1f1b18]/55" />
-        <Reveal variant="zoom" className="relative">
-          <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">{contact.en}</p>
-          <h2 className="mt-5 font-serif text-[28px] leading-snug font-medium tracking-[-0.04em] md:text-5xl">{contact.title}</h2>
-          <p className="mt-5 text-[15px] text-cream/80 md:text-lg">{contact.body}</p>
-          <div className="mt-10 flex justify-center gap-3">
-            <a
-              href={hospital.naverReservationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-white px-8 py-3.5 text-sm text-ink transition hover:bg-[#ffd899] md:text-base"
-            >
-              네이버 예약하기
-            </a>
-            <a
-              href={`tel:${hospital.phone}`}
-              className="rounded-full border border-white/60 px-8 py-3.5 text-sm transition hover:bg-white hover:text-ink md:text-base"
-            >
-              전화 문의
-            </a>
-          </div>
-        </Reveal>
-      </section>
+      <ContactCta hospital={hospital} />
     </>
   );
 }

@@ -3,6 +3,7 @@
 import { doctor, features, hospital } from "./mock/hospital";
 import { categories, procedures } from "./mock/procedures";
 import { notices, popups } from "./mock/board";
+import { procedureDetails } from "@/content/procedure-details";
 
 export type * from "./types";
 
@@ -48,4 +49,9 @@ export async function getNotice(id: number) {
 
 export async function getPopups() {
   return popups;
+}
+
+// 시술 상세 원고 (관리자에 긴 본문 필드가 없으면 계속 코드에서 관리)
+export async function getProcedureDetail(slug: string) {
+  return procedureDetails[slug];
 }

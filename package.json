@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "review:export": "npx -y tsx scripts/export-procedure-review.ts"
   },
   "dependencies": {
     "@fontsource-variable/noto-serif-kr": "^5.3.0",

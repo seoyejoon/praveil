@@ -12,11 +12,6 @@ import { getCategories, getCategory, getHospital, getProcedure, getProcedureDeta
 
 type Props = { params: Promise<{ category: string; slug: string }> };
 
-export async function generateStaticParams() {
-  const procedures = await getProcedures();
-  return procedures.map((p) => ({ category: p.categorySlug, slug: p.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const procedure = await getProcedure(category, slug);
@@ -74,10 +69,22 @@ export default async function ProcedurePage({ params }: Props) {
             </Reveal>
           ))}
         </ul>
-        {procedure.price && (
-          <p className="mt-6 text-center text-sm text-muted">
-            시술 가격 <strong className="ml-2 font-medium text-ink">{procedure.price}</strong>
-          </p>
+        {procedure.prices.length > 0 && (
+          <Reveal className="mx-auto mt-12 max-w-xl md:mt-16">
+            <p className="text-center font-display text-sm tracking-[0.2em] text-gold">PRICE</p>
+            <dl className="mt-5 border-t border-ink">
+              {procedure.prices.map((p, i) => (
+                <div key={i} className="flex items-baseline justify-between gap-4 border-b border-ink/15 py-4">
+                  <dt className="text-[15px] text-muted">
+                    {p.label || procedure.name}
+                    {p.note && <span className="ml-2 text-xs text-taupe">{p.note}</span>}
+                  </dt>
+                  <dd className="font-serif text-lg font-medium whitespace-nowrap text-ink">{p.price}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-4 text-center text-xs text-taupe">가격은 VAT 포함 여부 · 부위 · 용량에 따라 달라질 수 있으며, 정확한 비용은 상담 후 안내해 드립니다.</p>
+          </Reveal>
         )}
       </section>
 

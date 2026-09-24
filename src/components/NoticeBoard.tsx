@@ -45,6 +45,9 @@ export default function NoticeBoard({ notices }: { notices: Notice[] }) {
                 </span>
                 <span className="col-span-2 font-serif text-lg font-medium transition-transform duration-500 group-hover:translate-x-1.5 md:col-span-1 md:text-xl">
                   {n.title}
+                  {n.type === "event" && n.summary && (
+                    <small className="mt-1 block font-sans text-xs font-normal tracking-normal text-taupe">기간 {n.summary}</small>
+                  )}
                 </span>
                 <span className="col-span-2 font-display text-xs tracking-widest text-taupe md:col-span-1">{n.createdAt}</span>
               </Link>

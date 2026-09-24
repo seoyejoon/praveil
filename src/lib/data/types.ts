@@ -1,5 +1,4 @@
-// 관리자 DB와 연결되기 전까지 홈페이지가 쓰는 데이터 형태.
-// 관리자 테이블 구조를 받으면 이 형태에 맞춰 조회 코드만 교체한다.
+// 홈페이지가 쓰는 데이터 형태. 관리자 DB(source-db.ts)와 임시 데이터(mock/) 모두 이 형태로 맞춘다.
 
 export type Hospital = {
   name: string;
@@ -40,20 +39,39 @@ export type ProcedureCategory = {
   description: string;
 };
 
+export type ProcedurePrice = { label: string; price: string; note: string };
+
 export type Procedure = {
   slug: string;
   categorySlug: string;
   name: string;
   summary?: string;
   isSignature?: boolean;
-  price?: string;
+  prices: ProcedurePrice[];
 };
+
+/** 관리자 편집기 문서(JSON) 한 조각 */
+export type DocNode = {
+  type?: string;
+  text?: string;
+  attrs?: Record<string, unknown>;
+  marks?: { type?: string; attrs?: Record<string, unknown> }[];
+  content?: DocNode[];
+};
+
+/** 게시글 본문: 편집기 문서 / 이벤트 이미지 묶음 / 일반 글 */
+export type PostBody =
+  | { kind: "doc"; doc: DocNode }
+  | { kind: "images"; images: { url: string; alt: string }[] }
+  | { kind: "text"; text: string };
 
 export type Notice = {
   id: number;
   type: "notice" | "event";
   title: string;
-  body: string;
+  summary: string;
+  coverImageUrl: string;
+  body: PostBody;
   createdAt: string;
 };
 
@@ -63,4 +81,5 @@ export type Popup = {
   imageUrl?: string;
   body?: string;
   linkUrl?: string;
+  device: "all" | "pc" | "mobile";
 };

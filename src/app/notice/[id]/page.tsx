@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
-import { getNotice, getNotices } from "@/lib/data";
+import PostContent from "@/components/PostContent";
+import { getNotice } from "@/lib/data";
 
 type Props = { params: Promise<{ id: string }> };
 
-export async function generateStaticParams() {
-  const notices = await getNotices();
-  return notices.map((n) => ({ id: String(n.id) }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const notice = await getNotice(Number((await params).id));
-  return { title: notice?.title };
+  return {
+    title: notice?.title,
+    description: notice?.summary || undefined,
+    openGraph: notice?.coverImageUrl ? { images: [notice.coverImageUrl] } : undefined,
+  };
 }
 
 export default async function NoticeDetailPage({ params }: Props) {
@@ -25,10 +25,12 @@ export default async function NoticeDetailPage({ params }: Props) {
       <Reveal variant="zoom" className="text-center">
         <p className="font-display text-base tracking-[0.15em] text-gold">{notice.type === "event" ? "Event" : "Notice"}</p>
         <h1 className="mt-4 font-serif text-3xl leading-snug font-medium tracking-tight md:text-[44px]">{notice.title}</h1>
-        <p className="mt-5 font-display text-sm tracking-widest text-taupe">{notice.createdAt}</p>
+        <p className="mt-5 font-display text-sm tracking-widest text-taupe">
+          {notice.type === "event" && notice.summary ? `이벤트 기간 ${notice.summary}` : notice.createdAt}
+        </p>
       </Reveal>
-      <div className="mt-12 border-t border-ink pt-12 text-[15px] leading-[1.9] whitespace-pre-line text-muted md:text-base">
-        {notice.body}
+      <div className="mt-12 border-t border-ink pt-12 text-[15px] leading-[1.9] text-muted md:text-base">
+        <PostContent body={notice.body} />
       </div>
       <div className="mt-20 border-t border-ink/15 pt-10 text-center">
         <Link

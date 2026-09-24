@@ -1,0 +1,61 @@
+# 홈페이지를 GitHub에서 빌드해 카페24 서버로 올린다. (2GB 서버에서는 빌드하지 않음)
+# 필요한 설정 (GitHub 저장소 > Settings > Secrets and variables > Actions)
+#   Variables: NEXT_PUBLIC_SITE_URL (예: https://praveil.co.kr), NEXT_PUBLIC_KAKAO_MAP_KEY (선택)
+#   Secrets:   DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY  (없으면 빌드만 하고 결과물을 내려받을 수 있게 남긴다)
+name: Deploy homepage
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-homepage
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://praveil.co.kr' }}
+      NEXT_PUBLIC_KAKAO_MAP_KEY: ${{ vars.NEXT_PUBLIC_KAKAO_MAP_KEY }}
+      HAS_SSH: ${{ secrets.DEPLOY_SSH_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm build
+      - name: Package standalone build
+        run: |
+          cp -r public .next/standalone/public
+          mkdir -p .next/standalone/.next
+          cp -r .next/static .next/standalone/.next/static
+          rm -rf .next/standalone/.next/cache
+          tar -czf praveil-web.tgz -C .next/standalone .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: praveil-web
+          path: praveil-web.tgz
+          retention-days: 14
+
+      - name: Deploy to server
+        if: ${{ env.HAS_SSH == 'true' }}
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -m 600 /dev/null ~/deploy_key && echo "$KEY" > ~/deploy_key
+          SSH="ssh -i ~/deploy_key -o StrictHostKeyChecking=accept-new $USER@$HOST"
+          RELEASE=/opt/praveil/releases/$(date +%Y%m%d%H%M%S)
+          scp -i ~/deploy_key -o StrictHostKeyChecking=accept-new praveil-web.tgz $USER@$HOST:/tmp/praveil-web.tgz
+          $SSH "set -e
+            mkdir -p $RELEASE && tar -xzf /tmp/praveil-web.tgz -C $RELEASE && rm /tmp/praveil-web.tgz
+            ln -sfn $RELEASE /opt/praveil/current
+            pm2 reload praveil-web --update-env || pm2 start /opt/praveil/ecosystem.config.cjs --only praveil-web
+            ls -1dt /opt/praveil/releases/* | tail -n +4 | xargs -r rm -rf"

@@ -19,6 +19,7 @@ const p = (categorySlug: string, slug: string, name: string, isSignature = false
   slug,
   name,
   isSignature,
+  prices: [],
 });
 
 export const procedures: Procedure[] = [

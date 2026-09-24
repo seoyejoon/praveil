@@ -18,8 +18,30 @@
   --font-serif: "Noto Serif KR Variable", "Noto Serif KR", serif;
   --font-display: "Marcellus", "Noto Serif KR Variable", serif;
 
+  --animate-hero-reveal: hero-reveal 1.8s cubic-bezier(0.76, 0, 0.24, 1) both;
   --animate-marquee: marquee 60s linear infinite;
   --animate-rise: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 가운데 아치 모양에서 화면 전체로 펼쳐짐 */
+@keyframes hero-reveal {
+  from {
+    clip-path: inset(22% 36% 14% 36% round 50% 50% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0 0 0 0);
+  }
+}
+
+@media (max-width: 767px) {
+  @keyframes hero-reveal {
+    from {
+      clip-path: inset(20% 18% 14% 18% round 50% 50% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 0 0 0 0);
+    }
+  }
 }
 
 @keyframes rise {
@@ -79,7 +101,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-hero-reveal {
     animation: none;
   }
   .reveal {

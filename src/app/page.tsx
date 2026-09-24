@@ -5,6 +5,7 @@ import ImageSlot from "@/components/ImageSlot";
 import LocationInfo from "@/components/LocationInfo";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
+import Hero from "@/components/home/Hero";
 import WhySlider from "@/components/home/WhySlider";
 import { clinic, contact, hero, images, philosophy, story } from "@/content/home";
 import {
@@ -29,45 +30,14 @@ export default async function Home() {
 
   return (
     <>
-      {/* 히어로: 한 화면 꽉 차게 (모바일은 하단 상담바 제외). 사진 확정 후 ImageSlot에 src 지정 */}
-      <section className="relative h-[calc(100svh-3.5rem)] min-h-[560px] overflow-hidden bg-espresso text-white md:h-svh md:min-h-[680px]">
-        <ImageSlot src={images.hero} tone="dark" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-[#1f1b18]/50" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_100%)]" />
-        <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
-          <p className="animate-rise font-display text-2xl tracking-[0.08em] text-[#ffd899] md:text-4xl">
-            {hero.eyebrow}
-          </p>
-          <h1 className="animate-rise mt-5 font-serif text-[34px] leading-[1.3] font-medium tracking-[-0.04em] [animation-delay:150ms] md:mt-7 md:text-7xl md:leading-[1.25]">
-            {hero.title[0]}
-            <br />
-            {hero.title[1]}
-          </h1>
-          <p className="animate-rise mt-6 text-[15px] leading-relaxed whitespace-pre-line text-cream [animation-delay:300ms] md:mt-8 md:text-xl">
-            {hero.description}
-          </p>
-          <div className="animate-rise mt-10 flex gap-3 [animation-delay:450ms] md:mt-14">
-            <Link
-              href="/treatments"
-              className="rounded-full border border-white/60 px-7 py-3 text-sm transition hover:bg-white hover:text-ink md:px-9 md:text-base"
-            >
-              시술 안내
-            </Link>
-            <a
-              href={hospital.naverReservationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-white px-7 py-3 text-sm text-ink transition hover:bg-[#ffd899] md:px-9 md:text-base"
-            >
-              예약하기
-            </a>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-display text-[11px] tracking-[0.3em] text-cream/70 md:flex">
-          SCROLL
-          <span className="h-12 w-px bg-cream/60 [animation:scroll-line_2s_ease-in-out_infinite]" />
-        </div>
-      </section>
+      {/* 히어로: 한 화면 꽉 차게 (모바일은 하단 상담바 제외). 영상이 생기면 video={{ src, mobileSrc }} 지정 */}
+      <Hero
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        description={hero.description}
+        image={images.hero}
+        reservationUrl={hospital.naverReservationUrl}
+      />
 
       {/* 철학: 3칸 카드 (어둠 / 밝음 / 어둠) */}
       <section className="grid md:grid-cols-3">

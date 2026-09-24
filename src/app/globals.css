@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
-/* 베이지 웜 색상 규칙 */
 @theme {
-  --color-ivory: #faf7f2;
-  --color-cream: #f3ede4;
-  --color-sand: #e6dacb;
-  --color-taupe: #b8a590;
-  --color-mocha: #8a7360;
-  --color-espresso: #3e332b;
-  --color-line: #e8e0d5;
+  /* 베이지 웜: 크림 배경 + 웜브라운 + 골드 포인트 */
+  --color-ivory: #fbf8f3;
+  --color-cream: #f8f4ee;
+  --color-sand: #e8ded2;
+  --color-taupe: #bda57d;
+  --color-gold: #b49463;
+  --color-mocha: #9b7b57;
+  --color-muted: #5a534a;
+  --color-espresso: #342f2a;
+  --color-ink: #2e2925;
+  --color-line: #e6ded3;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Malgun Gothic", sans-serif;
   --font-serif: "Noto Serif KR Variable", "Noto Serif KR", serif;
-  --font-display: "Cormorant Variable", "Cormorant", "Noto Serif KR Variable", serif;
+  --font-display: "Marcellus", "Noto Serif KR Variable", serif;
 
+  --animate-marquee: marquee 60s linear infinite;
   --animate-rise: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -60,7 +64,24 @@
   transform: none;
 }
 
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 가로 스크롤 카드: 스크롤바 숨김 */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
   .reveal {
     opacity: 1;
     transform: none;
@@ -76,8 +97,8 @@ html {
 }
 
 body {
-  background: var(--color-ivory);
-  color: var(--color-espresso);
+  background: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   word-break: keep-all;
   -webkit-font-smoothing: antialiased;

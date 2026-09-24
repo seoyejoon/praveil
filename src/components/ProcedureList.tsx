@@ -3,12 +3,12 @@ import type { Procedure } from "@/lib/data";
 
 export default function ProcedureList({ procedures }: { procedures: Procedure[] }) {
   return (
-    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-x-10 border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-3">
       {procedures.map((p) => (
         <li key={p.slug}>
           <Link
             href={`/treatments/${p.categorySlug}/${p.slug}`}
-            className="flex items-center justify-between rounded-xl border border-line bg-ivory px-5 py-5 transition hover:border-taupe hover:bg-cream"
+            className="flex items-center justify-between border-b border-ink/15 px-1 py-5 transition hover:text-mocha"
           >
             <span>
               {p.name}

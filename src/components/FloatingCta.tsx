@@ -1,6 +1,6 @@
 import type { Hospital } from "@/lib/data";
 
-// 모바일: 화면 하단 고정 바 / PC: 우측 하단 버튼
+// 모바일 전용 하단 고정 상담 바 (PC는 헤더의 전화문의 · 예약하기 사용)
 export default function FloatingCta({ hospital }: { hospital: Hospital }) {
   const items = [
     { href: `tel:${hospital.phone}`, label: "전화 상담" },
@@ -9,13 +9,13 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-line bg-ivory md:inset-x-auto md:right-6 md:bottom-6 md:flex md:flex-col md:gap-2 md:border-0 md:bg-transparent">
+    <div className="fixed inset-x-0 bottom-0 z-40 grid h-14 grid-cols-3 border-t border-line bg-cream md:hidden">
       {items.map((item) => (
         <a
           key={item.label}
           href={item.href}
           {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="flex h-14 items-center justify-center text-sm first:bg-espresso first:text-ivory md:rounded-full md:bg-espresso md:h-auto md:px-5 md:py-3 md:text-ivory md:shadow-lg md:hover:bg-mocha"
+          className="flex items-center justify-center text-sm first:bg-espresso first:text-cream"
         >
           {item.label}
         </a>

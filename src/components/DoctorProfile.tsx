@@ -1,33 +1,35 @@
 import type { Doctor } from "@/lib/data";
-import Container from "./Container";
+import { doctorQuote } from "@/content/home";
 import ImageSlot from "./ImageSlot";
 import Reveal from "./Reveal";
 
+// 좌: 원장 사진(아래 정렬) / 우: 인용문 + 프로필
 export default function DoctorProfile({ doctor }: { doctor: Doctor }) {
   return (
-    <Container className="grid items-center gap-12 md:grid-cols-12 md:gap-16">
-      <Reveal className="md:col-span-5">
-        <ImageSlot label="Doctor" className="aspect-[4/5] rounded-t-full" />
-      </Reveal>
-      <Reveal delay={150} className="md:col-span-7">
-        <p className="font-display text-3xl text-taupe italic md:text-5xl">Doctor</p>
-        <p className="mt-8 font-serif text-xl leading-relaxed md:text-2xl md:leading-relaxed">
-          {/* 임시 문구: 원장님 인사말 확정 후 교체 */}
-          &ldquo;피부마다 맞는 방법은 다릅니다.
-          <br />
-          상담부터 시술까지 직접 책임지겠습니다.&rdquo;
-        </p>
-        <p className="mt-8 text-sm text-mocha">{doctor.title}</p>
-        <p className="mt-1 font-serif text-2xl">{doctor.name}</p>
-        <ul className="mt-8 space-y-3 border-t border-line pt-6 text-sm md:text-base">
-          {doctor.credentials.map((c) => (
-            <li key={c} className="flex gap-3">
-              <span className="mt-2.5 h-px w-3 shrink-0 bg-taupe" />
-              {c}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-    </Container>
+    <div className="bg-[linear-gradient(90deg,rgba(255,253,246,0)_0%,#f3eadd_100%),#fffdf6]">
+      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 pt-24 md:grid-cols-10 md:gap-0 md:px-10 md:pt-32">
+        <Reveal className="order-2 md:order-1 md:col-span-4 md:col-start-2 md:self-end">
+          <ImageSlot label="Doctor" className="aspect-[3/4] w-full" />
+        </Reveal>
+        <Reveal delay={150} className="order-1 md:order-2 md:col-span-4 md:col-start-7 md:pb-32">
+          <span aria-hidden className="block font-serif text-7xl leading-none text-taupe">&ldquo;</span>
+          <p className="mt-2 font-serif text-[26px] leading-[1.45] font-medium tracking-tight whitespace-pre-line md:text-4xl md:leading-[1.45]">
+            {doctorQuote}
+          </p>
+          <div className="mt-14 md:mt-24">
+            <p className="font-display text-lg tracking-[0.15em] text-mocha">The Praveil Standard</p>
+            <p className="mt-4 flex items-baseline gap-3">
+              <span className="font-serif text-3xl font-medium">{doctor.name}</span>
+              <span className="text-sm text-muted">{doctor.title}</span>
+            </p>
+            <ul className="mt-8 space-y-2.5 border-t border-ink/15 pt-6 text-[15px] text-muted">
+              {doctor.credentials.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </div>
+    </div>
   );
 }

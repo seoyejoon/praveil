@@ -21,7 +21,7 @@ export default async function NoticeDetailPage({ params }: Props) {
   if (!notice) notFound();
 
   return (
-    <Container className="max-w-3xl py-16 md:py-24">
+    <Container className="max-w-3xl pt-32 pb-16 md:pt-44 md:pb-24">
       <p className="text-xs text-mocha">{notice.type === "event" ? "이벤트" : "공지"}</p>
       <h1 className="mt-2 font-serif text-2xl md:text-3xl">{notice.title}</h1>
       <p className="mt-3 text-xs text-taupe">{notice.createdAt}</p>

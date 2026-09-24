@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "@fontsource-variable/noto-serif-kr";
-import "@fontsource-variable/cormorant";
-import "@fontsource-variable/cormorant/wght-italic.css";
+import "@fontsource/marcellus";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -24,7 +23,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="ko">
       <body>
-        <Header phone={hospital.phone} />
+        <Header phone={hospital.phone} reservationUrl={hospital.naverReservationUrl} />
         <main>{children}</main>
         <Footer hospital={hospital} />
         <FloatingCta hospital={hospital} />

@@ -5,42 +5,77 @@ import ImageSlot from "@/components/ImageSlot";
 import LocationInfo from "@/components/LocationInfo";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
+import BigLetters from "@/components/home/BigLetters";
 import Hero from "@/components/home/Hero";
-import WhySlider from "@/components/home/WhySlider";
-import { clinic, contact, hero, images, philosophy, story } from "@/content/home";
+import Program from "@/components/home/Program";
+import ScrollStatement from "@/components/home/ScrollStatement";
+import Stats from "@/components/home/Stats";
+import TreatmentIndex from "@/components/home/TreatmentIndex";
+import WhyHorizontal from "@/components/home/WhyHorizontal";
+import {
+  bigLetters,
+  clinic,
+  contact,
+  hero,
+  images,
+  philosophy,
+  programs,
+  statement,
+  stats,
+} from "@/content/home";
 import {
   getCategories,
   getDoctor,
   getFeatures,
   getHospital,
+  getNotices,
   getSignatureProcedures,
 } from "@/lib/data";
 
 const wide = "mx-auto w-full max-w-[1440px] px-5 md:px-10";
 
 export default async function Home() {
-  const [hospital, doctor, features, categories, signatures] = await Promise.all([
+  const [hospital, doctor, features, categories, signatures, notices] = await Promise.all([
     getHospital(),
     getDoctor(),
     getFeatures(),
     getCategories(),
     getSignatureProcedures(),
+    getNotices(),
   ]);
-  const categoryName = (slug: string) => categories.find((c) => c.slug === slug)?.name;
+
+  const programItems = signatures.map((p, i) => ({
+    href: `/treatments/${p.categorySlug}/${p.slug}`,
+    name: p.name,
+    category: categories.find((c) => c.slug === p.categorySlug)?.name ?? "",
+    image: images.signature[i],
+    description: programs[p.slug]?.description ?? "",
+    tags: programs[p.slug]?.tags ?? [],
+  }));
 
   return (
     <>
-      {/* 히어로: 한 화면 꽉 차게 (모바일은 하단 상담바 제외). 영상이 생기면 video={{ src, mobileSrc }} 지정 */}
-      <Hero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        image={images.hero}
-        reservationUrl={hospital.naverReservationUrl}
-      />
+      {/* 첫 화면은 제자리에 두고, 다음 섹션이 둥근 모서리로 위를 덮으며 올라온다 */}
+      <div className="relative">
+        <div className="sticky top-0">
+          {/* 영상이 생기면 video={{ src, mobileSrc }} 지정 */}
+          <Hero
+            eyebrow={hero.eyebrow}
+            title={hero.title}
+            description={hero.description}
+            image={images.hero}
+            reservationUrl={hospital.naverReservationUrl}
+          />
+        </div>
 
-      {/* 철학: 3칸 카드 (어둠 / 밝음 / 어둠) */}
-      <section className="grid md:grid-cols-3">
+        {/* 브랜드 문장: 스크롤에 맞춰 한 단어씩 칠해짐 */}
+        <section className="relative z-10 rounded-t-[28px] bg-cream py-28 md:rounded-t-[56px] md:py-48">
+          <ScrollStatement en={statement.en} text={statement.text} />
+        </section>
+      </div>
+
+      {/* 철학: 3칸 카드 */}
+      <section className="relative z-10 grid md:grid-cols-3">
         {philosophy.map((p, i) => (
           <Reveal
             key={p.en}
@@ -68,80 +103,36 @@ export default async function Home() {
         ))}
       </section>
 
-      {/* 스토리: 큰 문구 + 세로 사진 / 가로 사진 */}
-      <section className="overflow-hidden bg-cream py-28 md:py-48">
-        <div className={`${wide} grid gap-14 md:grid-cols-[68fr_76fr] md:gap-20 lg:gap-40`}>
-          <Reveal className="md:pt-24">
-            <ImageSlot src={images.story[0]} label="Story" className="aspect-[680/1060]" />
-          </Reveal>
-          <div className="flex flex-col">
-            <Reveal>
-              <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">{story.en}</p>
-              <h2 className="mt-5 font-serif text-[34px] leading-[1.25] font-medium tracking-[-0.04em] md:text-6xl md:leading-[1.2]">
-                {story.title[0]}
-                <br />
-                {story.title[1]}
-              </h2>
-              <p className="mt-8 text-[15px] leading-[1.8] text-muted md:text-lg">
-                {story.body.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
-            </Reveal>
-            <Reveal delay={150} className="mt-14 md:mt-auto">
-              <ImageSlot src={images.story[1]} label="Story" className="aspect-[760/420]" />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 대표 시술 */}
+      {/* 숫자로 보는 프라베일 */}
       <section className="bg-ivory py-28 md:py-40">
         <div className={wide}>
-          <SectionTitle en="Signature" title="프라베일 대표 시술" description="가장 많이 찾으시는 네 가지 시술입니다." />
-          <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-            {signatures.map((p, i) => (
-              <Reveal as="li" key={p.slug} delay={i * 120}>
-                <Link href={`/treatments/${p.categorySlug}/${p.slug}`} className="group block">
-                  <div className="overflow-hidden">
-                    <ImageSlot
-                      src={images.signature[i]}
-                      label={`0${i + 1}`}
-                      tone={i % 2 ? "light" : "dark"}
-                      className="aspect-[3/4] transition duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-6 text-sm text-mocha">{categoryName(p.categorySlug)}</p>
-                  <p className="mt-1 font-serif text-2xl font-medium">{p.name}</p>
-                  <p className="mt-4 inline-block border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] transition group-hover:border-gold group-hover:text-gold">
-                    VIEW MORE
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </ul>
+          <SectionTitle en="Praveil in Numbers" title="숫자로 보는 프라베일" />
+          <Stats items={stats} />
         </div>
       </section>
 
-      {/* 왜 프라베일 */}
-      <section className="bg-cream py-28 md:py-40">
-        <div className={wide}>
-          <SectionTitle
-            en="Why Praveil"
-            title={
-              <>
-                많이 하는 병원이 아닌,
-                <br />
-                잘 맞추는 병원.
-              </>
-            }
-          />
-          <Reveal>
-            <WhySlider features={features} images={images.why} />
+      {/* 대표 시술 프로그램 (어두운 배경, PC는 화면 고정) */}
+      <Program items={programItems} />
+
+      {/* 강점: PC는 화면 고정 후 옆으로 */}
+      <WhyHorizontal
+        features={features}
+        images={images.why}
+        heading={
+          <Reveal variant="zoom">
+            <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">Why Praveil</p>
+            <h2 className="mt-4 font-serif text-[28px] leading-snug font-medium tracking-tight md:mt-5 md:text-[44px] md:leading-tight">
+              많이 하는 병원이 아닌,
+              <br />
+              잘 맞추는 병원.
+            </h2>
           </Reveal>
-        </div>
+        }
+      />
+
+      {/* 큰 문구: 한 글자씩 */}
+      <section className="bg-ivory">
+        <BigLetters text={bigLetters.text} caption={bigLetters.caption} />
       </section>
 
       {/* 원장 */}
@@ -149,32 +140,57 @@ export default async function Home() {
         <DoctorProfile doctor={doctor} />
       </section>
 
-      {/* 시술 안내 */}
+      {/* 시술 안내: 마우스를 올리면 사진 */}
       <section className="bg-cream py-28 md:py-40">
         <div className={wide}>
-          <SectionTitle en="Treatments" title="시술 안내" />
-          <ul className="grid border-t border-ink/20 md:grid-cols-2 md:gap-x-20">
-            {categories.map((c) => (
-              <li key={c.slug} className="border-b border-ink/20">
-                <Link href={`/treatments/${c.slug}`} className="group flex items-center gap-4 py-6 md:py-7">
-                  <span className="w-40 shrink-0 font-display text-sm tracking-[0.15em] text-gold md:w-48 md:text-base">
-                    {c.nameEn.toUpperCase()}
+          <SectionTitle en="Treatments" title="시술 안내" description="11개 분야, 54가지 시술을 진행합니다." />
+          <TreatmentIndex categories={categories} images={images.categories} />
+          <div className="mt-12 text-center">
+            <Link
+              href="/treatments"
+              className="inline-block rounded-full border border-ink/40 px-8 py-3 text-sm transition hover:bg-ink hover:text-cream"
+            >
+              전체 시술 보기
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 공지 · 이벤트 */}
+      <section className="bg-ivory py-28 md:py-40">
+        <div className={wide}>
+          <div className="flex items-end justify-between gap-6">
+            <Reveal variant="zoom">
+              <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">News</p>
+              <h2 className="mt-4 font-serif text-[28px] font-medium tracking-tight md:text-[44px]">공지 · 이벤트</h2>
+            </Reveal>
+            <Link href="/notice" className="border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
+              VIEW MORE
+            </Link>
+          </div>
+          <ul className="mt-12 grid gap-6 md:mt-16 md:grid-cols-3">
+            {notices.slice(0, 3).map((n, i) => (
+              <Reveal as="li" key={n.id} delay={i * 120}>
+                <Link
+                  href={`/notice/${n.id}`}
+                  className="group flex h-full min-h-[220px] flex-col border-t border-ink pt-6 transition hover:border-gold"
+                >
+                  <span className="text-xs text-mocha">{n.type === "event" ? "이벤트" : "공지"}</span>
+                  <span className="mt-4 font-serif text-xl leading-snug font-medium group-hover:text-mocha md:text-2xl">
+                    {n.title}
                   </span>
-                  <span className="flex-1 font-serif text-lg font-medium md:text-xl">{c.name}</span>
-                  <span aria-hidden className="text-taupe transition group-hover:translate-x-1 group-hover:text-ink">
-                    →
-                  </span>
+                  <span className="mt-auto pt-8 font-display text-xs tracking-widest text-taupe">{n.createdAt}</span>
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
       {/* 시설: 흘러가는 사진 */}
-      <section className="overflow-hidden bg-ivory py-28 md:py-40">
+      <section className="overflow-hidden bg-cream py-28 md:py-40">
         <div className={`${wide} grid items-end gap-8 md:grid-cols-10`}>
-          <Reveal className="md:col-span-5">
+          <Reveal variant="zoom" className="md:col-span-5">
             <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">{clinic.en}</p>
             <h2 className="mt-5 font-serif text-[30px] leading-[1.3] font-medium tracking-[-0.04em] md:text-5xl md:leading-[1.3]">
               {clinic.title[0]}
@@ -192,14 +208,8 @@ export default async function Home() {
         <div className="mt-16 md:mt-24">
           <div className="animate-marquee flex w-max gap-6 hover:[animation-play-state:paused]">
             {[0, 1].map((set) =>
-              Array.from({ length: 6 }).map((_, i) => (
-                <ImageSlot
-                  key={`${set}-${i}`}
-                  src={images.clinic[i]}
-                  label="Clinic"
-                  tone={i % 3 === 1 ? "dark" : "light"}
-                  className="aspect-[4/3] w-[280px] shrink-0 md:w-[440px]"
-                />
+              images.clinic.map((src, i) => (
+                <ImageSlot key={`${set}-${i}`} src={src} label="Clinic" className="aspect-[4/3] w-[280px] shrink-0 md:w-[440px]" />
               )),
             )}
           </div>
@@ -207,7 +217,7 @@ export default async function Home() {
       </section>
 
       {/* 진료시간 · 오시는 길 */}
-      <section className="bg-cream py-28 md:py-40">
+      <section className="bg-ivory py-28 md:py-40">
         <Container>
           <SectionTitle en="Hours & Location" title="진료시간 · 오시는 길" />
           <Reveal>
@@ -220,7 +230,7 @@ export default async function Home() {
       <section className="relative grid min-h-[500px] place-items-center overflow-hidden px-5 py-28 text-center text-white md:min-h-[640px]">
         <ImageSlot src={images.contact} tone="dark" className="absolute inset-0" />
         <div className="absolute inset-0 bg-[#1f1b18]/55" />
-        <Reveal className="relative">
+        <Reveal variant="zoom" className="relative">
           <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">{contact.en}</p>
           <h2 className="mt-5 font-serif text-[28px] leading-snug font-medium tracking-[-0.04em] md:text-5xl">{contact.title}</h2>
           <p className="mt-5 text-[15px] text-cream/80 md:text-lg">{contact.body}</p>

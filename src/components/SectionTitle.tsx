@@ -14,7 +14,7 @@ export default function SectionTitle({
   tone?: "dark" | "light";
 }) {
   return (
-    <Reveal className={`mb-12 md:mb-20 ${align === "center" ? "text-center" : ""}`}>
+    <Reveal variant="zoom" className={`mb-12 md:mb-20 ${align === "center" ? "text-center" : ""}`}>
       <p className={`font-display text-base tracking-[0.15em] md:text-lg ${tone === "light" ? "text-[#ffd899]" : "text-gold"}`}>
         {en}
       </p>

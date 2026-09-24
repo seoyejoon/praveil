@@ -8,11 +8,14 @@ export default function Reveal({
   delay = 0,
   className = "",
   as: Tag = "div",
+  variant = "rise",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "li" | "section";
+  /** rise: 아래에서 떠오름 / zoom: 크게 있다가 제자리 크기로 줄어들며 나타남 */
+  variant?: "rise" | "zoom";
 }) {
   const ref = useRef<HTMLElement>(null);
 
@@ -35,7 +38,7 @@ export default function Reveal({
   return (
     <Tag
       ref={ref as React.RefObject<never>}
-      className={`reveal ${className}`}
+      className={`${variant === "zoom" ? "reveal-zoom" : "reveal"} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

@@ -35,3 +35,16 @@ export const contact = {
   title: "나에게 맞는 방법, 상담에서 시작됩니다.",
   body: "충분한 상담을 위해 예약 후 방문을 권장드립니다.",
 };
+
+// 샘플 사진 (Picsum · Unsplash 라이선스, 웜톤 보정). 촬영본이 나오면 같은 이름으로 교체한다.
+const sample = (name: string) => `/images/sample/${name}.webp`;
+
+export const images = {
+  hero: sample("hero"),
+  story: [sample("story-1"), sample("story-2")],
+  signature: [1, 2, 3, 4].map((n) => sample(`signature-${n}`)),
+  why: [1, 2, 3, 4, 5].map((n) => sample(`why-${n}`)),
+  doctor: sample("doctor"),
+  clinic: [1, 2, 3, 4, 5, 6].map((n) => sample(`clinic-${n}`)),
+  contact: sample("contact"),
+};

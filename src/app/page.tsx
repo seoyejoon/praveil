@@ -6,7 +6,7 @@ import LocationInfo from "@/components/LocationInfo";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
 import WhySlider from "@/components/home/WhySlider";
-import { clinic, contact, hero, philosophy, story } from "@/content/home";
+import { clinic, contact, hero, images, philosophy, story } from "@/content/home";
 import {
   getCategories,
   getDoctor,
@@ -31,7 +31,8 @@ export default async function Home() {
     <>
       {/* 히어로: 한 화면 꽉 차게 (모바일은 하단 상담바 제외). 사진 확정 후 ImageSlot에 src 지정 */}
       <section className="relative h-[calc(100svh-3.5rem)] min-h-[560px] overflow-hidden bg-espresso text-white md:h-svh md:min-h-[680px]">
-        <ImageSlot tone="dark" className="absolute inset-0" />
+        <ImageSlot src={images.hero} tone="dark" className="absolute inset-0" />
+        <div className="absolute inset-0 bg-[#1f1b18]/50" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_100%)]" />
         <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
           <p className="animate-rise font-display text-2xl tracking-[0.08em] text-[#ffd899] md:text-4xl">
@@ -101,7 +102,7 @@ export default async function Home() {
       <section className="overflow-hidden bg-cream py-28 md:py-48">
         <div className={`${wide} grid gap-14 md:grid-cols-[68fr_76fr] md:gap-20 lg:gap-40`}>
           <Reveal className="md:pt-24">
-            <ImageSlot label="Story" className="aspect-[680/1060]" />
+            <ImageSlot src={images.story[0]} label="Story" className="aspect-[680/1060]" />
           </Reveal>
           <div className="flex flex-col">
             <Reveal>
@@ -120,7 +121,7 @@ export default async function Home() {
               </p>
             </Reveal>
             <Reveal delay={150} className="mt-14 md:mt-auto">
-              <ImageSlot label="Story" className="aspect-[760/420]" />
+              <ImageSlot src={images.story[1]} label="Story" className="aspect-[760/420]" />
             </Reveal>
           </div>
         </div>
@@ -136,6 +137,7 @@ export default async function Home() {
                 <Link href={`/treatments/${p.categorySlug}/${p.slug}`} className="group block">
                   <div className="overflow-hidden">
                     <ImageSlot
+                      src={images.signature[i]}
                       label={`0${i + 1}`}
                       tone={i % 2 ? "light" : "dark"}
                       className="aspect-[3/4] transition duration-700 group-hover:scale-105"
@@ -167,7 +169,7 @@ export default async function Home() {
             }
           />
           <Reveal>
-            <WhySlider features={features} />
+            <WhySlider features={features} images={images.why} />
           </Reveal>
         </div>
       </section>
@@ -223,6 +225,7 @@ export default async function Home() {
               Array.from({ length: 6 }).map((_, i) => (
                 <ImageSlot
                   key={`${set}-${i}`}
+                  src={images.clinic[i]}
                   label="Clinic"
                   tone={i % 3 === 1 ? "dark" : "light"}
                   className="aspect-[4/3] w-[280px] shrink-0 md:w-[440px]"
@@ -245,7 +248,8 @@ export default async function Home() {
 
       {/* 예약 안내 */}
       <section className="relative grid min-h-[500px] place-items-center overflow-hidden px-5 py-28 text-center text-white md:min-h-[640px]">
-        <ImageSlot tone="dark" className="absolute inset-0" />
+        <ImageSlot src={images.contact} tone="dark" className="absolute inset-0" />
+        <div className="absolute inset-0 bg-[#1f1b18]/55" />
         <Reveal className="relative">
           <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">{contact.en}</p>
           <h2 className="mt-5 font-serif text-[28px] leading-snug font-medium tracking-[-0.04em] md:text-5xl">{contact.title}</h2>

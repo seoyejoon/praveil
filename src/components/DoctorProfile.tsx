@@ -1,5 +1,5 @@
 import type { Doctor } from "@/lib/data";
-import { doctorQuote } from "@/content/home";
+import { doctorQuote, images } from "@/content/home";
 import ImageSlot from "./ImageSlot";
 import Reveal from "./Reveal";
 
@@ -9,7 +9,7 @@ export default function DoctorProfile({ doctor }: { doctor: Doctor }) {
     <div className="bg-[linear-gradient(90deg,rgba(255,253,246,0)_0%,#f3eadd_100%),#fffdf6]">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-5 pt-24 md:grid-cols-10 md:gap-0 md:px-10 md:pt-32">
         <Reveal className="order-2 md:order-1 md:col-span-4 md:col-start-2 md:self-end">
-          <ImageSlot label="Doctor" className="aspect-[3/4] w-full" />
+          <ImageSlot src={images.doctor} alt={`${doctor.title} ${doctor.name}`} label="Doctor" className="aspect-[3/4] w-full" />
         </Reveal>
         <Reveal delay={150} className="order-1 md:order-2 md:col-span-4 md:col-start-7 md:pb-32">
           <span aria-hidden className="block font-serif text-7xl leading-none text-taupe">&ldquo;</span>

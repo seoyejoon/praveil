@@ -5,7 +5,7 @@ import type { Feature } from "@/lib/data";
 import ImageSlot from "../ImageSlot";
 
 // 가로로 넘기는 강점 카드 (라이브러리 없이 CSS 스크롤 스냅)
-export default function WhySlider({ features }: { features: Feature[] }) {
+export default function WhySlider({ features, images = [] }: { features: Feature[]; images?: string[] }) {
   const ref = useRef<HTMLUListElement>(null);
   const [index, setIndex] = useState(0);
 
@@ -32,7 +32,7 @@ export default function WhySlider({ features }: { features: Feature[] }) {
       >
         {features.map((f, i) => (
           <li key={f.title} className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[calc((100%-48px)/3)]">
-            <ImageSlot label={`0${i + 1}`} className="aspect-[4/5]" />
+            <ImageSlot src={images[i]} label={`0${i + 1}`} className="aspect-[4/5]" />
             <p className="mt-6 font-display text-sm tracking-[0.15em] text-gold">0{i + 1}</p>
             <p className="mt-2 font-serif text-xl font-medium md:text-2xl">{f.title}</p>
             <p className="mt-3 text-[15px] leading-relaxed text-muted">{f.description}</p>

@@ -43,7 +43,7 @@ export default function Hero({ eyebrow, title, description, image, video, reserv
       if (mediaRef.current) {
         mediaRef.current.style.transform = `translate3d(${eased.x * -14}px, ${eased.y * -10 + progress * 60}px, 0) scale(${scale})`;
       }
-      if (shadeRef.current) shadeRef.current.style.opacity = String(0.5 + progress * 0.35);
+      if (shadeRef.current) shadeRef.current.style.opacity = String(0.4 + progress * 0.4);
       if (copyRef.current) {
         copyRef.current.style.transform = `translate3d(0, ${progress * -80}px, 0)`;
         copyRef.current.style.opacity = String(1 - progress * 1.4);
@@ -122,27 +122,27 @@ export default function Hero({ eyebrow, title, description, image, video, reserv
             <img src={image} alt="" fetchPriority="high" className="h-full w-full object-cover" />
           )}
         </div>
-        <div ref={shadeRef} className="absolute inset-0 bg-[#1f1b18] opacity-50" />
+        <div ref={shadeRef} className="absolute inset-0 bg-[#1f1b18] opacity-40" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_100%)]" />
         <div ref={lightRef} className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700" />
       </div>
 
       <div ref={copyRef} className="relative flex h-full flex-col items-center justify-center px-5 text-center will-change-transform">
-        <p className="animate-rise font-display text-2xl tracking-[0.08em] text-[#ffd899] [animation-delay:900ms] md:text-4xl">
+        <p className="animate-rise font-display text-base tracking-[0.12em] text-[#ffd899] [animation-delay:900ms] md:text-xl">
           {eyebrow}
         </p>
-        <h1 className="animate-rise mt-5 font-serif text-[34px] leading-[1.3] font-medium tracking-[-0.04em] [animation-delay:1050ms] md:mt-7 md:text-7xl md:leading-[1.25]">
+        <h1 className="animate-rise mt-4 font-serif text-[28px] leading-[1.35] font-medium tracking-[-0.03em] [animation-delay:1050ms] md:mt-5 md:text-[44px] md:leading-[1.3]">
           {title[0]}
           <br />
           {title[1]}
         </h1>
-        <p className="animate-rise mt-6 text-[15px] leading-relaxed whitespace-pre-line text-cream [animation-delay:1200ms] md:mt-8 md:text-xl">
+        <p className="animate-rise mt-5 text-sm leading-relaxed whitespace-pre-line text-cream/85 [animation-delay:1200ms] md:mt-6 md:text-base">
           {description}
         </p>
-        <div className="animate-rise mt-10 flex gap-3 [animation-delay:1350ms] md:mt-14">
+        <div className="animate-rise mt-8 flex gap-2.5 [animation-delay:1350ms] md:mt-10">
           <Link
             href="/treatments"
-            className="rounded-full border border-white/60 px-7 py-3 text-sm transition hover:bg-white hover:text-ink md:px-9 md:text-base"
+            className="rounded-full border border-white/60 px-6 py-2.5 text-[13px] transition hover:bg-white hover:text-ink md:px-7 md:text-sm"
           >
             시술 안내
           </Link>
@@ -150,7 +150,7 @@ export default function Hero({ eyebrow, title, description, image, video, reserv
             href={reservationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white px-7 py-3 text-sm text-ink transition hover:bg-[#ffd899] md:px-9 md:text-base"
+            className="rounded-full bg-white px-6 py-2.5 text-[13px] text-ink transition hover:bg-[#ffd899] md:px-7 md:text-sm"
           >
             예약하기
           </a>

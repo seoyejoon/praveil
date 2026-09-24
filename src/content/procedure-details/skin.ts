@@ -230,7 +230,7 @@ export const acne: Record<string, ProcedureDetail> = {
     principle:
       "과일산(AHA)의 한 종류인 글리콜산을 피부에 발라 묵은 각질을 부드럽게 떼어냅니다. 분자가 작아 흡수가 잘 되는 편이며, 각질과 피지 흐름을 정돈해 여드름이 악화되는 것을 막는 데 도움이 됩니다.",
     points: [pointDoctor, "피부 예민도에 따라 농도와 도포 시간을 조절합니다.", "압출 · 진정 관리와 함께 구성합니다."],
-    cautions: [...cautionPeel.slice(0, 3), "임신 중이거나 피부염이 심한 경우 시술을 미룰 수 있습니다.", cautionCommon],
+    cautions: [...cautionPeel.slice(0, 3), "임신 중이라면 시술 전에 꼭 알려주세요.", cautionCommon],
     faq: [
       { q: "따갑지 않나요?", a: "도포 중 따끔한 느낌이 들 수 있으며, 피부 반응을 보며 시간을 조절합니다." },
       { q: "얼마나 자주 받나요?", a: "보통 1~2주 간격으로 여러 회 진행합니다." },

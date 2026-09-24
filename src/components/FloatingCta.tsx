@@ -15,7 +15,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
           key={item.label}
           href={item.href}
           {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="py-4 text-center text-sm first:bg-espresso first:text-ivory md:rounded-full md:bg-espresso md:px-5 md:py-3 md:text-ivory md:shadow-lg md:hover:bg-mocha"
+          className="flex h-14 items-center justify-center text-sm first:bg-espresso first:text-ivory md:rounded-full md:bg-espresso md:h-auto md:px-5 md:py-3 md:text-ivory md:shadow-lg md:hover:bg-mocha"
         >
           {item.label}
         </a>

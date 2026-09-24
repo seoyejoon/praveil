@@ -24,6 +24,7 @@ export const hospital: Hospital = {
     { title: "지하철", body: "역세권 · 역 정보 확정 전" },
     { title: "주차", body: "건물 내 주차 가능 · 상세 안내 확정 전" },
   ],
+  mapLinks: {},
 };
 
 export const doctor: Doctor = {

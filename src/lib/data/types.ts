@@ -16,6 +16,10 @@ export type Hospital = {
   lunch: string;
   hoursNotice: string;
   directions: { title: string; body: string }[];
+  /** 카카오맵 표시 위치 (주소 확정 후 입력) */
+  coords?: { lat: number; lng: number };
+  /** 다른 지도 앱 바로가기 (링크가 없으면 버튼만 비활성으로 표시) */
+  mapLinks: { tmap?: string; naver?: string; google?: string };
 };
 
 export type Doctor = {

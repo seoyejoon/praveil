@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import DoctorProfile from "@/components/DoctorProfile";
 import FeatureList from "@/components/FeatureList";
 import SectionTitle from "@/components/SectionTitle";
-import HoursTable from "@/components/HoursTable";
+import LocationInfo from "@/components/LocationInfo";
 import {
   getCategories,
   getDoctor,
@@ -24,8 +24,9 @@ export default async function Home() {
   return (
     <>
       {/* 히어로 (사진 확정 전 임시 배경) */}
+      {/* 한 화면 꽉 차게: 전체 높이 - 헤더 (모바일은 하단 상담바도 제외) */}
       <section className="bg-gradient-to-b from-cream to-sand">
-        <Container className="flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
+        <Container className="flex h-[calc(100svh-4rem-3.5rem)] min-h-[480px] flex-col items-center justify-center text-center md:h-[calc(100svh-5rem)] md:min-h-[600px]">
           <p className="text-xs tracking-[0.4em] text-mocha uppercase">Praveil Clinic</p>
           <h1 className="mt-6 font-serif text-3xl leading-snug md:text-5xl md:leading-snug">
             맑고 고운 피부,
@@ -97,16 +98,11 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* 진료시간 */}
+      {/* 진료시간 · 오시는 길 */}
       <section className="py-20 md:py-28">
-        <Container className="max-w-2xl">
-          <SectionTitle en="Hours" title="진료시간" />
-          <HoursTable hospital={hospital} />
-          <div className="mt-10 text-center">
-            <Link href="/location" className="text-sm underline underline-offset-4">
-              오시는 길 보기
-            </Link>
-          </div>
+        <Container>
+          <SectionTitle en="Hours & Location" title="진료시간 · 오시는 길" />
+          <LocationInfo hospital={hospital} />
         </Container>
       </section>
     </>

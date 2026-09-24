@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* 베이지 웜 색상 규칙 */
+@theme {
+  --color-ivory: #faf7f2;
+  --color-cream: #f3ede4;
+  --color-sand: #e6dacb;
+  --color-taupe: #b8a590;
+  --color-mocha: #8a7360;
+  --color-espresso: #3e332b;
+  --color-line: #e8e0d5;
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+  --font-serif: "Noto Serif KR Variable", "Noto Serif KR", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}

@@ -7,7 +7,7 @@ import MapLinks from "./MapLinks";
 export default function LocationInfo({ hospital }: { hospital: Hospital }) {
   return (
     <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-      <KakaoMap coords={hospital.coords} className="aspect-square md:aspect-auto md:min-h-[480px]" />
+      <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-square md:aspect-auto md:min-h-[480px]" />
 
       <div className="flex flex-col gap-10">
         <HoursTable hospital={hospital} />

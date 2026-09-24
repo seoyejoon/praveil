@@ -1,13 +1,13 @@
 import type { Doctor, Feature, Hospital } from "../types";
 
-// TODO: 주소·전화·사업자번호·채널 링크는 확정되면 교체 (관리자 연결 후에는 DB에서 읽음)
+// TODO: 전화·사업자번호·채널 링크는 확정되면 교체 (관리자 연결 후에는 DB에서 읽음)
 export const hospital: Hospital = {
   name: "프라베일 맑고고운의원",
   shortName: "프라베일의원",
   director: "한재웅",
   phone: "02-000-0000",
-  address: "주소 확정 전",
-  addressDetail: "",
+  address: "인천광역시 남동구 성말로 10",
+  addressDetail: "효명프라자 4층 403 · 404호",
   businessNumber: "000-00-00000",
   kakaoUrl: "#",
   naverReservationUrl: "#",
@@ -21,10 +21,14 @@ export const hospital: Hospital = {
   lunch: "13:00 – 14:00",
   hoursNotice: "진료 마감 30분 전까지 접수해 주세요.",
   directions: [
+    { title: "건물 안내", body: "투썸플레이스가 있는 효명프라자 건물 4층 (엘리베이터 이용)" },
     { title: "지하철", body: "역세권 · 역 정보 확정 전" },
     { title: "주차", body: "건물 내 주차 가능 · 상세 안내 확정 전" },
   ],
-  mapLinks: {},
+  mapLinks: {
+    naver: "https://naver.me/5A3GtvSE",
+    google: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("인천광역시 남동구 성말로 10"),
+  },
 };
 
 export const doctor: Doctor = {

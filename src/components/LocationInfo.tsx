@@ -24,7 +24,7 @@ export default function LocationInfo({ hospital }: { hospital: Hospital }) {
 
         <div>
           <p className="mb-3 text-xs tracking-[0.2em] text-mocha uppercase">Other Maps</p>
-          <MapLinks links={hospital.mapLinks} />
+          <MapLinks links={hospital.mapLinks} address={hospital.address} name={hospital.name} />
         </div>
       </div>
     </div>

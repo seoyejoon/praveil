@@ -78,7 +78,7 @@ export const treatmentCopy: Record<string, string> = {
 // ⑩ 공지 · 이벤트
 export const news = {
   en: "News",
-  title: "프라베일 소식",
+  title: ["프라베일의", "새로운 소식을 만나보세요."],
 };
 
 // ⑪ 병원 공간

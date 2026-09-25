@@ -67,8 +67,8 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
                   {hospital.phone}
                 </a>
               </div>
-              <div className="w-full sm:w-64">
-                <MapLinks links={hospital.mapLinks} />
+              <div className="w-full">
+                <MapLinks links={hospital.mapLinks} address={hospital.address} name={hospital.name} />
               </div>
             </div>
           </Reveal>

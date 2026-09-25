@@ -49,7 +49,7 @@ export async function getHospital(): Promise<Hospital> {
     lunch: str(clinic.lunch),
     hoursNotice: str(clinic.hoursNotice),
     directions: arr(clinic.directions).map((d) => ({ title: str(obj(d).title), body: str(obj(d).body) })),
-    mapLinks: { tmap: str(maps.tmap) || undefined, naver: str(maps.naver) || undefined, google: str(maps.google) || undefined },
+    mapLinks: { tmap: str(maps.tmap) || undefined, naver: str(maps.naver) || undefined, kakao: str(maps.kakao) || undefined, google: str(maps.google) || undefined },
   };
 }
 

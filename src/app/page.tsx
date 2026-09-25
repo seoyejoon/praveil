@@ -108,7 +108,11 @@ export default async function Home() {
       <TreatmentSlider en={treatmentIntro.en} title={treatmentIntro.title} description={treatmentIntro.description} slides={slides} />
 
       {/* ⑩ 공지사항 · 이벤트 */}
-      <NewsSplit en={news.en} title={news.title} notices={notices} />
+      <NewsSplit
+        en={news.en}
+        title={news.title}
+        notices={notices.map(({ id, type, title, summary, coverImageUrl, createdAt }) => ({ id, type, title, summary, coverImageUrl, createdAt }))}
+      />
 
       {/* ⑪ 병원 공간: 흘러가는 사진 */}
       <section className="overflow-hidden bg-ivory py-28 md:py-40">

@@ -3,8 +3,9 @@
 // ① 첫 화면
 export const hero = {
   eyebrow: "Customized Plan",
-  title: ["대표원장 책임 진료 시스템"],
-  description: "오직 당신만을 위한 단 하나의 계획",
+  // 모바일은 두 줄, PC는 한 줄
+  title: ["오직 당신만을 위한", "단 하나의 계획"],
+  description: "대표원장 책임 진료 시스템",
 };
 
 // ② 브랜드 문장: 제목 아래 문장이 스크롤에 맞춰 한 단어씩 칠해진다

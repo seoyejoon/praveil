@@ -16,8 +16,8 @@ type Props = {
 export default function DoctorGreeting({ doctor, image, cutout = false, eyebrow, quote, description }: Props) {
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f8f4ee_0%,#efe6da_100%)]">
-      <div className="mx-auto grid max-w-[1200px] items-end gap-10 px-5 pt-24 md:grid-cols-2 md:gap-16 md:px-10 md:pt-32">
-        <Reveal className="order-2 mx-auto w-full max-w-[300px] md:order-1 md:max-w-[460px]">
+      <div className="mx-auto grid max-w-[1200px] items-end gap-10 px-5 pt-24 md:grid-cols-2 md:gap-16 md:px-10 md:pt-20">
+        <Reveal className="order-2 mx-auto w-full max-w-[460px] md:order-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image}
@@ -25,7 +25,7 @@ export default function DoctorGreeting({ doctor, image, cutout = false, eyebrow,
             loading="lazy"
             className={`block w-full ${
               cutout
-                ? "h-auto"
+                ? "mx-auto h-[56vh] max-h-[520px] w-auto max-w-full object-contain md:h-[calc(100vh-200px)] md:max-h-[720px]"
                 : "aspect-[4/5] object-cover [mask-image:radial-gradient(120%_90%_at_50%_30%,#000_55%,transparent_78%)]"
             }`}
           />

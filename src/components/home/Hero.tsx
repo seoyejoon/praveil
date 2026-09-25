@@ -132,10 +132,11 @@ export default function Hero({ eyebrow, title, description, image, video, reserv
         <p className="animate-rise font-display text-base tracking-[0.12em] text-[#ffd899] [animation-delay:900ms] md:text-xl">
           {eyebrow}
         </p>
-        <h1 className="animate-rise mt-4 font-serif text-[28px] leading-[1.35] font-medium tracking-[-0.03em] [animation-delay:1050ms] md:mt-5 md:text-[48px] md:leading-[1.3]">
+        <h1 className="animate-rise mt-4 font-serif text-[28px] leading-[1.35] font-medium tracking-[-0.03em] break-keep [animation-delay:1050ms] md:mt-5 md:text-[48px] md:leading-[1.3]">
           {title.map((line, i) => (
-            <span key={i} className="block">
+            <span key={i} className="block md:inline">
               {line}
+              {i < title.length - 1 && " "}
             </span>
           ))}
         </h1>

@@ -8,7 +8,7 @@ import ScrollSpyNav from "@/components/ScrollSpyNav";
 import SubPage from "@/components/SubPage";
 import type { ProcedureDetail } from "@/content/procedure-details";
 import { categoryImage, procedureInfo, procedureSections } from "@/content/pages";
-import { getCategories, getCategory, getHospital, getProcedure, getProcedureDetail, getProcedures } from "@/lib/data";
+import { getCategory, getHospital, getProcedure, getProcedureDetail, getProcedures } from "@/lib/data";
 
 type Props = { params: Promise<{ category: string; slug: string }> };
 
@@ -22,23 +22,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 본문은 src/content/procedure-details (원장님 검수 전 초안)
 export default async function ProcedurePage({ params }: Props) {
   const { category: categorySlug, slug } = await params;
-  const [hospital, category, categories, procedure, siblings, detail] = await Promise.all([
+  const [hospital, category, procedure, siblings, detail] = await Promise.all([
     getHospital(),
     getCategory(categorySlug),
-    getCategories(),
     getProcedure(categorySlug, slug),
     getProcedures(categorySlug),
     getProcedureDetail(slug),
   ]);
   if (!category || !procedure) notFound();
-  const index = categories.findIndex((c) => c.slug === categorySlug);
 
   return (
     <SubPage
       en={category.nameEn}
       title={procedure.name}
       description={procedure.summary ?? detail?.summary}
-      image={categoryImage(index + siblings.findIndex((p) => p.slug === slug))}
+      image={categoryImage(categorySlug)}
       crumbs={[
         { label: "시술안내", href: "/treatments" },
         { label: category.name, href: `/treatments/${category.slug}` },

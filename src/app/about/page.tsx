@@ -82,7 +82,7 @@ export default async function AboutPage() {
               >
                 <div className="overflow-hidden">
                   <ImageSlot
-                    src={images.why[i % images.why.length]}
+                    src={images.equipment[i % images.equipment.length]}
                     tone="dark"
                     className="aspect-square opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
                   />

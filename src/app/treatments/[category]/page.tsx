@@ -25,14 +25,13 @@ export default async function CategoryPage({ params }: Props) {
     getProcedures(slug),
   ]);
   if (!category) notFound();
-  const index = categories.findIndex((c) => c.slug === slug);
 
   return (
     <SubPage
       en={category.nameEn}
       title={category.name}
       description={category.description}
-      image={categoryImage(index)}
+      image={categoryImage(slug)}
       crumbs={[{ label: "시술안내", href: "/treatments" }, { label: category.name }]}
     >
       <CategoryTabs categories={categories} active={category.slug} />
@@ -45,7 +44,7 @@ export default async function CategoryPage({ params }: Props) {
               <Link href={`/treatments/${p.categorySlug}/${p.slug}`} className="group block">
                 <div className="overflow-hidden">
                   <ImageSlot
-                    src={categoryImage(index + i)}
+                    src={categoryImage(slug, i)}
                     tone={i % 2 ? "light" : "dark"}
                     className="aspect-[4/3] transition duration-700 group-hover:scale-105"
                   />

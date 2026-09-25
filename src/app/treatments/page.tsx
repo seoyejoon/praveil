@@ -33,7 +33,7 @@ export default async function TreatmentsPage() {
                   <p className="mt-4 text-[15px] text-muted md:text-lg">{c.description}</p>
                 </Reveal>
                 <Reveal delay={120} className="mt-8 hidden overflow-hidden md:block">
-                  <ImageSlot src={categoryImage(i)} className="aspect-[4/3]" />
+                  <ImageSlot src={categoryImage(c.slug)} className="aspect-[4/3]" />
                 </Reveal>
                 <Link
                   href={`/treatments/${c.slug}`}

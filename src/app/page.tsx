@@ -15,6 +15,7 @@ import {
   clinic,
   doctorGreeting,
   hero,
+  categoryPhoto,
   images,
   news,
   programs,
@@ -47,12 +48,12 @@ export default async function Home() {
     tags: programs[p.slug]?.tags ?? [],
   }));
 
-  const slides = categories.map((c, i) => ({
+  const slides = categories.map((c) => ({
     slug: c.slug,
     name: c.name,
     nameEn: c.nameEn,
     body: treatmentCopy[c.slug] ?? c.description,
-    image: images.categories[i % images.categories.length],
+    image: categoryPhoto(c.slug),
     procedures: procedures
       .filter((p) => p.categorySlug === c.slug)
       .map((p) => ({ href: `/treatments/${c.slug}/${p.slug}`, name: p.name })),
@@ -96,7 +97,8 @@ export default async function Home() {
       {/* ⑧ 원장 인사말 */}
       <DoctorGreeting
         doctor={doctor}
-        image={images.doctor}
+        image={images.doctorCutout}
+        cutout
         eyebrow={doctorGreeting.eyebrow}
         quote={doctorGreeting.quote}
         description={doctorGreeting.description}

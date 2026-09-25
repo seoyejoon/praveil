@@ -94,22 +94,47 @@ export const contact = {
   body: "모든 시술 계획은 충분한 상담 후, 당신의 피부 상태에 맞게 세워집니다.",
 };
 
-// 샘플 사진 (Picsum · Unsplash 라이선스, 웜톤 보정). 촬영본이 나오면 같은 이름으로 교체한다.
-const sample = (name: string) => `/images/sample/${name}.webp`;
+// 2026.09 병원 촬영본 (원본: 구글 드라이브 '최종보정'). 자리별로 잘라서 public/images/photos 에 둔다.
+const photo = (name: string) => `/images/photos/${name}.webp`;
 
 export const images = {
-  hero: sample("hero-2"),
-  story: [sample("story-1"), sample("story-2")],
-  // 진료 분야 슬라이드 사진 (분류 순서대로 돌려 씀)
-  categories: [
-    "signature-1", "why-3", "signature-3", "why-4", "story-2", "why-2",
-    "signature-2", "signature-4", "why-1", "story-1", "why-5",
-  ].map(sample),
-  signature: [1, 2, 3, 4].map((n) => sample(`signature-${n}`)),
-  special: ["why-3", "story-1", "why-4", "why-1", "clinic-2"].map(sample),
-  why: [1, 2, 3, 4, 5].map((n) => sample(`why-${n}`)),
-  // 누끼(배경 없는 PNG) 원장 사진이 오면 doctor-cutout.png 로 교체
-  doctor: sample("doctor"),
-  clinic: [1, 2, 3, 4, 5, 6].map((n) => sample(`clinic-${n}`)),
-  contact: sample("contact"),
+  hero: photo("hero"),
+  // 진료 분야별 대표 사진 (분류 slug 기준)
+  categoryBySlug: {
+    lifting: photo("cat-lifting"),
+    botox: photo("cat-botox"),
+    filler: photo("cat-filler"),
+    "skin-booster": photo("cat-skin-booster"),
+    toning: photo("cat-toning"),
+    "skin-care": photo("cat-skin-care"),
+    "scar-pore": photo("cat-scar-pore"),
+    acne: photo("cat-acne"),
+    injection: photo("cat-injection"),
+    "hair-removal": photo("cat-hair-removal"),
+    "tattoo-removal": photo("cat-tattoo-removal"),
+  } as Record<string, string>,
+  // 시그니처 시술 (쿨소닉 · 쿨페이즈 · 볼륨필러 · 리투오 순)
+  signature: [1, 2, 3, 4].map((n) => photo(`signature-${n}`)),
+  special: [1, 2, 3, 4, 5].map((n) => photo(`special-${n}`)),
+  // 병원소개 > 보유 장비 (쿨소닉 · 쿨페이즈 외에는 원장님 확인 후 맞는 장비 사진으로 교체)
+  equipment: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => photo(`equip-${n}`)),
+  // 원장 인사말: 배경을 지운 사진 / 병원소개 약력: 원본 사진
+  doctorCutout: photo("doctor-cutout"),
+  doctor: photo("doctor"),
+  // 인포메이션 · 대기실 · 상담실 · 파우더룸 · 시술실 · 복도
+  clinic: [1, 2, 3, 4, 5, 6].map((n) => photo(`clinic-${n}`)),
+  contact: photo("contact"),
+  pageHero: {
+    about: photo("hero-about"),
+    treatments: photo("hero-treatments"),
+    news: photo("hero-news"),
+    location: photo("hero-location"),
+  },
+};
+
+// offset 0 이면 그 분류 사진, 1 이상이면 다음 분류 사진들을 차례로 (시술 카드가 모두 같은 사진이 되지 않도록)
+const categoryPhotos = Object.values(images.categoryBySlug);
+export const categoryPhoto = (slug: string, offset = 0) => {
+  const start = Math.max(0, Object.keys(images.categoryBySlug).indexOf(slug));
+  return categoryPhotos[(start + offset) % categoryPhotos.length];
 };

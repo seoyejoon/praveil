@@ -18,7 +18,7 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
             <h2 className="mt-4 font-serif text-[30px] font-medium tracking-[-0.04em] md:text-[44px]">오시는 길</h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:mt-14">
+          <div className="mt-10 grid gap-10 sm:grid-cols-[1.25fr_1fr] md:mt-14">
             <Reveal>
               <h3 className="font-display text-xl text-mocha md:text-2xl">Address</h3>
               <p className="mt-4 text-[15px] leading-relaxed font-medium md:text-base">
@@ -26,14 +26,14 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
                 <br />
                 {hospital.addressDetail}
               </p>
-              <ul className="mt-3 space-y-1.5 text-sm text-muted">
+              <dl className="mt-5 space-y-2.5 text-sm leading-relaxed">
                 {hospital.directions.slice(0, 3).map((d) => (
-                  <li key={d.title}>
-                    <span className="mr-2 text-mocha">{d.title}</span>
-                    {d.body}
-                  </li>
+                  <div key={d.title} className="grid grid-cols-[4.5rem_1fr] gap-3">
+                    <dt className="text-mocha">{d.title}</dt>
+                    <dd className="text-muted break-keep">{d.body}</dd>
+                  </div>
                 ))}
-              </ul>
+              </dl>
             </Reveal>
 
             <Reveal delay={120}>
@@ -59,7 +59,7 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
             </Reveal>
           </div>
 
-          <Reveal className="mt-10 border-t border-ink/10 pt-8 lg:mt-auto">
+          <Reveal className="mt-12 lg:mt-auto lg:pt-10">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <h3 className="font-display text-xl text-mocha md:text-2xl">Contact</h3>

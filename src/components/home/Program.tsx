@@ -13,8 +13,8 @@ export type ProgramItem = {
   tags: string[];
 };
 
-// 대표 시술 프로그램 (어두운 배경)
-// PC: 화면이 멈춘 채 스크롤하면 01 → 04로 넘어감 / 모바일: 탭을 눌러 전환
+// 시그니처 시술 (어두운 배경)
+// PC: 화면이 멈춘 채 스크롤하면 다음 시술로 넘어감 / 모바일: 이름을 눌러 전환
 export default function Program({ items }: { items: ProgramItem[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<ScrollTrigger | null>(null);
@@ -67,43 +67,35 @@ export default function Program({ items }: { items: ProgramItem[] }) {
                 }`}
               />
             ))}
-            <p className="absolute bottom-5 left-5 font-display text-sm tracking-[0.2em] text-cream/80">
-              0{active + 1} / 0{items.length}
-            </p>
           </div>
 
           <div>
             <p className="font-display text-base tracking-[0.15em] text-[#ffd899] md:text-lg">Signature Program</p>
             <h2 className="mt-4 font-serif text-[28px] leading-snug font-medium tracking-tight md:text-[40px]">
-              프라베일이 자신 있게
-              <br />
-              권하는 네 가지 시술
+              프라베일 시그니처 시술
             </h2>
 
-            <div className="mt-10 flex gap-6 border-b border-cream/15 md:mt-14">
+            {/* 시술 이름 목록: 선택된 것만 밝게 */}
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2 md:mt-12">
               {items.map((it, i) => (
                 <button
                   key={it.href}
                   type="button"
                   onClick={() => select(i)}
-                  className={`relative -mb-px pb-3 font-display text-lg tracking-widest transition md:text-xl ${
+                  aria-pressed={i === active}
+                  className={`flex items-center gap-2 font-serif text-lg transition md:text-xl ${
                     i === active ? "text-cream" : "text-cream/35 hover:text-cream/70"
                   }`}
                 >
-                  0{i + 1}
-                  <span
-                    className={`absolute inset-x-0 bottom-0 h-px bg-[#ffd899] transition-transform duration-500 ${
-                      i === active ? "scale-x-100" : "scale-x-0"
-                    }`}
-                  />
+                  <span className={`h-1.5 w-1.5 rounded-full bg-[#ffd899] transition-opacity ${i === active ? "opacity-100" : "opacity-0"}`} />
+                  {it.name}
                 </button>
               ))}
             </div>
 
-            <div key={active} className="animate-rise mt-10 md:mt-12">
+            <div key={active} className="animate-rise mt-10 md:mt-14">
               <p className="text-sm text-taupe">{item.category}</p>
-              <p className="mt-2 font-serif text-4xl font-medium md:text-5xl">{item.name}</p>
-              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/70 md:text-base">{item.description}</p>
+              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/75 md:text-lg">{item.description}</p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {item.tags.map((t) => (
                   <li key={t} className="rounded-full border border-cream/25 px-4 py-1.5 text-[13px] text-cream/80">
@@ -113,18 +105,12 @@ export default function Program({ items }: { items: ProgramItem[] }) {
               </ul>
               <Link
                 href={item.href}
-                className="mt-10 inline-block border-b border-cream/40 pb-1 font-display text-xs tracking-[0.2em] transition hover:border-[#ffd899] hover:text-[#ffd899]"
+                className="mt-10 inline-flex items-center gap-2 rounded-full border border-cream/40 px-6 py-2.5 font-display text-xs tracking-[0.2em] transition hover:border-[#ffd899] hover:bg-[#ffd899] hover:text-ink"
               >
-                VIEW MORE
+                VIEW MORE <span aria-hidden>→</span>
               </Link>
             </div>
 
-            <div className="mt-12 h-px bg-cream/15">
-              <div
-                className="h-px bg-[#ffd899] transition-all duration-500"
-                style={{ width: `${((active + 1) / items.length) * 100}%` }}
-              />
-            </div>
           </div>
         </div>
       </section>

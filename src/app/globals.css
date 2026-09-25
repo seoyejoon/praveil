@@ -123,7 +123,79 @@
   transform: none;
 }
 
+/* 철학 카드 아이콘 (PhilosophyIcon) */
+.ph-glide {
+  animation: ph-glide 5.5s ease-in-out infinite alternate;
+}
+@keyframes ph-glide {
+  to {
+    transform: translate(32px, 6px);
+  }
+}
+.ph-twinkle {
+  animation: ph-twinkle 2.4s ease-in-out infinite;
+}
+@keyframes ph-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+.ph-spin {
+  transform-origin: 60px 60px;
+  animation: ph-spin 14s linear infinite;
+}
+@keyframes ph-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ph-draw {
+  stroke-dasharray: 100;
+  animation: ph-draw 5.4s ease-in-out infinite;
+}
+@keyframes ph-draw {
+  0% { stroke-dashoffset: 100; }
+  45%, 75% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -100; }
+}
+.ph-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ph-pop 5.4s ease-in-out infinite;
+}
+@keyframes ph-pop {
+  0%, 10% { transform: scale(0); }
+  22%, 75% { transform: scale(1); }
+  90%, 100% { transform: scale(0); }
+}
+.ph-rise {
+  animation: ph-rise 6s ease-in-out infinite alternate;
+}
+@keyframes ph-rise {
+  from { transform: translateY(14px); }
+  to { transform: translateY(-10px); }
+}
+.ph-wave {
+  animation: ph-wave 3.2s linear infinite;
+}
+.ph-wave-slow {
+  animation-duration: 5s;
+}
+@keyframes ph-wave {
+  to {
+    transform: translateX(-60px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .ph-glide,
+  .ph-twinkle,
+  .ph-spin,
+  .ph-draw,
+  .ph-pop,
+  .ph-rise,
+  .ph-wave {
+    animation: none;
+  }
   .reveal-zoom {
     opacity: 1;
     transform: none;

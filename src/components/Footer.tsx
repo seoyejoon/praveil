@@ -1,58 +1,57 @@
 import Link from "next/link";
 import type { Hospital } from "@/lib/data";
 
+// 밝은 푸터: 로고 / 병원 정보(항목 · 내용) / 저작권. 메인에서는 위 '오시는 길'과 배경이 이어진다.
 export default function Footer({ hospital }: { hospital: Hospital }) {
+  const rows: [string, string][][] = [
+    [
+      ["대표원장", hospital.director],
+      ["연락처", hospital.phone],
+      ["사업자등록번호", hospital.businessNumber],
+    ],
+    [["주소", `${hospital.address} ${hospital.addressDetail}`]],
+  ];
+
   return (
-    <footer className="bg-espresso pt-16 pb-24 text-sm text-cream/60 md:pt-20 md:pb-16">
-      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 md:grid-cols-3 md:px-10">
-        <div>
-          <p className="font-display text-3xl tracking-[0.18em] text-cream">PRAVEIL</p>
-          <p className="mt-2 text-xs tracking-[0.3em]">맑고고운의원</p>
-        </div>
+    <footer className="bg-ivory pt-12 pb-24 text-sm text-muted md:pt-16 md:pb-14">
+      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+        <div className="border-t border-mocha/40 pt-10 md:pt-12">
+          <div className="grid gap-8 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-16">
+            <Link href="/" className="leading-none text-ink" aria-label="프라베일 맑고고운의원 홈">
+              <span className="block font-display text-[28px] tracking-[0.18em]">PRAVEIL</span>
+              <span className="mt-1.5 block text-[11px] tracking-[0.3em] text-muted">맑고고운의원</span>
+            </Link>
 
-        <div>
-          <p className="font-display text-xs tracking-[0.2em] text-[#ffd899]">RESERVATION</p>
-          <a href={`tel:${hospital.phone}`} className="mt-3 block font-serif text-2xl text-cream">
-            {hospital.phone}
-          </a>
-          <ul className="mt-5 space-y-1.5 text-[13px]">
-            {hospital.hours.map((h) => (
-              <li key={h.label} className="flex gap-4">
-                <span className="w-28 shrink-0">{h.label}</span>
-                <span className="text-cream/80">
-                  {h.time}
-                  {h.note && ` (${h.note})`}
-                </span>
-              </li>
-            ))}
-            <li className="flex gap-4">
-              <span className="w-28 shrink-0">점심시간</span>
-              <span className="text-cream/80">{hospital.lunch}</span>
-            </li>
-          </ul>
-        </div>
+            <div className="space-y-1.5">
+              <p className="font-medium text-ink/80">{hospital.name}</p>
+              {rows.map((row, r) => (
+                <p key={r} className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {row.map(([label, value], i) => (
+                    <span key={label} className="flex items-center gap-3">
+                      {i > 0 && <span aria-hidden className="hidden h-2.5 w-px bg-ink/20 sm:block" />}
+                      <span>
+                        <span className="mr-2 text-taupe">{label}</span>
+                        {value}
+                      </span>
+                    </span>
+                  ))}
+                </p>
+              ))}
+            </div>
 
-        <div>
-          <p className="font-display text-xs tracking-[0.2em] text-[#ffd899]">LOCATION</p>
-          <p className="mt-3 leading-relaxed text-cream/80">
-            {hospital.address}
-            <br />
-            {hospital.addressDetail}
-          </p>
-          <Link href="/location" className="mt-3 inline-block border-b border-cream/30 pb-0.5 text-xs hover:text-cream">
-            오시는 길 보기
-          </Link>
+            <div className="text-xs leading-relaxed text-taupe md:text-right">
+              <p className="flex gap-4 md:justify-end">
+                <Link href="/location" className="hover:text-ink">
+                  오시는 길
+                </Link>
+                <Link href="/notice" className="hover:text-ink">
+                  공지 · 이벤트
+                </Link>
+              </p>
+              <p className="mt-3">© {new Date().getFullYear()} PRAVEIL CLINIC. ALL RIGHTS RESERVED.</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="mx-auto mt-14 max-w-[1440px] border-t border-cream/10 px-5 pt-8 text-xs leading-relaxed md:px-10">
-        <p>
-          <span className="mr-4">대표원장 {hospital.director}</span>
-          <span className="mr-4">사업자등록번호 {hospital.businessNumber}</span>
-          <span>대표전화 {hospital.phone}</span>
-        </p>
-        <p className="mt-2">주소 {hospital.address} {hospital.addressDetail}</p>
-        <p className="mt-6 text-cream/40">© {new Date().getFullYear()} {hospital.name}. All rights reserved.</p>
       </div>
     </footer>
   );

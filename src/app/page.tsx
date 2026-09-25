@@ -1,45 +1,39 @@
 import Link from "next/link";
 import ContactCta from "@/components/ContactCta";
-import Container from "@/components/Container";
-import DoctorProfile from "@/components/DoctorProfile";
 import ImageSlot from "@/components/ImageSlot";
-import LocationInfo from "@/components/LocationInfo";
 import Philosophy from "@/components/Philosophy";
 import Reveal from "@/components/Reveal";
-import SectionTitle from "@/components/SectionTitle";
-import BigLetters from "@/components/home/BigLetters";
+import DoctorGreeting from "@/components/home/DoctorGreeting";
 import Hero from "@/components/home/Hero";
+import HomeLocation from "@/components/home/HomeLocation";
+import NewsSplit from "@/components/home/NewsSplit";
 import Program from "@/components/home/Program";
 import ScrollStatement from "@/components/home/ScrollStatement";
-import Stats from "@/components/home/Stats";
-import TreatmentIndex from "@/components/home/TreatmentIndex";
-import WhyHorizontal from "@/components/home/WhyHorizontal";
+import SpecialProcess from "@/components/home/SpecialProcess";
+import TreatmentSlider from "@/components/home/TreatmentSlider";
 import {
-  bigLetters,
   clinic,
+  doctorGreeting,
   hero,
   images,
+  news,
   programs,
+  special,
   statement,
-  stats,
+  treatmentCopy,
+  treatmentIntro,
 } from "@/content/home";
-import {
-  getCategories,
-  getDoctor,
-  getFeatures,
-  getHospital,
-  getNotices,
-  getSignatureProcedures,
-} from "@/lib/data";
+import { getCategories, getDoctor, getHospital, getNotices, getProcedures, getSignatureProcedures } from "@/lib/data";
 
 const wide = "mx-auto w-full max-w-[1440px] px-5 md:px-10";
 
+// 배경 흐름: 어두운 첫 화면 → 크림 → 밝은 카드 → 어두운 시그니처 → 크림 → 원장 → 아이보리 → 크림 → 아이보리 → 어두운 상담 → 밝은 오시는 길 · 푸터
 export default async function Home() {
-  const [hospital, doctor, features, categories, signatures, notices] = await Promise.all([
+  const [hospital, doctor, categories, procedures, signatures, notices] = await Promise.all([
     getHospital(),
     getDoctor(),
-    getFeatures(),
     getCategories(),
+    getProcedures(),
     getSignatureProcedures(),
     getNotices(),
   ]);
@@ -48,14 +42,25 @@ export default async function Home() {
     href: `/treatments/${p.categorySlug}/${p.slug}`,
     name: p.name,
     category: categories.find((c) => c.slug === p.categorySlug)?.name ?? "",
-    image: images.signature[i],
-    description: programs[p.slug]?.description ?? "",
+    image: images.signature[i % images.signature.length],
+    description: programs[p.slug]?.description ?? p.summary ?? "",
     tags: programs[p.slug]?.tags ?? [],
+  }));
+
+  const slides = categories.map((c, i) => ({
+    slug: c.slug,
+    name: c.name,
+    nameEn: c.nameEn,
+    body: treatmentCopy[c.slug] ?? c.description,
+    image: images.categories[i % images.categories.length],
+    procedures: procedures
+      .filter((p) => p.categorySlug === c.slug)
+      .map((p) => ({ href: `/treatments/${c.slug}/${p.slug}`, name: p.name })),
   }));
 
   return (
     <>
-      {/* 첫 화면은 제자리에 두고, 다음 섹션이 둥근 모서리로 위를 덮으며 올라온다 */}
+      {/* ① 첫 화면은 제자리에 두고, 다음 섹션이 둥근 모서리로 위를 덮으며 올라온다 */}
       <div className="relative">
         <div className="sticky top-0">
           {/* 영상이 생기면 video={{ src, mobileSrc }} 지정 */}
@@ -68,101 +73,43 @@ export default async function Home() {
           />
         </div>
 
-        {/* 브랜드 문장: 스크롤에 맞춰 한 단어씩 칠해짐 */}
-        <section className="relative z-10 rounded-t-[28px] bg-cream py-28 md:rounded-t-[56px] md:py-48">
-          <ScrollStatement en={statement.en} text={statement.text} />
+        {/* ② 프라베일은 다릅니다 */}
+        <section className="relative z-10 rounded-t-[28px] bg-cream py-28 md:rounded-t-[56px] md:py-44">
+          <ScrollStatement en={statement.en} title={statement.title} text={statement.text} />
         </section>
       </div>
 
-      {/* 철학: 3칸 카드 */}
+      {/* ③ 철학 3가지 (움직이는 아이콘) */}
       <Philosophy />
 
-      {/* 숫자로 보는 프라베일 */}
-      <section className="bg-ivory py-28 md:py-40">
-        <div className={wide}>
-          <SectionTitle en="Praveil in Numbers" title="숫자로 보는 프라베일" />
-          <Stats items={stats} />
-        </div>
-      </section>
-
-      {/* 대표 시술 프로그램 (어두운 배경, PC는 화면 고정) */}
+      {/* ⑤ 시그니처 시술 (어두운 배경, PC는 화면 고정) */}
       <Program items={programItems} />
 
-      {/* 강점: PC는 화면 고정 후 옆으로 */}
-      <WhyHorizontal
-        features={features}
-        images={images.why}
-        heading={
-          <Reveal variant="zoom">
-            <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">Why Praveil</p>
-            <h2 className="mt-4 font-serif text-[28px] leading-snug font-medium tracking-tight md:mt-5 md:text-[44px] md:leading-tight">
-              많이 하는 병원이 아닌,
-              <br />
-              잘 맞추는 병원.
-            </h2>
-          </Reveal>
-        }
+      {/* ⑥ 프라베일만의 특별함 */}
+      <SpecialProcess
+        en={special.en}
+        title={special.title}
+        description={special.description}
+        items={special.items.map((item, i) => ({ ...item, image: images.special[i % images.special.length] }))}
       />
 
-      {/* 큰 문구: 한 글자씩 */}
-      <section className="bg-ivory">
-        <BigLetters text={bigLetters.text} caption={bigLetters.caption} />
-      </section>
+      {/* ⑧ 원장 인사말 */}
+      <DoctorGreeting
+        doctor={doctor}
+        image={images.doctor}
+        eyebrow={doctorGreeting.eyebrow}
+        quote={doctorGreeting.quote}
+        description={doctorGreeting.description}
+      />
 
-      {/* 원장 */}
-      <section>
-        <DoctorProfile doctor={doctor} />
-      </section>
+      {/* ⑨ 진료분야 */}
+      <TreatmentSlider en={treatmentIntro.en} title={treatmentIntro.title} description={treatmentIntro.description} slides={slides} />
 
-      {/* 시술 안내: 마우스를 올리면 사진 */}
-      <section className="bg-cream py-28 md:py-40">
-        <div className={wide}>
-          <SectionTitle en="Treatments" title="시술 안내" description="11개 분야, 54가지 시술을 진행합니다." />
-          <TreatmentIndex categories={categories} images={images.categories} />
-          <div className="mt-12 text-center">
-            <Link
-              href="/treatments"
-              className="inline-block rounded-full border border-ink/40 px-8 py-3 text-sm transition hover:bg-ink hover:text-cream"
-            >
-              전체 시술 보기
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* ⑩ 공지사항 · 이벤트 */}
+      <NewsSplit en={news.en} title={news.title} notices={notices} />
 
-      {/* 공지 · 이벤트 */}
-      <section className="bg-ivory py-28 md:py-40">
-        <div className={wide}>
-          <div className="flex items-end justify-between gap-6">
-            <Reveal variant="zoom">
-              <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">News</p>
-              <h2 className="mt-4 font-serif text-[28px] font-medium tracking-tight md:text-[44px]">공지 · 이벤트</h2>
-            </Reveal>
-            <Link href="/notice" className="border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
-              VIEW MORE
-            </Link>
-          </div>
-          <ul className="mt-12 grid gap-6 md:mt-16 md:grid-cols-3">
-            {notices.slice(0, 3).map((n, i) => (
-              <Reveal as="li" key={n.id} delay={i * 120}>
-                <Link
-                  href={`/notice/${n.id}`}
-                  className="group flex h-full min-h-[220px] flex-col border-t border-ink pt-6 transition hover:border-gold"
-                >
-                  <span className="text-xs text-mocha">{n.type === "event" ? "이벤트" : "공지"}</span>
-                  <span className="mt-4 font-serif text-xl leading-snug font-medium group-hover:text-mocha md:text-2xl">
-                    {n.title}
-                  </span>
-                  <span className="mt-auto pt-8 font-display text-xs tracking-widest text-taupe">{n.createdAt}</span>
-                </Link>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 시설: 흘러가는 사진 */}
-      <section className="overflow-hidden bg-cream py-28 md:py-40">
+      {/* ⑪ 병원 공간: 흘러가는 사진 */}
+      <section className="overflow-hidden bg-ivory py-28 md:py-40">
         <div className={`${wide} grid items-end gap-8 md:grid-cols-10`}>
           <Reveal variant="zoom" className="md:col-span-5">
             <p className="font-display text-base tracking-[0.15em] text-gold md:text-lg">{clinic.en}</p>
@@ -174,7 +121,7 @@ export default async function Home() {
           </Reveal>
           <Reveal delay={150} className="md:col-span-3 md:col-start-8">
             <p className="text-[15px] leading-relaxed text-muted md:text-lg">{clinic.body}</p>
-            <Link href="/about" className="mt-6 inline-block border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
+            <Link href="/about#tour" className="mt-6 inline-block border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
               VIEW MORE
             </Link>
           </Reveal>
@@ -190,18 +137,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 진료시간 · 오시는 길 */}
-      <section className="bg-ivory py-28 md:py-40">
-        <Container>
-          <SectionTitle en="Hours & Location" title="진료시간 · 오시는 길" />
-          <Reveal>
-            <LocationInfo hospital={hospital} />
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* 예약 안내 */}
+      {/* ⑬ 상담 문의 */}
       <ContactCta hospital={hospital} />
+
+      {/* ⑫ 오시는 길 (아래 푸터와 배경이 이어짐) */}
+      <HomeLocation hospital={hospital} />
     </>
   );
 }

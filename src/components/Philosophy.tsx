@@ -1,7 +1,14 @@
 import { philosophy } from "@/content/home";
+import PhilosophyIcon from "./PhilosophyIcon";
 import Reveal from "./Reveal";
 
-// 철학 3칸 카드 (어둠 / 밝음 / 어둠)
+// 철학 3칸 카드 (밝은 톤 3단계). 원 안에 각 주제에 맞는 움직이는 아이콘.
+const tones = [
+  "bg-[linear-gradient(160deg,#fbf8f3_0%,#f1ebe1_100%)]",
+  "bg-[linear-gradient(160deg,#f1ebe1_0%,#e8ded2_100%)]",
+  "bg-[linear-gradient(160deg,#e8ded2_0%,#ddd0bf_100%)]",
+];
+
 export default function Philosophy() {
   return (
     <section className="relative z-10 grid md:grid-cols-3">
@@ -9,24 +16,15 @@ export default function Philosophy() {
         <Reveal
           key={p.en}
           delay={i * 120}
-          className={`flex min-h-[300px] flex-col p-8 md:min-h-[420px] md:p-12 lg:p-16 ${
-            p.tone === "dark"
-              ? "bg-[linear-gradient(97deg,#342f2a_0%,#4a433c_42%,#5a5148_63%,#39342f_100%)] text-white"
-              : "bg-[linear-gradient(84deg,#d6caba_0%,#f1ebe1_46%,#e7ded1_68%,#cdbead_100%)] text-ink"
-          }`}
+          className={`group flex min-h-[320px] flex-col p-8 text-ink md:min-h-[440px] md:p-12 lg:p-16 ${tones[i]}`}
         >
-          <span
-            aria-hidden
-            className={`block h-20 w-20 rounded-full border md:h-28 md:w-28 ${
-              p.tone === "dark" ? "border-[#ffd899]/50" : "border-ink/30"
-            }`}
-          />
+          <span className="relative block h-24 w-24 rounded-full border border-ink/15 bg-ivory/60 p-3 text-mocha transition duration-700 group-hover:border-gold/60 group-hover:bg-ivory md:h-32 md:w-32 md:p-4">
+            <PhilosophyIcon type={p.icon} />
+          </span>
           <div className="mt-auto pt-10">
-            <p className={`font-display text-sm tracking-[0.2em] ${p.tone === "dark" ? "text-[#ffd899]" : "text-mocha"}`}>
-              {p.en}
-            </p>
+            <p className="font-display text-sm tracking-[0.2em] text-mocha">{p.en}</p>
             <p className="mt-3 font-serif text-2xl font-medium tracking-tight md:text-[28px]">{p.title}</p>
-            <p className={`mt-3 text-[15px] ${p.tone === "dark" ? "text-cream/70" : "text-muted"}`}>{p.body}</p>
+            <p className="mt-3 text-[15px] text-muted">{p.body}</p>
           </div>
         </Reveal>
       ))}

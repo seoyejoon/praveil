@@ -53,6 +53,20 @@ export async function getHospital(): Promise<Hospital> {
   };
 }
 
+// 이용약관 · 개인정보처리방침 (관리자 > 홈페이지 설정 > 약관)
+export async function getPolicyTerms() {
+  const row = await loadHospital();
+  const terms = obj(obj(obj(row?.config).websiteAdmin).terms);
+  return {
+    businessName: str(terms.businessName) || row?.name || "",
+    representativeName: str(terms.representativeName),
+    businessRegistrationNumber: str(terms.businessRegistrationNumber),
+    privacyOfficer: str(terms.privacyOfficer),
+    termsOfService: str(terms.termsOfService),
+    privacyPolicy: str(terms.privacyPolicy),
+  };
+}
+
 // ---------- 시술 ----------
 
 const loadCategories = cached("categories", () =>

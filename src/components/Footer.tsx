@@ -41,11 +41,11 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
 
             <div className="text-xs leading-relaxed text-taupe md:text-right">
               <p className="flex gap-4 md:justify-end">
-                <Link href="/location" className="hover:text-ink">
-                  오시는 길
+                <Link href="/terms" className="hover:text-ink">
+                  이용약관
                 </Link>
-                <Link href="/notice" className="hover:text-ink">
-                  공지 · 이벤트
+                <Link href="/privacy" className="font-semibold text-ink/80 hover:text-ink">
+                  개인정보처리방침
                 </Link>
               </p>
               <p className="mt-3">© {new Date().getFullYear()} PRAVEIL CLINIC. ALL RIGHTS RESERVED.</p>

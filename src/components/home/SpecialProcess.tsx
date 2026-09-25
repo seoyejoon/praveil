@@ -61,7 +61,7 @@ export default function SpecialProcess({ en, title, description, items }: Props)
 
       <div className="mx-auto grid max-w-[1440px] gap-12 px-5 md:px-10 lg:grid-cols-[minmax(280px,380px)_1fr] lg:gap-16">
         <div className="lg:pt-24">
-          <p className="font-display text-base tracking-[0.12em] text-gold md:text-lg">( {en} )</p>
+          <p className="font-display text-base tracking-[0.12em] text-gold md:text-lg">{en}</p>
           <h2 className="mt-4 font-serif text-[30px] leading-tight font-medium tracking-[-0.04em] md:text-[44px]">{title}</h2>
           <p className="mt-6 text-[15px] leading-relaxed whitespace-pre-line text-muted md:text-base">{description}</p>
           <div className="mt-10 hidden gap-3 lg:flex">

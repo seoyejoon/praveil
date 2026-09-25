@@ -14,11 +14,11 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
 
         <div className="order-1 flex flex-col lg:order-2">
           <Reveal>
-            <p className="font-display text-base tracking-[0.12em] text-gold md:text-lg">( Visit Us )</p>
+            <p className="font-display text-base tracking-[0.12em] text-gold md:text-lg">Visit Us</p>
             <h2 className="mt-4 font-serif text-[30px] font-medium tracking-[-0.04em] md:text-[44px]">오시는 길</h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-10 sm:grid-cols-[1.25fr_1fr] md:mt-14">
+          <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[1.1fr_1fr] md:mt-14">
             <Reveal>
               <h3 className="font-display text-xl text-mocha md:text-2xl">Address</h3>
               <p className="mt-4 text-[15px] leading-relaxed font-medium md:text-base">
@@ -38,19 +38,19 @@ export default function HomeLocation({ hospital }: { hospital: Hospital }) {
 
             <Reveal delay={120}>
               <h3 className="font-display text-xl text-mocha md:text-2xl">Clinic Hours</h3>
-              <ul className="mt-4 space-y-2 text-[15px]">
+              <ul className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[15px]">
                 {hospital.hours.map((h) => (
-                  <li key={h.label} className="flex gap-4">
-                    <span className="w-28 shrink-0 text-muted">· {h.label}</span>
-                    <span className={h.closed ? "text-mocha" : ""}>
+                  <li key={h.label} className="col-span-2 grid grid-cols-subgrid">
+                    <span className="whitespace-nowrap text-muted">· {h.label}</span>
+                    <span className={`whitespace-nowrap ${h.closed ? "text-mocha" : ""}`}>
                       {h.time}
                       {h.note && <span className="ml-1.5 text-xs text-mocha">{h.note}</span>}
                     </span>
                   </li>
                 ))}
                 {hospital.lunch && (
-                  <li className="flex gap-4">
-                    <span className="w-28 shrink-0 text-muted">· 점심시간</span>
+                  <li className="col-span-2 grid grid-cols-subgrid">
+                    <span className="whitespace-nowrap text-muted">· 점심시간</span>
                     <span>{hospital.lunch}</span>
                   </li>
                 )}

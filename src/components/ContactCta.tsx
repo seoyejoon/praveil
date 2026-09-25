@@ -13,7 +13,7 @@ export default function ContactCta({ hospital }: { hospital: Hospital }) {
       <ImageSlot src={images.contact} tone="dark" className="absolute inset-0" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(31,27,24,0.75)_0%,rgba(31,27,24,0.45)_100%)]" />
       <Reveal variant="zoom" className="relative">
-        <p className="font-display text-base tracking-[0.12em] text-[#ffd899] md:text-lg">( {contact.en} )</p>
+        <p className="font-display text-base tracking-[0.12em] text-[#ffd899] md:text-lg">{contact.en}</p>
         <h2 className="mt-4 font-serif text-[30px] font-medium tracking-[-0.04em] md:text-5xl">{contact.title}</h2>
         <p className="mt-5 text-[15px] text-cream/80 md:text-lg">{contact.body}</p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">

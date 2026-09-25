@@ -6,11 +6,21 @@ import { notices, popups } from "./mock/board";
 import { hasDatabase } from "./db";
 import * as db from "./source-db";
 import { procedureDetails } from "@/content/procedure-details";
+import { resolveHospitalPolicy } from "@/lib/policy";
 
 export type * from "./types";
 
 export async function getHospital() {
   return hasDatabase ? db.getHospital() : hospital;
+}
+
+// 이용약관 · 개인정보처리방침: 관리자에 입력한 글이 없으면 기본 문구
+export async function getPolicy(kind: "terms" | "privacy") {
+  const h = await getHospital();
+  const terms = hasDatabase
+    ? await db.getPolicyTerms()
+    : { businessName: h.name, representativeName: h.director, businessRegistrationNumber: h.businessNumber, privacyOfficer: "", termsOfService: "", privacyPolicy: "" };
+  return resolveHospitalPolicy({ name: h.name, address: `${h.address} ${h.addressDetail}`.trim(), phone: h.phone }, terms, kind);
 }
 
 // 원장 소개 · 특장점은 관리자 메뉴가 없어 코드에서 관리한다.

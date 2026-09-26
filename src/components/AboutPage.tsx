@@ -1,12 +1,9 @@
 import Link from "next/link";
-import ContactCta from "@/components/ContactCta";
 import SubPage from "@/components/SubPage";
 import { aboutSections, type AboutSlug } from "@/content/pages";
-import { getHospital } from "@/lib/data";
 
 // 병원소개 하위 페이지 공통 틀: 상단 사진 + 페이지 탭 + 본문 + 상담 안내
-export default async function AboutPage({ slug, children }: { slug: AboutSlug; children: React.ReactNode }) {
-  const hospital = await getHospital();
+export default function AboutPage({ slug, children }: { slug: AboutSlug; children: React.ReactNode }) {
   const page = aboutSections.find((s) => s.slug === slug)!;
 
   return (
@@ -41,7 +38,6 @@ export default async function AboutPage({ slug, children }: { slug: AboutSlug; c
 
       {children}
 
-      <ContactCta hospital={hospital} />
     </SubPage>
   );
 }

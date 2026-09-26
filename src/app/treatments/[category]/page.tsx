@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryTabs from "@/components/CategoryTabs";
-import ContactCta from "@/components/ContactCta";
 import ImageSlot from "@/components/ImageSlot";
 import Reveal from "@/components/Reveal";
 import SubPage from "@/components/SubPage";
 import Link from "next/link";
 import { categoryImage } from "@/content/pages";
-import { getCategories, getCategory, getHospital, getProcedures } from "@/lib/data";
+import { getCategories, getCategory, getProcedures } from "@/lib/data";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -18,8 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { category: slug } = await params;
-  const [hospital, category, categories, procedures] = await Promise.all([
-    getHospital(),
+  const [category, categories, procedures] = await Promise.all([
     getCategory(slug),
     getCategories(),
     getProcedures(slug),
@@ -67,7 +65,6 @@ export default async function CategoryPage({ params }: Props) {
         </ul>
       </section>
 
-      <ContactCta hospital={hospital} />
     </SubPage>
   );
 }

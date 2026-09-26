@@ -24,10 +24,11 @@
   --animate-rise: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* 가운데 아치 모양에서 화면 전체로 펼쳐짐 */
+/* 가운데 아치 모양에서 화면 전체로 펼쳐짐
+   아치: 위는 반원(가로·세로 반지름이 같게), 아래는 직선. 폭 = 높이의 0.8 */
 @keyframes hero-reveal {
   from {
-    clip-path: inset(22% 36% 14% 36% round 50% 50% 0 0);
+    clip-path: inset(16svh calc(50% - 28svh) 14svh round 28svh 28svh 0 0);
   }
   to {
     clip-path: inset(0 0 0 0 round 0 0 0 0);
@@ -37,7 +38,7 @@
 @media (max-width: 767px) {
   @keyframes hero-reveal {
     from {
-      clip-path: inset(20% 18% 14% 18% round 50% 50% 0 0);
+      clip-path: inset(20svh max(10vw, calc(50% - 26svh)) 14svh round min(26svh, 40vw) min(26svh, 40vw) 0 0);
     }
     to {
       clip-path: inset(0 0 0 0 round 0 0 0 0);

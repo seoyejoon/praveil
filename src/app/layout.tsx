@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCta from "@/components/FloatingCta";
+import QuickMenu from "@/components/QuickMenu";
 import PopupLayer from "@/components/PopupLayer";
 import { getCategories, getHospital, getPopups } from "@/lib/data";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
@@ -34,6 +35,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <main>{children}</main>
         <Footer hospital={hospital} />
         <FloatingCta hospital={hospital} />
+        <QuickMenu hospital={hospital} />
         <PopupLayer popups={popups} />
       </body>
     </html>

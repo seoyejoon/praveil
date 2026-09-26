@@ -88,13 +88,6 @@ export const clinic = {
   body: "상담부터 시술, 회복까지 편안한 경험을 위해 공간을 세심하게 준비했습니다.",
 };
 
-// ⑬ 상담 안내
-export const contact = {
-  en: "Contact Us",
-  title: "상담 문의",
-  body: "모든 시술 계획은 충분한 상담 후, 당신의 피부 상태에 맞게 세워집니다.",
-};
-
 // 2026.09 병원 촬영본 (원본: 구글 드라이브 '최종보정'). 자리별로 잘라서 public/images/photos 에 둔다.
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
@@ -124,7 +117,6 @@ export const images = {
   doctor: photo("doctor"),
   // 인포메이션 · 대기실 · 상담실 · 파우더룸 · 시술실 · 복도
   clinic: [1, 2, 3, 4, 5, 6].map((n) => photo(`clinic-${n}`)),
-  contact: photo("contact"),
   pageHero: {
     about: photo("hero-about"),
     treatments: photo("hero-treatments"),

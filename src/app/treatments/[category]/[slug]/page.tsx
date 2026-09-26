@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ContactCta from "@/components/ContactCta";
 import ProcedureList from "@/components/ProcedureList";
 import Reveal from "@/components/Reveal";
 import ScrollSpyNav from "@/components/ScrollSpyNav";
 import SubPage from "@/components/SubPage";
 import type { ProcedureDetail } from "@/content/procedure-details";
 import { categoryImage, procedureInfo, procedureSections } from "@/content/pages";
-import { getCategory, getHospital, getProcedure, getProcedureDetail, getProcedures } from "@/lib/data";
+import { getCategory, getProcedure, getProcedureDetail, getProcedures } from "@/lib/data";
 
 type Props = { params: Promise<{ category: string; slug: string }> };
 
@@ -22,8 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 본문은 src/content/procedure-details (원장님 검수 전 초안)
 export default async function ProcedurePage({ params }: Props) {
   const { category: categorySlug, slug } = await params;
-  const [hospital, category, procedure, siblings, detail] = await Promise.all([
-    getHospital(),
+  const [category, procedure, siblings, detail] = await Promise.all([
     getCategory(categorySlug),
     getProcedure(categorySlug, slug),
     getProcedures(categorySlug),
@@ -131,7 +129,6 @@ export default async function ProcedurePage({ params }: Props) {
         </section>
       )}
 
-      <ContactCta hospital={hospital} />
     </SubPage>
   );
 }

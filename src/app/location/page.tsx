@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ContactCta from "@/components/ContactCta";
 import LocationInfo from "@/components/LocationInfo";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
@@ -37,7 +36,6 @@ export default async function LocationPage() {
         </div>
       </section>
 
-      <ContactCta hospital={hospital} />
     </SubPage>
   );
 }

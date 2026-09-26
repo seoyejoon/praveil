@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ContactCta from "@/components/ContactCta";
 import ImageSlot from "@/components/ImageSlot";
 import Philosophy from "@/components/Philosophy";
 import Reveal from "@/components/Reveal";
@@ -142,9 +141,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* ⑬ 상담 문의 */}
-      <ContactCta hospital={hospital} />
 
       {/* ⑫ 오시는 길 (아래 푸터와 배경이 이어짐) */}
       <HomeLocation hospital={hospital} />

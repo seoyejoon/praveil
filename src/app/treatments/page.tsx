@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CategoryTabs from "@/components/CategoryTabs";
-import ContactCta from "@/components/ContactCta";
 import ImageSlot from "@/components/ImageSlot";
 import ProcedureList from "@/components/ProcedureList";
 import Reveal from "@/components/Reveal";
 import SubPage from "@/components/SubPage";
 import { categoryImage, treatmentsPage } from "@/content/pages";
-import { getCategories, getHospital, getProcedures } from "@/lib/data";
+import { getCategories, getProcedures } from "@/lib/data";
 
 export const metadata: Metadata = { title: "시술안내" };
 
 export default async function TreatmentsPage() {
-  const [hospital, categories, procedures] = await Promise.all([getHospital(), getCategories(), getProcedures()]);
+  const [categories, procedures] = await Promise.all([getCategories(), getProcedures()]);
   const { hero } = treatmentsPage;
 
   return (
@@ -50,7 +49,6 @@ export default async function TreatmentsPage() {
         ))}
       </div>
 
-      <ContactCta hospital={hospital} />
     </SubPage>
   );
 }

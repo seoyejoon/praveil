@@ -32,15 +32,14 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
     { href: hospital.naverReservationUrl, label: "네이버 예약", icon: icons.calendar, external: true },
     { href: "/location", label: "오시는 길", icon: icons.pin, internal: true },
   ];
-  const cls = "flex flex-col items-center gap-1.5 px-2 py-4 text-[11px] tracking-tight text-cream/85 transition hover:bg-white/10 hover:text-white";
+  const cls = "flex flex-col items-center gap-1.5 px-2 py-4 group-first:pt-7 group-last:pb-7 text-[11px] tracking-tight text-cream/85 transition hover:bg-white/10 hover:text-white";
 
   return (
     <aside aria-label="빠른 메뉴" className="fixed top-1/2 right-5 z-30 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex">
-      <div className="w-[78px] overflow-hidden rounded-full bg-espresso/95 py-3 shadow-[0_14px_36px_rgba(40,28,18,0.22)] backdrop-blur">
-        <p className="pb-2 text-center font-display text-[10px] tracking-[0.25em] text-[#ffd899]">QUICK</p>
+      <div className="w-[78px] overflow-hidden rounded-full bg-espresso/95 shadow-[0_14px_36px_rgba(40,28,18,0.22)] backdrop-blur">
         <ul className="divide-y divide-cream/10">
           {items.map((item) => (
-            <li key={item.label}>
+            <li key={item.label} className="group">
               {item.internal ? (
                 <Link href={item.href} className={cls}>
                   <Icon d={item.icon} />

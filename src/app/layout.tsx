@@ -9,6 +9,7 @@ import FloatingCta from "@/components/FloatingCta";
 import QuickMenu from "@/components/QuickMenu";
 import PopupLayer from "@/components/PopupLayer";
 import { getCategories, getHospital, getPopups } from "@/lib/data";
+import { getMember, getSignupSettings } from "@/lib/member";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
 
 // 관리자에서 바꾼 내용이 바로 보이도록 요청마다 화면을 만든다. (DB 조회 결과는 source-db.ts 에서 캐시)
@@ -26,12 +27,24 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [hospital, popups, categories] = await Promise.all([getHospital(), getPopups(), getCategories()]);
+  const [hospital, popups, categories, member, signup] = await Promise.all([
+    getHospital(),
+    getPopups(),
+    getCategories(),
+    getMember(),
+    getSignupSettings(),
+  ]);
 
   return (
     <html lang="ko">
       <body>
-        <Header phone={hospital.phone} reservationUrl={hospital.naverReservationUrl} categories={categories} />
+        <Header
+          phone={hospital.phone}
+          reservationUrl={hospital.naverReservationUrl}
+          categories={categories}
+          member={member}
+          signup={signup && { enabled: signup.enabled, fields: signup.fields }}
+        />
         <main>{children}</main>
         <Footer hospital={hospital} />
         <FloatingCta hospital={hospital} />

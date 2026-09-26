@@ -18,8 +18,8 @@ const arr = (value: unknown): unknown[] => (Array.isArray(value) ? value : []);
 // ---------- 병원 ----------
 
 const loadHospital = cached("hospital", async () => {
-  const [row] = await sql<{ name: string; config: unknown }>(
-    `SELECT name, site_builder_config AS config FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1`,
+  const [row] = await sql<{ id: number; name: string; config: unknown }>(
+    `SELECT id, name, site_builder_config AS config FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1`,
   );
   return row ?? null;
 });
@@ -64,6 +64,31 @@ export async function getPolicyTerms() {
     privacyOfficer: str(terms.privacyOfficer),
     termsOfService: str(terms.termsOfService),
     privacyPolicy: str(terms.privacyPolicy),
+  };
+}
+
+// 회원가입 설정 (관리자 > 홈페이지 설정 > 회원가입)
+export type SignupField = { enabled: boolean; required: boolean };
+export async function getMemberSettings() {
+  const row = await loadHospital();
+  const reg = obj(obj(obj(row?.config).websiteAdmin).registration);
+  const fields = obj(reg.fields);
+  const field = (key: string, fallback: boolean): SignupField => {
+    const f = obj(fields[key]);
+    const enabled = typeof f.enabled === "boolean" ? f.enabled : fallback;
+    return { enabled, required: enabled && (typeof f.required === "boolean" ? f.required : fallback) };
+  };
+  const collectPhone = typeof reg.collectPhone === "boolean" ? reg.collectPhone : true;
+  const collectBirthday = typeof reg.collectBirthday === "boolean" ? reg.collectBirthday : false;
+  return {
+    hospitalId: row?.id ?? 1,
+    enabled: typeof reg.enabled === "boolean" ? reg.enabled : true,
+    fields: {
+      phone: field("phone", collectPhone),
+      birthday: field("birthday", collectBirthday),
+      gender: field("gender", false),
+      address: field("address", false),
+    },
   };
 }
 

@@ -6,3 +6,5 @@ CREATE ROLE praveil_web LOGIN PASSWORD :pw;
 GRANT CONNECT ON DATABASE psbox_admin TO praveil_web;
 GRANT USAGE ON SCHEMA public TO praveil_web;
 GRANT SELECT ON hospitals, posts, praveil_procedure_categories, praveil_procedures, praveil_popups TO praveil_web;
+-- 로그인 여부 확인용 (회원 세션만 읽는다)
+GRANT SELECT ON website_members, website_member_sessions TO praveil_web;

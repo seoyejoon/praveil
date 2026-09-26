@@ -1,15 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import { buildNav } from "@/lib/nav";
 
-type Props = { phone: string; reservationUrl: string; categories: { slug: string; name: string }[] };
+type Props = {
+  phone: string;
+  reservationUrl: string;
+  categories: { slug: string; name: string }[];
+  member: { name: string } | null;
+  signup: SignupConfig;
+};
 
 // 어두운 상단 사진([data-dark-hero]) 위에서는 투명(흰 글씨), 스크롤하거나 메뉴를 열면 크림 배경.
 // PC: 메뉴에 마우스를 올리면 전체 하위 메뉴 패널이 내려온다. 모바일: 전체 화면 메뉴 + 펼침 목록.
-export default function Header({ phone, reservationUrl, categories }: Props) {
+export default function Header({ phone, reservationUrl, categories, member, signup }: Props) {
   const nav = buildNav(categories);
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
@@ -18,6 +25,19 @@ export default function Header({ phone, reservationUrl, categories }: Props) {
   const [active, setActive] = useState<number | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null); // 모바일에서 펼친 메뉴
   const [scrolled, setScrolled] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const closeLogin = useCallback(() => setLoginOpen(false), []);
+  const router = useRouter();
+
+  async function logout() {
+    await fetch("/api/member/logout", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+    router.refresh();
+  }
+
+  function openLogin() {
+    closeAll();
+    setLoginOpen(true);
+  }
   // 첫 렌더에서 깜빡이지 않도록: 상단 사진이 없는 페이지(공지 상세)만 처음부터 크림 배경
   const [hasHero, setHasHero] = useState(!/^\/notice\/.+/.test(pathname));
 
@@ -117,9 +137,18 @@ export default function Header({ phone, reservationUrl, categories }: Props) {
           </Link>
 
           <div className="flex items-center justify-end gap-5 text-[15px]">
-            <a href={`tel:${phone}`} className="hidden opacity-90 transition hover:text-gold md:block">
-              전화문의
-            </a>
+            {member ? (
+              <span className="flex items-center gap-3 text-sm md:text-[15px]">
+                <span className="hidden opacity-80 md:inline">{member.name}님</span>
+                <button type="button" onClick={logout} className="opacity-90 transition hover:text-gold">
+                  로그아웃
+                </button>
+              </span>
+            ) : (
+              <button type="button" onClick={openLogin} className="text-sm opacity-90 transition hover:text-gold md:text-[15px]">
+                로그인
+              </button>
+            )}
             <a
               href={reservationUrl}
               target="_blank"
@@ -191,6 +220,8 @@ export default function Header({ phone, reservationUrl, categories }: Props) {
         </div>
 
       </header>
+
+      <MemberModal open={loginOpen} config={signup} onClose={closeLogin} />
 
       {/* 모바일 전체 화면 메뉴 (header의 blur 효과 밖에 두어야 화면 전체를 덮는다) */}
       {open && (

@@ -127,7 +127,7 @@ export default async function Home() {
           </Reveal>
           <Reveal delay={150} className="md:col-span-3 md:col-start-8">
             <p className="text-[15px] leading-relaxed text-muted md:text-lg">{clinic.body}</p>
-            <Link href="/about#tour" className="mt-6 inline-block border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
+            <Link href="/about/tour" className="mt-6 inline-block border-b border-ink/30 pb-1 font-display text-xs tracking-[0.2em] hover:text-gold">
               VIEW MORE
             </Link>
           </Reveal>

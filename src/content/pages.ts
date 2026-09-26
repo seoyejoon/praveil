@@ -18,6 +18,16 @@ export const aboutPage = {
   ],
 };
 
+// 병원소개 하위 페이지 (메뉴 · 탭 · 상단 사진이 모두 이 목록을 따른다)
+export const aboutSections = [
+  { slug: "philosophy", label: "프라베일 철학", en: "Our Standard", description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.", image: images.pageHero.about },
+  { slug: "doctor", label: "대표원장 소개", en: "Doctor", description: "상담부터 시술까지, 대표원장이 직접 책임집니다.", image: images.clinic[2] },
+  { slug: "why", label: "프라베일이 다른 이유", en: "Why Praveil", description: "처음 오시는 분도 안심할 수 있는 다섯 가지 약속.", image: images.clinic[1] },
+  { slug: "tour", label: "병원 둘러보기", en: "Clinic Tour", description: "상담부터 회복까지, 편안하게 머무를 수 있도록 준비했습니다.", image: images.clinic[0] },
+  { slug: "equipment", label: "보유 장비", en: "Equipment", description: "시술 목적에 맞는 장비로 정확하게 진행합니다.", image: images.pageHero.treatments },
+] as const;
+export type AboutSlug = (typeof aboutSections)[number]["slug"];
+
 export const treatmentsPage = {
   hero: { en: "Treatments", title: "시술안내", description: "11개 분야, 54가지 시술을 진행합니다.", image: images.pageHero.treatments },
 };

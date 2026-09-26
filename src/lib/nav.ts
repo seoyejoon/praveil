@@ -1,4 +1,6 @@
 // 상단 메뉴 구성. '시술안내' 하위 메뉴는 관리자의 시술 분류에서 자동으로 채운다.
+import { aboutSections } from "@/content/pages";
+
 export type NavChild = { href: string; label: string };
 export type NavItem = { href: string; label: string; en: string; children: NavChild[] };
 
@@ -8,13 +10,7 @@ export function buildNav(categories: { slug: string; name: string }[]): NavItem[
       href: "/about",
       label: "병원소개",
       en: "About",
-      children: [
-        { href: "/about#standard", label: "프라베일 철학" },
-        { href: "/about#doctor", label: "대표원장 소개" },
-        { href: "/about#why", label: "프라베일이 다른 이유" },
-        { href: "/about#tour", label: "병원 둘러보기" },
-        { href: "/about#equipment", label: "보유 장비" },
-      ],
+      children: aboutSections.map((s) => ({ href: `/about/${s.slug}`, label: s.label })),
     },
     {
       href: "/treatments",

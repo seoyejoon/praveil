@@ -50,7 +50,7 @@ export default function DoctorGreeting({ doctor, image, cutout = false, eyebrow,
             </p>
             <p className="mt-5 text-[15px] leading-relaxed whitespace-pre-line text-muted md:text-base">{description}</p>
             <Link
-              href="/about#doctor"
+              href="/about/doctor"
               className="mt-9 inline-flex items-center gap-3 border border-ink px-6 py-3.5 font-display text-sm tracking-[0.12em] transition hover:bg-ink hover:text-cream"
             >
               VIEW MORE <span aria-hidden>→</span>

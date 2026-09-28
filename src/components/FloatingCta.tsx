@@ -10,7 +10,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <div className="fixed inset-x-3 bottom-3 z-40 grid h-[60px] grid-cols-3 overflow-hidden rounded-[18px] bg-black text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] md:hidden">
+    <div className="fixed inset-x-3 bottom-3 z-40 grid h-[60px] grid-cols-3 overflow-hidden rounded-[18px] bg-espresso text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] md:hidden">
       {items.map(({ href, label, Icon, external }) => (
         <a
           key={label}
@@ -18,7 +18,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
           {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="flex flex-col items-center justify-center gap-1 text-[11px] text-white/85 active:bg-white/10"
         >
-          <Icon className="h-5 w-5" strokeWidth={1.5} />
+          <Icon className="h-5 w-5 text-taupe" strokeWidth={1.5} />
           {label}
         </a>
       ))}

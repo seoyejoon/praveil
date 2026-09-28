@@ -39,10 +39,10 @@ export default function MainIntro({ text, keywords }: Props) {
           ))}
         </p>
 
-        <ul className="mt-24 grid border-t border-black md:mt-36 md:grid-cols-3">
+        <ul className="mt-24 grid border-t border-gold md:mt-36 md:grid-cols-3">
           {keywords.map((k, i) => (
             <Reveal as="li" key={k.en} delay={i * 120} className="flex items-baseline justify-between border-b border-black/10 py-7 md:block md:border-b-0 md:border-l md:px-8 md:py-10 md:first:border-l-0 md:first:pl-0">
-              <span className="font-display text-[44px] leading-none font-light uppercase md:text-[72px]">{k.en}</span>
+              <span className="font-display text-[44px] leading-none font-light text-gold uppercase md:text-[72px]">{k.en}</span>
               <span className="text-sm text-black/60 md:mt-5 md:block md:text-base">{k.ko}</span>
             </Reveal>
           ))}

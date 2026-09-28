@@ -31,7 +31,7 @@ export default function MainHero({ eyebrow, lines, title, sub, image }: Props) {
       </div>
 
       <div ref={copyRef} className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-20">
-        <Reveal variant="line" className="font-display text-xs font-light tracking-[0.4em] uppercase opacity-80 md:text-sm">
+        <Reveal variant="line" className="font-display text-xs font-light tracking-[0.4em] text-[#e3cfae] uppercase md:text-sm">
           <span>
             <span>{eyebrow}</span>
           </span>

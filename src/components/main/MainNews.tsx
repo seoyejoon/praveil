@@ -29,7 +29,7 @@ export default function MainNews({ items }: { items: Item[] }) {
                 role="tab"
                 aria-selected={tab === t.key}
                 onClick={() => setTab(t.key)}
-                className={`rounded-full px-5 py-2.5 text-sm transition ${tab === t.key ? "bg-black text-white" : "text-black/50 hover:text-black"}`}
+                className={`rounded-full px-5 py-2.5 text-sm transition ${tab === t.key ? "bg-gold text-white" : "text-black/50 hover:text-black"}`}
               >
                 {t.label}
               </button>
@@ -38,13 +38,13 @@ export default function MainNews({ items }: { items: Item[] }) {
           <Link
             href={tab === "all" ? "/notice" : `/notice?type=${tab}`}
             aria-label="소식 전체 보기"
-            className="mt-10 hidden h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:bg-black hover:text-white lg:grid"
+            className="mt-10 hidden h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:border-gold hover:bg-gold hover:text-white lg:grid"
           >
             <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
           </Link>
         </div>
 
-        <ul className="border-t border-black">
+        <ul className="border-t border-gold">
           {list.length ? (
             list.map((n) => (
               <li key={n.id} className="border-b border-black/10">
@@ -53,7 +53,7 @@ export default function MainNews({ items }: { items: Item[] }) {
                   <span className="min-w-0">
                     <span
                       title={n.type === "event" ? "이벤트" : "공지사항"}
-                      className={`mr-3 inline-grid h-7 w-7 place-items-center rounded-full align-middle ${n.type === "event" ? "bg-black text-white" : "bg-ivory text-black"}`}
+                      className={`mr-3 inline-grid h-7 w-7 place-items-center rounded-full align-middle ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
                     >
                       {n.type === "event" ? <Gift className="h-3.5 w-3.5" strokeWidth={1.6} /> : <Megaphone className="h-3.5 w-3.5" strokeWidth={1.6} />}
                     </span>

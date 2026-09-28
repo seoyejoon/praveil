@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { LogOut, UserRound } from "lucide-react";
+import { LogOut, Plus, UserRound } from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
-import { sitemap } from "@/content/sitemap";
+import BestMark from "@/components/BestMark";
+import { menu } from "@/content/sitemap";
 
 type Props = {
   phone: string;
@@ -105,12 +106,12 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
             <Logo className="h-[18px] w-auto md:h-[24px]" />
           </Link>
 
-          {/* PC 메뉴 */}
-          <nav aria-label="주 메뉴" className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 xl:flex">
-            {sitemap.map((s, i) => (
+          {/* PC 메뉴: ABOUT / PRAVEIL / COMMUNITY */}
+          <nav aria-label="주 메뉴" className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 gap-20 xl:flex 2xl:gap-28">
+            {menu.map((g, i) => (
               <Link
-                key={s.key}
-                href={s.href}
+                key={g.key}
+                href={g.href}
                 onMouseEnter={() => {
                   setMega(true);
                   setActive(i);
@@ -119,14 +120,12 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
                   setMega(true);
                   setActive(i);
                 }}
-                className={`relative flex w-[108px] 2xl:w-[124px] items-center justify-center ${
-                  s.key === "praveil" ? "font-display text-[16px] tracking-[0.14em]" : "text-[15px] font-medium tracking-[-0.01em]"
-                }`}
+                className="relative flex items-center font-display text-[17px] tracking-[0.16em]"
               >
-                {s.label}
+                {g.label}
                 <span
-                  className={`absolute bottom-[24px] left-1/2 h-px w-6 -translate-x-1/2 bg-current transition-transform duration-500 ${
-                    (mega && active === i) || isCurrent(s.href) ? "scale-x-100" : "scale-x-0"
+                  className={`absolute bottom-[24px] left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ${
+                    (mega && active === i) || g.columns.some((c) => c.pages.some((p) => isCurrent(p.href))) ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
               </Link>
@@ -170,31 +169,40 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
           </div>
         </div>
 
-        {/* PC 하위 메뉴: 각 메뉴와 같은 폭의 칸에 세로로 */}
+        {/* PC 하위 메뉴: 올린 메뉴의 분류가 칸으로 펼쳐진다 (PRAVEIL은 시술 분류 5칸) */}
         <div
           className={`hidden overflow-hidden bg-white transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] xl:grid ${
             mega ? "grid-rows-[1fr] border-t border-black/5" : "grid-rows-[0fr]"
           }`}
         >
           <div className="min-h-0">
-            <div className="flex justify-center pt-8 pb-11">
-              {sitemap.map((s, i) => (
-                <ul
-                  key={s.key}
-                  onMouseEnter={() => setActive(i)}
-                  className={`w-[108px] 2xl:w-[124px] space-y-3 text-center transition-opacity duration-300 ${active === i ? "opacity-100" : "opacity-45"}`}
-                >
-                  {s.pages.map((p) => (
-                    <li key={p.href}>
-                      <Link href={p.href} onClick={() => setMega(false)} className="text-[14px] text-black/70 transition hover:text-black">
-                        {p.label}
-                        {p.best && <sup className="ml-0.5 font-display text-[9px] tracking-wider text-black">BEST</sup>}
+            {active !== null && (
+              <div key={active} className="mx-auto flex max-w-[1400px] justify-center px-10 pt-9 pb-12 animate-[fade-up_.5s_cubic-bezier(.2,.7,.2,1)_both]">
+                {menu[active].columns.map((c) => (
+                  <div key={c.key} className="w-[220px] border-l border-black/8 px-7 first:border-l-0 2xl:w-[250px]">
+                    {menu[active].columns.length > 1 && (
+                      <Link href={c.href} onClick={() => setMega(false)} className="block text-[15px] font-semibold transition hover:text-gold">
+                        {c.label}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
+                    )}
+                    <ul className={`space-y-3 ${menu[active].columns.length > 1 ? "mt-5" : ""}`}>
+                      {c.pages.map((p) => (
+                        <li key={p.href}>
+                          <Link
+                            href={p.href}
+                            onClick={() => setMega(false)}
+                            className={`inline-flex items-center gap-2 text-[14px] transition hover:text-gold ${p.best ? "font-semibold text-black" : "text-black/65"}`}
+                          >
+                            {p.label}
+                            {p.best && <BestMark />}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -202,7 +210,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
       {/* 태블릿 · 모바일 전체 화면 메뉴 */}
       <div
         id="site-menu"
-        className={`fixed inset-0 z-[60] flex flex-col bg-black text-white transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
+        className={`fixed inset-0 z-[60] flex flex-col bg-espresso text-white transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
           open ? "[clip-path:inset(0_0_0_0)]" : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
         }`}
         aria-hidden={!open}
@@ -215,45 +223,57 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
           </button>
         </div>
         <nav aria-label="전체 메뉴" className="flex-1 overflow-y-auto px-5 pt-4 md:px-10">
-          {sitemap.map((s, i) => {
+          {menu.map((g, i) => {
             const isOpen = expanded === i;
             return (
               <div
-                key={s.key}
+                key={g.key}
                 className={`border-b border-white/10 transition-[opacity,transform] duration-700 ${open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-                style={{ transitionDelay: open ? `${200 + i * 60}ms` : "0ms" }}
+                style={{ transitionDelay: open ? `${200 + i * 80}ms` : "0ms" }}
               >
                 <button
                   type="button"
                   onClick={() => setExpanded(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-baseline justify-between py-5 text-left"
+                  className="flex w-full items-center justify-between py-6 text-left"
                 >
-                  <span className="text-[26px] font-semibold tracking-[-0.03em] md:text-4xl">{s.label}</span>
-                  <span className="font-display text-xs font-light tracking-[0.25em] text-white/40 uppercase">{s.en}</span>
+                  <span className="font-display text-[30px] font-light tracking-[0.12em] md:text-4xl">{g.label}</span>
+                  <Plus className={`h-5 w-5 text-taupe transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`} strokeWidth={1.5} />
                 </button>
                 <div className={`grid transition-[grid-template-rows] duration-500 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                  <ul className="min-h-0 overflow-hidden">
-                    {s.pages.map((p) => (
-                      <li key={p.href}>
-                        <Link href={p.href} onClick={() => setOpen(false)} className="block py-2 text-[16px] text-white/70">
-                          {p.label}
-                          {p.best && <span className="ml-2 font-display text-[10px] tracking-[0.2em] text-white">BEST</span>}
-                        </Link>
-                      </li>
-                    ))}
-                    <li className="h-5" aria-hidden />
-                  </ul>
+                  <div className="min-h-0 overflow-hidden">
+                    <div className={`grid gap-x-6 gap-y-6 pb-7 ${g.columns.length > 1 ? "grid-cols-2" : ""}`}>
+                      {g.columns.map((c) => (
+                        <div key={c.key}>
+                          {g.columns.length > 1 && <p className="mb-2 text-sm font-semibold text-taupe">{c.label}</p>}
+                          <ul>
+                            {c.pages.map((p) => (
+                              <li key={p.href}>
+                                <Link
+                                  href={p.href}
+                                  onClick={() => setOpen(false)}
+                                  className={`inline-flex items-center gap-2 py-1.5 text-[16px] ${p.best ? "font-semibold text-white" : "text-white/70"}`}
+                                >
+                                  {p.label}
+                                  {p.best && <BestMark />}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
         </nav>
         <div className="grid shrink-0 grid-cols-2 gap-px border-t border-white/10 bg-white/10">
-          <a href={`tel:${phone}`} className="bg-black py-5 text-center text-sm">
+          <a href={`tel:${phone}`} className="bg-espresso py-5 text-center text-sm">
             전화 상담
           </a>
-          <a href={reservationUrl} target="_blank" rel="noopener noreferrer" className="bg-white py-5 text-center text-sm text-black">
+          <a href={reservationUrl} target="_blank" rel="noopener noreferrer" className="bg-gold py-5 text-center text-sm text-white">
             네이버 예약
           </a>
         </div>

@@ -15,13 +15,14 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <footer className="flex flex-col bg-black px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 md:pb-8 lg:min-h-svh lg:pt-[112px]">
+    <footer className="flex flex-col bg-espresso px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 md:pb-8 lg:min-h-svh lg:pt-[112px]">
       <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
         <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-[4/3] rounded-[20px] bg-white/10 lg:aspect-auto lg:h-full lg:min-h-[420px] lg:rounded-[28px]" />
 
-        <div className="flex flex-col">
+        {/* 오른쪽: 위아래 빈 곳 없이 이어서, 지도 높이 가운데에 */}
+        <div className="flex flex-col justify-center gap-8">
           <div className="flex gap-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold/20 text-taupe">
               <MapPin className="h-5 w-5" strokeWidth={1.5} />
             </span>
             <div>
@@ -34,9 +35,9 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-8 border-t border-white/15 pt-6 sm:grid-cols-[1fr_auto] lg:mt-auto">
+          <div className="grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-[1fr_auto]">
             <div className="flex gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold/20 text-taupe">
                 <Clock className="h-5 w-5" strokeWidth={1.5} />
               </span>
               <ul className="mt-1 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
@@ -58,7 +59,7 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
               </ul>
             </div>
             <div className="flex gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold/20 text-taupe">
                 <Phone className="h-5 w-5" strokeWidth={1.5} />
               </span>
               <div>
@@ -70,22 +71,19 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
             </div>
           </div>
 
-          {/* 지도 앱 바로가기: 앱 아이콘 원형 버튼 (마우스를 올리면 이름) */}
-          <ul className="mt-8 flex gap-3">
+          {/* 지도 앱 바로가기: 앱 아이콘 + 이름 */}
+          <ul className="grid grid-cols-2 gap-2.5 border-t border-white/15 pt-8 sm:grid-cols-4">
             {mapApps(hospital.mapLinks, hospital.address, hospital.name).map((m) => (
-              <li key={m.key} className="group/app relative">
+              <li key={m.key}>
                 <a
                   href={m.href}
                   target={m.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  aria-label={m.label}
-                  className="grid h-14 w-14 place-items-center rounded-full bg-white transition duration-300 hover:scale-110"
+                  className="flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm text-black transition hover:bg-ivory"
                 >
-                  <span className="scale-125">{m.icon}</span>
-                </a>
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-xs whitespace-nowrap text-black opacity-0 transition group-hover/app:opacity-100">
+                  {m.icon}
                   {m.label}
-                </span>
+                </a>
               </li>
             ))}
           </ul>

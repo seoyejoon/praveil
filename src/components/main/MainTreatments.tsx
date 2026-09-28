@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import BestMark from "@/components/BestMark";
 import Reveal from "@/components/Reveal";
 import type { SiteSection } from "@/content/sitemap";
 import { gsap } from "@/lib/gsap";
@@ -39,7 +40,7 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
           <p className="text-[15px] text-black/55 md:text-lg">피부 고민에 맞는 분야를 먼저 골라 보세요.</p>
         </div>
 
-        <ul className="mt-14 border-t border-black md:mt-20" onMouseLeave={() => setHover(null)}>
+        <ul className="mt-14 border-t border-gold md:mt-20" onMouseLeave={() => setHover(null)}>
           {sections.map((s) => (
             <li key={s.key} className="border-b border-black/12" onMouseEnter={() => setHover(s.key)}>
               <Link href={s.href} className="group grid grid-cols-[1fr_auto] items-center gap-5 py-7 md:gap-10 md:py-10">
@@ -49,14 +50,14 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
                   </span>
                   <span className="font-display text-sm font-light tracking-[0.2em] text-black/40 uppercase md:text-lg">{s.en}</span>
                 </span>
-                <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:rotate-45 group-hover:bg-black group-hover:text-white md:h-14 md:w-14">
+                <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:rotate-45 group-hover:border-gold group-hover:bg-gold group-hover:text-white md:h-14 md:w-14">
                   <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
                 </span>
                 <span className="col-span-2 flex flex-wrap gap-2 md:col-span-1 md:-mt-4">
                   {s.pages.map((p, j) => (
-                    <span key={p.href} className="text-[13px] text-black/50 md:text-sm">
+                    <span key={p.href} className={`inline-flex items-center gap-1.5 text-[13px] md:text-sm ${p.best ? "font-semibold text-black" : "text-black/50"}`}>
                       {p.label}
-                      {p.best && <sup className="ml-0.5 font-display text-[9px] tracking-wider text-black">BEST</sup>}
+                      {p.best && <BestMark />}
                       {j < s.pages.length - 1 && <span className="ml-2 text-black/20">/</span>}
                     </span>
                   ))}

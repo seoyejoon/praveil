@@ -23,8 +23,8 @@ export type SiteSection = {
 export const sitemap: SiteSection[] = [
   {
     key: "praveil",
-    label: "PRAVEIL",
-    en: "Praveil",
+    label: "병원소개",
+    en: "About",
     href: "/about/philosophy",
     pages: [
       { href: "/about/philosophy", label: "병원소개" },
@@ -132,3 +132,12 @@ export function findPage(path: string) {
   }
   return null;
 }
+
+// 상단 메뉴: ABOUT / PRAVEIL / COMMUNITY 3개. PRAVEIL 아래에 시술 분류 5개가 칸으로 펼쳐진다.
+export type MenuGroup = { key: string; label: string; href: string; columns: SiteSection[] };
+const byKey = (key: string) => sitemap.find((s) => s.key === key)!;
+export const menu: MenuGroup[] = [
+  { key: "about", label: "ABOUT", href: "/about/philosophy", columns: [byKey("praveil")] },
+  { key: "praveil", label: "PRAVEIL", href: "/lifting/coolsonic", columns: sitemap.filter((s) => s.treatment) },
+  { key: "community", label: "COMMUNITY", href: "/notice", columns: [byKey("community")] },
+];

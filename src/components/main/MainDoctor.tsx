@@ -23,10 +23,10 @@ export default function MainDoctor({ nameEn, name, title, quote, text, image }: 
   }, []);
 
   return (
-    <section ref={rootRef} className="relative overflow-hidden bg-[#0c0c0c] text-white">
+    <section ref={rootRef} className="relative overflow-hidden bg-espresso text-white">
       <p
         aria-hidden
-        className="doctor-name pointer-events-none absolute top-[12%] left-0 font-display text-[26vw] leading-none font-light whitespace-nowrap text-white/[0.06] uppercase lg:top-[18%] lg:text-[17vw]"
+        className="doctor-name pointer-events-none absolute top-[12%] left-0 font-display text-[26vw] leading-none font-light whitespace-nowrap text-taupe/[0.09] uppercase lg:top-[18%] lg:text-[17vw]"
       >
         {nameEn}
       </p>
@@ -49,13 +49,13 @@ export default function MainDoctor({ nameEn, name, title, quote, text, image }: 
             <p className="mt-8 text-[15px] leading-relaxed whitespace-pre-line text-white/60 md:text-lg">{text}</p>
             <div className="mt-12 flex items-end justify-between border-t border-white/15 pt-6">
               <p>
-                <span className="block font-display text-sm tracking-[0.25em] text-white/50 uppercase">{title}</span>
+                <span className="block text-sm text-taupe">{title}</span>
                 <span className="mt-1 block text-2xl font-bold md:text-3xl">{name}</span>
               </p>
               <Link
                 href="/about/doctor"
                 aria-label="대표원장 소개 자세히 보기"
-                className="grid h-14 w-14 place-items-center rounded-full border border-white/40 transition duration-500 hover:rotate-45 hover:bg-white hover:text-black"
+                className="grid h-14 w-14 place-items-center rounded-full border border-white/40 transition duration-500 hover:rotate-45 hover:border-gold hover:bg-gold hover:text-white"
               >
                 <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
               </Link>

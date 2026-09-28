@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BestMark from "@/components/BestMark";
 import { findPage, pendingPaths } from "@/content/sitemap";
 
 // 새 사이트맵의 시술 · 전후사진 페이지: 메인 시안 확정 후 차례로 만든다. 그 전까지 '준비 중' 화면.
@@ -27,10 +28,15 @@ export default async function PendingPage({ params }: Props) {
   return (
     <section className="min-h-[80svh] bg-white px-5 pt-40 pb-32 md:px-10 md:pt-52">
       <div className="mx-auto max-w-[1200px]">
-        <p className="font-display text-sm font-light tracking-[0.3em] text-muted uppercase">{s.en}</p>
+        <p className="font-display text-sm font-light tracking-[0.3em] text-gold uppercase">{s.en}</p>
         <h1 className="mt-4 flex items-center gap-4 text-4xl font-semibold tracking-[-0.03em] md:text-6xl">
           {page.label}
-          {page.best && <span className="rounded-full bg-black px-3 py-1 font-display text-xs font-normal tracking-[0.2em] text-white">BEST</span>}
+          {page.best && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-ivory px-4 py-1.5 text-sm font-medium tracking-normal text-mocha">
+              <BestMark />
+              대표 시술
+            </span>
+          )}
         </h1>
         {page.items && (
           <ul className="mt-10 flex flex-wrap gap-2">

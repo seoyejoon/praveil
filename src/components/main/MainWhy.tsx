@@ -68,7 +68,7 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
                 {(() => {
                   const Icon = icons[item.icon as keyof typeof icons] ?? ShieldCheck;
                   return (
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-ivory md:h-16 md:w-16">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-ivory text-gold md:h-16 md:w-16">
                       <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={1.4} />
                     </span>
                   );

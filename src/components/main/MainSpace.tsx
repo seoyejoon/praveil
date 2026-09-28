@@ -17,7 +17,7 @@ export default function MainSpace({ title, images }: { label?: string; title: st
         <Link
           href="/about/philosophy"
           aria-label="병원 둘러보기"
-          className="grid h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:bg-black hover:text-white"
+          className="grid h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:border-gold hover:bg-gold hover:text-white"
         >
           <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
         </Link>

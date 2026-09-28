@@ -30,6 +30,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [hasHero, setHasHero] = useState(true);
+  const [lightHero, setLightHero] = useState(false); // 밝은 첫 화면(흰 배경 영상) 위: 투명 + 검정 글자
   const [loginOpen, setLoginOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [loginTab, setLoginTab] = useState<"login" | "signup">("login");
@@ -54,6 +55,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
     setMega(false);
     setExpanded(null);
     setHasHero(Boolean(document.querySelector("[data-dark-hero]")));
+    setLightHero(Boolean(document.querySelector("[data-light-hero]")));
   }, [pathname]);
 
   useEffect(() => {
@@ -87,7 +89,8 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
     setLoginOpen(true);
   }
 
-  const light = hasHero && !scrolled && !mega && !open; // 첫 화면 위: 흰 글자
+  const light = hasHero && !lightHero && !scrolled && !mega && !open; // 어두운 첫 화면 위: 흰 글자
+  const clear = lightHero && !scrolled && !mega && !open; // 밝은 첫 화면 위: 투명 + 검정 글자
   const isCurrent = (href: string) => {
     const base = href.split("?")[0].split("/").slice(0, 2).join("/");
     return base !== "" && (pathname === base || pathname.startsWith(`${base}/`));
@@ -99,7 +102,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
         onMouseLeave={() => setMega(false)}
         className={`fixed inset-x-0 top-0 z-40 transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
           hidden && !mega ? "-translate-y-full" : ""
-        } ${light ? "text-white" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
+        } ${light ? "text-white" : clear ? "text-black" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
       >
         <div className="relative mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:h-[84px] md:px-10">
           <Link href="/" aria-label="프라베일 맑고고운의원 홈" className="relative z-10 shrink-0">

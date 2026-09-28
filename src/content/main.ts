@@ -1,11 +1,21 @@
 // 메인 페이지 문구 (2026.10 리뉴얼). 원장님 검토 후 확정.
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
+// 첫 화면: 모델 영상 + 괄호 속 단어가 바뀌는 제목
 export const mainHero = {
   eyebrow: "Praveil Clinic",
-  title: "오직 당신만을 위한 단 하나의 계획",
+  before: "오직 당신만을 위한",
+  words: ["단 하나의", "정직한", "섬세한", "자연스러운"],
+  after: "계획",
   sub: "대표원장 책임 진료 시스템",
-  line: "Read your skin first",
+  video: { src: "/videos/hero-model.mp4", webm: "/videos/hero-model.webm", small: "/videos/hero-model-sm.mp4", poster: photo("hero-model-poster") },
+};
+
+// 두 번째: 피부 분석 장면 (3D 얼굴)
+export const mainScan = {
+  eyebrow: "Read your skin first",
+  title: ["피부를 먼저 읽고,", "꼭 필요한 만큼만."],
+  text: "맑고 고운 피부는 많은 시술이 아니라, 정확한 진단에서 시작됩니다. 프라베일은 피부를 먼저 읽고, 꼭 필요한 만큼만 정확하게 시술합니다.",
   // 분석 카드: point = 얼굴 점 번호(MediaPipe), top = 카드 세로 위치(%)
   // 수치는 넣지 않는다 (의료광고: 실제 측정값처럼 보이지 않게)
   items: [
@@ -16,18 +26,6 @@ export const mainHero = {
     { label: "색소", en: "Pigment", point: 425, side: "right" as const, top: 58 },
   ],
   steps: ["피부 진단", "분석", "맞춤 설계", "대표원장 시술"],
-  // 모델 영상이 준비되면 경로를 넣는다 (예: "/videos/hero-model.mp4")
-  video: undefined as string | undefined,
-};
-
-export const mainIntro = {
-  label: "About Praveil",
-  text: "맑고 고운 피부는 많은 시술이 아니라, 정확한 진단에서 시작됩니다. 프라베일은 피부를 먼저 읽고, 꼭 필요한 만큼만 정확하게 시술합니다.",
-  keywords: [
-    { en: "Read", ko: "피부를 먼저 읽습니다" },
-    { en: "Fit", ko: "나에게 맞게 설계합니다" },
-    { en: "Natural", ko: "티 나지 않게, 그러나 분명하게" },
-  ],
 };
 
 // 대표 시술 4종 (BEST)

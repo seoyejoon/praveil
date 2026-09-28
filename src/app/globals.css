@@ -60,6 +60,15 @@
 }
 
 /* 메인 첫 화면 */
+/* 첫 화면 영상: 가운데 원에서 퍼져 나오며 열림 */
+@keyframes iris-open {
+  from {
+    clip-path: circle(0% at 55% 45%);
+  }
+  to {
+    clip-path: circle(150% at 55% 45%);
+  }
+}
 @keyframes curtain-up {
   from {
     transform: translateY(0);

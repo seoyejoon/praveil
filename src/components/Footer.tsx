@@ -15,7 +15,7 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <footer className="flex flex-col bg-espresso px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 md:pb-8 lg:min-h-svh lg:pt-[112px]">
+    <footer className="flex flex-col bg-espresso px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 lg:pb-8 lg:min-h-svh lg:pt-[112px]">
       <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
         <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-[4/3] rounded-[20px] bg-white/10 lg:aspect-auto lg:h-full lg:min-h-[420px] lg:rounded-[28px]" />
 

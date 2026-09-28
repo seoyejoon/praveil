@@ -47,7 +47,7 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
   const tip = "pointer-events-none absolute top-1/2 right-full mr-3 -translate-y-1/2 translate-x-2 whitespace-nowrap rounded-full bg-espresso px-3 py-1.5 text-xs text-white opacity-0 transition group-hover/q:translate-x-0 group-hover/q:opacity-100";
 
   return (
-    <aside aria-label="빠른 메뉴" className={`fixed right-6 bottom-8 z-30 hidden flex-col items-center transition-[opacity,transform] duration-500 md:flex ${atFooter ? "pointer-events-none translate-y-4 opacity-0" : ""}`}>
+    <aside aria-label="빠른 메뉴" className={`fixed right-6 bottom-8 z-30 hidden flex-col items-center transition-[opacity,transform] duration-500 lg:flex ${atFooter ? "pointer-events-none translate-y-4 opacity-0" : ""}`}>
       <div className="overflow-hidden rounded-[18px] bg-gold shadow-[0_14px_36px_rgba(0,0,0,0.18)]">
         <ul className="divide-y divide-white/10">
           {items.map((item) => (

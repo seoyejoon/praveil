@@ -26,7 +26,7 @@ export default function MainDoctor({ nameEn, name, title, quote, text, image }: 
     <section ref={rootRef} className="relative overflow-hidden bg-espresso text-white">
       <p
         aria-hidden
-        className="doctor-name pointer-events-none absolute top-[12%] left-0 font-display text-[26vw] leading-none font-light whitespace-nowrap text-taupe/[0.09] uppercase lg:top-[18%] lg:text-[17vw]"
+        className="doctor-name pointer-events-none absolute top-[12%] left-0 hidden font-display lg:block text-[26vw] leading-none font-light whitespace-nowrap text-taupe/[0.09] uppercase lg:top-[18%] lg:text-[17vw]"
       >
         {nameEn}
       </p>

@@ -130,7 +130,7 @@ export default function HeroFaceScan({
       const s = Math.max(w / vw, h / vh);
       const dw = vw * s,
         dh = vh * s;
-      const posX = w < 768 ? 0.52 : 0.5;
+      const posX = w < 1024 ? 0.52 : 0.5;
       const ox = (w - dw) * posX,
         oy = (h - dh) / 2;
 
@@ -256,7 +256,8 @@ export default function HeroFaceScan({
       }
 
       // 분석 점 + 표시: 스캔이 끝나면 차례로 나타남
-      const mobile = w < 768;
+      // 태블릿 이하: 점 바로 옆에 표시 (오른쪽에 줄 세울 자리가 없음)
+      const mobile = w < 1024;
       points.forEach((pt, i) => {
         const tag = tagRefs.current[i];
         if (!tag) return;

@@ -10,7 +10,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <div className="fixed inset-x-3 bottom-3 z-40 grid h-[60px] grid-cols-3 overflow-hidden rounded-[18px] bg-espresso text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] md:hidden">
+    <div className="fixed inset-x-3 bottom-3 z-40 grid h-[60px] grid-cols-3 overflow-hidden rounded-[18px] bg-espresso text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] md:inset-x-auto md:left-1/2 md:w-[440px] md:-translate-x-1/2 lg:hidden">
       {items.map(({ href, label, Icon, external }) => (
         <a
           key={label}

@@ -91,7 +91,7 @@ export default function MainHero({ eyebrow, before, words, after, sub, video, po
           >
             <video
               ref={videoRef}
-              className="h-full w-full object-cover object-[52%_center] md:object-center"
+              className="h-full w-full object-cover object-[52%_center] lg:object-center"
               autoPlay
               muted
               loop
@@ -106,13 +106,13 @@ export default function MainHero({ eyebrow, before, words, after, sub, video, po
           </div>
           {/* 글자가 잘 보이도록 왼쪽 · 아래를 옅게 밝힘 */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/80 to-transparent md:h-1/3 md:from-white/40" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/80 to-transparent lg:h-1/3 lg:from-white/40" />
         </div>
 
-        <div ref={copyRef} className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-28 md:justify-center md:px-10 md:pb-0">
+        <div ref={copyRef} className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-28 md:px-10 md:pb-32 lg:justify-center lg:pb-0">
           <div>
             <p className="animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_1s_both] font-display text-[11px] font-light tracking-[0.4em] text-mocha uppercase md:text-xs">{eyebrow}</p>
-            <h1 className="mt-5 text-[26px] leading-[1.45] font-light tracking-[-0.03em] md:text-[42px]">
+            <h1 className="mt-5 text-[26px] leading-[1.45] font-light tracking-[-0.03em] md:text-[42px] 2xl:text-[50px]">
               <span className="block animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_1.1s_both]">{before}</span>
               <span className="flex animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_1.25s_both] items-center gap-2 md:gap-3">
                 <span className="font-extralight text-mocha/60">[</span>
@@ -139,7 +139,7 @@ export default function MainHero({ eyebrow, before, words, after, sub, video, po
                 <span>{after}</span>
               </span>
             </h1>
-            <p className="mt-4 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_1.4s_both] text-[13px] text-ink/60 md:text-[15px]">{sub}</p>
+            <p className="mt-4 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_1.4s_both] text-[13px] text-ink/60 md:text-[15px] 2xl:text-[17px]">{sub}</p>
 
             {/* 진행 막대: 단어가 바뀔 때마다 한 칸씩 참 */}
             <div aria-hidden className="mt-8 flex w-[180px] animate-[fade-up_1s_ease_1.6s_both] gap-1.5 md:mt-10 md:w-[220px]">
@@ -155,7 +155,7 @@ export default function MainHero({ eyebrow, before, words, after, sub, video, po
           </div>
         </div>
 
-        <span aria-hidden className="absolute bottom-10 left-1/2 hidden h-11 w-7 -translate-x-1/2 justify-center rounded-full border border-ink/30 pt-2 md:flex">
+        <span aria-hidden className="absolute bottom-10 left-1/2 hidden h-11 w-7 -translate-x-1/2 justify-center rounded-full border border-ink/30 pt-2 lg:flex">
           <span className="h-2 w-[3px] animate-[scroll-dot_1.8s_ease-in-out_infinite] rounded-full bg-ink/60" />
         </span>
       </section>

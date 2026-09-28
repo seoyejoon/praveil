@@ -61,7 +61,7 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
               }}
               data-index={i}
               className={`border-t border-black/10 py-10 transition-opacity duration-500 last:border-b md:py-14 lg:py-16 ${
-                active === i ? "lg:opacity-100" : "lg:opacity-25"
+                active === i ? "lg:opacity-100" : "lg:opacity-40"
               }`}
             >
               <div className="flex gap-6 md:gap-10">

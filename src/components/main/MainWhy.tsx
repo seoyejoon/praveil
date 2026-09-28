@@ -1,12 +1,14 @@
 "use client";
 
+import { MessagesSquare, ScanFace, ShieldCheck, Sofa, Stethoscope } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/Reveal";
 
-type Item = { title: string; text: string; image: string };
+type Item = { icon: string; title: string; text: string; image: string };
+const icons = { doctor: Stethoscope, consult: MessagesSquare, genuine: ShieldCheck, device: ScanFace, space: Sofa };
 
 // 특장점: PC는 왼쪽 제목 · 사진이 멈춰 있고, 오른쪽 항목을 스크롤하면 사진이 바뀐다.
-export default function MainWhy({ label, title, items }: { label: string; title: string[]; items: Item[] }) {
+export default function MainWhy({ title, items }: { label?: string; title: string[]; items: Item[] }) {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLLIElement | null)[]>([]);
 
@@ -27,15 +29,14 @@ export default function MainWhy({ label, title, items }: { label: string; title:
     <section className="bg-white px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-2 lg:gap-24">
         <div className="lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:justify-center">
-          <p className="font-display text-xs tracking-[0.35em] text-black/50 uppercase md:text-sm">{label}</p>
-          <Reveal variant="line" className="mt-6 text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
+          <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
             {title.map((t) => (
               <span key={t}>
                 <span>{t}</span>
               </span>
             ))}
           </Reveal>
-          <div className="relative mt-12 hidden aspect-[4/3] overflow-hidden bg-ivory lg:block">
+          <div className="relative mt-12 hidden aspect-[4/3] overflow-hidden rounded-[28px] bg-ivory lg:block">
             {items.map((item, i) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -48,9 +49,6 @@ export default function MainWhy({ label, title, items }: { label: string; title:
                 }`}
               />
             ))}
-            <span className="absolute right-5 bottom-5 font-display text-sm tracking-[0.2em] text-white mix-blend-difference">
-              0{active + 1} / 0{items.length}
-            </span>
           </div>
         </div>
 
@@ -67,11 +65,18 @@ export default function MainWhy({ label, title, items }: { label: string; title:
               }`}
             >
               <div className="flex gap-6 md:gap-10">
-                <span className="font-display text-lg font-light md:text-2xl">0{i + 1}</span>
+                {(() => {
+                  const Icon = icons[item.icon as keyof typeof icons] ?? ShieldCheck;
+                  return (
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-ivory md:h-16 md:w-16">
+                      <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={1.4} />
+                    </span>
+                  );
+                })()}
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold tracking-[-0.03em] md:text-[34px]">{item.title}</h3>
                   <p className="mt-4 text-[15px] leading-relaxed text-black/60 md:text-lg">{item.text}</p>
-                  <div className="mt-6 aspect-[16/10] overflow-hidden lg:hidden">
+                  <div className="mt-6 aspect-[16/10] overflow-hidden rounded-[18px] lg:hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.image} alt="" loading="lazy" className="h-full w-full object-cover" />
                   </div>

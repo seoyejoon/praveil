@@ -64,11 +64,11 @@ export const mainWhy = {
   label: "Why Praveil",
   title: ["프라베일이", "다른 이유"],
   items: [
-    { title: "대표원장 책임 진료", text: "상담한 원장이 시술까지 직접 진행하고, 결과까지 책임집니다.", image: photo("special-2") },
-    { title: "1:1 맞춤 설계", text: "피부 상태와 생활 습관, 원하는 변화를 충분히 듣고 나만의 계획을 세웁니다.", image: photo("special-1") },
-    { title: "정품 · 정량 원칙", text: "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.", image: photo("special-3") },
-    { title: "목적에 맞는 장비", text: "피부 층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.", image: photo("special-4") },
-    { title: "프라이빗한 공간", text: "상담부터 회복까지, 편안하게 머무를 수 있는 공간을 준비했습니다.", image: photo("special-5") },
+    { icon: "doctor", title: "대표원장 책임 진료", text: "상담한 원장이 시술까지 직접 진행하고, 결과까지 책임집니다.", image: photo("special-2") },
+    { icon: "consult", title: "1:1 맞춤 설계", text: "피부 상태와 생활 습관, 원하는 변화를 충분히 듣고 나만의 계획을 세웁니다.", image: photo("special-1") },
+    { icon: "genuine", title: "정품 · 정량 원칙", text: "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.", image: photo("special-3") },
+    { icon: "device", title: "목적에 맞는 장비", text: "피부 층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.", image: photo("special-4") },
+    { icon: "space", title: "프라이빗한 공간", text: "상담부터 회복까지, 편안하게 머무를 수 있는 공간을 준비했습니다.", image: photo("special-5") },
   ],
 };
 

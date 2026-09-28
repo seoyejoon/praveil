@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
@@ -62,13 +63,13 @@ export default function MainBest({ label, title, items }: { label: string; title
             <p className="mt-10 font-display text-[120px] leading-none font-extralight text-white/15 lg:text-[180px]">04</p>
           </div>
 
-          {items.map((item, i) => (
+          {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className="group relative w-[80vw] shrink-0 snap-start sm:w-[46vw] lg:h-[72vh] lg:w-[34vw]"
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-white/5 lg:aspect-auto lg:h-[calc(100%-150px)]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-white/5 lg:aspect-auto lg:h-[calc(100%-150px)] lg:rounded-[28px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
@@ -76,18 +77,15 @@ export default function MainBest({ label, title, items }: { label: string; title
                   loading="lazy"
                   className="h-full w-full object-cover grayscale-[35%] transition duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105 group-hover:grayscale-0"
                 />
-                <span className="absolute top-5 left-5 font-display text-sm font-light tracking-[0.2em]">0{i + 1}</span>
-                <span className="absolute top-5 right-5 border border-white/60 px-2.5 py-1 font-display text-[10px] tracking-[0.25em]">BEST</span>
+                                <span className="absolute top-5 left-5 rounded-full bg-white/90 px-3 py-1 font-display text-[10px] tracking-[0.25em] text-black">BEST</span>
               </div>
               <div className="flex items-end justify-between gap-4 pt-6">
                 <div>
                   <p className="font-display text-[34px] leading-none font-light uppercase md:text-[44px]">{item.en}</p>
-                  <p className="mt-3 text-sm text-white/60">
-                    {item.name} · {item.category}
-                  </p>
+                  <p className="mt-3 text-sm text-white/60">{item.name}</p>
                 </div>
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/30 transition duration-500 group-hover:bg-white group-hover:text-black">
-                  →
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/30 transition duration-500 group-hover:rotate-45 group-hover:bg-white group-hover:text-black">
+                  <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
                 </span>
               </div>
               <p className="mt-3 hidden text-sm leading-relaxed text-white/50 lg:block lg:pr-16">{item.text}</p>

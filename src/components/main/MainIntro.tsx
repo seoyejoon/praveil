@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
 import { gsap, reducedMotion } from "@/lib/gsap";
 
-type Props = { label: string; text: string; keywords: { en: string; ko: string }[] };
+type Props = { label?: string; text: string; keywords: { en: string; ko: string }[] };
 
 // 병원 철학: 스크롤에 맞춰 글자가 한 단어씩 진해진다.
-export default function MainIntro({ label, text, keywords }: Props) {
+export default function MainIntro({ text, keywords }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const words = text.split(" ");
 
@@ -31,8 +31,7 @@ export default function MainIntro({ label, text, keywords }: Props) {
   return (
     <section ref={rootRef} className="bg-white px-5 py-32 md:px-10 md:py-48">
       <div className="mx-auto max-w-[1600px]">
-        <p className="font-display text-xs tracking-[0.35em] text-black/50 uppercase md:text-sm">{label}</p>
-        <p className="intro-text mt-8 max-w-[1180px] text-[28px] leading-[1.45] font-semibold tracking-[-0.04em] md:mt-12 md:text-[54px] md:leading-[1.35]">
+        <p className="intro-text max-w-[1180px] text-[28px] leading-[1.45] font-semibold tracking-[-0.04em] md:text-[54px] md:leading-[1.35]">
           {words.map((w, i) => (
             <span key={i} className="intro-word">
               {w}{" "}

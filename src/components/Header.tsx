@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { LogOut, UserRound } from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import { sitemap } from "@/content/sitemap";
@@ -29,6 +30,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
   const [hidden, setHidden] = useState(false);
   const [hasHero, setHasHero] = useState(true);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
   const [loginTab, setLoginTab] = useState<"login" | "signup">("login");
   const closeLogin = useCallback(() => setLoginOpen(false), []);
 
@@ -72,6 +74,7 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
   }, []);
 
   async function logout() {
+    setUserMenu(false);
     await fetch("/api/member/logout", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
     router.refresh();
   }
@@ -130,24 +133,29 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
             ))}
           </nav>
 
-          <div className="relative z-10 flex items-center gap-5 text-[13px] md:text-sm">
-            {member ? (
-              <>
-                <span className="hidden opacity-70 md:inline">{member.name}님</span>
-                <button type="button" onClick={logout} className="transition hover:opacity-50">
-                  로그아웃
-                </button>
-              </>
-            ) : (
-              <>
-                <button type="button" onClick={() => openLogin("login")} className="transition hover:opacity-50">
-                  로그인
-                </button>
-                <button type="button" onClick={() => openLogin("signup")} className="hidden transition hover:opacity-50 md:block">
-                  회원가입
-                </button>
-              </>
-            )}
+          <div className="relative z-10 flex items-center gap-2 text-[13px] md:text-sm">
+            {/* 회원: 사람 아이콘 하나. 비로그인이면 로그인 · 회원가입 팝업, 로그인 상태면 작은 메뉴 */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => (member ? setUserMenu((v) => !v) : openLogin("login"))}
+                aria-label={member ? `${member.name}님 회원 메뉴` : "로그인 · 회원가입"}
+                aria-expanded={member ? userMenu : undefined}
+                className="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-current/10"
+              >
+                <UserRound className="h-[21px] w-[21px]" strokeWidth={1.5} />
+                {member && <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-current" />}
+              </button>
+              {member && userMenu && (
+                <div className="absolute top-full right-0 mt-2 w-44 overflow-hidden rounded-2xl bg-white py-2 text-sm text-black shadow-[0_16px_40px_rgba(0,0,0,0.14)]">
+                  <p className="px-4 py-2 text-black/50">{member.name}님</p>
+                  <button type="button" onClick={logout} className="flex w-full items-center gap-2 px-4 py-2.5 text-left hover:bg-black/5">
+                    <LogOut className="h-4 w-4" strokeWidth={1.5} />
+                    로그아웃
+                  </button>
+                </div>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => setOpen(true)}

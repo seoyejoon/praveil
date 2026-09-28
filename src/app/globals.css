@@ -59,6 +59,19 @@
   }
 }
 
+/* 첫 화면 마우스 아이콘 안의 점이 아래로 */
+@keyframes scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70%,
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
 /* SCROLL 옆 선이 왼쪽에서 오른쪽으로 흐름 */
 @keyframes scroll-line {
   0% {

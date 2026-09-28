@@ -52,12 +52,10 @@ export default function MainHero({ eyebrow, lines, title, sub, image }: Props) {
             <p className="text-xl font-semibold tracking-[-0.03em] md:text-[28px]">{title}</p>
             <p className="mt-2 text-sm text-white/70 md:text-base">{sub}</p>
           </Reveal>
-          <div className="hidden items-center gap-4 font-display text-xs font-light tracking-[0.35em] uppercase md:flex">
-            Scroll
-            <span className="relative h-px w-16 overflow-hidden bg-white/30">
-              <span className="absolute inset-y-0 left-0 w-full animate-[scroll-line_2.2s_ease-in-out_infinite] bg-white" />
-            </span>
-          </div>
+          {/* 아래로 스크롤 안내: 마우스 모양 안에서 점이 내려감 */}
+          <span aria-hidden className="hidden h-11 w-7 justify-center rounded-full border border-white/60 pt-2 md:flex">
+            <span className="h-2 w-[3px] animate-[scroll-dot_1.8s_ease-in-out_infinite] rounded-full bg-white" />
+          </span>
         </div>
       </div>
     </section>

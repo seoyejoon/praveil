@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findPage, pendingPaths } from "@/content/sitemap";
@@ -34,15 +35,15 @@ export default async function PendingPage({ params }: Props) {
         {page.items && (
           <ul className="mt-10 flex flex-wrap gap-2">
             {page.items.map((item) => (
-              <li key={item} className="border border-black/15 px-4 py-2 text-sm">
+              <li key={item} className="rounded-full border border-black/15 px-4 py-2 text-sm">
                 {item}
               </li>
             ))}
           </ul>
         )}
         <p className="mt-16 border-t border-black/10 pt-8 text-muted">상세 페이지는 메인 디자인 확정 후 제작합니다.</p>
-        <Link href="/" className="mt-8 inline-flex items-center gap-3 font-display text-sm tracking-[0.2em] uppercase">
-          Back to main <span aria-hidden>→</span>
+        <Link href="/" aria-label="메인으로" className="mt-8 grid h-14 w-14 place-items-center rounded-full border border-black/20 transition hover:bg-black hover:text-white">
+          <ArrowLeft className="h-5 w-5" strokeWidth={1.5} />
         </Link>
       </div>
     </section>

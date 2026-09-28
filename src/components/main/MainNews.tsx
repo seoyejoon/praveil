@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight, Gift, Megaphone } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import type { Notice } from "@/lib/data";
@@ -20,28 +21,26 @@ export default function MainNews({ items }: { items: Item[] }) {
     <section className="bg-white px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24">
         <div>
-          <p className="font-display text-xs tracking-[0.35em] text-black/50 uppercase md:text-sm">News</p>
-          <h2 className="mt-6 text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">프라베일 소식</h2>
-          <div role="tablist" className="mt-10 flex gap-6">
+          <h2 className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">프라베일 소식</h2>
+          <div role="tablist" className="mt-10 inline-flex rounded-full bg-ivory p-1">
             {tabs.map((t) => (
               <button
                 key={t.key}
                 role="tab"
                 aria-selected={tab === t.key}
                 onClick={() => setTab(t.key)}
-                className={`relative pb-2 text-[15px] transition ${tab === t.key ? "font-semibold text-black" : "text-black/40 hover:text-black"}`}
+                className={`rounded-full px-5 py-2.5 text-sm transition ${tab === t.key ? "bg-black text-white" : "text-black/50 hover:text-black"}`}
               >
                 {t.label}
-                <span className={`absolute inset-x-0 bottom-0 h-px bg-black transition-transform duration-500 ${tab === t.key ? "scale-x-100" : "scale-x-0"}`} />
               </button>
             ))}
           </div>
           <Link
             href={tab === "all" ? "/notice" : `/notice?type=${tab}`}
-            className="group mt-12 hidden items-center gap-4 font-display text-sm tracking-[0.25em] uppercase lg:inline-flex"
+            aria-label="소식 전체 보기"
+            className="mt-10 hidden h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:bg-black hover:text-white lg:grid"
           >
-            View All
-            <span className="grid h-12 w-12 place-items-center rounded-full border border-black/25 transition group-hover:bg-black group-hover:text-white">→</span>
+            <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
           </Link>
         </div>
 
@@ -52,13 +51,16 @@ export default function MainNews({ items }: { items: Item[] }) {
                 <Link href={`/notice/${n.id}`} className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 py-6 md:gap-10 md:py-8">
                   <span className="font-display text-sm font-light tracking-[0.1em] text-black/45 md:text-base">{n.createdAt.replace(/-/g, ".")}</span>
                   <span className="min-w-0">
-                    <span className="mr-3 inline-block border border-black/20 px-2 py-0.5 text-[11px] text-black/60">
-                      {n.type === "event" ? "이벤트" : "공지"}
+                    <span
+                      title={n.type === "event" ? "이벤트" : "공지사항"}
+                      className={`mr-3 inline-grid h-7 w-7 place-items-center rounded-full align-middle ${n.type === "event" ? "bg-black text-white" : "bg-ivory text-black"}`}
+                    >
+                      {n.type === "event" ? <Gift className="h-3.5 w-3.5" strokeWidth={1.6} /> : <Megaphone className="h-3.5 w-3.5" strokeWidth={1.6} />}
                     </span>
                     <span className="text-[16px] font-medium transition group-hover:underline group-hover:underline-offset-4 md:text-xl">{n.title}</span>
-                    {n.type === "event" && n.summary && <span className="mt-1 block text-xs text-black/45">기간 {n.summary}</span>}
+                    {n.type === "event" && n.summary && <span className="mt-1 block pl-10 text-xs text-black/45">기간 {n.summary}</span>}
                   </span>
-                  <span className="text-xl transition-transform duration-500 group-hover:translate-x-2">→</span>
+                  <ArrowRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-2" strokeWidth={1.5} />
                 </Link>
               </li>
             ))

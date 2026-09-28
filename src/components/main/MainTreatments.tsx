@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/Reveal";
@@ -29,8 +30,7 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
       <div className="mx-auto max-w-[1600px]">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-display text-xs tracking-[0.35em] text-black/50 uppercase md:text-sm">Treatment</p>
-            <Reveal variant="line" className="mt-6 text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
+            <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
               <span>
                 <span>진료 분야</span>
               </span>
@@ -40,20 +40,19 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
         </div>
 
         <ul className="mt-14 border-t border-black md:mt-20" onMouseLeave={() => setHover(null)}>
-          {sections.map((s, i) => (
+          {sections.map((s) => (
             <li key={s.key} className="border-b border-black/12" onMouseEnter={() => setHover(s.key)}>
-              <Link href={s.href} className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 py-7 md:gap-10 md:py-10">
-                <span className="font-display text-sm font-light text-black/40 md:text-base">0{i + 1}</span>
+              <Link href={s.href} className="group grid grid-cols-[1fr_auto] items-center gap-5 py-7 md:gap-10 md:py-10">
                 <span className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-8">
                   <span className="text-[28px] font-bold tracking-[-0.04em] transition-transform duration-500 group-hover:translate-x-3 md:text-[52px]">
                     {s.label}
                   </span>
                   <span className="font-display text-sm font-light tracking-[0.2em] text-black/40 uppercase md:text-lg">{s.en}</span>
                 </span>
-                <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:bg-black group-hover:text-white md:h-14 md:w-14">
-                  →
+                <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:rotate-45 group-hover:bg-black group-hover:text-white md:h-14 md:w-14">
+                  <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
                 </span>
-                <span className="col-span-3 flex flex-wrap gap-2 md:col-start-2 md:col-span-1 md:-mt-4">
+                <span className="col-span-2 flex flex-wrap gap-2 md:col-span-1 md:-mt-4">
                   {s.pages.map((p, j) => (
                     <span key={p.href} className="text-[13px] text-black/50 md:text-sm">
                       {p.label}
@@ -72,7 +71,7 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
       <div
         ref={floatRef}
         aria-hidden
-        className={`pointer-events-none fixed top-0 left-0 z-30 hidden h-[300px] w-[240px] overflow-hidden transition-[opacity,scale] duration-500 lg:block ${
+        className={`pointer-events-none fixed top-0 left-0 z-30 hidden h-[300px] w-[240px] overflow-hidden rounded-[20px] transition-[opacity,scale] duration-500 lg:block ${
           hover ? "scale-100 opacity-100" : "scale-75 opacity-0"
         }`}
       >

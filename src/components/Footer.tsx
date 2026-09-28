@@ -1,17 +1,9 @@
 import Link from "next/link";
 import KakaoMap from "@/components/KakaoMap";
+import { Clock, MapPin, Phone } from "lucide-react";
 import Logo from "@/components/Logo";
+import { mapApps } from "@/components/MapLinks";
 import type { Hospital } from "@/lib/data";
-
-const mapApps = (h: Hospital) => {
-  const q = encodeURIComponent(h.address);
-  return [
-    { label: "네이버지도", href: h.mapLinks.naver || `https://map.naver.com/p/search/${q}` },
-    { label: "카카오지도", href: h.mapLinks.kakao || `https://map.kakao.com/?q=${q}` },
-    { label: "구글지도", href: h.mapLinks.google || `https://www.google.com/maps/search/?api=1&query=${q}` },
-    { label: "TMAP", href: h.mapLinks.tmap || `tmap://search?name=${encodeURIComponent(h.name)}` },
-  ];
-};
 
 // 오시는 길 + 푸터를 한 화면에 (검정). 왼쪽 지도, 오른쪽 주소 · 진료시간 · 전화, 맨 아래 병원 정보.
 export default function Footer({ hospital }: { hospital: Hospital }) {
@@ -25,21 +17,29 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
   return (
     <footer className="flex flex-col bg-black px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 md:pb-8 lg:min-h-svh lg:pt-[112px]">
       <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-        <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-[4/3] bg-white/10 lg:aspect-auto lg:h-full lg:min-h-[420px]" />
+        <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-[4/3] rounded-[20px] bg-white/10 lg:aspect-auto lg:h-full lg:min-h-[420px] lg:rounded-[28px]" />
 
         <div className="flex flex-col">
-          <p className="font-display text-xs tracking-[0.35em] text-white/45 uppercase">Visit Praveil</p>
-          <p className="mt-4 text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[28px]">
-            {hospital.address}
-            <br />
-            {hospital.addressDetail}
-          </p>
-          {hospital.directions[0] && <p className="mt-2 text-sm text-white/50">{hospital.directions[0].body}</p>}
-
-          <div className="mt-8 grid gap-8 border-t border-white/15 pt-6 sm:grid-cols-2 lg:mt-auto">
+          <div className="flex gap-4">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+              <MapPin className="h-5 w-5" strokeWidth={1.5} />
+            </span>
             <div>
-              <p className="font-display text-xs tracking-[0.3em] text-white/45 uppercase">Hours</p>
-              <ul className="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
+              <p className="text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[28px]">
+                {hospital.address}
+                <br />
+                {hospital.addressDetail}
+              </p>
+              {hospital.directions[0] && <p className="mt-2 text-sm text-white/50">{hospital.directions[0].body}</p>}
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-8 border-t border-white/15 pt-6 sm:grid-cols-[1fr_auto] lg:mt-auto">
+            <div className="flex gap-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+                <Clock className="h-5 w-5" strokeWidth={1.5} />
+              </span>
+              <ul className="mt-1 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
                 {hospital.hours.map((h) => (
                   <li key={h.label} className="col-span-2 grid grid-cols-subgrid">
                     <span className="whitespace-nowrap text-white/50">{h.label}</span>
@@ -57,26 +57,35 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
                 )}
               </ul>
             </div>
-            <div>
-              <p className="font-display text-xs tracking-[0.3em] text-white/45 uppercase">Contact</p>
-              <a href={`tel:${hospital.phone}`} className="mt-3 block font-display text-[32px] leading-none font-light tracking-[0.02em] xl:text-[40px]">
+            <div className="flex gap-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10">
+                <Phone className="h-5 w-5" strokeWidth={1.5} />
+              </span>
+              <div>
+              <a href={`tel:${hospital.phone}`} className="mt-1 block font-display text-[28px] leading-none font-light tracking-[0.02em] whitespace-nowrap xl:text-[34px]">
                 {hospital.phone}
               </a>
               {hospital.hoursNotice && <p className="mt-3 text-xs text-white/45">{hospital.hoursNotice}</p>}
+              </div>
             </div>
           </div>
 
-          <ul className="mt-8 grid grid-cols-2 gap-px bg-white/15 sm:grid-cols-4">
-            {mapApps(hospital).map((m) => (
-              <li key={m.label}>
+          {/* 지도 앱 바로가기: 앱 아이콘 원형 버튼 (마우스를 올리면 이름) */}
+          <ul className="mt-8 flex gap-3">
+            {mapApps(hospital.mapLinks, hospital.address, hospital.name).map((m) => (
+              <li key={m.key} className="group/app relative">
                 <a
                   href={m.href}
                   target={m.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="block bg-black py-3.5 text-center text-sm text-white/80 transition hover:bg-white hover:text-black"
+                  aria-label={m.label}
+                  className="grid h-14 w-14 place-items-center rounded-full bg-white transition duration-300 hover:scale-110"
                 >
-                  {m.label}
+                  <span className="scale-125">{m.icon}</span>
                 </a>
+                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-xs whitespace-nowrap text-black opacity-0 transition group-hover/app:opacity-100">
+                  {m.label}
+                </span>
               </li>
             ))}
           </ul>

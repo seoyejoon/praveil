@@ -1,14 +1,15 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
 import { gsap, reducedMotion } from "@/lib/gsap";
 
-type Props = { label: string; nameEn: string; name: string; title: string; quote: string[]; text: string; image: string };
+type Props = { label?: string; nameEn: string; name: string; title: string; quote: string[]; text: string; image: string };
 
 // 대표원장: 어두운 배경 위 큰 영문 이름이 스크롤에 따라 옆으로 흐르고, 누끼 사진이 그 앞에 선다.
-export default function MainDoctor({ label, nameEn, name, title, quote, text, image }: Props) {
+export default function MainDoctor({ nameEn, name, title, quote, text, image }: Props) {
   const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -37,8 +38,7 @@ export default function MainDoctor({ label, nameEn, name, title, quote, text, im
         </div>
 
         <div className="order-1 lg:order-2 lg:pb-[18vh]">
-          <p className="font-display text-xs tracking-[0.35em] text-white/50 uppercase md:text-sm">{label}</p>
-          <Reveal variant="line" className="mt-8 text-[26px] leading-[1.4] font-semibold tracking-[-0.04em] md:text-[42px]">
+          <Reveal variant="line" className="text-[26px] leading-[1.4] font-semibold tracking-[-0.04em] md:text-[42px]">
             {quote.map((q) => (
               <span key={q}>
                 <span>{q}</span>
@@ -52,9 +52,12 @@ export default function MainDoctor({ label, nameEn, name, title, quote, text, im
                 <span className="block font-display text-sm tracking-[0.25em] text-white/50 uppercase">{title}</span>
                 <span className="mt-1 block text-2xl font-bold md:text-3xl">{name}</span>
               </p>
-              <Link href="/about/doctor" className="group flex items-center gap-4 font-display text-sm tracking-[0.25em] uppercase">
-                View More
-                <span className="grid h-12 w-12 place-items-center rounded-full border border-white/40 transition group-hover:bg-white group-hover:text-black">→</span>
+              <Link
+                href="/about/doctor"
+                aria-label="대표원장 소개 자세히 보기"
+                className="grid h-14 w-14 place-items-center rounded-full border border-white/40 transition duration-500 hover:rotate-45 hover:bg-white hover:text-black"
+              >
+                <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
               </Link>
             </div>
           </Reveal>

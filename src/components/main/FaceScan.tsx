@@ -14,9 +14,14 @@ export type ScanItem = { label: string; en: string; point: number; side: "left" 
 
 const CYCLE = 9; // 초: 한 번 훑고 카드가 모두 뜬 뒤 다시 시작
 const SCAN_TIME = 3.6;
-const BEIGE = "227,207,174";
+// 어두운 배경: 베이지 선 + 밝은 강조 / 밝은 배경: 골드 선 + 진한 모카 강조
+const TONES = {
+  dark: { base: "227,207,174", hi: "255,248,236" },
+  light: { base: "168,142,106", hi: "125,102,73" },
+};
 
-export default function FaceScan({ items, video }: { items: ScanItem[]; video?: string }) {
+export default function FaceScan({ items, video, tone = "dark" }: { items: ScanItem[]; video?: string; tone?: "dark" | "light" }) {
+  const light = tone === "light";
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -35,6 +40,7 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
       raf = 0;
     const mouse = { x: 0, y: 0, tx: 0, ty: 0, px: -9999, py: -9999 };
     const start = performance.now();
+    const { base: BEIGE, hi: HI } = TONES[tone];
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -154,7 +160,7 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
         const lens = Math.max(0, 1 - dm / 110);
         const r = 0.8 + Math.max(0, (z + 2) / 10) * 0.9 + near * 1.6 + lens * 1.8;
         const alpha = 0.25 + Math.max(0, (z + 2) / 10) * 0.45 + near * 0.5 + lens * 0.5;
-        ctx.fillStyle = near > 0.5 || lens > 0.4 ? `rgba(255,248,236,${Math.min(1, alpha)})` : `rgba(${BEIGE},${Math.min(1, alpha)})`;
+        ctx.fillStyle = near > 0.5 || lens > 0.4 ? `rgba(${HI},${Math.min(1, alpha)})` : `rgba(${BEIGE},${Math.min(1, alpha)})`;
         ctx.beginPath();
         ctx.arc(px, py, r, 0, Math.PI * 2);
         ctx.fill();
@@ -171,7 +177,7 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
         ctx.fillRect(left, scanY - 60, right - left, 60);
         const lg = ctx.createLinearGradient(left, 0, right, 0);
         lg.addColorStop(0, `rgba(${BEIGE},0)`);
-        lg.addColorStop(0.5, `rgba(255,244,226,0.95)`);
+        lg.addColorStop(0.5, `rgba(${HI},0.95)`);
         lg.addColorStop(1, `rgba(${BEIGE},0)`);
         ctx.strokeStyle = lg;
         ctx.lineWidth = 1.2;
@@ -212,7 +218,7 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
         ctx.lineTo(elbow, ay);
         ctx.lineTo(ax, ay);
         ctx.stroke();
-        ctx.fillStyle = "rgba(255,248,236,1)";
+        ctx.fillStyle = `rgba(${HI},1)`;
         ctx.beginPath();
         ctx.arc(px, py, 3, 0, Math.PI * 2);
         ctx.fill();
@@ -232,7 +238,7 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
       window.removeEventListener("pointermove", onMove);
       wrap.removeEventListener("pointerleave", onLeave);
     };
-  }, [items, video]);
+  }, [items, video, tone]);
 
   return (
     <div ref={wrapRef} className="relative h-full w-full">
@@ -247,15 +253,15 @@ export default function FaceScan({ items, video }: { items: ScanItem[]; video?: 
             cardRefs.current[i] = el;
           }}
           data-on="0"
-          className={`scan-card absolute w-[92px] rounded-xl border border-white/15 bg-white/[0.06] px-2.5 py-2 backdrop-blur-md md:w-[150px] md:rounded-2xl md:px-3.5 md:py-3 ${
+          className={`scan-card absolute w-[92px] rounded-xl border px-2.5 ${light ? "border-line bg-white/80 shadow-[0_12px_30px_-18px_rgba(125,102,73,0.5)]" : "border-white/15 bg-white/[0.06]"} py-2 backdrop-blur-md md:w-[150px] md:rounded-2xl md:px-3.5 md:py-3 ${
             item.side === "left" ? "left-0" : "right-0"
           }`}
           style={{ top: `${item.top}%`, ["--v" as string]: `${58 + ((i * 37) % 30)}%` }}
         >
-          <p className="font-display text-[8px] tracking-[0.2em] text-[#e3cfae] uppercase md:text-[9px] md:tracking-[0.25em]">{item.en}</p>
-          <p className="mt-0.5 text-[12px] font-medium text-white md:mt-1 md:text-[13px]">{item.label}</p>
-          <span className="mt-1.5 block h-[2px] md:mt-2.5 md:h-[3px] overflow-hidden rounded-full bg-white/10">
-            <span className="scan-bar block h-full rounded-full bg-gradient-to-r from-[#c9ae85] to-[#f3e3c8]" />
+          <p className={`font-display text-[8px] tracking-[0.2em] uppercase md:text-[9px] ${light ? "text-gold" : "text-[#e3cfae]"} md:tracking-[0.25em]`}>{item.en}</p>
+          <p className={`mt-0.5 text-[12px] font-medium md:mt-1 md:text-[13px] ${light ? "text-ink" : "text-white"}`}>{item.label}</p>
+          <span className={`mt-1.5 block h-[2px] md:mt-2.5 md:h-[3px] overflow-hidden rounded-full ${light ? "bg-ink/[0.06]" : "bg-white/10"}`}>
+            <span className={`scan-bar block h-full rounded-full bg-gradient-to-r ${light ? "from-gold to-[#dcc8a8]" : "from-[#c9ae85] to-[#f3e3c8]"}`} />
           </span>
         </div>
       ))}

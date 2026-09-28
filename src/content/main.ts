@@ -8,7 +8,14 @@ export const mainHero = {
   words: ["단 하나의", "정직한", "섬세한", "자연스러운"],
   after: "계획",
   sub: "대표원장 책임 진료 시스템",
-  video: { src: "/videos/hero-model.mp4", webm: "/videos/hero-model.webm", small: "/videos/hero-model-sm.mp4", poster: photo("hero-model-poster") },
+  video: { src: "/videos/hero-model.mp4", webm: "/videos/hero-model.webm", poster: photo("hero-model-poster"), face: "/videos/hero-model-face.bin" },
+  // 영상 속 얼굴 위 분석 표시: point = 얼굴 점 번호(MediaPipe). 수치는 넣지 않는다 (의료광고)
+  points: [
+    { label: "피부결", en: "Texture", point: 151 },
+    { label: "모공", en: "Pore", point: 347 },
+    { label: "탄력", en: "Elasticity", point: 425 },
+    { label: "윤곽", en: "Contour", point: 397 },
+  ],
 };
 
 // 두 번째: 피부 분석 장면 (3D 얼굴)

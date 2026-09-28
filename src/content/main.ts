@@ -2,11 +2,12 @@
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
 export const mainHero = {
-  eyebrow: "Customized Plan",
-  lines: ["Only One Plan", "For You"],
+  eyebrow: "Praveil Clinic",
+  lines: ["Only one plan,", "for you"],
   title: "오직 당신만을 위한 단 하나의 계획",
   sub: "대표원장 책임 진료 시스템",
-  image: photo("hero"),
+  // 차례로 넘어가는 병원 공간 사진
+  images: [photo("hero"), photo("hero-about"), photo("clinic-2"), photo("clinic-6")],
 };
 
 export const mainIntro = {

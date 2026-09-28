@@ -59,6 +59,40 @@
   }
 }
 
+/* 메인 첫 화면 */
+@keyframes curtain-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-101%);
+  }
+}
+@keyframes slide-wipe {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes ken-burns {
+  from {
+    transform: scale(1.18);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+@keyframes hero-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 /* 하위 메뉴 칸이 살짝 떠오르며 나타남 */
 @keyframes fade-up {
   from {

@@ -1,80 +1,69 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
+import { sitemap } from "@/content/sitemap";
 import type { Hospital } from "@/lib/data";
 
-const icons = {
-  talk: "M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.9L6 21l4.3-2.7c.6.1 1.1.1 1.7.1 5 0 9-3.1 9-7s-4-7-9-7Z",
-  insta: "M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5.5-1.5h.01",
-  calendar: "M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Zm0 4h16M8 3v4m8-4v4",
-};
-
-// 어두운 푸터: 로고 · 약관 링크 · 병원 정보 / 오른쪽 대표전화 · SNS
+// 검정 푸터 (2026.10 리뉴얼): 세로형 로고 · 전체 메뉴 · 병원 정보 · 대표전화
 export default function Footer({ hospital }: { hospital: Hospital }) {
-  const info = [
-    hospital.name,
-    `${hospital.address} ${hospital.addressDetail}`.trim(),
-    `대표원장 ${hospital.director}`,
-    `사업자등록번호 ${hospital.businessNumber}`,
+  const info: [string, string][] = [
+    ["상호", hospital.name],
+    ["대표원장", hospital.director],
+    ["사업자등록번호", hospital.businessNumber],
+    ["주소", `${hospital.address} ${hospital.addressDetail}`.trim()],
   ];
-  const sns = [
-    { href: hospital.kakaoUrl, label: "카카오톡 상담", icon: icons.talk },
-    { href: hospital.instagramUrl, label: "인스타그램", icon: icons.insta },
-    { href: hospital.naverReservationUrl, label: "네이버 예약", icon: icons.calendar },
-  ].filter((s) => s.href && s.href !== "#");
 
   return (
-    <footer className="border-t border-white/8 bg-[#171412] pt-14 pb-24 text-sm text-cream/55 md:pt-16 md:pb-14">
-      <div className="mx-auto grid max-w-[1440px] gap-10 px-5 md:px-10 lg:grid-cols-[1fr_auto] lg:items-end">
-        <div>
-          <Link href="/" className="inline-block leading-none text-cream" aria-label="프라베일 맑고고운의원 홈">
-            <span className="block font-display text-[26px] font-semibold tracking-[0.18em]">PRAVEIL</span>
-            <span className="mt-1.5 block text-[11px] tracking-[0.3em] text-cream/60">맑고고운의원</span>
-          </Link>
-
-          <p className="mt-8 flex gap-6 text-[15px]">
-            <Link href="/privacy" className="font-bold text-cream transition hover:text-gold">
-              개인정보처리방침
+    <footer className="bg-black px-5 pt-20 pb-28 text-white md:px-10 md:pt-28 md:pb-12">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="grid gap-14 lg:grid-cols-[1fr_2fr]">
+          <div>
+            <Link href="/" aria-label="프라베일 맑고고운의원 홈" className="inline-block">
+              <Logo variant="stacked" className="h-[72px] w-auto md:h-[96px]" />
             </Link>
-            <Link href="/terms" className="text-cream/85 transition hover:text-gold">
-              이용약관
-            </Link>
-          </p>
+            <a href={`tel:${hospital.phone}`} className="mt-12 block font-display text-[34px] leading-none font-light tracking-[0.03em] md:text-[44px]">
+              {hospital.phone}
+            </a>
+            <p className="mt-3 text-sm text-white/50">대표전화 · 진료시간 내 상담 가능</p>
+          </div>
 
-          <p className="mt-5 flex flex-col gap-y-1 leading-relaxed sm:flex-row sm:flex-wrap sm:gap-x-2">
-            {info.map((t, i) => (
-              <span key={t} className="flex items-center gap-2">
-                {i > 0 && <span aria-hidden className="hidden sm:inline">·</span>}
-                {t}
-              </span>
+          <nav aria-label="사이트맵" className="hidden grid-cols-4 gap-x-8 gap-y-10 md:grid">
+            {sitemap.map((s) => (
+              <div key={s.key}>
+                <p className="font-display text-xs tracking-[0.3em] text-white/40 uppercase">{s.en}</p>
+                <ul className="mt-4 space-y-2.5">
+                  {s.pages.map((p) => (
+                    <li key={p.href}>
+                      <Link href={p.href} className="text-sm text-white/75 transition hover:text-white">
+                        {p.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </p>
-          <p className="mt-6 text-xs text-cream/40">© {new Date().getFullYear()} PRAVEIL CLINIC. All rights reserved.</p>
+          </nav>
         </div>
 
-        <div className="lg:text-right">
-          <a href={`tel:${hospital.phone}`} className="inline-flex items-baseline gap-3 text-cream transition hover:text-gold">
-            <span className="text-sm text-cream/70">대표전화</span>
-            <span className="text-[30px] font-bold tracking-wide md:text-[36px]">{hospital.phone}</span>
-          </a>
-          {sns.length > 0 && (
-            <ul className="mt-5 flex gap-2.5 lg:justify-end">
-              {sns.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    title={s.label}
-                    className="grid h-12 w-12 place-items-center rounded-xl bg-white/8 text-cream transition hover:bg-gold hover:text-white"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                      <path d={s.icon} />
-                    </svg>
-                  </a>
-                </li>
+        <div className="mt-20 flex flex-col gap-8 border-t border-white/15 pt-8 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="flex gap-6 text-sm">
+              <Link href="/privacy" className="font-bold text-white">
+                개인정보처리방침
+              </Link>
+              <Link href="/terms" className="text-white/70 transition hover:text-white">
+                이용약관
+              </Link>
+            </p>
+            <dl className="mt-5 flex flex-col gap-1.5 text-[13px] text-white/45 md:flex-row md:flex-wrap md:gap-x-6">
+              {info.map(([k, v]) => (
+                <div key={k} className="flex gap-2">
+                  <dt>{k}</dt>
+                  <dd className="text-white/70">{v}</dd>
+                </div>
               ))}
-            </ul>
-          )}
+            </dl>
+          </div>
+          <p className="font-display text-xs tracking-[0.2em] text-white/40 uppercase">© {new Date().getFullYear()} Praveil Clinic</p>
         </div>
       </div>
     </footer>

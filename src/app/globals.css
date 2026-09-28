@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* 베이지 웜: 크림 배경 + 웜브라운 + 골드 포인트 */
-  --color-ivory: #fbf8f3;
-  --color-cream: #f8f4ee;
-  --color-sand: #e8ded2;
-  --color-taupe: #bda57d;
-  --color-gold: #b49463;
-  --color-mocha: #9b7b57;
-  --color-muted: #5a534a;
-  --color-espresso: #342f2a;
-  --color-ink: #2e2925;
-  --color-line: #e6ded3;
+  /* 2026.10 리뉴얼: 로고 기준 흑백 미니멀 (대표색 #000). 색 이름은 기존 이름을 그대로 쓰고 값만 흑백으로 바꿨다. */
+  --color-ivory: #f4f4f2;
+  --color-cream: #ffffff;
+  --color-sand: #e9e9e7;
+  --color-taupe: #9a9a9a;
+  --color-gold: #7c7c7c;
+  --color-mocha: #3d3d3d;
+  --color-muted: #6b6b6b;
+  --color-espresso: #0c0c0c;
+  --color-ink: #111111;
+  --color-line: #e5e5e5;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Malgun Gothic", sans-serif;
-  /* 전체 글꼴은 프리텐다드 하나로 통일 (명조 · 영문 장식 글꼴 사용 안 함) */
+  /* 영문 제목은 로고와 같은 Oswald, 한글은 프리텐다드 */
+  --font-display: "Oswald", var(--font-sans);
   --font-serif: var(--font-sans);
-  --font-display: var(--font-sans);
 
   --animate-hero-reveal: hero-reveal 1.8s cubic-bezier(0.76, 0, 0.24, 1) both;
   --animate-hero-zoom: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -44,6 +44,29 @@
     to {
       clip-path: inset(0 0 0 0 round 0 0 0 0);
     }
+  }
+}
+
+/* 메인 첫 화면 사진: 크게 있다가 제자리로 */
+@keyframes hero-in {
+  from {
+    transform: scale(1.2);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* SCROLL 옆 선이 왼쪽에서 오른쪽으로 흐름 */
+@keyframes scroll-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -123,6 +146,39 @@
 .reveal-zoom.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* 글줄 등장: <Reveal variant="line"> 안의 각 줄(span)이 가림막 아래에서 올라온다 */
+.reveal-line > span {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line > span > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-line.is-visible > span > span {
+  transform: none;
+}
+.reveal-line > span:nth-child(2) > span { transition-delay: 0.08s; }
+.reveal-line > span:nth-child(3) > span { transition-delay: 0.16s; }
+.reveal-line > span:nth-child(4) > span { transition-delay: 0.24s; }
+
+/* 사진 등장: 아래에서 위로 커튼이 걷히며, 사진은 살짝 확대된 상태에서 제자리로 */
+.reveal-clip {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.reveal-clip img {
+  transform: scale(1.25);
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-clip.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+.reveal-clip.is-visible img {
+  transform: scale(1);
 }
 
 /* 철학 카드 아이콘 (PhilosophyIcon) */
@@ -213,6 +269,13 @@
     transform: none;
     transition: none;
   }
+  .reveal-line > span > span,
+  .reveal-clip,
+  .reveal-clip img {
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
   .animate-rise {
     animation: none;
   }
@@ -220,6 +283,18 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* 부드러운 스크롤 (Lenis) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {

@@ -2,33 +2,74 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
-import { buildNav } from "@/lib/nav";
+import { sitemap } from "@/content/sitemap";
 
 type Props = {
   phone: string;
   reservationUrl: string;
-  categories: { slug: string; name: string }[];
   member: { name: string } | null;
   signup: SignupConfig;
 };
 
-// 어두운 상단 사진([data-dark-hero]) 위에서는 투명(흰 글씨), 스크롤하거나 메뉴를 열면 크림 배경.
-// PC: 메뉴에 마우스를 올리면 전체 하위 메뉴 패널이 내려온다. 모바일: 전체 화면 메뉴 + 펼침 목록.
-export default function Header({ phone, reservationUrl, categories, member, signup }: Props) {
-  const nav = buildNav(categories);
+// 메뉴바 (2026.10 리뉴얼)
+// - 어두운 첫 화면([data-dark-hero]) 위에서는 투명 + 흰 글자, 스크롤하면 흰 배경
+// - 아래로 스크롤하면 숨고, 위로 올리면 다시 나타남
+// - PC: 메뉴에 올리면 각 메뉴 바로 아래 칸에 하위 메뉴 / 태블릿·모바일: 전체 화면 검정 메뉴
+export default function Header({ phone, reservationUrl, member, signup }: Props) {
   const pathname = usePathname();
-  const headerRef = useRef<HTMLElement>(null);
-  const [open, setOpen] = useState(false); // 모바일 메뉴
-  const [mega, setMega] = useState(false); // PC 하위 메뉴 패널
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const [mega, setMega] = useState(false);
   const [active, setActive] = useState<number | null>(null);
-  const [expanded, setExpanded] = useState<number | null>(null); // 모바일에서 펼친 메뉴
+  const [expanded, setExpanded] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [hasHero, setHasHero] = useState(true);
   const [loginOpen, setLoginOpen] = useState(false);
   const [loginTab, setLoginTab] = useState<"login" | "signup">("login");
   const closeLogin = useCallback(() => setLoginOpen(false), []);
-  const router = useRouter();
+
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      if (y > 240 && y > last + 2) setHidden(true);
+      else if (y < last - 2 || y <= 240) setHidden(false);
+      last = y;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+    setMega(false);
+    setExpanded(null);
+    setHasHero(Boolean(document.querySelector("[data-dark-hero]")));
+  }, [pathname]);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        setMega(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   async function logout() {
     await fetch("/api/member/logout", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
@@ -36,222 +77,181 @@ export default function Header({ phone, reservationUrl, categories, member, sign
   }
 
   function openLogin(tab: "login" | "signup") {
-    closeAll();
+    setOpen(false);
+    setMega(false);
     setLoginTab(tab);
     setLoginOpen(true);
   }
-  // 첫 렌더에서 깜빡이지 않도록: 상단 사진이 없는 페이지(공지 상세)만 처음부터 크림 배경
-  const [hasHero, setHasHero] = useState(!/^\/notice\/.+/.test(pathname));
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    closeAll();
-    setHasHero(Boolean(document.querySelector("[data-dark-hero]")));
-  }, [pathname]);
-
-  // 모바일 메뉴가 열려 있으면 뒤 페이지 스크롤을 막는다.
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeAll();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  function closeAll() {
-    setOpen(false);
-    setMega(false);
-    setActive(null);
-  }
-
-  function openMega(index: number) {
-    setMega(true);
-    setActive(index);
-  }
-
-  const overHero = hasHero && !scrolled && !open && !mega;
-  const pillLine = overHero ? "border-white/70 hover:bg-white hover:text-ink" : "border-ink/25 hover:border-ink";
-  const pillFill = overHero ? "bg-white text-ink hover:bg-cream" : "bg-ink text-cream hover:bg-mocha";
-  // 상위 메뉴와 하위 메뉴 칸 너비 (시술안내처럼 하위가 많으면 두 줄로 넓게)
-  const colWidth = (item: { children: unknown[] }) => (item.children.length > 6 ? 250 : 170);
-  const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const light = hasHero && !scrolled && !mega && !open; // 첫 화면 위: 흰 글자
+  const isCurrent = (href: string) => {
+    const base = href.split("?")[0].split("/").slice(0, 2).join("/");
+    return base !== "" && (pathname === base || pathname.startsWith(`${base}/`));
+  };
 
   return (
     <>
       <header
-        ref={headerRef}
         onMouseLeave={() => setMega(false)}
-        onBlur={(e) => {
-          if (!headerRef.current?.contains(e.relatedTarget as Node | null)) setMega(false);
-        }}
-        className={`fixed inset-x-0 top-0 z-40 transition-colors duration-500 ${
-          overHero ? "text-white" : "border-b border-line bg-cream/95 text-ink backdrop-blur"
-        }`}
+        className={`fixed inset-x-0 top-0 z-40 transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
+          hidden && !mega ? "-translate-y-full" : ""
+        } ${light ? "text-white" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
       >
-        <div className="relative mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-6 px-5 md:h-20 md:px-10">
-          <Link href="/" className="shrink-0 leading-none" onClick={closeAll} aria-label="프라베일 맑고고운의원 홈">
-            <span className="block font-display text-[22px] font-semibold tracking-[0.18em] md:text-[26px]">PRAVEIL</span>
-            <span className="mt-1 block text-[10px] tracking-[0.3em] opacity-70 md:text-[11px]">맑고고운의원</span>
+        <div className="relative mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:h-[84px] md:px-10">
+          <Link href="/" aria-label="프라베일 맑고고운의원 홈" className="relative z-10 shrink-0">
+            <Logo className="h-[18px] w-auto md:h-[24px]" />
           </Link>
 
-          {/* PC 상위 메뉴 (가운데). 하위 메뉴 패널의 칸 너비와 같게 맞춘다 */}
-          <nav className="absolute left-1/2 hidden h-full -translate-x-1/2 items-stretch lg:flex" aria-label="주 메뉴">
-            {nav.map((item, i) => (
+          {/* PC 메뉴 */}
+          <nav aria-label="주 메뉴" className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 xl:flex">
+            {sitemap.map((s, i) => (
               <Link
-                key={item.href}
-                href={item.href}
-                onMouseEnter={() => openMega(i)}
-                onFocus={() => openMega(i)}
-                onClick={closeAll}
-                aria-expanded={mega}
-                style={{ width: colWidth(item) }}
-                className={`flex items-center justify-center text-[16px] font-semibold transition hover:text-gold ${
-                  isCurrent(item.href) || (mega && active === i) ? "text-gold" : ""
+                key={s.key}
+                href={s.href}
+                onMouseEnter={() => {
+                  setMega(true);
+                  setActive(i);
+                }}
+                onFocus={() => {
+                  setMega(true);
+                  setActive(i);
+                }}
+                className={`relative flex w-[108px] 2xl:w-[124px] items-center justify-center ${
+                  s.key === "praveil" ? "font-display text-[16px] tracking-[0.14em]" : "text-[15px] font-medium tracking-[-0.01em]"
                 }`}
               >
-                {item.label}
+                {s.label}
+                <span
+                  className={`absolute bottom-[24px] left-1/2 h-px w-6 -translate-x-1/2 bg-current transition-transform duration-500 ${
+                    (mega && active === i) || isCurrent(s.href) ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 text-sm">
+          <div className="relative z-10 flex items-center gap-5 text-[13px] md:text-sm">
             {member ? (
               <>
-                <span className="mr-2 hidden opacity-80 md:inline">{member.name}님</span>
-                <button type="button" onClick={logout} className={`rounded-full border px-4 py-2 font-medium transition md:px-5 ${pillLine}`}>
+                <span className="hidden opacity-70 md:inline">{member.name}님</span>
+                <button type="button" onClick={logout} className="transition hover:opacity-50">
                   로그아웃
                 </button>
               </>
             ) : (
               <>
-                <button type="button" onClick={() => openLogin("signup")} className={`hidden rounded-full border px-5 py-2 font-medium transition md:block ${pillLine}`}>
-                  회원가입
-                </button>
-                <button type="button" onClick={() => openLogin("login")} className={`rounded-full px-4 py-2 font-medium transition md:px-5 ${pillFill}`}>
+                <button type="button" onClick={() => openLogin("login")} className="transition hover:opacity-50">
                   로그인
+                </button>
+                <button type="button" onClick={() => openLogin("signup")} className="hidden transition hover:opacity-50 md:block">
+                  회원가입
                 </button>
               </>
             )}
-
-            {/* 모바일 메뉴 버튼 */}
             <button
               type="button"
-              className="ml-1 flex h-10 w-10 flex-col items-end justify-center gap-1.5 lg:hidden"
-              aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
+              onClick={() => setOpen(true)}
+              aria-label="메뉴 열기"
               aria-expanded={open}
-              aria-controls="mobile-menu"
-              onClick={() => setOpen((v) => !v)}
+              aria-controls="site-menu"
+              className="flex h-10 w-8 flex-col items-end justify-center gap-[7px] xl:hidden"
             >
-              <span className={`h-px w-6 bg-current transition ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
-              <span className={`h-px w-6 bg-current transition ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+              <span className="h-px w-7 bg-current" />
+              <span className="h-px w-5 bg-current" />
             </button>
           </div>
         </div>
 
-        {/* PC 하위 메뉴 패널: 각 메뉴 바로 아래에 하위 메뉴가 세로로 */}
+        {/* PC 하위 메뉴: 각 메뉴와 같은 폭의 칸에 세로로 */}
         <div
-          className={`hidden overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] lg:grid ${
-            mega ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          className={`hidden overflow-hidden bg-white transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] xl:grid ${
+            mega ? "grid-rows-[1fr] border-t border-black/5" : "grid-rows-[0fr]"
           }`}
-          onMouseEnter={() => setMega(true)}
         >
           <div className="min-h-0">
-            <div className="border-t border-line bg-cream">
-              <div className="flex justify-center pt-7 pb-10">
-                {nav.map((item, i) => (
-                  <ul
-                    key={item.href}
-                    onMouseEnter={() => setActive(i)}
-                    style={{ width: colWidth(item) }}
-                    className={`text-center ${item.children.length > 6 ? "grid grid-cols-2 content-start gap-x-2" : ""}`}
-                  >
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          href={child.href}
-                          onClick={closeAll}
-                          className="inline-block py-2 text-[15px] text-muted transition hover:text-gold"
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
+            <div className="flex justify-center pt-8 pb-11">
+              {sitemap.map((s, i) => (
+                <ul
+                  key={s.key}
+                  onMouseEnter={() => setActive(i)}
+                  className={`w-[108px] 2xl:w-[124px] space-y-3 text-center transition-opacity duration-300 ${active === i ? "opacity-100" : "opacity-45"}`}
+                >
+                  {s.pages.map((p) => (
+                    <li key={p.href}>
+                      <Link href={p.href} onClick={() => setMega(false)} className="text-[14px] text-black/70 transition hover:text-black">
+                        {p.label}
+                        {p.best && <sup className="ml-0.5 font-display text-[9px] tracking-wider text-black">BEST</sup>}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ))}
             </div>
           </div>
         </div>
-
       </header>
 
-      <MemberModal open={loginOpen} initialTab={loginTab} config={signup} onClose={closeLogin} />
-
-      {/* 모바일 전체 화면 메뉴 (header의 blur 효과 밖에 두어야 화면 전체를 덮는다) */}
-      {open && (
-        <div id="mobile-menu" className="fixed inset-x-0 top-16 bottom-0 z-[55] flex flex-col overflow-y-auto bg-cream text-ink lg:hidden">
-          <nav className="px-5 pt-2" aria-label="모바일 메뉴">
-            {nav.map((item, i) => {
-              const isOpen = expanded === i;
-              return (
-                <div key={item.href} className="border-b border-line">
-                  <button
-                    type="button"
-                    onClick={() => setExpanded(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between py-5 text-left"
-                  >
-                    <span>
-                      <span className="block font-display text-[11px] tracking-[0.2em] text-gold">{item.en.toUpperCase()}</span>
-                      <span className="mt-1 block font-serif text-xl font-medium">{item.label}</span>
-                    </span>
-                    <span className="relative h-4 w-4" aria-hidden>
-                      <span className="absolute top-1/2 left-0 h-px w-4 bg-ink" />
-                      <span className={`absolute top-0 left-1/2 h-4 w-px bg-ink transition-transform duration-300 ${isOpen ? "scale-y-0" : ""}`} />
-                    </span>
-                  </button>
-                  <div className={`grid transition-[grid-template-rows] duration-400 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                    <ul className={`min-h-0 overflow-hidden ${item.children.length > 6 ? "grid grid-cols-2 gap-x-4" : ""}`}>
-                      <li className="col-span-2">
-                        <Link href={item.href} onClick={closeAll} className="block py-2 text-[15px] text-ink">
-                          {item.label} 전체 보기 →
+      {/* 태블릿 · 모바일 전체 화면 메뉴 */}
+      <div
+        id="site-menu"
+        className={`fixed inset-0 z-[60] flex flex-col bg-black text-white transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
+          open ? "[clip-path:inset(0_0_0_0)]" : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="flex h-16 shrink-0 items-center justify-between px-5 md:h-[84px] md:px-10">
+          <Logo className="h-[18px] w-auto md:h-[24px]" />
+          <button type="button" onClick={() => setOpen(false)} aria-label="메뉴 닫기" className="relative h-10 w-8">
+            <span className="absolute top-1/2 right-0 h-px w-7 rotate-45 bg-white" />
+            <span className="absolute top-1/2 right-0 h-px w-7 -rotate-45 bg-white" />
+          </button>
+        </div>
+        <nav aria-label="전체 메뉴" className="flex-1 overflow-y-auto px-5 pt-4 md:px-10">
+          {sitemap.map((s, i) => {
+            const isOpen = expanded === i;
+            return (
+              <div
+                key={s.key}
+                className={`border-b border-white/10 transition-[opacity,transform] duration-700 ${open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+                style={{ transitionDelay: open ? `${200 + i * 60}ms` : "0ms" }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setExpanded(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-baseline justify-between py-5 text-left"
+                >
+                  <span className="text-[26px] font-semibold tracking-[-0.03em] md:text-4xl">{s.label}</span>
+                  <span className="font-display text-xs font-light tracking-[0.25em] text-white/40 uppercase">{s.en}</span>
+                </button>
+                <div className={`grid transition-[grid-template-rows] duration-500 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                  <ul className="min-h-0 overflow-hidden">
+                    {s.pages.map((p) => (
+                      <li key={p.href}>
+                        <Link href={p.href} onClick={() => setOpen(false)} className="block py-2 text-[16px] text-white/70">
+                          {p.label}
+                          {p.best && <span className="ml-2 font-display text-[10px] tracking-[0.2em] text-white">BEST</span>}
                         </Link>
                       </li>
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <Link href={child.href} onClick={closeAll} className="block py-2 text-[15px] text-muted">
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                      <li className="col-span-2 h-4" aria-hidden />
-                    </ul>
-                  </div>
+                    ))}
+                    <li className="h-5" aria-hidden />
+                  </ul>
                 </div>
-              );
-            })}
-          </nav>
-          <div className="mt-auto grid grid-cols-2 gap-3 px-5 pt-10 pb-8">
-            <a href={`tel:${phone}`} className="rounded-full border border-ink py-3.5 text-center text-sm">
-              전화 문의
-            </a>
-            <a href={reservationUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-ink py-3.5 text-center text-sm text-cream">
-              네이버 예약
-            </a>
-          </div>
+              </div>
+            );
+          })}
+        </nav>
+        <div className="grid shrink-0 grid-cols-2 gap-px border-t border-white/10 bg-white/10">
+          <a href={`tel:${phone}`} className="bg-black py-5 text-center text-sm">
+            전화 상담
+          </a>
+          <a href={reservationUrl} target="_blank" rel="noopener noreferrer" className="bg-white py-5 text-center text-sm text-black">
+            네이버 예약
+          </a>
         </div>
-      )}
+      </div>
+
+      <MemberModal open={loginOpen} initialTab={loginTab} config={signup} onClose={closeLogin} />
     </>
   );
 }

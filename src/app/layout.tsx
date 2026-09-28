@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import "@fontsource/oswald/300.css";
+import "@fontsource/oswald/400.css";
+import "@fontsource/oswald/500.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCta from "@/components/FloatingCta";
 import QuickMenu from "@/components/QuickMenu";
+import SmoothScroll from "@/components/SmoothScroll";
 import PopupLayer from "@/components/PopupLayer";
-import { getCategories, getHospital, getPopups } from "@/lib/data";
+import { getHospital, getPopups } from "@/lib/data";
 import { getMember, getSignupSettings } from "@/lib/member";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
 
@@ -25,10 +29,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [hospital, popups, categories, member, signup] = await Promise.all([
+  const [hospital, popups, member, signup] = await Promise.all([
     getHospital(),
     getPopups(),
-    getCategories(),
     getMember(),
     getSignupSettings(),
   ]);
@@ -39,7 +42,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <Header
           phone={hospital.phone}
           reservationUrl={hospital.naverReservationUrl}
-          categories={categories}
           member={member}
           signup={signup && { enabled: signup.enabled, fields: signup.fields }}
         />
@@ -48,6 +50,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <FloatingCta hospital={hospital} />
         <QuickMenu hospital={hospital} />
         <PopupLayer popups={popups} />
+        <SmoothScroll />
       </body>
     </html>
   );

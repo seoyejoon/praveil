@@ -32,23 +32,25 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
     { href: hospital.naverReservationUrl, label: "네이버 예약", icon: icons.calendar, external: true },
     { href: "/location", label: "오시는 길", icon: icons.pin, internal: true },
   ];
-  const cls = "flex flex-col items-center gap-1.5 px-2 py-4 group-first:pt-7 group-last:pb-7 text-[11px] tracking-tight text-cream/85 transition hover:bg-white/10 hover:text-white";
+  // 아이콘만 보이고, 마우스를 올리면 왼쪽에 이름이 나온다
+  const cls = "group/q relative grid h-14 w-14 place-items-center text-white/85 transition hover:bg-white hover:text-black";
+  const tip = "pointer-events-none absolute top-1/2 right-full mr-3 -translate-y-1/2 translate-x-2 whitespace-nowrap bg-black px-3 py-1.5 text-xs text-white opacity-0 transition group-hover/q:translate-x-0 group-hover/q:opacity-100";
 
   return (
-    <aside aria-label="빠른 메뉴" className="fixed top-1/2 right-5 z-30 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex">
-      <div className="w-[78px] overflow-hidden rounded-full bg-espresso/95 shadow-[0_14px_36px_rgba(40,28,18,0.22)] backdrop-blur">
-        <ul className="divide-y divide-cream/10">
+    <aside aria-label="빠른 메뉴" className="fixed right-6 bottom-8 z-30 hidden flex-col items-center md:flex">
+      <div className="bg-black shadow-[0_14px_36px_rgba(0,0,0,0.18)]">
+        <ul className="divide-y divide-white/10">
           {items.map((item) => (
             <li key={item.label} className="group">
               {item.internal ? (
                 <Link href={item.href} className={cls}>
                   <Icon d={item.icon} />
-                  {item.label}
+                  <span className={tip}>{item.label}</span>
                 </Link>
               ) : (
                 <a href={item.href} {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={cls}>
                   <Icon d={item.icon} />
-                  {item.label}
+                  <span className={tip}>{item.label}</span>
                 </a>
               )}
             </li>
@@ -59,7 +61,7 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="맨 위로"
-        className={`grid h-[52px] w-[52px] place-items-center rounded-full border border-ink/10 bg-ivory font-display text-[11px] tracking-[0.15em] text-ink shadow-[0_8px_20px_rgba(40,28,18,0.12)] transition duration-500 hover:bg-ink hover:text-cream ${
+        className={`grid h-14 w-14 place-items-center border border-black/10 bg-white font-display text-[11px] tracking-[0.15em] text-black transition duration-500 hover:bg-black hover:text-white ${
           showTop ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0"
         }`}
       >

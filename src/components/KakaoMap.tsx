@@ -63,7 +63,7 @@ export default function KakaoMap({ address, coords, className = "" }: Props) {
   }, [ready, address, coords]);
 
   return (
-    <div ref={ref} className={`overflow-hidden rounded-2xl bg-cream ${className}`}>
+    <div ref={ref} className={`overflow-hidden bg-sand ${className}`}>
       {(!ready || failed) && (
         <div className="flex h-full items-center justify-center text-sm text-taupe">카카오맵 연동 예정</div>
       )}

@@ -57,7 +57,7 @@ export default function MapLinks({ links, address, name }: { links: Hospital["ma
             href={app.href}
             target={app.href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2.5 rounded-full border border-ink/12 bg-white px-5 py-3 text-sm text-ink transition hover:border-ink/40 hover:shadow-[0_6px_16px_rgba(60,40,20,0.08)]"
+            className="flex items-center justify-center gap-2.5 border border-black/15 bg-white px-5 py-3.5 text-sm text-black transition hover:border-black"
           >
             {app.icon}
             {app.label}

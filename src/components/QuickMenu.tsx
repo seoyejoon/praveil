@@ -19,6 +19,15 @@ const icons = {
 // PC 오른쪽 고정 퀵메뉴 (모바일은 하단 상담 바 FloatingCta 사용)
 export default function QuickMenu({ hospital }: { hospital: Hospital }) {
   const [showTop, setShowTop] = useState(false);
+  const [atFooter, setAtFooter] = useState(false);
+  // 맨 아래(지도 · 푸터)가 보이면 가리지 않도록 숨긴다
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const io = new IntersectionObserver(([e]) => setAtFooter(e.isIntersecting), { threshold: 0.35 });
+    io.observe(footer);
+    return () => io.disconnect();
+  }, []);
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 600);
     onScroll();
@@ -37,7 +46,7 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
   const tip = "pointer-events-none absolute top-1/2 right-full mr-3 -translate-y-1/2 translate-x-2 whitespace-nowrap bg-black px-3 py-1.5 text-xs text-white opacity-0 transition group-hover/q:translate-x-0 group-hover/q:opacity-100";
 
   return (
-    <aside aria-label="빠른 메뉴" className="fixed right-6 bottom-8 z-30 hidden flex-col items-center md:flex">
+    <aside aria-label="빠른 메뉴" className={`fixed right-6 bottom-8 z-30 hidden flex-col items-center transition-[opacity,transform] duration-500 md:flex ${atFooter ? "pointer-events-none translate-y-4 opacity-0" : ""}`}>
       <div className="bg-black shadow-[0_14px_36px_rgba(0,0,0,0.18)]">
         <ul className="divide-y divide-white/10">
           {items.map((item) => (

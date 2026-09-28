@@ -1,9 +1,19 @@
 import Link from "next/link";
+import KakaoMap from "@/components/KakaoMap";
 import Logo from "@/components/Logo";
-import { sitemap } from "@/content/sitemap";
 import type { Hospital } from "@/lib/data";
 
-// 검정 푸터 (2026.10 리뉴얼): 세로형 로고 · 전체 메뉴 · 병원 정보 · 대표전화
+const mapApps = (h: Hospital) => {
+  const q = encodeURIComponent(h.address);
+  return [
+    { label: "네이버지도", href: h.mapLinks.naver || `https://map.naver.com/p/search/${q}` },
+    { label: "카카오지도", href: h.mapLinks.kakao || `https://map.kakao.com/?q=${q}` },
+    { label: "구글지도", href: h.mapLinks.google || `https://www.google.com/maps/search/?api=1&query=${q}` },
+    { label: "TMAP", href: h.mapLinks.tmap || `tmap://search?name=${encodeURIComponent(h.name)}` },
+  ];
+};
+
+// 오시는 길 + 푸터를 한 화면에 (검정). 왼쪽 지도, 오른쪽 주소 · 진료시간 · 전화, 맨 아래 병원 정보.
 export default function Footer({ hospital }: { hospital: Hospital }) {
   const info: [string, string][] = [
     ["상호", hospital.name],
@@ -13,58 +23,91 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
   ];
 
   return (
-    <footer className="bg-black px-5 pt-20 pb-28 text-white md:px-10 md:pt-28 md:pb-12">
-      <div className="mx-auto max-w-[1600px]">
-        <div className="grid gap-14 lg:grid-cols-[1fr_2fr]">
-          <div>
-            <Link href="/" aria-label="프라베일 맑고고운의원 홈" className="inline-block">
-              <Logo variant="stacked" className="h-[72px] w-auto md:h-[96px]" />
-            </Link>
-            <a href={`tel:${hospital.phone}`} className="mt-12 block font-display text-[34px] leading-none font-light tracking-[0.03em] md:text-[44px]">
-              {hospital.phone}
-            </a>
-            <p className="mt-3 text-sm text-white/50">대표전화 · 진료시간 내 상담 가능</p>
+    <footer className="flex flex-col bg-black px-5 pt-20 pb-24 text-white md:px-10 md:pt-24 md:pb-8 lg:min-h-svh lg:pt-[112px]">
+      <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+        <KakaoMap address={hospital.address} coords={hospital.coords} className="aspect-[4/3] bg-white/10 lg:aspect-auto lg:h-full lg:min-h-[420px]" />
+
+        <div className="flex flex-col">
+          <p className="font-display text-xs tracking-[0.35em] text-white/45 uppercase">Visit Praveil</p>
+          <p className="mt-4 text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[28px]">
+            {hospital.address}
+            <br />
+            {hospital.addressDetail}
+          </p>
+          {hospital.directions[0] && <p className="mt-2 text-sm text-white/50">{hospital.directions[0].body}</p>}
+
+          <div className="mt-8 grid gap-8 border-t border-white/15 pt-6 sm:grid-cols-2 lg:mt-auto">
+            <div>
+              <p className="font-display text-xs tracking-[0.3em] text-white/45 uppercase">Hours</p>
+              <ul className="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
+                {hospital.hours.map((h) => (
+                  <li key={h.label} className="col-span-2 grid grid-cols-subgrid">
+                    <span className="whitespace-nowrap text-white/50">{h.label}</span>
+                    <span className={`whitespace-nowrap ${h.closed ? "text-white/40" : ""}`}>
+                      {h.time}
+                      {h.note && <span className="ml-1.5 text-xs text-white/50">{h.note}</span>}
+                    </span>
+                  </li>
+                ))}
+                {hospital.lunch && (
+                  <li className="col-span-2 grid grid-cols-subgrid">
+                    <span className="text-white/50">점심시간</span>
+                    <span>{hospital.lunch}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
+            <div>
+              <p className="font-display text-xs tracking-[0.3em] text-white/45 uppercase">Contact</p>
+              <a href={`tel:${hospital.phone}`} className="mt-3 block font-display text-[32px] leading-none font-light tracking-[0.02em] xl:text-[40px]">
+                {hospital.phone}
+              </a>
+              {hospital.hoursNotice && <p className="mt-3 text-xs text-white/45">{hospital.hoursNotice}</p>}
+            </div>
           </div>
 
-          <nav aria-label="사이트맵" className="hidden grid-cols-4 gap-x-8 gap-y-10 md:grid">
-            {sitemap.map((s) => (
-              <div key={s.key}>
-                <p className="font-display text-xs tracking-[0.3em] text-white/40 uppercase">{s.en}</p>
-                <ul className="mt-4 space-y-2.5">
-                  {s.pages.map((p) => (
-                    <li key={p.href}>
-                      <Link href={p.href} className="text-sm text-white/75 transition hover:text-white">
-                        {p.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <ul className="mt-8 grid grid-cols-2 gap-px bg-white/15 sm:grid-cols-4">
+            {mapApps(hospital).map((m) => (
+              <li key={m.label}>
+                <a
+                  href={m.href}
+                  target={m.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="block bg-black py-3.5 text-center text-sm text-white/80 transition hover:bg-white hover:text-black"
+                >
+                  {m.label}
+                </a>
+              </li>
             ))}
-          </nav>
+          </ul>
         </div>
+      </div>
 
-        <div className="mt-20 flex flex-col gap-8 border-t border-white/15 pt-8 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mx-auto mt-12 flex w-full max-w-[1600px] flex-col gap-6 border-t border-white/15 pt-7 lg:mt-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:gap-12">
+          <Link href="/" aria-label="프라베일 맑고고운의원 홈">
+            <Logo className="h-6 w-auto" />
+          </Link>
           <div>
-            <p className="flex gap-6 text-sm">
-              <Link href="/privacy" className="font-bold text-white">
+            <p className="flex gap-5 text-[13px]">
+              <Link href="/privacy" className="font-bold">
                 개인정보처리방침
               </Link>
-              <Link href="/terms" className="text-white/70 transition hover:text-white">
+              <Link href="/terms" className="text-white/65 transition hover:text-white">
                 이용약관
               </Link>
             </p>
-            <dl className="mt-5 flex flex-col gap-1.5 text-[13px] text-white/45 md:flex-row md:flex-wrap md:gap-x-6">
+            <dl className="mt-2 flex flex-col gap-1 text-xs text-white/45 md:flex-row md:flex-wrap md:gap-x-5">
               {info.map(([k, v]) => (
-                <div key={k} className="flex gap-2">
+                <div key={k} className="flex gap-1.5">
                   <dt>{k}</dt>
-                  <dd className="text-white/70">{v}</dd>
+                  <dd className="text-white/65">{v}</dd>
                 </div>
               ))}
             </dl>
           </div>
-          <p className="font-display text-xs tracking-[0.2em] text-white/40 uppercase">© {new Date().getFullYear()} Praveil Clinic</p>
         </div>
+        <p className="font-display text-[11px] tracking-[0.2em] text-white/40 uppercase">© {new Date().getFullYear()} Praveil Clinic</p>
       </div>
     </footer>
   );

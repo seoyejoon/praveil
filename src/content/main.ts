@@ -3,11 +3,21 @@ const photo = (name: string) => `/images/photos/${name}.webp`;
 
 export const mainHero = {
   eyebrow: "Praveil Clinic",
-  lines: ["Only one plan,", "for you"],
   title: "오직 당신만을 위한 단 하나의 계획",
   sub: "대표원장 책임 진료 시스템",
-  // 차례로 넘어가는 병원 공간 사진
-  images: [photo("hero"), photo("hero-about"), photo("clinic-2"), photo("clinic-6")],
+  line: "Read your skin first",
+  // 분석 카드: point = 얼굴 점 번호(MediaPipe), top = 카드 세로 위치(%)
+  // 수치는 넣지 않는다 (의료광고: 실제 측정값처럼 보이지 않게)
+  items: [
+    { label: "주름", en: "Wrinkle", point: 151, side: "left" as const, top: 14 },
+    { label: "모공", en: "Pore", point: 205, side: "left" as const, top: 46 },
+    { label: "윤곽", en: "Contour", point: 172, side: "left" as const, top: 74 },
+    { label: "탄력", en: "Elasticity", point: 263, side: "right" as const, top: 22 },
+    { label: "색소", en: "Pigment", point: 425, side: "right" as const, top: 58 },
+  ],
+  steps: ["피부 진단", "분석", "맞춤 설계", "대표원장 시술"],
+  // 모델 영상이 준비되면 경로를 넣는다 (예: "/videos/hero-model.mp4")
+  video: undefined as string | undefined,
 };
 
 export const mainIntro = {

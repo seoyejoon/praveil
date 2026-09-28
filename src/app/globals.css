@@ -304,3 +304,12 @@ body {
   word-break: keep-all;
   -webkit-font-smoothing: antialiased;
 }
+
+/* 카카오 약도: 등록된 장소 이름표(현재 '뉴리즈의원 인천')는 숨기고 핀만 보인다. 병원 이름으로 약도를 다시 만들면 삭제 */
+.kakao-roughmap .roughmap_maker_label {
+  display: none !important;
+}
+/* 약도 칸을 부모 크기에 맞춤 */
+.kakao-roughmap .root_daum_roughmap {
+  width: 100% !important;
+}

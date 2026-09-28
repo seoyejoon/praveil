@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
-import "@fontsource-variable/noto-serif-kr";
-import "@fontsource/marcellus";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

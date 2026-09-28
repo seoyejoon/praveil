@@ -15,8 +15,9 @@
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Malgun Gothic", sans-serif;
-  --font-serif: "Noto Serif KR Variable", "Noto Serif KR", serif;
-  --font-display: "Marcellus", "Noto Serif KR Variable", serif;
+  /* 전체 글꼴은 프리텐다드 하나로 통일 (명조 · 영문 장식 글꼴 사용 안 함) */
+  --font-serif: var(--font-sans);
+  --font-display: var(--font-sans);
 
   --animate-hero-reveal: hero-reveal 1.8s cubic-bezier(0.76, 0, 0.24, 1) both;
   --animate-hero-zoom: hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;

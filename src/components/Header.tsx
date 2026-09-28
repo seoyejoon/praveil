@@ -26,6 +26,7 @@ export default function Header({ phone, reservationUrl, categories, member, sign
   const [expanded, setExpanded] = useState<number | null>(null); // 모바일에서 펼친 메뉴
   const [scrolled, setScrolled] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [loginTab, setLoginTab] = useState<"login" | "signup">("login");
   const closeLogin = useCallback(() => setLoginOpen(false), []);
   const router = useRouter();
 
@@ -34,8 +35,9 @@ export default function Header({ phone, reservationUrl, categories, member, sign
     router.refresh();
   }
 
-  function openLogin() {
+  function openLogin(tab: "login" | "signup") {
     closeAll();
+    setLoginTab(tab);
     setLoginOpen(true);
   }
   // 첫 렌더에서 깜빡이지 않도록: 상단 사진이 없는 페이지(공지 상세)만 처음부터 크림 배경
@@ -79,6 +81,10 @@ export default function Header({ phone, reservationUrl, categories, member, sign
   }
 
   const overHero = hasHero && !scrolled && !open && !mega;
+  const pillLine = overHero ? "border-white/70 hover:bg-white hover:text-ink" : "border-ink/25 hover:border-ink";
+  const pillFill = overHero ? "bg-white text-ink hover:bg-cream" : "bg-ink text-cream hover:bg-mocha";
+  // 상위 메뉴와 하위 메뉴 칸 너비 (시술안내처럼 하위가 많으면 두 줄로 넓게)
+  const colWidth = (item: { children: unknown[] }) => (item.children.length > 6 ? 250 : 170);
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
@@ -93,9 +99,14 @@ export default function Header({ phone, reservationUrl, categories, member, sign
           overHero ? "text-white" : "border-b border-line bg-cream/95 text-ink backdrop-blur"
         }`}
       >
-        <div className="mx-auto grid h-16 max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center px-5 md:h-20 md:px-10">
-          {/* PC 상위 메뉴 */}
-          <nav className="hidden h-full items-stretch gap-9 text-[15px] lg:flex" aria-label="주 메뉴">
+        <div className="relative mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-6 px-5 md:h-20 md:px-10">
+          <Link href="/" className="shrink-0 leading-none" onClick={closeAll} aria-label="프라베일 맑고고운의원 홈">
+            <span className="block font-display text-[22px] font-semibold tracking-[0.18em] md:text-[26px]">PRAVEIL</span>
+            <span className="mt-1 block text-[10px] tracking-[0.3em] opacity-70 md:text-[11px]">맑고고운의원</span>
+          </Link>
+
+          {/* PC 상위 메뉴 (가운데). 하위 메뉴 패널의 칸 너비와 같게 맞춘다 */}
+          <nav className="absolute left-1/2 hidden h-full -translate-x-1/2 items-stretch lg:flex" aria-label="주 메뉴">
             {nav.map((item, i) => (
               <Link
                 key={item.href}
@@ -104,65 +115,51 @@ export default function Header({ phone, reservationUrl, categories, member, sign
                 onFocus={() => openMega(i)}
                 onClick={closeAll}
                 aria-expanded={mega}
-                className={`relative flex items-center transition hover:text-gold ${
-                  isCurrent(item.href) || (mega && active === i) ? "text-gold" : "opacity-90"
+                style={{ width: colWidth(item) }}
+                className={`flex items-center justify-center text-[16px] font-semibold transition hover:text-gold ${
+                  isCurrent(item.href) || (mega && active === i) ? "text-gold" : ""
                 }`}
               >
                 {item.label}
-                <span
-                  className={`absolute inset-x-0 bottom-0 h-px origin-left bg-gold transition-transform duration-500 ${
-                    mega && active === i ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
               </Link>
             ))}
           </nav>
 
-          {/* 모바일 메뉴 버튼 */}
-          <button
-            type="button"
-            className="flex h-10 w-10 flex-col justify-center gap-1.5 lg:hidden"
-            aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className={`h-px w-6 bg-current transition ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
-            <span className={`h-px w-6 bg-current transition ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
-          </button>
-
-          <Link href="/" className="text-center leading-none" onClick={closeAll}>
-            <span className="block font-display text-2xl tracking-[0.18em] md:text-[28px]">PRAVEIL</span>
-            <span className="mt-1 block text-[10px] tracking-[0.3em] opacity-70 md:text-[11px]">맑고고운의원</span>
-          </Link>
-
-          <div className="flex items-center justify-end gap-5 text-[15px]">
+          <div className="flex items-center gap-2 text-sm">
             {member ? (
-              <span className="flex items-center gap-3 text-sm md:text-[15px]">
-                <span className="hidden opacity-80 md:inline">{member.name}님</span>
-                <button type="button" onClick={logout} className="opacity-90 transition hover:text-gold">
+              <>
+                <span className="mr-2 hidden opacity-80 md:inline">{member.name}님</span>
+                <button type="button" onClick={logout} className={`rounded-full border px-4 py-2 font-medium transition md:px-5 ${pillLine}`}>
                   로그아웃
                 </button>
-              </span>
+              </>
             ) : (
-              <button type="button" onClick={openLogin} className="text-sm opacity-90 transition hover:text-gold md:text-[15px]">
-                로그인
-              </button>
+              <>
+                <button type="button" onClick={() => openLogin("signup")} className={`hidden rounded-full border px-5 py-2 font-medium transition md:block ${pillLine}`}>
+                  회원가입
+                </button>
+                <button type="button" onClick={() => openLogin("login")} className={`rounded-full px-4 py-2 font-medium transition md:px-5 ${pillFill}`}>
+                  로그인
+                </button>
+              </>
             )}
-            <a
-              href={reservationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`hidden rounded-full border px-5 py-2 transition md:block ${
-                overHero ? "border-white/60 hover:bg-white hover:text-ink" : "border-ink hover:bg-ink hover:text-cream"
-              }`}
+
+            {/* 모바일 메뉴 버튼 */}
+            <button
+              type="button"
+              className="ml-1 flex h-10 w-10 flex-col items-end justify-center gap-1.5 lg:hidden"
+              aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
             >
-              예약하기
-            </a>
+              <span className={`h-px w-6 bg-current transition ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
+              <span className={`h-px w-6 bg-current transition ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+            </button>
           </div>
         </div>
 
-        {/* PC 하위 메뉴 패널 */}
+        {/* PC 하위 메뉴 패널: 각 메뉴 바로 아래에 하위 메뉴가 세로로 */}
         <div
           className={`hidden overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] lg:grid ${
             mega ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -170,49 +167,27 @@ export default function Header({ phone, reservationUrl, categories, member, sign
           onMouseEnter={() => setMega(true)}
         >
           <div className="min-h-0">
-            <div className="border-t border-line">
-              <div className="mx-auto grid max-w-[1440px] grid-cols-[1.1fr_1fr_1.7fr_1fr_1fr] gap-10 px-10 pt-12 pb-14">
-                <div className="border-r border-line pr-10">
-                  <p className="font-display text-sm tracking-[0.2em] text-gold">Clear &amp; Graceful</p>
-                  <p className="mt-4 font-serif text-[22px] leading-snug font-medium tracking-tight">
-                    나에게 맞는 방법,
-                    <br />
-                    상담에서 시작됩니다.
-                  </p>
-                  <a href={`tel:${phone}`} className="mt-7 block font-serif text-xl tracking-wide transition hover:text-gold">
-                    {phone}
-                  </a>
-                  <a
-                    href={reservationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-block rounded-full bg-ink px-6 py-2.5 text-sm text-cream transition hover:bg-mocha"
-                  >
-                    네이버 예약하기
-                  </a>
-                </div>
+            <div className="border-t border-line bg-cream">
+              <div className="flex justify-center pt-7 pb-10">
                 {nav.map((item, i) => (
-                  <div key={item.href} onMouseEnter={() => setActive(i)}>
-                    <Link href={item.href} onClick={closeAll} className="group block">
-                      <span className={`font-display text-xs tracking-[0.2em] transition ${active === i ? "text-gold" : "text-taupe"}`}>
-                        {item.en.toUpperCase()}
-                      </span>
-                      <span className="mt-1.5 block font-serif text-lg font-medium">{item.label}</span>
-                    </Link>
-                    <ul className={`mt-5 gap-x-8 ${item.children.length > 6 ? "grid grid-cols-2" : ""}`}>
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            onClick={closeAll}
-                            className="inline-block py-1.5 text-[14px] text-muted transition hover:translate-x-1 hover:text-ink"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul
+                    key={item.href}
+                    onMouseEnter={() => setActive(i)}
+                    style={{ width: colWidth(item) }}
+                    className={`text-center ${item.children.length > 6 ? "grid grid-cols-2 content-start gap-x-2" : ""}`}
+                  >
+                    {item.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          href={child.href}
+                          onClick={closeAll}
+                          className="inline-block py-2 text-[15px] text-muted transition hover:text-gold"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 ))}
               </div>
             </div>
@@ -221,7 +196,7 @@ export default function Header({ phone, reservationUrl, categories, member, sign
 
       </header>
 
-      <MemberModal open={loginOpen} config={signup} onClose={closeLogin} />
+      <MemberModal open={loginOpen} initialTab={loginTab} config={signup} onClose={closeLogin} />
 
       {/* 모바일 전체 화면 메뉴 (header의 blur 효과 밖에 두어야 화면 전체를 덮는다) */}
       {open && (

@@ -143,7 +143,7 @@ export default async function Home() {
       </section>
 
       {/* ⑫ 오시는 길 (아래 푸터와 배경이 이어짐) */}
-      <HomeLocation hospital={hospital} />
+      <HomeLocation hospital={hospital} photo={images.clinic[0]} />
     </>
   );
 }

@@ -9,9 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = new Set([
     "",
     ...pages.flatMap((s) => s.pages.map((p) => p.href.split("?")[0])),
-    "/about/why",
-    "/about/tour",
-    "/about/equipment",
     "/before-after",
     "/terms",
     "/privacy",

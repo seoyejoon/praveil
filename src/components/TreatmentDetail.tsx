@@ -2,15 +2,15 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  CalendarCheck,
   Check,
   Lock,
-  MapPin,
   MessageCircle,
   Phone,
-  Plus,
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
+import ConsultCta from "@/components/sub/ConsultCta";
+import FaqList from "@/components/sub/FaqList";
+import SectionHead from "@/components/sub/SectionHead";
 import Reveal from "@/components/Reveal";
 import { mainDoctor } from "@/content/main";
 import {
@@ -54,32 +54,6 @@ const compareRows: { key: keyof TreatmentGuide["profile"]; label: string }[] = [
   { key: "recovery", label: "회복" },
   { key: "interval", label: "권장 주기" },
 ];
-
-// 섹션 머리: 영문 작은 글씨 + 질문형 제목 (질문에 바로 답하는 구조 = 검색 · AI 답변에 잘 인용됨)
-function Head({
-  en,
-  title,
-  tone = "light",
-  className = "",
-}: {
-  en: string;
-  title: React.ReactNode;
-  tone?: "light" | "dark";
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <p
-        className={`font-display text-xs tracking-[0.35em] uppercase ${tone === "dark" ? "text-taupe" : "text-gold"}`}
-      >
-        {en}
-      </p>
-      <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
-        {title}
-      </h2>
-    </div>
-  );
-}
 
 // 시술 상세 본문 (모든 시술 공통 틀)
 // 한눈에 보기 → 어떤 시술 → 이런 분께 → 비교 → 특징 → 세부 시술 → 의료진 → 병원 고르는 기준
@@ -208,7 +182,10 @@ export default function TreatmentDetail({
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-32"
       >
         <div className="grid gap-8 border-t border-line pt-16 md:pt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <Head en="What is" title={`${t.title}${eun} 어떤 시술인가요?`} />
+          <SectionHead
+            en="What is"
+            title={`${t.title}${eun} 어떤 시술인가요?`}
+          />
           <Reveal className="space-y-5 text-[15px] leading-[1.9] text-muted md:text-[17px]">
             <p>{t.intro}</p>
             <p>{g.principle}</p>
@@ -229,7 +206,7 @@ export default function TreatmentDetail({
             />
           </div>
           <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
-            <Head
+            <SectionHead
               en="Who it's for"
               title={`${t.title}, 어떤 고민에 고려하나요?`}
             />
@@ -258,7 +235,7 @@ export default function TreatmentDetail({
           id="compare"
           className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pt-24 md:scroll-mt-44 md:px-10 md:pt-36"
         >
-          <Head
+          <SectionHead
             en="Compare"
             title={`${t.title}, 다른 시술과 어떻게 다른가요?`}
           />
@@ -347,7 +324,7 @@ export default function TreatmentDetail({
 
       {/* 특징 3가지 */}
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-        <Head en="Point" title={`프라베일 ${t.title}의 특징`} />
+        <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:mt-16 md:grid-cols-3">
           {t.points.map((p, i) => (
             <Reveal
@@ -374,7 +351,11 @@ export default function TreatmentDetail({
       {t.items && (
         <section className="bg-espresso px-5 py-24 text-white md:px-10 md:py-32">
           <div className="mx-auto max-w-[1400px]">
-            <Head en="Program" tone="dark" title={`${t.title} 세부 시술`} />
+            <SectionHead
+              en="Program"
+              tone="dark"
+              title={`${t.title} 세부 시술`}
+            />
             <ul
               className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"}`}
             >
@@ -417,7 +398,10 @@ export default function TreatmentDetail({
             />
           </div>
           <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
-            <Head en="Doctor" title={`${t.title}, 누가 상담하고 시술하나요?`} />
+            <SectionHead
+              en="Doctor"
+              title={`${t.title}, 누가 상담하고 시술하나요?`}
+            />
             <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
               {hospital.name}
               {josa(hospital.name, "은", "는")} 상담한 원장이 시술까지 직접
@@ -460,7 +444,7 @@ export default function TreatmentDetail({
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <Head
+            <SectionHead
               en="How to choose"
               title={
                 <>
@@ -501,7 +485,7 @@ export default function TreatmentDetail({
       {/* 시술 과정 */}
       <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <Head en="Process" title={`${t.title}, 어떻게 진행되나요?`} />
+          <SectionHead en="Process" title={`${t.title}, 어떻게 진행되나요?`} />
           <ol className="relative mt-14 grid gap-10 md:mt-20 md:grid-cols-4 md:gap-6">
             <span
               aria-hidden
@@ -537,7 +521,7 @@ export default function TreatmentDetail({
         <div className="relative mx-auto max-w-[1560px] overflow-hidden rounded-[28px] bg-espresso px-6 py-16 text-white md:rounded-[40px] md:px-16 md:py-24">
           <div className="absolute inset-0 bg-[radial-gradient(50%_70%_at_10%_0%,rgba(168,142,106,0.28),transparent_70%)]" />
           <div className="relative">
-            <Head
+            <SectionHead
               en="Result"
               tone="dark"
               title={`${t.title} 효과는 언제 나타나고, 얼마나 유지되나요?`}
@@ -577,7 +561,7 @@ export default function TreatmentDetail({
         id="aftercare"
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
-        <Head en="Aftercare" title="통증 · 회복 · 주의사항" />
+        <SectionHead en="Aftercare" title="통증 · 회복 · 주의사항" />
         <div className="mt-12 grid gap-4 md:mt-16 lg:grid-cols-2">
           <div className="grid gap-4">
             {[
@@ -624,7 +608,7 @@ export default function TreatmentDetail({
       <section id="price" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
         <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <Head en="Price" title={`${t.title} 비용은 얼마인가요?`} />
+            <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
             <p className="mt-5 text-[15px] leading-relaxed text-muted">
               부위 · 양 · 피부 상태에 따라 달라질 수 있어, 상담 후 정확한 비용을
               안내해 드립니다.
@@ -729,92 +713,16 @@ export default function TreatmentDetail({
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-32"
       >
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <Head en="FAQ" title={`${t.title} 자주 묻는 질문`} />
-          <ul className="border-t border-ink/80">
-            {faq.map((f, i) => (
-              <li key={f.q} className="border-b border-line">
-                <details className="group" open={i === 0}>
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-base font-medium md:py-7 md:text-lg [&::-webkit-details-marker]:hidden">
-                    <h3 className="flex gap-3 font-medium">
-                      <span className="font-display text-gold">Q.</span>
-                      {f.q}
-                    </h3>
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink/15 transition duration-300 group-open:rotate-45 group-open:border-gold group-open:bg-gold group-open:text-white">
-                      <Plus className="h-4 w-4" strokeWidth={1.5} />
-                    </span>
-                  </summary>
-                  <p className="pr-14 pb-7 pl-7 text-[15px] leading-relaxed text-muted">
-                    {f.a}
-                  </p>
-                </details>
-              </li>
-            ))}
-          </ul>
+          <SectionHead en="FAQ" title={`${t.title} 자주 묻는 질문`} />
+          <FaqList items={faq} />
         </div>
       </section>
 
-      {/* 상담 안내 (지도 · 진료시간 · 전화는 바로 아래 푸터에) */}
-      <section
+      <ConsultCta
         id="visit"
-        className="scroll-mt-36 px-3 pb-16 md:scroll-mt-44 md:px-6 md:pb-24"
-      >
-        <div className="relative mx-auto max-w-[1560px] overflow-hidden rounded-[28px] bg-espresso px-6 py-16 text-white md:rounded-[40px] md:px-16 md:py-20">
-          <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_85%_20%,rgba(168,142,106,0.35),transparent_70%)]" />
-          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="font-display text-xs tracking-[0.35em] text-taupe uppercase">
-                Consulting
-              </p>
-              <h2 className="mt-4 text-[26px] leading-snug font-light tracking-[-0.03em] md:text-[40px]">
-                나에게 맞는 {t.title},
-                <br />
-                <span className="font-semibold">
-                  대표원장과 먼저 상담하세요.
-                </span>
-              </h2>
-              <Link
-                href="/location"
-                className="mt-6 flex items-start gap-2 text-sm leading-relaxed text-white/60 transition hover:text-white"
-              >
-                <MapPin
-                  className="mt-0.5 h-4 w-4 shrink-0 text-taupe"
-                  strokeWidth={1.6}
-                />
-                <span>
-                  {hospital.address} {hospital.addressDetail}
-                </span>
-              </Link>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={`tel:${hospital.phone}`}
-                className="flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm text-ink transition hover:bg-ivory"
-              >
-                <Phone className="h-4 w-4" strokeWidth={1.6} />
-                {hospital.phone}
-              </a>
-              <a
-                href={hospital.kakaoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm transition hover:border-white"
-              >
-                <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
-                카카오톡 상담
-              </a>
-              <a
-                href={hospital.naverReservationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm transition hover:bg-mocha"
-              >
-                <CalendarCheck className="h-4 w-4" strokeWidth={1.6} />
-                네이버 예약
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+        hospital={hospital}
+        title={`나에게 맞는 ${t.title},`}
+      />
     </>
   );
 }

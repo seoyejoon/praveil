@@ -1,15 +1,16 @@
 // 메인 페이지 문구 (2026.10 리뉴얼). 원장님 검토 후 확정.
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
-// 첫 화면: 스크롤에 따라 로비 → (유리 상담실로 다가감) → 원장 상담 장면
-// logo: 사진 속 로고 자리, door: 다가갈 유리 상담실 자리 (사진 기준 비율 x, y, 폭)
+// 첫 화면: 스크롤에 따라 로비 → (유리 상담실 안으로 들어감) → 원장 상담 장면
+// focusX: 좁은 화면에서 사진을 어디 기준으로 자를지 (로고가 보이게)
+// glass: 유리 상담실 자리 (사진 기준 비율). 상담 장면이 이 유리창 안에서 먼저 보이다가 화면 가득 커짐
 export const mainHero = {
   eyebrow: "Praveil Clinic",
   scenes: [
     { title: ["오직 당신만을 위한", "단 하나의 계획"], sub: "대표원장 책임 진료 시스템" },
     { title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."], sub: "1:1 맞춤 상담" },
   ],
-  lobby: { src: photo("hero-lobby"), logo: { x: 0.43, y: 0.225, w: 0.15 }, door: { x: 0.84, y: 0.6 }, color: "#7a5c3a" },
+  lobby: { src: photo("hero-lobby"), width: 2400, height: 1351, focusX: 0.45, glass: { x0: 0.775, y0: 0.15, x1: 1.12, y1: 0.83 } },
   consult: { src: photo("hero-consult") },
 };
 

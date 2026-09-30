@@ -1,34 +1,37 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { logoShapes } from "@/components/Logo";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
-type Spot = { x: number; y: number; w?: number }; // 사진 속 자리 (사진 기준 비율)
 type Props = {
   eyebrow: string;
   scenes: { title: string[]; sub: string }[];
-  lobby: { src: string; logo: Spot & { w: number }; door: Spot; color: string };
+  lobby: {
+    src: string;
+    width: number;
+    height: number;
+    focusX: number;
+    glass: { x0: number; y0: number; x1: number; y1: number };
+  };
   consult: { src: string };
 };
 
-const LOGO = logoShapes.wordmark; // 영문 PRAVEIL 만
-const [, , VBW, VBH] = LOGO.viewBox.split(" ").map(Number);
-const IMG_W = 2400,
-  IMG_H = 1350; // 로비 사진 크기
 const PAD = 24; // 마우스 따라 움직일 여유 (사진 가장자리가 보이지 않게)
 const POINTS = [0, 0.6, 1]; // 장면이 멈추는 자리 (스크롤 진행 비율)
 
 // 첫 화면: 스크롤하는 만큼 장면이 넘어감 (멈추면 움직이던 방향의 다음 장면으로 맞춰짐)
-// ① 로비, 벽에 로고
-// ② 카메라가 오른쪽 유리 상담실로 다가가다가, 그 안의 원장 상담 장면으로 이어짐
+// ① 로비 (벽에 로고)
+// ② 카메라가 오른쪽 유리 상담실 쪽으로 몸을 돌려 다가감. 유리창 안에 원장 상담 장면이 먼저 보이고,
+//    다가갈수록 그 창이 커져 화면을 가득 채움 (상담실 안으로 들어가는 느낌)
 // ③ 사진이 둥근 카드로 작아지며 다음 섹션(흰 배경)으로
 export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const lobbyRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const consultRef = useRef<HTMLDivElement>(null);
+  const shadeRef = useRef<HTMLDivElement>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
+  const consultImgRef = useRef<HTMLImageElement>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const [scene, setScene] = useState(0);
@@ -61,33 +64,97 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
 
   useEffect(() => {
     const root = rootRef.current;
-    const logo = logoRef.current;
-    if (!root || !logo) return;
+    const lobbyEl = lobbyRef.current;
+    const win = windowRef.current;
+    if (!root || !lobbyEl || !win) return;
 
-    // 사진이 틀을 덮을 때(object-cover) 사진 속 자리가 틀의 어디인지 (틀은 화면보다 PAD 만큼 큼)
-    const spot = (s: Spot) => {
+    // 사진 틀(화면보다 PAD 만큼 큼) 기준으로, 사진 속 비율 좌표 → 틀 좌표
+    const frame = () => {
       const bw = root.clientWidth + PAD * 2,
         bh = root.clientHeight + PAD * 2;
-      const k = Math.max(bw / IMG_W, bh / IMG_H);
-      const dw = IMG_W * k,
-        dh = IMG_H * k;
-      const ox = (bw - dw) * lobby.logo.x,
+      const k = Math.max(bw / lobby.width, bh / lobby.height);
+      const dw = lobby.width * k,
+        dh = lobby.height * k;
+      const ox = (bw - dw) * lobby.focusX,
         oy = (bh - dh) / 2;
-      return { x: ox + dw * s.x, y: oy + dh * s.y, w: dw * (s.w ?? 0) };
+      const g = lobby.glass;
+      const rect = {
+        x0: ox + dw * g.x0,
+        y0: oy + dh * g.y0,
+        x1: ox + dw * g.x1,
+        y1: oy + dh * g.y1,
+      };
+      // 좁은 화면(모바일)에서는 유리 상담실이 화면 밖이라, 가운데에 문 모양 창을 두고 열림 (옆으로 돌지 않음)
+      const narrow = rect.x0 > bw * 0.9;
+      return {
+        bw,
+        bh,
+        pan: !narrow,
+        rect: narrow
+          ? { x0: bw * 0.26, y0: bh * 0.3, x1: bw * 0.74, y1: bh * 0.7 }
+          : rect,
+      };
     };
-    // 로고는 로비 사진 벽에 붙어 사진과 함께 움직임
-    const placeLogo = () => {
-      const p = spot(lobby.logo);
-      const h = (p.w * VBH) / VBW;
-      gsap.set(logo, { x: p.x - p.w / 2, y: p.y - h / 2, width: p.w });
+
+    // t(0~1)에 따라: 유리창 가운데를 화면 가운데로 돌리며(pan) 확대(s). 창 밖 로비는 어두워지고, 창은 화면을 채울 때까지 커짐
+    let F = frame();
+    const apply = (t: number) => {
+      const { bw, bh, rect, pan } = F;
+      const ox = (rect.x0 + rect.x1) / 2,
+        oy = (rect.y0 + rect.y1) / 2; // 확대 기준 = 유리창 가운데
+      const cx = bw / 2,
+        cy = bh / 2;
+      // 창이 화면을 다 덮는 배율
+      const sEnd =
+        Math.max(bw / (rect.x1 - rect.x0), bh / (rect.y1 - rect.y0)) * 1.08;
+      const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const s = 1 + (sEnd - 1) * Math.pow(t, 1.6);
+      const px = pan ? (cx - ox) * e : 0,
+        py = pan ? (cy - oy) * e : 0;
+      lobbyEl.style.transformOrigin = `${ox}px ${oy}px`;
+      lobbyEl.style.transform = `translate(${px}px, ${py}px) scale(${s})`;
+      const map = (x: number, y: number) => [
+        ox + px + (x - ox) * s,
+        oy + py + (y - oy) * s,
+      ];
+      const [x0, y0] = map(rect.x0, rect.y0);
+      const [x1, y1] = map(rect.x1, rect.y1);
+      // 유리창 = 상담실. 창 크기 그대로 상담 사진을 담아, 창이 커지는 만큼 방이 가까워짐 (끝나면 화면 가득)
+      const L = Math.max(0, x0),
+        T = Math.max(0, y0),
+        R = Math.min(bw, x1),
+        B = Math.min(bh, y1);
+      win.style.left = `${L}px`;
+      win.style.top = `${T}px`;
+      win.style.width = `${Math.max(0, R - L)}px`;
+      win.style.height = `${Math.max(0, B - T)}px`;
+      const rad = Math.max(0, 1 - t * 1.2) * 44 * Math.min(s, 2.5);
+      // 모바일은 아치 문 모양 (위쪽 양 모서리 둥글게)
+      win.style.borderRadius = pan
+        ? `${rad}px 0 0 0`
+        : `${(Math.max(0, 1 - t * 1.1) * (R - L)) / 2}px ${(Math.max(0, 1 - t * 1.1) * (R - L)) / 2}px 0 0`;
+      // 안쪽 사진은 창보다 조금 덜 커지게 (깊이감)
+      if (consultImgRef.current)
+        consultImgRef.current.style.transform = `scale(${1.15 - 0.15 * e})`;
+      // 로비 사진 속 유리 너머 공간과 겹치듯 서서히 드러나고, 유리 반사는 들어갈수록 사라짐
+      win.style.opacity = String(Math.min(1, t * 3.2));
+      if (glareRef.current)
+        glareRef.current.style.opacity = String(Math.max(0, 1 - t * 2.2));
+      if (shadeRef.current)
+        shadeRef.current.style.opacity = String(0.55 * Math.min(1, t * 2));
     };
-    placeLogo();
-    ScrollTrigger.addEventListener("refreshInit", placeLogo);
+    const state = { t: 0 };
+    apply(0);
+    const onRefresh = () => {
+      F = frame();
+      apply(state.t);
+    };
+    ScrollTrigger.addEventListener("refreshInit", onRefresh);
+    window.addEventListener("resize", onRefresh);
     if (reducedMotion()) {
-      window.addEventListener("resize", placeLogo);
       return () => {
-        window.removeEventListener("resize", placeLogo);
-        ScrollTrigger.removeEventListener("refreshInit", placeLogo);
+        ScrollTrigger.removeEventListener("refreshInit", onRefresh);
+        window.removeEventListener("resize", onRefresh);
       };
     }
 
@@ -97,7 +164,14 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       clearTimeout(timer);
       timer = window.setTimeout(() => {
         const p = st.progress;
-        if (!st.isActive || p <= 0 || p >= 1) return;
+        // window.__noHeroSnap: 화면 점검(캡처)용으로 장면 맞춤을 끌 때
+        if (
+          !st.isActive ||
+          p <= 0 ||
+          p >= 1 ||
+          (window as unknown as { __noHeroSnap?: boolean }).__noHeroSnap
+        )
+          return;
         const target =
           st.direction > 0
             ? POINTS.find((v) => v >= p - 0.002)!
@@ -111,7 +185,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
         ).__lenis;
         if (lenis)
           lenis.scrollTo(y, {
-            duration: 1.2,
+            duration: 1.4,
             easing: (x: number) => 1 - Math.pow(1 - x, 3),
           });
         else window.scrollTo({ top: y, behavior: "smooth" });
@@ -127,7 +201,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
             start: "top top",
             end: "+=220%",
             pin: true,
-            scrub: 0.7,
+            scrub: 0.8,
             invalidateOnRefresh: true,
             onUpdate: (st) => {
               setScene(st.progress < 0.3 ? 0 : 1);
@@ -135,38 +209,14 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
             },
           },
         })
-        // ① → ② 유리 상담실 쪽으로 다가감
-        .fromTo(
-          lobbyRef.current,
-          {
-            scale: 1,
-            filter: "blur(0px)",
-            transformOrigin: () =>
-              `${Math.min(spot(lobby.door).x, root.clientWidth + PAD)}px ${spot(lobby.door).y}px`,
-          },
-          { scale: 2.6, duration: 0.55, ease: "power1.in" },
-          0,
-        )
-        .to(lobbyRef.current, { filter: "blur(6px)", duration: 0.2 }, 0.35)
-        // 상담실 안 장면이 겹쳐지며 드러남
-        .fromTo(
-          consultRef.current,
-          { opacity: 0, scale: 1.18, filter: "blur(10px)" },
-          {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)",
-            duration: 0.25,
-            ease: "power2.out",
-          },
-          0.33,
-        )
+        // ① → ② 유리 상담실 안으로
+        .to(state, { t: 1, duration: 0.6, onUpdate: () => apply(state.t) }, 0)
         .to(copyRefs.current[0], { opacity: 0, y: -40, duration: 0.15 }, 0.05)
         .fromTo(
           copyRefs.current[1],
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.15 },
-          0.42,
+          0.45,
         )
         // ② → ③ 둥근 카드로 작아지며 다음 섹션으로
         .fromTo(
@@ -188,7 +238,8 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
     ScrollTrigger.refresh();
     return () => {
       clearTimeout(timer);
-      ScrollTrigger.removeEventListener("refreshInit", placeLogo);
+      ScrollTrigger.removeEventListener("refreshInit", onRefresh);
+      window.removeEventListener("resize", onRefresh);
       ctx.revert();
     };
   }, [lobby]);
@@ -203,7 +254,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       >
         <div
           ref={stageRef}
-          className="absolute inset-0 overflow-hidden bg-[#2a241e]"
+          className="absolute inset-0 overflow-hidden bg-[#cbbfae]"
         >
           {/* 처음엔 크게 시작해 제자리로 */}
           <div className="absolute inset-0 animate-[hero-in_2.2s_cubic-bezier(.22,1,.36,1)_both]">
@@ -214,7 +265,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                   "calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px)",
               }}
             >
-              {/* 로비 + 벽의 로고 */}
+              {/* 로비 (로고는 사진 속 벽에 있음) */}
               <div
                 ref={lobbyRef}
                 className="absolute inset-0 will-change-transform"
@@ -224,60 +275,30 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                   src={lobby.src}
                   alt="프라베일 로비"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: `${lobby.logo.x * 100}% 50%` }}
+                  style={{ objectPosition: `${lobby.focusX * 100}% 50%` }}
                 />
                 <div
-                  ref={logoRef}
-                  className="absolute top-0 left-0"
-                  style={{ color: lobby.color }}
-                >
-                  <svg
-                    viewBox={LOGO.viewBox}
-                    role="img"
-                    aria-label="PRAVEIL 프라베일 맑고고운의원"
-                    className="block h-auto w-full drop-shadow-[0_1px_1px_rgba(255,248,236,0.6)]"
-                  >
-                    <defs>
-                      {/* 처음 한 번 로고 위로 빛이 지나감 */}
-                      <linearGradient
-                        id="hero-logo-shine"
-                        x1="0"
-                        y1="0"
-                        x2="1"
-                        y2="0.35"
-                      >
-                        <stop offset="0" stopColor="currentColor" />
-                        <stop offset="0.42" stopColor="currentColor" />
-                        <stop offset="0.5" stopColor="#fff3dc" />
-                        <stop offset="0.58" stopColor="currentColor" />
-                        <stop offset="1" stopColor="currentColor" />
-                        <animateTransform
-                          attributeName="gradientTransform"
-                          type="translate"
-                          from="-1.2 0"
-                          to="1.2 0"
-                          begin="1.4s"
-                          dur="1.8s"
-                          fill="freeze"
-                        />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d={LOGO.d}
-                      fill="url(#hero-logo-shine)"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
+                  ref={shadeRef}
+                  className="absolute inset-0 bg-[#1f1914] opacity-0"
+                />
               </div>
 
-              {/* 상담 장면 */}
-              <div ref={consultRef} className="absolute inset-0 opacity-0">
+              {/* 유리창 속 상담 장면 → 화면 가득 */}
+              <div
+                ref={windowRef}
+                className="absolute top-0 left-0 overflow-hidden opacity-0"
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  ref={consultImgRef}
                   src={consult.src}
                   alt="대표원장 1:1 상담"
-                  className="h-full w-full object-cover object-[58%_40%]"
+                  className="h-full w-full object-cover object-[55%_40%] will-change-transform"
+                />
+                {/* 유리 반사 · 테두리 (들어갈수록 사라짐) */}
+                <div
+                  ref={glareRef}
+                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,244,226,0.28),transparent_35%,transparent_60%,rgba(255,244,226,0.12))] shadow-[inset_0_0_0_1px_rgba(255,240,215,0.45)]"
                 />
               </div>
             </div>

@@ -2,7 +2,12 @@
 import { categoryPhoto, images } from "./home";
 
 export const aboutPage = {
-  hero: { en: "About Praveil", title: "병원소개", description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.", image: images.pageHero.about },
+  hero: {
+    en: "About Praveil",
+    title: "병원소개",
+    description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.",
+    image: images.pageHero.about,
+  },
   statement:
     "과한 변화보다 나다운 아름다움을 지키는 것. 프라베일은 피부를 먼저 읽고, 꼭 필요한 만큼 정확하게 시술합니다.",
   // 임시: 시술 목록 기준으로 작성. 실제 보유 장비 확정 후 교체
@@ -18,23 +23,31 @@ export const aboutPage = {
   ],
 };
 
-// 병원소개 하위 페이지 (메뉴 · 탭 · 상단 사진이 모두 이 목록을 따른다)
-export const aboutSections = [
-  { slug: "philosophy", label: "프라베일 철학", en: "Our Standard", description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.", image: images.pageHero.about },
-  { slug: "doctor", label: "대표원장 소개", en: "Doctor", description: "상담부터 시술까지, 대표원장이 직접 책임집니다.", image: images.clinic[2] },
-] as const;
-export type AboutSlug = (typeof aboutSections)[number]["slug"];
-
 export const treatmentsPage = {
-  hero: { en: "Treatments", title: "시술안내", description: "11개 분야, 54가지 시술을 진행합니다.", image: images.pageHero.treatments },
+  hero: {
+    en: "Treatments",
+    title: "시술안내",
+    description: "11개 분야, 54가지 시술을 진행합니다.",
+    image: images.pageHero.treatments,
+  },
 };
 
 export const noticePage = {
-  hero: { en: "News", title: "공지 · 이벤트", description: "프라베일의 새로운 소식을 전해드립니다.", image: images.pageHero.news },
+  hero: {
+    en: "News",
+    title: "공지 · 이벤트",
+    description: "프라베일의 새로운 소식을 전해드립니다.",
+    image: images.pageHero.news,
+  },
 };
 
 export const locationPage = {
-  hero: { en: "Location", title: "오시는 길", description: "인천 남동구 구월동, 효명프라자 4층", image: images.pageHero.location },
+  hero: {
+    en: "Location",
+    title: "오시는 길",
+    description: "인천 남동구 구월동, 효명프라자 4층",
+    image: images.pageHero.location,
+  },
 };
 
 // 카테고리 · 시술 사진 (분류 slug 기준)

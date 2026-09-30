@@ -123,6 +123,55 @@
 }
 
 /* 하위 메뉴 칸이 살짝 떠오르며 나타남 */
+/* 첫 화면: 조명이 켜지며 시작 */
+@keyframes hero-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes light-on {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.85;
+  }
+  26% {
+    opacity: 0.25;
+  }
+  40%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lights-dark {
+  from {
+    opacity: 0.88;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes logo-sheen {
+  0% {
+    opacity: 0;
+    background-position: 100% 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background-position: 0% 0;
+  }
+}
+
 /* 옆에서 밀려 들어오며 드러나는 글자 */
 @keyframes slide-in {
   from {

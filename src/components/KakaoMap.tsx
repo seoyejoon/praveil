@@ -124,7 +124,7 @@ export default function KakaoMap({ className = "" }: Props) {
       );
       if (!holder) return;
       holder.innerHTML = "";
-      // 지도를 틀 높이만큼 그리면 아래 카카오맵 바(로드뷰 · 길찾기 · 지도 크게 보기)는 틀 밖으로 밀려 가려짐
+      // 지도를 틀 높이만큼 그림 (아래 카카오맵 막대는 CSS 로 숨김)
       renderOne(timestamp, width, Math.max(200, height));
     };
 
@@ -148,7 +148,7 @@ export default function KakaoMap({ className = "" }: Props) {
     >
       <div
         id={`daumRoughmapContainer${timestamp}`}
-        className="root_daum_roughmap root_daum_roughmap_landing absolute top-0 left-0"
+        className="root_daum_roughmap root_daum_roughmap_landing"
       />
     </div>
   );

@@ -410,7 +410,13 @@ body {
 .kakao-roughmap .roughmap_maker_label {
   display: none !important;
 }
-/* 약도 칸을 부모 크기에 맞춤 */
+/* 약도 아래 카카오맵 막대(로드뷰 · 길찾기 · 지도 크게 보기) 숨김. 지도 안의 kakao 로고 · 축척은 남김 */
+.kakao-roughmap .wrap_controllers {
+  display: none !important;
+}
+/* 약도 칸을 부모 크기에 맞춤 (약도가 틀 높이를 늘리지 않게 위에 겹쳐 둠) */
 .kakao-roughmap .root_daum_roughmap {
+  position: absolute !important;
+  inset: 0 auto auto 0;
   width: 100% !important;
 }

@@ -8,8 +8,16 @@ export const mainHero = {
   eyebrow: "Praveil Clinic",
   scenes: [
     // words: 둘째 줄 [ 괄호 ] 안에서 바뀌는 단어, after: 괄호 뒤 글자
-    { title: ["오직 당신만을 위한"], words: ["단 하나의", "정직한", "섬세한", "자연스러운"], after: "계획", sub: "대표원장 책임 진료 시스템" },
-    { title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."], sub: "1:1 맞춤 상담" },
+    {
+      title: ["오직 당신만을 위한"],
+      words: ["단 하나의", "정직한", "섬세한", "자연스러운"],
+      after: "계획",
+      sub: "대표원장 책임 진료 시스템",
+    },
+    {
+      title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."],
+      sub: "1:1 맞춤 상담",
+    },
   ],
   lobby: {
     src: photo("hero-lobby"),
@@ -17,19 +25,6 @@ export const mainHero = {
     height: 1351,
     focusX: 0.45,
     glass: { x0: 0.775, y0: 0.15, x1: 1.12, y1: 0.83 },
-    // 처음 들어올 때 차례로 켜지는 조명 (사진 속 위치 · 크기, 비율). at = 켜지는 시각(초)
-    lights: [
-      { x: 0.275, y: 0.27, rx: 0.07, ry: 0.22, at: 0.35 },
-      { x: 0.377, y: 0.27, rx: 0.07, ry: 0.22, at: 0.6 },
-      { x: 0.4875, y: 0.27, rx: 0.07, ry: 0.22, at: 0.85 },
-      { x: 0.5875, y: 0.27, rx: 0.07, ry: 0.22, at: 1.1 },
-      { x: 0.432, y: 0.355, rx: 0.26, ry: 0.08, at: 1.45 },
-      { x: 0.44, y: 0.47, rx: 0.3, ry: 0.06, at: 1.6 },
-      { x: 0.44, y: 0.68, rx: 0.38, ry: 0.17, at: 1.75 },
-      { x: 0.9, y: 0.45, rx: 0.22, ry: 0.5, at: 1.95 },
-    ],
-    // 사진 속 로고 글자 모양 (빛 반사용)
-    logoMask: { src: "/images/photos/hero-logo-mask.png", x0: 0.3787, y0: 0.2642, x1: 0.4946, y1: 0.3005 },
   },
   consult: { src: photo("hero-consult") },
 };
@@ -42,11 +37,35 @@ export const mainScan = {
   // 분석 카드: point = 얼굴 점 번호(MediaPipe), top = 카드 세로 위치(%)
   // 수치는 넣지 않는다 (의료광고: 실제 측정값처럼 보이지 않게)
   items: [
-    { label: "주름", en: "Wrinkle", point: 151, side: "left" as const, top: 14 },
+    {
+      label: "주름",
+      en: "Wrinkle",
+      point: 151,
+      side: "left" as const,
+      top: 14,
+    },
     { label: "모공", en: "Pore", point: 205, side: "left" as const, top: 46 },
-    { label: "윤곽", en: "Contour", point: 172, side: "left" as const, top: 74 },
-    { label: "탄력", en: "Elasticity", point: 263, side: "right" as const, top: 22 },
-    { label: "색소", en: "Pigment", point: 425, side: "right" as const, top: 58 },
+    {
+      label: "윤곽",
+      en: "Contour",
+      point: 172,
+      side: "left" as const,
+      top: 74,
+    },
+    {
+      label: "탄력",
+      en: "Elasticity",
+      point: 263,
+      side: "right" as const,
+      top: 22,
+    },
+    {
+      label: "색소",
+      en: "Pigment",
+      point: 425,
+      side: "right" as const,
+      top: 58,
+    },
   ],
   steps: ["피부 진단", "분석", "맞춤 설계", "대표원장 시술"],
 };
@@ -96,11 +115,36 @@ export const mainWhy = {
   label: "Why Praveil",
   title: ["프라베일이", "다른 이유"],
   items: [
-    { icon: "doctor", title: "대표원장 책임 진료", text: "상담한 원장이 시술까지 직접 진행하고, 결과까지 책임집니다.", image: photo("special-2") },
-    { icon: "consult", title: "1:1 맞춤 설계", text: "피부 상태와 생활 습관, 원하는 변화를 충분히 듣고 나만의 계획을 세웁니다.", image: photo("special-1") },
-    { icon: "genuine", title: "정품 · 정량 원칙", text: "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.", image: photo("special-3") },
-    { icon: "device", title: "목적에 맞는 장비", text: "피부 층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.", image: photo("special-4") },
-    { icon: "space", title: "프라이빗한 공간", text: "상담부터 회복까지, 편안하게 머무를 수 있는 공간을 준비했습니다.", image: photo("special-5") },
+    {
+      icon: "doctor",
+      title: "대표원장 책임 진료",
+      text: "상담한 원장이 시술까지 직접 진행하고, 결과까지 책임집니다.",
+      image: photo("special-2"),
+    },
+    {
+      icon: "consult",
+      title: "1:1 맞춤 설계",
+      text: "피부 상태와 생활 습관, 원하는 변화를 충분히 듣고 나만의 계획을 세웁니다.",
+      image: photo("special-1"),
+    },
+    {
+      icon: "genuine",
+      title: "정품 · 정량 원칙",
+      text: "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.",
+      image: photo("special-3"),
+    },
+    {
+      icon: "device",
+      title: "목적에 맞는 장비",
+      text: "피부 층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.",
+      image: photo("special-4"),
+    },
+    {
+      icon: "space",
+      title: "프라이빗한 공간",
+      text: "상담부터 회복까지, 편안하게 머무를 수 있는 공간을 준비했습니다.",
+      image: photo("special-5"),
+    },
   ],
 };
 
@@ -124,5 +168,12 @@ export const mainCategoryImage: Record<string, string> = {
 export const mainSpace = {
   label: "Private Space",
   title: "편안하게 머무는, 프라이빗한 공간",
-  images: ["clinic-1", "clinic-2", "clinic-3", "clinic-4", "clinic-5", "clinic-6"].map(photo),
+  images: [
+    "clinic-1",
+    "clinic-2",
+    "clinic-3",
+    "clinic-4",
+    "clinic-5",
+    "clinic-6",
+  ].map(photo),
 };

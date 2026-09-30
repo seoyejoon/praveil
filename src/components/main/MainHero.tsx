@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import RotatingWord from "@/components/RotatingWord";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
@@ -15,23 +14,13 @@ type Props = {
     height: number;
     focusX: number;
     glass: Box;
-    lights: { x: number; y: number; rx: number; ry: number; at: number }[];
-    logoMask: Box & { src: string };
   };
   consult: { src: string };
 };
 
 const PAD = 24; // 마우스 따라 움직일 여유 (사진 가장자리가 보이지 않게)
 const POINTS = [0, 0.6, 1]; // 장면이 멈추는 자리 (스크롤 진행 비율)
-const INTRO_END = 3.4; // 조명 켜짐이 끝나는 시각(초)
-
-// 사진 속 비율 좌표 → 사진 칸(image-space) 기준 위치
-const place = (b: Box): CSSProperties => ({
-  left: `${b.x0 * 100}%`,
-  top: `${b.y0 * 100}%`,
-  width: `${(b.x1 - b.x0) * 100}%`,
-  height: `${(b.y1 - b.y0) * 100}%`,
-});
+const LIGHT_FROM = 1.2; // 마우스 조명이 켜지기 시작하는 시각(초)
 
 // 첫 화면
 // ● 들어오면: 로비가 어둡게 시작 → 천장 조명이 하나씩 톡톡 켜지고, 선반 · 데스크 조명 → 로고에 빛이 스침
@@ -47,49 +36,22 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
   const consultImgRef = useRef<HTMLImageElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
-  const sheenRef = useRef<HTMLDivElement>(null);
-  const teaserRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const stRef = useRef<ScrollTrigger | null>(null);
   const progressRef = useRef(0); // 스크롤 장면 진행 (0~1)
   const [scene, setScene] = useState(0);
-  const [intro, setIntro] = useState(true);
-  const [peek, setPeek] = useState(false);
-
-  // 조명 켜짐이 끝나면 켜짐용 겹침 층을 치움
-  useEffect(() => {
-    const t = setTimeout(
-      () => setIntro(false),
-      reducedMotion() ? 0 : INTRO_END * 1000,
-    );
-    return () => clearTimeout(t);
-  }, []);
-
-  // 상담실 장면으로 (유리 상담실 · 모바일 버튼을 눌렀을 때)
-  const enterConsult = () => {
-    const st = stRef.current;
-    if (!st) return;
-    const y = st.start + (st.end - st.start) * POINTS[1];
-    const lenis = (
-      window as unknown as {
-        __lenis?: { scrollTo: (y: number, o: object) => void };
-      }
-    ).__lenis;
-    if (lenis)
-      lenis.scrollTo(y, {
-        duration: 1.8,
-        easing: (x: number) => 1 - Math.pow(1 - x, 3),
-      });
-    else window.scrollTo({ top: y, behavior: "smooth" });
-  };
 
   // 마우스 조명 + 로고 반사 + 사진 살짝 반대로 움직임
   useEffect(() => {
     const root = rootRef.current;
     const spot = spotRef.current;
-    const sheen = sheenRef.current;
-    if (!root || !spot || reducedMotion()) return;
-    const fine = window.matchMedia("(pointer: fine)").matches;
+    // 마우스가 있는 PC 에서만
+    if (
+      !root ||
+      !spot ||
+      reducedMotion() ||
+      !window.matchMedia("(pointer: fine)").matches
+    )
+      return;
     const L = {
       x: root.clientWidth * 0.45,
       y: root.clientHeight * 0.32,
@@ -118,10 +80,8 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       );
     };
     const onLeave = () => (L.hover = false);
-    if (fine) {
-      root.addEventListener("pointermove", onMove);
-      root.addEventListener("pointerleave", onLeave);
-    }
+    root.addEventListener("pointermove", onMove);
+    root.addEventListener("pointerleave", onLeave);
 
     function tick(now: number) {
       raf = requestAnimationFrame(tick);
@@ -132,10 +92,10 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       const t = (now - start) / 1000;
       const w = root!.clientWidth,
         h = root!.clientHeight;
-      // 마우스가 없으면 벽을 따라 천천히 저절로
+      // 마우스가 화면 밖이면 로고 쪽에 머묾
       if (!L.hover) {
-        L.tx = w * (0.45 + Math.sin(t * 0.32) * 0.2);
-        L.ty = h * (0.34 + Math.cos(t * 0.23) * 0.1);
+        L.tx = w * 0.45;
+        L.ty = h * 0.32;
       }
       const k = 1 - Math.exp(-dt * 4);
       L.x += (L.tx - L.x) * k;
@@ -143,24 +103,10 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       spot!.style.setProperty("--lx", `${L.x.toFixed(1)}px`);
       spot!.style.setProperty("--ly", `${L.y.toFixed(1)}px`);
       // 조명은 켜짐이 끝난 뒤 서서히, 스크롤로 상담실에 들어가면 사라짐
-      const on = Math.min(1, Math.max(0, (t - (INTRO_END - 0.6)) / 1.2));
+      const on = Math.min(1, Math.max(0, (t - LIGHT_FROM) / 1.2));
       spot!.style.opacity = String(
         on * Math.max(0, 1 - progressRef.current * 4),
       );
-      // 로고 반사: 조명이 가까울수록 밝게, 조명 위치에 따라 빛줄기가 글자 위를 움직임
-      if (sheen && on > 0) {
-        const r = sheen.getBoundingClientRect();
-        const rr = root!.getBoundingClientRect();
-        const cx = r.left - rr.left + r.width / 2,
-          cy = r.top - rr.top + r.height / 2;
-        const d = Math.hypot(L.x - cx, (L.y - cy) * 1.4);
-        const near = Math.max(0, 1 - d / Math.max(260, r.width * 1.6));
-        const rel = (L.x - (r.left - rr.left)) / Math.max(1, r.width);
-        sheen.style.backgroundPosition = `${(((1.5 - rel) / 2) * 100).toFixed(1)}% 0`;
-        sheen.style.opacity = String(
-          on * near * 0.9 * Math.max(0, 1 - progressRef.current * 4),
-        );
-      }
     }
     raf = requestAnimationFrame(tick);
     return () => {
@@ -252,12 +198,6 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
         glareRef.current.style.opacity = String(Math.max(0, 1 - t * 2.2));
       if (shadeRef.current)
         shadeRef.current.style.opacity = String(0.55 * Math.min(1, t * 2));
-      // 유리 상담실 미리보기는 스크롤을 시작하면 사라짐
-      if (teaserRef.current) {
-        const v = Math.max(0, 1 - t * 12);
-        teaserRef.current.style.opacity = String(v);
-        teaserRef.current.style.pointerEvents = v > 0.5 ? "" : "none";
-      }
     };
     const state = { t: 0 };
     apply(0);
@@ -309,7 +249,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
     };
 
     const ctx = gsap.context(() => {
-      const tl = gsap
+      gsap
         .timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
@@ -346,34 +286,15 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
           0.75,
         )
         .to(copyRefs.current[1], { autoAlpha: 0, duration: 0.12 }, 0.82);
-      stRef.current = tl.scrollTrigger ?? null;
     }, root);
     ScrollTrigger.refresh();
     return () => {
       clearTimeout(timer);
-      stRef.current = null;
       ScrollTrigger.removeEventListener("refreshInit", onRefresh);
       window.removeEventListener("resize", onRefresh);
       ctx.revert();
     };
   }, [lobby]);
-
-  // 사진 칸: 로비 사진이 틀을 덮을 때(object-cover) 실제 사진이 놓이는 자리 (CSS 만으로 계산, 틀 = container)
-  const ar = lobby.width / lobby.height;
-  const imageSpace: CSSProperties = {
-    width: `max(100cqw, calc(100cqh * ${ar}))`,
-    height: `max(100cqh, calc(100cqw / ${ar}))`,
-    left: `calc((100cqw - max(100cqw, calc(100cqh * ${ar}))) * ${lobby.focusX})`,
-    top: `calc((100cqh - max(100cqh, calc(100cqw / ${ar}))) / 2)`,
-  };
-  const g = lobby.glass;
-  const glassBox = { x0: g.x0, y0: g.y0, x1: Math.min(1, g.x1), y1: g.y1 };
-  const mask = (url: string): CSSProperties => ({
-    maskImage: `url(${url})`,
-    WebkitMaskImage: `url(${url})`,
-    maskSize: "100% 100%",
-    WebkitMaskSize: "100% 100%",
-  });
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
@@ -388,7 +309,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
           className="absolute inset-0 overflow-hidden bg-[#cbbfae]"
         >
           {/* 처음엔 살짝 크게 시작해 제자리로 */}
-          <div className="absolute inset-0 animate-[hero-settle_3.4s_cubic-bezier(.22,1,.36,1)_both]">
+          <div className="absolute inset-0 animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both]">
             <div
               className="absolute -inset-6 transition-[translate] duration-700 ease-out"
               style={{
@@ -399,7 +320,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
               {/* 로비 (로고는 사진 속 벽에 있음) */}
               <div
                 ref={lobbyRef}
-                className="absolute inset-0 overflow-hidden will-change-transform [container-type:size]"
+                className="absolute inset-0 overflow-hidden will-change-transform"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -408,97 +329,6 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                   className="h-full w-full object-cover"
                   style={{ objectPosition: `${lobby.focusX * 100}% 50%` }}
                 />
-
-                {/* 조명 켜짐: 어둡게 덮었다가, 조명 자리부터 하나씩 밝은 사진이 드러남 */}
-                {intro && (
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 motion-reduce:hidden"
-                  >
-                    <div className="absolute inset-0 animate-[lights-dark_0.9s_ease-in-out_2.3s_both] bg-[#140f0b]" />
-                    <div className="absolute" style={imageSpace}>
-                      {lobby.lights.map((l) => {
-                        const m = `radial-gradient(${l.rx * 100}% ${l.ry * 100}% at ${l.x * 100}% ${l.y * 100}%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%)`;
-                        return (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            key={`${l.x}-${l.y}`}
-                            src={lobby.src}
-                            alt=""
-                            className="absolute inset-0 h-full w-full opacity-0"
-                            style={{
-                              maskImage: m,
-                              WebkitMaskImage: m,
-                              animation: `light-on 0.9s ease-out ${l.at}s both`,
-                            }}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                <div
-                  className="pointer-events-none absolute"
-                  style={imageSpace}
-                >
-                  {/* 로고 글자에 스치는 빛 (처음 한 번 + 마우스 조명이 가까우면) */}
-                  <div
-                    ref={sheenRef}
-                    aria-hidden
-                    className="absolute opacity-0 motion-reduce:hidden"
-                    style={{
-                      ...place(lobby.logoMask),
-                      ...mask(lobby.logoMask.src),
-                      backgroundImage:
-                        "linear-gradient(100deg, transparent 38%, rgba(255,240,214,0.95) 50%, transparent 62%)",
-                      backgroundSize: "300% 100%",
-                      animation: "logo-sheen 1.6s ease-in-out 1.9s backwards",
-                    }}
-                  />
-                </div>
-
-                {/* 유리 상담실 미리보기 (PC): 올리면 유리 너머로 상담 장면이 비침, 누르면 안으로 */}
-                <div
-                  ref={teaserRef}
-                  className="absolute hidden lg:block"
-                  style={imageSpace}
-                >
-                  <button
-                    type="button"
-                    onClick={enterConsult}
-                    onMouseEnter={() => setPeek(true)}
-                    onMouseLeave={() => setPeek(false)}
-                    onFocus={() => setPeek(true)}
-                    onBlur={() => setPeek(false)}
-                    aria-label="1:1 상담실 보기"
-                    className="absolute cursor-pointer overflow-hidden rounded-tl-[44px] outline-none"
-                    style={place(glassBox)}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={consult.src}
-                      alt=""
-                      className={`absolute inset-0 h-full w-full object-cover object-[55%_40%] transition duration-700 ease-out ${peek ? "scale-100 opacity-55" : "scale-110 opacity-0"}`}
-                    />
-                    <span className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,244,226,0.3),transparent_40%,transparent_65%,rgba(255,244,226,0.14))]" />
-                    {/* 평소: 작은 점이 숨 쉬듯 / 올리면: 안내 */}
-                    <span className="absolute top-[46%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <span
-                        className={`relative flex items-center gap-2 rounded-full border border-white/40 bg-black/25 py-2 pr-4 pl-3 text-[13px] whitespace-nowrap text-white backdrop-blur-md transition duration-500 ${peek ? "opacity-100" : "translate-y-1 opacity-0"}`}
-                      >
-                        1:1 상담실 보기
-                        <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-                      </span>
-                      <span
-                        className={`absolute top-1/2 left-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center transition duration-500 ${peek ? "scale-50 opacity-0" : intro ? "opacity-0" : "opacity-100"}`}
-                      >
-                        <span className="absolute inset-0 animate-ping rounded-full bg-[#f1e2c6]/40" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-[#f1e2c6] shadow-[0_0_12px_rgba(241,226,198,0.9)]" />
-                      </span>
-                    </span>
-                  </button>
-                </div>
 
                 <div
                   ref={shadeRef}
@@ -556,7 +386,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                   <div
                     className={
                       i === 0
-                        ? "animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_2.4s_both]"
+                        ? "animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_1s_both]"
                         : ""
                     }
                   >
@@ -584,17 +414,6 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                     <p className="mt-3 text-[13px] text-white/70 md:text-sm">
                       {s.sub}
                     </p>
-                    {/* 모바일 · 태블릿: 유리 상담실이 화면 밖이라 버튼으로 (문구와 함께 사라짐) */}
-                    {i === 0 && (
-                      <button
-                        type="button"
-                        onClick={enterConsult}
-                        className="pointer-events-auto mt-5 inline-flex items-center gap-1.5 rounded-full border border-white/40 bg-black/25 px-3.5 py-2 text-xs text-white backdrop-blur-md lg:hidden"
-                      >
-                        1:1 상담실 보기
-                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-                      </button>
-                    )}
                   </div>
                 </div>
               ))}
@@ -604,7 +423,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
           {/* 장면 위치 표시 */}
           <div
             aria-hidden
-            className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 animate-[fade-up_1s_ease_2.8s_both] items-center gap-2 lg:flex"
+            className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 animate-[fade-up_1s_ease_1.4s_both] items-center gap-2 lg:flex"
           >
             {scenes.map((s, i) => (
               <span
@@ -615,7 +434,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
           </div>
           <div
             aria-hidden
-            className="absolute right-5 bottom-28 flex animate-[fade-up_1s_ease_2.8s_both] flex-col items-center gap-2 lg:hidden"
+            className="absolute right-5 bottom-28 flex animate-[fade-up_1s_ease_1.4s_both] flex-col items-center gap-2 lg:hidden"
           >
             {scenes.map((s, i) => (
               <span

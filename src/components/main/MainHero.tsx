@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import RotatingWord from "@/components/RotatingWord";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
 type Props = {
   eyebrow: string;
-  scenes: { title: string[]; sub: string }[];
+  scenes: { title: string[]; words?: string[]; after?: string; sub: string }[];
   lobby: {
     src: string;
     width: number;
@@ -33,7 +34,6 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
   const consultImgRef = useRef<HTMLImageElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const [scene, setScene] = useState(0);
 
   // 마우스 → 사진이 살짝 반대로 움직여 깊이감
@@ -229,11 +229,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
           },
           0.75,
         )
-        .to(
-          [copyRefs.current[1], eyebrowRef.current],
-          { autoAlpha: 0, duration: 0.12 },
-          0.82,
-        );
+        .to(copyRefs.current[1], { autoAlpha: 0, duration: 0.12 }, 0.82);
     }, root);
     ScrollTrigger.refresh();
     return () => {
@@ -309,13 +305,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
 
           {/* 장면별 문구 */}
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[1600px] px-5 pb-28 md:px-10 md:pb-20">
-            <p
-              ref={eyebrowRef}
-              className="animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.9s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs"
-            >
-              {eyebrow}
-            </p>
-            <div className="relative mt-4 grid">
+            <div className="relative grid">
               {scenes.map((s, i) => (
                 <div
                   key={s.sub}
@@ -333,12 +323,26 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                         : ""
                     }
                   >
+                    {i === 0 && (
+                      <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs">
+                        {eyebrow}
+                      </p>
+                    )}
                     <h2 className="text-[24px] leading-[1.4] font-light tracking-[-0.03em] md:text-[34px] 2xl:text-[40px]">
                       {s.title.map((t) => (
                         <span key={t} className="block">
                           {t}
                         </span>
                       ))}
+                      {s.words && (
+                        <span className="flex items-center gap-2 md:gap-3">
+                          <RotatingWord
+                            words={s.words}
+                            className="text-[#f1e2c6]"
+                          />
+                          {s.after}
+                        </span>
+                      )}
                     </h2>
                     <p className="mt-3 text-[13px] text-white/70 md:text-sm">
                       {s.sub}

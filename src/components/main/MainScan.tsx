@@ -105,31 +105,66 @@ export default function MainScan({
                 </p>
               </Reveal>
 
-              {/* 진료 흐름: 차례로 켜짐 */}
-              <Reveal delay={300} className="mt-8 lg:mt-12">
-                <ol className="flex flex-wrap gap-2">
-                  {steps.map((s, i) => {
-                    const Icon = stepIcons[i % stepIcons.length];
-                    const on = i === step;
-                    return (
-                      <li key={s} className="flex items-center gap-2">
-                        <span
-                          className={`flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs transition duration-500 ${
-                            on
-                              ? "border-gold/60 bg-sand/70 text-ink"
-                              : "border-line text-ink/40"
-                          }`}
+              {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜지고, 아래 선이 함께 참 */}
+              <Reveal delay={300} className="mt-10 lg:mt-14">
+                <div className="relative max-w-[560px]">
+                  {/* 이어지는 선 (아이콘 가운데 높이) */}
+                  <span
+                    aria-hidden
+                    className="absolute top-6 right-[12.5%] left-[12.5%] h-px bg-line md:top-7"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute top-6 left-[12.5%] h-px bg-gold transition-[width] duration-500 md:top-7"
+                    style={{
+                      width: `${(75 * step) / Math.max(1, steps.length - 1)}%`,
+                    }}
+                  />
+                  <ol className="relative grid grid-cols-4">
+                    {steps.map((s, i) => {
+                      const Icon = stepIcons[i % stepIcons.length];
+                      const on = i === step;
+                      const done = i < step;
+                      return (
+                        <li
+                          key={s}
+                          className="flex flex-col items-center text-center"
                         >
-                          <Icon className="h-4 w-4" strokeWidth={1.5} />
-                          {s}
-                        </span>
-                        {i < steps.length - 1 && (
-                          <span className="hidden h-px w-3 bg-line md:block" />
-                        )}
-                      </li>
-                    );
-                  })}
-                </ol>
+                          <span
+                            className={`grid h-12 w-12 place-items-center rounded-full border transition duration-500 md:h-14 md:w-14 ${
+                              on
+                                ? "scale-110 border-gold bg-gold text-white shadow-[0_10px_28px_-10px_rgba(168,142,106,0.9)]"
+                                : done
+                                  ? "border-gold/60 bg-white text-gold"
+                                  : "border-line bg-white text-ink/30"
+                            }`}
+                          >
+                            <Icon
+                              className="h-5 w-5 md:h-6 md:w-6"
+                              strokeWidth={1.5}
+                            />
+                          </span>
+                          <span
+                            className={`mt-3 font-display text-[10px] tracking-[0.2em] transition-colors duration-500 md:text-[11px] ${on || done ? "text-gold" : "text-ink/30"}`}
+                          >
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span
+                            className={`mt-1 text-[13px] break-keep transition-colors duration-500 md:text-[15px] ${
+                              on
+                                ? "font-semibold text-ink"
+                                : done
+                                  ? "text-ink/70"
+                                  : "text-ink/35"
+                            }`}
+                          >
+                            {s}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
               </Reveal>
             </div>
 

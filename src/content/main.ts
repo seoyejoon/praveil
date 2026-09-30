@@ -7,7 +7,8 @@ const photo = (name: string) => `/images/photos/${name}.webp`;
 export const mainHero = {
   eyebrow: "Praveil Clinic",
   scenes: [
-    { title: ["오직 당신만을 위한", "단 하나의 계획"], sub: "대표원장 책임 진료 시스템" },
+    // words: 둘째 줄 [ 괄호 ] 안에서 바뀌는 단어, after: 괄호 뒤 글자
+    { title: ["오직 당신만을 위한"], words: ["단 하나의", "정직한", "섬세한", "자연스러운"], after: "계획", sub: "대표원장 책임 진료 시스템" },
     { title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."], sub: "1:1 맞춤 상담" },
   ],
   lobby: { src: photo("hero-lobby"), width: 2400, height: 1351, focusX: 0.45, glass: { x0: 0.775, y0: 0.15, x1: 1.12, y1: 0.83 } },

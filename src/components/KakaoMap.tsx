@@ -6,13 +6,24 @@ import { useEffect, useId, useRef } from "react";
 // 원래 소스는 페이지를 처음 열 때 한 번만 그리는 방식(document.write)이라,
 // 여기서는 불러오는 순서를 바꿔 페이지 이동 · 화면 크기 변경에도 다시 그린다.
 const ROUGHMAP = { timestamp: "1790564504316", key: "vh53imoa6rn" };
-const LOADER = "https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js";
+const LOADER =
+  "https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js";
 
 type LanderInstance = { render: () => void; roughmapData?: unknown };
-type Lander = new (opts: { timestamp: string; key: string; mapWidth: string; mapHeight: string }) => LanderInstance;
+type Lander = new (opts: {
+  timestamp: string;
+  key: string;
+  mapWidth: string;
+  mapHeight: string;
+}) => LanderInstance;
 declare global {
   interface Window {
-    daum?: { roughmap?: { Lander?: Lander; instances?: Record<string, LanderInstance> } };
+    daum?: {
+      roughmap?: {
+        Lander?: Lander;
+        instances?: Record<string, LanderInstance>;
+      };
+    };
   }
 }
 
@@ -23,12 +34,20 @@ function renderOne(timestamp: string, width: number, height: number) {
     () =>
       new Promise<void>((done) => {
         const rm = window.daum!.roughmap!;
-        const inst = new rm.Lander!({ timestamp, key: ROUGHMAP.key, mapWidth: String(width), mapHeight: String(height) });
+        const inst = new rm.Lander!({
+          timestamp,
+          key: ROUGHMAP.key,
+          mapWidth: String(width),
+          mapHeight: String(height),
+        });
         rm.instances = rm.instances ?? {};
         rm.instances[ROUGHMAP.timestamp] = inst;
         inst.render();
         const started = Date.now();
-        const wait = () => (inst.roughmapData || Date.now() - started > 6000 ? done() : setTimeout(wait, 80));
+        const wait = () =>
+          inst.roughmapData || Date.now() - started > 6000
+            ? done()
+            : setTimeout(wait, 80);
         wait();
       }),
   );
@@ -70,10 +89,11 @@ function loadRoughmap() {
   return loading;
 }
 
-// 약도 아래 붙는 '지도 크게 보기' 막대 높이
-const BAR = 32;
-
-type Props = { className?: string; address?: string; coords?: { lat: number; lng: number } };
+type Props = {
+  className?: string;
+  address?: string;
+  coords?: { lat: number; lng: number };
+};
 
 export default function KakaoMap({ className = "" }: Props) {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -99,10 +119,13 @@ export default function KakaoMap({ className = "" }: Props) {
       const height = Math.round(box.clientHeight);
       if (!width || !height || width === lastWidth) return;
       lastWidth = width;
-      const holder = box.querySelector<HTMLDivElement>(`#daumRoughmapContainer${timestamp}`);
+      const holder = box.querySelector<HTMLDivElement>(
+        `#daumRoughmapContainer${timestamp}`,
+      );
       if (!holder) return;
       holder.innerHTML = "";
-      renderOne(timestamp, width, Math.max(200, height - BAR));
+      // 지도를 틀 높이만큼 그리면 아래 카카오맵 바(로드뷰 · 길찾기 · 지도 크게 보기)는 틀 밖으로 밀려 가려짐
+      renderOne(timestamp, width, Math.max(200, height));
     };
 
     draw();
@@ -119,8 +142,14 @@ export default function KakaoMap({ className = "" }: Props) {
   }, [timestamp]);
 
   return (
-    <div ref={boxRef} className={`kakao-roughmap relative overflow-hidden bg-sand ${className}`}>
-      <div id={`daumRoughmapContainer${timestamp}`} className="root_daum_roughmap root_daum_roughmap_landing" />
+    <div
+      ref={boxRef}
+      className={`kakao-roughmap relative overflow-hidden bg-sand ${className}`}
+    >
+      <div
+        id={`daumRoughmapContainer${timestamp}`}
+        className="root_daum_roughmap root_daum_roughmap_landing absolute top-0 left-0"
+      />
     </div>
   );
 }

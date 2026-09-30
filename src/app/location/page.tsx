@@ -7,7 +7,13 @@ import { locationPage } from "@/content/pages";
 import { sitemap } from "@/content/sitemap";
 import { getHospital } from "@/lib/data";
 
-export const metadata: Metadata = { title: "오시는 길" };
+export async function generateMetadata(): Promise<Metadata> {
+  const h = await getHospital();
+  return {
+    title: "오시는 길",
+    description: `${h.address} ${h.addressDetail}. ${h.name} 오시는 길 · 주차 · 진료시간 안내.`,
+  };
+}
 
 const icons = [Building2, Bus, Car];
 

@@ -5,7 +5,10 @@ import { noticePage } from "@/content/pages";
 import { sitemap } from "@/content/sitemap";
 import { getNotices } from "@/lib/data";
 
-export const metadata: Metadata = { title: "공지 · 이벤트" };
+export const metadata: Metadata = {
+  title: "공지 · 이벤트",
+  description: "프라베일 맑고고운의원의 진료 일정 공지와 이벤트 소식.",
+};
 
 type Props = { searchParams: Promise<{ type?: string }> };
 

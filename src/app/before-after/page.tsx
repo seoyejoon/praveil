@@ -5,7 +5,11 @@ import { beforeAfter } from "@/content/beforeAfter";
 import { sitemap } from "@/content/sitemap";
 import { getMember } from "@/lib/member";
 
-export const metadata: Metadata = { title: "전후사진" };
+export const metadata: Metadata = {
+  title: "전후사진",
+  description:
+    "프라베일 맑고고운의원 시술 전후사진. 의료법에 따라 로그인한 회원에게만 공개합니다.",
+};
 
 // 전후사진: 회원에게만 공개 (의료법)
 export default async function BeforeAfterPage() {

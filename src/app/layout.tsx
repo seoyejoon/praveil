@@ -23,22 +23,92 @@ export const metadata: Metadata = {
     default: "프라베일 맑고고운의원",
     template: "%s | 프라베일 맑고고운의원",
   },
-  description: "원장 직접 시술, 1:1 맞춤 상담. 리프팅 · 보톡스 · 필러 · 스킨부스터 · 레이저",
+  description:
+    "인천 남동구 프라베일 맑고고운의원. 대표원장이 상담부터 시술까지 직접 합니다. 리프팅 · 필러 · 보톡스 · 스킨부스터 · 레이저.",
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "프라베일 맑고고운의원",
+    images: ["/images/photos/hero-lobby.webp"],
+  },
   // 임시 확인용(Vercel)에서는 검색 노출 안 함
   robots: isPreviewHost ? { index: false, follow: false } : undefined,
 };
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+const DAYS: Record<string, string> = {
+  월: "Monday",
+  화: "Tuesday",
+  수: "Wednesday",
+  목: "Thursday",
+  금: "Friday",
+  토: "Saturday",
+  일: "Sunday",
+};
+
+export default async function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const [hospital, popups, member, signup] = await Promise.all([
     getHospital(),
     getPopups(),
     getMember(),
     getSignupSettings(),
   ]);
+  const [region = "", locality = "", ...street] = hospital.address.split(" ");
+  // 병원 기본 정보 (모든 페이지 공통): 검색엔진 · AI가 병원 이름 · 주소 · 전화 · 진료시간을 정확히 알도록
+  const clinicLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "@id": `${SITE_URL}/#clinic`,
+    name: hospital.name,
+    url: SITE_URL,
+    image: `${SITE_URL}/images/photos/hero-lobby.webp`,
+    telephone: hospital.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${street.join(" ")} ${hospital.addressDetail}`,
+      addressLocality: locality,
+      addressRegion: region,
+      addressCountry: "KR",
+    },
+    ...(hospital.coords && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: hospital.coords.lat,
+        longitude: hospital.coords.lng,
+      },
+    }),
+    // "월 · 화 · 수 · 금 / 10:00 – 19:00" → Monday, Tuesday … 10:00 ~ 19:00
+    openingHoursSpecification: hospital.hours
+      .filter((h) => !h.closed)
+      .map((h) => {
+        const [opens, closes] = h.time.split(/\s*[–~-]\s*/);
+        return {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [...h.label.replace(/요일/g, "")]
+            .map((c) => DAYS[c])
+            .filter(Boolean)
+            .map((d) => `https://schema.org/${d}`),
+          opens,
+          closes,
+        };
+      })
+      .filter((o) => o.dayOfWeek.length && o.closes),
+    founder: { "@type": "Physician", name: hospital.director },
+    ...(hospital.instagramUrl.startsWith("http") && {
+      sameAs: [hospital.instagramUrl],
+    }),
+  };
 
   return (
     <html lang="ko">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(clinicLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <Header
           phone={hospital.phone}
           reservationUrl={hospital.naverReservationUrl}

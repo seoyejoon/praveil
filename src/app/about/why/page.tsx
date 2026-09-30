@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import AboutPage from "@/components/AboutPage";
+import { aboutSections } from "@/content/pages";
 import FeatureList from "@/components/FeatureList";
 import SectionTitle from "@/components/SectionTitle";
 import { getFeatures } from "@/lib/data";
 
-export const metadata: Metadata = { title: "프라베일이 다른 이유" };
+const section = aboutSections.find((s) => s.slug === "why")!;
+export const metadata: Metadata = {
+  title: "프라베일이 다른 이유",
+  description: section.description,
+};
 
 export default async function WhyPage() {
   const features = await getFeatures();

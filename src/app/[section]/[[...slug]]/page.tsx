@@ -125,32 +125,6 @@ export default async function SectionPage({ params }: Props) {
             { name: page.label, item: url },
           ].map((b, i) => ({ "@type": "ListItem", position: i + 1, ...b })),
         },
-        {
-          "@type": "MedicalClinic",
-          "@id": `${SITE_URL}/#clinic`,
-          name: hospital.name,
-          url: SITE_URL,
-          telephone: hospital.phone,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: `${hospital.address.split(" ").slice(2).join(" ")} ${hospital.addressDetail}`,
-            addressLocality: hospital.address.split(" ")[1],
-            addressRegion: hospital.address.split(" ")[0],
-            addressCountry: "KR",
-          },
-          ...(hospital.coords && {
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: hospital.coords.lat,
-              longitude: hospital.coords.lng,
-            },
-          }),
-          employee: {
-            "@type": "Physician",
-            name: doctor.name,
-            jobTitle: doctor.title,
-          },
-        },
       ],
     };
     return (

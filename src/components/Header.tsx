@@ -56,8 +56,14 @@ export default function Header({
     const onScroll = () => {
       const y = window.scrollY;
       // 어두운 첫 화면이 화면을 덮고 있는 동안(스크롤로 장면이 넘어가는 중)은 투명 유지
+      // 하위 페이지는 사진이 제자리에 붙어 있고 본문이 덮으며 올라오므로, 본문 윗선([data-hero-end])으로 판단
+      const end = document.querySelector("[data-hero-end]");
       const hero = document.querySelector("[data-dark-hero]");
-      const overHero = hero ? hero.getBoundingClientRect().bottom > 80 : false;
+      const overHero = end
+        ? end.getBoundingClientRect().top > 80
+        : hero
+          ? hero.getBoundingClientRect().bottom > 80
+          : false;
       setScrolled(y > 40 && !overHero);
       if (y > 240 && y > last + 2) setHidden(true);
       else if (y < last - 2 || y <= 240) setHidden(false);
@@ -67,6 +73,12 @@ export default function Header({
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // 메뉴바가 보이는지 알려 줌: 하위 페이지 탭(.sub-tabs)이 메뉴바 바로 아래에 붙거나, 숨으면 맨 위로 올라감
+  const shown = !hidden || mega;
+  useEffect(() => {
+    document.documentElement.dataset.header = shown ? "shown" : "hidden";
+  }, [shown]);
 
   useEffect(() => {
     setOpen(false);

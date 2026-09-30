@@ -429,3 +429,17 @@ body {
   inset: 0 auto auto 0;
   width: 100% !important;
 }
+
+/* 하위 페이지 탭: 메뉴바가 보이면 그 바로 아래, 메뉴바가 숨으면 맨 위에 붙음 */
+.sub-tabs {
+  top: 64px;
+  transition: top 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (min-width: 768px) {
+  .sub-tabs {
+    top: 84px;
+  }
+}
+html[data-header="hidden"] .sub-tabs {
+  top: 0;
+}

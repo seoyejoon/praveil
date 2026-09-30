@@ -6,7 +6,7 @@ export type SubTab = { href: string; label: string; best?: boolean };
 
 // 하위 페이지 공통 틀 (메인과 같은 톤)
 // - 위: 사진 전체 화면 폭, 아래쪽 어둡게, 왼쪽 아래에 위치 · 영문 · 제목 · 설명
-// - 탭: 같은 분류의 다른 페이지 (스크롤해도 위에 붙어 있음, 지금 페이지는 골드 밑줄)
+// - 탭: 같은 분류의 다른 페이지 (스크롤해도 메뉴바 바로 아래에 붙어 있음, 지금 페이지는 골드 밑줄)
 // - 본문: 둥근 모서리로 사진 위를 덮으며 올라옴
 export default function SubPage({
   en,
@@ -81,11 +81,14 @@ export default function SubPage({
         </section>
       </div>
 
-      <div className="relative z-10 -mt-8 overflow-clip rounded-t-[28px] bg-white md:-mt-12 md:rounded-t-[48px]">
+      <div
+        data-hero-end
+        className="relative z-10 -mt-8 overflow-clip rounded-t-[28px] bg-white md:-mt-12 md:rounded-t-[48px]"
+      >
         {tabs && tabs.length > 1 && (
           <nav
             aria-label="같은 분류의 페이지"
-            className="sticky top-0 z-20 border-b border-line bg-white/90 backdrop-blur-md"
+            className="sub-tabs sticky z-20 border-b border-line bg-white/90 backdrop-blur-md"
           >
             <ul className="no-scrollbar mx-auto flex max-w-[1600px] gap-8 overflow-x-auto px-5 whitespace-nowrap md:justify-center md:gap-14 md:px-10">
               {tabs.map((t) => {

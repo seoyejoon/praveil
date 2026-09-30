@@ -309,7 +309,7 @@ export default async function AboutIntroPage() {
             {aboutEquipment.text}
           </p>
         </div>
-        <ul className="mt-12 grid grid-cols-2 gap-x-3 gap-y-10 md:mt-16 md:grid-cols-4 md:gap-x-5">
+        <ul className="mt-12 grid grid-cols-2 gap-x-3 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-5">
           {aboutEquipment.items.map((it, i) => (
             <Reveal as="li" key={it.name} delay={(i % 4) * 80}>
               <Link href={it.href} className="group block">

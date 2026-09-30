@@ -99,7 +99,8 @@ export const aboutSpace = {
   ],
 };
 
-// 보유 장비 (사진 · 연결 페이지는 원장님 확인 후 교체)
+// 보유 장비: 병원 촬영본에서 확인된 6대 (프락셀 · LDM 등은 보유 확인 후 추가)
+// 사진: 제조사 공식 제품 사진 또는 병원 촬영본 배경 정리 (public/images/equipment)
 export const aboutEquipment = {
   en: "Equipment",
   title: "시술 목적에 맞춘 장비",
@@ -107,21 +108,21 @@ export const aboutEquipment = {
   items: [
     {
       name: "쿨소닉",
-      en: "Coolsonic",
+      en: "CoolSonic",
       type: "초음파 리프팅",
       href: "/lifting/coolsonic",
-      image: photo("equip-1"),
+      image: device("coolsonic"),
     },
     {
       name: "쿨페이즈",
-      en: "Coolphase",
+      en: "Coolfase",
       type: "고주파 리프팅",
       href: "/lifting/coolphase",
-      image: photo("equip-2"),
+      image: device("coolphase"),
     },
     {
       name: "슈링크 유니버스",
-      en: "Shrink Universe",
+      en: "Shurink Universe",
       type: "초음파 리프팅",
       href: "/lifting/laser",
       image: device("shrink-universe"),
@@ -134,32 +135,18 @@ export const aboutEquipment = {
       image: device("potenza"),
     },
     {
-      name: "클라리티",
-      en: "Clarity",
-      type: "레이저",
-      href: "/lifting/laser",
+      name: "클라리티2",
+      en: "Clarity II",
+      type: "레이저 · 제모",
+      href: "/removal/hair",
       image: device("clarity"),
     },
     {
-      name: "피코 레이저",
-      en: "Pico Laser",
-      type: "색소 · 문신제거",
+      name: "피코케이",
+      en: "PICO-K",
+      type: "피코 레이저 · 색소 · 문신제거",
       href: "/removal/tattoo",
-      image: photo("equip-6"),
-    },
-    {
-      name: "프락셀",
-      en: "Fraxel",
-      type: "흉터 · 모공",
-      href: "/acne-pore",
-      image: photo("equip-7"),
-    },
-    {
-      name: "LDM",
-      en: "LDM",
-      type: "피부 진정 · 관리",
-      href: "/skin/booster",
-      image: photo("equip-8"),
+      image: device("pico-k"),
     },
   ],
 };

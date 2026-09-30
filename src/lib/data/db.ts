@@ -16,7 +16,10 @@ function pool() {
   return globalForPool.praveilPool;
 }
 
-export async function sql<T extends QueryResultRow>(text: string, params: unknown[] = []) {
+export async function sql<T extends QueryResultRow>(
+  text: string,
+  params: unknown[] = [],
+) {
   const result = await pool().query<T>(text, params);
   return result.rows;
 }

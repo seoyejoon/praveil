@@ -1,30 +1,163 @@
 "use client";
 
+import Link from "next/link";
 import { Lock, MoveHorizontal } from "lucide-react";
 import { useRef, useState } from "react";
-import type { BeforeAfter } from "@/content/beforeAfter";
+import type { BeforeAfterCase, BeforeAfterStage } from "@/lib/data";
 
-type Category = { key: string; label: string };
+export type BaCategory = { key: string; label: string; href?: string };
 
-// 전후사진 게시판
-// - 로그인 전: 흐린 자리표시 + 로그인 안내 (의료법: 회원에게만 공개)
-// - 로그인 후: 분야별로 골라 보고, 사진 위 손잡이를 좌우로 끌어 전 · 후 비교
+const openLogin = () => window.dispatchEvent(new Event("praveil:login"));
+
+// 시술 전 자리 (비회원): 사진 주소는 받지 않았으므로, 시술 후 사진을 아주 흐리게 깔고 자물쇠를 올림
+function LockedBefore({
+  after,
+  label,
+  button,
+  size = "sm",
+}: {
+  after: string;
+  label: string;
+  button?: boolean;
+  size?: "sm" | "lg";
+}) {
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[#2a2420]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={after}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="h-full w-full scale-125 object-cover opacity-70 blur-2xl"
+        draggable={false}
+      />
+      <div className="absolute inset-0 grid place-items-center bg-black/25 p-4 text-center text-white">
+        <div>
+          <span
+            className={`mx-auto grid place-items-center rounded-full bg-white/20 backdrop-blur ${size === "lg" ? "h-10 w-10 md:h-14 md:w-14" : "h-10 w-10"}`}
+          >
+            <Lock
+              className={size === "lg" ? "h-5 w-5" : "h-4 w-4"}
+              strokeWidth={1.6}
+            />
+          </span>
+          <p
+            className={`mt-3 font-medium ${size === "lg" ? "text-xs md:text-base" : "text-xs md:text-sm"}`}
+          >
+            {label}은<br className="md:hidden" /> 로그인 후 공개
+          </p>
+          {button && (
+            <button
+              type="button"
+              onClick={openLogin}
+              className="mt-4 rounded-full bg-white px-4 py-2 text-xs whitespace-nowrap text-ink transition hover:bg-ivory md:mt-5 md:px-6 md:py-3 md:text-sm"
+            >
+              로그인 · 회원가입
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 시술 전 · 후 한 쌍 (나란히)
+export function BaPair({
+  stage,
+  alt,
+  size = "sm",
+}: {
+  stage: BeforeAfterStage;
+  alt: string;
+  size?: "sm" | "lg";
+}) {
+  const tag =
+    "absolute top-3 left-3 rounded-full px-3 py-1 font-display text-[10px] tracking-[0.2em] backdrop-blur md:text-[11px]";
+  return (
+    <div className="grid grid-cols-2 gap-1.5">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-l-[20px] bg-ivory">
+        {stage.before ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={stage.before}
+            alt={`${alt} ${stage.beforeLabel}`}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            draggable={false}
+          />
+        ) : (
+          <LockedBefore
+            after={stage.after}
+            label={stage.beforeLabel}
+            button={size === "lg"}
+            size={size}
+          />
+        )}
+        <span className={`${tag} bg-black/45 text-white`}>BEFORE</span>
+      </div>
+      <div className="relative aspect-[4/5] overflow-hidden rounded-r-[20px] bg-ivory">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={stage.after}
+          alt={`${alt} ${stage.afterLabel}`}
+          loading="lazy"
+          className="h-full w-full object-cover"
+          draggable={false}
+        />
+        <span className={`${tag} bg-gold/90 text-white`}>AFTER</span>
+      </div>
+    </div>
+  );
+}
+
+// 전후사진 목록: 분야별 걸러 보기 + 카드 (시술 전은 회원만)
 export default function BeforeAfterBoard({
   member,
-  items,
+  cases,
   categories,
 }: {
   member: boolean;
-  items: BeforeAfter[];
-  categories: Category[];
+  cases: BeforeAfterCase[];
+  categories: BaCategory[];
 }) {
   const [cat, setCat] = useState("all");
-  const list = cat === "all" ? items : items.filter((i) => i.category === cat);
+  const labelOf = (c: string) =>
+    categories.find((x) => x.key === c)?.label ?? c;
+  const list = cat === "all" ? cases : cases.filter((c) => c.category === cat);
+  const used = categories.filter((c) =>
+    cases.some((x) => x.category === c.key),
+  );
 
   return (
     <div>
+      {!member && (
+        <div className="mb-12 flex flex-col gap-5 rounded-[24px] bg-ivory p-6 md:flex-row md:items-center md:justify-between md:p-8">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-gold">
+              <Lock className="h-5 w-5" strokeWidth={1.5} />
+            </span>
+            <div>
+              <p className="text-base font-semibold tracking-[-0.02em] md:text-lg">
+                시술 전 사진은 회원에게만 공개합니다
+              </p>
+              <p className="mt-0.5 text-sm text-muted">
+                의료법에 따라 로그인 후 확인하실 수 있습니다.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={openLogin}
+            className="shrink-0 rounded-full bg-espresso px-7 py-3.5 text-sm text-white transition hover:bg-mocha"
+          >
+            로그인 · 회원가입
+          </button>
+        </div>
+      )}
+
       <ul className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
-        {[{ key: "all", label: "전체" }, ...categories].map((c) => (
+        {[{ key: "all", label: "전체" }, ...used].map((c) => (
           <li key={c.key}>
             <button
               type="button"
@@ -32,59 +165,45 @@ export default function BeforeAfterBoard({
               className={`rounded-full border px-5 py-2.5 text-sm whitespace-nowrap transition ${cat === c.key ? "border-gold bg-gold text-white" : "border-line text-muted hover:border-gold/60 hover:text-ink"}`}
             >
               {c.label}
+              <span className="ml-1.5 text-xs opacity-70">
+                {c.key === "all"
+                  ? cases.length
+                  : cases.filter((x) => x.category === c.key).length}
+              </span>
             </button>
           </li>
         ))}
       </ul>
 
-      {!member ? (
-        <div className="relative mt-10">
-          <ul
-            aria-hidden
-            className="grid grid-cols-2 gap-3 blur-[2px] md:grid-cols-3 md:gap-5"
-          >
-            {Array.from({ length: 6 }, (_, i) => (
-              <li
-                key={i}
-                className="aspect-[4/5] rounded-[20px] bg-[linear-gradient(135deg,#efe7dc,#e2d6c5)]"
-              />
-            ))}
-          </ul>
-          <div className="absolute inset-0 grid place-items-center bg-white/40 backdrop-blur-sm">
-            <div className="mx-5 max-w-md rounded-[24px] bg-white p-8 text-center shadow-[0_24px_60px_-30px_rgba(29,26,23,0.5)] md:p-10">
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-ivory text-gold">
-                <Lock className="h-6 w-6" strokeWidth={1.5} />
-              </span>
-              <p className="mt-6 text-xl font-semibold tracking-[-0.02em]">
-                회원에게만 공개합니다
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                의료법에 따라 전후사진은 로그인한 회원에게만 보여 드립니다.
-              </p>
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new Event("praveil:login"))}
-                className="mt-8 w-full rounded-full bg-espresso py-4 text-sm text-white transition hover:bg-mocha"
-              >
-                로그인 · 회원가입
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : list.length === 0 ? (
+      {list.length === 0 ? (
         <p className="mt-10 rounded-[24px] border border-line py-24 text-center text-muted">
           등록된 전후사진이 없습니다.
         </p>
       ) : (
-        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {list.map((it) => (
-            <li key={it.id}>
-              <Compare before={it.before} after={it.after} alt={it.title} />
-              <p className="mt-4 text-xs text-gold">
-                {categories.find((c) => c.key === it.category)?.label}
-              </p>
-              <p className="mt-1 text-lg font-semibold">{it.title}</p>
-              {it.note && <p className="mt-1 text-sm text-muted">{it.note}</p>}
+        <ul className="mt-10 grid gap-x-5 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          {list.map((c) => (
+            <li key={c.id}>
+              <Link href={`/before-after/${c.id}`} className="group block">
+                <div className="transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:-translate-y-1">
+                  <BaPair stage={c.stages[c.representative]} alt={c.title} />
+                </div>
+                <p className="mt-5 flex items-center gap-2 text-xs text-gold">
+                  {labelOf(c.category)}
+                  {c.stages.length > 1 && (
+                    <span className="text-muted">
+                      · 경과 {c.stages.length}단계
+                    </span>
+                  )}
+                </p>
+                <p className="mt-1.5 line-clamp-1 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-mocha">
+                  {c.title}
+                </p>
+                {c.summary && (
+                  <p className="mt-1 line-clamp-1 text-sm text-muted">
+                    {c.summary}
+                  </p>
+                )}
+              </Link>
             </li>
           ))}
         </ul>
@@ -93,8 +212,8 @@ export default function BeforeAfterBoard({
   );
 }
 
-// 전 · 후 비교: 손잡이를 끌거나 사진 위를 눌러 경계를 옮김
-function Compare({
+// 전 · 후 겹쳐 보기 (회원): 손잡이를 끌거나 사진 위를 눌러 경계를 옮김
+export function Compare({
   before,
   after,
   alt,
@@ -112,7 +231,7 @@ function Compare({
   return (
     <div
       ref={box}
-      className="relative aspect-[4/5] cursor-ew-resize touch-pan-y overflow-hidden rounded-[20px] bg-ivory select-none"
+      className="relative aspect-[4/5] cursor-ew-resize touch-pan-y overflow-hidden rounded-[24px] bg-ivory select-none md:aspect-[4/3]"
       onPointerDown={(e) => {
         e.currentTarget.setPointerCapture(e.pointerId);
         move(e.clientX);
@@ -134,10 +253,10 @@ function Compare({
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
         draggable={false}
       />
-      <span className="absolute top-4 left-4 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur">
+      <span className="absolute top-4 left-4 rounded-full bg-black/45 px-3 py-1 font-display text-[11px] tracking-[0.2em] text-white backdrop-blur">
         BEFORE
       </span>
-      <span className="absolute top-4 right-4 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur">
+      <span className="absolute top-4 right-4 rounded-full bg-gold/90 px-3 py-1 font-display text-[11px] tracking-[0.2em] text-white backdrop-blur">
         AFTER
       </span>
       <span

@@ -19,7 +19,7 @@ type Props = {
 // 메뉴바 (2026.10 리뉴얼)
 // - 어두운 첫 화면([data-dark-hero]) 위에서는 투명 + 흰 글자, 스크롤하면 흰 배경
 // - 아래로 스크롤하면 숨고, 위로 올리면 다시 나타남
-// - PC: 메뉴에 올리면 각 메뉴 바로 아래 칸에 하위 메뉴 / 태블릿·모바일: 전체 화면 검정 메뉴
+// - PC: 메뉴에 올리면 그 메뉴 바로 아래에 하위 메뉴만 따로 펼쳐짐 / 태블릿·모바일: 전체 화면 검정 메뉴
 export default function Header({
   phone,
   reservationUrl,
@@ -154,33 +154,84 @@ export default function Header({
             aria-label="주 메뉴"
             className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 gap-20 xl:flex 2xl:gap-28"
           >
-            {menu.map((g, i) => (
-              <Link
-                key={g.key}
-                href={g.href}
-                onMouseEnter={() => {
-                  setMega(true);
-                  setActive(i);
-                }}
-                onFocus={() => {
-                  setMega(true);
-                  setActive(i);
-                }}
-                className="relative flex items-center font-display text-[17px] tracking-[0.16em]"
-              >
-                {g.label}
-                <span
-                  className={`absolute bottom-[24px] left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ${
-                    (mega && active === i) ||
-                    g.columns.some((c) =>
-                      c.pages.some((p) => isCurrent(p.href)),
-                    )
-                      ? "scale-x-100"
-                      : "scale-x-0"
-                  }`}
-                />
-              </Link>
-            ))}
+            {menu.map((g, i) => {
+              const on = mega && active === i;
+              return (
+                <div
+                  key={g.key}
+                  className="relative flex"
+                  onMouseEnter={() => {
+                    setMega(true);
+                    setActive(i);
+                  }}
+                >
+                  <Link
+                    href={g.href}
+                    onFocus={() => {
+                      setMega(true);
+                      setActive(i);
+                    }}
+                    aria-expanded={on}
+                    className="relative flex items-center font-display text-[17px] tracking-[0.16em]"
+                  >
+                    {g.label}
+                    <span
+                      className={`absolute bottom-[24px] left-0 h-px w-full origin-left bg-gold transition-[scale] duration-500 ${
+                        on ||
+                        g.columns.some((c) =>
+                          c.pages.some((p) => isCurrent(p.href)),
+                        )
+                          ? "scale-x-100"
+                          : "scale-x-0"
+                      }`}
+                    />
+                  </Link>
+                  {/* 이 메뉴의 하위 메뉴 (메뉴 바로 아래에 따로 펼쳐짐) */}
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 transition-[opacity,translate,visibility] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
+                      on
+                        ? "visible translate-y-0 opacity-100"
+                        : "pointer-events-none invisible -translate-y-2 opacity-0"
+                    }`}
+                  >
+                    <div className="flex rounded-b-[20px] border-t border-black/5 bg-white px-4 pt-7 pb-8 text-black shadow-[0_24px_48px_-24px_rgba(29,26,23,0.35)]">
+                      {g.columns.map((c) => (
+                        <div
+                          key={c.key}
+                          className={`border-l border-black/8 px-7 first:border-l-0 ${g.columns.length > 1 ? "w-[196px] 2xl:w-[210px]" : "w-[220px]"}`}
+                        >
+                          {g.columns.length > 1 && (
+                            <Link
+                              href={c.href}
+                              onClick={() => setMega(false)}
+                              className="block text-[15px] font-semibold whitespace-nowrap transition hover:text-gold"
+                            >
+                              {c.label}
+                            </Link>
+                          )}
+                          <ul
+                            className={`space-y-3 ${g.columns.length > 1 ? "mt-5" : ""}`}
+                          >
+                            {c.pages.map((p) => (
+                              <li key={p.href}>
+                                <Link
+                                  href={p.href}
+                                  onClick={() => setMega(false)}
+                                  className={`inline-flex items-center gap-2 text-[14px] whitespace-nowrap transition hover:text-gold ${isCurrent(p.href) ? "text-gold" : p.best ? "font-semibold text-black" : "text-black/65"}`}
+                                >
+                                  {p.label}
+                                  {p.best && <BestMark />}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </nav>
 
           <div className="relative z-10 flex items-center gap-2 text-[13px] md:text-sm">
@@ -227,55 +278,6 @@ export default function Header({
               <span className="h-px w-7 bg-current" />
               <span className="h-px w-5 bg-current" />
             </button>
-          </div>
-        </div>
-
-        {/* PC 하위 메뉴: 올린 메뉴의 분류가 칸으로 펼쳐진다 (PRAVEIL은 시술 분류 5칸) */}
-        <div
-          className={`hidden overflow-hidden bg-white transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] xl:grid ${
-            mega ? "grid-rows-[1fr] border-t border-black/5" : "grid-rows-[0fr]"
-          }`}
-        >
-          <div className="min-h-0">
-            {active !== null && (
-              <div
-                key={active}
-                className="mx-auto flex max-w-[1400px] justify-center px-10 pt-9 pb-12 animate-[fade-up_.5s_cubic-bezier(.2,.7,.2,1)_both]"
-              >
-                {menu[active].columns.map((c) => (
-                  <div
-                    key={c.key}
-                    className="w-[220px] border-l border-black/8 px-7 first:border-l-0 2xl:w-[250px]"
-                  >
-                    {menu[active].columns.length > 1 && (
-                      <Link
-                        href={c.href}
-                        onClick={() => setMega(false)}
-                        className="block text-[15px] font-semibold transition hover:text-gold"
-                      >
-                        {c.label}
-                      </Link>
-                    )}
-                    <ul
-                      className={`space-y-3 ${menu[active].columns.length > 1 ? "mt-5" : ""}`}
-                    >
-                      {c.pages.map((p) => (
-                        <li key={p.href}>
-                          <Link
-                            href={p.href}
-                            onClick={() => setMega(false)}
-                            className={`inline-flex items-center gap-2 text-[14px] transition hover:text-gold ${p.best ? "font-semibold text-black" : "text-black/65"}`}
-                          >
-                            {p.label}
-                            {p.best && <BestMark />}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </header>

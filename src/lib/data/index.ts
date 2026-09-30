@@ -19,8 +19,23 @@ export async function getPolicy(kind: "terms" | "privacy") {
   const h = await getHospital();
   const terms = hasDatabase
     ? await db.getPolicyTerms()
-    : { businessName: h.name, representativeName: h.director, businessRegistrationNumber: h.businessNumber, privacyOfficer: "", termsOfService: "", privacyPolicy: "" };
-  return resolveHospitalPolicy({ name: h.name, address: `${h.address} ${h.addressDetail}`.trim(), phone: h.phone }, terms, kind);
+    : {
+        businessName: h.name,
+        representativeName: h.director,
+        businessRegistrationNumber: h.businessNumber,
+        privacyOfficer: "",
+        termsOfService: "",
+        privacyPolicy: "",
+      };
+  return resolveHospitalPolicy(
+    {
+      name: h.name,
+      address: `${h.address} ${h.addressDetail}`.trim(),
+      phone: h.phone,
+    },
+    terms,
+    kind,
+  );
 }
 
 // 원장 소개 · 특장점은 관리자 메뉴가 없어 코드에서 관리한다.
@@ -42,11 +57,15 @@ export async function getCategory(slug: string) {
 
 export async function getProcedures(categorySlug?: string) {
   const list = hasDatabase ? await db.getProcedures() : procedures;
-  return categorySlug ? list.filter((p) => p.categorySlug === categorySlug) : list;
+  return categorySlug
+    ? list.filter((p) => p.categorySlug === categorySlug)
+    : list;
 }
 
 export async function getProcedure(categorySlug: string, slug: string) {
-  return (await getProcedures()).find((p) => p.categorySlug === categorySlug && p.slug === slug);
+  return (await getProcedures()).find(
+    (p) => p.categorySlug === categorySlug && p.slug === slug,
+  );
 }
 
 export async function getSignatureProcedures() {
@@ -54,7 +73,9 @@ export async function getSignatureProcedures() {
 }
 
 export async function getNotices() {
-  return hasDatabase ? db.getNotices() : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  return hasDatabase
+    ? db.getNotices()
+    : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
 export async function getNotice(id: number) {
@@ -69,4 +90,15 @@ export async function getPopups() {
 export async function getProcedureDetail(slug: string) {
   const fromDb = hasDatabase ? await db.getProcedureDetail(slug) : null;
   return fromDb ?? procedureDetails[slug];
+}
+
+// 전후사례: 회원이 아니면 시술 전 사진 주소를 지워서 내려준다 (화면에서 흐리게 가리는 것만으로는 사진이 새어 나갈 수 있음)
+export async function getBeforeAfterCases(member: boolean) {
+  const list = hasDatabase ? await db.getBeforeAfter() : [];
+  return member
+    ? list
+    : list.map((c) => ({
+        ...c,
+        stages: c.stages.map((st) => ({ ...st, before: "" })),
+      }));
 }

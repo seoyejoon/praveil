@@ -21,13 +21,18 @@ export const hospital: Hospital = {
   lunch: "13:00 – 14:00",
   hoursNotice: "진료 마감 30분 전까지 접수해 주세요.",
   directions: [
-    { title: "건물 안내", body: "투썸플레이스가 있는 효명프라자 건물 4층 (엘리베이터 이용)" },
+    {
+      title: "건물 안내",
+      body: "투썸플레이스가 있는 효명프라자 건물 4층 (엘리베이터 이용)",
+    },
     { title: "지하철", body: "역세권 · 역 정보 확정 전" },
     { title: "주차", body: "건물 내 주차 가능 · 상세 안내 확정 전" },
   ],
   mapLinks: {
     naver: "https://naver.me/5A3GtvSE",
-    google: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("인천광역시 남동구 성말로 10"),
+    google:
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("인천광역시 남동구 성말로 10"),
   },
 };
 
@@ -43,9 +48,21 @@ export const doctor: Doctor = {
 };
 
 export const features: Feature[] = [
-  { title: "최신 장비 보유", description: "시술 목적에 맞는 장비를 갖추고 있습니다." },
-  { title: "원장 직접 시술", description: "상담부터 시술까지 원장이 직접 진행합니다." },
-  { title: "1:1 맞춤 상담", description: "피부 상태와 고민에 맞춰 시술을 제안합니다." },
+  {
+    title: "최신 장비 보유",
+    description: "시술 목적에 맞는 장비를 갖추고 있습니다.",
+  },
+  {
+    title: "원장 직접 시술",
+    description: "상담부터 시술까지 원장이 직접 진행합니다.",
+  },
+  {
+    title: "1:1 맞춤 상담",
+    description: "피부 상태와 고민에 맞춰 시술을 제안합니다.",
+  },
   { title: "정품 · 정량 사용", description: "정품을 정량 그대로 사용합니다." },
-  { title: "역세권 · 주차 편리", description: "대중교통과 자가용 모두 편하게 오실 수 있습니다." },
+  {
+    title: "역세권 · 주차 편리",
+    description: "대중교통과 자가용 모두 편하게 오실 수 있습니다.",
+  },
 ];

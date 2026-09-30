@@ -83,3 +83,23 @@ export type Popup = {
   linkUrl?: string;
   device: "all" | "pc" | "mobile";
 };
+
+/** 전후사례 한 건 (관리자 '전후사례' 게시판). 시술 전 사진은 회원에게만 주소를 내려준다. */
+export type BeforeAfterStage = {
+  /** 회원이 아니면 빈 값 (사진 주소 자체를 보내지 않음) */
+  before: string;
+  after: string;
+  beforeLabel: string;
+  afterLabel: string;
+};
+
+export type BeforeAfterCase = {
+  id: number;
+  title: string;
+  summary: string;
+  category: string;
+  createdAt: string;
+  /** 대표로 보여 줄 경과 번호 */
+  representative: number;
+  stages: BeforeAfterStage[];
+};

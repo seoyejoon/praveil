@@ -1,20 +1,80 @@
 import type { Procedure, ProcedureCategory } from "../types";
 
 export const categories: ProcedureCategory[] = [
-  { slug: "lifting", name: "리프팅", nameEn: "Lifting", description: "처진 윤곽과 탄력을 위한 리프팅" },
-  { slug: "botox", name: "보톡스", nameEn: "Botox", description: "주름 · 윤곽 · 바디 보톡스" },
-  { slug: "filler", name: "필러", nameEn: "Filler", description: "볼륨과 라인을 채우는 필러" },
-  { slug: "skin-booster", name: "스킨부스터", nameEn: "Skin Booster", description: "피부 속부터 채우는 스킨부스터" },
-  { slug: "toning", name: "색소 · 토닝", nameEn: "Toning", description: "기미 · 잡티 · 착색 개선" },
-  { slug: "skin-care", name: "피부관리", nameEn: "Skin Care", description: "진정 · 보습 · 결 관리" },
-  { slug: "scar-pore", name: "흉터 · 모공", nameEn: "Scar & Pore", description: "흉터와 모공을 위한 레이저" },
-  { slug: "acne", name: "여드름", nameEn: "Acne", description: "여드름 단계별 관리" },
-  { slug: "injection", name: "주사", nameEn: "Injection", description: "영양 · 미백 · 바디 주사" },
-  { slug: "hair-removal", name: "제모", nameEn: "Hair Removal", description: "여성 · 남성 레이저제모" },
-  { slug: "tattoo-removal", name: "문신제거", nameEn: "Tattoo Removal", description: "눈썹 · 아이라인 문신제거" },
+  {
+    slug: "lifting",
+    name: "리프팅",
+    nameEn: "Lifting",
+    description: "처진 윤곽과 탄력을 위한 리프팅",
+  },
+  {
+    slug: "botox",
+    name: "보톡스",
+    nameEn: "Botox",
+    description: "주름 · 윤곽 · 바디 보톡스",
+  },
+  {
+    slug: "filler",
+    name: "필러",
+    nameEn: "Filler",
+    description: "볼륨과 라인을 채우는 필러",
+  },
+  {
+    slug: "skin-booster",
+    name: "스킨부스터",
+    nameEn: "Skin Booster",
+    description: "피부 속부터 채우는 스킨부스터",
+  },
+  {
+    slug: "toning",
+    name: "색소 · 토닝",
+    nameEn: "Toning",
+    description: "기미 · 잡티 · 착색 개선",
+  },
+  {
+    slug: "skin-care",
+    name: "피부관리",
+    nameEn: "Skin Care",
+    description: "진정 · 보습 · 결 관리",
+  },
+  {
+    slug: "scar-pore",
+    name: "흉터 · 모공",
+    nameEn: "Scar & Pore",
+    description: "흉터와 모공을 위한 레이저",
+  },
+  {
+    slug: "acne",
+    name: "여드름",
+    nameEn: "Acne",
+    description: "여드름 단계별 관리",
+  },
+  {
+    slug: "injection",
+    name: "주사",
+    nameEn: "Injection",
+    description: "영양 · 미백 · 바디 주사",
+  },
+  {
+    slug: "hair-removal",
+    name: "제모",
+    nameEn: "Hair Removal",
+    description: "여성 · 남성 레이저제모",
+  },
+  {
+    slug: "tattoo-removal",
+    name: "문신제거",
+    nameEn: "Tattoo Removal",
+    description: "눈썹 · 아이라인 문신제거",
+  },
 ];
 
-const p = (categorySlug: string, slug: string, name: string, isSignature = false): Procedure => ({
+const p = (
+  categorySlug: string,
+  slug: string,
+  name: string,
+  isSignature = false,
+): Procedure => ({
   categorySlug,
   slug,
   name,
@@ -86,5 +146,9 @@ export const procedures: Procedure[] = [
   p("hair-removal", "men-laser-hair-removal", "남성 레이저제모"),
 
   p("tattoo-removal", "eyebrow-tattoo-removal", "눈썹 문신제거"),
-  p("tattoo-removal", "eyeliner-tattoo-removal", "아이라인 · 언더라인 문신제거"),
+  p(
+    "tattoo-removal",
+    "eyeliner-tattoo-removal",
+    "아이라인 · 언더라인 문신제거",
+  ),
 ];

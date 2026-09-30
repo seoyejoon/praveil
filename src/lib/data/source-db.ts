@@ -2,17 +2,31 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import { sql } from "./db";
 import { hospital as fallbackHospital } from "./mock/hospital";
-import type { DocNode, Hospital, Notice, Popup, PostBody, Procedure, ProcedureCategory, ProcedurePrice } from "./types";
+import type {
+  BeforeAfterCase,
+  DocNode,
+  Hospital,
+  Notice,
+  Popup,
+  PostBody,
+  Procedure,
+  ProcedureCategory,
+  ProcedurePrice,
+} from "./types";
 import type { ProcedureDetail } from "@/content/procedure-details/common";
 
 // 관리자 DB에서 읽은 데이터를 홈페이지 형태로 바꾼다.
 // 결과는 5분간 캐시하고, 관리자에서 저장하면 /api/revalidate 가 "praveil" 태그를 비워 즉시 갱신된다.
 export const CACHE_TAG = "praveil";
-const cached = <T,>(key: string, fn: () => Promise<T>) => unstable_cache(fn, [key], { tags: [CACHE_TAG], revalidate: 300 });
+const cached = <T>(key: string, fn: () => Promise<T>) =>
+  unstable_cache(fn, [key], { tags: [CACHE_TAG], revalidate: 300 });
 
 type Row = Record<string, unknown>;
 const str = (value: unknown) => (typeof value === "string" ? value : "");
-const obj = (value: unknown): Row => (value && typeof value === "object" && !Array.isArray(value) ? (value as Row) : {});
+const obj = (value: unknown): Row =>
+  value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Row)
+    : {};
 const arr = (value: unknown): unknown[] => (Array.isArray(value) ? value : []);
 
 // ---------- 병원 ----------
@@ -35,7 +49,8 @@ export async function getHospital(): Promise<Hospital> {
     ...fallbackHospital,
     name: row.name || fallbackHospital.name,
     director: str(terms.representativeName) || fallbackHospital.director,
-    businessNumber: str(terms.businessRegistrationNumber) || fallbackHospital.businessNumber,
+    businessNumber:
+      str(terms.businessRegistrationNumber) || fallbackHospital.businessNumber,
     phone: str(clinic.phone) || fallbackHospital.phone,
     address: str(clinic.address) || fallbackHospital.address,
     addressDetail: str(clinic.addressDetail),
@@ -44,12 +59,25 @@ export async function getHospital(): Promise<Hospital> {
     instagramUrl: str(clinic.instagramUrl) || "#",
     hours: arr(clinic.hours).map((h) => {
       const hour = obj(h);
-      return { label: str(hour.label), time: str(hour.time), note: str(hour.note) || undefined, closed: hour.closed === true };
+      return {
+        label: str(hour.label),
+        time: str(hour.time),
+        note: str(hour.note) || undefined,
+        closed: hour.closed === true,
+      };
     }),
     lunch: str(clinic.lunch),
     hoursNotice: str(clinic.hoursNotice),
-    directions: arr(clinic.directions).map((d) => ({ title: str(obj(d).title), body: str(obj(d).body) })),
-    mapLinks: { tmap: str(maps.tmap) || undefined, naver: str(maps.naver) || undefined, kakao: str(maps.kakao) || undefined, google: str(maps.google) || undefined },
+    directions: arr(clinic.directions).map((d) => ({
+      title: str(obj(d).title),
+      body: str(obj(d).body),
+    })),
+    mapLinks: {
+      tmap: str(maps.tmap) || undefined,
+      naver: str(maps.naver) || undefined,
+      kakao: str(maps.kakao) || undefined,
+      google: str(maps.google) || undefined,
+    },
   };
 }
 
@@ -76,10 +104,16 @@ export async function getMemberSettings() {
   const field = (key: string, fallback: boolean): SignupField => {
     const f = obj(fields[key]);
     const enabled = typeof f.enabled === "boolean" ? f.enabled : fallback;
-    return { enabled, required: enabled && (typeof f.required === "boolean" ? f.required : fallback) };
+    return {
+      enabled,
+      required:
+        enabled && (typeof f.required === "boolean" ? f.required : fallback),
+    };
   };
-  const collectPhone = typeof reg.collectPhone === "boolean" ? reg.collectPhone : true;
-  const collectBirthday = typeof reg.collectBirthday === "boolean" ? reg.collectBirthday : false;
+  const collectPhone =
+    typeof reg.collectPhone === "boolean" ? reg.collectPhone : true;
+  const collectBirthday =
+    typeof reg.collectBirthday === "boolean" ? reg.collectBirthday : false;
   return {
     hospitalId: row?.id ?? 1,
     enabled: typeof reg.enabled === "boolean" ? reg.enabled : true,
@@ -102,7 +136,14 @@ const loadCategories = cached("categories", () =>
   ),
 );
 
-type ProcedureRow = { slug: string; categorySlug: string; name: string; isSignature: boolean; prices: ProcedurePrice[]; detail: ProcedureDetail | null };
+type ProcedureRow = {
+  slug: string;
+  categorySlug: string;
+  name: string;
+  isSignature: boolean;
+  prices: ProcedurePrice[];
+  detail: ProcedureDetail | null;
+};
 
 const loadProcedures = cached("procedures", () =>
   sql<ProcedureRow>(
@@ -126,12 +167,18 @@ export async function getProcedures(): Promise<Procedure[]> {
     name: row.name,
     isSignature: row.isSignature,
     summary: row.detail?.summary || undefined,
-    prices: arr(row.prices).map((p) => ({ label: str(obj(p).label), price: str(obj(p).price), note: str(obj(p).note) })),
+    prices: arr(row.prices).map((p) => ({
+      label: str(obj(p).label),
+      price: str(obj(p).price),
+      note: str(obj(p).note),
+    })),
   }));
 }
 
 /** 관리자에 상세 원고가 있으면 그것을, 없으면 null (호출하는 쪽에서 코드 원고로 대체) */
-export async function getProcedureDetail(slug: string): Promise<ProcedureDetail | null> {
+export async function getProcedureDetail(
+  slug: string,
+): Promise<ProcedureDetail | null> {
   const rows = await loadProcedures();
   return rows.find((row) => row.slug === slug)?.detail ?? null;
 }
@@ -144,12 +191,21 @@ const BEFORE_AFTER_PREFIX = "HS_BEFORE_AFTER_V1\n";
 
 function parseBody(content: string): PostBody | null {
   try {
-    if (content.startsWith(COLUMN_PREFIX)) return { kind: "doc", doc: JSON.parse(content.slice(COLUMN_PREFIX.length)) as DocNode };
+    if (content.startsWith(COLUMN_PREFIX))
+      return {
+        kind: "doc",
+        doc: JSON.parse(content.slice(COLUMN_PREFIX.length)) as DocNode,
+      };
     if (content.startsWith(EVENT_PREFIX)) {
       const parsed = obj(JSON.parse(content.slice(EVENT_PREFIX.length)));
       return {
         kind: "images",
-        images: arr(parsed.images).map((image) => ({ url: str(obj(image).url), alt: str(obj(image).alt) })).filter((image) => image.url),
+        images: arr(parsed.images)
+          .map((image) => ({
+            url: str(obj(image).url),
+            alt: str(obj(image).alt),
+          }))
+          .filter((image) => image.url),
       };
     }
   } catch {
@@ -159,7 +215,16 @@ function parseBody(content: string): PostBody | null {
   return { kind: "text", text: content.replace(/<[^>]+>/g, "") };
 }
 
-type PostRow = { id: number; boardId: string | null; category: string; title: string; summary: string; coverImageUrl: string; content: string; publishedAt: string };
+type PostRow = {
+  id: number;
+  boardId: string | null;
+  category: string;
+  title: string;
+  summary: string;
+  coverImageUrl: string;
+  content: string;
+  publishedAt: string;
+};
 
 const loadNotices = cached("notices", async (): Promise<Notice[]> => {
   const [hospitalRow] = await sql<{ id: number; boards: unknown }>(
@@ -167,10 +232,18 @@ const loadNotices = cached("notices", async (): Promise<Notice[]> => {
   );
   if (!hospitalRow) return [];
   // 게시판 종류(공지/이벤트)이면서 전체 공개인 게시판만 홈페이지에 싣는다.
-  const boards = arr(hospitalRow.boards).map(obj).filter((b) => (b.boardType === "notice" || b.boardType === "event") && b.readPermission !== "member");
+  const boards = arr(hospitalRow.boards)
+    .map(obj)
+    .filter(
+      (b) =>
+        (b.boardType === "notice" || b.boardType === "event") &&
+        b.readPermission !== "member",
+    );
   if (!boards.length) return [];
   const typeOf = (post: PostRow) => {
-    const board = boards.find((b) => (post.boardId ? b.id === post.boardId : b.name === post.category));
+    const board = boards.find((b) =>
+      post.boardId ? b.id === post.boardId : b.name === post.category,
+    );
     return board ? (board.boardType as Notice["type"]) : null;
   };
   const rows = await sql<PostRow>(
@@ -185,13 +258,100 @@ const loadNotices = cached("notices", async (): Promise<Notice[]> => {
     const type = typeOf(row);
     const body = type && parseBody(row.content);
     return type && body
-      ? [{ id: row.id, type, title: row.title, summary: row.summary, coverImageUrl: row.coverImageUrl, body, createdAt: row.publishedAt }]
+      ? [
+          {
+            id: row.id,
+            type,
+            title: row.title,
+            summary: row.summary,
+            coverImageUrl: row.coverImageUrl,
+            body,
+            createdAt: row.publishedAt,
+          },
+        ]
       : [];
   });
 });
 
 export async function getNotices() {
   return loadNotices();
+}
+
+// ---------- 전후사례 ----------
+// 관리자 전후사례 글: "HS_BEFORE_AFTER_V1\n" + { stages: [{ beforeImageUrl, afterImageUrl, …}], representativeAfter }
+// 시술 전 사진은 관리자 보호 저장소(/api/public/protected-media/:id)에 있어 홈페이지 중계 경로로 바꿔 둔다.
+const imageUrl = (value: unknown) => {
+  const url = str(value).trim();
+  const guarded = url.match(/^\/api\/public\/protected-media\/([1-9]\d*)$/);
+  if (guarded) return `/api/protected-media/${guarded[1]}`;
+  return /^(\/uploads\/[\w./-]+|https:\/\/\S+)$/.test(url) &&
+    !url.includes("..")
+    ? url
+    : "";
+};
+
+const loadBeforeAfter = cached(
+  "before-after",
+  async (): Promise<BeforeAfterCase[]> => {
+    const [hospitalRow] = await sql<{ id: number; boards: unknown }>(
+      `SELECT id, site_builder_config->'websiteAdmin'->'boards' AS boards FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1`,
+    );
+    if (!hospitalRow) return [];
+    const boardIds = arr(hospitalRow.boards)
+      .map(obj)
+      .filter((b) => b.boardType === "before-after")
+      .map((b) => str(b.id));
+    if (!boardIds.length) return [];
+    const rows = await sql<PostRow>(
+      `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,
+       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt"
+     FROM posts
+     WHERE hospital_id = $1 AND board_id = ANY($2::text[])
+       AND (status = 'published' OR (status = 'scheduled' AND scheduled_at <= CURRENT_TIMESTAMP))
+     ORDER BY COALESCE(published_at, scheduled_at, created_at) DESC, id DESC LIMIT 300`,
+      [hospitalRow.id, boardIds],
+    );
+    return rows.flatMap((row) => {
+      if (!row.content.startsWith(BEFORE_AFTER_PREFIX)) return [];
+      try {
+        const doc = obj(
+          JSON.parse(row.content.slice(BEFORE_AFTER_PREFIX.length)),
+        );
+        const stages = arr(doc.stages)
+          .slice(0, 3)
+          .map(obj)
+          .map((st) => ({
+            before: imageUrl(st.beforeImageUrl),
+            after: imageUrl(st.afterImageUrl),
+            beforeLabel: str(st.beforeLabel) || "시술 전",
+            afterLabel: str(st.afterLabel) || "시술 후",
+          }))
+          .filter((st) => st.after);
+        if (!stages.length) return [];
+        const rep = Math.min(
+          stages.length - 1,
+          Math.max(0, Number(doc.representativeAfter) || 0),
+        );
+        return [
+          {
+            id: row.id,
+            title: row.title,
+            summary: row.summary,
+            category: row.category,
+            createdAt: row.publishedAt,
+            representative: rep,
+            stages,
+          },
+        ];
+      } catch {
+        return [];
+      }
+    });
+  },
+);
+
+export async function getBeforeAfter() {
+  return loadBeforeAfter();
 }
 
 // ---------- 팝업 ----------
@@ -212,6 +372,17 @@ export async function getPopups(): Promise<Popup[]> {
   const now = Date.now();
   const rows = await loadPopups();
   return rows
-    .filter((p) => (!p.startsAt || new Date(p.startsAt).getTime() <= now) && (!p.endsAt || new Date(p.endsAt).getTime() >= now))
-    .map((p) => ({ id: p.id, title: p.title, imageUrl: p.imageUrl, body: p.body, linkUrl: p.linkUrl, device: p.device }));
+    .filter(
+      (p) =>
+        (!p.startsAt || new Date(p.startsAt).getTime() <= now) &&
+        (!p.endsAt || new Date(p.endsAt).getTime() >= now),
+    )
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      imageUrl: p.imageUrl,
+      body: p.body,
+      linkUrl: p.linkUrl,
+      device: p.device,
+    }));
 }

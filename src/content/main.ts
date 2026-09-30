@@ -9,7 +9,7 @@ export const mainHero = {
     { title: ["오직 당신만을 위한", "단 하나의 계획"], sub: "대표원장 책임 진료 시스템" },
     { title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."], sub: "1:1 맞춤 상담" },
   ],
-  lobby: { src: photo("hero-lobby"), logo: { x: 0.43, y: 0.215, w: 0.12 }, door: { x: 0.84, y: 0.6 }, color: "#7a5c3a" },
+  lobby: { src: photo("hero-lobby"), logo: { x: 0.43, y: 0.225, w: 0.15 }, door: { x: 0.84, y: 0.6 }, color: "#7a5c3a" },
   consult: { src: photo("hero-consult") },
 };
 

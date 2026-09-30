@@ -12,7 +12,7 @@ type Props = {
   consult: { src: string };
 };
 
-const LOGO = logoShapes.stacked;
+const LOGO = logoShapes.wordmark; // 영문 PRAVEIL 만
 const [, , VBW, VBH] = LOGO.viewBox.split(" ").map(Number);
 const IMG_W = 2400,
   IMG_H = 1350; // 로비 사진 크기

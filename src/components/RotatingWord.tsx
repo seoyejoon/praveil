@@ -51,7 +51,7 @@ export default function RotatingWord({
               refs.current[i] = el;
             }}
             aria-hidden={i !== word}
-            className={`col-start-1 row-start-1 w-max font-normal whitespace-nowrap transition-[transform,opacity] duration-[700ms,350ms] ease-[cubic-bezier(.76,0,.24,1)] ${
+            className={`col-start-1 row-start-1 w-max font-normal whitespace-nowrap transition-[translate,opacity] duration-[700ms,350ms] ease-[cubic-bezier(.76,0,.24,1)] ${
               i === word
                 ? "translate-y-0 opacity-100"
                 : i === (word - 1 + words.length) % words.length

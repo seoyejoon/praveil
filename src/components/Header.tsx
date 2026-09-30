@@ -114,7 +114,7 @@ export default function Header({
     <>
       <header
         onMouseLeave={() => setMega(false)}
-        className={`fixed inset-x-0 top-0 z-40 transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
+        className={`fixed inset-x-0 top-0 z-40 transition-[translate,transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
           hidden && !mega ? "-translate-y-full" : ""
         } ${light ? "text-white" : clear ? "text-black" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
       >

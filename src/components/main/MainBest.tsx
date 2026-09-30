@@ -35,39 +35,13 @@ export default function MainBest({ label, title, items }: { label: string; title
           onUpdate: (self) => setProgress(self.progress),
         },
       });
-      // 모바일: 옆으로 넘긴 위치 → 점 표시
-  const onSwipe = () => {
-    const track = trackRef.current;
-    if (!track || window.innerWidth >= 1024) return;
-    const cards = [...track.querySelectorAll<HTMLElement>("[data-card]")];
-    const at = (c: HTMLElement) => Math.abs(c.offsetLeft - cards[0].offsetLeft - track.scrollLeft);
-    let best = 0;
-    cards.forEach((c, i) => {
-      if (at(c) < at(cards[best])) best = i;
-    });
-    setSlide(best);
-  };
-
-  return () => {
+      return () => {
         tween.scrollTrigger?.kill();
         tween.kill();
       };
     });
     ScrollTrigger.refresh();
-    // 모바일: 옆으로 넘긴 위치 → 점 표시
-  const onSwipe = () => {
-    const track = trackRef.current;
-    if (!track || window.innerWidth >= 1024) return;
-    const cards = [...track.querySelectorAll<HTMLElement>("[data-card]")];
-    const at = (c: HTMLElement) => Math.abs(c.offsetLeft - cards[0].offsetLeft - track.scrollLeft);
-    let best = 0;
-    cards.forEach((c, i) => {
-      if (at(c) < at(cards[best])) best = i;
-    });
-    setSlide(best);
-  };
-
-  return () => mm.revert();
+    return () => mm.revert();
   }, []);
 
   // 모바일: 옆으로 넘긴 위치 → 점 표시

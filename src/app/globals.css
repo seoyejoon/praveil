@@ -123,19 +123,6 @@
 }
 
 /* 하위 메뉴 칸이 살짝 떠오르며 나타남 */
-/* 첫 화면 분석 표시 */
-.hero-tag {
-  opacity: 0;
-  filter: blur(6px);
-  transition:
-    opacity 0.5s ease,
-    filter 0.5s ease;
-}
-.hero-tag[data-on="1"] {
-  opacity: 1;
-  filter: none;
-}
-
 /* 옆에서 밀려 들어오며 드러나는 글자 */
 @keyframes slide-in {
   from {

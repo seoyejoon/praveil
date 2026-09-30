@@ -77,7 +77,11 @@ export async function getNotices() {
   const list = hasDatabase
     ? await db.getNotices()
     : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  return showDemo ? [...demoNotices, ...list] : list;
+  return showDemo
+    ? [...demoNotices, ...list].sort((a, b) =>
+        b.createdAt.localeCompare(a.createdAt),
+      )
+    : list;
 }
 
 export async function getNotice(id: number) {

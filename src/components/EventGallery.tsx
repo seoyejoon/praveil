@@ -38,11 +38,11 @@ export default function EventGallery({ events }: { events: Notice[] }) {
             : "등록된 이벤트가 없습니다."}
         </p>
       ) : (
-        <ul className="mt-10 grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-3 md:gap-x-5 xl:grid-cols-4">
           {list.map((e) => (
             <li key={e.id}>
               <Link href={`/notice/${e.id}`} className="group block">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-[linear-gradient(160deg,#f6f2ec,#e2d6c5)]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[16px] md:rounded-[20px] bg-[linear-gradient(160deg,#f6f2ec,#e2d6c5)]">
                   {e.cover ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -58,16 +58,16 @@ export default function EventGallery({ events }: { events: Notice[] }) {
                   )}
                   {e.status && (
                     <span
-                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-xs backdrop-blur ${e.status === "진행 중" ? "bg-gold text-white" : "bg-black/45 text-white"}`}
+                      className={`absolute top-3 left-3 rounded-full px-2.5 py-1 text-[11px] md:top-4 md:left-4 md:px-3 md:text-xs backdrop-blur ${e.status === "진행 중" ? "bg-gold text-white" : "bg-black/45 text-white"}`}
                     >
                       {e.status}
                     </span>
                   )}
                 </div>
-                <p className="mt-5 line-clamp-2 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-mocha md:text-xl">
+                <p className="mt-4 line-clamp-2 text-[15px] font-semibold tracking-[-0.02em] transition group-hover:text-mocha md:text-lg">
                   {e.title}
                 </p>
-                <p className="mt-2 text-sm text-muted">
+                <p className="mt-1.5 text-xs text-muted md:text-sm">
                   {e.summary ? `기간 ${e.summary}` : formatDate(e.createdAt)}
                 </p>
               </Link>

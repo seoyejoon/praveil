@@ -9,7 +9,13 @@ import type { SiteSection } from "@/content/sitemap";
 import { gsap } from "@/lib/gsap";
 
 // 진료 분야 5개: 큰 목록. PC는 줄에 마우스를 올리면 그 분야 사진이 마우스를 따라다닌다.
-export default function MainTreatments({ sections, images }: { sections: SiteSection[]; images: Record<string, string> }) {
+export default function MainTreatments({
+  sections,
+  images,
+}: {
+  sections: SiteSection[];
+  images: Record<string, string>;
+}) {
   const floatRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<string | null>(null);
 
@@ -31,34 +37,61 @@ export default function MainTreatments({ sections, images }: { sections: SiteSec
       <div className="mx-auto max-w-[1600px]">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
+            <Reveal
+              variant="line"
+              className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]"
+            >
               <span>
                 <span>진료 분야</span>
               </span>
             </Reveal>
           </div>
-          <p className="text-[15px] text-black/55 md:text-lg">피부 고민에 맞는 분야를 먼저 골라 보세요.</p>
+          <p className="text-[15px] text-black/55 md:text-lg">
+            피부 고민에 맞는 분야를 먼저 골라 보세요.
+          </p>
         </div>
 
-        <ul className="mt-14 border-t border-gold md:mt-20" onMouseLeave={() => setHover(null)}>
+        <ul
+          className="mt-14 border-t border-gold md:mt-20"
+          onMouseLeave={() => setHover(null)}
+        >
           {sections.map((s) => (
-            <li key={s.key} className="border-b border-black/12" onMouseEnter={() => setHover(s.key)}>
-              <Link href={s.href} className="group grid grid-cols-[1fr_auto] items-center gap-5 py-7 md:gap-10 md:py-10">
+            <li
+              key={s.key}
+              className={`border-b border-black/12 transition-opacity duration-500 ${hover && hover !== s.key ? "lg:opacity-40" : ""}`}
+              onMouseEnter={() => setHover(s.key)}
+            >
+              <Link
+                href={s.href}
+                className="group relative grid grid-cols-[1fr_auto] items-center gap-5 py-7 md:gap-10 md:py-10"
+              >
+                {/* 올리면 아래 골드 선이 왼쪽부터 그어짐 */}
+                <span
+                  aria-hidden
+                  className="absolute -bottom-px left-0 h-px w-full origin-left scale-x-0 bg-gold transition-[scale] duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-x-100"
+                />
                 <span className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-8">
-                  <span className="text-[28px] font-bold tracking-[-0.04em] transition-transform duration-500 group-hover:translate-x-3 md:text-[52px]">
+                  <span className="text-[28px] font-bold tracking-[-0.04em] transition-[translate] duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:translate-x-4 md:text-[52px]">
                     {s.label}
                   </span>
-                  <span className="font-display text-sm font-light tracking-[0.2em] text-black/40 uppercase md:text-lg">{s.en}</span>
+                  <span className="font-display text-sm font-light tracking-[0.2em] text-black/40 uppercase transition-[translate,color] delay-75 duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:translate-x-4 group-hover:text-gold md:text-lg">
+                    {s.en}
+                  </span>
                 </span>
                 <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:rotate-45 group-hover:border-gold group-hover:bg-gold group-hover:text-white md:h-14 md:w-14">
                   <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
                 </span>
                 <span className="col-span-2 flex flex-wrap gap-2 md:col-span-1 md:-mt-4">
                   {s.pages.map((p, j) => (
-                    <span key={p.href} className={`inline-flex items-center gap-1.5 text-[13px] md:text-sm ${p.best ? "font-semibold text-black" : "text-black/50"}`}>
+                    <span
+                      key={p.href}
+                      className={`inline-flex items-center gap-1.5 text-[13px] md:text-sm ${p.best ? "font-semibold text-black" : "text-black/50"}`}
+                    >
                       {p.label}
                       {p.best && <BestMark />}
-                      {j < s.pages.length - 1 && <span className="ml-2 text-black/20">/</span>}
+                      {j < s.pages.length - 1 && (
+                        <span className="ml-2 text-black/20">/</span>
+                      )}
                     </span>
                   ))}
                 </span>

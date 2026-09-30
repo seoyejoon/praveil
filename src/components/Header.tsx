@@ -39,6 +39,16 @@ export default function Header({
   const [loginOpen, setLoginOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [loginTab, setLoginTab] = useState<"login" | "signup">("login");
+
+  // 다른 곳(전후사진 등)에서 로그인 창을 열 때: window.dispatchEvent(new Event("praveil:login"))
+  useEffect(() => {
+    const onOpen = () => {
+      setLoginTab("login");
+      setLoginOpen(true);
+    };
+    window.addEventListener("praveil:login", onOpen);
+    return () => window.removeEventListener("praveil:login", onOpen);
+  }, []);
   const closeLogin = useCallback(() => setLoginOpen(false), []);
 
   useEffect(() => {

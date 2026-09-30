@@ -200,10 +200,15 @@ export default function TreatmentDetail({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={t.photo}
-              alt={`${t.title} 시술`}
+              alt={`${t.title} 이미지`}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
+            {t.photo.startsWith("/images/stock/") && (
+              <span className="absolute bottom-3 left-4 text-[10px] text-white/80 drop-shadow">
+                ※ 이해를 돕기 위한 연출 이미지입니다
+              </span>
+            )}
           </div>
           <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
             <SectionHead

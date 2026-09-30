@@ -3,6 +3,8 @@
 // ※ 의료광고: 효과를 보장하는 표현은 쓰지 않고, 개인차 · 부작용 안내를 모든 페이지에 둡니다.
 
 const photo = (name: string) => `/images/photos/${name}.webp`;
+// 시술 분위기 사진 (무료 상업용, 출처: public/images/stock/SOURCES.txt)
+const stock = (name: string) => `/images/stock/${name}.webp`;
 
 export type Treatment = {
   href: string;
@@ -42,7 +44,7 @@ export const treatments: Treatment[] = [
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
-    photo: photo("equip-1"),
+    photo: stock("coolsonic"),
     facts: [
       { label: "시술 시간", value: "약 30~40분" },
       { label: "마취", value: "마취 크림" },
@@ -97,7 +99,7 @@ export const treatments: Treatment[] = [
     headline: ["피부결부터 탄탄하게,", "쿨페이즈 고주파 리프팅"],
     intro:
       "쿨페이즈는 고주파 에너지로 피부 속 온도를 높여 콜라겐 생성을 돕는 리프팅입니다. 표면은 식혀 주면서 진피층을 고르게 데워, 피부결과 탄력을 함께 관리합니다.",
-    photo: photo("equip-2"),
+    photo: stock("coolphase"),
     facts: [
       { label: "시술 시간", value: "약 30분" },
       { label: "마취", value: "필요 시 마취 크림" },
@@ -148,7 +150,7 @@ export const treatments: Treatment[] = [
     headline: ["고민에 맞춰 고르는", "레이저 리프팅"],
     intro:
       "처짐, 모공, 피부결처럼 같은 리프팅 고민도 원인이 다릅니다. 프라베일은 피부 상태를 먼저 보고, 목적에 맞는 장비를 골라 필요한 만큼 설계합니다.",
-    photo: photo("equip-3"),
+    photo: stock("laser"),
     facts: [
       { label: "시술 시간", value: "약 20~40분" },
       { label: "마취", value: "마취 크림" },
@@ -209,7 +211,7 @@ export const treatments: Treatment[] = [
     headline: ["처진 부위를 당겨 올리는", "실리프팅"],
     intro:
       "녹는 실을 피부 속에 넣어 처진 볼 · 턱선을 끌어올리는 시술입니다. 얼굴 구조와 처짐 방향을 보고 실의 종류 · 개수 · 방향을 정합니다.",
-    photo: photo("special-4"),
+    photo: stock("thread"),
     facts: [
       { label: "시술 시간", value: "약 30~60분" },
       { label: "마취", value: "부분 마취" },
@@ -272,7 +274,7 @@ export const treatments: Treatment[] = [
     headline: ["꺼진 곳만 정확하게,", "얼굴 비율에 맞춘 필러"],
     intro:
       "필러는 꺼진 부위에 볼륨을 채워 얼굴의 균형을 맞추는 시술입니다. 프라베일은 많이 채우기보다, 얼굴 비율을 보고 꼭 필요한 곳에 필요한 양만 넣습니다.",
-    photo: photo("special-3"),
+    photo: stock("filler"),
     facts: [
       { label: "시술 시간", value: "약 10~30분" },
       { label: "마취", value: "마취 크림" },
@@ -333,7 +335,7 @@ export const treatments: Treatment[] = [
     headline: ["표정은 살리고 주름은 부드럽게,", "부위별 보톡스"],
     intro:
       "보톡스는 근육의 과한 움직임을 줄여 주름을 부드럽게 하거나, 발달한 근육의 부피를 줄이는 시술입니다. 부위와 근육의 힘을 보고 용량을 정합니다.",
-    photo: photo("special-1"),
+    photo: stock("botox"),
     facts: [
       { label: "시술 시간", value: "약 5~15분" },
       { label: "마취", value: "필요 시 냉각" },
@@ -395,7 +397,7 @@ export const treatments: Treatment[] = [
     headline: ["얇아진 피부에 밀도를,", "리투오 콜라겐 부스터"],
     intro:
       "리투오는 피부 속에 콜라겐 성분을 채워 얇아진 피부에 밀도와 결을 더하는 부스터입니다. 피부 두께와 상태를 보고 주입 깊이와 양을 정합니다.",
-    photo: photo("special-5"),
+    photo: stock("retuo"),
     facts: [
       { label: "시술 시간", value: "약 20~30분" },
       { label: "마취", value: "마취 크림" },
@@ -445,7 +447,7 @@ export const treatments: Treatment[] = [
     headline: ["지친 피부에 회복력을,", "스킨부스터"],
     intro:
       "스킨부스터는 피부에 필요한 성분을 직접 전달해 피부결 · 탄력 · 속건조를 관리하는 시술입니다. 고민에 맞는 부스터를 골라 필요한 만큼 설계합니다.",
-    photo: photo("cat-skin-care"),
+    photo: stock("booster"),
     facts: [
       { label: "시술 시간", value: "약 20~30분" },
       { label: "마취", value: "마취 크림" },
@@ -493,7 +495,7 @@ export const treatments: Treatment[] = [
     headline: ["피부 스스로 채우도록,", "콜라겐부스터"],
     intro:
       "콜라겐부스터는 피부 속 콜라겐 생성을 돕거나 직접 채워, 꺼짐 · 얇은 피부 · 잔주름을 서서히 관리하는 시술입니다.",
-    photo: photo("special-2"),
+    photo: stock("collagen"),
     facts: [
       { label: "시술 시간", value: "약 20~30분" },
       { label: "마취", value: "마취 크림" },
@@ -547,7 +549,7 @@ export const treatments: Treatment[] = [
     headline: ["원인부터 흉터까지,", "단계별 여드름 · 모공 관리"],
     intro:
       "여드름은 원인과 단계에 따라 관리 방법이 다릅니다. 지금 올라오는 여드름, 남은 자국, 넓어진 모공과 흉터를 나누어 보고 순서대로 계획합니다.",
-    photo: photo("cat-scar-pore"),
+    photo: stock("acne"),
     facts: [
       { label: "시술 시간", value: "약 20~40분" },
       { label: "마취", value: "시술별 상이" },
@@ -607,7 +609,7 @@ export const treatments: Treatment[] = [
     headline: ["매끈한 피부를 위한", "레이저 제모"],
     intro:
       "레이저가 모낭에 에너지를 전달해 털이 자라는 것을 줄이는 시술입니다. 털의 굵기 · 피부 톤을 보고 에너지를 조절합니다.",
-    photo: photo("equip-4"),
+    photo: stock("hair"),
     facts: [
       { label: "시술 시간", value: "부위별 약 10~30분" },
       { label: "마취", value: "필요 시 냉각" },
@@ -661,7 +663,7 @@ export const treatments: Treatment[] = [
     headline: ["지우고 싶은 반영구,", "섬세한 문신제거"],
     intro:
       "레이저로 피부 속 색소를 잘게 부수어 몸 밖으로 배출되도록 돕는 시술입니다. 색소의 깊이 · 색 · 양을 보고 여러 번 나누어 진행합니다.",
-    photo: photo("equip-5"),
+    photo: stock("tattoo"),
     facts: [
       { label: "시술 시간", value: "약 10~20분" },
       { label: "마취", value: "마취 크림" },

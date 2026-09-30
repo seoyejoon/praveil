@@ -1,0 +1,15 @@
+# 무료 상업용 이미지 (Unsplash License: 상업적 사용 가능, 출처 표기 의무 없음)
+# https://unsplash.com/license — 이미지 자체를 되파는 용도만 금지
+# 파일 → 원본 (images.unsplash.com/photo-ID)
+coolsonic.webp  https://images.unsplash.com/photo-1790244338456-af6194d2436e
+coolphase.webp  https://images.unsplash.com/photo-1741934023052-26baf5535088
+laser.webp  https://images.unsplash.com/photo-1713085085470-fba013d67e65
+thread.webp  https://images.unsplash.com/photo-1566895733044-d2bdda8b6234
+filler.webp  https://images.unsplash.com/photo-1746017062285-13c77e29fc25
+botox.webp  https://images.unsplash.com/photo-1746708810803-722593e53772
+retuo.webp  https://images.unsplash.com/photo-1710580889701-9fa8f2cd5927
+booster.webp  https://images.unsplash.com/photo-1573461160327-b450ce3d8e7f
+collagen.webp  https://images.unsplash.com/photo-1787145124769-d89bd840bfcc
+acne.webp  https://images.unsplash.com/photo-1761819920857-7edc5e808fd3
+hair.webp  https://images.unsplash.com/photo-1700760933574-9f0f4ea9aa3b
+tattoo.webp  https://images.unsplash.com/photo-1651839633408-3fccd671b832

@@ -4,40 +4,36 @@ import { useEffect, useRef, useState } from "react";
 import { logoShapes } from "@/components/Logo";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
-type Spot = { x: number; y: number; w: number }; // 사진 속 로고 자리 (사진 기준 비율)
-type Photo = { src: string; logo: Spot; color: string };
+type Spot = { x: number; y: number; w?: number }; // 사진 속 자리 (사진 기준 비율)
 type Props = {
   eyebrow: string;
   scenes: { title: string[]; sub: string }[];
-  lobby: Photo;
-  room: Photo;
+  lobby: { src: string; logo: Spot & { w: number }; door: Spot; color: string };
+  consult: { src: string };
 };
 
 const LOGO = logoShapes.stacked;
 const [, , VBW, VBH] = LOGO.viewBox.split(" ").map(Number);
 const IMG_W = 2400,
-  IMG_H = 1350;
+  IMG_H = 1350; // 로비 사진 크기
 const PAD = 24; // 마우스 따라 움직일 여유 (사진 가장자리가 보이지 않게)
-const CENTER_COLOR = "#efe2c8";
+const POINTS = [0, 0.6, 1]; // 장면이 멈추는 자리 (스크롤 진행 비율)
 
-// 첫 화면: 스크롤하는 만큼 장면이 넘어감 (장면 사이에서 멈추면 가까운 장면으로 맞춰짐)
-// ① 로비 사진, 벽에 로고
-// ② 카메라가 로고 쪽으로 다가가고, 로고가 벽에서 떠올라 화면 가운데로
-// ③ 아치 모양으로 시술실 사진이 열리고, 로고는 시술실 벽에 자리 잡음
-// ④ 사진이 둥근 카드로 작아지며 다음 섹션(흰 배경)으로 이어짐
-export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
+// 첫 화면: 스크롤하는 만큼 장면이 넘어감 (멈추면 움직이던 방향의 다음 장면으로 맞춰짐)
+// ① 로비, 벽에 로고
+// ② 카메라가 오른쪽 유리 상담실로 다가가다가, 그 안의 원장 상담 장면으로 이어짐
+// ③ 사진이 둥근 카드로 작아지며 다음 섹션(흰 배경)으로
+export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const lobbyRef = useRef<HTMLDivElement>(null);
-  const shadeRef = useRef<HTMLDivElement>(null);
-  const roomRef = useRef<HTMLDivElement>(null);
-  const roomImgRef = useRef<HTMLImageElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const consultRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const [scene, setScene] = useState(0);
 
-  // 마우스 → 사진이 살짝 반대로, 떠오른 로고는 조금 더 움직여 깊이감
+  // 마우스 → 사진이 살짝 반대로 움직여 깊이감
   useEffect(() => {
     const el = rootRef.current;
     if (!el || reducedMotion() || !window.matchMedia("(pointer: fine)").matches)
@@ -63,47 +59,39 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
     };
   }, []);
 
-  // 스크롤 장면
   useEffect(() => {
     const root = rootRef.current;
     const logo = logoRef.current;
     if (!root || !logo) return;
 
-    // 사진이 화면을 덮을 때(object-cover) 사진 속 로고 자리가 어디인지 계산 (사진 틀 기준 좌표, 틀은 화면보다 PAD 만큼 큼)
+    // 사진이 틀을 덮을 때(object-cover) 사진 속 자리가 틀의 어디인지 (틀은 화면보다 PAD 만큼 큼)
     const spot = (s: Spot) => {
       const bw = root.clientWidth + PAD * 2,
         bh = root.clientHeight + PAD * 2;
       const k = Math.max(bw / IMG_W, bh / IMG_H);
       const dw = IMG_W * k,
         dh = IMG_H * k;
-      const ox = (bw - dw) * s.x,
+      const ox = (bw - dw) * lobby.logo.x,
         oy = (bh - dh) / 2;
-      const w = dw * s.w;
-      const h = (w * VBH) / VBW;
-      return { cx: ox + dw * s.x, cy: oy + dh * s.y, w, h };
+      return { x: ox + dw * s.x, y: oy + dh * s.y, w: dw * (s.w ?? 0) };
     };
-    const centerW = () => logo.offsetWidth;
-    const logoAt = (s: Spot) => {
-      const p = spot(s);
-      const k = p.w / centerW();
-      return { x: p.cx - p.w / 2, y: p.cy - p.h / 2, scale: k };
+    // 로고는 로비 사진 벽에 붙어 사진과 함께 움직임
+    const placeLogo = () => {
+      const p = spot(lobby.logo);
+      const h = (p.w * VBH) / VBW;
+      gsap.set(logo, { x: p.x - p.w / 2, y: p.y - h / 2, width: p.w });
     };
-    const center = () => ({
-      x: PAD + (root.clientWidth - centerW()) / 2,
-      y: PAD + root.clientHeight * 0.42 - (centerW() * VBH) / VBW / 2,
-      scale: 1,
-    });
-
-    const place = () =>
-      gsap.set(logo, { ...logoAt(lobby.logo), color: lobby.color });
-    place();
+    placeLogo();
+    ScrollTrigger.addEventListener("refreshInit", placeLogo);
     if (reducedMotion()) {
-      window.addEventListener("resize", place);
-      return () => window.removeEventListener("resize", place);
+      window.addEventListener("resize", placeLogo);
+      return () => {
+        window.removeEventListener("resize", placeLogo);
+        ScrollTrigger.removeEventListener("refreshInit", placeLogo);
+      };
     }
 
-    // 장면 맞춤: 스크롤이 멈추면, 움직이던 방향의 다음 장면으로 부드럽게 이동 (조금만 내려도 다음 장면으로)
-    const POINTS = [0, 0.45, 0.8, 1];
+    // 장면 맞춤: 스크롤이 멈추면 움직이던 방향의 다음 장면으로 부드럽게 (조금만 내려도 다음 장면으로)
     let timer = 0;
     const snapLater = (st: ScrollTrigger) => {
       clearTimeout(timer);
@@ -123,7 +111,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
         ).__lenis;
         if (lenis)
           lenis.scrollTo(y, {
-            duration: 1.1,
+            duration: 1.2,
             easing: (x: number) => 1 - Math.pow(1 - x, 3),
           });
         else window.scrollTo({ top: y, behavior: "smooth" });
@@ -131,119 +119,79 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
     };
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "+=260%",
-          pin: true,
-          scrub: 0.7,
-          invalidateOnRefresh: true,
-          onUpdate: (st) => {
-            setScene(st.progress < 0.25 ? 0 : st.progress < 0.65 ? 1 : 2);
-            snapLater(st);
+      gsap
+        .timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: root,
+            start: "top top",
+            end: "+=220%",
+            pin: true,
+            scrub: 0.7,
+            invalidateOnRefresh: true,
+            onUpdate: (st) => {
+              setScene(st.progress < 0.3 ? 0 : 1);
+              snapLater(st);
+            },
           },
-        },
-      });
-
-      // ① → ② 로비 벽으로 다가가며 어두워지고, 로고는 가운데로
-      tl.fromTo(
-        lobbyRef.current,
-        {
-          scale: 1,
-          transformOrigin: () =>
-            `${spot(lobby.logo).cx}px ${spot(lobby.logo).cy}px`,
-        },
-        { scale: 1.7, duration: 0.4 },
-        0,
-      )
+        })
+        // ① → ② 유리 상담실 쪽으로 다가감
         .fromTo(
-          shadeRef.current,
-          { opacity: 0 },
-          { opacity: 0.7, duration: 0.4 },
+          lobbyRef.current,
+          {
+            scale: 1,
+            filter: "blur(0px)",
+            transformOrigin: () =>
+              `${Math.min(spot(lobby.door).x, root.clientWidth + PAD)}px ${spot(lobby.door).y}px`,
+          },
+          { scale: 2.6, duration: 0.55, ease: "power1.in" },
           0,
         )
+        .to(lobbyRef.current, { filter: "blur(6px)", duration: 0.2 }, 0.35)
+        // 상담실 안 장면이 겹쳐지며 드러남
         .fromTo(
-          logo,
-          { ...logoAt(lobby.logo), color: lobby.color, "--detach": 0 },
+          consultRef.current,
+          { opacity: 0, scale: 1.18, filter: "blur(10px)" },
           {
-            ...center(),
-            x: () => center().x,
-            y: () => center().y,
-            color: CENTER_COLOR,
-            "--detach": 1,
-            duration: 0.4,
-            ease: "power1.inOut",
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.25,
+            ease: "power2.out",
           },
-          0,
+          0.33,
         )
         .to(copyRefs.current[0], { opacity: 0, y: -40, duration: 0.15 }, 0.05)
         .fromTo(
           copyRefs.current[1],
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.15 },
-          0.25,
+          0.42,
         )
-
-        // ② → ③ 아치 모양으로 시술실이 열리고, 로고는 시술실 벽으로
-        .fromTo(
-          roomRef.current,
-          { clipPath: "inset(100% 50% 0% 50% round 999px 999px 0px 0px)" },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 0px 0px 0px 0px)",
-            duration: 0.3,
-            ease: "power2.inOut",
-          },
-          0.5,
-        )
-        .fromTo(
-          roomImgRef.current,
-          { scale: 1.3 },
-          { scale: 1, duration: 0.3, ease: "power2.out" },
-          0.5,
-        )
-        .to(
-          logo,
-          {
-            x: () => logoAt(room.logo).x,
-            y: () => logoAt(room.logo).y,
-            scale: () => logoAt(room.logo).scale,
-            color: room.color,
-            "--detach": 0,
-            duration: 0.3,
-            ease: "power2.inOut",
-          },
-          0.5,
-        )
-        .to(copyRefs.current[1], { opacity: 0, y: -40, duration: 0.12 }, 0.5)
-        .fromTo(
-          copyRefs.current[2],
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.15 },
-          0.65,
-        )
-
-        // ③ → ④ 둥근 카드로 작아지며 다음 섹션으로
+        // ② → ③ 둥근 카드로 작아지며 다음 섹션으로
         .fromTo(
           stageRef.current,
           { clipPath: "inset(0% 0% 0% 0% round 0px)" },
           {
             clipPath: "inset(6% 4% 6% 4% round 32px)",
-            duration: 0.2,
+            duration: 0.25,
             ease: "power1.inOut",
           },
-          0.8,
+          0.75,
         )
-        .to(copyRefs.current[2], { opacity: 0, duration: 0.12 }, 0.86)
-        .to(eyebrowRef.current, { autoAlpha: 0, duration: 0.12 }, 0.86);
+        .to(
+          [copyRefs.current[1], eyebrowRef.current],
+          { autoAlpha: 0, duration: 0.12 },
+          0.82,
+        );
     }, root);
     ScrollTrigger.refresh();
     return () => {
       clearTimeout(timer);
+      ScrollTrigger.removeEventListener("refreshInit", placeLogo);
       ctx.revert();
     };
-  }, [lobby, room]);
+  }, [lobby]);
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
@@ -255,9 +203,9 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
       >
         <div
           ref={stageRef}
-          className="absolute inset-0 overflow-hidden bg-[#1b1714]"
+          className="absolute inset-0 overflow-hidden bg-[#2a241e]"
         >
-          {/* 사진 두 장 + 로고 (마우스 따라 살짝 반대로 움직임). 처음엔 크게 시작해 제자리로 */}
+          {/* 처음엔 크게 시작해 제자리로 */}
           <div className="absolute inset-0 animate-[hero-in_2.2s_cubic-bezier(.22,1,.36,1)_both]">
             <div
               className="absolute -inset-6 transition-[translate] duration-700 ease-out"
@@ -266,6 +214,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                   "calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px)",
               }}
             >
+              {/* 로비 + 벽의 로고 */}
               <div
                 ref={lobbyRef}
                 className="absolute inset-0 will-change-transform"
@@ -273,48 +222,23 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={lobby.src}
-                  alt=""
+                  alt="프라베일 로비"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: `${lobby.logo.x * 100}% 50%` }}
                 />
                 <div
-                  ref={shadeRef}
-                  className="absolute inset-0 bg-[#15110d] opacity-0"
-                />
-              </div>
-              <div
-                ref={roomRef}
-                className="absolute inset-0 overflow-hidden [clip-path:inset(100%_50%_0%_50%_round_999px_999px_0px_0px)]"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  ref={roomImgRef}
-                  src={room.src}
-                  alt=""
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: `${room.logo.x * 100}% 50%` }}
-                />
-              </div>
-
-              {/* 로고: 벽에 붙어 있다가 떠오름. 처음 한 번 빛이 지나감 */}
-              <div
-                ref={logoRef}
-                className="absolute top-0 left-0 w-[66vw] origin-top-left md:w-[30vw] md:max-w-[560px] md:min-w-[320px]"
-                style={{ color: lobby.color }}
-              >
-                <div
-                  style={{
-                    translate:
-                      "calc(var(--mx, 0) * 18px * var(--detach, 0)) calc(var(--my, 0) * 12px * var(--detach, 0))",
-                  }}
+                  ref={logoRef}
+                  className="absolute top-0 left-0"
+                  style={{ color: lobby.color }}
                 >
                   <svg
                     viewBox={LOGO.viewBox}
                     role="img"
                     aria-label="PRAVEIL 프라베일 맑고고운의원"
-                    className="block h-auto w-full drop-shadow-[0_2px_3px_rgba(0,0,0,0.35)]"
+                    className="block h-auto w-full drop-shadow-[0_1px_1px_rgba(255,248,236,0.6)]"
                   >
                     <defs>
+                      {/* 처음 한 번 로고 위로 빛이 지나감 */}
                       <linearGradient
                         id="hero-logo-shine"
                         x1="0"
@@ -324,7 +248,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                       >
                         <stop offset="0" stopColor="currentColor" />
                         <stop offset="0.42" stopColor="currentColor" />
-                        <stop offset="0.5" stopColor="#fff6e4" />
+                        <stop offset="0.5" stopColor="#fff3dc" />
                         <stop offset="0.58" stopColor="currentColor" />
                         <stop offset="1" stopColor="currentColor" />
                         <animateTransform
@@ -332,7 +256,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                           type="translate"
                           from="-1.2 0"
                           to="1.2 0"
-                          begin="1.2s"
+                          begin="1.4s"
                           dur="1.8s"
                           fill="freeze"
                         />
@@ -346,17 +270,27 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                   </svg>
                 </div>
               </div>
+
+              {/* 상담 장면 */}
+              <div ref={consultRef} className="absolute inset-0 opacity-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={consult.src}
+                  alt="대표원장 1:1 상담"
+                  className="h-full w-full object-cover object-[58%_40%]"
+                />
+              </div>
             </div>
           </div>
 
-          {/* 글자가 잘 보이도록 위 · 아래 어둡게 */}
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,12,0.45),transparent_22%,transparent_55%,rgba(20,16,12,0.7))]" />
+          {/* 글자가 잘 보이도록 아래쪽만 어둡게 */}
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(30,24,18,0.28),transparent_18%,transparent_52%,rgba(30,24,18,0.72))]" />
 
           {/* 장면별 문구 */}
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[1600px] px-5 pb-28 md:px-10 md:pb-20">
             <p
               ref={eyebrowRef}
-              className="animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.9s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#e3cfae] uppercase md:text-xs"
+              className="animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.9s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs"
             >
               {eyebrow}
             </p>
@@ -385,7 +319,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
                         </span>
                       ))}
                     </h2>
-                    <p className="mt-3 text-[13px] text-white/60 md:text-sm">
+                    <p className="mt-3 text-[13px] text-white/70 md:text-sm">
                       {s.sub}
                     </p>
                   </div>
@@ -402,7 +336,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
             {scenes.map((s, i) => (
               <span
                 key={s.sub}
-                className={`h-1 rounded-full transition-all duration-500 ${i === scene ? "w-7 bg-white" : "w-1.5 bg-white/40"}`}
+                className={`h-1 rounded-full transition-all duration-500 ${i === scene ? "w-7 bg-white" : "w-1.5 bg-white/45"}`}
               />
             ))}
           </div>
@@ -413,7 +347,7 @@ export default function MainHero({ eyebrow, scenes, lobby, room }: Props) {
             {scenes.map((s, i) => (
               <span
                 key={s.sub}
-                className={`w-1 rounded-full transition-all duration-500 ${i === scene ? "h-6 bg-white" : "h-1.5 bg-white/40"}`}
+                className={`w-1 rounded-full transition-all duration-500 ${i === scene ? "h-6 bg-white" : "h-1.5 bg-white/45"}`}
               />
             ))}
           </div>

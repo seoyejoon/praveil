@@ -4,6 +4,7 @@ import { doctor, features, hospital } from "./mock/hospital";
 import { categories, procedures } from "./mock/procedures";
 import { notices, popups } from "./mock/board";
 import { hasDatabase } from "./db";
+import { demoBeforeAfter, demoNotices, showDemo } from "./demo";
 import * as db from "./source-db";
 import { procedureDetails } from "@/content/procedure-details";
 import { resolveHospitalPolicy } from "@/lib/policy";
@@ -73,9 +74,10 @@ export async function getSignatureProcedures() {
 }
 
 export async function getNotices() {
-  return hasDatabase
-    ? db.getNotices()
+  const list = hasDatabase
+    ? await db.getNotices()
     : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  return showDemo ? [...demoNotices, ...list] : list;
 }
 
 export async function getNotice(id: number) {
@@ -94,7 +96,8 @@ export async function getProcedureDetail(slug: string) {
 
 // 전후사례: 회원이 아니면 시술 전 사진 주소를 지워서 내려준다 (화면에서 흐리게 가리는 것만으로는 사진이 새어 나갈 수 있음)
 export async function getBeforeAfterCases(member: boolean) {
-  const list = hasDatabase ? await db.getBeforeAfter() : [];
+  const real = hasDatabase ? await db.getBeforeAfter() : [];
+  const list = showDemo ? [...demoBeforeAfter, ...real] : real;
   return member
     ? list
     : list.map((c) => ({

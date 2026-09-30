@@ -1,13 +1,18 @@
 // 메인 페이지 문구 (2026.10 리뉴얼). 원장님 검토 후 확정.
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
-// 첫 화면: 어두운 질감 벽 + 금속 로고, 괄호 속 단어가 바뀌는 제목
+// 첫 화면: 스크롤에 따라 3장면 (로비 → 로고 → 시술실)
+// 사진: Unsplash 무료 이미지 (상업 이용 가능) — 로비 photo-1758448093806, 시술실 photo-1693578538512
+// logo: 사진 속 로고 자리 (사진 기준 비율 x, y, 폭)
 export const mainHero = {
   eyebrow: "Praveil Clinic",
-  before: "오직 당신만을 위한",
-  words: ["단 하나의", "정직한", "섬세한", "자연스러운"],
-  after: "계획",
-  sub: "대표원장 책임 진료 시스템",
+  scenes: [
+    { title: ["오직 당신만을 위한", "단 하나의 계획"], sub: "대표원장 책임 진료 시스템" },
+    { title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."], sub: "Praveil 맑고고운의원" },
+    { title: ["편안하게 머무는", "프라이빗한 진료 공간"], sub: "1:1 맞춤 진료" },
+  ],
+  lobby: { src: photo("hero-lobby"), logo: { x: 0.535, y: 0.4, w: 0.13 }, color: "#3b2b1b" },
+  room: { src: photo("hero-room"), logo: { x: 0.683, y: 0.3, w: 0.12 }, color: "#dcc59f" },
 };
 
 // 두 번째: 피부 분석 장면 (3D 얼굴)

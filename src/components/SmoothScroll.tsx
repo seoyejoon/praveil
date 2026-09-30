@@ -12,8 +12,14 @@ export default function SmoothScroll() {
 
   useEffect(() => {
     if (reducedMotion()) return;
-    const lenis = new Lenis({ duration: 1.15, smoothWheel: true, touchMultiplier: 1.2 });
+    const lenis = new Lenis({
+      duration: 1.15,
+      smoothWheel: true,
+      touchMultiplier: 1.2,
+    });
     lenisRef.current = lenis;
+    // 다른 효과(첫 화면 장면 맞춤)에서 부드럽게 이동할 때 쓰도록 꺼내 둠
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -21,6 +27,7 @@ export default function SmoothScroll() {
     return () => {
       gsap.ticker.remove(tick);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
       lenisRef.current = null;
     };
   }, []);

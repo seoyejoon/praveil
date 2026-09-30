@@ -20,7 +20,12 @@ type Props = {
 // - 어두운 첫 화면([data-dark-hero]) 위에서는 투명 + 흰 글자, 스크롤하면 흰 배경
 // - 아래로 스크롤하면 숨고, 위로 올리면 다시 나타남
 // - PC: 메뉴에 올리면 각 메뉴 바로 아래 칸에 하위 메뉴 / 태블릿·모바일: 전체 화면 검정 메뉴
-export default function Header({ phone, reservationUrl, member, signup }: Props) {
+export default function Header({
+  phone,
+  reservationUrl,
+  member,
+  signup,
+}: Props) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -40,7 +45,10 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
+      // 어두운 첫 화면이 화면을 덮고 있는 동안(스크롤로 장면이 넘어가는 중)은 투명 유지
+      const hero = document.querySelector("[data-dark-hero]");
+      const overHero = hero ? hero.getBoundingClientRect().bottom > 80 : false;
+      setScrolled(y > 40 && !overHero);
       if (y > 240 && y > last + 2) setHidden(true);
       else if (y < last - 2 || y <= 240) setHidden(false);
       last = y;
@@ -78,7 +86,11 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
 
   async function logout() {
     setUserMenu(false);
-    await fetch("/api/member/logout", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+    await fetch("/api/member/logout", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: "{}",
+    });
     router.refresh();
   }
 
@@ -93,7 +105,9 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
   const clear = lightHero && !scrolled && !mega && !open; // 밝은 첫 화면 위: 투명 + 검정 글자
   const isCurrent = (href: string) => {
     const base = href.split("?")[0].split("/").slice(0, 2).join("/");
-    return base !== "" && (pathname === base || pathname.startsWith(`${base}/`));
+    return (
+      base !== "" && (pathname === base || pathname.startsWith(`${base}/`))
+    );
   };
 
   return (
@@ -105,12 +119,19 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
         } ${light ? "text-white" : clear ? "text-black" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
       >
         <div className="relative mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:h-[84px] md:px-10">
-          <Link href="/" aria-label="프라베일 맑고고운의원 홈" className="relative z-10 shrink-0">
+          <Link
+            href="/"
+            aria-label="프라베일 맑고고운의원 홈"
+            className="relative z-10 shrink-0"
+          >
             <Logo className="h-[18px] w-auto md:h-[24px]" />
           </Link>
 
           {/* PC 메뉴: ABOUT / PRAVEIL / COMMUNITY */}
-          <nav aria-label="주 메뉴" className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 gap-20 xl:flex 2xl:gap-28">
+          <nav
+            aria-label="주 메뉴"
+            className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 gap-20 xl:flex 2xl:gap-28"
+          >
             {menu.map((g, i) => (
               <Link
                 key={g.key}
@@ -128,7 +149,12 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
                 {g.label}
                 <span
                   className={`absolute bottom-[24px] left-0 h-px w-full origin-left bg-gold transition-transform duration-500 ${
-                    (mega && active === i) || g.columns.some((c) => c.pages.some((p) => isCurrent(p.href))) ? "scale-x-100" : "scale-x-0"
+                    (mega && active === i) ||
+                    g.columns.some((c) =>
+                      c.pages.some((p) => isCurrent(p.href)),
+                    )
+                      ? "scale-x-100"
+                      : "scale-x-0"
                   }`}
                 />
               </Link>
@@ -140,18 +166,28 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
             <div className="relative">
               <button
                 type="button"
-                onClick={() => (member ? setUserMenu((v) => !v) : openLogin("login"))}
-                aria-label={member ? `${member.name}님 회원 메뉴` : "로그인 · 회원가입"}
+                onClick={() =>
+                  member ? setUserMenu((v) => !v) : openLogin("login")
+                }
+                aria-label={
+                  member ? `${member.name}님 회원 메뉴` : "로그인 · 회원가입"
+                }
                 aria-expanded={member ? userMenu : undefined}
                 className="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-current/10"
               >
                 <UserRound className="h-[21px] w-[21px]" strokeWidth={1.5} />
-                {member && <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-current" />}
+                {member && (
+                  <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-current" />
+                )}
               </button>
               {member && userMenu && (
                 <div className="absolute top-full right-0 mt-2 w-44 overflow-hidden rounded-2xl bg-white py-2 text-sm text-black shadow-[0_16px_40px_rgba(0,0,0,0.14)]">
                   <p className="px-4 py-2 text-black/50">{member.name}님</p>
-                  <button type="button" onClick={logout} className="flex w-full items-center gap-2 px-4 py-2.5 text-left hover:bg-black/5">
+                  <button
+                    type="button"
+                    onClick={logout}
+                    className="flex w-full items-center gap-2 px-4 py-2.5 text-left hover:bg-black/5"
+                  >
                     <LogOut className="h-4 w-4" strokeWidth={1.5} />
                     로그아웃
                   </button>
@@ -180,15 +216,27 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
         >
           <div className="min-h-0">
             {active !== null && (
-              <div key={active} className="mx-auto flex max-w-[1400px] justify-center px-10 pt-9 pb-12 animate-[fade-up_.5s_cubic-bezier(.2,.7,.2,1)_both]">
+              <div
+                key={active}
+                className="mx-auto flex max-w-[1400px] justify-center px-10 pt-9 pb-12 animate-[fade-up_.5s_cubic-bezier(.2,.7,.2,1)_both]"
+              >
                 {menu[active].columns.map((c) => (
-                  <div key={c.key} className="w-[220px] border-l border-black/8 px-7 first:border-l-0 2xl:w-[250px]">
+                  <div
+                    key={c.key}
+                    className="w-[220px] border-l border-black/8 px-7 first:border-l-0 2xl:w-[250px]"
+                  >
                     {menu[active].columns.length > 1 && (
-                      <Link href={c.href} onClick={() => setMega(false)} className="block text-[15px] font-semibold transition hover:text-gold">
+                      <Link
+                        href={c.href}
+                        onClick={() => setMega(false)}
+                        className="block text-[15px] font-semibold transition hover:text-gold"
+                      >
                         {c.label}
                       </Link>
                     )}
-                    <ul className={`space-y-3 ${menu[active].columns.length > 1 ? "mt-5" : ""}`}>
+                    <ul
+                      className={`space-y-3 ${menu[active].columns.length > 1 ? "mt-5" : ""}`}
+                    >
                       {c.pages.map((p) => (
                         <li key={p.href}>
                           <Link
@@ -214,18 +262,28 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
       <div
         id="site-menu"
         className={`fixed inset-0 z-[60] flex flex-col bg-espresso text-white transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
-          open ? "[clip-path:inset(0_0_0_0)]" : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
+          open
+            ? "[clip-path:inset(0_0_0_0)]"
+            : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
         }`}
         aria-hidden={!open}
       >
         <div className="flex h-16 shrink-0 items-center justify-between px-5 md:h-[84px] md:px-10">
           <Logo className="h-[18px] w-auto md:h-[24px]" />
-          <button type="button" onClick={() => setOpen(false)} aria-label="메뉴 닫기" className="relative h-10 w-8">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="메뉴 닫기"
+            className="relative h-10 w-8"
+          >
             <span className="absolute top-1/2 right-0 h-px w-7 rotate-45 bg-white" />
             <span className="absolute top-1/2 right-0 h-px w-7 -rotate-45 bg-white" />
           </button>
         </div>
-        <nav aria-label="전체 메뉴" className="flex-1 overflow-y-auto px-5 pt-4 md:px-10">
+        <nav
+          aria-label="전체 메뉴"
+          className="flex-1 overflow-y-auto px-5 pt-4 md:px-10"
+        >
           {menu.map((g, i) => {
             const isOpen = expanded === i;
             return (
@@ -240,15 +298,28 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between py-6 text-left"
                 >
-                  <span className="font-display text-[30px] font-light tracking-[0.12em] md:text-4xl">{g.label}</span>
-                  <Plus className={`h-5 w-5 text-taupe transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`} strokeWidth={1.5} />
+                  <span className="font-display text-[30px] font-light tracking-[0.12em] md:text-4xl">
+                    {g.label}
+                  </span>
+                  <Plus
+                    className={`h-5 w-5 text-taupe transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`}
+                    strokeWidth={1.5}
+                  />
                 </button>
-                <div className={`grid transition-[grid-template-rows] duration-500 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                <div
+                  className={`grid transition-[grid-template-rows] duration-500 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+                >
                   <div className="min-h-0 overflow-hidden">
-                    <div className={`grid gap-x-6 gap-y-6 pb-7 ${g.columns.length > 1 ? "grid-cols-2" : ""}`}>
+                    <div
+                      className={`grid gap-x-6 gap-y-6 pb-7 ${g.columns.length > 1 ? "grid-cols-2" : ""}`}
+                    >
                       {g.columns.map((c) => (
                         <div key={c.key}>
-                          {g.columns.length > 1 && <p className="mb-2 text-sm font-semibold text-taupe">{c.label}</p>}
+                          {g.columns.length > 1 && (
+                            <p className="mb-2 text-sm font-semibold text-taupe">
+                              {c.label}
+                            </p>
+                          )}
                           <ul>
                             {c.pages.map((p) => (
                               <li key={p.href}>
@@ -273,16 +344,29 @@ export default function Header({ phone, reservationUrl, member, signup }: Props)
           })}
         </nav>
         <div className="grid shrink-0 grid-cols-2 gap-px border-t border-white/10 bg-white/10">
-          <a href={`tel:${phone}`} className="bg-espresso py-5 text-center text-sm">
+          <a
+            href={`tel:${phone}`}
+            className="bg-espresso py-5 text-center text-sm"
+          >
             전화 상담
           </a>
-          <a href={reservationUrl} target="_blank" rel="noopener noreferrer" className="bg-gold py-5 text-center text-sm text-white">
+          <a
+            href={reservationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gold py-5 text-center text-sm text-white"
+          >
             네이버 예약
           </a>
         </div>
       </div>
 
-      <MemberModal open={loginOpen} initialTab={loginTab} config={signup} onClose={closeLogin} />
+      <MemberModal
+        open={loginOpen}
+        initialTab={loginTab}
+        config={signup}
+        onClose={closeLogin}
+      />
     </>
   );
 }

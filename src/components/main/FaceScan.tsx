@@ -10,7 +10,13 @@ import { reducedMotion } from "@/lib/gsap";
 // - 마우스 주변 점은 돋보기처럼 밝고 크게
 // - video 를 넣으면 얼굴 뒤에 영상이 깔리고 점 · 선은 그 위에 은은하게 겹친다 (모델 영상 준비 후)
 
-export type ScanItem = { label: string; en: string; point: number; side: "left" | "right"; top: number };
+export type ScanItem = {
+  label: string;
+  en: string;
+  point: number;
+  side: "left" | "right";
+  top: number;
+};
 
 const CYCLE = 9; // 초: 한 번 훑고 카드가 모두 뜬 뒤 다시 시작
 const SCAN_TIME = 3.6;
@@ -20,7 +26,18 @@ const TONES = {
   light: { base: "168,142,106", hi: "125,102,73" },
 };
 
-export default function FaceScan({ items, video, tone = "dark" }: { items: ScanItem[]; video?: string; tone?: "dark" | "light" }) {
+// progress 를 주면 스캔이 시간 대신 스크롤 진행(0~1)을 따라감
+export default function FaceScan({
+  items,
+  video,
+  tone = "dark",
+  progress,
+}: {
+  items: ScanItem[];
+  video?: string;
+  tone?: "dark" | "light";
+  progress?: { current: number };
+}) {
   const light = tone === "light";
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -107,9 +124,15 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
       }
 
       // 스캔 라인 위치 (위 → 아래)
-      const scanP = Math.min(1, cycleT / SCAN_TIME);
-      const scanY = minY - 20 + (maxY - minY + 40) * easeInOut(scanP);
-      const scanning = cycleT < SCAN_TIME + 0.3;
+      const byScroll = Boolean(progress);
+      const scanP = byScroll
+        ? Math.max(0, Math.min(1, progress!.current))
+        : Math.min(1, cycleT / SCAN_TIME);
+      const scanY =
+        minY - 20 + (maxY - minY + 40) * (byScroll ? scanP : easeInOut(scanP));
+      const scanning = byScroll
+        ? scanP > 0 && scanP < 1
+        : cycleT < SCAN_TIME + 0.3;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
@@ -142,7 +165,10 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
         const depth = (proj[a + 2] + proj[b + 2]) / 2;
         const my = (proj[a + 1] + proj[b + 1]) / 2;
         const near = scanning ? Math.max(0, 1 - Math.abs(my - scanY) / 38) : 0;
-        const alpha = (video ? 0.05 : 0.07) + Math.max(0, (depth + 2) / 10) * 0.16 + near * 0.6;
+        const alpha =
+          (video ? 0.05 : 0.07) +
+          Math.max(0, (depth + 2) / 10) * 0.16 +
+          near * 0.6;
         ctx.strokeStyle = `rgba(${BEIGE},${alpha.toFixed(3)})`;
         ctx.beginPath();
         ctx.moveTo(proj[a], proj[a + 1]);
@@ -158,9 +184,14 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
         const near = scanning ? Math.max(0, 1 - Math.abs(py - scanY) / 26) : 0;
         const dm = Math.hypot(px - mouse.px, py - mouse.py);
         const lens = Math.max(0, 1 - dm / 110);
-        const r = 0.8 + Math.max(0, (z + 2) / 10) * 0.9 + near * 1.6 + lens * 1.8;
-        const alpha = 0.25 + Math.max(0, (z + 2) / 10) * 0.45 + near * 0.5 + lens * 0.5;
-        ctx.fillStyle = near > 0.5 || lens > 0.4 ? `rgba(${HI},${Math.min(1, alpha)})` : `rgba(${BEIGE},${Math.min(1, alpha)})`;
+        const r =
+          0.8 + Math.max(0, (z + 2) / 10) * 0.9 + near * 1.6 + lens * 1.8;
+        const alpha =
+          0.25 + Math.max(0, (z + 2) / 10) * 0.45 + near * 0.5 + lens * 0.5;
+        ctx.fillStyle =
+          near > 0.5 || lens > 0.4
+            ? `rgba(${HI},${Math.min(1, alpha)})`
+            : `rgba(${BEIGE},${Math.min(1, alpha)})`;
         ctx.beginPath();
         ctx.arc(px, py, r, 0, Math.PI * 2);
         ctx.fill();
@@ -197,18 +228,21 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
       }
 
       // 분석 카드: 스캔 라인이 그 부위를 지나면 나타나고, 선으로 연결
-      const fadeOut = cycleT > CYCLE - 0.6;
+      const fadeOut = !byScroll && cycleT > CYCLE - 0.6;
       items.forEach((item, i) => {
         const card = cardRefs.current[i];
         if (!card) return;
         const px = proj[item.point * 3],
           py = proj[item.point * 3 + 1];
-        const shown = !fadeOut && (still || !scanning || scanY > py);
+        const shown = byScroll
+          ? scanY > py
+          : !fadeOut && (still || !scanning || scanY > py);
         card.dataset.on = shown ? "1" : "0";
         if (!shown) return;
         const cr = card.getBoundingClientRect();
         const wr = wrap.getBoundingClientRect();
-        const ax = item.side === "left" ? cr.right - wr.left : cr.left - wr.left;
+        const ax =
+          item.side === "left" ? cr.right - wr.left : cr.left - wr.left;
         const ay = cr.top - wr.top + cr.height / 2;
         ctx.strokeStyle = `rgba(${BEIGE},0.55)`;
         ctx.lineWidth = 0.8;
@@ -238,12 +272,19 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
       window.removeEventListener("pointermove", onMove);
       wrap.removeEventListener("pointerleave", onLeave);
     };
-  }, [items, video, tone]);
+  }, [items, video, tone, progress]);
 
   return (
     <div ref={wrapRef} className="relative h-full w-full">
       {video && (
-        <video className="absolute inset-0 h-full w-full object-cover opacity-80" src={video} autoPlay muted loop playsInline />
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-80"
+          src={video}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
       )}
       <canvas ref={canvasRef} className="absolute inset-0" aria-hidden />
       {items.map((item, i) => (
@@ -256,12 +297,27 @@ export default function FaceScan({ items, video, tone = "dark" }: { items: ScanI
           className={`scan-card absolute w-[92px] rounded-xl border px-2.5 ${light ? "border-line bg-white/80 shadow-[0_12px_30px_-18px_rgba(125,102,73,0.5)]" : "border-white/15 bg-white/[0.06]"} py-2 backdrop-blur-md md:w-[150px] md:rounded-2xl md:px-3.5 md:py-3 ${
             item.side === "left" ? "left-0" : "right-0"
           }`}
-          style={{ top: `${item.top}%`, ["--v" as string]: `${58 + ((i * 37) % 30)}%` }}
+          style={{
+            top: `${item.top}%`,
+            ["--v" as string]: `${58 + ((i * 37) % 30)}%`,
+          }}
         >
-          <p className={`font-display text-[8px] tracking-[0.2em] uppercase md:text-[9px] ${light ? "text-gold" : "text-[#e3cfae]"} md:tracking-[0.25em]`}>{item.en}</p>
-          <p className={`mt-0.5 text-[12px] font-medium md:mt-1 md:text-[13px] ${light ? "text-ink" : "text-white"}`}>{item.label}</p>
-          <span className={`mt-1.5 block h-[2px] md:mt-2.5 md:h-[3px] overflow-hidden rounded-full ${light ? "bg-ink/[0.06]" : "bg-white/10"}`}>
-            <span className={`scan-bar block h-full rounded-full bg-gradient-to-r ${light ? "from-gold to-[#dcc8a8]" : "from-[#c9ae85] to-[#f3e3c8]"}`} />
+          <p
+            className={`font-display text-[8px] tracking-[0.2em] uppercase md:text-[9px] ${light ? "text-gold" : "text-[#e3cfae]"} md:tracking-[0.25em]`}
+          >
+            {item.en}
+          </p>
+          <p
+            className={`mt-0.5 text-[12px] font-medium md:mt-1 md:text-[13px] ${light ? "text-ink" : "text-white"}`}
+          >
+            {item.label}
+          </p>
+          <span
+            className={`mt-1.5 block h-[2px] md:mt-2.5 md:h-[3px] overflow-hidden rounded-full ${light ? "bg-ink/[0.06]" : "bg-white/10"}`}
+          >
+            <span
+              className={`scan-bar block h-full rounded-full bg-gradient-to-r ${light ? "from-gold to-[#dcc8a8]" : "from-[#c9ae85] to-[#f3e3c8]"}`}
+            />
           </span>
         </div>
       ))}

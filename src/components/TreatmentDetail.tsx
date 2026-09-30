@@ -371,6 +371,17 @@ export default function TreatmentDetail({
                   delay={(i % 4) * 80}
                   className="group rounded-[20px] border border-white/12 p-6 transition duration-500 hover:border-gold/60 hover:bg-white/[0.04] md:p-8"
                 >
+                  {it.image && (
+                    <div className="-mx-2 -mt-2 mb-6 overflow-hidden rounded-[14px] md:-mx-4 md:-mt-4">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={it.image}
+                        alt={`${it.name} 장비`}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full bg-[#f3f0eb] object-contain transition-[scale] duration-[1.2s] group-hover:scale-105"
+                      />
+                    </div>
+                  )}
                   <span className="font-display text-xs tracking-[0.2em] text-taupe">
                     {String(i + 1).padStart(2, "0")}
                   </span>

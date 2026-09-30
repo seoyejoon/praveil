@@ -3,6 +3,8 @@
 // ※ 의료광고: '최고 · 유일' 같은 표현, 다른 병원과의 비교, 치료 경험담은 쓰지 않습니다.
 
 const photo = (name: string) => `/images/photos/${name}.webp`;
+// 제조사 공식 제품 사진 (장비 구매 병원 사용 허가 범위)
+const device = (name: string) => `/images/equipment/${name}.webp`;
 
 // 병원소개 · 의료진소개 상단 (탭은 사이트맵 '병원소개' 분류를 따름)
 export const aboutHero = {
@@ -122,21 +124,21 @@ export const aboutEquipment = {
       en: "Shrink Universe",
       type: "초음파 리프팅",
       href: "/lifting/laser",
-      image: photo("equip-3"),
+      image: device("shrink-universe"),
     },
     {
       name: "포텐자",
       en: "Potenza",
       type: "마이크로니들 고주파",
       href: "/lifting/laser",
-      image: photo("equip-4"),
+      image: device("potenza"),
     },
     {
       name: "클라리티",
       en: "Clarity",
       type: "레이저",
       href: "/lifting/laser",
-      image: photo("equip-5"),
+      image: device("clarity"),
     },
     {
       name: "피코 레이저",

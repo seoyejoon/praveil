@@ -21,7 +21,7 @@ export type Treatment = {
   recommend: string[];
   points: { title: string; text: string }[];
   /** 통합 페이지의 세부 시술 */
-  items?: { name: string; text: string }[];
+  items?: { name: string; text: string; image?: string }[];
   faq: { q: string; a: string }[];
   cautions: string[];
 };
@@ -180,12 +180,18 @@ export const treatments: Treatment[] = [
       {
         name: "슈링크 유니버스",
         text: "집속 초음파로 처진 윤곽 · 이중턱 라인을 관리합니다.",
+        image: "/images/equipment/shrink-universe.webp",
       },
       {
         name: "포텐자",
         text: "마이크로니들 고주파로 모공 · 흉터 · 탄력을 함께 관리합니다.",
+        image: "/images/equipment/potenza.webp",
       },
-      { name: "클라리티", text: "레이저로 피부결 · 톤 · 탄력을 정돈합니다." },
+      {
+        name: "클라리티",
+        text: "레이저로 피부결 · 톤 · 탄력을 정돈합니다.",
+        image: "/images/equipment/clarity.webp",
+      },
     ],
     faq: [
       {

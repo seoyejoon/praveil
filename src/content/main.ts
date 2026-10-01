@@ -23,8 +23,9 @@ export const mainHero = {
   entrance: {
     src: photo("hero-entrance"),
     openSrc: photo("hero-entrance-open"),
-    width: 2400,
-    height: 1351,
+    // AI 업스케일(Real-ESRGAN x4) 후 3200px로 저장
+    width: 3200,
+    height: 1801,
   },
 };
 

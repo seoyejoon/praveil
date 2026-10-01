@@ -65,7 +65,7 @@ export default function SceneHero({
       ref={rootRef}
       data-dark-hero
       data-light-hero
-      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#efebe7,#e3ded9_55%,#d8d2cb)] text-ink xl:h-[calc(33.34vw+132px)] xl:min-h-0"
+      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#dcd7d3] text-ink xl:h-[calc(33.34vw+132px)] xl:min-h-0"
     >
       <div
         ref={stageRef}
@@ -95,8 +95,6 @@ export default function SceneHero({
           )}
         </div>
       </div>
-      {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}
-      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(236,232,227,0.7),rgba(236,232,227,0.35)_24%,transparent_40%)] xl:block" />
       <div ref={textRef} className="relative h-full will-change-transform">
         <LightHeroText
           en={en}

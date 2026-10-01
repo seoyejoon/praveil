@@ -4,37 +4,30 @@ import { useEffect, useRef, useState } from "react";
 import RotatingWord from "@/components/RotatingWord";
 import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
-type Box = { x0: number; y0: number; x1: number; y1: number };
 type Props = {
   eyebrow: string;
   scenes: { title: string[]; words?: string[]; after?: string; sub: string }[];
-  lobby: {
-    src: string;
-    width: number;
-    height: number;
-    focusX: number;
-    glass: Box;
-  };
-  consult: { src: string };
+  /** 밖에서 본 유리문 (닫힘). 가운데가 문 이음새 */
+  entrance: { src: string; width: number; height: number };
+  /** 문 안쪽 인포메이션. focus = 다가갈 곳 (사진 속 비율 좌표) */
+  inside: { src: string; focus: { x: number; y: number } };
 };
 
-const PAD = 24; // 마우스 따라 움직일 여유 (사진 가장자리가 보이지 않게)
 const POINTS = [0, 0.6, 1]; // 장면이 멈추는 자리 (스크롤 진행 비율)
 const LIGHT_FROM = 1.2; // 마우스 조명이 켜지기 시작하는 시각(초)
 
 // 첫 화면
-// ● 들어오면: 로비가 어둡게 시작 → 천장 조명이 하나씩 톡톡 켜지고, 선반 · 데스크 조명 → 로고에 빛이 스침
-// ● 마우스: 마우스가 있는 곳만 따뜻한 조명처럼 밝아지고, 로고 근처를 지나면 글자에 금속 반사 (터치 기기는 조명이 저절로 천천히 움직임)
-// ● 유리 상담실: 마우스를 올리면 유리 너머로 상담 장면이 비치고 "1:1 상담실 보기", 누르면 안으로 들어감
-// ● 스크롤: 유리 상담실 쪽으로 다가가 상담 장면으로 들어가고(모바일은 가운데 아치 문), 둥근 카드로 작아지며 다음 섹션으로
-export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
+// ● 밖에서 유리문(닫힘)을 바라보며 시작
+// ● 마우스: 마우스가 있는 곳만 따뜻한 조명처럼 밝아짐 (PC)
+// ● 스크롤: 가운데 문이 양옆으로 열리며 걸어 들어가고 → 인포메이션 데스크로 다가감 → 둥근 카드로 작아지며 다음 섹션으로
+export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const lobbyRef = useRef<HTMLDivElement>(null);
-  const shadeRef = useRef<HTMLDivElement>(null);
-  const windowRef = useRef<HTMLDivElement>(null);
-  const consultImgRef = useRef<HTMLImageElement>(null);
-  const glareRef = useRef<HTMLDivElement>(null);
+  const doorLRef = useRef<HTMLDivElement>(null);
+  const doorRRef = useRef<HTMLDivElement>(null);
+  const facadeRef = useRef<HTMLDivElement>(null);
+  const insideRef = useRef<HTMLImageElement>(null);
+  const dimRef = useRef<HTMLDivElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressRef = useRef(0); // 스크롤 장면 진행 (0~1)
@@ -53,8 +46,8 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
     )
       return;
     const L = {
-      x: root.clientWidth * 0.45,
-      y: root.clientHeight * 0.32,
+      x: root.clientWidth * 0.5,
+      y: root.clientHeight * 0.36,
       tx: 0,
       ty: 0,
       hover: false,
@@ -92,17 +85,17 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       const t = (now - start) / 1000;
       const w = root!.clientWidth,
         h = root!.clientHeight;
-      // 마우스가 화면 밖이면 로고 쪽에 머묾
+      // 마우스가 화면 밖이면 문 안 로고 쪽에 머묾
       if (!L.hover) {
-        L.tx = w * 0.45;
-        L.ty = h * 0.32;
+        L.tx = w * 0.5;
+        L.ty = h * 0.36;
       }
       const k = 1 - Math.exp(-dt * 4);
       L.x += (L.tx - L.x) * k;
       L.y += (L.ty - L.y) * k;
       spot!.style.setProperty("--lx", `${L.x.toFixed(1)}px`);
       spot!.style.setProperty("--ly", `${L.y.toFixed(1)}px`);
-      // 조명은 켜짐이 끝난 뒤 서서히, 스크롤로 상담실에 들어가면 사라짐
+      // 조명은 들어온 뒤 서서히 켜지고, 스크롤로 안에 들어가면 사라짐
       const on = Math.min(1, Math.max(0, (t - LIGHT_FROM) / 1.2));
       spot!.style.opacity = String(
         on * Math.max(0, 1 - progressRef.current * 4),
@@ -116,93 +109,93 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
     };
   }, []);
 
-  // 스크롤 장면: 유리 상담실 안으로
+  // 스크롤 장면: 문이 열리며 안으로
   useEffect(() => {
     const root = rootRef.current;
-    const lobbyEl = lobbyRef.current;
-    const win = windowRef.current;
-    if (!root || !lobbyEl || !win) return;
+    const doorL = doorLRef.current;
+    const doorR = doorRRef.current;
+    const insideImg = insideRef.current;
+    const facade = facadeRef.current;
+    if (!root || !doorL || !doorR || !insideImg || !facade) return;
 
-    // 사진 틀(화면보다 PAD 만큼 큼) 기준으로, 사진 속 비율 좌표 → 틀 좌표
-    const frame = () => {
-      const bw = root.clientWidth + PAD * 2,
-        bh = root.clientHeight + PAD * 2;
-      const k = Math.max(bw / lobby.width, bh / lobby.height);
-      const dw = lobby.width * k,
-        dh = lobby.height * k;
-      const ox = (bw - dw) * lobby.focusX,
-        oy = (bh - dh) / 2;
-      const g = lobby.glass;
-      const rect = {
-        x0: ox + dw * g.x0,
-        y0: oy + dh * g.y0,
-        x1: ox + dw * g.x1,
-        y1: oy + dh * g.y1,
-      };
-      // 좁은 화면(모바일)에서는 유리 상담실이 화면 밖이라, 가운데에 문 모양 창을 두고 열림 (옆으로 돌지 않음)
-      const narrow = rect.x0 > bw * 0.9;
+    // 사진 속 비율 좌표 → 화면 좌표 (object-cover, 가운데 기준)
+    const cover = () => {
+      // 사진 틀은 마우스 움직임 여유만큼 화면보다 사방 24px 큼 (-inset-6)
+      const W = root.clientWidth + 48,
+        H = root.clientHeight + 48;
+      const k = Math.max(W / entrance.width, H / entrance.height);
+      const dw = entrance.width * k,
+        dh = entrance.height * k;
+      const ox = (W - dw) / 2,
+        oy = (H - dh) / 2;
       return {
-        bw,
-        bh,
-        pan: !narrow,
-        rect: narrow
-          ? { x0: bw * 0.26, y0: bh * 0.3, x1: bw * 0.74, y1: bh * 0.7 }
-          : rect,
+        W,
+        H,
+        at: (u: number, v: number) => ({ x: ox + dw * u, y: oy + dh * v }),
       };
     };
+    let C = cover();
+    const ease = (x: number) =>
+      x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    const mix = (a: number, b: number, k: number) => a + (b - a) * k;
 
-    // t(0~1)에 따라: 유리창 가운데를 화면 가운데로 돌리며(pan) 확대(s). 창 밖 로비는 어두워지고, 창은 화면을 채울 때까지 커짐
-    let F = frame();
+    // t(0~1): 앞 60% 문이 열리며 한 걸음 들어가고, 뒤쪽은 데스크 쪽으로 다가감
     const apply = (t: number) => {
       progressRef.current = t;
-      const { bw, bh, rect, pan } = F;
-      const ox = (rect.x0 + rect.x1) / 2,
-        oy = (rect.y0 + rect.y1) / 2; // 확대 기준 = 유리창 가운데
-      const cx = bw / 2,
-        cy = bh / 2;
-      const sEnd =
-        Math.max(bw / (rect.x1 - rect.x0), bh / (rect.y1 - rect.y0)) * 1.08; // 창이 화면을 다 덮는 배율
-      const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      const s = 1 + (sEnd - 1) * Math.pow(t, 1.6);
-      const px = pan ? (cx - ox) * e : 0,
-        py = pan ? (cy - oy) * e : 0;
-      lobbyEl.style.transformOrigin = `${ox}px ${oy}px`;
-      lobbyEl.style.transform = `translate(${px}px, ${py}px) scale(${s})`;
-      const map = (x: number, y: number) => [
-        ox + px + (x - ox) * s,
-        oy + py + (y - oy) * s,
-      ];
-      const [x0, y0] = map(rect.x0, rect.y0);
-      const [x1, y1] = map(rect.x1, rect.y1);
-      // 유리창 = 상담실. 창 크기 그대로 상담 사진을 담아, 창이 커지는 만큼 방이 가까워짐 (끝나면 화면 가득)
-      const L = Math.max(0, x0),
-        T = Math.max(0, y0),
-        R = Math.min(bw, x1),
-        B = Math.min(bh, y1);
-      win.style.left = `${L}px`;
-      win.style.top = `${T}px`;
-      win.style.width = `${Math.max(0, R - L)}px`;
-      win.style.height = `${Math.max(0, B - T)}px`;
-      const rad = Math.max(0, 1 - t * 1.2) * 44 * Math.min(s, 2.5);
-      const arch = (Math.max(0, 1 - t * 1.1) * (R - L)) / 2;
-      // 모바일은 아치 문 모양 (위쪽 양 모서리 둥글게)
-      win.style.borderRadius = pan
-        ? `${rad}px 0 0 0`
-        : `${arch}px ${arch}px 0 0`;
-      // 안쪽 사진은 창보다 조금 덜 커지게 (깊이감)
-      if (consultImgRef.current)
-        consultImgRef.current.style.transform = `scale(${1.15 - 0.15 * e})`;
-      // 로비 사진 속 유리 너머 공간과 겹치듯 서서히 드러나고, 유리 반사는 들어갈수록 사라짐
-      win.style.opacity = String(Math.min(1, t * 3.2));
-      if (glareRef.current)
-        glareRef.current.style.opacity = String(Math.max(0, 1 - t * 2.2));
-      if (shadeRef.current)
-        shadeRef.current.style.opacity = String(0.55 * Math.min(1, t * 2));
+      const { W, H, at } = C;
+      const d = ease(Math.min(1, t / 0.6));
+      const near = ease(Math.max(0, (t - 0.45) / 0.55));
+      const cx = W / 2,
+        cy = H / 2;
+      // 걸어 들어가는 만큼 입구 전체가 커짐 (화면 가운데 기준)
+      const sF = 1 + 0.22 * d;
+      // 입구 사진(문 닫힘)은 문이 움직이기 시작하면 금방 사라지고, 같은 자리에 그린 유리문 두 짝이 이어받아 열림
+      // (유리 너머 풍경은 뒤쪽 안쪽 사진이 그대로 보여서, 실제 유리문처럼 문틀 · 손잡이만 움직임)
+      const photo = 1 - ease(Math.min(1, d / 0.14));
+      // 그린 문은 사진이 거의 사라진 뒤부터 움직임 (손잡이가 겹쳐 보이지 않게)
+      const open = ease(Math.max(0, (d - 0.12) / 0.88));
+      facade.style.transform = `scale(${sF})`;
+      facade.style.opacity = String(photo);
+      const A = at(0.1794, 0),
+        S = at(0.4994, 0.894),
+        R = at(0.8182, 0);
+      const dl = S.x - A.x,
+        dr = R.x - S.x;
+      const doors = (1 - photo) * (1 - Math.max(0, d - 0.85) / 0.15);
+      const place = (el: HTMLDivElement, x: number, w: number, dx: number) => {
+        el.style.left = `${cx + sF * (x + dx - cx)}px`;
+        el.style.top = `${cy + sF * (A.y - cy)}px`;
+        el.style.width = `${w * sF}px`;
+        el.style.height = `${(S.y - A.y) * sF}px`;
+        el.style.opacity = String(Math.max(0, doors));
+      };
+      place(doorL, A.x, dl, -open * dl * 1.04);
+      place(doorR, S.x, dr, open * dr * 1.04);
+
+      // 안쪽 사진: 처음엔 문 너머로 보이던 안쪽과 같은 자리 · 크기로 맞춰 두고(데스크 모니터 기준),
+      // 문이 열리는 동안 문과 같이 커지다가 → 데스크(focus) 쪽으로 다가가는 움직임으로 넘어감
+      const E = at(0.4522, 0.4888); // 입구 사진 속 데스크 모니터 가운데
+      const I = at(0.4468, 0.4612); // 안쪽 사진 속 같은 자리
+      const s0 = 0.915;
+      const tx0 = E.x - s0 * I.x,
+        ty0 = E.y - s0 * I.y;
+      const sA = s0 * sF,
+        txA = cx + sF * (tx0 - cx),
+        tyA = cy + sF * (ty0 - cy);
+      const Fp = at(inside.focus.x, inside.focus.y);
+      const s1 = 1.06 + 0.32 * near;
+      const tx1 = Fp.x * (1 - s1),
+        ty1 = Fp.y * (1 - s1);
+      const m = ease(Math.min(1, Math.max(0, (d - 0.5) / 0.5)));
+      insideImg.style.transformOrigin = "0 0";
+      insideImg.style.transform = `translate(${mix(txA, tx1, m)}px, ${mix(tyA, ty1, m)}px) scale(${mix(sA, s1, m)})`;
+      // 문 밖에서 볼 때는 안쪽이 살짝 어둡고, 들어가며 밝아짐
+      if (dimRef.current) dimRef.current.style.opacity = String(0.3 * (1 - d));
     };
     const state = { t: 0 };
     apply(0);
     const onRefresh = () => {
-      F = frame();
+      C = cover();
       apply(state.t);
     };
     ScrollTrigger.addEventListener("refreshInit", onRefresh);
@@ -265,7 +258,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
             },
           },
         })
-        // ① → ② 유리 상담실 안으로
+        // ① → ② 문이 열리며 안으로
         .to(state, { t: 1, duration: 0.6, onUpdate: () => apply(state.t) }, 0)
         .to(copyRefs.current[0], { opacity: 0, y: -40, duration: 0.15 }, 0.05)
         .fromTo(
@@ -294,7 +287,7 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
       window.removeEventListener("resize", onRefresh);
       ctx.revert();
     };
-  }, [lobby]);
+  }, [entrance, inside]);
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
@@ -317,43 +310,59 @@ export default function MainHero({ eyebrow, scenes, lobby, consult }: Props) {
                   "calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px)",
               }}
             >
-              {/* 로비 (로고는 사진 속 벽에 있음) */}
+              {/* 문 안쪽: 인포메이션 */}
+              <div className="absolute inset-0 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  ref={insideRef}
+                  src={inside.src}
+                  alt="프라베일 인포메이션"
+                  className="h-full w-full object-cover will-change-transform"
+                />
+                <div
+                  ref={dimRef}
+                  className="pointer-events-none absolute inset-0 bg-[#1f1914] opacity-[0.35]"
+                />
+              </div>
+
+              {/* 밖에서 본 입구 (문 닫힘) */}
               <div
-                ref={lobbyRef}
-                className="absolute inset-0 overflow-hidden will-change-transform"
+                ref={facadeRef}
+                className="absolute inset-0 will-change-transform"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={lobby.src}
-                  alt="프라베일 로비"
+                  src={entrance.src}
+                  alt="프라베일 입구"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: `${lobby.focusX * 100}% 50%` }}
-                />
-
-                <div
-                  ref={shadeRef}
-                  className="pointer-events-none absolute inset-0 bg-[#1f1914] opacity-0"
                 />
               </div>
 
-              {/* 유리창 속 상담 장면 → 화면 가득 */}
-              <div
-                ref={windowRef}
-                className="pointer-events-none absolute top-0 left-0 overflow-hidden opacity-0"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  ref={consultImgRef}
-                  src={consult.src}
-                  alt="대표원장 1:1 상담"
-                  className="h-full w-full object-cover object-[55%_40%] will-change-transform"
-                />
-                {/* 유리 반사 · 테두리 (들어갈수록 사라짐) */}
+              {/* 그린 유리문 두 짝: 입구 사진 속 문과 같은 자리 · 같은 모양 (문틀 · 손잡이), 스크롤하면 양옆으로 열림 */}
+              {[doorLRef, doorRRef].map((ref, i) => (
                 <div
-                  ref={glareRef}
-                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,244,226,0.28),transparent_35%,transparent_60%,rgba(255,244,226,0.12))] shadow-[inset_0_0_0_1px_rgba(255,240,215,0.45)]"
-                />
-              </div>
+                  key={i}
+                  ref={ref}
+                  aria-hidden
+                  className="absolute top-0 left-0 opacity-0 will-change-[left,opacity]"
+                >
+                  {/* 유리: 아주 옅은 색 + 비스듬한 반사 */}
+                  <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,246,232,0.10),rgba(255,246,232,0.02)_40%,rgba(255,246,232,0.07)_70%,rgba(255,246,232,0.01))]" />
+                  {/* 이음새 쪽 문틀 */}
+                  <div
+                    className={`absolute inset-y-0 w-[0.7%] min-w-[2px] bg-[#16120f] ${i === 0 ? "right-0" : "left-0"}`}
+                  />
+                  {/* 바깥쪽 얇은 문틀 */}
+                  <div
+                    className={`absolute inset-y-0 w-[0.4%] min-w-[1px] bg-[#16120f]/70 ${i === 0 ? "left-0" : "right-0"}`}
+                  />
+                  {/* 손잡이 */}
+                  <div
+                    className="absolute top-[48%] h-[17.5%] w-[1.9%] min-w-[3px] rounded-full bg-[#16120f] shadow-[0_0_0_1px_rgba(255,240,220,0.08)]"
+                    style={i === 0 ? { left: "94.6%" } : { left: "2.8%" }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 

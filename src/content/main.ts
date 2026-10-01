@@ -16,17 +16,12 @@ export const mainHero = {
     },
     {
       title: ["처음 상담부터 마지막 관리까지,", "대표원장이 직접 책임집니다."],
-      sub: "1:1 맞춤 상담",
+      sub: "프라베일 맑고고운의원",
     },
   ],
-  lobby: {
-    src: photo("hero-lobby"),
-    width: 2400,
-    height: 1351,
-    focusX: 0.45,
-    glass: { x0: 0.775, y0: 0.15, x1: 1.12, y1: 0.83 },
-  },
-  consult: { src: photo("hero-consult") },
+  // 밖에서 본 유리문 (가운데 이음새에서 좌우로 열림) → 문 안 인포메이션
+  entrance: { src: photo("hero-entrance"), width: 2400, height: 1351 },
+  inside: { src: photo("hero-inside"), focus: { x: 0.46, y: 0.42 } },
 };
 
 // 두 번째: 피부 분석 장면 (3D 얼굴)

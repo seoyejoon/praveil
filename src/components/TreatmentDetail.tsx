@@ -231,51 +231,53 @@ export default function TreatmentDetail({
       )}
 
       {/* 어떤 고민에 고려하나요? */}
-      <section className="px-3 md:px-6">
-        <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-ivory md:rounded-[40px] lg:grid-cols-2">
-          <div className="relative min-h-[300px] lg:min-h-[560px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={t.photo}
-              alt={`${t.title} 이미지`}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            {t.photo.startsWith("/images/stock/") && (
-              <span className="absolute bottom-3 left-4 text-[10px] text-white/80 drop-shadow">
-                ※ 이해를 돕기 위한 연출 이미지입니다
-              </span>
-            )}
+      {!story && (
+        <section className="px-3 md:px-6">
+          <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-ivory md:rounded-[40px] lg:grid-cols-2">
+            <div className="relative min-h-[300px] lg:min-h-[560px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={t.photo}
+                alt={`${t.title} 이미지`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              {t.photo.startsWith("/images/stock/") && (
+                <span className="absolute bottom-3 left-4 text-[10px] text-white/80 drop-shadow">
+                  ※ 이해를 돕기 위한 연출 이미지입니다
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
+              <SectionHead
+                en="Who it's for"
+                title={`${t.title}, 어떤 고민에 고려하나요?`}
+              />
+              <ul className="mt-10 grid gap-3">
+                {t.recommend.map((r, i) => (
+                  <Reveal
+                    as="li"
+                    key={r}
+                    delay={i * 80}
+                    className="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 md:px-6 md:py-5"
+                  >
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold text-white">
+                      <Check className="h-4 w-4" strokeWidth={2} />
+                    </span>
+                    <span className="text-[15px] md:text-base">{r}</span>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
-            <SectionHead
-              en="Who it's for"
-              title={`${t.title}, 어떤 고민에 고려하나요?`}
-            />
-            <ul className="mt-10 grid gap-3">
-              {t.recommend.map((r, i) => (
-                <Reveal
-                  as="li"
-                  key={r}
-                  delay={i * 80}
-                  className="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 md:px-6 md:py-5"
-                >
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold text-white">
-                    <Check className="h-4 w-4" strokeWidth={2} />
-                  </span>
-                  <span className="text-[15px] md:text-base">{r}</span>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 다른 시술과 어떻게 다른가요? */}
       {compare.length > 1 && (
         <section
           id="compare"
-          className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 pt-24 md:scroll-mt-44 md:px-10 md:pt-36 ${story ? "pb-24 md:pb-36" : ""}`}
+          className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 md:scroll-mt-44 md:px-10 ${story ? "pb-24 md:pb-36" : "pt-24 md:pt-36"}`}
         >
           <SectionHead
             en="Compare"
@@ -442,7 +444,7 @@ export default function TreatmentDetail({
       {/* 누가 상담하고 시술하나요? */}
       <section
         id="doctor"
-        className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items ? "pt-16 md:pt-24" : ""}`}
+        className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items || story ? "pt-16 md:pt-24" : ""}`}
       >
         <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
           <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">

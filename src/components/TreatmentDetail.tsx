@@ -8,6 +8,7 @@ import {
   Phone,
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
+import { BaPreview } from "@/components/BeforeAfterBoard";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import MoreToggle from "@/components/sub/MoreToggle";
@@ -31,7 +32,7 @@ import {
   treatmentSteps,
   type Treatment,
 } from "@/content/treatments";
-import type { Doctor, Hospital, Procedure } from "@/lib/data";
+import type { BeforeAfterCase, Doctor, Hospital, Procedure } from "@/lib/data";
 
 export type CompareColumn = {
   href: string;
@@ -54,6 +55,9 @@ type Props = {
   updated: string;
   /** 장비 시술: 장비 사진 · 원리 그림 · 특징 사진 · 시술 장면 구성 */
   story?: DeviceStory;
+  /** 이 시술 전후사진 (최대 3개) · 회원 여부 */
+  baCases?: BeforeAfterCase[];
+  member?: boolean;
 };
 
 const compareRows: { key: keyof TreatmentGuide["profile"]; label: string }[] = [
@@ -80,6 +84,8 @@ export default function TreatmentDetail({
   area,
   updated,
   story,
+  baCases = [],
+  member = false,
 }: Props) {
   // 쉬어 가는 사진: 병원 공간 사진 중 시술마다 다른 한 장 (같은 분류끼리 겹치지 않게)
   // 1 인포메이션 · 2 대기실 · 3 상담실 · 4 파우더룸 · 5 시술실 · 6 복도
@@ -785,34 +791,40 @@ export default function TreatmentDetail({
       </section>
 
       {/* 전후사진 (회원 공개) */}
-      <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
-        <Link
-          href="/before-after"
-          className="group flex flex-col gap-6 rounded-[24px] border border-line p-8 transition hover:border-gold md:flex-row md:items-center md:justify-between md:p-10"
-        >
-          <div className="flex items-center gap-5">
-            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ivory text-gold">
-              <Lock className="h-5 w-5" strokeWidth={1.5} />
-            </span>
-            <div>
-              <p className="font-display text-[11px] tracking-[0.3em] text-gold uppercase">
-                Before &amp; After
-              </p>
-              <p className="mt-1 text-lg font-semibold tracking-[-0.02em] md:text-xl">
-                {t.title} 전후사진은 회원에게만 공개합니다
-              </p>
-              <p className="mt-1 text-xs text-muted">
-                의료법에 따라 로그인 후 볼 수 있습니다. 결과는 개인에 따라 다를
-                수 있습니다.
-              </p>
+      {baCases.length > 0 ? (
+        <section className="mx-auto max-w-[1400px] px-5 pt-20 md:px-10 md:pt-28">
+          <BaPreview member={member} cases={baCases} title={t.title} />
+        </section>
+      ) : (
+        <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
+          <Link
+            href="/before-after"
+            className="group flex flex-col gap-6 rounded-[24px] border border-line p-8 transition hover:border-gold md:flex-row md:items-center md:justify-between md:p-10"
+          >
+            <div className="flex items-center gap-5">
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ivory text-gold">
+                <Lock className="h-5 w-5" strokeWidth={1.5} />
+              </span>
+              <div>
+                <p className="font-display text-[11px] tracking-[0.3em] text-gold uppercase">
+                  Before &amp; After
+                </p>
+                <p className="mt-1 text-lg font-semibold tracking-[-0.02em] md:text-xl">
+                  {t.title} 전후사진은 회원에게만 공개합니다
+                </p>
+                <p className="mt-1 text-xs text-muted">
+                  의료법에 따라 로그인 후 볼 수 있습니다. 결과는 개인에 따라
+                  다를 수 있습니다.
+                </p>
+              </div>
             </div>
-          </div>
-          <span className="flex items-center gap-2 self-start rounded-full bg-espresso px-6 py-3.5 text-sm text-white transition group-hover:bg-mocha md:self-auto">
-            전후사진 보기
-            <ArrowRight className="h-4 w-4" strokeWidth={1.6} />
-          </span>
-        </Link>
-      </section>
+            <span className="flex items-center gap-2 self-start rounded-full bg-espresso px-6 py-3.5 text-sm text-white transition group-hover:bg-mocha md:self-auto">
+              전후사진 보기
+              <ArrowRight className="h-4 w-4" strokeWidth={1.6} />
+            </span>
+          </Link>
+        </section>
+      )}
 
       {/* 자주 묻는 질문 */}
       <section

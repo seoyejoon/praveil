@@ -212,6 +212,78 @@ export default function BeforeAfterBoard({
   );
 }
 
+// 시술 페이지 안의 전후사진 (같은 시술 사례 몇 개 + 전체 보기)
+export function BaPreview({
+  member,
+  cases,
+  title,
+}: {
+  member: boolean;
+  cases: BeforeAfterCase[];
+  title: string;
+}) {
+  return (
+    <div>
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
+            Before &amp; After
+          </p>
+          <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
+            {title} 전후사진
+          </h2>
+          <p className="mt-3 text-sm text-muted">
+            {member
+              ? "결과는 개인에 따라 다를 수 있습니다."
+              : "시술 전 사진은 의료법에 따라 로그인한 회원에게만 공개합니다."}
+          </p>
+        </div>
+        <div className="flex shrink-0 gap-2">
+          {!member && (
+            <button
+              type="button"
+              onClick={openLogin}
+              className="rounded-full bg-espresso px-6 py-3 text-sm text-white transition hover:bg-mocha"
+            >
+              로그인 · 회원가입
+            </button>
+          )}
+          <Link
+            href="/before-after"
+            className="rounded-full border border-line px-6 py-3 text-sm transition hover:border-gold"
+          >
+            전체 보기
+          </Link>
+        </div>
+      </div>
+      <ul className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
+        {cases.map((c) => (
+          <li key={c.id} className="min-w-[82%] snap-start md:min-w-0">
+            <Link href={`/before-after/${c.id}`} className="group block">
+              <div className="transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:-translate-y-1">
+                <BaPair stage={c.stages[c.representative]} alt={c.title} />
+              </div>
+              {c.stages.length > 1 && (
+                <p className="mt-4 text-xs text-gold">
+                  경과 {c.stages.length}단계
+                </p>
+              )}
+              <p className="mt-1.5 line-clamp-1 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-mocha">
+                {c.title}
+              </p>
+              {c.summary && (
+                <p className="mt-1 line-clamp-1 text-sm text-muted">
+                  {c.summary}
+                </p>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 // 전 · 후 겹쳐 보기 (회원): 손잡이를 끌거나 사진 위를 눌러 경계를 옮김
 export function Compare({
   before,

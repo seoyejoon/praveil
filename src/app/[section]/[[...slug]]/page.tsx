@@ -14,7 +14,14 @@ import {
 } from "@/content/treatment-guide";
 import { deviceStory } from "@/content/device-story";
 import { findTreatment } from "@/content/treatments";
-import { getDoctor, getHospital, getProcedures } from "@/lib/data";
+import {
+  getBeforeAfterCases,
+  getDoctor,
+  getHospital,
+  getProcedures,
+} from "@/lib/data";
+import { withCategoryKey } from "@/lib/before-after";
+import { getMember } from "@/lib/member";
 import { SITE_URL } from "@/lib/site-url";
 
 // 사이트맵의 시술 페이지 (리프팅 · 쁘띠 · 피부관리 · 여드름모공 · 제모문신제거)
@@ -60,11 +67,19 @@ export default async function SectionPage({ params }: Props) {
   const t = findTreatment(path);
 
   if (t) {
-    const [hospital, doctor, procedures] = await Promise.all([
+    const member = await getMember();
+    const [hospital, doctor, procedures, allCases] = await Promise.all([
       getHospital(),
       getDoctor(),
       getProcedures(),
+      getBeforeAfterCases(Boolean(member)),
     ]);
+    // 전후사진: 제목에 시술 이름이 있는 사례 먼저, 없으면 같은 분류 사례 (최대 3개)
+    const cases = allCases.map(withCategoryKey);
+    const named = cases.filter((c) => c.title.includes(t.title));
+    const baCases = (
+      named.length ? named : cases.filter((c) => c.category === s.key)
+    ).slice(0, 3);
     const g = treatmentGuide[t.href];
     const area = areaOf(hospital.address);
     const prices = g.prices
@@ -158,6 +173,8 @@ export default async function SectionPage({ params }: Props) {
           area={area}
           updated={guideUpdated}
           story={deviceStory[path]}
+          baCases={baCases}
+          member={Boolean(member)}
         />
       </SubPage>
     );

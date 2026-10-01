@@ -145,39 +145,39 @@ export function StoryAbout({
       {/* 원리 */}
       {story.principleImage ? (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-            <Reveal className="order-2 lg:order-1">
+          <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
+          {/* 그림과 설명 높이를 같게: 설명 3개가 그림 높이를 나눠 채움 */}
+          <div className="mt-10 grid gap-6 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-stretch lg:gap-8">
+            <Reveal>
               <PrincipleFigure image={story.principleImage} />
             </Reveal>
-            <div className="order-1 lg:order-2">
-              <SectionHead
-                en="How it works"
-                title={`${title}, 어떤 원리인가요?`}
-              />
-              <ol className="mt-8 grid gap-3 md:mt-10">
-                {principle.map((p, i) => (
-                  <Reveal
-                    as="li"
-                    key={p.title}
-                    delay={i * 100}
-                    className="flex gap-4 rounded-[20px] border border-line p-5 md:gap-5 md:p-6"
-                  >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white md:h-10 md:w-10">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-[17px] font-semibold tracking-[-0.02em]">
-                        {p.title}
-                      </h3>
-                      <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                        {p.text}
-                      </p>
-                    </div>
-                  </Reveal>
-                ))}
-              </ol>
-            </div>
+            <ol className="grid gap-3 lg:grid-rows-3">
+              {principle.map((p, i) => (
+                <Reveal
+                  as="li"
+                  key={p.title}
+                  delay={i * 100}
+                  className="flex items-center gap-4 rounded-[20px] border border-line p-5 md:gap-5 lg:px-6 lg:py-4"
+                >
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white md:h-10 md:w-10">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-[17px] font-semibold tracking-[-0.02em]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-1 text-[14px] leading-relaxed text-muted xl:text-[15px]">
+                      {p.text}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
           </div>
+          <p className="mt-4 text-xs text-muted">
+            ※ 원리를 쉽게 보여 드리기 위한 그림입니다 · 층 (위에서 아래로):{" "}
+            {story.principleImage.layers.map((l) => l.label).join(" → ")}
+          </p>
         </section>
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
@@ -565,10 +565,6 @@ function PrincipleFigure({
           </li>
         ))}
       </ol>
-      <figcaption className="mt-3 text-xs text-muted md:mt-4">
-        ※ 원리를 쉽게 보여 드리기 위한 그림입니다 · 층 (위에서 아래로):{" "}
-        {image.layers.map((l) => l.label).join(" → ")}
-      </figcaption>
     </figure>
   );
 }

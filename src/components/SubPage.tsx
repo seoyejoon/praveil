@@ -148,8 +148,7 @@ export default function SubPage({
   );
 }
 
-// 장비 시술 첫 화면: 밝은 배경 · 은은한 조명 · 아치 위 장비, 뒤에 큰 영문 (윤곽선)
-// 왼쪽: 위치 · 제목 · 설명 · 핵심 정보 3개 (메뉴바는 투명 + 검정 글자)
+// 장비 시술 첫 화면: 밝은 배경 · 은은한 조명 · 아치 위 장비 (메뉴바는 투명 + 검정 글자)
 function DeviceHero({
   en,
   title,
@@ -174,15 +173,6 @@ function DeviceHero({
     >
       {/* 조명: 장비 쪽이 밝고 가장자리는 따뜻하게 */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,#fcfaf6_0,#f2ece2_40%,#e3d8c8_100%)] max-md:bg-[radial-gradient(ellipse_at_70%_28%,#fcfaf6_0,#f2ece2_40%,#e3d8c8_100%)]" />
-      {/* 큰 영문 (윤곽선) */}
-      <p
-        aria-hidden
-        className="pointer-events-none absolute top-[16%] right-[-2%] hidden font-display text-[11vw] leading-none font-light tracking-[0.04em] whitespace-nowrap text-transparent uppercase select-none [-webkit-text-stroke:1px_rgba(150,118,80,0.32)] md:block"
-        style={{ animation: `fade-up 1.6s ${ease} 0.3s both` }}
-      >
-        {en}
-      </p>
-
       {/* 아치 + 장비 */}
       <div className="absolute top-20 right-[-6%] h-[41%] w-[64%] md:top-auto md:right-[8%] md:bottom-0 md:h-[86%] md:w-auto md:aspect-[0.66] xl:right-[12%]">
         <div
@@ -225,14 +215,16 @@ function DeviceHero({
   );
 }
 
-// 밝은 첫 화면 공통 글자: 위치 · 영문 · 제목 · 설명 · 핵심 정보 3개
+// 밝은 첫 화면 공통 글자
+// - 위치(작게) → 분류 · 금색 선 → 큰 영문 이름(로고 글꼴) → 한글 제목 | 설명 (가로로 나란히)
+// - 큰 영문이 왼쪽 빈 공간을 채워, 글자와 사진 사이가 비어 보이지 않게
 function LightHeroText({
   en,
   title,
   description,
   facts,
   crumbs,
-  className = "md:max-w-[44%]",
+  className = "md:max-w-[50%]",
 }: {
   en: string;
   title: string;
@@ -242,52 +234,66 @@ function LightHeroText({
   className?: string;
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
+  const category = crumbs[0]?.label;
   return (
     <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
+      {crumbs.length > 0 && (
+        <nav
+          aria-label="현재 위치"
+          className="absolute top-24 left-5 hidden flex-wrap items-center gap-2 text-[11px] tracking-wide text-muted md:top-32 md:left-10 md:flex md:text-xs"
+          style={{ animation: `fade-up 1s ${ease} 0.2s both` }}
+        >
+          <Link href="/" className="hover:text-ink">
+            HOME
+          </Link>
+          {crumbs.map((c) => (
+            <span key={c.label} className="flex items-center gap-2">
+              <span aria-hidden className="h-px w-3 bg-ink/25" />
+              {c.href ? (
+                <Link href={c.href} className="hover:text-ink">
+                  {c.label}
+                </Link>
+              ) : (
+                <span className="text-ink/80">{c.label}</span>
+              )}
+            </span>
+          ))}
+        </nav>
+      )}
       <div className={className}>
-        {crumbs.length > 0 && (
-          <nav
-            aria-label="현재 위치"
-            className="flex flex-wrap items-center gap-2 text-xs text-muted"
-            style={{ animation: `slide-in 1s ${ease} 0.2s both` }}
-          >
-            <Link href="/" className="hover:text-ink">
-              HOME
-            </Link>
-            {crumbs.map((c) => (
-              <span key={c.label} className="flex items-center gap-2">
-                <span aria-hidden className="h-px w-3 bg-ink/25" />
-                {c.href ? (
-                  <Link href={c.href} className="hover:text-ink">
-                    {c.label}
-                  </Link>
-                ) : (
-                  <span className="text-ink/80">{c.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
-        )}
         <p
-          className="mt-6 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mt-8 md:text-xs"
+          className="flex items-center gap-3 text-xs tracking-[0.2em] text-gold md:text-[13px]"
           style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
+        >
+          <span aria-hidden className="h-px w-10 bg-gold/70" />
+          {category}
+        </p>
+        <p
+          aria-hidden
+          className="mt-3 -ml-[0.04em] font-display text-[16vw] leading-[0.9] font-light tracking-[0.01em] text-ink uppercase md:mt-4 md:text-[8.6vw] 2xl:text-[150px]"
+          style={{ animation: `slide-in 1.2s ${ease} 0.4s both` }}
         >
           {en}
         </p>
-        <h1
-          className="mt-3 text-[34px] leading-tight font-light tracking-[-0.03em] md:mt-4 md:text-[56px] 2xl:text-[64px]"
-          style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
+        <div
+          className="mt-5 flex flex-col gap-2 md:mt-7 md:flex-row md:items-center md:gap-6"
+          style={{ animation: `fade-up 1s ${ease} 0.6s both` }}
         >
-          {title}
-        </h1>
-        {description && (
-          <p
-            className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:mt-4 md:text-base"
-            style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
-          >
-            {description}
-          </p>
-        )}
+          <h1 className="shrink-0 text-[26px] leading-tight font-medium tracking-[-0.03em] md:text-[32px]">
+            {title}
+          </h1>
+          {description && (
+            <>
+              <span
+                aria-hidden
+                className="hidden h-10 w-px shrink-0 bg-ink/15 md:block"
+              />
+              <p className="max-w-[26em] text-sm leading-relaxed text-muted md:text-[15px]">
+                {description}
+              </p>
+            </>
+          )}
+        </div>
         {facts.length > 0 && (
           <dl
             className="mt-7 grid max-w-md grid-cols-3 border-t border-ink/10 pt-5 md:mt-10"
@@ -349,7 +355,7 @@ function SceneHero({
         description={description}
         facts={facts}
         crumbs={crumbs}
-        className="xl:max-w-[36%]"
+        className="xl:max-w-[48%]"
       />
     </section>
   );

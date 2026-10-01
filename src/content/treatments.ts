@@ -51,7 +51,10 @@ export const treatments: Treatment[] = [
     title: "쿨소닉",
     description: "피부 깊은 층까지 고려한 초음파 리프팅",
     image: photo("signature-1"),
-    scene: { src: photo("hero-coolsonic") },
+    scene: {
+      src: photo("hero-coolsonic"),
+      video: "/videos/hero-coolsonic.mp4",
+    },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],
     intro:

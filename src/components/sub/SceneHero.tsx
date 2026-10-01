@@ -3,7 +3,12 @@
 import { useEffect, useRef } from "react";
 import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
 
-export type HeroScene = { src: string };
+export type HeroScene = {
+  /** 사진 (영상이 있으면 영상 첫 장면 · 영상을 못 틀 때 대신 보임) */
+  src: string;
+  /** 짧은 반복 영상 (소리 없음, 사진과 같은 구도 3:1) */
+  video?: string;
+};
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
 // - 넓은 화면: 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차게
@@ -67,13 +72,27 @@ export default function SceneHero({
         className="absolute inset-x-0 top-0 h-[58%] origin-[64%_80%] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform xl:top-[84px] xl:h-auto xl:aspect-[3/1] xl:[mask-image:linear-gradient(180deg,transparent,#000_12%)]"
       >
         <div className="absolute inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={scene.src}
-            alt={`${title} 시술 장면`}
-            fetchPriority="high"
-            className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
-          />
+          {scene.video ? (
+            <video
+              src={scene.video}
+              poster={scene.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-label={`${title} 시술 장면`}
+              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={scene.src}
+              alt={`${title} 시술 장면`}
+              fetchPriority="high"
+              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
+            />
+          )}
         </div>
       </div>
       {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}

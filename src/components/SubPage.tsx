@@ -272,7 +272,7 @@ function LightHeroText({
           {en}
         </p>
         <h1
-          className="mt-4 text-[38px] leading-[1.15] font-light tracking-[-0.04em] md:mt-5 md:text-[60px] 2xl:text-[72px]"
+          className="mt-4 text-[38px] leading-[1.15] font-semibold tracking-[-0.04em] md:mt-5 md:text-[60px] 2xl:text-[72px]"
           style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
         >
           {title}

@@ -15,6 +15,7 @@ export default function SubPage({
   description,
   image,
   device,
+  scene,
   facts = [],
   crumbs = [],
   tabs,
@@ -27,7 +28,9 @@ export default function SubPage({
   image: string;
   /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
   device?: HeroDevice;
-  /** 장비 첫 화면 아래 핵심 정보 (앞 3개) */
+  /** 밝은 시술 장면 사진 (왼쪽이 빈 벽인 가로 사진): 왼쪽 글자 · 오른쪽 장면 */
+  scene?: string;
+  /** 밝은 첫 화면 아래 핵심 정보 (앞 3개) */
   facts?: { label: string; value: string }[];
   crumbs?: Crumb[];
   tabs?: SubTab[];
@@ -38,7 +41,16 @@ export default function SubPage({
   return (
     <div className="relative">
       <div className="sticky top-0">
-        {device ? (
+        {scene ? (
+          <SceneHero
+            en={en}
+            title={title}
+            description={description}
+            scene={scene}
+            facts={facts}
+            crumbs={crumbs}
+          />
+        ) : device ? (
           <DeviceHero
             en={en}
             title={title}
@@ -202,71 +214,143 @@ function DeviceHero({
         </div>
       </div>
 
-      <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
-        <div className="md:max-w-[44%]">
-          {crumbs.length > 0 && (
-            <nav
-              aria-label="현재 위치"
-              className="flex flex-wrap items-center gap-2 text-xs text-muted"
-              style={{ animation: `slide-in 1s ${ease} 0.2s both` }}
-            >
-              <Link href="/" className="hover:text-ink">
-                HOME
-              </Link>
-              {crumbs.map((c) => (
-                <span key={c.label} className="flex items-center gap-2">
-                  <span aria-hidden className="h-px w-3 bg-ink/25" />
-                  {c.href ? (
-                    <Link href={c.href} className="hover:text-ink">
-                      {c.label}
-                    </Link>
-                  ) : (
-                    <span className="text-ink/80">{c.label}</span>
-                  )}
-                </span>
-              ))}
-            </nav>
-          )}
+      <LightHeroText
+        en={en}
+        title={title}
+        description={description}
+        facts={facts}
+        crumbs={crumbs}
+      />
+    </section>
+  );
+}
+
+// 밝은 첫 화면 공통 글자: 위치 · 영문 · 제목 · 설명 · 핵심 정보 3개
+function LightHeroText({
+  en,
+  title,
+  description,
+  facts,
+  crumbs,
+  className = "md:max-w-[44%]",
+}: {
+  en: string;
+  title: string;
+  description?: string;
+  facts: { label: string; value: string }[];
+  crumbs: Crumb[];
+  className?: string;
+}) {
+  const ease = "cubic-bezier(.22,1,.36,1)";
+  return (
+    <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
+      <div className={className}>
+        {crumbs.length > 0 && (
+          <nav
+            aria-label="현재 위치"
+            className="flex flex-wrap items-center gap-2 text-xs text-muted"
+            style={{ animation: `slide-in 1s ${ease} 0.2s both` }}
+          >
+            <Link href="/" className="hover:text-ink">
+              HOME
+            </Link>
+            {crumbs.map((c) => (
+              <span key={c.label} className="flex items-center gap-2">
+                <span aria-hidden className="h-px w-3 bg-ink/25" />
+                {c.href ? (
+                  <Link href={c.href} className="hover:text-ink">
+                    {c.label}
+                  </Link>
+                ) : (
+                  <span className="text-ink/80">{c.label}</span>
+                )}
+              </span>
+            ))}
+          </nav>
+        )}
+        <p
+          className="mt-6 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mt-8 md:text-xs"
+          style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
+        >
+          {en}
+        </p>
+        <h1
+          className="mt-3 text-[34px] leading-tight font-light tracking-[-0.03em] md:mt-4 md:text-[56px] 2xl:text-[64px]"
+          style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
+        >
+          {title}
+        </h1>
+        {description && (
           <p
-            className="mt-6 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mt-8 md:text-xs"
-            style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
+            className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:mt-4 md:text-base"
+            style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
           >
-            {en}
+            {description}
           </p>
-          <h1
-            className="mt-3 text-[34px] leading-tight font-light tracking-[-0.03em] md:mt-4 md:text-[56px] 2xl:text-[64px]"
-            style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
+        )}
+        {facts.length > 0 && (
+          <dl
+            className="mt-7 grid max-w-md grid-cols-3 border-t border-ink/10 pt-5 md:mt-10"
+            style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
           >
-            {title}
-          </h1>
-          {description && (
-            <p
-              className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:mt-4 md:text-base"
-              style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
-            >
-              {description}
-            </p>
-          )}
-          {facts.length > 0 && (
-            <dl
-              className="mt-7 grid max-w-md grid-cols-3 border-t border-ink/10 pt-5 md:mt-10"
-              style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
-            >
-              {facts.slice(0, 3).map((f, i) => (
-                <div
-                  key={f.label}
-                  className={i > 0 ? "border-l border-ink/10 pl-4" : "pr-4"}
-                >
-                  <dt className="text-[11px] text-muted">{f.label}</dt>
-                  <dd className="mt-1 text-[13px] font-medium md:text-sm">
-                    {f.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )}
-        </div>
+            {facts.slice(0, 3).map((f, i) => (
+              <div
+                key={f.label}
+                className={i > 0 ? "border-l border-ink/10 pl-4" : "pr-4"}
+              >
+                <dt className="text-[11px] text-muted">{f.label}</dt>
+                <dd className="mt-1 text-[13px] font-medium md:text-sm">
+                  {f.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
       </div>
+    </div>
+  );
+}
+
+// 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽은 사진 벽색으로 자연스럽게 이어지고 그 위에 글자
+// 넓은 화면: 사진 전체를 아래에 깔고 왼쪽 벽 위에 글자 / 좁은 화면: 위에 사진, 아래 글자
+function SceneHero({
+  en,
+  title,
+  description,
+  scene,
+  facts,
+  crumbs,
+}: {
+  en: string;
+  title: string;
+  description?: string;
+  scene: string;
+  facts: { label: string; value: string }[];
+  crumbs: Crumb[];
+}) {
+  return (
+    <section
+      data-dark-hero
+      data-light-hero
+      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#efebe7,#e3ded9_55%,#d8d2cb)] text-ink xl:h-[calc(33.34vw+150px)] xl:min-h-0"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={scene}
+        alt={`${title} 시술 장면`}
+        fetchPriority="high"
+        className="absolute inset-x-0 top-0 h-[58%] w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center] [mask-image:linear-gradient(180deg,#000_70%,transparent)] xl:top-auto xl:bottom-12 xl:h-auto xl:[mask-image:linear-gradient(180deg,transparent,#000_16%)]"
+      />
+      {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}
+      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(236,232,227,0.82),rgba(236,232,227,0.5)_26%,transparent_44%)] xl:block" />
+      <LightHeroText
+        en={en}
+        title={title}
+        description={description}
+        facts={facts}
+        crumbs={crumbs}
+        className="xl:max-w-[36%]"
+      />
     </section>
   );
 }

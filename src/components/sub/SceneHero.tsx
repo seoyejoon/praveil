@@ -3,24 +3,13 @@
 import { useEffect, useRef } from "react";
 import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
 
-export type HeroScene = {
-  src: string;
-  /** 움직이는 손 + 핸드피스 (넓은 화면)
-   *  layer: 손 · 핸드피스만 떼어낸 사진, plate: 그 자리를 지운 바닥 패치
-   *  box: 두 사진이 놓이는 자리 (사진 속 %, [왼쪽, 위, 너비, 높이]) */
-  hand?: {
-    layer: string;
-    plate: string;
-    box: [number, number, number, number];
-  };
-};
+export type HeroScene = { src: string };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
 // - 넓은 화면: 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차게
 // - 좁은 화면: 위에 사진, 아래 글자
 // 움직임
 // - 스크롤: 사진은 천천히 다가오고, 글자는 위로 사라짐
-// - 손 + 핸드피스가 볼 위를 한 칸씩 옮기며 시술하듯 움직임 (넓은 화면)
 export default function SceneHero({
   en,
   title,
@@ -85,32 +74,6 @@ export default function SceneHero({
             fetchPriority="high"
             className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
           />
-          {/* 손 + 핸드피스: 바닥 패치 위에서 볼을 따라 한 칸씩 이동 */}
-          {scene.hand && (
-            <div
-              aria-hidden
-              className="pointer-events-none absolute hidden motion-reduce:hidden xl:block"
-              style={{
-                left: `${scene.hand.box[0]}%`,
-                top: `${scene.hand.box[1]}%`,
-                width: `${scene.hand.box[2]}%`,
-                height: `${scene.hand.box[3]}%`,
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={scene.hand.plate}
-                alt=""
-                className="absolute inset-0 h-full w-full"
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={scene.hand.layer}
-                alt=""
-                className="absolute inset-0 h-full w-full animate-[handpiece-glide_5.2s_ease-in-out_1.6s_infinite]"
-              />
-            </div>
-          )}
         </div>
       </div>
       {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}

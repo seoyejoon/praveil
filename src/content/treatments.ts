@@ -21,7 +21,7 @@ export type Treatment = {
   /** 장비 시술: 첫 화면에 사진 대신 장비 (배경 없는 제품 사진: public/images/equipment/hero) */
   device?: { src: string; name: string; type: string };
   /** 밝은 시술 장면 사진 (왼쪽이 빈 벽인 3:1 가로 사진). 있으면 장비보다 먼저 씀
-   *  hand: 움직이는 손 + 핸드피스 (SceneHero 참고) */
+   */
   scene?: import("@/components/sub/SceneHero").HeroScene;
   /** 본문 첫 큰 문장 (줄마다) */
   headline: string[];
@@ -51,14 +51,7 @@ export const treatments: Treatment[] = [
     title: "쿨소닉",
     description: "피부 깊은 층까지 고려한 초음파 리프팅",
     image: photo("signature-1"),
-    scene: {
-      src: photo("hero-coolsonic"),
-      hand: {
-        layer: photo("hero-coolsonic-hand"),
-        plate: photo("hero-coolsonic-plate"),
-        box: [53.219, 73.477, 11.688, 22.024],
-      },
-    },
+    scene: { src: photo("hero-coolsonic") },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],
     intro:

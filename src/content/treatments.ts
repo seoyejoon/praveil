@@ -5,6 +5,7 @@
 const photo = (name: string) => `/images/photos/${name}.webp`;
 // 시술 분위기 사진 (무료 상업용, 출처: public/images/stock/SOURCES.txt)
 const stock = (name: string) => `/images/stock/${name}.webp`;
+const device = (name: string) => `/images/equipment/${name}.webp`;
 
 export type Treatment = {
   href: string;
@@ -13,6 +14,8 @@ export type Treatment = {
   /** 위 사진 설명 한 줄 */
   description: string;
   image: string;
+  /** 장비 시술: 첫 화면에 사진 대신 장비 (public/images/equipment) */
+  device?: string;
   /** 본문 첫 큰 문장 (줄마다) */
   headline: string[];
   intro: string;
@@ -41,6 +44,7 @@ export const treatments: Treatment[] = [
     title: "쿨소닉",
     description: "피부 깊은 층까지 고려한 초음파 리프팅",
     image: photo("signature-1"),
+    device: device("coolsonic"),
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
@@ -147,6 +151,7 @@ export const treatments: Treatment[] = [
     title: "레이저리프팅",
     description: "슈링크 유니버스 · 포텐자 · 클라리티",
     image: photo("cat-lifting"),
+    device: device("shrink-universe"),
     headline: ["고민에 맞춰 고르는", "레이저 리프팅"],
     intro:
       "처짐, 모공, 피부결처럼 같은 리프팅 고민도 원인이 다릅니다. 프라베일은 피부 상태를 먼저 보고, 목적에 맞는 장비를 골라 필요한 만큼 설계합니다.",
@@ -612,6 +617,7 @@ export const treatments: Treatment[] = [
     title: "레이저제모",
     description: "여성 · 남성",
     image: photo("cat-hair-removal"),
+    device: device("clarity"),
     headline: ["매끈한 피부를 위한", "레이저 제모"],
     intro:
       "레이저가 모낭에 에너지를 전달해 털이 자라는 것을 줄이는 시술입니다. 털의 굵기 · 피부 톤을 보고 에너지를 조절합니다.",
@@ -666,6 +672,7 @@ export const treatments: Treatment[] = [
     title: "문신제거",
     description: "눈썹 · 아이라인 · 언더라인",
     image: photo("cat-tattoo-removal"),
+    device: device("pico-k"),
     headline: ["지우고 싶은 반영구,", "섬세한 문신제거"],
     intro:
       "레이저로 피부 속 색소를 잘게 부수어 몸 밖으로 배출되도록 돕는 시술입니다. 색소의 깊이 · 색 · 양을 보고 여러 번 나누어 진행합니다.",

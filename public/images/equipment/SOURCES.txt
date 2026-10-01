@@ -2,6 +2,6 @@
 shrink-universe.webp  CLASSYS  https://classys.co.kr/wp-content/uploads/sites/5/2024/09/shu.png
 potenza.webp          JEISYS   https://www.jeisys.com/eng/pub/images/img_product02.png
 clarity.webp          LUTRONIC https://www.cynosure.com/wp-content/uploads/2025/06/Clarity-II-1.png
-coolsonic.webp        병원 촬영본(equip-1) 배경 정리
+coolsonic.webp        아스테라시스 공식 제품 사진 (병원 제공) · 배경색 맞춤 · 2배 확대
 coolphase.webp        병원 촬영본(equip-2) 배경 정리
 pico-k.webp           병원 촬영본(equip-7) 배경 정리

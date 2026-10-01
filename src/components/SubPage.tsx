@@ -13,6 +13,7 @@ export default function SubPage({
   title,
   description,
   image,
+  device,
   crumbs = [],
   tabs,
   current,
@@ -22,6 +23,8 @@ export default function SubPage({
   title: string;
   description?: string;
   image: string;
+  /** 장비 시술: 사진 대신 밝은 배경 + 장비 사진 (배경색 #f4f1eb 위에 찍은 제품 사진) */
+  device?: string;
   crumbs?: Crumb[];
   tabs?: SubTab[];
   /** 지금 페이지 주소 (탭 표시용) */
@@ -31,54 +34,64 @@ export default function SubPage({
   return (
     <div className="relative">
       <div className="sticky top-0">
-        <section
-          data-dark-hero
-          className="relative h-[60svh] min-h-[420px] overflow-hidden bg-[#1f1b18] text-white md:h-[72svh] md:min-h-[560px]"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image}
-            alt=""
-            fetchPriority="high"
-            className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
+        {device ? (
+          <DeviceHero
+            en={en}
+            title={title}
+            description={description}
+            device={device}
+            crumbs={crumbs}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />
-          <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
-            {crumbs.length > 0 && (
-              <nav
-                aria-label="현재 위치"
-                className="flex animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.2s_both] items-center gap-2 text-xs text-white/55"
-              >
-                <Link href="/" className="hover:text-white">
-                  HOME
-                </Link>
-                {crumbs.map((c) => (
-                  <span key={c.label} className="flex items-center gap-2">
-                    <span aria-hidden className="h-px w-3 bg-white/35" />
-                    {c.href ? (
-                      <Link href={c.href} className="hover:text-white">
-                        {c.label}
-                      </Link>
-                    ) : (
-                      <span className="text-white/85">{c.label}</span>
-                    )}
-                  </span>
-                ))}
-              </nav>
-            )}
-            <p className="mt-8 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.3s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs">
-              {en}
-            </p>
-            <h1 className="mt-4 animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.4s_both] text-[34px] leading-tight font-light tracking-[-0.03em] md:text-[56px] 2xl:text-[64px]">
-              {title}
-            </h1>
-            {description && (
-              <p className="mt-4 max-w-xl animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.55s_both] text-sm leading-relaxed text-white/70 md:text-base">
-                {description}
+        ) : (
+          <section
+            data-dark-hero
+            className="relative h-[60svh] min-h-[420px] overflow-hidden bg-[#1f1b18] text-white md:h-[72svh] md:min-h-[560px]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              alt=""
+              fetchPriority="high"
+              className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />
+            <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
+              {crumbs.length > 0 && (
+                <nav
+                  aria-label="현재 위치"
+                  className="flex animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.2s_both] items-center gap-2 text-xs text-white/55"
+                >
+                  <Link href="/" className="hover:text-white">
+                    HOME
+                  </Link>
+                  {crumbs.map((c) => (
+                    <span key={c.label} className="flex items-center gap-2">
+                      <span aria-hidden className="h-px w-3 bg-white/35" />
+                      {c.href ? (
+                        <Link href={c.href} className="hover:text-white">
+                          {c.label}
+                        </Link>
+                      ) : (
+                        <span className="text-white/85">{c.label}</span>
+                      )}
+                    </span>
+                  ))}
+                </nav>
+              )}
+              <p className="mt-8 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.3s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs">
+                {en}
               </p>
-            )}
-          </div>
-        </section>
+              <h1 className="mt-4 animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.4s_both] text-[34px] leading-tight font-light tracking-[-0.03em] md:text-[56px] 2xl:text-[64px]">
+                {title}
+              </h1>
+              {description && (
+                <p className="mt-4 max-w-xl animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.55s_both] text-sm leading-relaxed text-white/70 md:text-base">
+                  {description}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
       </div>
 
       <div
@@ -115,5 +128,75 @@ export default function SubPage({
         {children}
       </div>
     </div>
+  );
+}
+
+// 장비 시술 첫 화면: 밝은 배경, 왼쪽 글자 · 오른쪽 장비
+// (어두운 사진 위 흰 글자 대신, 메뉴바도 투명 + 검정 글자)
+function DeviceHero({
+  en,
+  title,
+  description,
+  device,
+  crumbs,
+}: {
+  en: string;
+  title: string;
+  description?: string;
+  device: string;
+  crumbs: Crumb[];
+}) {
+  return (
+    <section
+      data-dark-hero
+      data-light-hero
+      className="relative h-[60svh] min-h-[460px] overflow-hidden bg-[#f4f1eb] text-ink md:h-[72svh] md:min-h-[560px]"
+    >
+      {/* 장비: 사진 배경색과 같은 바탕이라 경계 없이 놓임 */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={device}
+        alt={`${title} 장비`}
+        fetchPriority="high"
+        className="absolute top-14 right-[-8%] h-[54%] w-auto max-w-none md:top-auto md:right-[6%] md:bottom-10 md:h-[86%] xl:right-[12%] animate-[fade-up_1.2s_cubic-bezier(.22,1,.36,1)_0.2s_both]"
+      />
+      <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
+        <div className="md:max-w-[46%]">
+          {crumbs.length > 0 && (
+            <nav
+              aria-label="현재 위치"
+              className="flex animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.2s_both] flex-wrap items-center gap-2 text-xs text-muted"
+            >
+              <Link href="/" className="hover:text-ink">
+                HOME
+              </Link>
+              {crumbs.map((c) => (
+                <span key={c.label} className="flex items-center gap-2">
+                  <span aria-hidden className="h-px w-3 bg-ink/25" />
+                  {c.href ? (
+                    <Link href={c.href} className="hover:text-ink">
+                      {c.label}
+                    </Link>
+                  ) : (
+                    <span className="text-ink/80">{c.label}</span>
+                  )}
+                </span>
+              ))}
+            </nav>
+          )}
+          <p className="mt-8 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.3s_both] font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:text-xs">
+            {en}
+          </p>
+          <h1 className="mt-4 animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.4s_both] text-[34px] leading-tight font-light tracking-[-0.03em] md:text-[56px] 2xl:text-[64px]">
+            {title}
+          </h1>
+          {description && (
+            <p className="mt-4 max-w-xl animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.55s_both] text-sm leading-relaxed text-muted md:text-base">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

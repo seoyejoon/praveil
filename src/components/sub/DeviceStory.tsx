@@ -52,48 +52,94 @@ export function StoryAbout({
   const { device, principle } = story;
   return (
     <>
-      {/* 어떤 장비인가요? */}
+      {/* 어떤 장비인가요? (제조사 브랜드 영상이 있으면 어두운 카드에 영상) */}
       <section id="what" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
-        <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_30%_40%,#fdfbf8,#f3eee6_55%,#e9e1d4)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
-          {/* 장비: 아치 위 */}
-          <div className="relative flex min-h-[420px] items-end justify-center pt-12 lg:min-h-[640px]">
-            <div className="absolute bottom-0 left-1/2 h-[82%] w-[62%] max-w-[380px] -translate-x-1/2 rounded-t-full bg-[linear-gradient(180deg,#ffffff,#f4eee5)] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.9)]" />
-            <div className="absolute bottom-[5%] left-1/2 h-[3%] w-[44%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(60,40,20,0.3),transparent)]" />
-            <Reveal className="relative mb-[5%] h-[340px] lg:h-[540px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={device.image}
-                alt={`${device.name} 장비`}
-                loading="lazy"
-                className="h-full w-auto drop-shadow-[0_24px_30px_rgba(60,40,20,0.2)]"
+        {device.film ? (
+          <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[#2b2b2b] text-white md:rounded-[40px] lg:grid-cols-[1.35fr_1fr]">
+            <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]">
+              <video
+                src={device.film.src}
+                poster={device.film.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={`${device.name} 장비 영상`}
+                className="absolute inset-0 h-full w-full object-cover"
               />
-            </Reveal>
-            <p className="absolute top-6 left-6 font-display text-[11px] tracking-[0.3em] text-gold uppercase md:top-10 md:left-10">
-              {device.maker} · {device.name}
-            </p>
-          </div>
-          <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
-            <SectionHead en="What is" title={`${title}, 어떤 장비인가요?`} />
-            <Reveal>
-              <p className="mt-6 text-[15px] leading-[1.9] text-muted md:text-[17px]">
-                {device.text}
+              <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+            </div>
+            <div className="flex flex-col justify-center px-6 pt-4 pb-14 md:px-14 md:py-16">
+              <p className="font-display text-[11px] tracking-[0.3em] text-taupe uppercase">
+                {device.maker} · {device.name}
               </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <dl className="mt-10 border-t border-ink/80">
-                {device.specs.map((s) => (
-                  <div
-                    key={s.label}
-                    className="grid grid-cols-[88px_1fr] gap-4 border-b border-ink/10 py-4 md:grid-cols-[110px_1fr]"
-                  >
-                    <dt className="text-[13px] text-gold">{s.label}</dt>
-                    <dd className="text-[15px] font-medium">{s.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+              <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
+                {title}, 어떤 장비인가요?
+              </h2>
+              <Reveal>
+                <p className="mt-6 text-[15px] leading-[1.9] text-white/65 md:text-[16px]">
+                  {device.text}
+                </p>
+              </Reveal>
+              <Reveal delay={120}>
+                <dl className="mt-9 border-t border-white/25">
+                  {device.specs.map((s) => (
+                    <div
+                      key={s.label}
+                      className="grid grid-cols-[80px_1fr] gap-4 border-b border-white/10 py-3.5 md:grid-cols-[96px_1fr]"
+                    >
+                      <dt className="text-[13px] text-taupe">{s.label}</dt>
+                      <dd className="text-[15px]">{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_30%_40%,#fdfbf8,#f3eee6_55%,#e9e1d4)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
+            {/* 장비: 아치 위 */}
+            <div className="relative flex min-h-[420px] items-end justify-center pt-12 lg:min-h-[640px]">
+              <div className="absolute bottom-0 left-1/2 h-[82%] w-[62%] max-w-[380px] -translate-x-1/2 rounded-t-full bg-[linear-gradient(180deg,#ffffff,#f4eee5)] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.9)]" />
+              <div className="absolute bottom-[5%] left-1/2 h-[3%] w-[44%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(60,40,20,0.3),transparent)]" />
+              <Reveal className="relative mb-[5%] h-[340px] lg:h-[540px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={device.image}
+                  alt={`${device.name} 장비`}
+                  loading="lazy"
+                  className="h-full w-auto drop-shadow-[0_24px_30px_rgba(60,40,20,0.2)]"
+                />
+              </Reveal>
+              <p className="absolute top-6 left-6 font-display text-[11px] tracking-[0.3em] text-gold uppercase md:top-10 md:left-10">
+                {device.maker} · {device.name}
+              </p>
+            </div>
+            <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
+              <SectionHead en="What is" title={`${title}, 어떤 장비인가요?`} />
+              <Reveal>
+                <p className="mt-6 text-[15px] leading-[1.9] text-muted md:text-[17px]">
+                  {device.text}
+                </p>
+              </Reveal>
+              <Reveal delay={120}>
+                <dl className="mt-10 border-t border-ink/80">
+                  {device.specs.map((s) => (
+                    <div
+                      key={s.label}
+                      className="grid grid-cols-[88px_1fr] gap-4 border-b border-ink/10 py-4 md:grid-cols-[110px_1fr]"
+                    >
+                      <dt className="text-[13px] text-gold">{s.label}</dt>
+                      <dd className="text-[15px] font-medium">{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 원리 */}
@@ -129,7 +175,7 @@ export function StoryAbout({
           </div>
           <Reveal delay={150}>
             <figure className="overflow-hidden rounded-[28px] bg-ivory p-4 md:p-8">
-              <HifuDiagram />
+              <HifuDiagram depths={story.depths} />
               <figcaption className="mt-3 text-center text-xs text-muted">
                 ※ 원리를 쉽게 보여 드리기 위한 그림입니다
               </figcaption>
@@ -141,7 +187,7 @@ export function StoryAbout({
   );
 }
 
-/** 특징: 사진 카드 4개 */
+/** 특징: 큰 영상 · 사진과 설명을 한 줄씩 번갈아 (POINT 01~) */
 export function StoryFeatures({
   title,
   story,
@@ -151,39 +197,53 @@ export function StoryFeatures({
 }) {
   return (
     <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1300px]">
         <SectionHead en="Point" title={`프라베일 ${title}의 특징`} />
-        <ul className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 xl:grid-cols-4">
+        <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
           {story.features.map((f, i) => (
-            <Reveal
-              as="li"
+            <li
               key={f.title}
-              delay={i * 100}
-              className="group min-w-[80%] snap-start overflow-hidden rounded-[24px] bg-white md:min-w-0"
+              className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#efeae3]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={f.image}
-                  alt={f.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
-                />
-                <span className="absolute top-4 left-4 rounded-full bg-white/85 px-3 py-1 font-display text-xs tracking-[0.15em] text-gold backdrop-blur">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="p-6 md:p-7">
-                <h3 className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
+              <Reveal
+                className={`relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+              >
+                {f.video ? (
+                  <video
+                    src={f.video}
+                    poster={f.image}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={f.alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={f.image}
+                    alt={f.alt}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+              </Reveal>
+              <Reveal delay={120} className={i % 2 ? "md:order-1" : ""}>
+                <p className="font-display text-sm tracking-[0.3em] text-gold">
+                  POINT {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-4 text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[30px]">
                   {f.title}
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">
+                <p className="mt-4 text-[15px] leading-[1.85] text-muted md:text-[17px]">
                   {f.text}
                 </p>
-              </div>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
   );
@@ -275,7 +335,11 @@ export function StoryVideo({ story }: { story: DeviceStory }) {
 }
 
 /** HIFU 원리 그림: 피부 단면 + 핸드피스에서 모인 초음파가 층마다 열 응고점을 만듦 */
-function HifuDiagram() {
+function HifuDiagram({
+  depths = ["얕게", "중간", "깊게"],
+}: {
+  depths?: [string, string, string];
+}) {
   // 층: [이름, 위, 아래, 색]
   const layers: [string, number, number, string][] = [
     ["표피", 96, 112, "#f6dccb"],
@@ -286,9 +350,9 @@ function HifuDiagram() {
   ];
   // 초점 깊이: [y, 표시]
   const foci: [number, string][] = [
-    [150, "얕게"],
-    [222, "중간"],
-    [276, "깊게"],
+    [150, depths[0]],
+    [222, depths[1]],
+    [276, depths[2]],
   ];
   return (
     <svg

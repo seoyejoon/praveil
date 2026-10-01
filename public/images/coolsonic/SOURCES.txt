@@ -1,0 +1,5 @@
+쿨소닉 페이지 이미지 · 영상 출처
+- coolsonic-brand / coolsonic-cooling / coolsonic-applicator (.webp, public/videos/*.mp4)
+  제조사(아스테라시스) 쿨소닉 홍보 영상 (GIF → MP4 변환). 장비 구매 병원 사용 허가 범위.
+  참고 출처: beautyzen.co.kr/brandings/4300 에 게시된 제조사 제공 GIF
+- screen / handpiece: 프라베일 시술 영상(hero-coolsonic.mp4)에서 잘라 확대

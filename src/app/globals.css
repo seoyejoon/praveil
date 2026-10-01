@@ -193,6 +193,31 @@
   }
 }
 
+/* 쿨소닉 첫 화면: 핸드피스 끝에서 퍼지는 초음파 물결 */
+@keyframes sonic-ring {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.12);
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sonic-core {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 /* 장비 첫 화면: 아치가 아래에서 솟아오름 */
 @keyframes arch-rise {
   from {

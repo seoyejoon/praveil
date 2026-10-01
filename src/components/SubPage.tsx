@@ -1,7 +1,8 @@
 import Link from "next/link";
 import BestMark from "@/components/BestMark";
+import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
+import SceneHero, { type HeroScene } from "@/components/sub/SceneHero";
 
-type Crumb = { label: string; href?: string };
 export type HeroDevice = { src: string; name: string; type: string };
 export type SubTab = { href: string; label: string; best?: boolean };
 
@@ -29,7 +30,7 @@ export default function SubPage({
   /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
   device?: HeroDevice;
   /** 밝은 시술 장면 사진 (왼쪽이 빈 벽인 가로 사진): 왼쪽 글자 · 오른쪽 장면 */
-  scene?: string;
+  scene?: HeroScene;
   /** 밝은 첫 화면 아래 핵심 정보 (앞 3개) */
   facts?: { label: string; value: string }[];
   crumbs?: Crumb[];
@@ -210,168 +211,6 @@ function DeviceHero({
         description={description}
         facts={facts}
         crumbs={crumbs}
-      />
-    </section>
-  );
-}
-
-// 밝은 첫 화면 공통 글자
-// - 위치(메뉴바 아래, 작게) → 금색 선 · 영문 → 큰 한글 제목 → 설명 → 상담 예약 · 비용 바로가기
-function LightHeroText({
-  en,
-  title,
-  description,
-  facts,
-  crumbs,
-  className = "md:max-w-[50%]",
-  wrap = "",
-}: {
-  en: string;
-  title: string;
-  description?: string;
-  facts: { label: string; value: string }[];
-  crumbs: Crumb[];
-  className?: string;
-  /** 바깥 틀에 더할 클래스 (세로 위치 등) */
-  wrap?: string;
-}) {
-  const ease = "cubic-bezier(.22,1,.36,1)";
-  return (
-    <div
-      className={`relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24 ${wrap}`}
-    >
-      <div className={className}>
-        {crumbs.length > 0 && (
-          <nav
-            aria-label="현재 위치"
-            className="mb-7 hidden flex-wrap items-center gap-2 text-xs text-muted md:flex"
-            style={{ animation: `fade-up 1s ${ease} 0.2s both` }}
-          >
-            <Link href="/" className="hover:text-ink">
-              HOME
-            </Link>
-            {crumbs.map((c) => (
-              <span key={c.label} className="flex items-center gap-2">
-                <span aria-hidden className="h-px w-3 bg-ink/25" />
-                {c.href ? (
-                  <Link href={c.href} className="hover:text-ink">
-                    {c.label}
-                  </Link>
-                ) : (
-                  <span className="text-ink/80">{c.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
-        )}
-        <p
-          className="flex items-center gap-3 font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
-          style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
-        >
-          <span aria-hidden className="h-px w-10 bg-gold/70" />
-          {en}
-        </p>
-        <h1
-          className="mt-4 text-[38px] leading-[1.15] font-semibold tracking-[-0.04em] md:mt-5 md:text-[60px] 2xl:text-[72px]"
-          style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
-        >
-          {title}
-        </h1>
-        {description && (
-          <p
-            className="mt-3 text-[15px] leading-relaxed text-ink/70 md:mt-5 md:text-lg"
-            style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
-          >
-            {description}
-          </p>
-        )}
-        {/* 바로가기: 상담 예약 · 비용 (시술 페이지 아래 구역) */}
-        <div
-          className="mt-7 flex flex-wrap gap-2.5 md:mt-10 md:gap-3"
-          style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
-        >
-          <a
-            href="#visit"
-            className="group inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-sm text-white transition hover:bg-gold md:h-12 md:px-7"
-          >
-            상담 예약
-            <span
-              aria-hidden
-              className="transition-transform group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </a>
-          <a
-            href="#price"
-            className="inline-flex h-11 items-center rounded-full border border-ink/20 bg-white/40 px-6 text-sm backdrop-blur-sm transition hover:border-ink md:h-12 md:px-7"
-          >
-            시술 비용
-          </a>
-        </div>
-        {facts.length > 0 && (
-          <dl
-            className="mt-7 grid max-w-md grid-cols-3 border-t border-ink/10 pt-5 md:mt-10"
-            style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
-          >
-            {facts.slice(0, 3).map((f, i) => (
-              <div
-                key={f.label}
-                className={i > 0 ? "border-l border-ink/10 pl-4" : "pr-4"}
-              >
-                <dt className="text-[11px] text-muted">{f.label}</dt>
-                <dd className="mt-1 text-[13px] font-medium md:text-sm">
-                  {f.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽은 사진 벽색으로 자연스럽게 이어지고 그 위에 글자
-// 넓은 화면: 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차고 왼쪽 벽 위에 글자 / 좁은 화면: 위에 사진, 아래 글자
-function SceneHero({
-  en,
-  title,
-  description,
-  scene,
-  facts,
-  crumbs,
-}: {
-  en: string;
-  title: string;
-  description?: string;
-  scene: string;
-  facts: { label: string; value: string }[];
-  crumbs: Crumb[];
-}) {
-  return (
-    <section
-      data-dark-hero
-      data-light-hero
-      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#efebe7,#e3ded9_55%,#d8d2cb)] text-ink xl:h-[calc(33.34vw+132px)] xl:min-h-0"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={scene}
-        alt={`${title} 시술 장면`}
-        fetchPriority="high"
-        className="absolute inset-x-0 top-0 h-[58%] w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center] [mask-image:linear-gradient(180deg,#000_70%,transparent)] xl:top-[84px] xl:h-auto xl:[mask-image:linear-gradient(180deg,transparent,#000_12%)]"
-      />
-      {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}
-      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(236,232,227,0.7),rgba(236,232,227,0.35)_24%,transparent_40%)] xl:block" />
-      <LightHeroText
-        en={en}
-        title={title}
-        description={description}
-        facts={facts}
-        crumbs={crumbs}
-        className="xl:ml-[9vw] xl:max-w-[36%]"
-        wrap="xl:justify-center xl:pt-32 xl:pb-20"
       />
     </section>
   );

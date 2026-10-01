@@ -218,6 +218,28 @@
   }
 }
 
+/* 쿨소닉 첫 화면: 유리 카드가 떠오른 뒤 천천히 둥실 */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chip-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 /* 장비 원리 그림: 열 응고점이 은은하게 빛남 */
 @keyframes focus-glow {
   0%,

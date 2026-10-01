@@ -55,6 +55,10 @@ export const treatments: Treatment[] = [
       src: photo("hero-coolsonic"),
       video: "/videos/hero-coolsonic.mp4",
       pulse: [64.2, 88.4],
+      chips: [
+        { x: 55, y: 22, en: "Depth", label: "1.5 · 3.0 · 4.5mm 깊이별 시술" },
+        { x: 50, y: 50, en: "Cooling", label: "피부를 식히며 시술" },
+      ],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],

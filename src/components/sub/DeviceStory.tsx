@@ -145,32 +145,39 @@ export function StoryAbout({
       {/* 원리 */}
       {story.principleImage ? (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-          <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
-          <Reveal className="mt-10 md:mt-14">
-            <PrincipleFigure image={story.principleImage} />
-          </Reveal>
-          <ol className="mt-8 grid gap-3 md:mt-10 md:grid-cols-3 md:gap-5">
-            {principle.map((p, i) => (
-              <Reveal
-                as="li"
-                key={p.title}
-                delay={i * 100}
-                className="flex gap-4 rounded-[20px] border border-line p-5 md:flex-col md:gap-5 md:p-7"
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                    {p.text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+            <Reveal className="order-2 lg:order-1">
+              <PrincipleFigure image={story.principleImage} />
+            </Reveal>
+            <div className="order-1 lg:order-2">
+              <SectionHead
+                en="How it works"
+                title={`${title}, 어떤 원리인가요?`}
+              />
+              <ol className="mt-8 grid gap-3 md:mt-10">
+                {principle.map((p, i) => (
+                  <Reveal
+                    as="li"
+                    key={p.title}
+                    delay={i * 100}
+                    className="flex gap-4 rounded-[20px] border border-line p-5 md:gap-5 md:p-6"
+                  >
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white md:h-10 md:w-10">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-[17px] font-semibold tracking-[-0.02em]">
+                        {p.title}
+                      </h3>
+                      <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
+                        {p.text}
+                      </p>
+                    </div>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          </div>
         </section>
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
@@ -525,7 +532,7 @@ function PrincipleFigure({
             </span>
             {/* 넓은 화면: 이름표 */}
             <span
-              className={`absolute top-0 hidden -translate-y-1/2 items-center gap-0 whitespace-nowrap md:flex ${m.side === "left" ? "right-2 flex-row-reverse" : "left-2"}`}
+              className={`absolute hidden items-center gap-0 whitespace-nowrap md:flex ${m.above ? "-top-10" : "top-0 -translate-y-1/2"} ${m.side === "left" ? "right-2 flex-row-reverse" : "left-2"}`}
             >
               <span className="h-px w-8 bg-white/80 lg:w-12" />
               <span className="rounded-full bg-ink/75 px-3.5 py-1.5 text-[13px] text-white backdrop-blur lg:text-sm">
@@ -606,7 +613,7 @@ export function StoryCompare({
                 <th
                   key={col.name}
                   scope="col"
-                  className={`px-4 pt-6 pb-5 align-bottom font-normal md:px-6 ${col.self ? "rounded-t-[20px] bg-espresso text-white" : ""}`}
+                  className={`px-4 pt-6 pb-5 align-top font-normal md:px-6 ${col.self ? "rounded-t-[20px] bg-espresso text-white" : ""}`}
                 >
                   <span
                     className={`block text-[11px] ${col.self ? "text-taupe" : "text-muted"}`}
@@ -616,13 +623,13 @@ export function StoryCompare({
                   <span className="mt-1 block text-lg font-semibold tracking-[-0.02em] md:text-xl">
                     {col.name}
                   </span>
-                  {col.owned && (
-                    <span
-                      className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] ${col.self ? "bg-gold text-white" : "bg-ivory text-mocha"}`}
-                    >
-                      프라베일 보유
-                    </span>
-                  )}
+                  {/* 보유 표시 (없는 장비도 같은 높이를 비워 두어 줄이 맞게) */}
+                  <span
+                    aria-hidden={!col.owned}
+                    className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] ${col.owned ? (col.self ? "bg-gold text-white" : "bg-ivory text-mocha") : "invisible"}`}
+                  >
+                    프라베일 보유
+                  </span>
                 </th>
               ))}
             </tr>

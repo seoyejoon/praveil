@@ -24,7 +24,14 @@ export type DeviceStory = {
     src: string;
     alt: string;
     /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
-    marks: { x: number; y: number; label: string; side: "left" | "right" }[];
+    marks: {
+      x: number;
+      y: number;
+      label: string;
+      side: "left" | "right";
+      /** 이름표를 점 위로 올림 (점이 줄지어 있을 때) */
+      above?: boolean;
+    }[];
     /** 오른쪽 끝 층 이름 */
     layers: { y: number; label: string }[];
   };
@@ -90,9 +97,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "쿨소닉 원리 그림: 냉각 어플리케이터가 피부 표면을 식히고, 모인 초음파가 피부 속에 열 응고점을 만드는 모습",
       marks: [
         { x: 36, y: 16, label: "냉각 어플리케이터", side: "left" },
-        { x: 22, y: 40, label: "피부 표면 냉각", side: "left" },
+        { x: 22, y: 40, label: "피부 표면 냉각", side: "right" },
         { x: 52, y: 42, label: "한 점에 모이는 초음파", side: "right" },
-        { x: 82.7, y: 58, label: "열 응고점", side: "right" },
+        { x: 82.7, y: 58, label: "열 응고점", side: "left", above: true },
       ],
       layers: [
         { y: 46, label: "표피 · 진피" },

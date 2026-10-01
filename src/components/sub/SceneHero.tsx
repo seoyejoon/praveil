@@ -10,6 +10,8 @@ export type HeroScene = {
   video?: string;
   /** 핸드피스가 피부에 닿는 자리 (사진 속 %, [가로, 세로]) — 여기서 초음파 파장이 피부 쪽으로 퍼짐 */
   pulse?: [number, number];
+  /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
+  chips?: { x: number; y: number; en: string; label: string }[];
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
@@ -95,6 +97,37 @@ export default function SceneHero({
               className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
             />
           )}
+          {/* 유리 카드: 장비 특징을 한 줄씩, 차례로 떠오른 뒤 천천히 둥실 */}
+          {scene.chips?.map((c, i) => (
+            <div
+              key={c.label}
+              aria-hidden
+              className="pointer-events-none absolute hidden -translate-x-full xl:block"
+              style={{ left: `${c.x}%`, top: `${c.y}%` }}
+            >
+              <div
+                className="animate-[chip-in_1s_cubic-bezier(.22,1,.36,1)_both]"
+                style={{ animationDelay: `${1.2 + i * 0.35}s` }}
+              >
+                <div
+                  className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/55 py-2.5 pr-5 pl-3 shadow-[0_18px_40px_-20px_rgba(40,30,20,0.45)] backdrop-blur-md animate-[chip-float_6s_ease-in-out_infinite]"
+                  style={{ animationDelay: `${i * 1.4}s` }}
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-gold/90 font-display text-[11px] text-white">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <span className="block font-display text-[10px] tracking-[0.25em] text-gold uppercase">
+                      {c.en}
+                    </span>
+                    <span className="mt-0.5 block text-[13px] font-semibold whitespace-nowrap text-ink xl:text-sm">
+                      {c.label}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
           {/* 초음파 파장: 접촉면에서 볼 쪽으로 은은하게 퍼짐 (사진 비율과 화면 비율이 같은 1024px~ 에서만) */}
           {scene.pulse && (
             <div

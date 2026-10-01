@@ -17,7 +17,6 @@ import {
   StoryFacts,
   StoryFeatures,
   StoryProcess,
-  StoryVideo,
 } from "@/components/sub/DeviceStory";
 import type { DeviceStory } from "@/content/device-story";
 import Reveal from "@/components/Reveal";
@@ -546,11 +545,7 @@ export default function TreatmentDetail({
       )}
 
       {/* 쉬어 가는 사진: 병원 공간 (시술마다 다른 사진) */}
-      {story ? (
-        <div className="pt-8 md:pt-12">
-          <StoryVideo story={story} />
-        </div>
-      ) : (
+      {!story && (
         <section
           aria-label="프라베일 공간"
           className="relative h-[52svh] min-h-[340px] overflow-hidden md:h-[72svh]"

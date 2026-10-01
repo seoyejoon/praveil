@@ -39,7 +39,7 @@ export default function LightHeroText({
             </Link>
             {crumbs.map((c) => (
               <span key={c.label} className="flex items-center gap-2">
-                <span aria-hidden className="h-px w-3 bg-ink/25" />
+                <span aria-hidden className="text-ink/30">/</span>
                 {c.href ? (
                   <Link href={c.href} className="hover:text-ink">
                     {c.label}
@@ -52,10 +52,9 @@ export default function LightHeroText({
           </nav>
         )}
         <p
-          className="flex items-center gap-3 font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
+          className="font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
           style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
         >
-          <span aria-hidden className="h-px w-10 bg-gold/70" />
           {en}
         </p>
         <h1

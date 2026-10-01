@@ -193,28 +193,23 @@
   }
 }
 
-/* 쿨소닉 첫 화면: 핸드피스 끝에서 퍼지는 초음파 물결 */
-@keyframes sonic-ring {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.12);
-  }
-  15% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes sonic-core {
+/* 쿨소닉 첫 화면: 핸드피스가 볼을 따라 한 칸씩 옮겨 가며 시술 (멈췄다 이동 → 처음 자리로) */
+@keyframes handpiece-glide {
   0%,
-  100% {
-    opacity: 0.35;
+  14% {
+    transform: none;
   }
-  50% {
-    opacity: 0.9;
+  30%,
+  44% {
+    transform: translate(1.07%, -1.28%);
+  }
+  60%,
+  74% {
+    transform: translate(2.14%, -2.55%);
+  }
+  92%,
+  100% {
+    transform: none;
   }
 }
 

@@ -5,8 +5,14 @@ import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
 
 export type HeroScene = {
   src: string;
-  /** 초음파 물결이 퍼지는 자리 (사진 속 비율 %, [가로, 세로]) — 핸드피스 끝 */
-  pulse?: [number, number];
+  /** 움직이는 손 + 핸드피스 (넓은 화면)
+   *  layer: 손 · 핸드피스만 떼어낸 사진, plate: 그 자리를 지운 바닥 패치
+   *  box: 두 사진이 놓이는 자리 (사진 속 %, [왼쪽, 위, 너비, 높이]) */
+  hand?: {
+    layer: string;
+    plate: string;
+    box: [number, number, number, number];
+  };
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
@@ -14,8 +20,7 @@ export type HeroScene = {
 // - 좁은 화면: 위에 사진, 아래 글자
 // 움직임
 // - 스크롤: 사진은 천천히 다가오고, 글자는 위로 사라짐
-// - 마우스(PC): 사진이 마우스 반대쪽으로 살짝 움직임
-// - 핸드피스 끝에서 초음파 물결이 은은하게 퍼짐 (넓은 화면)
+// - 손 + 핸드피스가 볼 위를 한 칸씩 옮기며 시술하듯 움직임 (넓은 화면)
 export default function SceneHero({
   en,
   title,
@@ -55,32 +60,9 @@ export default function SceneHero({
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // 마우스가 있는 화면에서만
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    const onMove = (e: PointerEvent) => {
-      const r = root.getBoundingClientRect();
-      root.style.setProperty(
-        "--mx",
-        String(((e.clientX - r.left) / r.width) * 2 - 1),
-      );
-      root.style.setProperty(
-        "--my",
-        String(((e.clientY - r.top) / r.height) * 2 - 1),
-      );
-    };
-    const onLeave = () => {
-      root.style.setProperty("--mx", "0");
-      root.style.setProperty("--my", "0");
-    };
-    if (fine) {
-      root.addEventListener("pointermove", onMove);
-      root.addEventListener("pointerleave", onLeave);
-    }
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      root.removeEventListener("pointermove", onMove);
-      root.removeEventListener("pointerleave", onLeave);
     };
   }, []);
 
@@ -95,13 +77,7 @@ export default function SceneHero({
         ref={stageRef}
         className="absolute inset-x-0 top-0 h-[58%] origin-[64%_80%] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform xl:top-[84px] xl:h-auto xl:aspect-[3/1] xl:[mask-image:linear-gradient(180deg,transparent,#000_12%)]"
       >
-        <div
-          className="absolute inset-0 transition-transform duration-[900ms] ease-out"
-          style={{
-            transform:
-              "translate3d(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -8px), 0) scale(1.03)",
-          }}
-        >
+        <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={scene.src}
@@ -109,21 +85,30 @@ export default function SceneHero({
             fetchPriority="high"
             className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
           />
-          {/* 초음파 물결: 핸드피스 끝에서 타원으로 퍼짐 */}
-          {scene.pulse && (
+          {/* 손 + 핸드피스: 바닥 패치 위에서 볼을 따라 한 칸씩 이동 */}
+          {scene.hand && (
             <div
               aria-hidden
               className="pointer-events-none absolute hidden motion-reduce:hidden xl:block"
-              style={{ left: `${scene.pulse[0]}%`, top: `${scene.pulse[1]}%` }}
+              style={{
+                left: `${scene.hand.box[0]}%`,
+                top: `${scene.hand.box[1]}%`,
+                width: `${scene.hand.box[2]}%`,
+                height: `${scene.hand.box[3]}%`,
+              }}
             >
-              <span className="absolute h-[1.6vw] w-[1.6vw] -translate-1/2 animate-[sonic-core_2.7s_ease-in-out_infinite] rounded-full bg-[radial-gradient(closest-side,rgba(255,248,232,1),rgba(226,190,130,0.55)_55%,transparent)]" />
-              {[0, 0.9, 1.8].map((d) => (
-                <span
-                  key={d}
-                  className="absolute h-[6.5vw] w-[11vw] animate-[sonic-ring_2.7s_cubic-bezier(.2,.6,.3,1)_infinite] rounded-[50%] border-2 border-[#d6ad6c] opacity-0 shadow-[0_0_16px_rgba(217,180,122,0.75),inset_0_0_8px_rgba(255,236,200,0.5)]"
-                  style={{ animationDelay: `${d + 1.2}s` }}
-                />
-              ))}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={scene.hand.plate}
+                alt=""
+                className="absolute inset-0 h-full w-full"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={scene.hand.layer}
+                alt=""
+                className="absolute inset-0 h-full w-full animate-[handpiece-glide_5.2s_ease-in-out_1.6s_infinite]"
+              />
             </div>
           )}
         </div>

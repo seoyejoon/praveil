@@ -11,7 +11,7 @@ export type HeroScene = {
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
-// - 넓은 화면: 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차게
+// - 넓은 화면(1024~): 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차게
 // - 좁은 화면: 위에 사진, 아래 글자
 // 움직임
 // - 스크롤: 사진은 천천히 다가오고, 글자는 위로 사라짐
@@ -65,11 +65,11 @@ export default function SceneHero({
       ref={rootRef}
       data-dark-hero
       data-light-hero
-      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#dcd7d3] text-ink xl:h-[calc(33.34vw+132px)] xl:min-h-0"
+      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#dcd7d3] text-ink lg:h-[calc(33.34vw+132px)] lg:min-h-0"
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-0 h-[58%] origin-[64%_80%] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform xl:top-[84px] xl:h-auto xl:aspect-[3/1] xl:[mask-image:linear-gradient(180deg,transparent,#000_12%)]"
+        className="absolute inset-x-0 top-16 aspect-[4/3] origin-[64%_80%] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform md:aspect-[2/1] lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
       >
         <div className="absolute inset-0">
           {scene.video ? (
@@ -82,7 +82,7 @@ export default function SceneHero({
               playsInline
               preload="auto"
               aria-label={`${title} 시술 장면`}
-              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[74%_center]"
+              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[92%_center]"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -90,7 +90,7 @@ export default function SceneHero({
               src={scene.src}
               alt={`${title} 시술 장면`}
               fetchPriority="high"
-              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
+              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
             />
           )}
         </div>
@@ -102,8 +102,8 @@ export default function SceneHero({
           description={description}
           facts={facts}
           crumbs={crumbs}
-          className="xl:ml-[9vw] xl:max-w-[36%]"
-          wrap="xl:justify-center xl:pt-32 xl:pb-20"
+          className="lg:ml-[5vw] lg:max-w-[42%] xl:ml-[9vw] xl:max-w-[36%]"
+          wrap="lg:justify-center lg:pt-24 lg:pb-14 xl:pt-32 xl:pb-20"
         />
       </div>
     </section>

@@ -114,7 +114,7 @@ export default function SubPage({
 
       <div
         data-hero-end
-        className="relative z-10 -mt-8 overflow-clip rounded-t-[28px] bg-white md:-mt-12 md:rounded-t-[48px]"
+        className="relative z-10 -mt-8 overflow-clip rounded-t-[28px] bg-white shadow-[0_-18px_40px_-24px_rgba(40,30,20,0.18)] md:-mt-12 md:rounded-t-[48px]"
       >
         {tabs && tabs.length > 1 && (
           <nav

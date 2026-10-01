@@ -224,6 +224,7 @@ function LightHeroText({
   facts,
   crumbs,
   className = "md:max-w-[50%]",
+  wrap = "",
 }: {
   en: string;
   title: string;
@@ -231,34 +232,38 @@ function LightHeroText({
   facts: { label: string; value: string }[];
   crumbs: Crumb[];
   className?: string;
+  /** 바깥 틀에 더할 클래스 (세로 위치 등) */
+  wrap?: string;
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
   return (
-    <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
-      {crumbs.length > 0 && (
-        <nav
-          aria-label="현재 위치"
-          className="absolute top-24 left-5 hidden flex-wrap items-center gap-2 text-[11px] tracking-wide text-muted md:top-32 md:left-10 md:flex md:text-xs"
-          style={{ animation: `fade-up 1s ${ease} 0.2s both` }}
-        >
-          <Link href="/" className="hover:text-ink">
-            HOME
-          </Link>
-          {crumbs.map((c) => (
-            <span key={c.label} className="flex items-center gap-2">
-              <span aria-hidden className="h-px w-3 bg-ink/25" />
-              {c.href ? (
-                <Link href={c.href} className="hover:text-ink">
-                  {c.label}
-                </Link>
-              ) : (
-                <span className="text-ink/80">{c.label}</span>
-              )}
-            </span>
-          ))}
-        </nav>
-      )}
+    <div
+      className={`relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24 ${wrap}`}
+    >
       <div className={className}>
+        {crumbs.length > 0 && (
+          <nav
+            aria-label="현재 위치"
+            className="mb-7 hidden flex-wrap items-center gap-2 text-xs text-muted md:flex"
+            style={{ animation: `fade-up 1s ${ease} 0.2s both` }}
+          >
+            <Link href="/" className="hover:text-ink">
+              HOME
+            </Link>
+            {crumbs.map((c) => (
+              <span key={c.label} className="flex items-center gap-2">
+                <span aria-hidden className="h-px w-3 bg-ink/25" />
+                {c.href ? (
+                  <Link href={c.href} className="hover:text-ink">
+                    {c.label}
+                  </Link>
+                ) : (
+                  <span className="text-ink/80">{c.label}</span>
+                )}
+              </span>
+            ))}
+          </nav>
+        )}
         <p
           className="flex items-center gap-3 font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
           style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
@@ -328,7 +333,7 @@ function LightHeroText({
 }
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽은 사진 벽색으로 자연스럽게 이어지고 그 위에 글자
-// 넓은 화면: 사진 전체를 아래에 깔고 왼쪽 벽 위에 글자 / 좁은 화면: 위에 사진, 아래 글자
+// 넓은 화면: 사진과 같은 가로 비율(3:1) + 메뉴바 높이, 사진은 메뉴바 아래부터 꽉 차고 왼쪽 벽 위에 글자 / 좁은 화면: 위에 사진, 아래 글자
 function SceneHero({
   en,
   title,
@@ -348,17 +353,17 @@ function SceneHero({
     <section
       data-dark-hero
       data-light-hero
-      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#efebe7,#e3ded9_55%,#d8d2cb)] text-ink xl:h-[calc(33.34vw+150px)] xl:min-h-0"
+      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#efebe7,#e3ded9_55%,#d8d2cb)] text-ink xl:h-[calc(33.34vw+132px)] xl:min-h-0"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={scene}
         alt={`${title} 시술 장면`}
         fetchPriority="high"
-        className="absolute inset-x-0 top-0 h-[58%] w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center] [mask-image:linear-gradient(180deg,#000_70%,transparent)] xl:top-auto xl:bottom-12 xl:h-auto xl:[mask-image:linear-gradient(180deg,transparent,#000_16%)]"
+        className="absolute inset-x-0 top-0 h-[58%] w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center] [mask-image:linear-gradient(180deg,#000_70%,transparent)] xl:top-[84px] xl:h-auto xl:[mask-image:linear-gradient(180deg,transparent,#000_12%)]"
       />
       {/* 넓은 화면: 글자 쪽(왼쪽)을 벽색으로 살짝 덮어 잘 읽히게 */}
-      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(236,232,227,0.82),rgba(236,232,227,0.5)_26%,transparent_44%)] xl:block" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(236,232,227,0.7),rgba(236,232,227,0.35)_24%,transparent_40%)] xl:block" />
       <LightHeroText
         en={en}
         title={title}
@@ -366,6 +371,7 @@ function SceneHero({
         facts={facts}
         crumbs={crumbs}
         className="xl:max-w-[40%]"
+        wrap="xl:justify-center xl:pt-32 xl:pb-20"
       />
     </section>
   );

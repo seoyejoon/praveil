@@ -370,7 +370,7 @@ function SceneHero({
         description={description}
         facts={facts}
         crumbs={crumbs}
-        className="xl:max-w-[40%]"
+        className="xl:ml-[9vw] xl:max-w-[36%]"
         wrap="xl:justify-center xl:pt-32 xl:pb-20"
       />
     </section>

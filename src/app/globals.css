@@ -193,6 +193,31 @@
   }
 }
 
+/* 쿨소닉 첫 화면: 핸드피스 접촉면에서 볼 쪽으로 퍼지는 초음파 파장 */
+@keyframes sonic-wave {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(0.15);
+  }
+  18% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  }
+}
+
+@keyframes sonic-core {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
 /* 장비 원리 그림: 열 응고점이 은은하게 빛남 */
 @keyframes focus-glow {
   0%,

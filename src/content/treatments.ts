@@ -54,6 +54,7 @@ export const treatments: Treatment[] = [
     scene: {
       src: photo("hero-coolsonic"),
       video: "/videos/hero-coolsonic.mp4",
+      pulse: [64.2, 88.4],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
     headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],

@@ -8,6 +8,8 @@ export type HeroScene = {
   src: string;
   /** 짧은 반복 영상 (소리 없음, 사진과 같은 구도 3:1) */
   video?: string;
+  /** 핸드피스가 피부에 닿는 자리 (사진 속 %, [가로, 세로]) — 여기서 초음파 파장이 피부 쪽으로 퍼짐 */
+  pulse?: [number, number];
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
@@ -92,6 +94,23 @@ export default function SceneHero({
               fetchPriority="high"
               className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
             />
+          )}
+          {/* 초음파 파장: 접촉면에서 볼 쪽으로 은은하게 퍼짐 (사진 비율과 화면 비율이 같은 1024px~ 에서만) */}
+          {scene.pulse && (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute hidden motion-reduce:hidden lg:block"
+              style={{ left: `${scene.pulse[0]}%`, top: `${scene.pulse[1]}%` }}
+            >
+              <span className="absolute h-[2.6vw] w-[1.8vw] -translate-1/2 animate-[sonic-core_2.8s_ease-in-out_infinite] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,1),rgba(244,205,150,0.55)_55%,transparent)]" />
+              {[0, 0.93, 1.86].map((d) => (
+                <span
+                  key={d}
+                  className="absolute h-[7vw] w-[5vw] animate-[sonic-wave_2.8s_cubic-bezier(.25,.6,.35,1)_infinite] rounded-[50%] border-2 border-white opacity-0 [mask-image:linear-gradient(90deg,transparent_46%,#000_62%)] shadow-[0_0_0_1px_rgba(196,150,90,0.35),0_0_16px_rgba(240,200,140,0.75),inset_0_0_12px_rgba(255,236,205,0.8)]"
+                  style={{ animationDelay: `${d + 1}s` }}
+                />
+              ))}
+            </div>
           )}
         </div>
       </div>

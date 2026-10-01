@@ -82,7 +82,7 @@ export default function SceneHero({
               playsInline
               preload="auto"
               aria-label={`${title} 시술 장면`}
-              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[74%_center]"
+              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[74%_center]"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element

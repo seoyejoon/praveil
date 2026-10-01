@@ -134,6 +134,7 @@ export default async function SectionPage({ params }: Props) {
         description={t.description}
         image={t.image}
         device={t.device}
+        facts={t.facts}
         crumbs={[{ label: s.label, href: s.href }, { label: page.label }]}
         tabs={s.pages}
         current={path}

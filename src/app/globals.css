@@ -13,8 +13,9 @@
   --color-ink: #151311;
   --color-line: #e8e2d9;
 
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Malgun Gothic", sans-serif;
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   /* 영문 제목은 로고와 같은 Oswald, 한글은 프리텐다드 */
   --font-display: "Oswald", var(--font-sans);
   --font-serif: var(--font-sans);
@@ -39,7 +40,10 @@
 @media (max-width: 767px) {
   @keyframes hero-reveal {
     from {
-      clip-path: inset(20svh max(10vw, calc(50% - 26svh)) 14svh round min(26svh, 40vw) min(26svh, 40vw) 0 0);
+      clip-path: inset(
+        20svh max(10vw, calc(50% - 26svh)) 14svh round min(26svh, 40vw)
+          min(26svh, 40vw) 0 0
+      );
     }
     to {
       clip-path: inset(0 0 0 0 round 0 0 0 0);
@@ -189,6 +193,18 @@
   }
 }
 
+/* 장비 첫 화면: 아치가 아래에서 솟아오름 */
+@keyframes arch-rise {
+  from {
+    opacity: 0;
+    transform: scaleY(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -271,9 +287,15 @@
 .reveal-line.is-visible > span > span {
   transform: none;
 }
-.reveal-line > span:nth-child(2) > span { transition-delay: 0.08s; }
-.reveal-line > span:nth-child(3) > span { transition-delay: 0.16s; }
-.reveal-line > span:nth-child(4) > span { transition-delay: 0.24s; }
+.reveal-line > span:nth-child(2) > span {
+  transition-delay: 0.08s;
+}
+.reveal-line > span:nth-child(3) > span {
+  transition-delay: 0.16s;
+}
+.reveal-line > span:nth-child(4) > span {
+  transition-delay: 0.24s;
+}
 
 /* 사진 등장: 아래에서 위로 커튼이 걷히며, 사진은 살짝 확대된 상태에서 제자리로 */
 .reveal-clip {
@@ -304,8 +326,13 @@
   animation: ph-twinkle 2.4s ease-in-out infinite;
 }
 @keyframes ph-twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 .ph-spin {
   transform-origin: 60px 60px;
@@ -321,9 +348,16 @@
   animation: ph-draw 5.4s ease-in-out infinite;
 }
 @keyframes ph-draw {
-  0% { stroke-dashoffset: 100; }
-  45%, 75% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -100; }
+  0% {
+    stroke-dashoffset: 100;
+  }
+  45%,
+  75% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
 }
 .ph-pop {
   transform-box: fill-box;
@@ -331,16 +365,29 @@
   animation: ph-pop 5.4s ease-in-out infinite;
 }
 @keyframes ph-pop {
-  0%, 10% { transform: scale(0); }
-  22%, 75% { transform: scale(1); }
-  90%, 100% { transform: scale(0); }
+  0%,
+  10% {
+    transform: scale(0);
+  }
+  22%,
+  75% {
+    transform: scale(1);
+  }
+  90%,
+  100% {
+    transform: scale(0);
+  }
 }
 .ph-rise {
   animation: ph-rise 6s ease-in-out infinite alternate;
 }
 @keyframes ph-rise {
-  from { transform: translateY(14px); }
-  to { transform: translateY(-10px); }
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
 }
 .ph-wave {
   animation: ph-wave 3.2s linear infinite;

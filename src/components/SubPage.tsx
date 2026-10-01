@@ -2,6 +2,7 @@ import Link from "next/link";
 import BestMark from "@/components/BestMark";
 
 type Crumb = { label: string; href?: string };
+export type HeroDevice = { src: string; name: string; type: string };
 export type SubTab = { href: string; label: string; best?: boolean };
 
 // 하위 페이지 공통 틀 (메인과 같은 톤)
@@ -14,6 +15,7 @@ export default function SubPage({
   description,
   image,
   device,
+  facts = [],
   crumbs = [],
   tabs,
   current,
@@ -23,8 +25,10 @@ export default function SubPage({
   title: string;
   description?: string;
   image: string;
-  /** 장비 시술: 사진 대신 밝은 배경 + 장비 사진 (배경색 #f4f1eb 위에 찍은 제품 사진) */
-  device?: string;
+  /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
+  device?: HeroDevice;
+  /** 장비 첫 화면 아래 핵심 정보 (앞 3개) */
+  facts?: { label: string; value: string }[];
   crumbs?: Crumb[];
   tabs?: SubTab[];
   /** 지금 페이지 주소 (탭 표시용) */
@@ -40,6 +44,7 @@ export default function SubPage({
             title={title}
             description={description}
             device={device}
+            facts={facts}
             crumbs={crumbs}
           />
         ) : (
@@ -131,41 +136,79 @@ export default function SubPage({
   );
 }
 
-// 장비 시술 첫 화면: 밝은 배경, 왼쪽 글자 · 오른쪽 장비
-// (어두운 사진 위 흰 글자 대신, 메뉴바도 투명 + 검정 글자)
+// 장비 시술 첫 화면: 밝은 배경 · 은은한 조명 · 아치 위 장비, 뒤에 큰 영문 (윤곽선)
+// 왼쪽: 위치 · 제목 · 설명 · 핵심 정보 3개 (메뉴바는 투명 + 검정 글자)
 function DeviceHero({
   en,
   title,
   description,
   device,
+  facts,
   crumbs,
 }: {
   en: string;
   title: string;
   description?: string;
-  device: string;
+  device: HeroDevice;
+  facts: { label: string; value: string }[];
   crumbs: Crumb[];
 }) {
+  const ease = "cubic-bezier(.22,1,.36,1)";
   return (
     <section
       data-dark-hero
       data-light-hero
-      className="relative h-[60svh] min-h-[460px] overflow-hidden bg-[#f4f1eb] text-ink md:h-[72svh] md:min-h-[560px]"
+      className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#ece5da] text-ink md:h-[80svh] md:min-h-[640px]"
     >
-      {/* 장비: 사진 배경색과 같은 바탕이라 경계 없이 놓임 */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={device}
-        alt={`${title} 장비`}
-        fetchPriority="high"
-        className="absolute top-14 right-[-8%] h-[54%] w-auto max-w-none md:top-auto md:right-[6%] md:bottom-10 md:h-[86%] xl:right-[12%] animate-[fade-up_1.2s_cubic-bezier(.22,1,.36,1)_0.2s_both]"
-      />
+      {/* 조명: 장비 쪽이 밝고 가장자리는 따뜻하게 */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,#fcfaf6_0,#f2ece2_40%,#e3d8c8_100%)] max-md:bg-[radial-gradient(ellipse_at_70%_28%,#fcfaf6_0,#f2ece2_40%,#e3d8c8_100%)]" />
+      {/* 큰 영문 (윤곽선) */}
+      <p
+        aria-hidden
+        className="pointer-events-none absolute top-[16%] right-[-2%] hidden font-display text-[11vw] leading-none font-light tracking-[0.04em] whitespace-nowrap text-transparent uppercase select-none [-webkit-text-stroke:1px_rgba(150,118,80,0.32)] md:block"
+        style={{ animation: `fade-up 1.6s ${ease} 0.3s both` }}
+      >
+        {en}
+      </p>
+
+      {/* 아치 + 장비 */}
+      <div className="absolute top-20 right-[-6%] h-[41%] w-[64%] md:top-auto md:right-[8%] md:bottom-0 md:h-[86%] md:w-auto md:aspect-[0.66] xl:right-[12%]">
+        <div
+          className="absolute inset-x-[6%] top-[6%] bottom-0 origin-bottom rounded-t-full bg-[linear-gradient(180deg,#fffdf9,#f1e9dc_70%,#e9dfcf)] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.9),0_40px_90px_-50px_rgba(90,60,30,0.45)] max-md:inset-x-[14%] max-md:[mask-image:linear-gradient(180deg,#000_45%,transparent_92%)]"
+          style={{ animation: `arch-rise 1.4s ${ease} both` }}
+        />
+        {/* 바닥 그림자 */}
+        <div className="absolute bottom-[8%] left-1/2 h-[4%] w-[52%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(60,40,20,0.28),transparent)] max-md:hidden" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={device.src}
+          alt={`${device.name} 장비`}
+          fetchPriority="high"
+          className="absolute bottom-[9%] left-1/2 h-[82%] w-auto max-w-none -translate-x-1/2 drop-shadow-[0_24px_30px_rgba(60,40,20,0.18)] max-md:bottom-0 max-md:h-[96%]"
+          style={{ animation: `fade-up 1.3s ${ease} 0.35s both` }}
+        />
+        {/* 장비 이름표 */}
+        <div
+          className="absolute top-[34%] left-[-34%] hidden rounded-2xl border border-white/80 bg-white/55 px-5 py-4 shadow-[0_20px_50px_-30px_rgba(60,40,20,0.5)] backdrop-blur-md lg:block"
+          style={{ animation: `slide-in 1.1s ${ease} 0.9s both` }}
+        >
+          <p className="font-display text-[10px] tracking-[0.3em] text-gold uppercase">
+            Device
+          </p>
+          <p className="mt-1.5 font-display text-lg tracking-[0.04em]">
+            {device.name}
+          </p>
+          <p className="mt-0.5 text-xs text-muted">{device.type}</p>
+        </div>
+      </div>
+
       <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
-        <div className="md:max-w-[46%]">
+        <div className="md:max-w-[44%]">
           {crumbs.length > 0 && (
             <nav
               aria-label="현재 위치"
-              className="flex animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.2s_both] flex-wrap items-center gap-2 text-xs text-muted"
+              className="flex flex-wrap items-center gap-2 text-xs text-muted"
+              style={{ animation: `slide-in 1s ${ease} 0.2s both` }}
             >
               <Link href="/" className="hover:text-ink">
                 HOME
@@ -184,16 +227,43 @@ function DeviceHero({
               ))}
             </nav>
           )}
-          <p className="mt-8 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.3s_both] font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:text-xs">
+          <p
+            className="mt-6 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mt-8 md:text-xs"
+            style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
+          >
             {en}
           </p>
-          <h1 className="mt-4 animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.4s_both] text-[34px] leading-tight font-light tracking-[-0.03em] md:text-[56px] 2xl:text-[64px]">
+          <h1
+            className="mt-3 text-[34px] leading-tight font-light tracking-[-0.03em] md:mt-4 md:text-[56px] 2xl:text-[64px]"
+            style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
+          >
             {title}
           </h1>
           {description && (
-            <p className="mt-4 max-w-xl animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.55s_both] text-sm leading-relaxed text-muted md:text-base">
+            <p
+              className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:mt-4 md:text-base"
+              style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
+            >
               {description}
             </p>
+          )}
+          {facts.length > 0 && (
+            <dl
+              className="mt-7 grid max-w-md grid-cols-3 border-t border-ink/10 pt-5 md:mt-10"
+              style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
+            >
+              {facts.slice(0, 3).map((f, i) => (
+                <div
+                  key={f.label}
+                  className={i > 0 ? "border-l border-ink/10 pl-4" : "pr-4"}
+                >
+                  <dt className="text-[11px] text-muted">{f.label}</dt>
+                  <dd className="mt-1 text-[13px] font-medium md:text-sm">
+                    {f.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           )}
         </div>
       </div>

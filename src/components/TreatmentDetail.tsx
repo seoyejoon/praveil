@@ -275,7 +275,7 @@ export default function TreatmentDetail({
       {compare.length > 1 && (
         <section
           id="compare"
-          className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pt-24 md:scroll-mt-44 md:px-10 md:pt-36"
+          className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 pt-24 md:scroll-mt-44 md:px-10 md:pt-36 ${story ? "pb-24 md:pb-36" : ""}`}
         >
           <SectionHead
             en="Compare"

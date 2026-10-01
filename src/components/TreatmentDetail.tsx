@@ -17,6 +17,7 @@ import {
   StoryAbout,
   StoryFacts,
   StoryFeatures,
+  StoryCompare,
   StoryProcess,
 } from "@/components/sub/DeviceStory";
 import type { DeviceStory } from "@/content/device-story";
@@ -125,10 +126,69 @@ export default function TreatmentDetail({
     compare.length > 1 && { id: "compare", label: "비교" },
     { id: "result", label: "효과 · 유지" },
     { id: "aftercare", label: "통증 · 회복" },
-    { id: "price", label: "비용" },
+    !story && { id: "price", label: "비용" },
     { id: "faq", label: "자주 묻는 질문" },
     { id: "visit", label: "상담 · 위치" },
   ].filter(Boolean) as { id: string; label: string }[];
+
+  const doctorSection = (
+    <section
+      id="doctor"
+      className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items || story ? "pt-16 md:pt-24" : ""}`}
+    >
+      <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
+        <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={mainDoctor.image}
+            alt={`대표원장 ${doctor.name}`}
+            loading="lazy"
+            className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto max-w-none object-contain object-bottom"
+          />
+        </div>
+        <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
+          <SectionHead
+            en="Doctor"
+            title={`${t.title}, 누가 상담하고 시술하나요?`}
+          />
+          <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
+            {hospital.name}
+            {josa(hospital.name, "은", "는")} 상담한 원장이 시술까지 직접
+            합니다. 대표원장 {doctor.name} 원장이 얼굴과 피부를 먼저 보고,{" "}
+            {t.title}
+            {josa(t.title, "이", "가")} 꼭 필요한지부터 함께 판단합니다.
+          </p>
+          <div className="mt-10 border-t border-ink/15 pt-8">
+            <p className="text-sm text-gold">{doctor.title}</p>
+            <p className="mt-1 flex items-baseline gap-3 text-[26px] font-semibold tracking-[-0.03em]">
+              {doctor.name}
+              <span className="font-display text-xs font-normal tracking-[0.3em] text-muted uppercase">
+                {mainDoctor.nameEn}
+              </span>
+            </p>
+            <ul className="mt-6 grid gap-2 text-[14px] text-ink/75 sm:grid-cols-2">
+              {doctor.credentials.map((c) => (
+                <li key={c} className="flex gap-2">
+                  <span
+                    aria-hidden
+                    className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
+                  />
+                  {c}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/about/doctor"
+              className="mt-8 inline-flex items-center gap-2 text-sm text-ink underline decoration-gold underline-offset-[6px] transition hover:text-gold"
+            >
+              의료진 소개 보기
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 
   return (
     <>
@@ -279,96 +339,102 @@ export default function TreatmentDetail({
       )}
 
       {/* 다른 시술과 어떻게 다른가요? */}
-      {compare.length > 1 && (
-        <section
-          id="compare"
-          className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 md:scroll-mt-44 md:px-10 ${story ? "pb-24 md:pb-36" : "pt-24 md:pt-36"}`}
-        >
-          <SectionHead
-            en="Compare"
-            title={`${t.title}, 다른 시술과 어떻게 다른가요?`}
-          />
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
-            같은 고민도 원인에 따라 맞는 시술이 다릅니다. 프라베일에서 함께
-            상담하는 시술을 나란히 정리했습니다.
-          </p>
-          <p className="mt-10 text-xs text-muted md:hidden">
-            ← 옆으로 밀어서 비교해 보세요
-          </p>
-          <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:px-0">
-            <table className="w-full min-w-[720px] table-fixed border-separate border-spacing-0 text-left">
-              <caption className="sr-only">
-                {t.title} 및 비슷한 시술 비교
-              </caption>
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    className="sticky left-0 z-10 w-[112px] bg-white md:w-[160px]"
-                  >
-                    <span className="sr-only">항목</span>
-                  </th>
-                  {compare.map((c) => {
-                    const me = c.href === t.href;
-                    return (
+      {story?.compare ? (
+        <StoryCompare title={t.title} story={story} />
+      ) : (
+        <>
+          {compare.length > 1 && (
+            <section
+              id="compare"
+              className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 md:scroll-mt-44 md:px-10 ${story ? "pb-24 md:pb-36" : "pt-24 md:pt-36"}`}
+            >
+              <SectionHead
+                en="Compare"
+                title={`${t.title}, 다른 시술과 어떻게 다른가요?`}
+              />
+              <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
+                같은 고민도 원인에 따라 맞는 시술이 다릅니다. 프라베일에서 함께
+                상담하는 시술을 나란히 정리했습니다.
+              </p>
+              <p className="mt-10 text-xs text-muted md:hidden">
+                ← 옆으로 밀어서 비교해 보세요
+              </p>
+              <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:px-0">
+                <table className="w-full min-w-[720px] table-fixed border-separate border-spacing-0 text-left">
+                  <caption className="sr-only">
+                    {t.title} 및 비슷한 시술 비교
+                  </caption>
+                  <thead>
+                    <tr>
                       <th
-                        key={c.href}
                         scope="col"
-                        className={`rounded-t-[20px] px-5 pt-7 pb-5 align-top font-normal md:px-7 ${me ? "bg-espresso text-white" : ""}`}
+                        className="sticky left-0 z-10 w-[112px] bg-white md:w-[160px]"
                       >
-                        <span
-                          className={`font-display text-[11px] tracking-[0.25em] uppercase ${me ? "text-taupe" : "text-gold"}`}
-                        >
-                          {me ? "This page" : "Compare"}
-                        </span>
-                        {me ? (
-                          <span className="mt-2 block text-xl font-semibold tracking-[-0.02em] md:text-2xl">
-                            {c.title}
-                          </span>
-                        ) : (
-                          <Link
-                            href={c.href}
-                            className="group mt-2 flex items-center gap-1 text-xl font-semibold tracking-[-0.02em] transition hover:text-gold md:text-2xl"
-                          >
-                            {c.title}
-                            <ArrowUpRight
-                              className="h-4 w-4 text-muted transition group-hover:text-gold"
-                              strokeWidth={1.6}
-                            />
-                          </Link>
-                        )}
+                        <span className="sr-only">항목</span>
                       </th>
-                    );
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {compareRows.map((r, ri) => (
-                  <tr key={r.key}>
-                    <th
-                      scope="row"
-                      className="sticky left-0 z-10 border-t border-line bg-white py-5 pr-4 align-top text-[13px] font-normal text-gold md:text-sm"
-                    >
-                      {r.label}
-                    </th>
-                    {compare.map((c) => {
-                      const me = c.href === t.href;
-                      const last = ri === compareRows.length - 1;
-                      return (
-                        <td
-                          key={c.href}
-                          className={`px-5 py-5 align-top text-[14px] leading-snug md:px-7 md:text-[15px] ${me ? `border-t border-white/10 bg-espresso text-white ${last ? "rounded-b-[20px]" : ""}` : "border-t border-line text-ink/80"}`}
+                      {compare.map((c) => {
+                        const me = c.href === t.href;
+                        return (
+                          <th
+                            key={c.href}
+                            scope="col"
+                            className={`rounded-t-[20px] px-5 pt-7 pb-5 align-top font-normal md:px-7 ${me ? "bg-espresso text-white" : ""}`}
+                          >
+                            <span
+                              className={`font-display text-[11px] tracking-[0.25em] uppercase ${me ? "text-taupe" : "text-gold"}`}
+                            >
+                              {me ? "This page" : "Compare"}
+                            </span>
+                            {me ? (
+                              <span className="mt-2 block text-xl font-semibold tracking-[-0.02em] md:text-2xl">
+                                {c.title}
+                              </span>
+                            ) : (
+                              <Link
+                                href={c.href}
+                                className="group mt-2 flex items-center gap-1 text-xl font-semibold tracking-[-0.02em] transition hover:text-gold md:text-2xl"
+                              >
+                                {c.title}
+                                <ArrowUpRight
+                                  className="h-4 w-4 text-muted transition group-hover:text-gold"
+                                  strokeWidth={1.6}
+                                />
+                              </Link>
+                            )}
+                          </th>
+                        );
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {compareRows.map((r, ri) => (
+                      <tr key={r.key}>
+                        <th
+                          scope="row"
+                          className="sticky left-0 z-10 border-t border-line bg-white py-5 pr-4 align-top text-[13px] font-normal text-gold md:text-sm"
                         >
-                          {c.profile[r.key]}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Reveal>
-        </section>
+                          {r.label}
+                        </th>
+                        {compare.map((c) => {
+                          const me = c.href === t.href;
+                          const last = ri === compareRows.length - 1;
+                          return (
+                            <td
+                              key={c.href}
+                              className={`px-5 py-5 align-top text-[14px] leading-snug md:px-7 md:text-[15px] ${me ? `border-t border-white/10 bg-espresso text-white ${last ? "rounded-b-[20px]" : ""}` : "border-t border-line text-ink/80"}`}
+                            >
+                              {c.profile[r.key]}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </Reveal>
+            </section>
+          )}
+        </>
       )}
 
       {/* 특징 3가지 */}
@@ -447,62 +513,7 @@ export default function TreatmentDetail({
       )}
 
       {/* 누가 상담하고 시술하나요? */}
-      <section
-        id="doctor"
-        className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items || story ? "pt-16 md:pt-24" : ""}`}
-      >
-        <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
-          <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={mainDoctor.image}
-              alt={`대표원장 ${doctor.name}`}
-              loading="lazy"
-              className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto max-w-none object-contain object-bottom"
-            />
-          </div>
-          <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
-            <SectionHead
-              en="Doctor"
-              title={`${t.title}, 누가 상담하고 시술하나요?`}
-            />
-            <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
-              {hospital.name}
-              {josa(hospital.name, "은", "는")} 상담한 원장이 시술까지 직접
-              합니다. 대표원장 {doctor.name} 원장이 얼굴과 피부를 먼저 보고,{" "}
-              {t.title}
-              {josa(t.title, "이", "가")} 꼭 필요한지부터 함께 판단합니다.
-            </p>
-            <div className="mt-10 border-t border-ink/15 pt-8">
-              <p className="text-sm text-gold">{doctor.title}</p>
-              <p className="mt-1 flex items-baseline gap-3 text-[26px] font-semibold tracking-[-0.03em]">
-                {doctor.name}
-                <span className="font-display text-xs font-normal tracking-[0.3em] text-muted uppercase">
-                  {mainDoctor.nameEn}
-                </span>
-              </p>
-              <ul className="mt-6 grid gap-2 text-[14px] text-ink/75 sm:grid-cols-2">
-                {doctor.credentials.map((c) => (
-                  <li key={c} className="flex gap-2">
-                    <span
-                      aria-hidden
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
-                    />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/about/doctor"
-                className="mt-8 inline-flex items-center gap-2 text-sm text-ink underline decoration-gold underline-offset-[6px] transition hover:text-gold"
-              >
-                의료진 소개 보기
-                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {!story && doctorSection}
 
       {/* 병원 고르는 기준 */}
       {!story && (
@@ -718,77 +729,82 @@ export default function TreatmentDetail({
       </section>
 
       {/* 비용 */}
-      <section id="price" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
-        <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
-            <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
-            <p className="mt-5 text-[15px] leading-relaxed text-muted">
-              부위 · 양 · 피부 상태에 따라 달라질 수 있어, 상담 후 정확한 비용을
-              안내해 드립니다.
-            </p>
-          </div>
-          {prices.length ? (
-            <div className="grid gap-3">
-              {prices.map((p) => (
-                <div
-                  key={p.slug}
-                  className="rounded-[20px] bg-white p-6 md:p-8"
-                >
-                  <h3 className="text-lg font-semibold">{p.name}</h3>
-                  <dl className="mt-3">
-                    {p.prices.map((row) => (
-                      <div
-                        key={row.label}
-                        className="flex items-baseline justify-between gap-4 border-t border-line py-3 first:border-t-0"
-                      >
-                        <dt className="text-[15px] text-muted">
-                          {row.label}
-                          {row.note && (
-                            <span className="ml-2 text-xs text-gold">
-                              {row.note}
-                            </span>
-                          )}
-                        </dt>
-                        <dd className="text-[17px] font-semibold tracking-[-0.02em]">
-                          {row.price}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              ))}
+      {!story && (
+        <section
+          id="price"
+          className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6"
+        >
+          <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
+              <p className="mt-5 text-[15px] leading-relaxed text-muted">
+                부위 · 양 · 피부 상태에 따라 달라질 수 있어, 상담 후 정확한
+                비용을 안내해 드립니다.
+              </p>
             </div>
-          ) : (
-            <div className="flex flex-col justify-center rounded-[20px] bg-white p-8 md:p-10">
-              <p className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
-                {t.title} 비용은 상담 후 안내해 드립니다.
-              </p>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                전화 · 카카오톡으로 원하는 부위를 알려 주시면 대략적인 비용을
-                먼저 안내해 드릴 수 있습니다.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                <a
-                  href={`tel:${hospital.phone}`}
-                  className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
-                >
-                  <Phone className="h-4 w-4" strokeWidth={1.6} />
-                  {hospital.phone}
-                </a>
-                <a
-                  href={hospital.kakaoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
-                >
-                  <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
-                  카카오톡 문의
-                </a>
+            {prices.length ? (
+              <div className="grid gap-3">
+                {prices.map((p) => (
+                  <div
+                    key={p.slug}
+                    className="rounded-[20px] bg-white p-6 md:p-8"
+                  >
+                    <h3 className="text-lg font-semibold">{p.name}</h3>
+                    <dl className="mt-3">
+                      {p.prices.map((row) => (
+                        <div
+                          key={row.label}
+                          className="flex items-baseline justify-between gap-4 border-t border-line py-3 first:border-t-0"
+                        >
+                          <dt className="text-[15px] text-muted">
+                            {row.label}
+                            {row.note && (
+                              <span className="ml-2 text-xs text-gold">
+                                {row.note}
+                              </span>
+                            )}
+                          </dt>
+                          <dd className="text-[17px] font-semibold tracking-[-0.02em]">
+                            {row.price}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                ))}
               </div>
-            </div>
-          )}
-        </div>
-      </section>
+            ) : (
+              <div className="flex flex-col justify-center rounded-[20px] bg-white p-8 md:p-10">
+                <p className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
+                  {t.title} 비용은 상담 후 안내해 드립니다.
+                </p>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted">
+                  전화 · 카카오톡으로 원하는 부위를 알려 주시면 대략적인 비용을
+                  먼저 안내해 드릴 수 있습니다.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-2.5">
+                  <a
+                    href={`tel:${hospital.phone}`}
+                    className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
+                  >
+                    <Phone className="h-4 w-4" strokeWidth={1.6} />
+                    {hospital.phone}
+                  </a>
+                  <a
+                    href={hospital.kakaoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
+                  >
+                    <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
+                    카카오톡 문의
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 전후사진 (회원 공개) */}
       {baCases.length > 0 ? (
@@ -836,6 +852,9 @@ export default function TreatmentDetail({
           <FaqList items={faq} mobileLimit={4} />
         </div>
       </section>
+
+      {/* 장비 시술: 의료진은 자주 묻는 질문 아래 */}
+      {story && <div className="pb-16 md:pb-24">{doctorSection}</div>}
 
       {/* 상담 안내: 장비 시술 페이지는 바로 아래 푸터(지도 · 진료시간 · 전화 · 예약)와 겹쳐 생략 */}
       {story ? (

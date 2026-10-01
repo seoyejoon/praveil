@@ -143,46 +143,77 @@ export function StoryAbout({
       </section>
 
       {/* 원리 */}
-      <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div>
-            <SectionHead
-              en="How it works"
-              title={`${title}, 어떤 원리인가요?`}
-            />
-            <ol className="mt-10 grid gap-3">
-              {principle.map((p, i) => (
-                <Reveal
-                  as="li"
-                  key={p.title}
-                  delay={i * 100}
-                  className="flex gap-5 rounded-[20px] border border-line p-5 md:p-6"
-                >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white">
-                    {i + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                      {p.text}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
-          </div>
-          <Reveal delay={150}>
-            <figure className="overflow-hidden rounded-[28px] bg-ivory p-4 md:p-8">
-              <HifuDiagram depths={story.depths} />
-              <figcaption className="mt-3 text-center text-xs text-muted">
-                ※ 원리를 쉽게 보여 드리기 위한 그림입니다
-              </figcaption>
-            </figure>
+      {story.principleImage ? (
+        <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
+          <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
+          <Reveal className="mt-10 md:mt-14">
+            <PrincipleFigure image={story.principleImage} />
           </Reveal>
-        </div>
-      </section>
+          <ol className="mt-8 grid gap-3 md:mt-10 md:grid-cols-3 md:gap-5">
+            {principle.map((p, i) => (
+              <Reveal
+                as="li"
+                key={p.title}
+                delay={i * 100}
+                className="flex gap-4 rounded-[20px] border border-line p-5 md:flex-col md:gap-5 md:p-7"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
+                    {p.title}
+                  </h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
+                    {p.text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </section>
+      ) : (
+        <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <div>
+              <SectionHead
+                en="How it works"
+                title={`${title}, 어떤 원리인가요?`}
+              />
+              <ol className="mt-10 grid gap-3">
+                {principle.map((p, i) => (
+                  <Reveal
+                    as="li"
+                    key={p.title}
+                    delay={i * 100}
+                    className="flex gap-5 rounded-[20px] border border-line p-5 md:p-6"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold font-display text-sm text-white">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
+                        {p.title}
+                      </h3>
+                      <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
+                        {p.text}
+                      </p>
+                    </div>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+            <Reveal delay={150}>
+              <figure className="overflow-hidden rounded-[28px] bg-ivory p-4 md:p-8">
+                <HifuDiagram depths={story.depths} />
+                <figcaption className="mt-3 text-center text-xs text-muted">
+                  ※ 원리를 쉽게 보여 드리기 위한 그림입니다
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+      )}
     </>
   );
 }
@@ -459,5 +490,166 @@ function HifuDiagram({
         );
       })}
     </svg>
+  );
+}
+
+/** 원리 그림 사진 + 그 위 표시 (넓은 화면: 이름표, 좁은 화면: 번호 + 아래 설명) */
+function PrincipleFigure({
+  image,
+}: {
+  image: NonNullable<DeviceStory["principleImage"]>;
+}) {
+  return (
+    <figure>
+      <div className="relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          className="block h-auto w-full"
+        />
+        {/* 가리키는 표시 */}
+        {image.marks.map((m, i) => (
+          <div
+            key={m.label}
+            className="absolute"
+            style={{ left: `${m.x}%`, top: `${m.y}%` }}
+          >
+            <span className="absolute h-3 w-3 -translate-1/2 rounded-full bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.35)] md:h-3.5 md:w-3.5">
+              <span className="absolute inset-0 animate-ping rounded-full bg-white/70" />
+            </span>
+            {/* 좁은 화면: 번호 */}
+            <span className="absolute -top-7 -left-2.5 grid h-5 w-5 place-items-center rounded-full bg-ink/80 text-[10px] text-white md:hidden">
+              {i + 1}
+            </span>
+            {/* 넓은 화면: 이름표 */}
+            <span
+              className={`absolute top-0 hidden -translate-y-1/2 items-center gap-0 whitespace-nowrap md:flex ${m.side === "left" ? "right-2 flex-row-reverse" : "left-2"}`}
+            >
+              <span className="h-px w-8 bg-white/80 lg:w-12" />
+              <span className="rounded-full bg-ink/75 px-3.5 py-1.5 text-[13px] text-white backdrop-blur lg:text-sm">
+                {m.label}
+              </span>
+            </span>
+          </div>
+        ))}
+        {/* 오른쪽 끝 층 이름 */}
+        <div className="absolute inset-y-0 right-0 hidden md:block">
+          {image.layers.map((l) => (
+            <span
+              key={l.label}
+              className="absolute right-4 -translate-y-1/2 rounded-l-full rounded-r-md bg-white/85 px-3 py-1 text-xs whitespace-nowrap text-ink backdrop-blur lg:right-6 lg:text-[13px]"
+              style={{ top: `${l.y}%` }}
+            >
+              {l.label}
+            </span>
+          ))}
+        </div>
+      </div>
+      {/* 좁은 화면 설명 */}
+      <ol className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[13px] text-muted md:hidden">
+        {image.marks.map((m, i) => (
+          <li key={m.label} className="flex items-center gap-2">
+            <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-ink/80 text-[10px] text-white">
+              {i + 1}
+            </span>
+            {m.label}
+          </li>
+        ))}
+      </ol>
+      <figcaption className="mt-3 text-xs text-muted md:mt-4">
+        ※ 원리를 쉽게 보여 드리기 위한 그림입니다 · 층 (위에서 아래로):{" "}
+        {image.layers.map((l) => l.label).join(" → ")}
+      </figcaption>
+    </figure>
+  );
+}
+
+/** 많이 비교하는 장비 비교표 */
+export function StoryCompare({
+  title,
+  story,
+}: {
+  title: string;
+  story: DeviceStory;
+}) {
+  const c = story.compare;
+  if (!c) return null;
+  return (
+    <section
+      id="compare"
+      className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-36"
+    >
+      <SectionHead
+        en="Compare"
+        title={`${title}, 다른 리프팅 장비와 어떻게 다른가요?`}
+      />
+      <p className="mt-4 text-[15px] text-muted">
+        상담 때 많이 함께 물어보시는 리프팅 장비를 나란히 정리했습니다.
+      </p>
+      <p className="mt-8 text-xs text-muted md:hidden">
+        ← 옆으로 밀어서 비교해 보세요
+      </p>
+      <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto px-5 md:mx-0 md:mt-12 md:px-0">
+        <table className="w-full min-w-[720px] table-fixed border-collapse text-left">
+          <colgroup>
+            <col className="w-[120px] md:w-[150px]" />
+            {c.columns.map((col) => (
+              <col key={col.name} />
+            ))}
+          </colgroup>
+          <thead>
+            <tr>
+              <th />
+              {c.columns.map((col) => (
+                <th
+                  key={col.name}
+                  scope="col"
+                  className={`px-4 pt-6 pb-5 align-bottom font-normal md:px-6 ${col.self ? "rounded-t-[20px] bg-espresso text-white" : ""}`}
+                >
+                  <span
+                    className={`block text-[11px] ${col.self ? "text-taupe" : "text-muted"}`}
+                  >
+                    {col.maker}
+                  </span>
+                  <span className="mt-1 block text-lg font-semibold tracking-[-0.02em] md:text-xl">
+                    {col.name}
+                  </span>
+                  {col.owned && (
+                    <span
+                      className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] ${col.self ? "bg-gold text-white" : "bg-ivory text-mocha"}`}
+                    >
+                      프라베일 보유
+                    </span>
+                  )}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {c.rows.map((r, ri) => (
+              <tr key={r.label} className="border-t border-line">
+                <th
+                  scope="row"
+                  className="py-4 pr-3 text-[13px] font-normal text-gold md:py-5"
+                >
+                  {r.label}
+                </th>
+                {r.values.map((v, i) => (
+                  <td
+                    key={c.columns[i].name}
+                    className={`px-4 py-4 text-[14px] leading-snug md:px-6 md:py-5 md:text-[15px] ${c.columns[i].self ? `bg-espresso font-medium text-white ${ri === c.rows.length - 1 ? "rounded-b-[20px]" : ""}` : "text-ink/80"}`}
+                  >
+                    {v}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Reveal>
+      <p className="mt-6 text-xs leading-relaxed text-muted">{c.note}</p>
+    </section>
   );
 }

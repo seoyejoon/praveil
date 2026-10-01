@@ -239,15 +239,6 @@ export function BaPreview({
           </p>
         </div>
         <div className="flex shrink-0 gap-2">
-          {!member && (
-            <button
-              type="button"
-              onClick={openLogin}
-              className="rounded-full bg-espresso px-6 py-3 text-sm text-white transition hover:bg-mocha"
-            >
-              로그인 · 회원가입
-            </button>
-          )}
           <Link
             href="/before-after"
             className="rounded-full border border-line px-6 py-3 text-sm transition hover:border-gold"

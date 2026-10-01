@@ -17,8 +17,23 @@ export type DeviceStory = {
   };
   /** 원리 (그림 옆 세 단계) */
   principle: { title: string; text: string }[];
-  /** 원리 그림의 깊이 표시 (얕게 · 중간 · 깊게 순) */
+  /** 원리 그림의 깊이 표시 (얕게 · 중간 · 깊게 순) — 그림 사진이 없을 때 */
   depths?: [string, string, string];
+  /** 원리 그림 사진 + 그 위 표시 (x · y 는 사진 속 %) */
+  principleImage?: {
+    src: string;
+    alt: string;
+    /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
+    marks: { x: number; y: number; label: string; side: "left" | "right" }[];
+    /** 오른쪽 끝 층 이름 */
+    layers: { y: number; label: string }[];
+  };
+  /** 많이 비교하는 장비 비교표 (장비의 일반적인 특징, 우열 비교 아님) */
+  compare?: {
+    columns: { name: string; maker: string; owned?: boolean; self?: boolean }[];
+    rows: { label: string; values: string[] }[];
+    note: string;
+  };
   /** 특징: 사진 또는 영상 + 설명 */
   features: {
     title: string;
@@ -70,6 +85,77 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     depths: ["1.5mm", "3.0mm", "4.5mm"],
+    principleImage: {
+      src: cs("principle"),
+      alt: "쿨소닉 원리 그림: 냉각 어플리케이터가 피부 표면을 식히고, 모인 초음파가 피부 속에 열 응고점을 만드는 모습",
+      marks: [
+        { x: 36, y: 16, label: "냉각 어플리케이터", side: "left" },
+        { x: 22, y: 40, label: "피부 표면 냉각", side: "left" },
+        { x: 52, y: 42, label: "한 점에 모이는 초음파", side: "right" },
+        { x: 82.7, y: 58, label: "열 응고점", side: "right" },
+      ],
+      layers: [
+        { y: 46, label: "표피 · 진피" },
+        { y: 70, label: "피하지방" },
+        { y: 80, label: "근막층 (SMAS)" },
+        { y: 93, label: "근육" },
+      ],
+    },
+    compare: {
+      columns: [
+        { name: "쿨소닉", maker: "아스테라시스", owned: true, self: true },
+        { name: "울쎄라", maker: "멀츠" },
+        { name: "슈링크 유니버스", maker: "클래시스", owned: true },
+        { name: "써마지 FLX", maker: "솔타메디칼" },
+      ],
+      rows: [
+        {
+          label: "에너지",
+          values: [
+            "집속 초음파 (HIFU)",
+            "집속 초음파 (MFU-V)",
+            "집속 초음파 (HIFU)",
+            "고주파 (RF)",
+          ],
+        },
+        {
+          label: "작용 깊이",
+          values: [
+            "1.5 · 3.0 · 4.5mm",
+            "1.5 · 3.0 · 4.5mm",
+            "1.5 · 2.0 · 3.0 · 4.5mm",
+            "진피 ~ 피하 (넓게)",
+          ],
+        },
+        {
+          label: "피부 표면 냉각",
+          values: ["냉각 어플리케이터", "없음", "없음", "냉각 스프레이"],
+        },
+        {
+          label: "특징",
+          values: [
+            "식히며 시술 · 굴곡 부위 밀착",
+            "초음파 영상으로 층을 보며 시술",
+            "모드가 다양 · 얼굴 · 바디",
+            "피부 전체를 고르게 가열 · 탄력 · 피부결",
+          ],
+        },
+        {
+          label: "주로 찾는 고민",
+          values: [
+            "턱선 · 볼 처짐, 윤곽",
+            "깊은 처짐, 윤곽",
+            "윤곽 · 탄력",
+            "탄력 · 피부결 · 잔주름",
+          ],
+        },
+        {
+          label: "회복",
+          values: ["바로 일상", "바로 일상", "바로 일상", "바로 일상"],
+        },
+      ],
+      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 프라베일 보유 장비: 쿨소닉 · 슈링크 유니버스.",
+    },
     features: [
       {
         title: "깊이가 다른 세 가지 어플리케이터",

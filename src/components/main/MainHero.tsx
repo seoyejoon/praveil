@@ -223,10 +223,13 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
             __lenis?: { scrollTo: (y: number, o: object) => void };
           }
         ).__lenis;
+        // 문이 열리는 구간(0 ↔ 0.6)은 천천히, 처음과 끝을 부드럽게
+        const doorPart = Math.min(p, target) < 0.6 - 0.002;
         if (lenis)
           lenis.scrollTo(y, {
-            duration: 1.4,
-            easing: (x: number) => 1 - Math.pow(1 - x, 3),
+            duration: doorPart ? 3 : 1.8,
+            easing: (x: number) =>
+              x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
           });
         else window.scrollTo({ top: y, behavior: "smooth" });
       }, 160);
@@ -239,9 +242,9 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           scrollTrigger: {
             trigger: root,
             start: "top top",
-            end: "+=220%",
+            end: "+=300%",
             pin: true,
-            scrub: 0.8,
+            scrub: 1.2,
             invalidateOnRefresh: true,
             onUpdate: (st) => {
               setScene(st.progress < 0.3 ? 0 : 1);

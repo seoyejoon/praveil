@@ -174,10 +174,6 @@ export function StoryAbout({
               ))}
             </ol>
           </div>
-          <p className="mt-4 text-xs text-muted">
-            ※ 원리를 쉽게 보여 드리기 위한 그림입니다 · 층 (위에서 아래로):{" "}
-            {story.principleImage.layers.map((l) => l.label).join(" → ")}
-          </p>
         </section>
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">

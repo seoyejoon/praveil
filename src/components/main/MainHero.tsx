@@ -26,6 +26,7 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
   const doorLRef = useRef<HTMLDivElement>(null);
   const doorRRef = useRef<HTMLDivElement>(null);
   const facadeRef = useRef<HTMLDivElement>(null);
+  const facadeDoorRef = useRef<HTMLDivElement>(null);
   const insideRef = useRef<HTMLImageElement>(null);
   const dimRef = useRef<HTMLDivElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
@@ -116,7 +117,9 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
     const doorR = doorRRef.current;
     const insideImg = insideRef.current;
     const facade = facadeRef.current;
-    if (!root || !doorL || !doorR || !insideImg || !facade) return;
+    const facadeDoor = facadeDoorRef.current;
+    if (!root || !doorL || !doorR || !insideImg || !facade || !facadeDoor)
+      return;
 
     // 사진 속 비율 좌표 → 화면 좌표 (object-cover, 가운데 기준)
     const cover = () => {
@@ -154,13 +157,19 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
       const photo = 1 - ease(Math.min(1, d / 0.14));
       // 그린 문은 사진이 거의 사라진 뒤부터 움직임 (손잡이가 겹쳐 보이지 않게)
       const open = ease(Math.max(0, (d - 0.12) / 0.88));
-      facade.style.transform = `scale(${sF})`;
-      facade.style.opacity = String(photo);
       const A = at(0.1794, 0),
         S = at(0.4994, 0.894),
         R = at(0.8182, 0);
       const dl = S.x - A.x,
         dr = R.x - S.x;
+      // 입구 사진: 문 부분은 빨리(그린 문이 이어받음), 문 밖 양옆 · 위아래는 천천히 사라짐 → 색이 갑자기 바뀌지 않게
+      const hole = `${A.x}px ${A.y}px, ${A.x}px ${S.y}px, ${R.x}px ${S.y}px, ${R.x}px ${A.y}px, ${A.x}px ${A.y}px`;
+      facade.style.clipPath = `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${hole})`;
+      facade.style.transform = `scale(${sF})`;
+      facade.style.opacity = String(1 - ease(Math.min(1, d / 0.75)));
+      facadeDoor.style.clipPath = `polygon(${hole})`;
+      facadeDoor.style.transform = `scale(${sF})`;
+      facadeDoor.style.opacity = String(photo);
       const doors = (1 - photo) * (1 - Math.max(0, d - 0.85) / 0.15);
       const place = (el: HTMLDivElement, x: number, w: number, dx: number) => {
         el.style.left = `${cx + sF * (x + dx - cx)}px`;
@@ -189,8 +198,9 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
       const m = ease(Math.min(1, Math.max(0, (d - 0.5) / 0.5)));
       insideImg.style.transformOrigin = "0 0";
       insideImg.style.transform = `translate(${mix(txA, tx1, m)}px, ${mix(tyA, ty1, m)}px) scale(${mix(sA, s1, m)})`;
-      // 문 밖에서 볼 때는 안쪽이 살짝 어둡고, 들어가며 밝아짐
-      if (dimRef.current) dimRef.current.style.opacity = String(0.3 * (1 - d));
+      // 문 밖에서 볼 때의 안쪽 색(따뜻하고 조금 어두움)에 맞춰 두었다가, 들어가며 원래 색으로
+      if (dimRef.current)
+        dimRef.current.style.opacity = String(1 - ease(Math.min(1, d / 0.9)));
     };
     const state = { t: 0 };
     apply(0);
@@ -321,7 +331,7 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
                 />
                 <div
                   ref={dimRef}
-                  className="pointer-events-none absolute inset-0 bg-[#1f1914] opacity-[0.35]"
+                  className="pointer-events-none absolute inset-0 bg-[rgb(227,212,194)] mix-blend-multiply"
                 />
               </div>
 
@@ -334,6 +344,20 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
                 <img
                   src={entrance.src}
                   alt="프라베일 입구"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              {/* 입구 사진의 문 부분만 (빨리 사라짐) */}
+              <div
+                ref={facadeDoorRef}
+                aria-hidden
+                className="absolute inset-0 will-change-transform"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={entrance.src}
+                  alt=""
                   className="h-full w-full object-cover"
                 />
               </div>

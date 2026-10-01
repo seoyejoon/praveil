@@ -216,8 +216,7 @@ function DeviceHero({
 }
 
 // 밝은 첫 화면 공통 글자
-// - 위치(작게) → 분류 · 금색 선 → 큰 영문 이름(로고 글꼴) → 한글 제목 | 설명 (가로로 나란히)
-// - 큰 영문이 왼쪽 빈 공간을 채워, 글자와 사진 사이가 비어 보이지 않게
+// - 위치(메뉴바 아래, 작게) → 금색 선 · 영문 → 큰 한글 제목 → 설명 → 상담 예약 · 비용 바로가기
 function LightHeroText({
   en,
   title,
@@ -234,7 +233,6 @@ function LightHeroText({
   className?: string;
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
-  const category = crumbs[0]?.label;
   return (
     <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
       {crumbs.length > 0 && (
@@ -262,37 +260,49 @@ function LightHeroText({
       )}
       <div className={className}>
         <p
-          className="flex items-center gap-3 text-xs tracking-[0.2em] text-gold md:text-[13px]"
+          className="flex items-center gap-3 font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
           style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
         >
           <span aria-hidden className="h-px w-10 bg-gold/70" />
-          {category}
-        </p>
-        <p
-          aria-hidden
-          className="mt-3 -ml-[0.04em] font-display text-[16vw] leading-[0.9] font-light tracking-[0.01em] text-ink uppercase md:mt-4 md:text-[8.6vw] 2xl:text-[150px]"
-          style={{ animation: `slide-in 1.2s ${ease} 0.4s both` }}
-        >
           {en}
         </p>
-        <div
-          className="mt-5 flex flex-col gap-2 md:mt-7 md:flex-row md:items-center md:gap-6"
-          style={{ animation: `fade-up 1s ${ease} 0.6s both` }}
+        <h1
+          className="mt-4 text-[38px] leading-[1.15] font-light tracking-[-0.04em] md:mt-5 md:text-[60px] 2xl:text-[72px]"
+          style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
         >
-          <h1 className="shrink-0 text-[26px] leading-tight font-medium tracking-[-0.03em] md:text-[32px]">
-            {title}
-          </h1>
-          {description && (
-            <>
-              <span
-                aria-hidden
-                className="hidden h-10 w-px shrink-0 bg-ink/15 md:block"
-              />
-              <p className="max-w-[26em] text-sm leading-relaxed text-muted md:text-[15px]">
-                {description}
-              </p>
-            </>
-          )}
+          {title}
+        </h1>
+        {description && (
+          <p
+            className="mt-3 text-[15px] leading-relaxed text-ink/70 md:mt-5 md:text-lg"
+            style={{ animation: `slide-in 1s ${ease} 0.55s both` }}
+          >
+            {description}
+          </p>
+        )}
+        {/* 바로가기: 상담 예약 · 비용 (시술 페이지 아래 구역) */}
+        <div
+          className="mt-7 flex flex-wrap gap-2.5 md:mt-10 md:gap-3"
+          style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
+        >
+          <a
+            href="#visit"
+            className="group inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-sm text-white transition hover:bg-gold md:h-12 md:px-7"
+          >
+            상담 예약
+            <span
+              aria-hidden
+              className="transition-transform group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+          <a
+            href="#price"
+            className="inline-flex h-11 items-center rounded-full border border-ink/20 bg-white/40 px-6 text-sm backdrop-blur-sm transition hover:border-ink md:h-12 md:px-7"
+          >
+            시술 비용
+          </a>
         </div>
         {facts.length > 0 && (
           <dl
@@ -355,7 +365,7 @@ function SceneHero({
         description={description}
         facts={facts}
         crumbs={crumbs}
-        className="xl:max-w-[48%]"
+        className="xl:max-w-[40%]"
       />
     </section>
   );

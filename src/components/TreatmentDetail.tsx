@@ -10,6 +10,7 @@ import {
 import BestMark from "@/components/BestMark";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
+import MoreToggle from "@/components/sub/MoreToggle";
 import SectionHead from "@/components/sub/SectionHead";
 import Reveal from "@/components/Reveal";
 import { mainDoctor } from "@/content/main";
@@ -70,6 +71,23 @@ export default function TreatmentDetail({
   area,
   updated,
 }: Props) {
+  // 쉬어 가는 사진: 병원 공간 사진 중 시술마다 다른 한 장 (같은 분류끼리 겹치지 않게)
+  // 1 인포메이션 · 2 대기실 · 3 상담실 · 4 파우더룸 · 5 시술실 · 6 복도
+  const spaceNo: Record<string, number> = {
+    "/lifting/coolsonic": 3,
+    "/lifting/coolphase": 5,
+    "/lifting/laser": 6,
+    "/lifting/thread": 2,
+    "/petit/filler": 3,
+    "/petit/botox": 4,
+    "/skin/retuo": 4,
+    "/skin/booster": 2,
+    "/skin/collagen": 6,
+    "/acne-pore": 5,
+    "/removal/hair": 1,
+    "/removal/tattoo": 6,
+  };
+  const space = `/images/photos/clinic-${spaceNo[t.href] ?? 1}.webp`;
   const eun = josa(t.title, "은", "는");
   const summary = [
     { label: "시술 방식", value: g.profile.method },
@@ -330,13 +348,13 @@ export default function TreatmentDetail({
       {/* 특징 3가지 */}
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
         <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:mt-16 md:grid-cols-3">
+        <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
           {t.points.map((p, i) => (
             <Reveal
               as="li"
               key={p.title}
               delay={i * 120}
-              className="group bg-white p-8 transition-colors duration-500 hover:bg-ivory md:p-10"
+              className="group min-w-[78%] snap-start rounded-[24px] border border-line bg-white p-8 transition-colors duration-500 hover:bg-ivory md:min-w-0 md:rounded-none md:border-0 md:p-10"
             >
               <span className="font-display text-[44px] leading-none font-extralight text-gold/60 transition-colors duration-500 group-hover:text-gold md:text-[56px]">
                 {String(i + 1).padStart(2, "0")}
@@ -474,27 +492,54 @@ export default function TreatmentDetail({
               함께 정리했습니다.
             </p>
           </div>
-          <ol className="border-t border-ink/80">
-            {chooseCriteria(t.title, g.pain).map((c, i) => (
-              <Reveal
-                as="li"
-                key={c.q}
-                delay={i * 80}
-                className="grid gap-2 border-b border-line py-7 md:grid-cols-[56px_1fr_1.2fr] md:gap-6 md:py-8"
-              >
-                <span className="font-display text-sm text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
-                  {c.q}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-muted">
-                  <span className="mr-2 text-ink">프라베일은</span>
-                  {c.a}
-                </p>
-              </Reveal>
-            ))}
-          </ol>
+          <MoreToggle hidden={3} label="확인할 점 더 보기">
+            <ol className="border-t border-ink/80">
+              {chooseCriteria(t.title, g.pain).map((c, i) => (
+                <Reveal
+                  as="li"
+                  key={c.q}
+                  delay={i * 80}
+                  className={`grid gap-2 border-b border-line py-7 md:grid-cols-[56px_1fr_1.2fr] md:gap-6 md:py-8 ${i >= 2 ? "more-item" : ""}`}
+                >
+                  <span className="font-display text-sm text-gold">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
+                    {c.q}
+                  </h3>
+                  <p className="text-[15px] leading-relaxed text-muted">
+                    <span className="mr-2 text-ink">프라베일은</span>
+                    {c.a}
+                  </p>
+                </Reveal>
+              ))}
+            </ol>
+          </MoreToggle>
+        </div>
+      </section>
+
+      {/* 쉬어 가는 사진: 병원 공간 (시술마다 다른 사진) */}
+      <section
+        aria-label="프라베일 공간"
+        className="relative h-[52svh] min-h-[340px] overflow-hidden md:h-[72svh]"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={space}
+          alt={`${hospital.name} 내부`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.05),rgba(24,19,15,0.55))]" />
+        <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-5 pb-12 text-white md:px-10 md:pb-16">
+          <p className="font-display text-xs tracking-[0.35em] text-[#f1e2c6] uppercase">
+            Praveil Clinic
+          </p>
+          <p className="mt-3 text-[22px] leading-snug font-light tracking-[-0.03em] md:text-[34px]">
+            상담부터 회복까지,
+            <br />
+            <span className="font-semibold">한 공간에서 편안하게.</span>
+          </p>
         </div>
       </section>
 
@@ -542,13 +587,13 @@ export default function TreatmentDetail({
               tone="dark"
               title={`${t.title} 효과는 언제 나타나고, 얼마나 유지되나요?`}
             />
-            <ol className="mt-14 grid gap-px overflow-hidden rounded-[20px] bg-white/10 md:mt-20 md:grid-cols-4">
+            <ol className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
               {g.timeline.map((s, i) => (
                 <Reveal
                   as="li"
                   key={s.when}
                   delay={i * 120}
-                  className="bg-espresso p-7 md:p-8"
+                  className="min-w-[78%] snap-start rounded-[20px] border border-white/10 bg-espresso p-7 md:min-w-0 md:rounded-none md:border-0 md:p-8"
                 >
                   <span aria-hidden className="flex items-center gap-3">
                     <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-gold ring-4 ring-gold/20" />
@@ -605,17 +650,28 @@ export default function TreatmentDetail({
             <h3 className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
               시술 전후 주의사항 · 부작용
             </h3>
-            <ul className="mt-4 grid gap-2.5 text-sm leading-relaxed text-muted">
-              {[...t.cautions, ...commonCautions].map((c) => (
-                <li key={c} className="flex gap-2">
-                  <span
-                    aria-hidden
-                    className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
-                  />
-                  {c}
-                </li>
-              ))}
-            </ul>
+            <MoreToggle
+              hidden={Math.max(
+                0,
+                t.cautions.length + commonCautions.length - 3,
+              )}
+              label="주의사항 더 보기"
+            >
+              <ul className="mt-4 grid gap-2.5 text-sm leading-relaxed text-muted">
+                {[...t.cautions, ...commonCautions].map((c, i) => (
+                  <li
+                    key={c}
+                    className={`flex gap-2 ${i >= 3 ? "more-item" : ""}`}
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
+                    />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </MoreToggle>
           </Reveal>
         </div>
       </section>
@@ -730,7 +786,7 @@ export default function TreatmentDetail({
       >
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <SectionHead en="FAQ" title={`${t.title} 자주 묻는 질문`} />
-          <FaqList items={faq} />
+          <FaqList items={faq} mobileLimit={4} />
         </div>
       </section>
 

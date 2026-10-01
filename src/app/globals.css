@@ -443,3 +443,10 @@ body {
 html[data-header="hidden"] .sub-tabs {
   top: 0;
 }
+
+/* 모바일 '더 보기' (MoreToggle): 펼치기 전에는 뒤쪽 항목을 숨김 */
+@media (max-width: 767px) {
+  [data-more="closed"] .more-item {
+    display: none;
+  }
+}

@@ -29,9 +29,11 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressRef = useRef(0); // 스크롤 장면 진행 (0~1)
   const [scene, setScene] = useState(0);
-  // 스크롤 연출(pin)이 첫 화면을 다른 틀로 옮긴 뒤에 등장 연출 시작
-  // (옮겨지는 순간 CSS 애니메이션이 처음부터 다시 시작돼 사진이 커졌다 작아졌다 반복하던 문제)
-  const [ready, setReady] = useState(false);
+  // 등장 연출은 CSS 애니메이션 대신 GSAP 로 한 번만 재생
+  // (스크롤 연출(pin)이 다시 계산될 때마다 CSS 애니메이션이 처음부터 다시 시작돼 사진이 출렁이던 문제)
+  const settleRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
+  const dotsRef = useRef<HTMLDivElement[]>([]);
 
   // 마우스 조명 + 로고 반사 + 사진 살짝 반대로 움직임
   useEffect(() => {
@@ -183,8 +185,13 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
     };
     ScrollTrigger.addEventListener("refreshInit", onRefresh);
     window.addEventListener("resize", onRefresh);
+    // 등장 연출 대상
+    const settle = settleRef.current;
+    const intro = introRef.current;
+    const dots = dotsRef.current.filter(Boolean);
     if (reducedMotion()) {
-      setReady(true);
+      gsap.set(settle, { scale: 1 });
+      gsap.set([intro, ...dots], { opacity: 1 });
       return () => {
         ScrollTrigger.removeEventListener("refreshInit", onRefresh);
         window.removeEventListener("resize", onRefresh);
@@ -265,9 +272,40 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
         .to(copyRefs.current[1], { autoAlpha: 0, duration: 0.12 }, 0.82);
     }, root);
     ScrollTrigger.refresh();
-    setReady(true);
+    // 처음엔 살짝 크게 → 제자리로, 문구 · 장면 표시가 이어서 들어옴
+    const intro0 = gsap.timeline();
+    intro0
+      .fromTo(
+        settle,
+        { scale: 1.06 },
+        { scale: 1, duration: 2.4, ease: "expo.out" },
+        0,
+      )
+      .fromTo(
+        intro,
+        {
+          opacity: 0,
+          x: -56,
+          clipPath: "inset(-30% 100% -30% -10%)",
+        },
+        {
+          opacity: 1,
+          x: 0,
+          clipPath: "inset(-30% -10% -30% -10%)",
+          duration: 1.1,
+          ease: "expo.out",
+        },
+        0.6,
+      )
+      .fromTo(
+        dots,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 1, ease: "power1.inOut" },
+        1,
+      );
     return () => {
       clearTimeout(timer);
+      intro0.kill();
       ScrollTrigger.removeEventListener("refreshInit", onRefresh);
       window.removeEventListener("resize", onRefresh);
       ctx.revert();
@@ -288,7 +326,9 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
         >
           {/* 처음엔 살짝 크게 시작해 제자리로 */}
           <div
-            className={`absolute inset-0 ${ready ? "animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both]" : "scale-[1.06]"}`}
+            ref={settleRef}
+            className="absolute inset-0"
+            style={{ transform: "scale(1.06)" }}
           >
             <div
               className="absolute -inset-6 transition-[translate] duration-700 ease-out"
@@ -376,13 +416,8 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
                 >
                   {/* 등장 효과는 안쪽에 (바깥은 스크롤 효과가 씀). 조명이 켜진 뒤 들어옴 */}
                   <div
-                    className={
-                      i !== 0
-                        ? ""
-                        : ready
-                          ? "animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.6s_both]"
-                          : "opacity-0"
-                    }
+                    ref={i === 0 ? introRef : undefined}
+                    style={i === 0 ? { opacity: 0 } : undefined}
                   >
                     {i === 0 && (
                       <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs">
@@ -417,7 +452,11 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           {/* 장면 위치 표시 */}
           <div
             aria-hidden
-            className={`absolute bottom-10 left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex ${ready ? "animate-[fade-up_1s_ease_1s_both]" : "opacity-0"}`}
+            ref={(el) => {
+              if (el) dotsRef.current[0] = el;
+            }}
+            style={{ opacity: 0 }}
+            className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex"
           >
             {scenes.map((s, i) => (
               <span
@@ -428,7 +467,11 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           </div>
           <div
             aria-hidden
-            className={`absolute right-5 bottom-28 flex flex-col items-center gap-2 lg:hidden ${ready ? "animate-[fade-up_1s_ease_1s_both]" : "opacity-0"}`}
+            ref={(el) => {
+              if (el) dotsRef.current[1] = el;
+            }}
+            style={{ opacity: 0 }}
+            className="absolute right-5 bottom-28 flex flex-col items-center gap-2 lg:hidden"
           >
             {scenes.map((s, i) => (
               <span

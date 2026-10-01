@@ -193,6 +193,17 @@
   }
 }
 
+/* 장비 원리 그림: 열 응고점이 은은하게 빛남 */
+@keyframes focus-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* 장비 첫 화면: 아치가 아래에서 솟아오름 */
 @keyframes arch-rise {
   from {

@@ -12,6 +12,7 @@ import {
   guideUpdated,
   treatmentGuide,
 } from "@/content/treatment-guide";
+import { deviceStory } from "@/content/device-story";
 import { findTreatment } from "@/content/treatments";
 import { getDoctor, getHospital, getProcedures } from "@/lib/data";
 import { SITE_URL } from "@/lib/site-url";
@@ -156,6 +157,7 @@ export default async function SectionPage({ params }: Props) {
           faq={faq}
           area={area}
           updated={guideUpdated}
+          story={deviceStory[path]}
         />
       </SubPage>
     );

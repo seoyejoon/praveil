@@ -12,6 +12,14 @@ import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import MoreToggle from "@/components/sub/MoreToggle";
 import SectionHead from "@/components/sub/SectionHead";
+import {
+  StoryAbout,
+  StoryFacts,
+  StoryFeatures,
+  StoryProcess,
+  StoryVideo,
+} from "@/components/sub/DeviceStory";
+import type { DeviceStory } from "@/content/device-story";
 import Reveal from "@/components/Reveal";
 import { mainDoctor } from "@/content/main";
 import {
@@ -45,6 +53,8 @@ type Props = {
   /** 지역 검색어 (예: 인천 남동구) */
   area: string;
   updated: string;
+  /** 장비 시술: 장비 사진 · 원리 그림 · 특징 사진 · 시술 장면 구성 */
+  story?: DeviceStory;
 };
 
 const compareRows: { key: keyof TreatmentGuide["profile"]; label: string }[] = [
@@ -70,6 +80,7 @@ export default function TreatmentDetail({
   faq,
   area,
   updated,
+  story,
 }: Props) {
   // 쉬어 가는 사진: 병원 공간 사진 중 시술마다 다른 한 장 (같은 분류끼리 겹치지 않게)
   // 1 인포메이션 · 2 대기실 · 3 상담실 · 4 파우더룸 · 5 시술실 · 6 복도
@@ -161,21 +172,25 @@ export default function TreatmentDetail({
           </Reveal>
         </div>
 
-        <Reveal delay={200}>
-          <dl className="mt-14 grid grid-cols-2 border-t border-ink/80 md:mt-20 lg:grid-cols-5">
-            {summary.map((f) => (
-              <div
-                key={f.label}
-                className="border-b border-line py-6 pr-4 md:py-7"
-              >
-                <dt className="text-[13px] text-gold">{f.label}</dt>
-                <dd className="mt-2 text-[15px] leading-snug font-medium tracking-[-0.02em] md:text-lg">
-                  {f.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+        {story ? (
+          <StoryFacts facts={t.facts} />
+        ) : (
+          <Reveal delay={200}>
+            <dl className="mt-14 grid grid-cols-2 border-t border-ink/80 md:mt-20 lg:grid-cols-5">
+              {summary.map((f) => (
+                <div
+                  key={f.label}
+                  className="border-b border-line py-6 pr-4 md:py-7"
+                >
+                  <dt className="text-[13px] text-gold">{f.label}</dt>
+                  <dd className="mt-2 text-[15px] leading-snug font-medium tracking-[-0.02em] md:text-lg">
+                    {f.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        )}
 
         <nav aria-label="이 페이지 바로 보기" className="mt-8">
           <ul className="flex flex-wrap gap-2">
@@ -195,21 +210,25 @@ export default function TreatmentDetail({
       </section>
 
       {/* 어떤 시술인가요? */}
-      <section
-        id="what"
-        className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-32"
-      >
-        <div className="grid gap-8 border-t border-line pt-16 md:pt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <SectionHead
-            en="What is"
-            title={`${t.title}${eun} 어떤 시술인가요?`}
-          />
-          <Reveal className="space-y-5 text-[15px] leading-[1.9] text-muted md:text-[17px]">
-            <p>{t.intro}</p>
-            <p>{g.principle}</p>
-          </Reveal>
-        </div>
-      </section>
+      {story ? (
+        <StoryAbout title={t.title} story={story} />
+      ) : (
+        <section
+          id="what"
+          className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-32"
+        >
+          <div className="grid gap-8 border-t border-line pt-16 md:pt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <SectionHead
+              en="What is"
+              title={`${t.title}${eun} 어떤 시술인가요?`}
+            />
+            <Reveal className="space-y-5 text-[15px] leading-[1.9] text-muted md:text-[17px]">
+              <p>{t.intro}</p>
+              <p>{g.principle}</p>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* 어떤 고민에 고려하나요? */}
       <section className="px-3 md:px-6">
@@ -346,29 +365,33 @@ export default function TreatmentDetail({
       )}
 
       {/* 특징 3가지 */}
-      <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-        <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
-        <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
-          {t.points.map((p, i) => (
-            <Reveal
-              as="li"
-              key={p.title}
-              delay={i * 120}
-              className="group min-w-[78%] snap-start rounded-[24px] border border-line bg-white p-8 transition-colors duration-500 hover:bg-ivory md:min-w-0 md:rounded-none md:border-0 md:p-10"
-            >
-              <span className="font-display text-[44px] leading-none font-extralight text-gold/60 transition-colors duration-500 group-hover:text-gold md:text-[56px]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-8 text-xl font-semibold tracking-[-0.02em] md:text-2xl">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                {p.text}
-              </p>
-            </Reveal>
-          ))}
-        </ol>
-      </section>
+      {story ? (
+        <StoryFeatures title={t.title} story={story} />
+      ) : (
+        <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
+          <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
+          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
+            {t.points.map((p, i) => (
+              <Reveal
+                as="li"
+                key={p.title}
+                delay={i * 120}
+                className="group min-w-[78%] snap-start rounded-[24px] border border-line bg-white p-8 transition-colors duration-500 hover:bg-ivory md:min-w-0 md:rounded-none md:border-0 md:p-10"
+              >
+                <span className="font-display text-[44px] leading-none font-extralight text-gold/60 transition-colors duration-500 group-hover:text-gold md:text-[56px]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-8 text-xl font-semibold tracking-[-0.02em] md:text-2xl">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted">
+                  {p.text}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </section>
+      )}
 
       {/* 세부 시술 */}
       {t.items && (
@@ -475,104 +498,119 @@ export default function TreatmentDetail({
       </section>
 
       {/* 병원 고르는 기준 */}
-      <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
-            <SectionHead
-              en="How to choose"
-              title={
-                <>
-                  {area}에서 {t.title} 병원,
-                  <br className="hidden md:block" /> 무엇을 확인할까요?
-                </>
-              }
-            />
-            <p className="mt-5 text-[15px] leading-relaxed text-muted">
-              시술 전에 확인해 보면 좋은 다섯 가지와, 프라베일이 지키는 방식을
-              함께 정리했습니다.
+      {!story && (
+        <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <SectionHead
+                en="How to choose"
+                title={
+                  <>
+                    {area}에서 {t.title} 병원,
+                    <br className="hidden md:block" /> 무엇을 확인할까요?
+                  </>
+                }
+              />
+              <p className="mt-5 text-[15px] leading-relaxed text-muted">
+                시술 전에 확인해 보면 좋은 다섯 가지와, 프라베일이 지키는 방식을
+                함께 정리했습니다.
+              </p>
+            </div>
+            <MoreToggle hidden={3} label="확인할 점 더 보기">
+              <ol className="border-t border-ink/80">
+                {chooseCriteria(t.title, g.pain).map((c, i) => (
+                  <Reveal
+                    as="li"
+                    key={c.q}
+                    delay={i * 80}
+                    className={`grid gap-2 border-b border-line py-7 md:grid-cols-[56px_1fr_1.2fr] md:gap-6 md:py-8 ${i >= 2 ? "more-item" : ""}`}
+                  >
+                    <span className="font-display text-sm text-gold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
+                      {c.q}
+                    </h3>
+                    <p className="text-[15px] leading-relaxed text-muted">
+                      <span className="mr-2 text-ink">프라베일은</span>
+                      {c.a}
+                    </p>
+                  </Reveal>
+                ))}
+              </ol>
+            </MoreToggle>
+          </div>
+        </section>
+      )}
+
+      {/* 쉬어 가는 사진: 병원 공간 (시술마다 다른 사진) */}
+      {story ? (
+        <div className="pt-8 md:pt-12">
+          <StoryVideo story={story} />
+        </div>
+      ) : (
+        <section
+          aria-label="프라베일 공간"
+          className="relative h-[52svh] min-h-[340px] overflow-hidden md:h-[72svh]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={space}
+            alt={`${hospital.name} 내부`}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.05),rgba(24,19,15,0.55))]" />
+          <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-5 pb-12 text-white md:px-10 md:pb-16">
+            <p className="font-display text-xs tracking-[0.35em] text-[#f1e2c6] uppercase">
+              Praveil Clinic
+            </p>
+            <p className="mt-3 text-[22px] leading-snug font-light tracking-[-0.03em] md:text-[34px]">
+              상담부터 회복까지,
+              <br />
+              <span className="font-semibold">한 공간에서 편안하게.</span>
             </p>
           </div>
-          <MoreToggle hidden={3} label="확인할 점 더 보기">
-            <ol className="border-t border-ink/80">
-              {chooseCriteria(t.title, g.pain).map((c, i) => (
+        </section>
+      )}
+
+      {/* 시술 과정 */}
+      {story ? (
+        <StoryProcess title={t.title} story={story} />
+      ) : (
+        <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
+          <div className="mx-auto max-w-[1400px]">
+            <SectionHead
+              en="Process"
+              title={`${t.title}, 어떻게 진행되나요?`}
+            />
+            <ol className="relative mt-14 grid gap-10 md:mt-20 md:grid-cols-4 md:gap-6">
+              <span
+                aria-hidden
+                className="absolute top-7 right-[12.5%] left-[12.5%] hidden h-px bg-gold/40 md:block"
+              />
+              {treatmentSteps.map((s, i) => (
                 <Reveal
                   as="li"
-                  key={c.q}
-                  delay={i * 80}
-                  className={`grid gap-2 border-b border-line py-7 md:grid-cols-[56px_1fr_1.2fr] md:gap-6 md:py-8 ${i >= 2 ? "more-item" : ""}`}
+                  key={s.title}
+                  delay={i * 120}
+                  className="relative flex gap-5 md:flex-col md:items-center md:text-center"
                 >
-                  <span className="font-display text-sm text-gold">
+                  <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-full border border-gold bg-white font-display text-lg text-gold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] md:text-lg">
-                    {c.q}
-                  </h3>
-                  <p className="text-[15px] leading-relaxed text-muted">
-                    <span className="mr-2 text-ink">프라베일은</span>
-                    {c.a}
-                  </p>
+                  <div>
+                    <h3 className="text-lg font-semibold md:mt-6">{s.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                      {s.text}
+                    </p>
+                  </div>
                 </Reveal>
               ))}
             </ol>
-          </MoreToggle>
-        </div>
-      </section>
-
-      {/* 쉬어 가는 사진: 병원 공간 (시술마다 다른 사진) */}
-      <section
-        aria-label="프라베일 공간"
-        className="relative h-[52svh] min-h-[340px] overflow-hidden md:h-[72svh]"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={space}
-          alt={`${hospital.name} 내부`}
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.05),rgba(24,19,15,0.55))]" />
-        <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-5 pb-12 text-white md:px-10 md:pb-16">
-          <p className="font-display text-xs tracking-[0.35em] text-[#f1e2c6] uppercase">
-            Praveil Clinic
-          </p>
-          <p className="mt-3 text-[22px] leading-snug font-light tracking-[-0.03em] md:text-[34px]">
-            상담부터 회복까지,
-            <br />
-            <span className="font-semibold">한 공간에서 편안하게.</span>
-          </p>
-        </div>
-      </section>
-
-      {/* 시술 과정 */}
-      <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <SectionHead en="Process" title={`${t.title}, 어떻게 진행되나요?`} />
-          <ol className="relative mt-14 grid gap-10 md:mt-20 md:grid-cols-4 md:gap-6">
-            <span
-              aria-hidden
-              className="absolute top-7 right-[12.5%] left-[12.5%] hidden h-px bg-gold/40 md:block"
-            />
-            {treatmentSteps.map((s, i) => (
-              <Reveal
-                as="li"
-                key={s.title}
-                delay={i * 120}
-                className="relative flex gap-5 md:flex-col md:items-center md:text-center"
-              >
-                <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-full border border-gold bg-white font-display text-lg text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold md:mt-6">{s.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                    {s.text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* 효과는 언제 나타나고 얼마나 유지되나요? */}
       <section

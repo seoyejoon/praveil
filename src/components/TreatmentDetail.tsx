@@ -825,11 +825,16 @@ export default function TreatmentDetail({
         </div>
       </section>
 
-      <ConsultCta
-        id="visit"
-        hospital={hospital}
-        title={`나에게 맞는 ${t.title},`}
-      />
+      {/* 상담 안내: 장비 시술 페이지는 바로 아래 푸터(지도 · 진료시간 · 전화 · 예약)와 겹쳐 생략 */}
+      {story ? (
+        <span id="visit" aria-hidden className="block scroll-mt-0" />
+      ) : (
+        <ConsultCta
+          id="visit"
+          hospital={hospital}
+          title={`나에게 맞는 ${t.title},`}
+        />
+      )}
     </>
   );
 }

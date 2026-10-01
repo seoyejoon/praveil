@@ -7,10 +7,8 @@ import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 type Props = {
   eyebrow: string;
   scenes: { title: string[]; words?: string[]; after?: string; sub: string }[];
-  /** 밖에서 본 유리문 (닫힘). 가운데가 문 이음새 */
-  entrance: { src: string; width: number; height: number };
-  /** 문 안쪽 인포메이션. focus = 다가갈 곳 (사진 속 비율 좌표) */
-  inside: { src: string; focus: { x: number; y: number } };
+  /** 밖에서 본 유리문 (닫힘, 가운데가 문 이음새) + 같은 사진에서 문틀 · 손잡이만 지운 것 */
+  entrance: { src: string; openSrc: string; width: number; height: number };
 };
 
 const POINTS = [0, 0.6, 1]; // 장면이 멈추는 자리 (스크롤 진행 비율)
@@ -20,15 +18,13 @@ const LIGHT_FROM = 1.2; // 마우스 조명이 켜지기 시작하는 시각(초
 // ● 밖에서 유리문(닫힘)을 바라보며 시작
 // ● 마우스: 마우스가 있는 곳만 따뜻한 조명처럼 밝아짐 (PC)
 // ● 스크롤: 가운데 문이 양옆으로 열리며 걸어 들어가고 → 인포메이션 데스크로 다가감 → 둥근 카드로 작아지며 다음 섹션으로
-export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
+export default function MainHero({ eyebrow, scenes, entrance }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const doorLRef = useRef<HTMLDivElement>(null);
   const doorRRef = useRef<HTMLDivElement>(null);
   const facadeRef = useRef<HTMLDivElement>(null);
-  const facadeDoorRef = useRef<HTMLDivElement>(null);
   const insideRef = useRef<HTMLImageElement>(null);
-  const dimRef = useRef<HTMLDivElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
   const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressRef = useRef(0); // 스크롤 장면 진행 (0~1)
@@ -117,9 +113,7 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
     const doorR = doorRRef.current;
     const insideImg = insideRef.current;
     const facade = facadeRef.current;
-    const facadeDoor = facadeDoorRef.current;
-    if (!root || !doorL || !doorR || !insideImg || !facade || !facadeDoor)
-      return;
+    if (!root || !doorL || !doorR || !insideImg || !facade) return;
 
     // 사진 속 비율 좌표 → 화면 좌표 (object-cover, 가운데 기준)
     const cover = () => {
@@ -140,9 +134,9 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
     let C = cover();
     const ease = (x: number) =>
       x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-    const mix = (a: number, b: number, k: number) => a + (b - a) * k;
 
-    // t(0~1): 앞 60% 문이 열리며 한 걸음 들어가고, 뒤쪽은 데스크 쪽으로 다가감
+    // t(0~1): 앞 60% 문이 열리며 한 걸음 들어가고, 뒤쪽은 데스크 쪽으로 더 다가감
+    // 배경은 처음부터 끝까지 같은 사진(문틀 · 손잡이만 지운 입구 사진) → 색 · 모양이 바뀌지 않음
     const apply = (t: number) => {
       progressRef.current = t;
       const { W, H, at } = C;
@@ -150,29 +144,26 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
       const near = ease(Math.max(0, (t - 0.45) / 0.55));
       const cx = W / 2,
         cy = H / 2;
-      // 걸어 들어가는 만큼 입구 전체가 커짐 (화면 가운데 기준)
-      const sF = 1 + 0.22 * d;
-      // 입구 사진(문 닫힘)은 문이 움직이기 시작하면 금방 사라지고, 같은 자리에 그린 유리문 두 짝이 이어받아 열림
-      // (유리 너머 풍경은 뒤쪽 안쪽 사진이 그대로 보여서, 실제 유리문처럼 문틀 · 손잡이만 움직임)
+      // 걸어 들어가는 만큼 커짐 (화면 가운데 기준). 끝에는 문 양옆 기둥이 화면 밖으로 나감
+      const sF = 1 + 0.22 * d + 0.42 * near;
+      // 문 닫힌 원본 사진 → 아주 짧게 겹쳐 사라지고, 같은 자리에 그린 유리문 두 짝이 이어받아 열림
       const photo = 1 - ease(Math.min(1, d / 0.14));
-      // 그린 문은 사진이 거의 사라진 뒤부터 움직임 (손잡이가 겹쳐 보이지 않게)
+      // 그린 문은 원본 사진이 거의 사라진 뒤부터 움직임 (손잡이가 겹쳐 보이지 않게)
       const open = ease(Math.max(0, (d - 0.12) / 0.88));
+      // 데스크로 다가갈 때 로고가 화면 가운데로 오게 옆으로 살짝 이동 (좁은 화면에서 특히)
+      const logo = at(0.465, 0);
+      const tx = (cx - (cx + sF * (logo.x - cx))) * near;
+      insideImg.style.transform = `translateX(${tx}px) scale(${sF})`;
+      facade.style.transform = `translateX(${tx}px) scale(${sF})`;
+      facade.style.opacity = String(photo);
       const A = at(0.1794, 0),
         S = at(0.4994, 0.894),
         R = at(0.8182, 0);
       const dl = S.x - A.x,
         dr = R.x - S.x;
-      // 입구 사진: 문 부분은 빨리(그린 문이 이어받음), 문 밖 양옆 · 위아래는 천천히 사라짐 → 색이 갑자기 바뀌지 않게
-      const hole = `${A.x}px ${A.y}px, ${A.x}px ${S.y}px, ${R.x}px ${S.y}px, ${R.x}px ${A.y}px, ${A.x}px ${A.y}px`;
-      facade.style.clipPath = `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${hole})`;
-      facade.style.transform = `scale(${sF})`;
-      facade.style.opacity = String(1 - ease(Math.min(1, d / 0.75)));
-      facadeDoor.style.clipPath = `polygon(${hole})`;
-      facadeDoor.style.transform = `scale(${sF})`;
-      facadeDoor.style.opacity = String(photo);
       const doors = (1 - photo) * (1 - Math.max(0, d - 0.85) / 0.15);
       const place = (el: HTMLDivElement, x: number, w: number, dx: number) => {
-        el.style.left = `${cx + sF * (x + dx - cx)}px`;
+        el.style.left = `${cx + sF * (x + dx - cx) + tx}px`;
         el.style.top = `${cy + sF * (A.y - cy)}px`;
         el.style.width = `${w * sF}px`;
         el.style.height = `${(S.y - A.y) * sF}px`;
@@ -180,27 +171,6 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
       };
       place(doorL, A.x, dl, -open * dl * 1.04);
       place(doorR, S.x, dr, open * dr * 1.04);
-
-      // 안쪽 사진: 처음엔 문 너머로 보이던 안쪽과 같은 자리 · 크기로 맞춰 두고(데스크 모니터 기준),
-      // 문이 열리는 동안 문과 같이 커지다가 → 데스크(focus) 쪽으로 다가가는 움직임으로 넘어감
-      const E = at(0.4522, 0.4888); // 입구 사진 속 데스크 모니터 가운데
-      const I = at(0.4468, 0.4612); // 안쪽 사진 속 같은 자리
-      const s0 = 0.915;
-      const tx0 = E.x - s0 * I.x,
-        ty0 = E.y - s0 * I.y;
-      const sA = s0 * sF,
-        txA = cx + sF * (tx0 - cx),
-        tyA = cy + sF * (ty0 - cy);
-      const Fp = at(inside.focus.x, inside.focus.y);
-      const s1 = 1.06 + 0.32 * near;
-      const tx1 = Fp.x * (1 - s1),
-        ty1 = Fp.y * (1 - s1);
-      const m = ease(Math.min(1, Math.max(0, (d - 0.5) / 0.5)));
-      insideImg.style.transformOrigin = "0 0";
-      insideImg.style.transform = `translate(${mix(txA, tx1, m)}px, ${mix(tyA, ty1, m)}px) scale(${mix(sA, s1, m)})`;
-      // 문 밖에서 볼 때의 안쪽 색(따뜻하고 조금 어두움)에 맞춰 두었다가, 들어가며 원래 색으로
-      if (dimRef.current)
-        dimRef.current.style.opacity = String(1 - ease(Math.min(1, d / 0.9)));
     };
     const state = { t: 0 };
     apply(0);
@@ -297,7 +267,7 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
       window.removeEventListener("resize", onRefresh);
       ctx.revert();
     };
-  }, [entrance, inside]);
+  }, [entrance]);
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
@@ -320,18 +290,14 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
                   "calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px)",
               }}
             >
-              {/* 문 안쪽: 인포메이션 */}
+              {/* 문틀 · 손잡이만 지운 입구 사진 (유리 너머 안쪽이 그대로 이어짐) */}
               <div className="absolute inset-0 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   ref={insideRef}
-                  src={inside.src}
+                  src={entrance.openSrc}
                   alt="프라베일 인포메이션"
                   className="h-full w-full object-cover will-change-transform"
-                />
-                <div
-                  ref={dimRef}
-                  className="pointer-events-none absolute inset-0 bg-[rgb(227,212,194)] mix-blend-multiply"
                 />
               </div>
 
@@ -344,20 +310,6 @@ export default function MainHero({ eyebrow, scenes, entrance, inside }: Props) {
                 <img
                   src={entrance.src}
                   alt="프라베일 입구"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              {/* 입구 사진의 문 부분만 (빨리 사라짐) */}
-              <div
-                ref={facadeDoorRef}
-                aria-hidden
-                className="absolute inset-0 will-change-transform"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={entrance.src}
-                  alt=""
                   className="h-full w-full object-cover"
                 />
               </div>

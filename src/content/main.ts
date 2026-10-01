@@ -19,9 +19,13 @@ export const mainHero = {
       sub: "프라베일 맑고고운의원",
     },
   ],
-  // 밖에서 본 유리문 (가운데 이음새에서 좌우로 열림) → 문 안 인포메이션
-  entrance: { src: photo("hero-entrance"), width: 2400, height: 1351 },
-  inside: { src: photo("hero-inside"), focus: { x: 0.46, y: 0.42 } },
+  // 밖에서 본 유리문 (가운데 이음새에서 좌우로 열림). openSrc = 같은 사진에서 문틀 · 손잡이만 지운 것
+  entrance: {
+    src: photo("hero-entrance"),
+    openSrc: photo("hero-entrance-open"),
+    width: 2400,
+    height: 1351,
+  },
 };
 
 // 두 번째: 피부 분석 장면 (3D 얼굴)

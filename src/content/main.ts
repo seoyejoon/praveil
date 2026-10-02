@@ -80,7 +80,7 @@ export const mainBest = {
       category: "리프팅",
       href: "/lifting/coolsonic",
       text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 한 번에 설계합니다.",
-      image: photo("signature-1"),
+      image: photo("best-coolsonic"),
     },
     {
       en: "Coolphase",
@@ -88,7 +88,7 @@ export const mainBest = {
       category: "리프팅",
       href: "/lifting/coolphase",
       text: "고주파로 피부 속 콜라겐을 자극해, 결과 탄력을 함께 끌어올립니다.",
-      image: photo("signature-2"),
+      image: photo("best-coolphase"),
     },
     {
       en: "Volume Filler",
@@ -96,7 +96,7 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      image: photo("signature-3"),
+      image: photo("best-filler"),
     },
     {
       en: "Retuo",
@@ -104,7 +104,7 @@ export const mainBest = {
       category: "피부관리",
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
-      image: photo("signature-4"),
+      image: photo("best-retuo"),
     },
   ],
 };

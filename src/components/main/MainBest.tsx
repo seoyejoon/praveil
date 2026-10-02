@@ -88,14 +88,14 @@ export default function MainBest({
       <section
         ref={rootRef}
         aria-label={title}
-        className="relative h-svh min-h-[640px] overflow-hidden bg-espresso text-white"
+        className="relative h-svh min-h-[640px] overflow-hidden bg-[#ecebe8] text-ink"
       >
         {/* 배경 사진: 지금 시술은 아래에서 위로 걷히며 나타나고, 지난 사진은 그대로 아래 깔림 */}
         {items.map((x, i) => (
           <div
             key={x.href}
             aria-hidden={i !== active}
-            className="absolute inset-0 transition-[clip-path] duration-[1100ms] ease-[cubic-bezier(.76,0,.24,1)]"
+            className="absolute inset-x-0 top-20 h-[48%] transition-[clip-path] duration-[1100ms] ease-[cubic-bezier(.76,0,.24,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
             style={{
               clipPath:
                 i <= active ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)",
@@ -107,12 +107,12 @@ export default function MainBest({
               src={x.image}
               alt={`${x.name} 시술 장면`}
               loading={i === 0 ? "eager" : "lazy"}
-              className={`h-full w-full object-cover object-[62%_12%] transition-transform duration-[2400ms] ease-out ${i === active ? "scale-100" : "scale-110"}`}
+              className={`h-full w-full object-cover object-[62%_center] lg:object-[72%_center] transition-transform duration-[2400ms] ease-out ${i === active ? "scale-100" : "scale-110"}`}
             />
           </div>
         ))}
         {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(20,16,13,0.82),rgba(20,16,13,0.45)_42%,rgba(20,16,13,0.05)_70%),linear-gradient(0deg,rgba(20,16,13,0.85),transparent_38%)] max-lg:bg-[linear-gradient(0deg,rgba(20,16,13,0.92),rgba(20,16,13,0.55)_55%,rgba(20,16,13,0.15))]" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(238,237,234,0.75),rgba(238,237,234,0.25)_38%,transparent_58%),linear-gradient(0deg,rgba(238,237,234,0.9),transparent_26%)] max-lg:bg-[linear-gradient(0deg,#ecebe8,#ecebe8_42%,rgba(236,235,232,0)_52%)]" />
 
         {/* 화면 아무 곳이나 누르면 지금 시술 페이지로 (마우스를 멈추면 커서가 '자세히 보기'로 바뀜) */}
         <Link
@@ -125,13 +125,13 @@ export default function MainBest({
           {/* 위: 섹션 이름 · 순서 */}
           <div className="flex items-start justify-between">
             <div>
-              <p className="font-display text-[11px] tracking-[0.4em] text-taupe uppercase md:text-xs">
+              <p className="font-display text-[11px] tracking-[0.4em] text-gold uppercase md:text-xs">
                 {label}
               </p>
-              <p className="mt-2 text-sm text-white/70 md:text-base">{title}</p>
+              <p className="mt-2 text-sm text-ink/60 md:text-base">{title}</p>
             </div>
-            <p className="font-display text-sm tracking-[0.2em] text-white/60 tabular-nums md:text-base">
-              <span className="text-white">
+            <p className="font-display text-sm tracking-[0.2em] text-ink/40 tabular-nums md:text-base">
+              <span className="text-ink">
                 {String(active + 1).padStart(2, "0")}
               </span>{" "}
               / {String(n).padStart(2, "0")}
@@ -141,12 +141,12 @@ export default function MainBest({
           {/* 가운데 아래: 지금 시술 소개 (바뀔 때마다 아래에서 떠오름) */}
           <div key={active} className="mt-auto max-w-[680px]">
             <p
-              className="flex items-center gap-3 text-[13px] text-taupe"
+              className="flex items-center gap-3 text-[13px] text-gold"
               style={{
                 animation: "fade-up .8s cubic-bezier(.22,1,.36,1) .25s both",
               }}
             >
-              <span className="h-px w-8 bg-taupe/70" />
+              <span className="h-px w-8 bg-gold/70" />
               {it.category}
             </p>
             <h3
@@ -174,16 +174,16 @@ export default function MainBest({
                   type="button"
                   onClick={() => go(i)}
                   aria-current={i === active ? "true" : undefined}
-                  className={`w-full pb-3 text-left text-[12px] transition-colors md:text-[15px] ${i === active ? "font-semibold text-white" : "text-white/45 hover:text-white/80"}`}
+                  className={`w-full pb-3 text-left text-[12px] transition-colors md:text-[15px] ${i === active ? "font-semibold text-ink" : "text-ink/40 hover:text-ink/70"}`}
                 >
-                  <span className="mr-2 font-display text-[10px] tracking-[0.15em] text-taupe md:text-xs">
+                  <span className="mr-2 font-display text-[10px] tracking-[0.15em] text-gold md:text-xs">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="break-keep">{x.name}</span>
                 </button>
-                <span className="block h-px bg-white/20">
+                <span className="block h-px bg-ink/15">
                   <span
-                    className="block h-full origin-left bg-white transition-transform duration-300"
+                    className="block h-full origin-left bg-ink transition-transform duration-300"
                     style={{
                       transform: `scaleX(${i < active ? 1 : i === active ? Math.max(0.08, local) : 0})`,
                     }}

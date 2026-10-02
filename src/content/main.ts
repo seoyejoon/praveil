@@ -120,7 +120,7 @@ export const mainBest = {
 // 특장점
 export const mainWhy = {
   label: "Why Praveil",
-  title: ["프라베일이", "다른 이유"],
+  title: ["프라베일만의", "특별함"],
   items: [
     {
       icon: "doctor",
@@ -174,7 +174,7 @@ export const mainCategoryImage: Record<string, string> = {
 
 export const mainSpace = {
   label: "Private Space",
-  title: "편안하게 머무는, 프라이빗한 공간",
+  title: "가치를 더하는 프라이빗한 공간, 프라베일",
   images: [
     "clinic-1",
     "clinic-2",

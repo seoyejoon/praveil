@@ -51,7 +51,7 @@ export const aboutPhilosophy = {
   ],
 };
 
-// 약속 (메인 '프라베일이 다른 이유'와 같은 다섯 가지)
+// 약속 (메인 '프라베일만의 특별함'와 같은 다섯 가지)
 export const aboutPromise = {
   en: "Our Promise",
   title: "처음 오셔도 안심할 수 있도록, 다섯 가지 약속",
@@ -87,7 +87,7 @@ export const aboutPromise = {
 // 공간 (사진 순서: 인포메이션 · 대기실 · 상담실 · 파우더룸 · 시술실 · 복도)
 export const aboutSpace = {
   en: "Space",
-  title: "편안하게 머무는, 프라이빗한 공간",
+  title: "가치를 더하는 프라이빗한 공간, 프라베일",
   text: "상담부터 시술, 회복까지 한 층에서 이어집니다. 조용하고 편안한 경험을 위해 공간을 세심하게 나누었습니다.",
   items: [
     { name: "인포메이션", text: "예약 확인과 접수", image: photo("clinic-1") },

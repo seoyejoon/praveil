@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { LogOut, Plus, UserRound } from "lucide-react";
+import { ArrowRight, LogOut, Plus, UserRound } from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import BestMark from "@/components/BestMark";
@@ -14,6 +14,28 @@ type Props = {
   reservationUrl: string;
   member: { name: string } | null;
   signup: SignupConfig;
+};
+
+// PC 메뉴판 왼쪽 소개 · 오른쪽 사진
+const megaIntro: Record<
+  string,
+  { title: string; text: string; image: string }
+> = {
+  about: {
+    title: "프라베일 소개",
+    text: "20년 경력의 대표원장이 상담부터 시술까지 직접 책임지는 프라이빗 클리닉입니다.",
+    image: "/images/photos/clinic-1.webp",
+  },
+  praveil: {
+    title: "시술 안내",
+    text: "피부 상태와 고민에 맞춰, 꼭 필요한 시술만 1:1로 설계합니다.",
+    image: "/images/photos/signature-1.webp",
+  },
+  community: {
+    title: "프라베일 소식",
+    text: "공지사항과 이벤트, 전후사진을 확인해 보세요.",
+    image: "/images/photos/clinic-3.webp",
+  },
 };
 
 // 메뉴바 (2026.10 리뉴얼)
@@ -138,7 +160,7 @@ export default function Header({
         onMouseLeave={() => setMega(false)}
         className={`fixed inset-x-0 top-0 z-40 transition-[translate,transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
           hidden && !mega ? "-translate-y-full" : ""
-        } ${light ? "text-white" : clear ? "text-black" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
+        } ${light ? "text-white" : clear ? "text-black" : mega ? "bg-white text-black" : "bg-white/95 text-black backdrop-blur-md"} ${scrolled && !mega ? "shadow-[0_1px_0_rgba(0,0,0,0.08)]" : ""}`}
       >
         <div className="relative mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:h-[84px] md:px-10">
           <Link
@@ -177,58 +199,18 @@ export default function Header({
                     {g.label}
                     <span
                       className={`absolute bottom-[24px] left-0 h-px w-full origin-left bg-gold transition-[scale] duration-500 ${
-                        on ||
-                        g.columns.some((c) =>
-                          c.pages.some((p) => isCurrent(p.href)),
+                        (
+                          mega
+                            ? on
+                            : g.columns.some((c) =>
+                                c.pages.some((p) => isCurrent(p.href)),
+                              )
                         )
                           ? "scale-x-100"
                           : "scale-x-0"
                       }`}
                     />
                   </Link>
-                  {/* 이 메뉴의 하위 메뉴 (메뉴 바로 아래에 따로 펼쳐짐) */}
-                  <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 transition-[opacity,translate,visibility] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${
-                      on
-                        ? "visible translate-y-0 opacity-100"
-                        : "pointer-events-none invisible -translate-y-2 opacity-0"
-                    }`}
-                  >
-                    <div className="flex rounded-b-[20px] border-t border-black/5 bg-white px-4 pt-7 pb-8 text-black shadow-[0_24px_48px_-24px_rgba(29,26,23,0.35)]">
-                      {g.columns.map((c) => (
-                        <div
-                          key={c.key}
-                          className={`border-l border-black/8 px-7 first:border-l-0 ${g.columns.length > 1 ? "w-[196px] 2xl:w-[210px]" : "w-[220px]"}`}
-                        >
-                          {g.columns.length > 1 && (
-                            <Link
-                              href={c.href}
-                              onClick={() => setMega(false)}
-                              className="block text-[15px] font-semibold whitespace-nowrap transition hover:text-gold"
-                            >
-                              {c.label}
-                            </Link>
-                          )}
-                          <ul
-                            className={`space-y-3 ${g.columns.length > 1 ? "mt-5" : ""}`}
-                          >
-                            {c.pages.map((p) => (
-                              <li key={p.href}>
-                                <Link
-                                  href={p.href}
-                                  onClick={() => setMega(false)}
-                                  className={`inline-flex items-center gap-2 text-[14px] whitespace-nowrap transition hover:text-gold ${isCurrent(p.href) ? "text-gold" : p.best ? "font-semibold text-black" : "text-black/65"}`}
-                                >
-                                  {p.label}
-                                  {p.best && <BestMark />}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               );
             })}
@@ -280,7 +262,117 @@ export default function Header({
             </button>
           </div>
         </div>
+        {/* PC 하위 메뉴판: 화면 전체 폭 · 메뉴를 옮겨도 같은 판 안에서 내용만 바뀜 */}
+        <div
+          className={`absolute inset-x-0 top-full hidden overflow-hidden border-t border-black/[0.06] bg-white text-black shadow-[0_30px_60px_-30px_rgba(29,26,23,0.35)] transition-[opacity,translate,visibility] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] xl:block ${
+            mega
+              ? "visible translate-y-0 opacity-100"
+              : "pointer-events-none invisible -translate-y-3 opacity-0"
+          }`}
+        >
+          <div className="mx-auto grid max-w-[1600px] px-10 py-12">
+            {menu.map((g, i) => {
+              const on = active === i;
+              const intro = megaIntro[g.key];
+              return (
+                <div
+                  key={g.key}
+                  aria-hidden={!on}
+                  className={`grid grid-cols-[240px_1fr_300px] gap-12 transition-[opacity,translate] duration-500 [grid-area:1/1] 2xl:grid-cols-[280px_1fr_340px] 2xl:gap-16 ${
+                    on
+                      ? "translate-y-0 opacity-100"
+                      : "pointer-events-none invisible translate-y-2 opacity-0"
+                  }`}
+                >
+                  <div className="flex flex-col">
+                    <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
+                      {g.label}
+                    </p>
+                    <p className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em]">
+                      {intro?.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-black/55">
+                      {intro?.text}
+                    </p>
+                    <Link
+                      href={g.href}
+                      onClick={() => setMega(false)}
+                      tabIndex={on ? 0 : -1}
+                      className="group/more mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium"
+                    >
+                      바로가기
+                      <span className="grid h-8 w-8 place-items-center rounded-full border border-black/15 transition duration-500 group-hover/more:border-gold group-hover/more:bg-gold group-hover/more:text-white">
+                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+                      </span>
+                    </Link>
+                  </div>
+                  <div
+                    className={`grid gap-x-8 gap-y-8 border-l border-black/[0.07] pl-12 ${g.columns.length > 1 ? "grid-cols-5" : "grid-cols-1"}`}
+                  >
+                    {g.columns.map((c) => (
+                      <div key={c.key}>
+                        {g.columns.length > 1 && (
+                          <Link
+                            href={c.href}
+                            onClick={() => setMega(false)}
+                            tabIndex={on ? 0 : -1}
+                            className="block border-b border-black/[0.07] pb-3 text-[15px] font-semibold whitespace-nowrap transition hover:text-gold"
+                          >
+                            {c.label}
+                          </Link>
+                        )}
+                        <ul
+                          className={`space-y-1 ${g.columns.length > 1 ? "mt-3" : ""}`}
+                        >
+                          {c.pages.map((p) => (
+                            <li key={p.href}>
+                              <Link
+                                href={p.href}
+                                onClick={() => setMega(false)}
+                                tabIndex={on ? 0 : -1}
+                                className={`group/item flex items-center py-1.5 whitespace-nowrap transition-colors duration-300 hover:text-gold ${g.columns.length > 1 ? "text-[14px]" : "text-[17px]"} ${isCurrent(p.href) ? "text-gold" : p.best ? "font-semibold text-black" : "text-black/65"}`}
+                              >
+                                <span
+                                  aria-hidden
+                                  className={`h-1 rounded-full bg-gold transition-all duration-300 ${isCurrent(p.href) ? "mr-2 w-1" : "mr-0 w-0 group-hover/item:mr-2 group-hover/item:w-1"}`}
+                                />
+                                {p.label}
+                                {p.best && (
+                                  <span className="ml-2">
+                                    <BestMark />
+                                  </span>
+                                )}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="relative aspect-[4/3] self-start overflow-hidden rounded-[20px] bg-ivory">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={intro?.image}
+                      alt=""
+                      loading="lazy"
+                      className={`h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.2,.7,.2,1)] ${on && mega ? "scale-100" : "scale-[1.06]"}`}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </header>
+
+      {/* 메뉴판이 열리면 뒤 화면을 살짝 어둡게 (마우스가 닿으면 닫힘) */}
+      <div
+        aria-hidden
+        onMouseEnter={() => setMega(false)}
+        className={`fixed inset-0 z-30 hidden bg-black/25 backdrop-blur-[2px] transition-opacity duration-500 xl:block ${
+          mega ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
 
       {/* 태블릿 · 모바일 전체 화면 메뉴 */}
       <div

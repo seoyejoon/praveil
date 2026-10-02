@@ -115,7 +115,7 @@ export default function MainBest({
                 src={x.image}
                 alt={`${x.name} 시술 장면`}
                 loading={i === 0 ? "eager" : "lazy"}
-                className="h-full w-full object-cover object-[62%_center] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+                className="h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
                 style={{
                   transform: `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
                 }}

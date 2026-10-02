@@ -297,7 +297,7 @@ export function StoryProcess({
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
       <SectionHead en="Process" title={`${title}, 어떻게 진행되나요?`} />
-      <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
+      <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
         {story.process.map((s, i) => (
           <Reveal
             as="li"

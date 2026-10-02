@@ -243,7 +243,7 @@ export default async function DoctorPage() {
                       src={it.image}
                       alt={it.name}
                       loading="lazy"
-                      className="aspect-[4/5] w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                      className="aspect-[4/3] w-full object-cover md:aspect-[4/5] transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
                     />
                   </div>
                   <p className="mt-5 flex items-center gap-2 text-xs text-taupe">

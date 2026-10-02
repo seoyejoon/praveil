@@ -455,7 +455,7 @@ export default function TreatmentDetail({
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
           <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
-          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
+          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
             {t.points.map((p, i) => (
               <Reveal
                 as="li"
@@ -651,7 +651,7 @@ export default function TreatmentDetail({
               tone="dark"
               title={`${t.title} 효과는 언제 나타나고, 얼마나 유지되나요?`}
             />
-            <ol className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
+            <ol className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
               {g.timeline.map((s, i) => (
                 <Reveal
                   as="li"

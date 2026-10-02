@@ -348,7 +348,7 @@ export default async function AboutIntroPage() {
               <Reveal as="li" key={f.key} delay={i * 80}>
                 <Link
                   href={f.href}
-                  className="group relative block aspect-[4/5] overflow-hidden rounded-[20px]"
+                  className="group relative block aspect-[4/3] overflow-hidden rounded-[20px] md:aspect-[4/5]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

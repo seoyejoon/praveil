@@ -11,6 +11,9 @@ export default function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // 휴대폰 주소창이 나타났다 사라질 때 화면 높이가 바뀌어도 스크롤 효과를 다시 계산하지 않음
+    // (다시 계산하면 고정된 장면 — 첫 화면 문 · 시그니처 — 이 툭 튀는 문제)
+    ScrollTrigger.config({ ignoreMobileResize: true });
     if (reducedMotion()) return;
     const lenis = new Lenis({
       duration: 1.15,

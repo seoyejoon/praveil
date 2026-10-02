@@ -99,7 +99,7 @@ export default function MainBest({
           <div
             key={x.href}
             aria-hidden={i !== active}
-            className="absolute inset-x-0 top-20 h-[48%] overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
+            className="absolute inset-x-0 top-0 h-[60%] overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
             style={{
               opacity: i === active ? 1 : 0,
               zIndex: i === active ? 2 : 1,

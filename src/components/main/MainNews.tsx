@@ -108,17 +108,19 @@ export default function MainNews({ items }: { items: Item[] }) {
             {list.length ? (
               list.map((n) => (
                 <li key={n.id} className="border-b border-black/10">
-                  <Link href={`/notice/${n.id}`} className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 py-6 md:gap-10 md:py-8">
-                    <span className="font-display text-sm font-light tracking-[0.1em] text-black/45 md:text-base">{n.createdAt.replace(/-/g, ".")}</span>
+                  <Link href={`/notice/${n.id}`} className="group grid grid-cols-[1fr_auto] items-center gap-4 py-5 md:grid-cols-[auto_1fr_auto] md:gap-10 md:py-8">
+                    <span className="hidden font-display text-base font-light tracking-[0.1em] text-black/45 md:block">{n.createdAt.replace(/-/g, ".")}</span>
                     <span className="min-w-0">
+                      {/* 모바일: 날짜를 제목 위에 (제목 폭 확보) */}
+                      <span className="mb-1.5 block font-display text-xs tracking-[0.1em] text-black/45 md:hidden">{n.createdAt.replace(/-/g, ".")}</span>
                       <span
                         title={n.type === "event" ? "이벤트" : "공지사항"}
-                        className={`mr-3 inline-grid h-7 w-7 place-items-center rounded-full align-middle ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
+                        className={`mr-2 inline-grid h-6 w-6 place-items-center rounded-full align-middle md:mr-3 md:h-7 md:w-7 ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
                       >
                         {n.type === "event" ? <Gift className="h-3.5 w-3.5" strokeWidth={1.6} /> : <Megaphone className="h-3.5 w-3.5" strokeWidth={1.6} />}
                       </span>
                       <span className="text-[16px] font-medium transition group-hover:underline group-hover:underline-offset-4 md:text-xl">{n.title}</span>
-                      {n.type === "event" && n.summary && <span className="mt-1 block pl-10 text-xs text-black/45">기간 {n.summary}</span>}
+                      {n.type === "event" && n.summary && <span className="mt-1 block text-xs text-black/45 md:pl-10">기간 {n.summary}</span>}
                     </span>
                     <ArrowRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-2" strokeWidth={1.5} />
                   </Link>

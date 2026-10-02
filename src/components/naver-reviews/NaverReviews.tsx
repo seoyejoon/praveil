@@ -17,9 +17,29 @@ function Arrow() {
   );
 }
 
+// 별점: 값이 있을 때만 (네이버 방문자 리뷰는 현재 별점을 제공하지 않아 지어내지 않음)
+function Stars({ value }: { value: number }) {
+  return (
+    <span
+      className="relative inline-block text-[18px] leading-none tracking-[2px]"
+      aria-label={`별점 ${value.toFixed(2)}점 (5점 만점)`}
+    >
+      <span className="text-line">★★★★★</span>
+      <span
+        aria-hidden
+        className="absolute inset-0 overflow-hidden text-gold"
+        style={{ width: `${(value / 5) * 100}%` }}
+      >
+        ★★★★★
+      </span>
+    </span>
+  );
+}
+
 // 네이버 방문자 리뷰: 카드가 천천히 옆으로 흐름 (마우스를 올리면 멈춤, 모바일은 손으로 넘김)
 export default function NaverReviews() {
   const reviews = snapshot.reviews.slice(0, 8);
+  const rating = snapshot.aggregateRating as number | null;
 
   const card = (r: (typeof reviews)[number], hidden = false) => (
     <li
@@ -38,6 +58,11 @@ export default function NaverReviews() {
           {r.verification} 인증
         </span>
       </div>
+      {typeof r.rating === "number" && (
+        <div className="mt-3">
+          <Stars value={r.rating} />
+        </div>
+      )}
       <p className="mt-4 line-clamp-4 flex-1 text-[15px] leading-[1.8] whitespace-pre-line text-ink/85">
         {r.excerpt}
         {r.hasMore ? "…" : ""}
@@ -73,19 +98,27 @@ export default function NaverReviews() {
           <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
             네이버 방문자 리뷰
           </h2>
-          <p className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm text-muted">
-            <span>
-              <strong className="font-display text-[22px] font-normal text-ink md:text-[26px]">
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+            {typeof rating === "number" && (
+              <div className="flex items-center gap-2.5 border-r border-line pr-5">
+                <Stars value={rating} />
+                <span className="font-display text-[22px] leading-none md:text-[26px]">
+                  {rating.toFixed(2)}
+                </span>
+              </div>
+            )}
+            <div className="flex items-baseline gap-2">
+              <span className="font-display text-[22px] leading-none md:text-[26px]">
                 {snapshot.visitorReviewListCount.toLocaleString("ko-KR")}
                 {snapshot.visitorReviewListCount >= 999 ? "+" : ""}
-              </strong>{" "}
-              건의 방문자 리뷰
+              </span>
+              <span className="text-sm text-muted">방문자 리뷰</span>
+            </div>
+            <span className="rounded-full bg-white px-3 py-1.5 text-xs text-muted">
+              {formatDate(snapshot.capturedOn)} 기준 · 이전 명칭{" "}
+              {snapshot.placeNameAtCapture}
             </span>
-            <span className="text-xs">
-              {formatDate(snapshot.capturedOn)} 기준 · 명칭 변경 전(
-              {snapshot.placeNameAtCapture}) 방문 후기
-            </span>
-          </p>
+          </div>
         </div>
         <a
           href={snapshot.sourceUrl}
@@ -111,12 +144,6 @@ export default function NaverReviews() {
           {reviews.map((r) => card(r, true))}
         </ul>
       </div>
-
-      <p className="mx-auto mt-8 max-w-[1400px] px-5 text-xs text-muted/80 md:px-10">
-        출처: 네이버 플레이스 · {snapshot.placeNameAtCapture} 방문자 리뷰{" "}
-        {reviews.length}건 일부 발췌 (원문 그대로) · 개인의 경험이며 결과는
-        사람마다 다를 수 있습니다.
-      </p>
     </section>
   );
 }

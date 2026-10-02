@@ -1,8 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import SpaceStrip from "./SpaceStrip";
 
-// 병원 공간: 큰 사진이 옆으로 천천히 흘러간다. 마우스를 올리면 멈춤.
+// 병원 공간: 큰 사진이 옆으로 천천히 흘러가고, 마우스로 끌거나 손으로 밀어 넘길 수 있음
 export default function MainSpace({ title, images }: { label?: string; title: string; images: string[] }) {
   return (
     <section className="flex min-h-svh flex-col justify-center overflow-hidden bg-ivory py-14 md:py-20">
@@ -29,21 +30,7 @@ export default function MainSpace({ title, images }: { label?: string; title: st
         </Link>
       </div>
       <div className="mt-8 md:mt-12">
-        <div className="animate-marquee flex w-max gap-4 hover:[animation-play-state:paused] md:gap-6">
-          {[0, 1].map((set) =>
-            images.map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={`${set}-${i}`}
-                src={src}
-                alt=""
-                loading="lazy"
-                aria-hidden={set === 1}
-                className={`h-[60svh] max-h-[640px] w-auto shrink-0 rounded-[18px] object-cover md:h-[58svh] md:max-h-[720px] md:rounded-[24px] ${i % 2 ? "aspect-[4/5]" : "aspect-[3/2]"}`}
-              />
-            )),
-          )}
-        </div>
+        <SpaceStrip images={images} />
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import {
   ArrowUp,
+  BotMessageSquare,
   CalendarCheck,
   MapPin,
   MessageCircle,
@@ -130,10 +131,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
           <span
             className={`absolute flex flex-col items-center gap-0.5 transition-[opacity,rotate,scale] duration-400 ${open ? "scale-50 -rotate-90 opacity-0" : "scale-100 rotate-0 opacity-100"}`}
           >
-            <MessageCircle className="h-5 w-5" strokeWidth={1.6} />
-            <span className="text-[10px] font-medium tracking-[0.05em]">
-              상담
-            </span>
+            <BotMessageSquare className="h-6 w-6" strokeWidth={1.5} />
           </span>
           <X
             className={`absolute h-6 w-6 transition-[opacity,rotate,scale] duration-400 ${open ? "scale-100 rotate-0 opacity-100" : "scale-50 rotate-90 opacity-0"}`}

@@ -6,7 +6,7 @@ import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
 type Props = {
   eyebrow: string;
-  scenes: { title: string[]; words?: string[]; after?: string; sub: string }[];
+  scenes: { title: string[]; words?: string[]; after?: string; sub?: string }[];
   /** 밖에서 본 유리문 (닫힘, 가운데가 문 이음새) + 같은 사진에서 문틀 · 손잡이만 지운 것 */
   entrance: { src: string; openSrc: string; width: number; height: number };
 };
@@ -419,7 +419,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
             <div className="relative grid">
               {scenes.map((s, i) => (
                 <div
-                  key={s.sub}
+                  key={i}
                   ref={(el) => {
                     copyRefs.current[i] = el;
                   }}
@@ -437,13 +437,17 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
                       </p>
                     )}
                     <h2 className="text-[24px] leading-[1.4] font-light tracking-[-0.03em] md:text-[34px] 2xl:text-[40px]">
-                      {s.title.map((t) => (
-                        <span key={t} className="block">
+                      {/* 첫 줄은 얇게, 마지막 줄(핵심)은 굵게 */}
+                      {s.title.map((t, k) => (
+                        <span
+                          key={t}
+                          className={`block ${!s.words && k === s.title.length - 1 ? "font-semibold" : ""}`}
+                        >
                           {t}
                         </span>
                       ))}
                       {s.words && (
-                        <span className="flex items-center gap-2 md:gap-3">
+                        <span className="flex items-center gap-2 font-semibold md:gap-3">
                           <RotatingWord
                             words={s.words}
                             className="text-[#f1e2c6]"
@@ -452,9 +456,11 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
                         </span>
                       )}
                     </h2>
-                    <p className="mt-3 text-[13px] text-white/70 md:text-sm">
-                      {s.sub}
-                    </p>
+                    {s.sub && (
+                      <p className="mt-3 text-[13px] text-white/70 md:text-sm">
+                        {s.sub}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -472,7 +478,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           >
             {scenes.map((s, i) => (
               <span
-                key={s.sub}
+                key={i}
                 className={`h-1 rounded-full transition-all duration-500 ${i === scene ? "w-7 bg-white" : "w-1.5 bg-white/45"}`}
               />
             ))}
@@ -487,7 +493,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           >
             {scenes.map((s, i) => (
               <span
-                key={s.sub}
+                key={i}
                 className={`w-1 rounded-full transition-all duration-500 ${i === scene ? "h-6 bg-white" : "h-1.5 bg-white/45"}`}
               />
             ))}

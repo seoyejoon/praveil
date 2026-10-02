@@ -144,7 +144,7 @@ export default function MainBest({
           </div>
 
           {/* 가운데 아래: 지금 시술 소개 (바뀔 때마다 아래에서 떠오름) */}
-          <div key={active} className="mt-auto max-w-[680px]">
+          <div key={active} className="mt-auto max-w-[800px]">
             <p
               className="flex items-center gap-3 text-[13px] text-gold"
               style={{
@@ -155,7 +155,7 @@ export default function MainBest({
               {it.category}
             </p>
             <h3
-              className="mt-4 text-[30px] leading-[1.25] font-light tracking-[-0.04em] md:text-[52px] 2xl:text-[60px]"
+              className="mt-4 text-[min(7vw,30px)] leading-[1.25] font-light tracking-[-0.04em] whitespace-nowrap md:text-[min(5.2vw,52px)] 2xl:text-[60px]"
               style={{
                 animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .35s both",
               }}

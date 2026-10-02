@@ -81,7 +81,7 @@ export const mainBest = {
       href: "/lifting/coolsonic",
       text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 한 번에 설계합니다.",
       image: photo("best-coolsonic"),
-      headline: ["무너진 얼굴선을 다시 세우는", "쿨링 초음파 리프팅"],
+      headline: ["무너진 얼굴선을 다시 세우는", "쿨링 초음파 리프팅 쿨소닉"],
       product: "/images/equipment/hero/coolsonic.webp",
     },
     {
@@ -91,7 +91,7 @@ export const mainBest = {
       href: "/lifting/coolphase",
       text: "고주파로 피부 속 콜라겐을 자극해, 결과 탄력을 함께 끌어올립니다.",
       image: photo("best-coolphase"),
-      headline: ["느슨해진 피부를 탄탄하게 조이는", "쿨링 고주파 리프팅"],
+      headline: ["느슨해진 피부를 탄탄하게 조이는", "쿨링 고주파 리프팅 쿨페이즈"],
       product: "/images/equipment/hero/coolphase.webp",
     },
     {
@@ -101,7 +101,7 @@ export const mainBest = {
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
       image: photo("best-filler"),
-      headline: ["꺼진 볼륨을 채워,", "얼굴의 입체감을 디자인하다"],
+      headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       product: "/images/equipment/hero/filler.webp",
     },
     {
@@ -111,7 +111,7 @@ export const mainBest = {
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
       image: photo("best-retuo"),
-      headline: ["피부의 바탕부터 채우는", "ECM 스킨부스터"],
+      headline: ["무너진 피부를 재건하는", "ECM 스킨부스터 리투오"],
       product: "/images/equipment/hero/retuo.webp",
     },
   ],

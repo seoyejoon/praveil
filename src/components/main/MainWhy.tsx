@@ -29,6 +29,9 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
     <section className="bg-white px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-2 lg:gap-24">
         <div className="lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:justify-center">
+          <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mb-5 md:text-xs">
+            Why Praveil
+          </p>
           <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
             {title.map((t) => (
               <span key={t}>

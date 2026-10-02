@@ -7,9 +7,12 @@ import SpaceStrip from "./SpaceStrip";
 export default function MainSpace({ title, images }: { label?: string; title: string; images: string[] }) {
   return (
     <section className="flex min-h-svh flex-col justify-center overflow-hidden bg-ivory py-14 md:py-20">
-      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-6 px-5 md:items-end md:px-10">
+      <div className="mx-auto flex w-full max-w-[1600px] items-end justify-between gap-6 px-5 md:px-10">
         <div>
           {/* PC: 긴 제목 / 모바일: 짧게 한 줄 (버튼과 같은 줄) */}
+          <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mb-5 md:text-xs">
+            Private Space
+          </p>
           <Reveal variant="line" className="hidden text-[56px] leading-[1.2] font-bold tracking-[-0.04em] md:block">
             <span>
               <span>{title}</span>

@@ -36,6 +36,9 @@ export default function MainTreatments({
       <div className="mx-auto max-w-[1600px]">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
+            <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mb-5 md:text-xs">
+              Treatments
+            </p>
             <Reveal
               variant="line"
               className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]"

@@ -35,6 +35,9 @@ export default function MainNews({ items }: { items: Item[] }) {
     <section className="bg-white px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1fr_2fr] lg:gap-24">
         <div>
+          <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mb-5 md:text-xs">
+            Praveil News
+          </p>
           <h2 className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">프라베일 소식</h2>
           <div role="tablist" className="mt-10 inline-flex rounded-full bg-ivory p-1">
             {tabs.map((t) => (

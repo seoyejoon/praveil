@@ -322,7 +322,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
       <section
         ref={rootRef}
         data-dark-hero
-        className="relative h-lvh min-h-[600px] overflow-hidden bg-[#1d1915] text-white lg:bg-white"
+        className="relative h-[max(100lvh,var(--app-h,100lvh))] min-h-[600px] overflow-hidden bg-[#1d1915] text-white lg:h-svh lg:bg-white"
       >
         <div
           ref={stageRef}

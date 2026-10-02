@@ -14,7 +14,24 @@ export default function SmoothScroll() {
     // 휴대폰 주소창이 나타났다 사라질 때 화면 높이가 바뀌어도 스크롤 효과를 다시 계산하지 않음
     // (다시 계산하면 고정된 장면 — 첫 화면 문 · 시그니처 — 이 툭 튀는 문제)
     ScrollTrigger.config({ ignoreMobileResize: true });
-    if (reducedMotion()) return;
+    // 카카오톡 · 인스타그램 등 앱 안 브라우저는 화면 높이 단위(lvh)를 실제보다 작게 알려 주는 경우가 있어,
+    // 실제로 보이는 가장 큰 높이를 따로 기억해 첫 화면 높이에 씀 (아래가 비어 보이지 않게)
+    const setAppH = () => {
+      const h = Math.max(
+        window.innerHeight,
+        document.documentElement.clientHeight,
+      );
+      const prev =
+        parseFloat(
+          document.documentElement.style.getPropertyValue("--app-h"),
+        ) || 0;
+      if (h > prev)
+        document.documentElement.style.setProperty("--app-h", `${h}px`);
+    };
+    setAppH();
+    window.addEventListener("resize", setAppH);
+    if (reducedMotion())
+      return () => window.removeEventListener("resize", setAppH);
     const lenis = new Lenis({
       duration: 1.15,
       smoothWheel: true,
@@ -28,6 +45,7 @@ export default function SmoothScroll() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
     return () => {
+      window.removeEventListener("resize", setAppH);
       gsap.ticker.remove(tick);
       lenis.destroy();
       delete (window as unknown as { __lenis?: Lenis }).__lenis;

@@ -207,9 +207,16 @@ export default function TreatmentDetail({
               variant="line"
               className="text-[28px] leading-[1.35] font-light tracking-[-0.03em] md:text-[44px]"
             >
-              {t.headline.map((h) => (
+              {/* 마지막 줄(시술 이름)은 굵게 */}
+              {t.headline.map((h, i) => (
                 <span key={h}>
-                  <span>{h}</span>
+                  <span
+                    className={
+                      i === t.headline.length - 1 ? "font-semibold" : undefined
+                    }
+                  >
+                    {h}
+                  </span>
                 </span>
               ))}
             </Reveal>

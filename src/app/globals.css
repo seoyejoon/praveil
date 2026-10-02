@@ -639,3 +639,14 @@ html[data-cur="off"] .cursor-ring-shape {
 html.cursor-down .cursor-ring-shape {
   transform: scale(0.85);
 }
+
+/* 상담 예약 버튼: 은은한 빛이 가끔 스쳐 지나감 */
+@keyframes btn-sheen {
+  0%,
+  55% {
+    transform: translateX(0) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(520%) skewX(-20deg);
+  }
+}

@@ -779,3 +779,12 @@ html[data-cur="image"] .cursor-dot-shape {
     animation-play-state: paused;
   }
 }
+
+/* 모바일 가로 카드 줄: 카드마다 떠오르는 효과를 끄고 그대로 보여 줌 (옆으로 넘길 때 카드가 한 칸씩 움직여 보이지 않게) */
+@media (max-width: 767px) {
+  .no-scrollbar > .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

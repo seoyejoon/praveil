@@ -99,7 +99,7 @@ export default function MainBest({
           <div
             key={x.href}
             aria-hidden={i !== active}
-            className="absolute inset-x-0 top-0 h-[60%] overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
+            className="absolute inset-x-0 top-[136px] h-[50%] overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
             style={{
               opacity: i === active ? 1 : 0,
               zIndex: i === active ? 2 : 1,
@@ -118,7 +118,7 @@ export default function MainBest({
           </div>
         ))}
         {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(238,237,234,0.75),rgba(238,237,234,0.25)_38%,transparent_58%),linear-gradient(0deg,rgba(238,237,234,0.9),transparent_26%)] max-lg:bg-[linear-gradient(0deg,#ecebe8,#ecebe8_42%,rgba(236,235,232,0)_52%)]" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(238,237,234,0.75),rgba(238,237,234,0.25)_38%,transparent_58%),linear-gradient(0deg,rgba(238,237,234,0.9),transparent_26%)] max-lg:bg-[linear-gradient(0deg,#ecebe8,#ecebe8_30%,rgba(236,235,232,0)_37%)]" />
 
         {/* 화면 아무 곳이나 누르면 지금 시술 페이지로 (마우스를 멈추면 커서가 '자세히 보기'로 바뀜) */}
         <Link

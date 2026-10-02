@@ -86,7 +86,7 @@ export default function SceneHero({
               playsInline
               preload="auto"
               aria-label={`${title} 시술 장면`}
-              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[92%_center]"
+              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[64%_center] md:object-[92%_center]"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -94,7 +94,7 @@ export default function SceneHero({
               src={scene.src}
               alt={`${title} 시술 장면`}
               fetchPriority="high"
-              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
+              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[64%_center] md:object-[92%_center]"
             />
           )}
           {/* 유리 카드: 장비 특징을 한 줄씩, 차례로 떠오른 뒤 천천히 둥실 */}

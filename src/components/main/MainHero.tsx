@@ -268,12 +268,14 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           { opacity: 1, y: 0, duration: 0.15 },
           0.45,
         )
-        // ② → ③ 둥근 카드로 작아지며 다음 섹션으로
+        // ② → ③ (PC) 둥근 카드로 작아지며 다음 섹션으로 — 모바일은 꽉 찬 채로 (흰 배경이 비치지 않게)
         .fromTo(
           stageRef.current,
           { clipPath: "inset(0% 0% 0% 0% round 0px)" },
           {
-            clipPath: "inset(6% 4% 6% 4% round 32px)",
+            clipPath: window.matchMedia("(min-width: 1024px)").matches
+              ? "inset(6% 4% 6% 4% round 32px)"
+              : "inset(0% 0% 0% 0% round 0px)",
             duration: 0.25,
             ease: "power1.inOut",
           },
@@ -330,7 +332,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
       <section
         ref={rootRef}
         data-dark-hero
-        className="relative h-svh min-h-[600px] overflow-hidden bg-white text-white"
+        className="relative h-lvh min-h-[600px] overflow-hidden bg-[#1d1915] text-white lg:bg-white"
       >
         <div
           ref={stageRef}

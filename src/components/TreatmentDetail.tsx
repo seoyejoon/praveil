@@ -138,7 +138,7 @@ export default function TreatmentDetail({
   const doctorSection = (
     <section
       id="doctor"
-      className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items || story ? "pt-16 md:pt-24" : ""}`}
+      className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items && !story ? "pt-16 md:pt-24" : ""}`}
     >
       <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
         <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">
@@ -892,7 +892,7 @@ export default function TreatmentDetail({
       {/* 자주 묻는 질문 */}
       <section
         id="faq"
-        className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-32"
+        className={`mx-auto max-w-[1400px] scroll-mt-36 px-5 md:scroll-mt-44 md:px-10 ${story ? "pt-20 pb-10 md:pt-32 md:pb-16" : "py-24 md:py-32"}`}
       >
         <div>
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">

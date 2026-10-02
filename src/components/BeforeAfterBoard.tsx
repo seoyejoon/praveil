@@ -223,7 +223,7 @@ export function BaPreview({
 }) {
   return (
     <div>
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="flex items-end justify-between gap-4">
         <div>
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
             Before &amp; After
@@ -234,7 +234,7 @@ export function BaPreview({
         </div>
         <Link
           href="/before-after"
-          className="group relative isolate inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+          className="group relative isolate inline-flex shrink-0 items-center gap-2.5 overflow-hidden rounded-full border border-line py-1.5 pr-1.5 pl-4 text-[13px] transition-colors duration-500 hover:border-gold hover:text-white md:gap-3 md:py-2 md:pr-2 md:pl-6 md:text-sm"
         >
           <span
             aria-hidden

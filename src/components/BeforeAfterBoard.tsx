@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowSwap from "@/components/ArrowSwap";
 import Link from "next/link";
 import { Lock, MoveHorizontal } from "lucide-react";
 import { useRef, useState } from "react";
@@ -233,7 +234,7 @@ export function BaPreview({
         </div>
         <Link
           href="/before-after"
-          className="group relative inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+          className="group relative isolate inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
         >
           <span
             aria-hidden
@@ -241,20 +242,7 @@ export function BaPreview({
           />
           <span className="relative">전체 보기</span>
           <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-espresso text-white transition-colors duration-500 group-hover:bg-white group-hover:text-gold">
-            <svg
-              aria-hidden
-              viewBox="0 0 16 16"
-              className="ba-arrow h-3.5 w-3.5"
-            >
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowSwap />
           </span>
         </Link>
       </div>

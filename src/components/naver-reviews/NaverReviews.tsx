@@ -1,21 +1,7 @@
+import ArrowSwap from "@/components/ArrowSwap";
 import snapshot from "@/content/naver-reviews.json";
 
 const formatDate = (date: string) => date.replaceAll("-", ".");
-
-function Arrow() {
-  return (
-    <svg aria-hidden viewBox="0 0 16 16" className="ba-arrow h-3.5 w-3.5">
-      <path
-        d="M3 8h10M9 4l4 4-4 4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 // 별점: 값이 있을 때만 (네이버 방문자 리뷰는 현재 별점을 제공하지 않아 지어내지 않음)
 function Stars({ value }: { value: number }) {
@@ -123,7 +109,7 @@ export default function NaverReviews() {
           href={snapshot.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line bg-white py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+          className="group relative isolate inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line bg-white py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
         >
           <span
             aria-hidden
@@ -131,7 +117,7 @@ export default function NaverReviews() {
           />
           <span className="relative">네이버에서 전체 보기</span>
           <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-[#03c75a] text-white transition-colors duration-500 group-hover:bg-white group-hover:text-gold">
-            <Arrow />
+            <ArrowSwap />
           </span>
         </a>
       </div>

@@ -13,6 +13,8 @@ type Item = {
   image: string;
   /** 큰 문장 (첫 줄 얇게, 마지막 줄 굵게) */
   headline?: string[];
+  /** 마우스를 멈추면 커서 원 안에 뜨는 제품 사진 (배경 없는 사진) */
+  product?: string;
   /** 핵심 세 가지 (원형 배지) */
   points?: string[];
 };
@@ -121,6 +123,7 @@ export default function MainBest({
           href={it.href}
           aria-label={`${it.name} 자세히 보기`}
           data-cursor-idle="자세히 보기"
+          data-cursor-image={it.product}
           className="absolute inset-0 z-[15]"
         />
         <div className="pointer-events-none relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-24 pb-24 md:px-10 md:pt-28 lg:pb-8">

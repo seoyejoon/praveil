@@ -10,6 +10,7 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -17,6 +18,7 @@ export default function CustomCursor() {
     const dot = dotRef.current!;
     const ring = ringRef.current!;
     const label = labelRef.current!;
+    const img = imgRef.current!;
     const html = document.documentElement;
     html.classList.add("has-cursor");
 
@@ -64,8 +66,13 @@ export default function CustomCursor() {
         html.dataset.cur = "on";
         idle = window.setTimeout(() => {
           label.textContent = idleEl.dataset.cursorIdle ?? "";
-          html.dataset.cur = "label-lg";
-        }, 350);
+          // 제품 사진이 있으면 원 안에 사진 + 아래 글자
+          const src = idleEl.dataset.cursorImage ?? "";
+          if (src) {
+            if (img.getAttribute("src") !== src) img.src = src;
+            html.dataset.cur = "image";
+          } else html.dataset.cur = "label-lg";
+        }, 140);
       }
     };
     const onLeave = () => {
@@ -97,6 +104,8 @@ export default function CustomCursor() {
     >
       <div ref={ringRef} className="cursor-ring absolute top-0 left-0">
         <div className="cursor-ring-shape grid place-items-center rounded-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img ref={imgRef} alt="" className="cursor-img" />
           <span
             ref={labelRef}
             className="cursor-label font-display text-[11px] tracking-[0.2em] text-white"

@@ -669,3 +669,49 @@ html.cursor-down .cursor-ring-shape {
     transform: translateX(520%) skewX(-20deg);
   }
 }
+
+/* 멈췄을 때 뜨는 제품 사진 원 (대표 시술) */
+.cursor-ring-shape {
+  position: relative;
+  overflow: hidden;
+}
+.cursor-img {
+  position: absolute;
+  inset: 12% 18% 30%;
+  width: 64%;
+  height: 58%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.8) translateY(6px);
+  transition:
+    opacity 0.3s,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html[data-cur="image"] .cursor-ring-shape {
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(168, 142, 106, 0.35);
+  box-shadow: 0 20px 40px -18px rgba(40, 30, 20, 0.35);
+}
+html[data-cur="image"] .cursor-img {
+  opacity: 1;
+  transform: none;
+}
+html[data-cur="image"] .cursor-label {
+  position: absolute;
+  bottom: 16%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 1;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+html[data-cur="image"] .cursor-dot-shape {
+  opacity: 0;
+}

@@ -81,6 +81,7 @@ export const mainBest = {
       href: "/lifting/coolsonic",
       text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 한 번에 설계합니다.",
       image: photo("best-coolsonic"),
+      product: "/images/equipment/hero/coolsonic.webp",
     },
     {
       en: "Coolphase",
@@ -89,6 +90,7 @@ export const mainBest = {
       href: "/lifting/coolphase",
       text: "고주파로 피부 속 콜라겐을 자극해, 결과 탄력을 함께 끌어올립니다.",
       image: photo("best-coolphase"),
+      product: "/images/equipment/hero/coolphase.webp",
     },
     {
       en: "Volume Filler",

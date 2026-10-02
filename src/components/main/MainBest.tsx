@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ScrollTrigger, reducedMotion } from "@/lib/gsap";
+import { ScrollTrigger, reducedMotion, smoothScrollTo } from "@/lib/gsap";
 
 type Item = {
   en: string;
@@ -46,27 +46,37 @@ export default function MainBest({
   useEffect(() => {
     const root = rootRef.current;
     if (!root || reducedMotion()) return;
+    // 시술 맞춤: 스크롤이 멈추면 가장 가까운 시술 자리로 (GSAP 기본 맞춤은 Lenis · 터치와 부딪혀 맨 위로 튀는 일이 있음)
+    let timer = 0;
+    const snapLater = (self: ScrollTrigger) => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        if (!self.isActive) return;
+        const p = self.progress * (n - 1);
+        const target = Math.round(p);
+        if (Math.abs(target - p) < 0.01) return;
+        const y = self.start + ((self.end - self.start) * target) / (n - 1);
+        if (Math.abs(y - window.scrollY) < 2) return;
+        smoothScrollTo(y, 0.8);
+      }, 180);
+    };
     const st = ScrollTrigger.create({
       trigger: root,
       start: "top top",
       end: () => `+=${window.innerHeight * (n - 1) * 0.9}`,
       pin: true,
       invalidateOnRefresh: true,
-      snap: {
-        snapTo: 1 / (n - 1),
-        duration: { min: 0.3, max: 0.8 },
-        delay: 0.12,
-        ease: "power2.inOut",
-      },
       onUpdate: (self) => {
         const p = self.progress * (n - 1);
         const i = Math.min(n - 1, Math.round(p));
         setActive(i);
         setLocal(Math.min(1, Math.max(0, p - i + 0.5)));
+        snapLater(self);
       },
     });
     stRef.current = st;
     return () => {
+      clearTimeout(timer);
       st.kill();
       stRef.current = null;
     };
@@ -77,13 +87,7 @@ export default function MainBest({
     const st = stRef.current;
     if (!st) return setActive(i);
     const y = st.start + ((st.end - st.start) * i) / (n - 1);
-    const lenis = (
-      window as unknown as {
-        __lenis?: { scrollTo: (y: number, o: object) => void };
-      }
-    ).__lenis;
-    if (lenis) lenis.scrollTo(y, { duration: 1.2 });
-    else window.scrollTo({ top: y, behavior: "smooth" });
+    smoothScrollTo(y, 1.2);
   };
 
   const it = items[active];

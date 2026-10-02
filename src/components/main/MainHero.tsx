@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import RotatingWord from "@/components/RotatingWord";
-import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
+import { gsap, ScrollTrigger, reducedMotion, smoothScrollTo } from "@/lib/gsap";
 
 type Props = {
   eyebrow: string;
@@ -225,20 +225,9 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
             : [...POINTS].reverse().find((v) => v <= p + 0.002)!;
         if (Math.abs(target - p) < 0.004) return;
         const y = st.start + (st.end - st.start) * target;
-        const lenis = (
-          window as unknown as {
-            __lenis?: { scrollTo: (y: number, o: object) => void };
-          }
-        ).__lenis;
-        // 문이 열리는 구간(0 ↔ 0.6)은 천천히, 처음과 끝을 부드럽게
+        // 문이 열리는 구간(0 ↔ 0.6)은 천천히
         const doorPart = Math.min(p, target) < 0.6 - 0.002;
-        if (lenis)
-          lenis.scrollTo(y, {
-            duration: doorPart ? 3 : 1.8,
-            easing: (x: number) =>
-              x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
-          });
-        else window.scrollTo({ top: y, behavior: "smooth" });
+        smoothScrollTo(y, doorPart ? 3 : 1.8);
       }, 160);
     };
 

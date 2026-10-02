@@ -75,7 +75,7 @@ export default function SceneHero({
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-12 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
+        className="absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
       >
         {/* 모바일: 세로형 사진 한 장 (가로 영상은 휴대폰에서 원장 · 장비가 잘림) */}
         {scene.mobileSrc && (

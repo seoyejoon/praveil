@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { faqDetail, faqPlain } from "@/content/faq-detail";
+import { getBlogPosts } from "@/lib/blog";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -67,13 +68,19 @@ export default async function SectionPage({ params }: Props) {
   const t = findTreatment(path);
 
   if (t) {
-    const [hospital, doctor, procedures, allCases] = await Promise.all([
+    const [hospital, doctor, procedures, allCases, posts] = await Promise.all([
       getHospital(),
       getDoctor(),
       getProcedures(),
       // 시술 페이지 미리 보기는 로그인 없이 시술 전 사진까지 보여 줌
       getBeforeAfterCases(true),
+      t.href === "/lifting/coolsonic" ? getBlogPosts(30) : [],
     ]);
+    // 블로그: 이 시술 이름이 들어간 글 먼저
+    const blog = [
+      ...posts.filter((p) => p.title.includes(t.title)),
+      ...posts.filter((p) => !p.title.includes(t.title)),
+    ];
     // 전후사진: 제목에 시술 이름이 있는 사례 먼저, 없으면 같은 분류 사례 (최대 3개)
     const cases = allCases.map(withCategoryKey);
     const named = cases.filter((c) => c.title.includes(t.title));
@@ -174,6 +181,7 @@ export default async function SectionPage({ params }: Props) {
           updated={guideUpdated}
           story={deviceStory[path]}
           baCases={baCases}
+          blog={blog}
         />
       </SubPage>
     );

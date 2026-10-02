@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
 import NaverReviews from "@/components/naver-reviews/NaverReviews";
+import BlogSection from "@/components/sub/BlogSection";
+import type { BlogPost } from "@/lib/blog";
 import { BaPreview } from "@/components/BeforeAfterBoard";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
@@ -59,6 +61,8 @@ type Props = {
   story?: DeviceStory;
   /** 이 시술 전후사진 (최대 3개, 시술 전 사진까지 공개) */
   baCases?: BeforeAfterCase[];
+  /** 네이버 블로그 최신 글 (리뷰 위에 표시) */
+  blog?: BlogPost[];
 };
 
 const compareRows: { key: keyof TreatmentGuide["profile"]; label: string }[] = [
@@ -86,6 +90,7 @@ export default function TreatmentDetail({
   updated,
   story,
   baCases = [],
+  blog = [],
 }: Props) {
   // 쉬어 가는 사진: 병원 공간 사진 중 시술마다 다른 한 장 (같은 분류끼리 겹치지 않게)
   // 1 인포메이션 · 2 대기실 · 3 상담실 · 4 파우더룸 · 5 시술실 · 6 복도
@@ -910,7 +915,12 @@ export default function TreatmentDetail({
       {/* 장비 시술: 의료진은 자주 묻는 질문 아래 */}
       {story && <div className="pb-16 md:pb-24">{doctorSection}</div>}
 
-      {t.href === "/lifting/coolsonic" && <NaverReviews />}
+      {t.href === "/lifting/coolsonic" && (
+        <>
+          <BlogSection posts={blog} />
+          <NaverReviews />
+        </>
+      )}
 
       {/* 상담 안내: 장비 시술 페이지는 바로 아래 푸터(지도 · 진료시간 · 전화 · 예약)와 겹쳐 생략 */}
       {story ? (

@@ -5,6 +5,6 @@ clarity.webp          LUTRONIC https://www.cynosure.com/wp-content/uploads/2025/
 coolsonic.webp        아스테라시스 공식 제품 사진 (병원 제공) · 배경색 맞춤 · 2배 확대
 coolphase.webp        병원 촬영본(equip-2) 배경 정리
 pico-k.webp           병원 촬영본(equip-7) 배경 정리
-hero/filler.webp      휴메딕스 엘라비에 프리미어 공식 제품 사진 (elravie.com)
+hero/filler.webp      갈더마 레스틸렌 볼라임 제품 사진 (유통사 ddgroup.com 게시본) 배경 정리
 hero/retuo.webp       엘라비에 리투오 제조사 홍보 이미지에서 배경 정리 (병원 사이트 게시본, 원본은 휴메딕스 · 엘앤씨바이오)
 hero/coolphase.webp   equipment/coolphase.webp 배경 정리

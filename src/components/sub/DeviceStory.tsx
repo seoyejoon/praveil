@@ -232,7 +232,7 @@ export function StoryFeatures({
   return (
     <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1300px]">
-        <SectionHead en="Point" title={`프라베일 ${title}의 특징`} />
+        <SectionHead en="Point" title={`${title}만의 특별함`} />
         <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
           {story.features.map((f, i) => (
             <li
@@ -614,13 +614,6 @@ export function StoryCompare({
                   </span>
                   <span className="mt-1 block text-lg font-semibold tracking-[-0.02em] md:text-xl">
                     {col.name}
-                  </span>
-                  {/* 보유 표시 (없는 장비도 같은 높이를 비워 두어 줄이 맞게) */}
-                  <span
-                    aria-hidden={!col.owned}
-                    className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] ${col.owned ? (col.self ? "bg-gold text-white" : "bg-ivory text-mocha") : "invisible"}`}
-                  >
-                    프라베일 보유
                   </span>
                 </th>
               ))}

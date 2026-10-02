@@ -147,16 +147,12 @@ export default function TreatmentDetail({
           />
         </div>
         <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
-          <SectionHead
-            en="Doctor"
-            title={`${t.title}, 누가 상담하고 시술하나요?`}
-          />
+          <SectionHead en="Doctor" title={`${t.title}, 의료진의 중요성?`} />
           <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} 상담한 원장이 시술까지 직접
-            합니다. 대표원장 {doctor.name} 원장이 얼굴과 피부를 먼저 보고,{" "}
-            {t.title}
-            {josa(t.title, "이", "가")} 꼭 필요한지부터 함께 판단합니다.
+            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장님이 직접
+            정밀한 진단을 통해 시술 적합 유무를 판단하고, 1:1 맞춤으로 시술을
+            진행하고 있습니다.
           </p>
           <div className="mt-10 border-t border-ink/15 pt-8">
             <p className="text-sm text-gold">{doctor.title}</p>
@@ -257,21 +253,26 @@ export default function TreatmentDetail({
           </Reveal>
         )}
 
-        <nav aria-label="이 페이지 바로 보기" className="mt-8">
-          <ul className="flex flex-wrap gap-2">
-            {jumps.map((j) => (
-              <li key={j.id}>
-                <a
-                  href={`#${j.id}`}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-[13px] text-muted transition hover:border-gold hover:text-ink"
-                >
-                  {j.label}
-                  <ArrowRight className="h-3 w-3 rotate-90" strokeWidth={1.6} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {!story && (
+          <nav aria-label="이 페이지 바로 보기" className="mt-8">
+            <ul className="flex flex-wrap gap-2">
+              {jumps.map((j) => (
+                <li key={j.id}>
+                  <a
+                    href={`#${j.id}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-[13px] text-muted transition hover:border-gold hover:text-ink"
+                  >
+                    {j.label}
+                    <ArrowRight
+                      className="h-3 w-3 rotate-90"
+                      strokeWidth={1.6}
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </section>
 
       {/* 어떤 시술인가요? */}
@@ -674,7 +675,10 @@ export default function TreatmentDetail({
         id="aftercare"
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
-        <SectionHead en="Aftercare" title="통증 · 회복 · 주의사항" />
+        <SectionHead
+          en="Aftercare"
+          title={`${t.title} 통증 · 회복 · 주의사항`}
+        />
         <div className="mt-12 grid gap-4 md:mt-16 lg:grid-cols-2">
           <div className="grid gap-4">
             {[
@@ -847,9 +851,18 @@ export default function TreatmentDetail({
         id="faq"
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-32"
       >
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <SectionHead en="FAQ" title={`${t.title} 자주 묻는 질문`} />
-          <FaqList items={faq} mobileLimit={4} />
+        <div>
+          <h2 className="text-[28px] leading-snug font-bold tracking-[-0.03em] md:text-[40px]">
+            {t.title} 자주 묻는 질문
+          </h2>
+          <p className="mt-3 text-[15px] text-muted">
+            {hospital.name}에서 {t.title}
+            {josa(t.title, "을", "를")} 상담하실 때 많이 물어보시는 질문을
+            정리했습니다.
+          </p>
+        </div>
+        <div className="mt-10 md:mt-12">
+          <FaqList items={faq} mobileLimit={4} variant="pill" />
         </div>
       </section>
 

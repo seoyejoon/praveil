@@ -1,15 +1,14 @@
-import Link from "next/link";
+import MagneticButton from "@/components/sub/MagneticButton";
 
 export type Crumb = { label: string; href?: string };
 
 // 밝은 첫 화면 공통 글자
-// - 위치(메뉴바 아래, 작게) → 금색 선 · 영문 → 큰 한글 제목 → 설명 → 상담 예약 · 비용 바로가기
+// - 영문 → 큰 한글 제목 → 설명 → 상담 예약 버튼
 export default function LightHeroText({
   en,
   title,
   description,
   facts,
-  crumbs,
   className = "md:max-w-[50%]",
   wrap = "",
 }: {
@@ -17,7 +16,8 @@ export default function LightHeroText({
   title: string;
   description?: string;
   facts: { label: string; value: string }[];
-  crumbs: Crumb[];
+  /** 위치 표시는 첫 화면에서 쓰지 않음 (받기만 함) */
+  crumbs?: Crumb[];
   className?: string;
   /** 바깥 틀에 더할 클래스 (세로 위치 등) */
   wrap?: string;
@@ -28,29 +28,6 @@ export default function LightHeroText({
       className={`relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24 ${wrap}`}
     >
       <div className={className}>
-        {crumbs.length > 0 && (
-          <nav
-            aria-label="현재 위치"
-            className="mb-7 hidden flex-wrap items-center gap-2 text-xs text-muted md:flex"
-            style={{ animation: `fade-up 1s ${ease} 0.2s both` }}
-          >
-            <Link href="/" className="hover:text-ink">
-              HOME
-            </Link>
-            {crumbs.map((c) => (
-              <span key={c.label} className="flex items-center gap-2">
-                <span aria-hidden className="text-ink/30">/</span>
-                {c.href ? (
-                  <Link href={c.href} className="hover:text-ink">
-                    {c.label}
-                  </Link>
-                ) : (
-                  <span className="text-ink/80">{c.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
-        )}
         <p
           className="font-display text-xs font-light tracking-[0.4em] text-gold uppercase md:text-[13px]"
           style={{ animation: `slide-in 1s ${ease} 0.3s both` }}
@@ -71,29 +48,12 @@ export default function LightHeroText({
             {description}
           </p>
         )}
-        {/* 바로가기: 상담 예약 · 비용 (시술 페이지 아래 구역) */}
+        {/* 상담 예약 (아래 상담 · 위치 안내로) */}
         <div
-          className="mt-7 flex flex-wrap gap-2.5 md:mt-10 md:gap-3"
+          className="mt-7 md:mt-10"
           style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
         >
-          <a
-            href="#visit"
-            className="group inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-sm text-white transition hover:bg-gold md:h-12 md:px-7"
-          >
-            상담 예약
-            <span
-              aria-hidden
-              className="transition-transform group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </a>
-          <a
-            href="#price"
-            className="inline-flex h-11 items-center rounded-full border border-ink/20 bg-white/40 px-6 text-sm backdrop-blur-sm transition hover:border-ink md:h-12 md:px-7"
-          >
-            시술 비용
-          </a>
+          <MagneticButton href="#visit">상담 예약</MagneticButton>
         </div>
         {facts.length > 0 && (
           <dl

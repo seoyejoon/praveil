@@ -1,14 +1,50 @@
-import { Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import MoreToggle from "@/components/sub/MoreToggle";
 
 // 자주 묻는 질문 (첫 질문은 펼쳐 둠, 모바일은 mobileLimit 개까지만 먼저 보임)
+// - line: 위아래 선 목록 (기본)
+// - pill: 둥근 회색 상자 목록 (질문 굵게, 오른쪽 꺾쇠)
 export default function FaqList({
   items,
   mobileLimit = 99,
+  variant = "line",
 }: {
   items: { q: string; a: string }[];
   mobileLimit?: number;
+  variant?: "line" | "pill";
 }) {
+  if (variant === "pill")
+    return (
+      <MoreToggle
+        hidden={Math.max(0, items.length - mobileLimit)}
+        label="질문 더 보기"
+      >
+        <ul className="grid gap-3 md:gap-4">
+          {items.map((f, i) => (
+            <li
+              key={f.q}
+              className={i >= mobileLimit ? "more-item" : undefined}
+            >
+              <details className="group rounded-[28px] bg-[#f5f4f2] transition-colors open:bg-ivory md:rounded-[40px]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-6 md:px-11 md:py-8 [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-[16px] leading-snug font-bold tracking-[-0.02em] md:text-[20px]">
+                    {f.q}
+                  </h3>
+                  <ChevronDown
+                    className="h-5 w-5 shrink-0 text-black/40 transition-transform duration-300 group-open:rotate-180 group-open:text-gold"
+                    strokeWidth={1.6}
+                  />
+                </summary>
+                <p className="-mt-1 px-6 pb-7 text-[15px] leading-relaxed text-muted md:px-11 md:pb-9 md:text-base">
+                  {f.a}
+                </p>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </MoreToggle>
+    );
+
   return (
     <MoreToggle
       hidden={Math.max(0, items.length - mobileLimit)}

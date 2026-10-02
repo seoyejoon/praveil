@@ -8,6 +8,8 @@ export type HeroScene = {
   src: string;
   /** 짧은 반복 영상 (소리 없음, 사진과 같은 구도 3:1) */
   video?: string;
+  /** 모바일 전용 세로형 사진 (원장 · 장비가 한 화면에) */
+  mobileSrc?: string;
   /** 핸드피스가 피부에 닿는 자리 (사진 속 %, [가로, 세로]) — 여기서 초음파 파장이 피부 쪽으로 퍼짐 */
   pulse?: [number, number];
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
@@ -73,9 +75,19 @@ export default function SceneHero({
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-0 h-[58%] origin-[64%_80%] md:top-16 md:h-auto md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
+        className="absolute inset-x-0 top-12 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
       >
-        <div className="absolute inset-0">
+        {/* 모바일: 세로형 사진 한 장 (가로 영상은 휴대폰에서 원장 · 장비가 잘림) */}
+        {scene.mobileSrc && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={scene.mobileSrc}
+            alt={`${title} 시술 장면`}
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full animate-[fade-in_1s_ease_both] object-cover md:hidden"
+          />
+        )}
+        <div className={`absolute inset-0 ${scene.mobileSrc ? "max-md:hidden" : ""}`}>
           {scene.video ? (
             <video
               src={scene.video}
@@ -86,7 +98,7 @@ export default function SceneHero({
               playsInline
               preload="auto"
               aria-label={`${title} 시술 장면`}
-              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[64%_center] md:object-[92%_center]"
+              className="h-full w-full animate-[fade-in_1s_ease_both] object-cover object-[92%_center]"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -94,7 +106,7 @@ export default function SceneHero({
               src={scene.src}
               alt={`${title} 시술 장면`}
               fetchPriority="high"
-              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[64%_center] md:object-[92%_center]"
+              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
             />
           )}
           {/* 유리 카드: 장비 특징을 한 줄씩, 차례로 떠오른 뒤 천천히 둥실 */}

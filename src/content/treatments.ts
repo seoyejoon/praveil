@@ -52,6 +52,7 @@ export const treatments: Treatment[] = [
     description: "피부 깊은 층까지 고려한 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
+      mobileSrc: "/images/photos/best-coolsonic-m.webp",
       src: photo("hero-coolsonic"),
       video: "/videos/hero-coolsonic.mp4",
       pulse: [64.2, 88.4],

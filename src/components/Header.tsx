@@ -31,17 +31,17 @@ const megaIntro: Record<
   about: {
     title: "프라베일 소개",
     text: "20년 경력의 대표원장이 상담부터 시술까지 직접 책임지는 프라이빗 클리닉입니다.",
-    image: "/images/photos/clinic-1.webp",
+    image: "/images/menu/about.webp",
   },
   praveil: {
     title: "시술 안내",
     text: "피부 상태와 고민에 맞춰, 꼭 필요한 시술만 1:1로 설계합니다.",
-    image: "/images/photos/signature-1.webp",
+    image: "/images/menu/praveil.webp",
   },
   community: {
     title: "프라베일 소식",
     text: "공지사항과 이벤트, 전후사진을 확인해 보세요.",
-    image: "/images/photos/clinic-3.webp",
+    image: "/images/menu/community.webp",
   },
 };
 

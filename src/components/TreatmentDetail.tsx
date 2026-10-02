@@ -199,7 +199,7 @@ export default function TreatmentDetail({
               <Reveal>
                 <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-ivory px-4 py-1.5 text-sm text-mocha">
                   <BestMark />
-                  프라베일 대표 시술
+                  프라베일 시그니처
                 </p>
               </Reveal>
             )}

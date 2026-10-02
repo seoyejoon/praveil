@@ -71,8 +71,8 @@ export const mainScan = {
 
 // 대표 시술 4종 (BEST)
 export const mainBest = {
-  label: "Best Treatment",
-  title: "프라베일 대표 시술",
+  label: "Praveil Signature",
+  title: "프라베일 시그니처",
   items: [
     {
       en: "Coolsonic",

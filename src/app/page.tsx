@@ -8,6 +8,7 @@ import MainTreatments from "@/components/main/MainTreatments";
 import MainWhy from "@/components/main/MainWhy";
 import { mainBest, mainCategoryImage, mainDoctor, mainHero, mainScan, mainSpace, mainWhy } from "@/content/main";
 import { sitemap } from "@/content/sitemap";
+import { findTreatment } from "@/content/treatments";
 import { getDoctor, getNotices } from "@/lib/data";
 import { coverOf } from "@/lib/notice";
 
@@ -19,7 +20,13 @@ export default async function Home() {
     <>
       <MainHero {...mainHero} />
       <MainScan {...mainScan} />
-      <MainBest {...mainBest} />
+      <MainBest
+        {...mainBest}
+        items={mainBest.items.map((it) => {
+          const t = findTreatment(it.href);
+          return { ...it, headline: t?.headline, points: t?.points.map((p) => p.title) };
+        })}
+      />
       <MainWhy {...mainWhy} />
       <MainDoctor {...mainDoctor} name={doctor.name} title={doctor.title} />
       <MainTreatments sections={sitemap.filter((s) => s.treatment)} images={mainCategoryImage} />

@@ -3,7 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger, reducedMotion } from "@/lib/gsap";
+import { ScrollTrigger, reducedMotion } from "@/lib/gsap";
 
 type Item = {
   en: string;
@@ -12,10 +12,17 @@ type Item = {
   href: string;
   text: string;
   image: string;
+  /** 큰 문장 (첫 줄 얇게, 마지막 줄 굵게) */
+  headline?: string[];
+  /** 핵심 세 가지 (원형 배지) */
+  points?: string[];
 };
 
-// 대표 시술 4종. PC: 화면이 멈춘 채 스크롤하면 카드가 옆으로 흘러간다
-// 모바일 · 태블릿: 제목은 위에, 카드는 손가락으로 옆으로 넘김 (아래 점으로 위치 표시)
+// 대표 시술 4종: 화면 전체를 덮은 채 멈추고, 스크롤할 때마다 다음 시술로 넘어감
+// - 배경: 시술 사진이 아래에서 위로 걷히며 바뀜 (천천히 다가오는 움직임)
+// - 왼쪽 아래: 분류 · 큰 문장 · 설명 · 핵심 세 가지(원형) · 자세히 보기
+// - 맨 아래: 시술 이름 탭 (지금 시술은 선이 차오름, 누르면 그 시술로 이동)
+// - 움직임 줄이기 설정이면 고정 없이 첫 시술만 보이고 탭으로 바꿔 봄
 export default function MainBest({
   label,
   title,
@@ -25,190 +32,208 @@ export default function MainBest({
   title: string;
   items: Item[];
 }) {
-  const pinRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  const [slide, setSlide] = useState(0);
+  const rootRef = useRef<HTMLElement>(null);
+  const stRef = useRef<ScrollTrigger | null>(null);
+  const [active, setActive] = useState(0);
+  const [local, setLocal] = useState(0); // 지금 시술 안에서의 진행 (0~1)
+  const n = items.length;
 
   useEffect(() => {
-    const pin = pinRef.current;
-    const track = trackRef.current;
-    if (!pin || !track || reducedMotion()) return;
-    // 가운데에 온 카드만 또렷하게, 멀어질수록 살짝 흐리게
-    const cards = () => [...track.querySelectorAll<HTMLElement>("[data-card]")];
-    const focusCards = () => {
-      const mid = window.innerWidth * 0.55;
-      cards().forEach((c) => {
-        const r = c.getBoundingClientRect();
-        const d = Math.abs(r.left + r.width / 2 - mid) / window.innerWidth;
-        c.style.opacity = String(Math.max(0.45, 1 - d * 0.9).toFixed(3));
-      });
+    const root = rootRef.current;
+    if (!root || reducedMotion()) return;
+    const st = ScrollTrigger.create({
+      trigger: root,
+      start: "top top",
+      end: () => `+=${window.innerHeight * (n - 1) * 0.9}`,
+      pin: true,
+      invalidateOnRefresh: true,
+      snap: {
+        snapTo: 1 / (n - 1),
+        duration: { min: 0.3, max: 0.8 },
+        delay: 0.12,
+        ease: "power2.inOut",
+      },
+      onUpdate: (self) => {
+        const p = self.progress * (n - 1);
+        const i = Math.min(n - 1, Math.round(p));
+        setActive(i);
+        setLocal(Math.min(1, Math.max(0, p - i + 0.5)));
+      },
+    });
+    stRef.current = st;
+    return () => {
+      st.kill();
+      stRef.current = null;
     };
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 1024px)", () => {
-      const distance = () => track.scrollWidth - window.innerWidth;
-      const tween = gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: pin,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          pin: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            setProgress(self.progress);
-            focusCards();
-          },
-        },
-      });
-      // 카드 안 사진이 카드와 반대로 살짝 움직여 창문 너머를 보는 듯한 깊이감
-      const photos = gsap.utils.toArray<HTMLElement>(
-        "[data-card-photo]",
-        track,
-      );
-      const inner = photos.map((img) =>
-        gsap.fromTo(
-          img,
-          { xPercent: -7 },
-          {
-            xPercent: 7,
-            ease: "none",
-            scrollTrigger: {
-              trigger: img.parentElement,
-              containerAnimation: tween,
-              start: "left right",
-              end: "right left",
-              scrub: true,
-            },
-          },
-        ),
-      );
-      focusCards();
-      return () => {
-        inner.forEach((t) => {
-          t.scrollTrigger?.kill();
-          t.kill();
-        });
-        cards().forEach((c) => (c.style.opacity = ""));
-        tween.scrollTrigger?.kill();
-        tween.kill();
-      };
-    });
-    ScrollTrigger.refresh();
-    return () => mm.revert();
-  }, []);
+  }, [n]);
 
-  // 모바일: 옆으로 넘긴 위치 → 점 표시
-  const onSwipe = () => {
-    const track = trackRef.current;
-    if (!track || window.innerWidth >= 1024) return;
-    const cards = [...track.querySelectorAll<HTMLElement>("[data-card]")];
-    const at = (c: HTMLElement) =>
-      Math.abs(c.offsetLeft - cards[0].offsetLeft - track.scrollLeft);
-    let best = 0;
-    cards.forEach((c, i) => {
-      if (at(c) < at(cards[best])) best = i;
-    });
-    setSlide(best);
+  // 탭: 그 시술 자리로 스크롤 (고정이 없으면 바로 바꿈)
+  const go = (i: number) => {
+    const st = stRef.current;
+    if (!st) return setActive(i);
+    const y = st.start + ((st.end - st.start) * i) / (n - 1);
+    const lenis = (
+      window as unknown as {
+        __lenis?: { scrollTo: (y: number, o: object) => void };
+      }
+    ).__lenis;
+    if (lenis) lenis.scrollTo(y, { duration: 1.2 });
+    else window.scrollTo({ top: y, behavior: "smooth" });
   };
+
+  const it = items[active];
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
     <div>
       <section
-        ref={pinRef}
-        className="relative overflow-hidden bg-espresso pt-20 pb-16 text-white md:pt-24 lg:h-svh lg:py-0"
+        ref={rootRef}
+        aria-label={title}
+        className="relative h-svh min-h-[640px] overflow-hidden bg-espresso text-white"
       >
-        {/* 모바일 · 태블릿 제목 */}
-        <div className="px-5 md:px-10 lg:hidden">
-          <p className="font-display text-xs tracking-[0.35em] text-taupe uppercase md:text-sm">
-            {label}
-          </p>
-          <h2 className="mt-4 text-[28px] leading-tight font-bold tracking-[-0.04em] md:text-[40px]">
-            {title}
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-white/60">
-            프라베일이 가장 자신 있게 권하는 네 가지 시술입니다.
-          </p>
-        </div>
+        {/* 배경 사진: 지금 시술은 아래에서 위로 걷히며 나타나고, 지난 사진은 그대로 아래 깔림 */}
+        {items.map((x, i) => (
+          <div
+            key={x.href}
+            aria-hidden={i !== active}
+            className="absolute inset-0 transition-[clip-path] duration-[1100ms] ease-[cubic-bezier(.76,0,.24,1)]"
+            style={{
+              clipPath:
+                i <= active ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)",
+              zIndex: i,
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={x.image}
+              alt={`${x.name} 시술 장면`}
+              loading={i === 0 ? "eager" : "lazy"}
+              className={`h-full w-full object-cover object-[62%_12%] transition-transform duration-[2400ms] ease-out ${i === active ? "scale-100" : "scale-110"}`}
+            />
+          </div>
+        ))}
+        {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(20,16,13,0.82),rgba(20,16,13,0.45)_42%,rgba(20,16,13,0.05)_70%),linear-gradient(0deg,rgba(20,16,13,0.85),transparent_38%)] max-lg:bg-[linear-gradient(0deg,rgba(20,16,13,0.92),rgba(20,16,13,0.55)_55%,rgba(20,16,13,0.15))]" />
 
-        <div
-          onScroll={onSwipe}
-          ref={trackRef}
-          className="no-scrollbar flex snap-x snap-mandatory scroll-px-5 gap-4 md:scroll-px-10 overflow-x-auto px-5 pt-8 will-change-transform md:gap-5 md:px-10 lg:h-full lg:snap-none lg:items-center lg:gap-10 lg:overflow-visible lg:px-10 lg:py-0"
-        >
-          <div className="hidden w-[30vw] shrink-0 flex-col justify-between lg:flex lg:h-[72vh]">
+        <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-24 pb-24 md:px-10 md:pt-28 lg:pb-8">
+          {/* 위: 섹션 이름 · 순서 */}
+          <div className="flex items-start justify-between">
             <div>
-              <p className="font-display text-xs tracking-[0.35em] text-taupe uppercase md:text-sm">
+              <p className="font-display text-[11px] tracking-[0.4em] text-taupe uppercase md:text-xs">
                 {label}
               </p>
-              <h2 className="mt-6 text-[52px] leading-tight font-bold tracking-[-0.04em]">
-                {title}
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-white/60">
-                프라베일이 가장 자신 있게 권하는
-                <br />네 가지 시술입니다.
-              </p>
+              <p className="mt-2 text-sm text-white/70 md:text-base">{title}</p>
             </div>
-            <p className="mt-10 font-display text-[180px] leading-none font-extralight text-white/15">
-              04
+            <p className="font-display text-sm tracking-[0.2em] text-white/60 tabular-nums md:text-base">
+              <span className="text-white">
+                {String(active + 1).padStart(2, "0")}
+              </span>{" "}
+              / {String(n).padStart(2, "0")}
             </p>
           </div>
 
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              data-card
-              className="group relative w-[78vw] shrink-0 snap-start sm:w-[46vw] lg:h-[72vh] lg:w-[34vw]"
+          {/* 가운데 아래: 지금 시술 소개 (바뀔 때마다 아래에서 떠오름) */}
+          <div key={active} className="mt-auto max-w-[680px]">
+            <p
+              className="flex items-center gap-3 text-[13px] text-taupe"
+              style={{
+                animation: "fade-up .8s cubic-bezier(.22,1,.36,1) .25s both",
+              }}
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-white/5 lg:aspect-auto lg:h-[calc(100%-150px)] lg:rounded-[28px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  loading="lazy"
-                  data-card-photo
-                  className="h-full w-full scale-[1.16] object-cover grayscale-[35%] transition-[scale,filter] duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.22] group-hover:grayscale-0"
-                />
-              </div>
-              <div className="flex items-end justify-between gap-4 pt-6">
-                <div>
-                  <p className="font-display text-[34px] leading-none font-light uppercase md:text-[44px]">
-                    {item.en}
-                  </p>
-                  <p className="mt-3 text-sm text-white/60">{item.name}</p>
-                </div>
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/30 transition duration-500 group-hover:rotate-45 group-hover:border-gold group-hover:bg-gold group-hover:text-white">
-                  <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
+              <span className="h-px w-8 bg-taupe/70" />
+              {it.category}
+            </p>
+            <h3
+              className="mt-4 text-[30px] leading-[1.25] font-light tracking-[-0.04em] md:text-[52px] 2xl:text-[60px]"
+              style={{
+                animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .35s both",
+              }}
+            >
+              {(it.headline ?? [it.name]).map((h, k, arr) => (
+                <span
+                  key={h}
+                  className={`block ${k === arr.length - 1 ? "font-semibold" : ""}`}
+                >
+                  {h}
                 </span>
-              </div>
-              <p className="mt-3 hidden text-sm leading-relaxed text-white/50 lg:block lg:pr-16">
-                {item.text}
-              </p>
+              ))}
+            </h3>
+            <p
+              className="mt-5 max-w-[520px] text-[14px] leading-relaxed text-white/75 md:text-base"
+              style={{
+                animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .45s both",
+              }}
+            >
+              {it.text}
+            </p>
+
+            {/* 핵심 세 가지: 유리 원 */}
+            {it.points && (
+              <ul className="mt-7 flex gap-2.5 md:mt-9 md:gap-4">
+                {it.points.slice(0, 3).map((p, k) => (
+                  <li
+                    key={p}
+                    className="grid h-[86px] w-[86px] place-items-center rounded-full border border-white/25 bg-white/10 p-2 text-center backdrop-blur-md md:h-[120px] md:w-[120px] md:p-4"
+                    style={{
+                      animation: `fade-up .9s cubic-bezier(.22,1,.36,1) ${0.55 + k * 0.1}s both`,
+                    }}
+                  >
+                    <span>
+                      <span className="block font-display text-[10px] tracking-[0.2em] text-taupe md:text-[11px]">
+                        {String(k + 1).padStart(2, "0")}
+                      </span>
+                      <span className="mt-1 block text-[11px] leading-snug font-medium break-keep md:text-[14px]">
+                        {p}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <Link
+              href={it.href}
+              className="group mt-7 inline-flex items-center gap-3 text-sm md:mt-9"
+              style={{
+                animation: "fade-up .9s cubic-bezier(.22,1,.36,1) .85s both",
+              }}
+            >
+              <span className="font-display text-base tracking-[0.15em] uppercase md:text-lg">
+                {it.en}
+              </span>
+              <span className="text-white/60">자세히 보기</span>
+              <span className="grid h-10 w-10 place-items-center rounded-full border border-white/40 transition duration-500 group-hover:rotate-45 group-hover:border-white group-hover:bg-white group-hover:text-ink">
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </span>
             </Link>
-          ))}
-          <div className="w-1 shrink-0 lg:w-[6vw]" aria-hidden />
-        </div>
+          </div>
 
-        {/* 넘김 위치 점 (모바일 · 태블릿) */}
-        <div aria-hidden className="mt-8 flex justify-center gap-2 lg:hidden">
-          {items.map((item, i) => (
-            <span
-              key={item.href}
-              className={`h-1.5 rounded-full transition-all duration-500 ${i === slide ? "w-6 bg-gold" : "w-1.5 bg-white/25"}`}
-            />
-          ))}
-        </div>
-
-        {/* 진행 막대 (PC) */}
-        <div className="absolute inset-x-10 bottom-8 hidden h-px bg-white/15 lg:block">
-          <span
-            className="absolute inset-y-0 left-0 bg-gold"
-            style={{ width: `${Math.max(4, progress * 100)}%` }}
-          />
+          {/* 맨 아래: 시술 탭 */}
+          <ul className="no-scrollbar mt-8 grid grid-cols-4 gap-3 md:mt-12 md:gap-6">
+            {items.map((x, i) => (
+              <li key={x.href} className="min-w-0">
+                <button
+                  type="button"
+                  onClick={() => go(i)}
+                  aria-current={i === active ? "true" : undefined}
+                  className={`w-full pb-3 text-left text-[12px] transition-colors md:text-[15px] ${i === active ? "font-semibold text-white" : "text-white/45 hover:text-white/80"}`}
+                >
+                  <span className="mr-2 font-display text-[10px] tracking-[0.15em] text-taupe md:text-xs">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="break-keep">{x.name}</span>
+                </button>
+                <span className="block h-px bg-white/20">
+                  <span
+                    className="block h-full origin-left bg-white transition-transform duration-300"
+                    style={{
+                      transform: `scaleX(${i < active ? 1 : i === active ? Math.max(0.08, local) : 0})`,
+                    }}
+                  />
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>

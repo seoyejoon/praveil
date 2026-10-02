@@ -183,8 +183,13 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
       C = cover();
       apply(state.t);
     };
+    // 크기가 바뀌면 문 위치 다시 계산: refreshInit 때는 고정(pin) 크기가 아직 예전 값이라,
+    // 고정이 다시 잡힌 뒤(refresh)와 실제 크기 변화(ResizeObserver)에도 다시 맞춤
     ScrollTrigger.addEventListener("refreshInit", onRefresh);
+    ScrollTrigger.addEventListener("refresh", onRefresh);
     window.addEventListener("resize", onRefresh);
+    const ro = new ResizeObserver(onRefresh);
+    ro.observe(root);
     // 등장 연출 대상
     const settle = settleRef.current;
     const intro = introRef.current;
@@ -194,7 +199,9 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
       gsap.set([intro, ...dots], { opacity: 1 });
       return () => {
         ScrollTrigger.removeEventListener("refreshInit", onRefresh);
+        ScrollTrigger.removeEventListener("refresh", onRefresh);
         window.removeEventListener("resize", onRefresh);
+        ro.disconnect();
       };
     }
 
@@ -310,7 +317,9 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
       clearTimeout(timer);
       intro0.kill();
       ScrollTrigger.removeEventListener("refreshInit", onRefresh);
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
       window.removeEventListener("resize", onRefresh);
+      ro.disconnect();
       ctx.revert();
     };
   }, [entrance]);

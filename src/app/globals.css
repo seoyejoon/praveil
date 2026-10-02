@@ -628,8 +628,27 @@ html[data-cur="label"] .cursor-ring-shape {
   background-color: rgba(168, 142, 106, 0.92);
   border-color: transparent;
 }
-html[data-cur="label"] .cursor-label {
+html[data-cur="label"] .cursor-label,
+html[data-cur="label-lg"] .cursor-label {
   opacity: 1;
+}
+/* 멈췄을 때 뜨는 큰 글자 원 (대표 시술 '자세히 보기') */
+html[data-cur="label-lg"] .cursor-ring-shape {
+  width: 112px;
+  height: 112px;
+  margin: -56px 0 0 -56px;
+  background-color: rgba(255, 255, 255, 0.92);
+  border-color: transparent;
+}
+html[data-cur="label-lg"] .cursor-label {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+html[data-cur="label-lg"] .cursor-dot-shape {
+  opacity: 0;
 }
 html[data-cur="label"] .cursor-dot-shape,
 html[data-cur="off"] .cursor-dot-shape,

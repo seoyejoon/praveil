@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger, reducedMotion } from "@/lib/gsap";
@@ -20,7 +19,7 @@ type Item = {
 
 // 대표 시술 4종: 화면 전체를 덮은 채 멈추고, 스크롤할 때마다 다음 시술로 넘어감
 // - 배경: 시술 사진이 아래에서 위로 걷히며 바뀜 (천천히 다가오는 움직임)
-// - 왼쪽 아래: 분류 · 큰 문장 · 설명 · 핵심 세 가지(원형) · 자세히 보기
+// - 왼쪽 아래: 분류 · 큰 문장 (화면 아무 곳이나 누르면 그 시술 페이지로)
 // - 맨 아래: 시술 이름 탭 (지금 시술은 선이 차오름, 누르면 그 시술로 이동)
 // - 움직임 줄이기 설정이면 고정 없이 첫 시술만 보이고 탭으로 바꿔 봄
 export default function MainBest({
@@ -115,7 +114,14 @@ export default function MainBest({
         {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}
         <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(20,16,13,0.82),rgba(20,16,13,0.45)_42%,rgba(20,16,13,0.05)_70%),linear-gradient(0deg,rgba(20,16,13,0.85),transparent_38%)] max-lg:bg-[linear-gradient(0deg,rgba(20,16,13,0.92),rgba(20,16,13,0.55)_55%,rgba(20,16,13,0.15))]" />
 
-        <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-24 pb-24 md:px-10 md:pt-28 lg:pb-8">
+        {/* 화면 아무 곳이나 누르면 지금 시술 페이지로 (마우스를 멈추면 커서가 '자세히 보기'로 바뀜) */}
+        <Link
+          href={it.href}
+          aria-label={`${it.name} 자세히 보기`}
+          data-cursor-idle="자세히 보기"
+          className="absolute inset-0 z-[15]"
+        />
+        <div className="pointer-events-none relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-24 pb-24 md:px-10 md:pt-28 lg:pb-8">
           {/* 위: 섹션 이름 · 순서 */}
           <div className="flex items-start justify-between">
             <div>
@@ -158,58 +164,10 @@ export default function MainBest({
                 </span>
               ))}
             </h3>
-            <p
-              className="mt-5 max-w-[520px] text-[14px] leading-relaxed text-white/75 md:text-base"
-              style={{
-                animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .45s both",
-              }}
-            >
-              {it.text}
-            </p>
-
-            {/* 핵심 세 가지: 유리 원 */}
-            {it.points && (
-              <ul className="mt-7 flex gap-2.5 md:mt-9 md:gap-4">
-                {it.points.slice(0, 3).map((p, k) => (
-                  <li
-                    key={p}
-                    className="grid h-[86px] w-[86px] place-items-center rounded-full border border-white/25 bg-white/10 p-2 text-center backdrop-blur-md md:h-[120px] md:w-[120px] md:p-4"
-                    style={{
-                      animation: `fade-up .9s cubic-bezier(.22,1,.36,1) ${0.55 + k * 0.1}s both`,
-                    }}
-                  >
-                    <span>
-                      <span className="block font-display text-[10px] tracking-[0.2em] text-taupe md:text-[11px]">
-                        {String(k + 1).padStart(2, "0")}
-                      </span>
-                      <span className="mt-1 block text-[11px] leading-snug font-medium break-keep md:text-[14px]">
-                        {p}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <Link
-              href={it.href}
-              className="group mt-7 inline-flex items-center gap-3 text-sm md:mt-9"
-              style={{
-                animation: "fade-up .9s cubic-bezier(.22,1,.36,1) .85s both",
-              }}
-            >
-              <span className="font-display text-base tracking-[0.15em] uppercase md:text-lg">
-                {it.en}
-              </span>
-              <span className="text-white/60">자세히 보기</span>
-              <span className="grid h-10 w-10 place-items-center rounded-full border border-white/40 transition duration-500 group-hover:rotate-45 group-hover:border-white group-hover:bg-white group-hover:text-ink">
-                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
-              </span>
-            </Link>
           </div>
 
           {/* 맨 아래: 시술 탭 */}
-          <ul className="no-scrollbar mt-8 grid grid-cols-4 gap-3 md:mt-12 md:gap-6">
+          <ul className="pointer-events-auto no-scrollbar mt-8 grid grid-cols-4 gap-3 md:mt-12 md:gap-6">
             {items.map((x, i) => (
               <li key={x.href} className="min-w-0">
                 <button

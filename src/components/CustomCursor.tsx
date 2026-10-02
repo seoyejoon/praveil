@@ -25,6 +25,7 @@ export default function CustomCursor() {
       rx = -100,
       ry = -100,
       raf = 0,
+      idle = 0,
       shown = false;
     const tick = () => {
       rx += (x - rx) * 0.18;
@@ -45,20 +46,27 @@ export default function CustomCursor() {
         shown = true;
         html.dataset.cur = "on";
       }
+      clearTimeout(idle);
       const t = e.target as Element | null;
       const field = t?.closest("input, textarea, select, [contenteditable]");
       const tagged = t?.closest<HTMLElement>("[data-cursor]");
       const link = t?.closest("a, button, [role='tab'], label, summary");
       const media = link && link.querySelector("img, video");
       const text = tagged?.dataset.cursor || (media ? "보기" : "");
-      html.dataset.cur = field
-        ? "off"
-        : text
-          ? "label"
-          : link
-            ? "hover"
-            : "on";
+      html.dataset.cur = field ? "off" : text ? "label" : link ? "hover" : "on";
       if (text && label.textContent !== text) label.textContent = text;
+      // 멈춰 있을 때만 글자가 뜨는 곳 (data-cursor-idle): 움직이면 기본, 잠시 멈추면 글자
+      const idleEl =
+        !field && !tagged
+          ? t?.closest<HTMLElement>("[data-cursor-idle]")
+          : null;
+      if (idleEl && !(link && link !== idleEl)) {
+        html.dataset.cur = "on";
+        idle = window.setTimeout(() => {
+          label.textContent = idleEl.dataset.cursorIdle ?? "";
+          html.dataset.cur = "label-lg";
+        }, 350);
+      }
     };
     const onLeave = () => {
       html.dataset.cur = "off";
@@ -72,6 +80,7 @@ export default function CustomCursor() {
     window.addEventListener("pointerup", onUp);
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(idle);
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("pointerdown", onDown);

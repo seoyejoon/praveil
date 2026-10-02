@@ -7,6 +7,7 @@ import { hasDatabase } from "./db";
 import { demoBeforeAfter, demoNotices, showDemo } from "./demo";
 import * as db from "./source-db";
 import { procedureDetails } from "@/content/procedure-details";
+import type { Popup } from "./types";
 import { resolveHospitalPolicy } from "@/lib/policy";
 
 export type * from "./types";
@@ -88,8 +89,19 @@ export async function getNotice(id: number) {
   return (await getNotices()).find((n) => n.id === id);
 }
 
+// 리뉴얼 오픈 안내 팝업 (관리자에서 등록한 팝업 앞에 항상 붙음)
+const sitePopups: Popup[] = [
+  {
+    id: 900601,
+    title: "RENEWAL OPEN 새로운 프라베일 — 프라베일 둘러보기",
+    imageUrl: "/images/popup/renewal-open.webp",
+    linkUrl: "/about/philosophy",
+    device: "all",
+  },
+];
+
 export async function getPopups() {
-  return hasDatabase ? db.getPopups() : popups;
+  return [...sitePopups, ...(hasDatabase ? await db.getPopups() : popups)];
 }
 
 // 시술 상세 원고: 관리자에서 고친 내용이 있으면 그것을, 없으면 코드의 원고를 쓴다.

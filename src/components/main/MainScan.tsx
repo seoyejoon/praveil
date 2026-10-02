@@ -105,66 +105,50 @@ export default function MainScan({
                 </p>
               </Reveal>
 
-              {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜지고, 아래 선이 함께 참 */}
+              {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜짐 (글과 같은 왼쪽 선에 맞춤)
+                  - 칸마다 위쪽 막대가 차오르고, 지금 단계는 진하게 */}
               <Reveal delay={300} className="mt-10 lg:mt-14">
-                <div className="relative max-w-[560px]">
-                  {/* 이어지는 선 (아이콘 가운데 높이) */}
-                  <span
-                    aria-hidden
-                    className="absolute top-6 right-[12.5%] left-[12.5%] h-px bg-line md:top-7"
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute top-6 left-[12.5%] h-px bg-gold transition-[width] duration-500 md:top-7"
-                    style={{
-                      width: `${(75 * step) / Math.max(1, steps.length - 1)}%`,
-                    }}
-                  />
-                  <ol className="relative grid grid-cols-4">
-                    {steps.map((s, i) => {
-                      const Icon = stepIcons[i % stepIcons.length];
-                      const on = i === step;
-                      const done = i < step;
-                      return (
-                        <li
-                          key={s}
-                          className="flex flex-col items-center text-center"
+                <ol className="grid max-w-[600px] grid-cols-4 gap-3 md:gap-5">
+                  {steps.map((s, i) => {
+                    const Icon = stepIcons[i % stepIcons.length];
+                    const on = i === step;
+                    const done = i < step;
+                    return (
+                      <li key={s} className="min-w-0">
+                        <span
+                          aria-hidden
+                          className="block h-[2px] overflow-hidden rounded-full bg-line"
                         >
                           <span
-                            className={`grid h-12 w-12 place-items-center rounded-full border transition duration-500 md:h-14 md:w-14 ${
-                              on
-                                ? "scale-110 border-gold bg-gold text-white shadow-[0_10px_28px_-10px_rgba(168,142,106,0.9)]"
-                                : done
-                                  ? "border-gold/60 bg-white text-gold"
-                                  : "border-line bg-white text-ink/30"
-                            }`}
-                          >
-                            <Icon
-                              className="h-5 w-5 md:h-6 md:w-6"
-                              strokeWidth={1.5}
-                            />
-                          </span>
+                            className={`block h-full origin-left bg-gold transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${on || done ? "scale-x-100" : "scale-x-0"}`}
+                          />
+                        </span>
+                        <span className="mt-4 flex items-center gap-2 md:mt-5">
                           <span
-                            className={`mt-3 font-display text-[10px] tracking-[0.2em] transition-colors duration-500 md:text-[11px] ${on || done ? "text-gold" : "text-ink/30"}`}
+                            className={`font-display text-[11px] tracking-[0.2em] transition-colors duration-500 md:text-xs ${on || done ? "text-gold" : "text-ink/30"}`}
                           >
                             {String(i + 1).padStart(2, "0")}
                           </span>
-                          <span
-                            className={`mt-1 text-[13px] break-keep transition-colors duration-500 md:text-[15px] ${
-                              on
-                                ? "font-semibold text-ink"
-                                : done
-                                  ? "text-ink/70"
-                                  : "text-ink/35"
-                            }`}
-                          >
-                            {s}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ol>
-                </div>
+                          <Icon
+                            className={`h-4 w-4 transition-colors duration-500 md:h-[18px] md:w-[18px] ${on ? "text-gold" : done ? "text-gold/60" : "text-ink/25"}`}
+                            strokeWidth={1.5}
+                          />
+                        </span>
+                        <span
+                          className={`mt-1.5 block text-[13px] leading-snug break-keep transition-colors duration-500 md:mt-2 md:text-[15px] ${
+                            on
+                              ? "font-semibold text-ink"
+                              : done
+                                ? "text-ink/70"
+                                : "text-ink/35"
+                          }`}
+                        >
+                          {s}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
               </Reveal>
             </div>
 

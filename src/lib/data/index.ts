@@ -101,7 +101,12 @@ const sitePopups: Popup[] = [
 ];
 
 export async function getPopups() {
-  return [...sitePopups, ...(hasDatabase ? await db.getPopups() : popups)];
+  const saved = hasDatabase ? await db.getPopups() : popups;
+  // 관리자 연결 확인용으로 만든 '연결 테스트' 팝업은 홈페이지에 띄우지 않음
+  return [
+    ...sitePopups,
+    ...saved.filter((p) => !p.title.includes("연결 테스트")),
+  ];
 }
 
 // 시술 상세 원고: 관리자에서 고친 내용이 있으면 그것을, 없으면 코드의 원고를 쓴다.

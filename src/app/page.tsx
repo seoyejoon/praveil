@@ -9,6 +9,7 @@ import MainWhy from "@/components/main/MainWhy";
 import { mainBest, mainCategoryImage, mainDoctor, mainHero, mainScan, mainSpace, mainWhy } from "@/content/main";
 import { sitemap } from "@/content/sitemap";
 import { getDoctor, getNotices } from "@/lib/data";
+import { coverOf } from "@/lib/notice";
 
 // 메인 (2026.10 리뉴얼): 첫 화면(모델 영상) → 피부 분석 → 대표 시술 4종 → 특장점 → 대표원장 → 진료 분야 → 공간 → 소식 (진료시간 · 오시는 길은 푸터와 한 화면)
 export default async function Home() {
@@ -23,7 +24,7 @@ export default async function Home() {
       <MainDoctor {...mainDoctor} name={doctor.name} title={doctor.title} />
       <MainTreatments sections={sitemap.filter((s) => s.treatment)} images={mainCategoryImage} />
       <MainSpace {...mainSpace} />
-      <MainNews items={notices.map(({ id, type, title, summary, createdAt }) => ({ id, type, title, summary, createdAt }))} />
+      <MainNews items={notices.map((n) => ({ id: n.id, type: n.type, title: n.title, summary: n.summary, createdAt: n.createdAt, cover: coverOf(n) }))} />
     </>
   );
 }

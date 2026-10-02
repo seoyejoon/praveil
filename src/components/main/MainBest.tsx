@@ -13,6 +13,8 @@ type Item = {
   image: string;
   /** 큰 문장 (첫 줄 얇게, 마지막 줄 굵게) */
   headline?: string[];
+  /** 제목 둘째 줄에서 색을 넣을 시술명 */
+  accent?: string;
   /** 마우스를 멈추면 커서 원 안에 뜨는 제품 사진 (배경 없는 사진) */
   product?: string;
   /** 핵심 세 가지 (원형 배지) */
@@ -160,14 +162,26 @@ export default function MainBest({
                 animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .35s both",
               }}
             >
-              {(it.headline ?? [it.name]).map((h, k, arr) => (
-                <span
-                  key={h}
-                  className={`block ${k === arr.length - 1 ? "font-semibold" : ""}`}
-                >
-                  {h}
-                </span>
-              ))}
+              {(it.headline ?? [it.name]).map((h, k, arr) => {
+                const last = k === arr.length - 1;
+                const at = last && it.accent ? h.lastIndexOf(it.accent) : -1;
+                return (
+                  <span
+                    key={h}
+                    className={`block ${last ? "font-semibold" : "mb-1 text-[0.62em] md:mb-2"}`}
+                  >
+                    {at >= 0 ? (
+                      <>
+                        {h.slice(0, at)}
+                        <span className="text-[#8a6838]">{it.accent}</span>
+                        {h.slice(at + it.accent!.length)}
+                      </>
+                    ) : (
+                      h
+                    )}
+                  </span>
+                );
+              })}
             </h3>
           </div>
 

@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowRight, LogOut, Plus, UserRound } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarCheck,
+  LogOut,
+  Phone,
+  Plus,
+  UserRound,
+} from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import BestMark from "@/components/BestMark";
@@ -147,6 +154,8 @@ export default function Header({
 
   const light = hasHero && !lightHero && !scrolled && !mega && !open; // 어두운 첫 화면 위: 흰 글자
   const clear = lightHero && !scrolled && !mega && !open; // 밝은 첫 화면 위: 투명 + 검정 글자
+  // 하위 메뉴 항목: 지금 보고 있는 페이지와 정확히 같을 때만
+  const isHere = (href: string) => pathname === href.split("?")[0];
   const isCurrent = (href: string) => {
     const base = href.split("?")[0].split("/").slice(0, 2).join("/");
     return (
@@ -251,7 +260,14 @@ export default function Header({
             </div>
             <button
               type="button"
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                // 지금 보고 있는 페이지가 속한 메뉴를 펼친 채로 열기
+                const cur = menu.findIndex((g) =>
+                  g.columns.some((c) => c.pages.some((p) => isCurrent(p.href))),
+                );
+                setExpanded(cur >= 0 ? cur : null);
+                setOpen(true);
+              }}
               aria-label="메뉴 열기"
               aria-expanded={open}
               aria-controls="site-menu"
@@ -330,11 +346,11 @@ export default function Header({
                                 href={p.href}
                                 onClick={() => setMega(false)}
                                 tabIndex={on ? 0 : -1}
-                                className={`group/item flex items-center py-1.5 whitespace-nowrap transition-colors duration-300 hover:text-gold ${g.columns.length > 1 ? "text-[14px]" : "text-[17px]"} ${isCurrent(p.href) ? "text-gold" : p.best ? "font-semibold text-black" : "text-black/65"}`}
+                                className={`group/item flex items-center py-1.5 whitespace-nowrap transition-colors duration-300 hover:text-gold ${g.columns.length > 1 ? "text-[14px]" : "text-[17px]"} ${isHere(p.href) ? "text-gold" : p.best ? "font-semibold text-black" : "text-black/65"}`}
                               >
                                 <span
                                   aria-hidden
-                                  className={`h-1 rounded-full bg-gold transition-all duration-300 ${isCurrent(p.href) ? "mr-2 w-1" : "mr-0 w-0 group-hover/item:mr-2 group-hover/item:w-1"}`}
+                                  className={`h-1 rounded-full bg-gold transition-all duration-300 ${isHere(p.href) ? "mr-2 w-1" : "mr-0 w-0 group-hover/item:mr-2 group-hover/item:w-1"}`}
                                 />
                                 {p.label}
                                 {p.best && (
@@ -414,8 +430,15 @@ export default function Header({
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between py-6 text-left"
                 >
-                  <span className="font-display text-[30px] font-light tracking-[0.12em] md:text-4xl">
-                    {g.label}
+                  <span>
+                    <span
+                      className={`block font-display text-[30px] font-light tracking-[0.12em] transition-colors duration-500 md:text-4xl ${isOpen ? "text-[#e9d9bd]" : ""}`}
+                    >
+                      {g.label}
+                    </span>
+                    <span className="mt-1 block text-[13px] text-white/45">
+                      {megaIntro[g.key]?.title}
+                    </span>
                   </span>
                   <Plus
                     className={`h-5 w-5 text-taupe transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`}
@@ -432,7 +455,7 @@ export default function Header({
                       {g.columns.map((c) => (
                         <div key={c.key}>
                           {g.columns.length > 1 && (
-                            <p className="mb-2 text-sm font-semibold text-taupe">
+                            <p className="mb-2 border-b border-white/10 pb-2 text-sm font-semibold text-taupe">
                               {c.label}
                             </p>
                           )}
@@ -442,10 +465,21 @@ export default function Header({
                                 <Link
                                   href={p.href}
                                   onClick={() => setOpen(false)}
-                                  className={`inline-flex items-center gap-2 py-1.5 text-[16px] ${p.best ? "font-semibold text-white" : "text-white/70"}`}
+                                  aria-current={
+                                    isHere(p.href) ? "page" : undefined
+                                  }
+                                  className={`inline-flex items-center py-1.5 text-[16px] transition-colors active:text-gold ${isHere(p.href) ? "text-gold" : p.best ? "font-semibold text-white" : "text-white/70"}`}
                                 >
+                                  <span
+                                    aria-hidden
+                                    className={`h-1 rounded-full bg-gold transition-all ${isHere(p.href) ? "mr-2 w-1" : "w-0"}`}
+                                  />
                                   {p.label}
-                                  {p.best && <BestMark />}
+                                  {p.best && (
+                                    <span className="ml-2">
+                                      <BestMark />
+                                    </span>
+                                  )}
                                 </Link>
                               </li>
                             ))}
@@ -458,20 +492,48 @@ export default function Header({
               </div>
             );
           })}
+
+          {/* 대표 시술 바로가기 */}
+          <div
+            className={`py-8 transition-[opacity,transform] duration-700 ${open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+            style={{ transitionDelay: open ? "460ms" : "0ms" }}
+          >
+            <p className="font-display text-xs tracking-[0.35em] text-taupe uppercase">
+              Praveil Signature
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {menu
+                .flatMap((g) => g.columns.flatMap((c) => c.pages))
+                .filter((p) => p.best)
+                .map((p) => (
+                  <Link
+                    key={p.href}
+                    href={p.href}
+                    onClick={() => setOpen(false)}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white/85 transition active:border-gold active:text-gold"
+                  >
+                    <span className="h-1 w-1 rounded-full bg-gold" />
+                    {p.label}
+                  </Link>
+                ))}
+            </div>
+          </div>
         </nav>
         <div className="grid shrink-0 grid-cols-2 gap-px border-t border-white/10 bg-white/10">
           <a
             href={`tel:${phone}`}
-            className="bg-espresso py-5 text-center text-sm"
+            className="flex items-center justify-center gap-2 bg-espresso py-5 text-sm"
           >
+            <Phone className="h-4 w-4 text-taupe" strokeWidth={1.6} />
             전화 상담
           </a>
           <a
             href={reservationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gold py-5 text-center text-sm text-white"
+            className="flex items-center justify-center gap-2 bg-gold py-5 text-sm text-white"
           >
+            <CalendarCheck className="h-4 w-4" strokeWidth={1.6} />
             네이버 예약
           </a>
         </div>

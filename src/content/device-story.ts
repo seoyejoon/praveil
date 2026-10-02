@@ -41,6 +41,8 @@ export type DeviceStory = {
     rows: { label: string; values: string[] }[];
     note: string;
   };
+  /** 특징 파트 제목 (없으면 "○○만의 특별함") */
+  featuresTitle?: string;
   /** 특징: 사진 또는 영상 + 설명 */
   features: {
     title: string;
@@ -163,32 +165,33 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다.",
     },
+    featuresTitle: "쿨소닉 리프팅의 4가지 특징",
     features: [
       {
-        title: "깊이가 다른 세 가지 어플리케이터",
-        text: "1.5mm · 3.0mm · 4.5mm 어플리케이터를 부위와 층에 맞게 바꿔 가며, 진피층부터 근막층까지 나누어 에너지를 전달합니다. 굴곡진 부위에도 피부에 밀착해 섬세하게 시술할 수 있습니다.",
+        title: "쿨링으로 통증 부담을 줄이는 초음파 리프팅",
+        text: "쿨소닉은 피부 표면을 냉각하면서 고강도 집속 초음파(HIFU)를 전달합니다. ACC 냉각 기술을 적용해 시술 중 열감과 통증 부담을 줄이도록 설계했습니다.",
+        image: cs("coolsonic-cooling"),
+        video: "/videos/coolsonic-cooling.mp4",
+        alt: "쿨소닉 ACC 냉각 어플리케이터",
+      },
+      {
+        title: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달",
+        text: "쿨소닉은 3가지 깊이에 대응하는 어플리케이터를 사용합니다. 목표 깊이에 초음파 에너지를 전달해 피부 속 조직에 작용합니다.",
         image: cs("coolsonic-applicator"),
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",
       },
       {
-        title: "피부를 식히며 시술하는 냉각 어플리케이터",
-        text: "시술하는 동안 어플리케이터가 피부 표면을 계속 차갑게 유지해, 표면의 과한 열감과 시술 중 불편함을 줄였습니다.",
-        image: cs("coolsonic-cooling"),
-        video: "/videos/coolsonic-cooling.mp4",
-        alt: "쿨소닉 냉각 어플리케이터",
+        title: "콜라겐과 탄성섬유의 재생 유도",
+        text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도하는 방식으로 리프팅에 활용됩니다.",
+        image: cs("principle"),
+        alt: "피부 속 목표 조직에 열응고점을 만드는 쿨소닉 집속 초음파 원리",
       },
       {
-        title: "깊이 · 세기 · 속도를 한 샷씩 조절",
-        text: "에너지 세기, 샷 간격, 깊이, 냉각을 화면으로 확인하며 볼 · 턱선 · 이마처럼 두께가 다른 부위마다 나누어 조절합니다.",
-        image: cs("screen"),
-        alt: "시술 중인 쿨소닉 화면 (에너지 · 깊이 · 샷 수 · 냉각 설정)",
-      },
-      {
-        title: "정품 장비 · 정품 팁, 대표원장 직접 시술",
-        text: "병원이 직접 보유한 정품 장비와 정품 팁을 정해진 샷 수 그대로 사용하고, 상담한 원장이 얼굴 비율과 처짐 방향을 보며 직접 시술합니다.",
-        image: photo("signature-1"),
-        alt: "대표원장이 쿨소닉으로 시술하는 모습",
+        title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
+        text: "쿨소닉은 펜형 어플리케이터로 굴곡진 피부에도 밀착하기 쉽도록 설계했습니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
+        image: cs("handpiece"),
+        alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
       },
     ],
     process: [

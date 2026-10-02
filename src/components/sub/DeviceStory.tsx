@@ -232,7 +232,10 @@ export function StoryFeatures({
   return (
     <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1300px]">
-        <SectionHead en="Point" title={`${title}만의 특별함`} />
+        <SectionHead
+          en="Point"
+          title={story.featuresTitle ?? `${title}만의 특별함`}
+        />
         <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
           {story.features.map((f, i) => (
             <li

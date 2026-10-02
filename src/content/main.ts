@@ -99,6 +99,7 @@ export const mainBest = {
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
       image: photo("best-filler"),
+      product: "/images/equipment/hero/filler.webp",
     },
     {
       en: "Retuo",
@@ -107,6 +108,7 @@ export const mainBest = {
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
       image: photo("best-retuo"),
+      product: "/images/equipment/hero/retuo.webp",
     },
   ],
 };

@@ -8,6 +8,7 @@ import {
   Phone,
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
+import NaverReviews from "@/components/naver-reviews/NaverReviews";
 import { BaPreview } from "@/components/BeforeAfterBoard";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
@@ -908,6 +909,8 @@ export default function TreatmentDetail({
 
       {/* 장비 시술: 의료진은 자주 묻는 질문 아래 */}
       {story && <div className="pb-16 md:pb-24">{doctorSection}</div>}
+
+      {t.href === "/lifting/coolsonic" && <NaverReviews />}
 
       {/* 상담 안내: 장비 시술 페이지는 바로 아래 푸터(지도 · 진료시간 · 전화 · 예약)와 겹쳐 생략 */}
       {story ? (

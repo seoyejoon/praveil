@@ -1,0 +1,75 @@
+.reviews {
+  --ink: var(--color-ink, #151311);
+  --muted: var(--color-muted, #6b6560);
+  --surface: #f7f6f8;
+  --brown: var(--color-mocha, #7d6649);
+  --green: #03a64b;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  scroll-margin-top: 160px;
+  background: var(--color-cream, #fff);
+  color: var(--ink);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+.reviews *, .reviews *::before, .reviews *::after { box-sizing: border-box; }
+.reviews a { color: inherit; text-decoration: none; }
+.reviews a:focus-visible { outline: 3px solid var(--green); outline-offset: 5px; }
+.brand { margin: 0 0 16px 2px; color: var(--color-gold, #a88e6a); font-size: 11px; font-weight: 600; letter-spacing: .2em; }
+.summary { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 30px; border-radius: 16px; background: var(--surface); }
+.title { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; margin: 0 0 9px; font-size: 25px; letter-spacing: -.045em; }
+.naver { color: var(--green); font-size: 27px; font-weight: 900; letter-spacing: -.055em; }
+.sourceName { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.changeNote { display: inline-block; color: var(--muted); }
+.countRow { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.count { font-size: 26px; font-weight: 700; letter-spacing: -.055em; }
+.countLabel { font-size: 15px; font-weight: 400; letter-spacing: -.025em; }
+.capture { color: var(--muted); font-size: 13px; }
+.reviews .cta { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-width: 237px; min-height: 56px; padding: 16px 26px; border-radius: 999px; background: var(--brown); color: #fff; font-size: 16px; font-weight: 600; transition: background .2s; }
+.reviews .cta:hover { background: var(--color-espresso, #1d1a17); }
+.arrow { width: 8px; height: 8px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 28px; }
+.card { display: flex; flex-direction: column; min-width: 0; min-height: 270px; padding: 22px 21px; border-radius: 15px; background: var(--surface); }
+.profile { display: flex; align-items: center; gap: 13px; margin-bottom: 19px; }
+.avatar { flex: 0 0 48px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #fff; font-size: 23px; font-weight: 400; }
+.author { margin: 0 0 4px; overflow-wrap: anywhere; font-size: 16px; font-weight: 600; letter-spacing: -.025em; }
+.visitDate { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.reviewLabel { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 9px; color: #32764c; font-size: 12px; font-weight: 600; }
+.nMark { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 3px; background: var(--green); color: #fff; font-family: Arial, sans-serif; font-size: 11px; font-weight: 900; }
+.excerpt { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; margin: 0; font-size: 15px; line-height: 1.65; letter-spacing: -.035em; white-space: pre-line; overflow-wrap: anywhere; }
+.reviews .more { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 22px; color: var(--brown); font-size: 14px; font-weight: 600; }
+.reviews .more:hover { color: var(--color-espresso, #1d1a17); }
+.more .arrow { width: 5px; height: 5px; border-width: 1.5px 1.5px 0 0; }
+.footnote { margin: 18px 2px 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+@media (min-width: 768px) {
+  .reviews { padding: 96px 40px; }
+}
+
+@media (min-width: 1024px) {
+  .reviews { padding-right: 112px; }
+}
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .summary { align-items: flex-start; flex-direction: column; gap: 22px; padding: 25px 22px; }
+  .title { gap: 9px; font-size: 22px; }
+  .naver { font-size: 24px; }
+  .sourceName { font-size: 13px; }
+  .changeNote { display: block; }
+  .count { font-size: 24px; }
+  .reviews .cta { width: 100%; min-height: 51px; font-size: 15px; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 20px; }
+  .card { min-height: 253px; padding: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews .cta { transition: none; }
+}

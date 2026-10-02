@@ -105,41 +105,50 @@ export default function MainScan({
                 </p>
               </Reveal>
 
-              {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜짐 (글과 같은 왼쪽 선에 맞춤)
-                  - 칸마다 위쪽 막대가 차오르고, 지금 단계는 진하게 */}
+              {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜짐
+                  - 첫 원이 글과 같은 왼쪽 선에서 시작, 원 아래 번호 · 이름도 왼쪽 맞춤
+                  - 원과 원 사이는 짧은 선 (원을 관통하지 않게 양쪽에 여백), 지난 구간은 금색 */}
               <Reveal delay={300} className="mt-10 lg:mt-14">
-                <ol className="grid max-w-[600px] grid-cols-4 gap-3 md:gap-5">
+                <ol className="grid max-w-[600px] grid-cols-4">
                   {steps.map((s, i) => {
                     const Icon = stepIcons[i % stepIcons.length];
                     const on = i === step;
                     const done = i < step;
+                    const last = i === steps.length - 1;
                     return (
-                      <li key={s} className="min-w-0">
-                        <span
-                          aria-hidden
-                          className="block h-[2px] overflow-hidden rounded-full bg-line"
-                        >
+                      <li key={s} className="relative min-w-0">
+                        {!last && (
                           <span
-                            className={`block h-full origin-left bg-gold transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${on || done ? "scale-x-100" : "scale-x-0"}`}
-                          />
-                        </span>
-                        <span className="mt-4 flex items-center gap-2 md:mt-5">
-                          <span
-                            className={`font-display text-[11px] tracking-[0.2em] transition-colors duration-500 md:text-xs ${on || done ? "text-gold" : "text-ink/30"}`}
+                            aria-hidden
+                            className="absolute top-6 right-3 left-[60px] h-px overflow-hidden bg-line md:top-[26px] md:left-[64px]"
                           >
-                            {String(i + 1).padStart(2, "0")}
+                            <span
+                              className={`block h-full origin-left bg-gold transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${done ? "scale-x-100" : "scale-x-0"}`}
+                            />
                           </span>
-                          <Icon
-                            className={`h-4 w-4 transition-colors duration-500 md:h-[18px] md:w-[18px] ${on ? "text-gold" : done ? "text-gold/60" : "text-ink/25"}`}
-                            strokeWidth={1.5}
-                          />
+                        )}
+                        <span
+                          className={`grid h-12 w-12 place-items-center rounded-full border transition-colors duration-500 md:h-[52px] md:w-[52px] ${
+                            on
+                              ? "border-gold bg-gold text-white shadow-[0_10px_24px_-12px_rgba(168,142,106,0.9)]"
+                              : done
+                                ? "border-gold/50 bg-white text-gold"
+                                : "border-line bg-white text-ink/30"
+                          }`}
+                        >
+                          <Icon className="h-5 w-5" strokeWidth={1.4} />
                         </span>
                         <span
-                          className={`mt-1.5 block text-[13px] leading-snug break-keep transition-colors duration-500 md:mt-2 md:text-[15px] ${
+                          className={`mt-4 block font-display text-[11px] tracking-[0.2em] transition-colors duration-500 ${on || done ? "text-gold" : "text-ink/30"}`}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span
+                          className={`mt-1 block pr-2 text-[13px] font-medium tracking-[-0.02em] break-keep transition-colors duration-500 md:text-[15px] ${
                             on
-                              ? "font-semibold text-ink"
+                              ? "text-ink"
                               : done
-                                ? "text-ink/70"
+                                ? "text-ink/60"
                                 : "text-ink/35"
                           }`}
                         >

@@ -123,6 +123,21 @@ export default function FaceScan({
         if (py > maxY) maxY = py;
       }
 
+      // 바깥 원이 그림 영역 안에 다 들어오게: 넘치면 얼굴 전체를 가운데 기준으로 줄임 (잘려 보이지 않게)
+      {
+        const limit = Math.min(w / 2, h / 2) - 8;
+        const ring = (maxY - minY) * 0.62;
+        if (ring > limit && ring > 0) {
+          const k = limit / ring;
+          for (let i = 0; i < n; i++) {
+            proj[i * 3] = cx0 + (proj[i * 3] - cx0) * k;
+            proj[i * 3 + 1] = cy0 + (proj[i * 3 + 1] - cy0) * k;
+          }
+          minY = cy0 + (minY - cy0) * k;
+          maxY = cy0 + (maxY - cy0) * k;
+        }
+      }
+
       // 스캔 라인 위치 (위 → 아래)
       const byScroll = Boolean(progress);
       const scanP = byScroll
@@ -199,8 +214,13 @@ export default function FaceScan({
 
       // 스캔 라인
       if (scanning) {
-        const left = cx0 - ringR * 1.05,
-          right = cx0 + ringR * 1.05;
+        // 바깥 원 안쪽만 그려 네모난 끝이 보이지 않게
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx0, cy0, ringR, 0, Math.PI * 2);
+        ctx.clip();
+        const left = cx0 - ringR,
+          right = cx0 + ringR;
         const g = ctx.createLinearGradient(0, scanY - 60, 0, scanY);
         g.addColorStop(0, `rgba(${BEIGE},0)`);
         g.addColorStop(1, `rgba(${BEIGE},0.16)`);
@@ -216,6 +236,7 @@ export default function FaceScan({
         ctx.moveTo(left, scanY);
         ctx.lineTo(right, scanY);
         ctx.stroke();
+        ctx.restore();
       }
 
       // 마우스 돋보기 원

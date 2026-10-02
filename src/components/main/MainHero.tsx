@@ -492,7 +492,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
               if (el) dotsRef.current[1] = el;
             }}
             style={{ opacity: 0 }}
-            className="absolute right-5 bottom-28 flex flex-col items-center gap-2 lg:hidden"
+            className="hidden"
           >
             {scenes.map((s, i) => (
               <span

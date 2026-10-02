@@ -1,6 +1,37 @@
 import { ChevronDown, Plus } from "lucide-react";
 import MoreToggle from "@/components/sub/MoreToggle";
 
+// 답변: 빈 줄 = 문단, **굵게**, [글자](주소) = 출처 링크
+function Answer({ text }: { text: string }) {
+  return text.split(/\n{2,}/).map((para, i) => (
+    <p key={i} className={i ? "mt-4" : undefined}>
+      {para.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/).map((part, k) => {
+        const bold = part.match(/^\*\*([^*]+)\*\*$/);
+        if (bold)
+          return (
+            <strong key={k} className="font-semibold text-ink">
+              {bold[1]}
+            </strong>
+          );
+        const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (link)
+          return (
+            <a
+              key={k}
+              href={link[2]}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="text-[0.92em] text-gold underline decoration-gold/40 underline-offset-4 transition hover:decoration-gold"
+            >
+              {link[1]}
+            </a>
+          );
+        return part;
+      })}
+    </p>
+  ));
+}
+
 // 자주 묻는 질문 (첫 질문은 펼쳐 둠, 모바일은 mobileLimit 개까지만 먼저 보임)
 // - line: 위아래 선 목록 (기본)
 // - pill: 둥근 회색 상자 목록 (질문 굵게, 오른쪽 꺾쇠)
@@ -35,9 +66,9 @@ export default function FaqList({
                     strokeWidth={1.6}
                   />
                 </summary>
-                <p className="-mt-1 px-6 pb-7 text-[15px] leading-relaxed text-muted md:px-11 md:pb-9 md:text-base">
-                  {f.a}
-                </p>
+                <div className="-mt-1 px-6 pb-7 text-[15px] leading-[1.85] text-muted md:px-11 md:pb-9 md:text-base">
+                  <Answer text={f.a} />
+                </div>
               </details>
             </li>
           ))}
@@ -66,9 +97,9 @@ export default function FaqList({
                   <Plus className="h-4 w-4" strokeWidth={1.5} />
                 </span>
               </summary>
-              <p className="pr-14 pb-7 pl-7 text-[15px] leading-relaxed text-muted">
-                {f.a}
-              </p>
+              <div className="pr-14 pb-7 pl-7 text-[15px] leading-relaxed text-muted">
+                <Answer text={f.a} />
+              </div>
             </details>
           </li>
         ))}

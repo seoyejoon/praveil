@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { faqDetail, faqPlain } from "@/content/faq-detail";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -89,7 +90,7 @@ export default async function SectionPage({ params }: Props) {
       title: findTreatment(href)!.title,
       profile: treatmentGuide[href].profile,
     }));
-    const faq = [
+    const faq = faqDetail[t.href] ?? [
       ...t.faq,
       ...g.faq,
       ...commonFaq(t.title, hospital, doctor.name, prices.length > 0),
@@ -128,7 +129,7 @@ export default async function SectionPage({ params }: Props) {
           mainEntity: faq.map((f) => ({
             "@type": "Question",
             name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
+            acceptedAnswer: { "@type": "Answer", text: faqPlain(f.a) },
           })),
         },
         {

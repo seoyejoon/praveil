@@ -24,7 +24,7 @@ export default async function Home() {
         {...mainBest}
         items={mainBest.items.map((it) => {
           const t = findTreatment(it.href);
-          return { ...it, headline: t?.headline, points: t?.points.map((p) => p.title) };
+          return { ...it, headline: it.headline ?? t?.headline, points: t?.points.map((p) => p.title) };
         })}
       />
       <MainWhy {...mainWhy} />

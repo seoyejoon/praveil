@@ -13,6 +13,8 @@ type Item = {
   image: string;
   /** 큰 문장 (첫 줄 얇게, 마지막 줄 굵게) */
   headline?: string[];
+  /** 모바일 전용 사진 (1080×1200, 없으면 PC 사진) */
+  mobileImage?: string;
   /** 제목 둘째 줄에서 색을 넣을 시술명 */
   accent?: string;
   /** 마우스를 멈추면 커서 원 안에 뜨는 제품 사진 (배경 없는 사진) */
@@ -105,16 +107,20 @@ export default function MainBest({
               zIndex: i === active ? 2 : 1,
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={x.image}
-              alt={`${x.name} 시술 장면`}
-              loading={i === 0 ? "eager" : "lazy"}
-              className="h-full w-full object-cover object-[62%_center] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
-              style={{
-                transform: `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
-              }}
-            />
+            <picture className="block h-full w-full">
+              {x.mobileImage && (
+                <source media="(max-width: 1023px)" srcSet={x.mobileImage} />
+              )}
+              <img
+                src={x.image}
+                alt={`${x.name} 시술 장면`}
+                loading={i === 0 ? "eager" : "lazy"}
+                className="h-full w-full object-cover object-[62%_center] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+                style={{
+                  transform: `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
+                }}
+              />
+            </picture>
           </div>
         ))}
         {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}

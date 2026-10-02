@@ -5,16 +5,16 @@ import Reveal from "@/components/Reveal";
 // 병원 공간: 큰 사진이 옆으로 천천히 흘러간다. 마우스를 올리면 멈춤.
 export default function MainSpace({ title, images }: { label?: string; title: string; images: string[] }) {
   return (
-    <section className="overflow-hidden bg-ivory py-28 md:py-40">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-5 md:items-end md:px-10">
+    <section className="flex min-h-svh flex-col justify-center overflow-hidden bg-ivory py-14 md:py-20">
+      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-6 px-5 md:items-end md:px-10">
         <div>
           {/* PC: 긴 제목 / 모바일: 짧게 한 줄 (버튼과 같은 줄) */}
-          <Reveal variant="line" className="hidden text-[52px] leading-[1.25] font-bold tracking-[-0.04em] md:block">
+          <Reveal variant="line" className="hidden text-[56px] leading-[1.2] font-bold tracking-[-0.04em] md:block">
             <span>
               <span>{title}</span>
             </span>
           </Reveal>
-          <Reveal variant="line" className="text-[26px] leading-[1.25] font-bold tracking-[-0.04em] md:hidden">
+          <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:hidden">
             <span>
               <span>프라베일 둘러보기</span>
             </span>
@@ -28,7 +28,7 @@ export default function MainSpace({ title, images }: { label?: string; title: st
           <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
         </Link>
       </div>
-      <div className="mt-14 md:mt-20">
+      <div className="mt-8 md:mt-12">
         <div className="animate-marquee flex w-max gap-4 hover:[animation-play-state:paused] md:gap-6">
           {[0, 1].map((set) =>
             images.map((src, i) => (
@@ -39,7 +39,7 @@ export default function MainSpace({ title, images }: { label?: string; title: st
                 alt=""
                 loading="lazy"
                 aria-hidden={set === 1}
-                className={`h-[46vw] w-auto shrink-0 rounded-[18px] object-cover md:rounded-[24px] md:h-[34vw] lg:h-[28vw] ${i % 2 ? "aspect-[4/5]" : "aspect-[3/2]"}`}
+                className={`h-[60svh] max-h-[640px] w-auto shrink-0 rounded-[18px] object-cover md:h-[58svh] md:max-h-[720px] md:rounded-[24px] ${i % 2 ? "aspect-[4/5]" : "aspect-[3/2]"}`}
               />
             )),
           )}

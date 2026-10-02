@@ -788,3 +788,9 @@ html[data-cur="image"] .cursor-dot-shape {
     transition: none;
   }
 }
+
+/* 모바일 상담 버튼: 금빛 테두리가 은은하게 퍼짐 */
+@keyframes cta-ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  70%, 100% { transform: scale(1.45); opacity: 0; }
+}

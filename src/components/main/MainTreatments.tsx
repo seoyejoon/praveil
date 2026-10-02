@@ -3,7 +3,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import BestMark from "@/components/BestMark";
 import Reveal from "@/components/Reveal";
 import type { SiteSection } from "@/content/sitemap";
 import { gsap } from "@/lib/gsap";
@@ -80,20 +79,6 @@ export default function MainTreatments({
                 </span>
                 <span className="grid h-11 w-11 place-items-center rounded-full border border-black/20 transition duration-500 group-hover:rotate-45 group-hover:border-gold group-hover:bg-gold group-hover:text-white md:h-14 md:w-14">
                   <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
-                </span>
-                <span className="col-span-2 flex flex-wrap gap-2 md:col-span-1 md:-mt-4">
-                  {s.pages.map((p, j) => (
-                    <span
-                      key={p.href}
-                      className={`inline-flex items-center gap-1.5 text-[13px] md:text-sm ${p.best ? "font-semibold text-black" : "text-black/50"}`}
-                    >
-                      {p.label}
-                      {p.best && <BestMark />}
-                      {j < s.pages.length - 1 && (
-                        <span className="ml-2 text-black/20">/</span>
-                      )}
-                    </span>
-                  ))}
                 </span>
               </Link>
             </li>

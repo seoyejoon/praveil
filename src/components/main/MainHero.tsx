@@ -328,7 +328,8 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
 
   return (
     // 고정(pin)되는 섹션은 한 번 감싸야 페이지 이동 시 오류가 나지 않는다
-    <div>
+    // 모바일: 주소창이 접히는 순간 아래가 잠깐 비어도 흰색 대신 사진과 같은 어두운 색이 보이게
+    <div className="bg-[#1d1915] lg:bg-transparent">
       <section
         ref={rootRef}
         data-dark-hero

@@ -172,8 +172,8 @@ export const mainCategoryImage: Record<string, string> = {
   lifting: photo("cat-lifting"),
   petit: photo("cat-filler"),
   skin: photo("cat-skin-booster"),
-  "acne-pore": photo("cat-scar-pore"),
-  removal: photo("cat-hair-removal"),
+  "acne-pore": photo("cat-hair-removal"),
+  removal: photo("cat-tattoo-removal"),
 };
 
 export const mainSpace = {

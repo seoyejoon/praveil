@@ -93,33 +93,61 @@ export const demoNotices: Notice[] = [
 ];
 
 const labels = ["시술 후 2주", "시술 후 1개월", "시술 후 3개월"];
-export const demoBeforeAfter: BeforeAfterCase[] = (
+
+// 쿨소닉 페이지 전후사진 미리 보기용 AI 가상 예시 (실제 시술 사진이 아님)
+const aiCoolsonic: BeforeAfterCase[] = (
   [
-    [
-      "[테스트] 쿨소닉 · 쿨페이즈 3개월 경과",
-      "리프팅",
-      "턱선 · 볼 라인 경과 사례 (테스트)",
-      3,
-    ],
-    ["[테스트] 앞볼 볼륨필러", "쁘띠시술", "앞볼 꺼짐 개선 사례 (테스트)", 1],
-    [
-      "[테스트] 리투오 2회 경과",
-      "피부관리",
-      "피부결 · 밀도 경과 사례 (테스트)",
-      2,
-    ],
+    ["[AI 가상 예시] 쿨소닉 턱선 리프팅", "턱선 · 볼 라인"],
+    ["[AI 가상 예시] 쿨소닉 볼 처짐 리프팅", "볼 처짐 · 팔자 주변"],
+    ["[AI 가상 예시] 쿨소닉 이중턱 · 윤곽 리프팅", "이중턱 · 얼굴 윤곽"],
   ] as const
-).map(([title, category, summary, n], i) => ({
-  id: 900301 + i,
+).map(([title, area], i) => ({
+  id: 900401 + i,
   title,
-  summary,
-  category,
-  createdAt: "2026-09-30",
-  representative: n - 1,
-  stages: Array.from({ length: n }, (_, s) => ({
-    before: img(`test-ba-${i + 1}-${s + 1}-before`),
-    after: img(`test-ba-${i + 1}-${s + 1}-after`),
-    beforeLabel: "시술 전",
-    afterLabel: n > 1 ? labels[s] : "시술 후",
-  })),
+  summary: `${area} · AI로 만든 가상 예시이며 실제 시술 전후 사진이 아닙니다`,
+  category: "리프팅",
+  createdAt: "2026-10-02",
+  representative: 0,
+  stages: [
+    {
+      before: img(`ai-coolsonic-${i + 1}-before`),
+      after: img(`ai-coolsonic-${i + 1}-after`),
+      beforeLabel: "시술 전 (가상)",
+      afterLabel: "시술 후 (가상)",
+    },
+  ],
 }));
+
+export const demoBeforeAfter: BeforeAfterCase[] = [
+  ...aiCoolsonic,
+  ...(
+    [
+      [
+        "[테스트] 쿨소닉 · 쿨페이즈 3개월 경과",
+        "리프팅",
+        "턱선 · 볼 라인 경과 사례 (테스트)",
+        3,
+      ],
+      ["[테스트] 앞볼 볼륨필러", "쁘띠시술", "앞볼 꺼짐 개선 사례 (테스트)", 1],
+      [
+        "[테스트] 리투오 2회 경과",
+        "피부관리",
+        "피부결 · 밀도 경과 사례 (테스트)",
+        2,
+      ],
+    ] as const
+  ).map(([title, category, summary, n], i) => ({
+    id: 900301 + i,
+    title,
+    summary,
+    category,
+    createdAt: "2026-09-30",
+    representative: n - 1,
+    stages: Array.from({ length: n }, (_, s) => ({
+      before: img(`test-ba-${i + 1}-${s + 1}-before`),
+      after: img(`test-ba-${i + 1}-${s + 1}-after`),
+      beforeLabel: "시술 전",
+      afterLabel: n > 1 ? labels[s] : "시술 후",
+    })),
+  })),
+];

@@ -715,3 +715,31 @@ html[data-cur="image"] .cursor-label {
 html[data-cur="image"] .cursor-dot-shape {
   opacity: 0;
 }
+
+/* 시술 상세: 통증 · 회복 · 주의사항 — 줄이 금색으로 그어지고 항목이 차례로 등장 */
+.ac-line {
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.is-visible .ac-line {
+  transform: scaleX(1);
+}
+.ac-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.7s ease var(--d, 0ms),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
+}
+.is-visible .ac-item {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ac-line,
+  .ac-item {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}

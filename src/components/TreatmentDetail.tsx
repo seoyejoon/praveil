@@ -682,60 +682,92 @@ export default function TreatmentDetail({
         id="aftercare"
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
-        <SectionHead
-          en="Aftercare"
-          title={`${t.title} 통증 · 회복 · 주의사항`}
-        />
-        <div className="mt-12 grid gap-4 md:mt-16 lg:grid-cols-2">
-          <div className="grid gap-4">
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div className="lg:sticky lg:top-36 lg:self-start">
+            <SectionHead
+              en="Aftercare"
+              title={`${t.title} 통증 · 회복 · 주의사항`}
+            />
+            <p className="mt-5 text-[15px] leading-relaxed text-muted md:text-[17px]">
+              시술 전에 미리 알아 두시면 더 편안합니다.
+            </p>
+          </div>
+          <ol className="grid">
             {[
-              { q: `${t.title}, 아프지 않나요?`, a: g.pain },
-              { q: "회복은 얼마나 걸리나요?", a: g.recovery },
+              { en: "Pain", q: `${t.title}, 아프지 않나요?`, a: g.pain },
+              { en: "Recovery", q: "회복은 얼마나 걸리나요?", a: g.recovery },
+              {
+                en: "Caution",
+                q: "시술 전후 주의사항 · 부작용",
+                list: [...t.cautions, ...commonCautions],
+              },
             ].map((c, i) => (
               <Reveal
+                as="li"
                 key={c.q}
-                delay={i * 100}
-                className="rounded-[24px] bg-ivory p-8 md:p-10"
+                delay={i * 140}
+                className="ac-row group relative grid gap-4 py-9 md:grid-cols-[120px_1fr] md:gap-8 md:py-12"
               >
-                <h3 className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
-                  {c.q}
-                </h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                  {c.a}
-                </p>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-px bg-line"
+                />
+                <span
+                  aria-hidden
+                  className="ac-line absolute inset-x-0 top-0 h-px origin-left bg-gold"
+                />
+                <div className="flex items-baseline gap-3 md:block">
+                  <p className="font-display text-[40px] leading-none font-light text-gold transition-transform duration-500 group-hover:-translate-y-1 md:text-[56px]">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <p className="font-display text-xs tracking-[0.3em] text-muted uppercase md:mt-3">
+                    {c.en}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] md:text-[22px]">
+                    {c.q}
+                  </h3>
+                  {c.a && (
+                    <p className="mt-4 text-[15px] leading-[1.85] text-muted md:text-[17px]">
+                      {c.a}
+                    </p>
+                  )}
+                  {c.list && (
+                    <ul className="mt-5 grid gap-3 text-[15px] leading-relaxed text-muted md:text-base">
+                      {c.list.map((x, k) => (
+                        <li
+                          key={x}
+                          className="ac-item flex gap-3"
+                          style={
+                            {
+                              "--d": `${300 + k * 90}ms`,
+                            } as React.CSSProperties
+                          }
+                        >
+                          <svg
+                            aria-hidden
+                            viewBox="0 0 16 16"
+                            className="mt-[5px] h-3.5 w-3.5 shrink-0 text-gold"
+                          >
+                            <path
+                              d="M3 8.5l3 3 7-7"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          {x}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </Reveal>
             ))}
-          </div>
-          <Reveal
-            delay={200}
-            className="rounded-[24px] border border-line p-8 md:p-10"
-          >
-            <h3 className="text-lg font-semibold tracking-[-0.02em] md:text-xl">
-              시술 전후 주의사항 · 부작용
-            </h3>
-            <MoreToggle
-              hidden={Math.max(
-                0,
-                t.cautions.length + commonCautions.length - 3,
-              )}
-              label="주의사항 더 보기"
-            >
-              <ul className="mt-4 grid gap-2.5 text-sm leading-relaxed text-muted">
-                {[...t.cautions, ...commonCautions].map((c, i) => (
-                  <li
-                    key={c}
-                    className={`flex gap-2 ${i >= 3 ? "more-item" : ""}`}
-                  >
-                    <span
-                      aria-hidden
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
-                    />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </MoreToggle>
-          </Reveal>
+          </ol>
         </div>
       </section>
 

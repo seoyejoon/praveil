@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import FloatingCta from "@/components/FloatingCta";
 import QuickMenu from "@/components/QuickMenu";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
+import PageTransition from "@/components/PageTransition";
 import PopupLayer from "@/components/PopupLayer";
 import { getHospital, getPopups } from "@/lib/data";
 import { getMember, getSignupSettings } from "@/lib/member";
@@ -121,6 +123,8 @@ export default async function RootLayout({
         <QuickMenu hospital={hospital} />
         <PopupLayer popups={popups} />
         <SmoothScroll />
+        <PageTransition />
+        <CustomCursor />
       </body>
     </html>
   );

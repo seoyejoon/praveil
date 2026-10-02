@@ -564,3 +564,78 @@ html[data-header="hidden"] .sub-tabs {
     display: none;
   }
 }
+
+/* 금색 커서 (CustomCursor, 마우스가 있는 PC만) */
+.cursor-layer {
+  display: none;
+}
+html.has-cursor .cursor-layer {
+  display: block;
+}
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+html.has-cursor input,
+html.has-cursor textarea,
+html.has-cursor select,
+html.has-cursor [contenteditable] {
+  cursor: text !important;
+}
+.cursor-ring,
+.cursor-dot {
+  will-change: transform;
+}
+.cursor-ring-shape {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1px solid rgba(168, 142, 106, 0.7);
+  transition:
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s,
+    border-color 0.35s,
+    opacity 0.3s;
+}
+.cursor-dot-shape {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.cursor-label {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+html[data-cur="hover"] .cursor-ring-shape {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  background-color: rgba(168, 142, 106, 0.12);
+  border-color: rgba(168, 142, 106, 0.9);
+}
+html[data-cur="hover"] .cursor-dot-shape {
+  transform: scale(0.5);
+}
+html[data-cur="label"] .cursor-ring-shape {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background-color: rgba(168, 142, 106, 0.92);
+  border-color: transparent;
+}
+html[data-cur="label"] .cursor-label {
+  opacity: 1;
+}
+html[data-cur="label"] .cursor-dot-shape,
+html[data-cur="off"] .cursor-dot-shape,
+html[data-cur="off"] .cursor-ring-shape {
+  opacity: 0;
+}
+html.cursor-down .cursor-ring-shape {
+  transform: scale(0.85);
+}

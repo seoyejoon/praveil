@@ -91,11 +91,18 @@ export default function MainScan({
               </p>
               <Reveal
                 variant="line"
-                className="mt-5 text-[26px] leading-[1.4] font-light tracking-[-0.03em] md:text-[40px]"
+                className="mt-5 text-[28px] leading-[1.35] font-light tracking-[-0.04em] md:text-[46px]"
               >
-                {title.map((t) => (
+                {/* 첫 줄은 얇게, 마지막 줄(핵심)은 굵게 */}
+                {title.map((t, i) => (
                   <span key={t}>
-                    <span>{t}</span>
+                    <span
+                      className={
+                        i === title.length - 1 ? "font-bold" : undefined
+                      }
+                    >
+                      {t}
+                    </span>
                   </span>
                 ))}
               </Reveal>

@@ -214,11 +214,9 @@ export default function BeforeAfterBoard({
 
 // 시술 페이지 안의 전후사진 (같은 시술 사례 몇 개 + 전체 보기)
 export function BaPreview({
-  member,
   cases,
   title,
 }: {
-  member: boolean;
   cases: BeforeAfterCase[];
   title: string;
 }) {
@@ -232,20 +230,33 @@ export function BaPreview({
           <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
             {title} 전후사진
           </h2>
-          <p className="mt-3 text-sm text-muted">
-            {member
-              ? "결과는 개인에 따라 다를 수 있습니다."
-              : "시술 전 사진은 의료법에 따라 로그인한 회원에게만 공개합니다."}
-          </p>
         </div>
-        <div className="flex shrink-0 gap-2">
-          <Link
-            href="/before-after"
-            className="rounded-full border border-line px-6 py-3 text-sm transition hover:border-gold"
-          >
-            전체 보기
-          </Link>
-        </div>
+        <Link
+          href="/before-after"
+          className="group relative inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-x-100"
+          />
+          <span className="relative">전체 보기</span>
+          <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-espresso text-white transition-colors duration-500 group-hover:bg-white group-hover:text-gold">
+            <svg
+              aria-hidden
+              viewBox="0 0 16 16"
+              className="ba-arrow h-3.5 w-3.5"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </Link>
       </div>
       <ul className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
         {cases.map((c) => (
@@ -262,11 +273,6 @@ export function BaPreview({
               <p className="mt-1.5 line-clamp-1 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-mocha">
                 {c.title}
               </p>
-              {c.summary && (
-                <p className="mt-1 line-clamp-1 text-sm text-muted">
-                  {c.summary}
-                </p>
-              )}
             </Link>
           </li>
         ))}

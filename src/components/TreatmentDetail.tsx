@@ -56,9 +56,8 @@ type Props = {
   updated: string;
   /** 장비 시술: 장비 사진 · 원리 그림 · 특징 사진 · 시술 장면 구성 */
   story?: DeviceStory;
-  /** 이 시술 전후사진 (최대 3개) · 회원 여부 */
+  /** 이 시술 전후사진 (최대 3개, 시술 전 사진까지 공개) */
   baCases?: BeforeAfterCase[];
-  member?: boolean;
 };
 
 const compareRows: { key: keyof TreatmentGuide["profile"]; label: string }[] = [
@@ -86,7 +85,6 @@ export default function TreatmentDetail({
   updated,
   story,
   baCases = [],
-  member = false,
 }: Props) {
   // 쉬어 가는 사진: 병원 공간 사진 중 시술마다 다른 한 장 (같은 분류끼리 겹치지 않게)
   // 1 인포메이션 · 2 대기실 · 3 상담실 · 4 파우더룸 · 5 시술실 · 6 복도
@@ -852,7 +850,7 @@ export default function TreatmentDetail({
       {/* 전후사진 (회원 공개) */}
       {baCases.length > 0 ? (
         <section className="mx-auto max-w-[1400px] px-5 pt-20 md:px-10 md:pt-28">
-          <BaPreview member={member} cases={baCases} title={t.title} />
+          <BaPreview cases={baCases} title={t.title} />
         </section>
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
@@ -891,7 +889,10 @@ export default function TreatmentDetail({
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-32"
       >
         <div>
-          <h2 className="text-[28px] leading-snug font-bold tracking-[-0.03em] md:text-[40px]">
+          <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
+            FAQ
+          </p>
+          <h2 className="mt-4 text-[28px] leading-snug font-bold tracking-[-0.03em] md:text-[40px]">
             {t.title} 자주 묻는 질문
           </h2>
           <p className="mt-3 text-[15px] text-muted">

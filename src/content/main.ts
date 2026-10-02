@@ -102,7 +102,7 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      image: photo("best-filler"),
+      image: photo("best-retuo"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",
@@ -113,7 +113,7 @@ export const mainBest = {
       category: "피부관리",
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
-      image: photo("best-retuo"),
+      image: photo("best-filler"),
       headline: ["무너진 피부를 재건하는", "ECM 스킨부스터 리투오"],
       accent: "리투오",
       product: "/images/equipment/hero/retuo.webp",
@@ -124,7 +124,7 @@ export const mainBest = {
 // 특장점
 export const mainWhy = {
   label: "Why Praveil",
-  title: ["프라베일만의", "특별함"],
+  title: ["프라베일만의 특별함"],
   items: [
     {
       icon: "doctor",

@@ -42,7 +42,7 @@ export default function MainTreatments({
               className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]"
             >
               <span>
-                <span>진료 분야</span>
+                <span>프라베일 진료 분야</span>
               </span>
             </Reveal>
           </div>

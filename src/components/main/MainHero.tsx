@@ -438,7 +438,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
                         {eyebrow}
                       </p>
                     )}
-                    <h2 className="text-[24px] leading-[1.4] font-light tracking-[-0.03em] md:text-[34px] 2xl:text-[40px]">
+                    <h2 className="text-[26px] leading-[1.35] font-light tracking-[-0.035em] md:text-[46px] 2xl:text-[56px]">
                       {/* 첫 줄은 얇게, 마지막 줄(핵심)은 굵게 */}
                       {s.title.map((t, k) => (
                         <span

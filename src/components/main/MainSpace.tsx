@@ -6,18 +6,24 @@ import Reveal from "@/components/Reveal";
 export default function MainSpace({ title, images }: { label?: string; title: string; images: string[] }) {
   return (
     <section className="overflow-hidden bg-ivory py-28 md:py-40">
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-5 md:items-end md:px-10">
         <div>
-          <Reveal variant="line" className="text-[30px] leading-[1.25] font-bold tracking-[-0.04em] md:text-[52px]">
+          {/* PC: 긴 제목 / 모바일: 짧게 한 줄 (버튼과 같은 줄) */}
+          <Reveal variant="line" className="hidden text-[52px] leading-[1.25] font-bold tracking-[-0.04em] md:block">
             <span>
               <span>{title}</span>
+            </span>
+          </Reveal>
+          <Reveal variant="line" className="text-[26px] leading-[1.25] font-bold tracking-[-0.04em] md:hidden">
+            <span>
+              <span>프라베일 둘러보기</span>
             </span>
           </Reveal>
         </div>
         <Link
           href="/about/philosophy"
           aria-label="병원 둘러보기"
-          className="grid h-14 w-14 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:border-gold hover:bg-gold hover:text-white"
+          className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-black/25 transition duration-500 hover:rotate-45 hover:border-gold hover:bg-gold hover:text-white md:h-14 md:w-14"
         >
           <ArrowUpRight className="h-5 w-5" strokeWidth={1.5} />
         </Link>

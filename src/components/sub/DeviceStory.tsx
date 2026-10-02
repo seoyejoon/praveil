@@ -297,7 +297,7 @@ export function StoryProcess({
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
       <SectionHead en="Process" title={`${title}, 어떻게 진행되나요?`} />
-      <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
+      <ol className="no-scrollbar -mx-5 mt-12 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
         {story.process.map((s, i) => (
           <Reveal
             as="li"
@@ -516,7 +516,7 @@ function PrincipleFigure({
           className="block h-auto w-full"
         />
         {/* 가리키는 표시 */}
-        {image.marks.map((m, i) => (
+        {image.marks.map((m) => (
           <div
             key={m.label}
             className="absolute"
@@ -525,16 +525,12 @@ function PrincipleFigure({
             <span className="absolute h-3 w-3 -translate-1/2 rounded-full bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.35)] md:h-3.5 md:w-3.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-white/70" />
             </span>
-            {/* 좁은 화면: 번호 */}
-            <span className="absolute -top-7 -left-2.5 grid h-5 w-5 place-items-center rounded-full bg-ink/80 text-[10px] text-white md:hidden">
-              {i + 1}
-            </span>
-            {/* 넓은 화면: 이름표 */}
+            {/* 이름표 (모바일은 작게) */}
             <span
-              className={`absolute hidden items-center gap-0 whitespace-nowrap md:flex ${m.above ? "-top-10" : "top-0 -translate-y-1/2"} ${m.side === "left" ? "right-2 flex-row-reverse" : "left-2"}`}
+              className={`absolute flex items-center gap-0 whitespace-nowrap ${m.above ? "top-2.5 md:-top-10" : "top-0 -translate-y-1/2"} ${m.side === "left" ? "right-1.5 flex-row-reverse md:right-2" : "left-1.5 md:left-2"}`}
             >
-              <span className="h-px w-8 bg-white/80 lg:w-12" />
-              <span className="rounded-full bg-ink/75 px-3.5 py-1.5 text-[13px] text-white backdrop-blur lg:text-sm">
+              <span className="h-px w-3 bg-white/80 md:w-8 lg:w-12" />
+              <span className="rounded-full bg-ink/75 px-2 py-[3px] text-[10.5px] text-white backdrop-blur md:px-3.5 md:py-1.5 md:text-[13px] lg:text-sm">
                 {m.label}
               </span>
             </span>
@@ -553,17 +549,6 @@ function PrincipleFigure({
           ))}
         </div>
       </div>
-      {/* 좁은 화면 설명 */}
-      <ol className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[13px] text-muted md:hidden">
-        {image.marks.map((m, i) => (
-          <li key={m.label} className="flex items-center gap-2">
-            <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-ink/80 text-[10px] text-white">
-              {i + 1}
-            </span>
-            {m.label}
-          </li>
-        ))}
-      </ol>
     </figure>
   );
 }
@@ -593,7 +578,7 @@ export function StoryCompare({
       <p className="mt-8 text-xs text-muted md:hidden">
         ← 옆으로 밀어서 비교해 보세요
       </p>
-      <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto px-5 md:mx-0 md:mt-12 md:px-0">
+      <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-12 md:px-0">
         <table className="w-full min-w-[720px] table-fixed border-collapse text-left">
           <colgroup>
             <col className="w-[120px] md:w-[150px]" />

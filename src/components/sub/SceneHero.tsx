@@ -73,7 +73,7 @@ export default function SceneHero({
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-16 aspect-[4/3] origin-[64%_80%] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform md:aspect-[2/1] lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
+        className="absolute inset-x-0 top-0 h-[58%] origin-[64%_80%] md:top-16 md:h-auto md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
       >
         <div className="absolute inset-0">
           {scene.video ? (

@@ -371,7 +371,7 @@ export default function TreatmentDetail({
               <p className="mt-10 text-xs text-muted md:hidden">
                 ← 옆으로 밀어서 비교해 보세요
               </p>
-              <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:px-0">
+              <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:px-0">
                 <table className="w-full min-w-[720px] table-fixed border-separate border-spacing-0 text-left">
                   <caption className="sr-only">
                     {t.title} 및 비슷한 시술 비교
@@ -455,7 +455,7 @@ export default function TreatmentDetail({
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
           <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
-          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
+          <ol className="no-scrollbar -mx-5 mt-12 flex scroll-px-5 gap-3 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-[24px] md:border md:border-line md:bg-line md:px-0">
             {t.points.map((p, i) => (
               <Reveal
                 as="li"
@@ -651,7 +651,7 @@ export default function TreatmentDetail({
               tone="dark"
               title={`${t.title} 효과는 언제 나타나고, 얼마나 유지되나요?`}
             />
-            <ol className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
+            <ol className="no-scrollbar -mx-6 mt-12 flex scroll-px-6 gap-3 overflow-x-auto overscroll-x-contain px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
               {g.timeline.map((s, i) => (
                 <Reveal
                   as="li"
@@ -684,7 +684,7 @@ export default function TreatmentDetail({
       {/* 통증 · 회복 · 주의사항 */}
       <section
         id="aftercare"
-        className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
+        className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pt-24 pb-6 md:scroll-mt-44 md:px-10 md:py-36"
       >
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div className="lg:sticky lg:top-36 lg:self-start">
@@ -855,7 +855,7 @@ export default function TreatmentDetail({
 
       {/* 전후사진 (회원 공개) */}
       {baCases.length > 0 ? (
-        <section className="mx-auto max-w-[1400px] px-5 pt-20 md:px-10 md:pt-28">
+        <section className="mx-auto max-w-[1400px] px-5 pt-12 md:px-10 md:pt-28">
           <BaPreview cases={baCases} title={t.title} />
         </section>
       ) : (

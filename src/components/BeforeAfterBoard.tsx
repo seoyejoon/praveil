@@ -157,7 +157,7 @@ export default function BeforeAfterBoard({
         </div>
       )}
 
-      <ul className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
+      <ul className="no-scrollbar flex gap-2 overflow-x-auto overscroll-x-contain pb-1">
         {[{ key: "all", label: "전체" }, ...used].map((c) => (
           <li key={c.key}>
             <button
@@ -246,7 +246,7 @@ export function BaPreview({
           </span>
         </Link>
       </div>
-      <ul className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
+      <ul className="no-scrollbar -mx-5 mt-10 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
         {cases.map((c) => (
           <li key={c.id} className="min-w-[82%] snap-start md:min-w-0">
             <Link href={`/before-after/${c.id}`} className="group block">

@@ -6,7 +6,7 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
   if (!posts.length) return null;
   return (
     <section id="blog" className="bg-white py-20 md:py-28">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-[1400px] items-start justify-between gap-4 px-5 md:items-end md:gap-6 md:px-10">
         <div>
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
             Blog
@@ -22,20 +22,21 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
           href={BLOG_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative isolate inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line bg-white py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+          aria-label="블로그 바로가기"
+          className="group relative isolate mt-7 inline-flex shrink-0 items-center gap-3 overflow-hidden rounded-full border border-line bg-white p-1 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:mt-0 md:py-2 md:pr-2 md:pl-6"
         >
           <span
             aria-hidden
             className="absolute inset-0 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-x-100"
           />
-          <span className="relative">블로그 바로가기</span>
+          <span className="relative hidden md:inline">블로그 바로가기</span>
           <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-[#03c75a] text-white transition-colors duration-500 group-hover:bg-white group-hover:text-gold">
             <ArrowSwap />
           </span>
         </a>
       </div>
 
-      <ul className="no-scrollbar mx-auto mt-12 flex max-w-[1400px] snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 md:mt-16 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-10">
+      <ul className="no-scrollbar mx-auto mt-12 flex max-w-[1400px] scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mt-16 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-10">
         {posts.slice(0, 4).map((p) => (
           <li key={p.link} className="w-[78%] shrink-0 snap-start md:w-auto">
             <a

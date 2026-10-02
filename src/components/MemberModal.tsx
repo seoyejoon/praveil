@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -37,6 +36,19 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  // 약관 '보기': 페이지를 떠나지 않고 이 창 위에 팝업으로
+  const [policy, setPolicy] = useState<{ title: string; body: string } | null>(null);
+  async function openPolicy(kind: "terms" | "privacy") {
+    const title = kind === "terms" ? "이용약관" : "개인정보 수집 · 이용 동의";
+    setPolicy({ title, body: "불러오는 중…" });
+    try {
+      const r = await fetch(`/api/policy/${kind}`);
+      const j = (await r.json()) as { body?: string };
+      setPolicy({ title, body: j.body || "내용을 불러오지 못했습니다." });
+    } catch {
+      setPolicy({ title, body: "내용을 불러오지 못했습니다." });
+    }
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -193,9 +205,16 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
                   <input type="checkbox" name={c.name} className="h-4 w-4 accent-[#3a2f28]" />
                   <span className="flex-1">{c.label}</span>
                   {c.href && (
-                    <Link href={c.href} target="_blank" className="text-xs text-muted underline underline-offset-2">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openPolicy(c.href === "/terms" ? "terms" : "privacy");
+                      }}
+                      className="text-xs text-muted underline underline-offset-2"
+                    >
                       보기
-                    </Link>
+                    </button>
                   )}
                 </label>
               ))}
@@ -206,6 +225,34 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
               {busy ? "가입 중…" : "가입하기"}
             </button>
           </form>
+        )}
+
+        {/* 약관 팝업 */}
+        {policy && (
+          <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/40 sm:items-center sm:p-6" onClick={() => setPolicy(null)}>
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={policy.title}
+              onClick={(e) => e.stopPropagation()}
+              className="flex max-h-[85svh] w-full flex-col overflow-hidden rounded-t-[24px] bg-white shadow-2xl sm:max-w-[560px] sm:rounded-[24px]"
+            >
+              <div className="flex items-center justify-between border-b border-line px-6 py-4">
+                <p className="text-[17px] font-semibold">{policy.title}</p>
+                <button type="button" onClick={() => setPolicy(null)} aria-label="닫기" className="grid h-9 w-9 place-items-center rounded-full text-xl text-muted hover:bg-ink/5 hover:text-ink">
+                  ×
+                </button>
+              </div>
+              <div data-lenis-prevent className="overflow-y-auto overscroll-contain px-6 py-5 text-[14px] leading-relaxed whitespace-pre-line text-ink/80">
+                {policy.body}
+              </div>
+              <div className="border-t border-line p-4">
+                <button type="button" onClick={() => setPolicy(null)} className="h-12 w-full rounded-full bg-ink text-[15px] text-cream">
+                  확인
+                </button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

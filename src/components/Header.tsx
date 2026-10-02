@@ -3,14 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import {
-  ArrowRight,
-  CalendarCheck,
-  LogOut,
-  Phone,
-  Plus,
-  UserRound,
-} from "lucide-react";
+import { ArrowRight, LogOut, Plus, UserRound } from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import BestMark from "@/components/BestMark";
@@ -49,12 +42,7 @@ const megaIntro: Record<
 // - 어두운 첫 화면([data-dark-hero]) 위에서는 투명 + 흰 글자, 스크롤하면 흰 배경
 // - 아래로 스크롤하면 숨고, 위로 올리면 다시 나타남
 // - PC: 메뉴에 올리면 그 메뉴 바로 아래에 하위 메뉴만 따로 펼쳐짐 / 태블릿·모바일: 전체 화면 검정 메뉴
-export default function Header({
-  phone,
-  reservationUrl,
-  member,
-  signup,
-}: Props) {
+export default function Header({ member, signup }: Props) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -393,10 +381,10 @@ export default function Header({
       {/* 태블릿 · 모바일 전체 화면 메뉴 */}
       <div
         id="site-menu"
-        className={`fixed inset-0 z-[60] flex flex-col bg-espresso text-white transition-[clip-path] duration-700 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
+        className={`fixed inset-0 z-[60] flex flex-col bg-espresso text-white transition-[translate,visibility] duration-600 ease-[cubic-bezier(.76,0,.24,1)] xl:hidden ${
           open
-            ? "[clip-path:inset(0_0_0_0)]"
-            : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
+            ? "visible translate-x-0"
+            : "pointer-events-none invisible translate-x-full"
         }`}
         aria-hidden={!open}
       >
@@ -519,24 +507,6 @@ export default function Header({
             </div>
           </div>
         </nav>
-        <div className="grid shrink-0 grid-cols-2 gap-px border-t border-white/10 bg-white/10">
-          <a
-            href={`tel:${phone}`}
-            className="flex items-center justify-center gap-2 bg-espresso py-5 text-sm"
-          >
-            <Phone className="h-4 w-4 text-taupe" strokeWidth={1.6} />
-            전화 상담
-          </a>
-          <a
-            href={reservationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-gold py-5 text-sm text-white"
-          >
-            <CalendarCheck className="h-4 w-4" strokeWidth={1.6} />
-            네이버 예약
-          </a>
-        </div>
       </div>
 
       <MemberModal

@@ -76,7 +76,7 @@ export default function NaverReviews() {
       aria-label="네이버 방문자 리뷰"
       className="overflow-hidden bg-[#f6f3ee] pt-20 pb-14 md:pt-28 md:pb-16"
     >
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-[1400px] items-start justify-between gap-4 px-5 md:items-end md:gap-6 md:px-10">
         <div>
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
             Reviews
@@ -109,13 +109,14 @@ export default function NaverReviews() {
           href={snapshot.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative isolate inline-flex shrink-0 items-center gap-3 self-start overflow-hidden rounded-full border border-line bg-white py-2 pr-2 pl-6 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:self-auto"
+          aria-label="네이버에서 전체 보기"
+          className="group relative isolate mt-7 inline-flex shrink-0 items-center gap-3 overflow-hidden rounded-full border border-line bg-white p-1 text-sm transition-colors duration-500 hover:border-gold hover:text-white md:mt-0 md:py-2 md:pr-2 md:pl-6"
         >
           <span
             aria-hidden
             className="absolute inset-0 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-x-100"
           />
-          <span className="relative">네이버에서 전체 보기</span>
+          <span className="relative hidden md:inline">네이버에서 전체 보기</span>
           <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-[#03c75a] text-white transition-colors duration-500 group-hover:bg-white group-hover:text-gold">
             <ArrowSwap />
           </span>

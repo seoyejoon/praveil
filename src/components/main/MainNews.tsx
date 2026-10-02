@@ -113,14 +113,15 @@ export default function MainNews({ items }: { items: Item[] }) {
                     <span className="min-w-0">
                       {/* 모바일: 날짜를 제목 위에 (제목 폭 확보) */}
                       <span className="mb-1.5 block font-display text-xs tracking-[0.1em] text-black/45 md:hidden">{n.createdAt.replace(/-/g, ".")}</span>
+                      <span className="flex min-w-0 items-center">
                       <span
                         title={n.type === "event" ? "이벤트" : "공지사항"}
-                        className={`mr-2 inline-grid h-6 w-6 place-items-center rounded-full align-middle md:mr-3 md:h-7 md:w-7 ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
+                        className={`mr-2 inline-grid h-6 w-6 shrink-0 place-items-center rounded-full align-middle md:mr-3 md:h-7 md:w-7 ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
                       >
                         {n.type === "event" ? <Gift className="h-3.5 w-3.5" strokeWidth={1.6} /> : <Megaphone className="h-3.5 w-3.5" strokeWidth={1.6} />}
                       </span>
-                      <span className="text-[16px] font-medium transition group-hover:underline group-hover:underline-offset-4 md:text-xl">{n.title}</span>
-                      {n.type === "event" && n.summary && <span className="mt-1 block text-xs text-black/45 md:pl-10">기간 {n.summary}</span>}
+                      <span className="truncate text-[15px] font-medium transition group-hover:underline group-hover:underline-offset-4 md:text-xl">{n.title}</span>
+                      </span>
                     </span>
                     <ArrowRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-2" strokeWidth={1.5} />
                   </Link>

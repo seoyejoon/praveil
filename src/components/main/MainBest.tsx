@@ -90,16 +90,15 @@ export default function MainBest({
         aria-label={title}
         className="relative h-svh min-h-[640px] overflow-hidden bg-[#ecebe8] text-ink"
       >
-        {/* 배경 사진: 지금 시술은 아래에서 위로 걷히며 나타나고, 지난 사진은 그대로 아래 깔림 */}
+        {/* 배경 사진: 옆으로 넘김 — 다음 사진은 오른쪽에서 밀려 들어오며 나타나고, 지난 사진은 왼쪽으로 밀려나며 사라짐 */}
         {items.map((x, i) => (
           <div
             key={x.href}
             aria-hidden={i !== active}
-            className="absolute inset-x-0 top-20 h-[48%] transition-[clip-path] duration-[1100ms] ease-[cubic-bezier(.76,0,.24,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
+            className="absolute inset-x-0 top-20 h-[48%] overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:h-[58%] lg:inset-0 lg:h-auto"
             style={{
-              clipPath:
-                i <= active ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)",
-              zIndex: i,
+              opacity: i === active ? 1 : 0,
+              zIndex: i === active ? 2 : 1,
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,7 +106,10 @@ export default function MainBest({
               src={x.image}
               alt={`${x.name} 시술 장면`}
               loading={i === 0 ? "eager" : "lazy"}
-              className={`h-full w-full object-cover object-[62%_center] lg:object-[72%_center] transition-transform duration-[2400ms] ease-out ${i === active ? "scale-100" : "scale-110"}`}
+              className="h-full w-full object-cover object-[62%_center] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+              style={{
+                transform: `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
+              }}
             />
           </div>
         ))}

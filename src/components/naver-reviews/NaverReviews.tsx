@@ -45,7 +45,7 @@ export default function NaverReviews() {
     <li
       key={(hidden ? "dup-" : "") + r.id}
       aria-hidden={hidden || undefined}
-      className="flex w-[300px] shrink-0 snap-start flex-col rounded-[24px] border border-line bg-white p-7 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_20px_40px_-24px_rgba(60,40,20,.35)] md:w-[360px] md:p-8"
+      className="flex w-[300px] shrink-0 snap-start flex-col rounded-[24px] border border-line bg-white p-7 transition duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_18px_36px_-22px_rgba(60,40,20,.35)] md:w-[360px] md:p-8"
     >
       <div className="flex items-start justify-between">
         <span
@@ -88,7 +88,7 @@ export default function NaverReviews() {
     <section
       id="naver-reviews"
       aria-label="네이버 방문자 리뷰"
-      className="overflow-hidden bg-[#f6f3ee] py-20 md:py-28"
+      className="overflow-hidden bg-[#f6f3ee] pt-20 pb-14 md:pt-28 md:pb-16"
     >
       <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between md:px-10">
         <div>
@@ -115,8 +115,7 @@ export default function NaverReviews() {
               <span className="text-sm text-muted">방문자 리뷰</span>
             </div>
             <span className="rounded-full bg-white px-3 py-1.5 text-xs text-muted">
-              {formatDate(snapshot.capturedOn)} 기준 · 이전 명칭{" "}
-              {snapshot.placeNameAtCapture}
+              {formatDate(snapshot.capturedOn)} 기준
             </span>
           </div>
         </div>
@@ -138,7 +137,7 @@ export default function NaverReviews() {
       </div>
 
       {/* 흐르는 카드 줄: 같은 목록을 두 번 이어 붙여 끊김 없이 반복 */}
-      <div className="review-marquee no-scrollbar mt-12 overflow-x-auto md:mt-16">
+      <div className="review-marquee no-scrollbar mt-6 overflow-x-auto py-6 md:mt-8 md:pt-8 md:pb-12">
         <ul className="review-track flex w-max gap-4 px-5 md:gap-5 md:px-10">
           {reviews.map((r) => card(r))}
           {reviews.map((r) => card(r, true))}

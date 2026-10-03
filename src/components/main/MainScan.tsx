@@ -91,7 +91,7 @@ export default function MainScan({
               </p>
               <Reveal
                 variant="line"
-                className="mt-5 text-[28px] leading-[1.35] font-light tracking-[-0.04em] md:text-[46px]"
+                className="mt-5 text-[min(28px,6.9vw)] leading-[1.35] font-light tracking-[-0.04em] md:text-[46px]"
               >
                 {/* 첫 줄은 얇게, 마지막 줄(핵심)은 굵게 */}
                 {title.map((t, i) => (

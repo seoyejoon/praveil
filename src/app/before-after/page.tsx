@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "전후사진",
   description:
     "프라베일 맑고고운의원 시술 전후사진. 시술 전 사진은 의료법에 따라 로그인한 회원에게만 공개합니다.",
+  alternates: { canonical: "/before-after" },
 };
 
 // 전후사진: 시술 후 사진은 누구나, 시술 전 사진은 회원만 (비회원에게는 사진 주소 자체를 보내지 않음)

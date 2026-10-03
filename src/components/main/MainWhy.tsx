@@ -45,7 +45,7 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
               <img
                 key={item.image}
                 src={item.image}
-                alt=""
+                alt={`프라베일 맑고고운의원 ${item.title}`}
                 loading="lazy"
                 className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1.1s] ease-[cubic-bezier(.22,1,.36,1)] ${
                   active === i ? "scale-100 opacity-100" : "scale-110 opacity-0"
@@ -81,7 +81,7 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
                   <p className="mt-4 text-[15px] leading-relaxed text-black/60 md:text-lg">{item.text}</p>
                   <div className="mt-6 aspect-[16/10] overflow-hidden rounded-[18px] lg:hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+                    <img src={item.image} alt={`프라베일 맑고고운의원 ${item.title}`} loading="lazy" className="h-full w-full object-cover" />
                   </div>
                 </div>
               </div>

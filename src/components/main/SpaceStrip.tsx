@@ -147,7 +147,7 @@ export default function SpaceStrip({ images }: { images: string[] }) {
             <img
               key={`${set}-${i}`}
               src={src}
-              alt=""
+              alt={set === 0 ? `프라베일 맑고고운의원 내부 공간 ${i + 1}` : ""}
               loading="lazy"
               draggable={false}
               aria-hidden={set === 1}

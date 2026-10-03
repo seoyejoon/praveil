@@ -28,10 +28,15 @@ const boardOf = async (searchParams: Props["searchParams"]) =>
 export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
-  const b = boards[await boardOf(searchParams)];
+  const type = await boardOf(searchParams);
+  const b = boards[type];
   return {
     title: b.title,
     description: `프라베일 맑고고운의원 ${b.title}. ${b.description}`,
+    // 공지사항 · 이벤트는 같은 주소에 ?type 만 다름 → 각각을 대표 주소로 알려 중복으로 보이지 않게
+    alternates: {
+      canonical: type === "event" ? "/notice?type=event" : "/notice",
+    },
   };
 }
 

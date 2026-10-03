@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MainBest from "@/components/main/MainBest";
 import MainDoctor from "@/components/main/MainDoctor";
 import MainHero from "@/components/main/MainHero";
@@ -21,11 +22,20 @@ import { getDoctor, getNotices } from "@/lib/data";
 import { coverOf } from "@/lib/notice";
 
 // 메인 (2026.10 리뉴얼): 첫 화면(모델 영상) → 피부 분석 → 대표 시술 4종 → 특장점 → 대표원장 → 진료 분야 → 공간 → 소식 (진료시간 · 오시는 길은 푸터와 한 화면)
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function Home() {
   const [doctor, notices] = await Promise.all([getDoctor(), getNotices()]);
 
   return (
     <>
+      {/* 검색엔진 · AI 가 이 페이지의 주제를 알 수 있게 하는 대표 제목 (화면에는 보이지 않음) */}
+      <h1 className="sr-only">
+        인천 남동구 피부과 프라베일 맑고고운의원 — 대표원장 책임 진료, 쿨소닉 ·
+        쿨페이즈 리프팅 · 필러 · 스킨부스터
+      </h1>
       <MainHero {...mainHero} />
       <MainScan {...mainScan} />
       <MainBest

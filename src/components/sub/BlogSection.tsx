@@ -50,7 +50,7 @@ export default function BlogSection({ posts }: { posts: BlogPost[] }) {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={p.thumb}
-                    alt=""
+                    alt={p.title}
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]"

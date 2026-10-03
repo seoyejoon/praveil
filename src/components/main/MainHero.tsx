@@ -407,7 +407,7 @@ export default function MainHero({ eyebrow, scenes, entrance }: Props) {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(30,24,18,0.28),transparent_18%,transparent_52%,rgba(30,24,18,0.72))]" />
 
           {/* 장면별 문구 */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto max-w-[1600px] px-5 pb-28 md:px-10 md:pb-20">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto max-w-[1600px] px-5 pb-[calc(7rem+var(--app-pad,0px))] md:px-10 md:pb-20">
             <div className="relative grid">
               {scenes.map((s, i) => (
                 <div

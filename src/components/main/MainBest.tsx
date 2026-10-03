@@ -138,7 +138,7 @@ export default function MainBest({
           data-cursor-image={it.product}
           className="absolute inset-0 z-[15]"
         />
-        <div className="pointer-events-none relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-7 pb-6 md:px-10 md:pt-28 lg:pb-8">
+        <div className="pointer-events-none relative z-20 mx-auto flex h-full max-w-[1600px] flex-col px-5 pt-7 pb-[calc(1.5rem+var(--app-pad,0px))] md:px-10 md:pt-28 lg:pb-8">
           {/* 위: 섹션 이름 · 순서 */}
           <div className="flex items-start justify-between">
             <div>

@@ -12,7 +12,7 @@ const boards = {
     en: "Notice",
     title: "공지사항",
     description: "진료 일정과 병원 소식을 알려 드립니다.",
-    image: "/images/photos/hero-news.webp",
+    image: "/images/photos/hero-notice.webp",
   },
   event: {
     en: "Event",

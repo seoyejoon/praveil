@@ -18,7 +18,7 @@ const boards = {
     en: "Event",
     title: "이벤트",
     description: "프라베일에서 진행하는 이벤트를 확인해 보세요.",
-    image: "/images/photos/clinic-2.webp",
+    image: "/images/photos/hero-event.webp",
   },
 };
 

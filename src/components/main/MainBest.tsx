@@ -98,7 +98,7 @@ export default function MainBest({
       <section
         ref={rootRef}
         aria-label={title}
-        className="relative h-svh min-h-[640px] overflow-hidden bg-[#ecebe8] text-ink"
+        className="relative h-[max(100svh,var(--app-h,100svh))] min-h-[640px] lg:h-svh overflow-hidden bg-[#ecebe8] text-ink"
       >
         {/* 배경 사진: 옆으로 넘김 — 다음 사진은 오른쪽에서 밀려 들어오며 나타나고, 지난 사진은 왼쪽으로 밀려나며 사라짐 */}
         {items.map((x, i) => (

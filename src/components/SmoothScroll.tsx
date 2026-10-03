@@ -30,8 +30,41 @@ export default function SmoothScroll() {
     };
     setAppH();
     window.addEventListener("resize", setAppH);
+    // 앱 안 브라우저(카카오톡 등)는 스크롤하면 아래 도구막대가 사라지며 화면이 길어지는데,
+    // 고정 장면(첫 화면 · 시그니처)은 처음 높이에 묶여 아래가 비어 보임 → 화면이 커지면 스크롤이 멈춘 뒤 한 번 다시 맞춤
+    const inApp =
+      /KAKAOTALK|Instagram|FBAN|FBAV|NAVER|Line\/|DaumApps|Whale/i.test(
+        navigator.userAgent,
+      );
+    let fitH = window.innerHeight;
+    let fitTimer = 0;
+    let lastScroll = 0;
+    const onScrollMark = () => (lastScroll = performance.now());
+    const refit = () => {
+      if (!inApp || window.innerHeight - fitH < 30) return;
+      clearTimeout(fitTimer);
+      const tryFit = () => {
+        if (performance.now() - lastScroll < 250) {
+          fitTimer = window.setTimeout(tryFit, 150);
+          return;
+        }
+        fitH = window.innerHeight;
+        ScrollTrigger.refresh();
+      };
+      fitTimer = window.setTimeout(tryFit, 200);
+    };
+    window.addEventListener("scroll", onScrollMark, { passive: true });
+    window.addEventListener("resize", refit);
+    const cleanupFit = () => {
+      clearTimeout(fitTimer);
+      window.removeEventListener("scroll", onScrollMark);
+      window.removeEventListener("resize", refit);
+    };
     if (reducedMotion())
-      return () => window.removeEventListener("resize", setAppH);
+      return () => {
+        window.removeEventListener("resize", setAppH);
+        cleanupFit();
+      };
     const lenis = new Lenis({
       duration: 1.15,
       smoothWheel: true,
@@ -46,6 +79,7 @@ export default function SmoothScroll() {
     gsap.ticker.lagSmoothing(0);
     return () => {
       window.removeEventListener("resize", setAppH);
+      cleanupFit();
       gsap.ticker.remove(tick);
       lenis.destroy();
       delete (window as unknown as { __lenis?: Lenis }).__lenis;

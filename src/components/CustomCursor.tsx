@@ -28,10 +28,14 @@ export default function CustomCursor() {
       ry = -100,
       raf = 0,
       idle = 0,
-      shown = false;
-    const tick = () => {
-      rx += (x - rx) * 0.18;
-      ry += (y - ry) * 0.18;
+      shown = false,
+      last = performance.now();
+    // 원이 따라오는 속도: 화면 주사율과 상관없이 같은 빠르기 (빨리 움직여도 크게 뒤처지지 않게)
+    const tick = (now: number) => {
+      const k = 1 - Math.pow(1 - 0.38, Math.min(64, now - last) / 16.7);
+      last = now;
+      rx += (x - rx) * k;
+      ry += (y - ry) * k;
       dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
       raf = requestAnimationFrame(tick);

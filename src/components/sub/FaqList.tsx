@@ -29,28 +29,26 @@ function Answer({ text }: { text: string }) {
         </p>
       ))}
       {sources.length > 0 && (
-        <div className="mt-6 border-t border-ink/10 pt-4">
-          <p className="text-[12px] font-semibold tracking-[0.08em] text-ink/50">
-            참고 자료
-          </p>
-          <ul className="mt-2 grid gap-1.5 text-[13px] leading-snug">
-            {sources.map((s) => (
-              <li key={s.href + s.label} className="flex gap-2">
-                <span aria-hidden className="text-gold/70">
-                  ·
+        <p className="mt-6 border-t border-ink/10 pt-4 text-[13px] leading-[1.9]">
+          <span className="mr-3 font-semibold text-ink/50">참고 자료</span>
+          {sources.map((s, i) => (
+            <span key={s.href + s.label} className="whitespace-nowrap">
+              {i > 0 && (
+                <span aria-hidden className="mx-2 text-ink/25">
+                  |
                 </span>
-                <a
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="text-muted underline decoration-ink/20 underline-offset-4 transition hover:text-gold hover:decoration-gold"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+              )}
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-muted underline decoration-ink/20 underline-offset-4 transition hover:text-gold hover:decoration-gold"
+              >
+                {s.label}
+              </a>
+            </span>
+          ))}
+        </p>
       )}
     </>
   );

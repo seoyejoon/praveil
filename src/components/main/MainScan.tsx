@@ -154,7 +154,7 @@ export default function MainScan({
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span
-                          className={`mt-1 block pr-2 text-[13px] font-medium tracking-[-0.02em] break-keep transition-colors duration-500 md:text-[17px] ${
+                          className={`mt-1 block pr-2 text-[13px] font-semibold tracking-[-0.02em] break-keep transition-colors duration-500 md:text-[17px] ${
                             on
                               ? "text-ink"
                               : done

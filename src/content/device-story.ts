@@ -82,7 +82,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "초음파 에너지 집속",
-        text: "초음파 에너지를 피부 속 목표 지점에 집속합니다. 에너지는 표피를 통과해 목표한 깊이에서만 작용합니다.",
+        text: "초음파 에너지를 피부 속 목표 지점에 집속합니다. 표피 손상을 줄이면서 목표한 깊이에 에너지를 전달합니다.",
       },
       {
         title: "목표 깊이에 열응고점 형성",
@@ -90,7 +90,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "조직 수축과 콜라겐 재생",
-        text: "열 자극을 받은 조직이 수축하고, 수 주에 걸쳐 콜라겐 재생이 유도됩니다.",
+        text: "열 자극을 받은 조직이 수축하고, 수 주에 걸쳐 콜라겐 재생을 유도합니다.",
       },
     ],
     depths: ["1.5mm", "3.0mm", "4.5mm"],
@@ -160,7 +160,12 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "회복",
-          values: ["바로 일상", "바로 일상", "바로 일상", "바로 일상"],
+          values: [
+            "일상생활 바로 가능",
+            "일상생활 바로 가능",
+            "일상생활 바로 가능",
+            "일상생활 바로 가능",
+          ],
         },
       ],
       note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다.",
@@ -169,27 +174,27 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달",
-        text: "쿨소닉은 3가지 깊이에 대응하는 어플리케이터를 사용합니다. 목표 깊이에 초음파 에너지를 전달해 피부 속 조직에 작용합니다.",
+        text: "1.5 · 3.0 · 4.5mm 3가지 어플리케이터로, 부위에 따라 깊이를 바꿔가며 에너지를 전달합니다.",
         image: cs("coolsonic-applicator"),
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",
       },
       {
         title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
-        text: "쿨소닉은 펜형 어플리케이터로 굴곡진 피부에도 밀착하기 쉽도록 설계되었습니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
+        text: "쿨소닉의 어플리케이터는 굴곡진 피부에도 밀착하기 쉬운 펜형 구조입니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
         image: cs("handpiece"),
         alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
       },
       {
         title: "쿨링으로 통증 부담을 줄이는 초음파 리프팅",
-        text: "쿨소닉은 피부 표면을 냉각하면서 고강도 집속 초음파(HIFU)를 전달합니다. ACC 냉각 기술을 적용해 시술 중 열감과 통증 부담을 줄이도록 설계되었습니다.",
+        text: "쿨소닉은 피부 표면을 냉각하면서 고강도 집속 초음파(HIFU)를 전달합니다. ACC 냉각 기술을 적용해 시술 중 열감과 통증 부담을 줄였습니다.",
         image: cs("coolsonic-cooling"),
         video: "/videos/coolsonic-cooling.mp4",
         alt: "쿨소닉 ACC 냉각 어플리케이터",
       },
       {
         title: "콜라겐과 탄성섬유의 재생 유도",
-        text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도하는 방식으로 리프팅에 활용됩니다.",
+        text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도해 탄력과 리프팅 효과를 기대할 수 있습니다.",
         image: cs("principle"),
         alt: "피부 속 목표 조직에 열응고점을 만드는 쿨소닉 집속 초음파 원리",
       },
@@ -197,7 +202,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 상담",
-        text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 설계합니다.",
+        text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
         image: photo("process-consult"),
         alt: "대표원장 1:1 상담",
       },
@@ -209,7 +214,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "시술",
-        text: "피부 표면을 냉각하면서, 진단 단계에서 설계한 깊이에 맞춰 층별로 나누어 시술합니다.",
+        text: "피부 표면을 냉각하면서, 상담 때 정한 깊이에 맞춰 층별로 나누어 시술합니다.",
         image: photo("process-treatment"),
         alt: "대표원장이 쿨소닉으로 시술하는 모습",
       },

@@ -14,7 +14,10 @@ export const mainHero = {
       after: "계획",
     },
     {
-      title: ["처음부터 끝까지 당신만을 위한 플랜,", "대표원장 책임 진료 시스템"],
+      title: [
+        "처음부터 끝까지 당신만을 위한 플랜,",
+        "대표원장 책임 진료 시스템",
+      ],
       sub: "프라베일 맑고고운의원",
     },
   ],
@@ -94,7 +97,10 @@ export const mainBest = {
       text: "고주파로 피부 속 콜라겐을 자극해, 결과 탄력을 함께 끌어올립니다.",
       image: photo("best-coolphase"),
       mobileImage: photo("best-coolphase-m"),
-      headline: ["느슨해진 피부를 탄탄하게 조이는", "쿨링 고주파 리프팅 쿨페이즈"],
+      headline: [
+        "느슨해진 피부를 탄탄하게 조이는",
+        "쿨링 고주파 리프팅 쿨페이즈",
+      ],
       accent: "쿨페이즈",
       product: "/images/equipment/hero/coolphase.webp",
     },

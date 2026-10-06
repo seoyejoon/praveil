@@ -155,8 +155,7 @@ export default function TreatmentDetail({
           <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
             {hospital.name}
             {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 직접
-            정밀한 진단을 통해 시술 적합 여부를 판단하고, 1:1 맞춤으로 시술을
-            진행하고 있습니다.
+            진단해 시술 적합 여부를 판단하고, 1:1 맞춤으로 시술합니다.
           </p>
           <div className="mt-10 border-t border-ink/15 pt-8">
             <p className="text-sm text-gold">{doctor.title}</p>
@@ -902,9 +901,7 @@ export default function TreatmentDetail({
             {t.title} 자주 묻는 질문
           </h2>
           <p className="mt-3 text-[15px] text-muted">
-            {hospital.name}에서 {t.title}
-            {josa(t.title, "을", "를")} 상담하실 때 많이 물어보시는 질문을
-            정리했습니다.
+            {t.title} 상담 시 자주 묻는 질문을 정리했습니다.
           </p>
         </div>
         <div className="mt-10 md:mt-12">

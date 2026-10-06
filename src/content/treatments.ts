@@ -49,7 +49,7 @@ export const treatments: Treatment[] = [
     href: "/lifting/coolsonic",
     en: "Coolsonic",
     title: "쿨소닉",
-    description: "깊이별로 설계하는 쿨링 초음파 리프팅",
+    description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
       mobileSrc: "/images/photos/best-coolsonic-m.webp",
@@ -57,12 +57,17 @@ export const treatments: Treatment[] = [
       video: "/videos/hero-coolsonic.mp4",
       pulse: [64.2, 88.4],
       chips: [
-        { x: 55, y: 22, en: "Depth", label: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달" },
-        { x: 50, y: 50, en: "Cooling", label: "피부 표면 냉각 시스템" },
+        {
+          x: 55,
+          y: 22,
+          en: "Depth",
+          label: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달",
+        },
+        { x: 50, y: 50, en: "Cooling", label: "ACC 피부 표면 냉각" },
       ],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
-    headline: ["피부 깊은 층부터 설계하는", "쿨소닉 초음파 리프팅"],
+    headline: ["피부 깊은 층까지 전달하는", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
     photo: stock("coolsonic"),

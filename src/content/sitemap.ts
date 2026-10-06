@@ -42,8 +42,16 @@ export const sitemap: SiteSection[] = [
     pages: [
       { href: "/lifting/coolsonic", label: "쿨소닉", best: true },
       { href: "/lifting/coolphase", label: "쿨페이즈", best: true },
-      { href: "/lifting/laser", label: "레이저리프팅", items: ["슈링크 유니버스", "포텐자", "클라리티"] },
-      { href: "/lifting/thread", label: "실리프팅", items: ["민트실", "잼버실"] },
+      {
+        href: "/lifting/laser",
+        label: "레이저리프팅",
+        items: ["슈링크 유니버스", "포텐자", "클라리티"],
+      },
+      {
+        href: "/lifting/thread",
+        label: "실리프팅",
+        items: ["민트실", "잼버실"],
+      },
     ],
   },
   {
@@ -58,12 +66,30 @@ export const sitemap: SiteSection[] = [
         href: "/petit/filler",
         label: "필러",
         best: true,
-        items: ["볼륨", "이마", "팔자", "입술", "애교", "상안검", "깊은 주름", "목주름"],
+        items: [
+          "볼륨",
+          "이마",
+          "팔자",
+          "입술",
+          "애교",
+          "상안검",
+          "깊은 주름",
+          "목주름",
+        ],
       },
       {
         href: "/petit/botox",
         label: "보톡스",
-        items: ["표정주름", "턱", "슈퍼턱", "특수부위", "스킨", "승모근", "종아리", "다한증"],
+        items: [
+          "표정주름",
+          "턱",
+          "슈퍼턱",
+          "특수부위",
+          "스킨",
+          "승모근",
+          "종아리",
+          "다한증",
+        ],
       },
     ],
   },
@@ -76,8 +102,16 @@ export const sitemap: SiteSection[] = [
     summary: "피부 속부터 채우는 부스터와 관리",
     pages: [
       { href: "/skin/retuo", label: "리투오", best: true },
-      { href: "/skin/booster", label: "스킨부스터", items: ["리쥬란힐러", "리쥬란아이", "엑소좀"] },
-      { href: "/skin/collagen", label: "콜라겐부스터", items: ["리투오", "쥬베룩", "울트라콜"] },
+      {
+        href: "/skin/booster",
+        label: "스킨부스터",
+        items: ["리쥬란힐러", "리쥬란아이", "엑소좀"],
+      },
+      {
+        href: "/skin/collagen",
+        label: "콜라겐부스터",
+        items: ["리투오", "쥬베룩", "울트라콜"],
+      },
     ],
   },
   {
@@ -91,7 +125,14 @@ export const sitemap: SiteSection[] = [
       {
         href: "/acne-pore",
         label: "여드름 · 모공",
-        items: ["프락셀", "피코프락셀", "블랙필", "아크네 프로그램", "압출관리", "GA 스케일링"],
+        items: [
+          "프락셀",
+          "피코프락셀",
+          "블랙필",
+          "아크네 프로그램",
+          "압출관리",
+          "GA 스케일링",
+        ],
       },
     ],
   },
@@ -104,7 +145,11 @@ export const sitemap: SiteSection[] = [
     summary: "레이저 제모와 눈썹 · 아이라인 문신제거",
     pages: [
       { href: "/removal/hair", label: "레이저제모", items: ["여성", "남성"] },
-      { href: "/removal/tattoo", label: "문신제거", items: ["눈썹", "아이라인", "언더라인"] },
+      {
+        href: "/removal/tattoo",
+        label: "문신제거",
+        items: ["눈썹", "아이라인", "언더라인"],
+      },
     ],
   },
   {
@@ -123,7 +168,12 @@ export const sitemap: SiteSection[] = [
 /** 아직 만들지 않은 페이지 (메인 시안 단계): '준비 중' 화면으로 연결 */
 export const pendingPaths = sitemap
   .flatMap((s) => s.pages.map((p) => p.href))
-  .filter((href) => !href.startsWith("/about") && !href.startsWith("/location") && !href.startsWith("/notice"));
+  .filter(
+    (href) =>
+      !href.startsWith("/about") &&
+      !href.startsWith("/location") &&
+      !href.startsWith("/notice"),
+  );
 
 export function findPage(path: string) {
   for (const section of sitemap) {
@@ -134,10 +184,30 @@ export function findPage(path: string) {
 }
 
 // 상단 메뉴: ABOUT / PRAVEIL / COMMUNITY 3개. PRAVEIL 아래에 시술 분류 5개가 칸으로 펼쳐진다.
-export type MenuGroup = { key: string; label: string; href: string; columns: SiteSection[] };
+export type MenuGroup = {
+  key: string;
+  label: string;
+  href: string;
+  columns: SiteSection[];
+};
 const byKey = (key: string) => sitemap.find((s) => s.key === key)!;
 export const menu: MenuGroup[] = [
-  { key: "about", label: "ABOUT", href: "/about/philosophy", columns: [byKey("praveil")] },
-  { key: "praveil", label: "PRAVEIL", href: "/lifting/coolsonic", columns: sitemap.filter((s) => s.treatment) },
-  { key: "community", label: "COMMUNITY", href: "/notice", columns: [byKey("community")] },
+  {
+    key: "about",
+    label: "ABOUT",
+    href: "/about/philosophy",
+    columns: [byKey("praveil")],
+  },
+  {
+    key: "praveil",
+    label: "PRAVEIL",
+    href: "/lifting/coolsonic",
+    columns: sitemap.filter((s) => s.treatment),
+  },
+  {
+    key: "community",
+    label: "COMMUNITY",
+    href: "/notice",
+    columns: [byKey("community")],
+  },
 ];

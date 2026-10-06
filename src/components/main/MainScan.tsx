@@ -91,7 +91,7 @@ export default function MainScan({
               </p>
               <Reveal
                 variant="line"
-                className="mt-5 text-[min(28px,6.9vw)] leading-[1.35] font-light tracking-[-0.04em] md:text-[46px]"
+                className="mt-5 text-[min(28px,6.9vw)] leading-[1.35] font-light tracking-[-0.04em] md:text-[46px] xl:text-[52px]"
               >
                 {/* 첫 줄은 얇게, 마지막 줄(핵심)은 굵게 */}
                 {title.map((t, i) => (
@@ -107,7 +107,7 @@ export default function MainScan({
                 ))}
               </Reveal>
               <Reveal delay={150}>
-                <p className="mt-5 max-w-[520px] text-[14px] leading-relaxed text-muted md:text-[15px] md:whitespace-pre-line">
+                <p className="mt-6 max-w-[560px] text-[15px] leading-[1.75] text-muted md:text-[17px] md:whitespace-pre-line">
                   {text}
                 </p>
               </Reveal>
@@ -115,8 +115,8 @@ export default function MainScan({
               {/* 진료 흐름: 스크롤을 따라 01 → 04 차례로 켜짐
                   - 첫 원이 글과 같은 왼쪽 선에서 시작, 원 아래 번호 · 이름도 왼쪽 맞춤
                   - 원과 원 사이는 짧은 선 (원을 관통하지 않게 양쪽에 여백), 지난 구간은 금색 */}
-              <Reveal delay={300} className="mt-10 lg:mt-14">
-                <ol className="grid max-w-[600px] grid-cols-4">
+              <Reveal delay={300} className="mt-10 lg:mt-12">
+                <ol className="grid max-w-[640px] grid-cols-4">
                   {steps.map((s, i) => {
                     const Icon = stepIcons[i % stepIcons.length];
                     const on = i === step;
@@ -127,7 +127,7 @@ export default function MainScan({
                         {!last && (
                           <span
                             aria-hidden
-                            className="absolute top-6 right-3 left-[60px] h-px overflow-hidden bg-line md:top-[26px] md:left-[64px]"
+                            className="absolute top-6 right-3 left-[60px] h-px overflow-hidden bg-line md:top-[30px] md:left-[72px]"
                           >
                             <span
                               className={`block h-full origin-left bg-gold transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${done ? "scale-x-100" : "scale-x-0"}`}
@@ -135,7 +135,7 @@ export default function MainScan({
                           </span>
                         )}
                         <span
-                          className={`grid h-12 w-12 place-items-center rounded-full border transition-colors duration-500 md:h-[52px] md:w-[52px] ${
+                          className={`grid h-12 w-12 place-items-center rounded-full border transition-colors duration-500 md:h-[60px] md:w-[60px] ${
                             on
                               ? "border-gold bg-gold text-white shadow-[0_10px_24px_-12px_rgba(168,142,106,0.9)]"
                               : done
@@ -143,15 +143,18 @@ export default function MainScan({
                                 : "border-line bg-white text-ink/30"
                           }`}
                         >
-                          <Icon className="h-5 w-5" strokeWidth={1.4} />
+                          <Icon
+                            className="h-5 w-5 md:h-6 md:w-6"
+                            strokeWidth={1.4}
+                          />
                         </span>
                         <span
-                          className={`mt-4 block font-display text-[11px] tracking-[0.2em] transition-colors duration-500 ${on || done ? "text-gold" : "text-ink/30"}`}
+                          className={`mt-4 block font-display text-[11px] tracking-[0.2em] md:text-[12px] transition-colors duration-500 ${on || done ? "text-gold" : "text-ink/30"}`}
                         >
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span
-                          className={`mt-1 block pr-2 text-[13px] font-medium tracking-[-0.02em] break-keep transition-colors duration-500 md:text-[15px] ${
+                          className={`mt-1 block pr-2 text-[13px] font-medium tracking-[-0.02em] break-keep transition-colors duration-500 md:text-[17px] ${
                             on
                               ? "text-ink"
                               : done

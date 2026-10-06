@@ -20,7 +20,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 턱선이나 팔자주름이 고민이시라면, 피부가 처진 것인지 지방 · 볼륨이 빠진 것인지 먼저 진단합니다. 원인에 따라 맞는 치료가 달라지기 때문입니다.`,
     },
     {
-      q: "쿨소닉은 누구에게 적합하며, 시술 전 무엇을 확인해야 하나요?",
+      q: "쿨소닉은 어떤 분들에게 추천하나요?",
       a: `나이보다는 **피부 탄력, 처짐 정도, 조직 두께**를 보고 판단합니다. 처짐이 가볍거나 중간 정도일 때 변화를 느끼기 좋고, 처짐이 심하면 비수술 리프팅만으로는 한계가 있을 수 있습니다. [미국피부과학회 대상자 안내](https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin)
 
 얼굴이 얇거나 볼이 이미 꺼져 있다면, 탄력을 올릴 부위와 볼륨을 지켜야 할 부위를 나누어 계획합니다.
@@ -28,7 +28,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 상담 때는 임신 · 수유 여부, 피부 염증이나 상처, 복용 중인 약, 이전 시술 이력을 꼭 알려 주세요. 임플란트 · 교정장치 · 심박동기 같은 삽입물도 알려 주셔야 합니다. **시술 가능 여부와 주의사항은 제품 사용설명서 기준으로 최종 판단합니다.** [FDA 일반 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)`,
     },
     {
-      q: "쿨소닉은 아픈가요? 마취가 필요한가요?",
+      q: "쿨소닉, 많이 아픈가요?",
       a: `시술 전 마취 크림을 바르고, 냉각 기능으로 피부 표면의 열감을 줄여 통증 부담이 적은 편입니다. 다만 에너지는 피부 속에 전달되기 때문에 통증이 전혀 없지는 않습니다. 광대나 턱뼈처럼 뼈와 가까운 부위는 뻐근함이 느껴질 수 있습니다. [쿨소닉 공식 냉각 기술 설명](https://coolsoniq.com/)
 
 통증에 예민하시거나 이전 리프팅에서 많이 아프셨다면 미리 말씀해 주세요. 부위별로 에너지를 조절해 진행합니다.
@@ -36,7 +36,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 시술 중 불편하면 참지 말고 바로 말씀해 주세요. 갑자기 심해지는 통증은 접촉 상태와 설정을 다시 확인해야 하는 신호입니다.`,
     },
     {
-      q: "쿨소닉은 몇 샷을 받아야 하나요?",
+      q: "쿨소닉은 몇 샷이 적당한가요?",
       a: `샷 수는 시술 범위와 피부 상태를 보고 정합니다. 같은 샷 수라도 어느 부위에, 어떤 깊이로 나누어 쓰느냐에 따라 시술 내용이 달라집니다.
 
 **1.5 · 3.0 · 4.5mm는 어플리케이터의 목표 깊이**입니다. 사람마다 피부 두께가 달라 같은 깊이라도 닿는 층이 다를 수 있습니다. 그래서 얼굴 두께와 처짐 부위를 보고 깊이를 조합하며, 모든 깊이를 다 써야 좋은 것은 아닙니다. [Baumann · Zelickson의 MFU-V 임상 연구, 2016](https://pubmed.ncbi.nlm.nih.gov/27168269/)
@@ -44,7 +44,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 상담 때는 샷 수와 함께 **어느 부위에, 어떤 깊이로, 꺼진 부위는 어떻게 피하는지**를 확인하시면 시술 계획을 이해하기 쉽습니다.`,
     },
     {
-      q: "쿨소닉 효과는 언제부터 확인할 수 있나요?",
+      q: "쿨소닉 효과는 언제부터 나타나나요?",
       a: `시술 직후 당김감이 느껴지고, 변화는 보통 **1~3개월부터 보이기 시작해 6개월까지 서서히** 이어집니다. 열 자극 뒤 조직이 회복되며 콜라겐이 재생되는 시간이 필요해, 당일 모습만으로 결과를 판단하기는 어렵습니다. [미국피부과학회 초음파 시술 안내](https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin)
 
 초음파 리프팅 후 조직 변화를 살펴본 연구에서도 콜라겐과 탄성섬유가 점차 늘어나는 모습이 확인됐습니다. [Suh 등의 임상 · 조직학적 연구, 2011](https://pubmed.ncbi.nlm.nih.gov/21806707/)
@@ -58,7 +58,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 초음파 리프팅 연구에서도 6개월에 확인한 개선이 1년까지 유지된 결과가 있습니다. 다만 개인차가 있어 기간을 약속드리기보다, 경과를 보며 다음 관리 시기를 함께 정합니다. [Shome 등의 임상 연구](https://pmc.ncbi.nlm.nih.gov/articles/PMC7288869/)`,
     },
     {
-      q: "쿨소닉은 몇 번 받아야 하며, 재시술 간격은 어떻게 정하나요?",
+      q: "쿨소닉 재시술 주기는 어떻게 되나요?",
       a: `보통 **6개월~1년 간격**으로 받으시는 경우가 많습니다. 다만 날짜에 맞춰 반복하기보다, 이전 시술 효과가 얼마나 남아 있는지 확인하고 필요할 때 다시 시술하는 것이 좋습니다.
 
 추가 시술 전에는 기대한 변화가 있었는지, 불편한 증상은 없는지 확인합니다. 같은 부위에 다시 에너지를 줄 필요가 있는지도 봅니다. [MFU-V 경과 평가 연구](https://pubmed.ncbi.nlm.nih.gov/27168269/)
@@ -66,7 +66,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 다른 병원에서 리프팅을 받으셨다면 장비명, 날짜, 부위를 알려 주세요. 깊이와 샷 수까지 알면 중복 시술을 피하는 데 도움이 됩니다.`,
     },
     {
-      q: "쿨소닉 시술 후 일상생활과 주의사항은 어떻게 되나요?",
+      q: "쿨소닉 시술 후 바로 일상생활이 가능한가요?",
       a: `절개가 없어 시술 당일부터 세안 · 화장 등 일상생활이 가능합니다. 일시적으로 붉은기, 붓기, 누를 때 뻐근함이 있을 수 있으며 대개 며칠 안에 가라앉습니다. [미국피부과학회 회복 안내](https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin)
 
 시술 후 며칠간은 사우나 · 찜질방, 음주, 격한 운동을 피하시는 것이 좋습니다. 기간은 피부 상태에 따라 시술 후 따로 안내해 드립니다.
@@ -74,7 +74,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 물집이 생기거나 통증이 점점 심해지면 바로 병원으로 연락 주세요. 감각 이상이나 표정 변화가 오래갈 때도 마찬가지입니다. [Ultherapy PRIME 공식 사용설명서의 안전성 자료](https://ultherapy.com/app/themes/ultherapy2020/pdfs/ultherapy-prime-instructions-for-use.pdf)`,
     },
     {
-      q: "쿨소닉 부작용이나 볼패임 가능성이 있나요?",
+      q: "쿨소닉 후 볼패임이나 부작용이 생길 수 있나요?",
       a: `냉각 기능이 있어도 부작용 가능성이 없지는 않습니다. 흔한 반응은 붉은기, 붓기, 뻐근함, 저림이며 대부분 일시적입니다. 에너지가 과하거나 의도하지 않은 층에 전달되면 조직 손상이 생길 수 있습니다. [미국초음파의학회 안전성 입장](https://www.aium.org/resources/official-statements/view/statement-on-the-safety-of-cosmetic-ultrasound)
 
 초음파 리프팅에서는 드물게 지방 감소로 볼이 꺼져 보이거나, 신경 관련 증상이 보고되기도 합니다. [Ultherapy PRIME 시판 후 안전성 자료](https://ultherapy.com/app/themes/ultherapy2020/pdfs/ultherapy-prime-instructions-for-use.pdf)
@@ -82,7 +82,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 그래서 시술 전 얼굴의 지방량과 이미 꺼진 부위를 먼저 확인하고, 에너지를 줄 부위와 깊이를 정합니다. 볼이 꺼진 편이라면 탄력이 필요한 부위와 볼륨을 지켜야 할 부위를 나누어 시술합니다. "볼패임이 절대 없다"보다 **내 얼굴 상태를 어떻게 고려하는지**를 확인하시는 게 중요합니다.`,
     },
     {
-      q: "필러 · 보톡스 · 실리프팅 등 다른 시술과 함께 받을 수 있나요?",
+      q: "쿨소닉은 필러 · 보톡스와 함께 받아도 되나요?",
       a: `가능합니다. 다만 이전 시술의 위치 · 깊이 · 재료 · 날짜를 확인한 뒤 순서와 간격을 정합니다.
 
 필러는 초음파 열의 영향을 받을 수 있습니다. 필러를 맞은 부위라면 **시술 간격과 깊이를 조절**합니다. [Vachiramon 등의 필러 · MFU 연구, 2023](https://pubmed.ncbi.nlm.nih.gov/36374232/)

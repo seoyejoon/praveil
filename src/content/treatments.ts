@@ -54,7 +54,6 @@ export const treatments: Treatment[] = [
     scene: {
       mobileSrc: "/images/photos/best-coolsonic-m.webp",
       src: photo("hero-coolsonic"),
-      video: "/videos/hero-coolsonic.mp4",
       pulse: [64.2, 88.4],
       chips: [
         {

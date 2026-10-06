@@ -124,7 +124,7 @@ export const mainBest = {
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
       image: photo("best-filler"),
       mobileImage: photo("best-filler-m"),
-      headline: ["무너진 피부를 재건하는", "ECM 스킨부스터 리투오"],
+      headline: ["얇아진 피부에 밀도를 채우는", "ECM 스킨부스터 리투오"],
       accent: "리투오",
       product: "/images/equipment/hero/retuo.webp",
     },
@@ -145,7 +145,7 @@ export const mainWhy = {
     {
       icon: "consult",
       title: "1:1 맞춤 설계",
-      text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 꼭 맞는 시술 계획을 세웁니다.",
+      text: "같은 고민이라도 원인을 먼저 살펴, 한 분 한 분에게 맞는 시술을 제안합니다.",
       image: photo("special-1"),
     },
     {
@@ -163,7 +163,7 @@ export const mainWhy = {
     {
       icon: "space",
       title: "프라이빗한 공간",
-      text: "상담부터 시술, 관리까지 프라이빗한 공간에서 한 분만을 위한 맞춤 진료를 진행합니다.",
+      text: "상담부터 시술, 관리까지 독립된 공간에서 편안하게 진료받으실 수 있습니다.",
       image: photo("special-5"),
     },
   ],

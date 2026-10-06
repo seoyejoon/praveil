@@ -107,7 +107,7 @@ export default function MainScan({
                 ))}
               </Reveal>
               <Reveal delay={150}>
-                <p className="mt-5 max-w-[520px] text-[14px] leading-relaxed text-muted md:text-[15px]">
+                <p className="mt-5 max-w-[520px] text-[14px] leading-relaxed text-muted md:text-[15px] md:whitespace-pre-line">
                   {text}
                 </p>
               </Reveal>

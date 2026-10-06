@@ -49,7 +49,7 @@ export const treatments: Treatment[] = [
     href: "/lifting/coolsonic",
     en: "Coolsonic",
     title: "쿨소닉",
-    description: "피부 깊은 층까지 고려한 초음파 리프팅",
+    description: "깊이별로 설계하는 쿨링 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
       mobileSrc: "/images/photos/best-coolsonic-m.webp",
@@ -57,19 +57,19 @@ export const treatments: Treatment[] = [
       video: "/videos/hero-coolsonic.mp4",
       pulse: [64.2, 88.4],
       chips: [
-        { x: 55, y: 22, en: "Depth", label: "1.5 · 3.0 · 4.5mm 깊이별 시술" },
+        { x: 55, y: 22, en: "Depth", label: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달" },
         { x: 50, y: 50, en: "Cooling", label: "피부 표면 냉각 시스템" },
       ],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
-    headline: ["처진 윤곽은 깊은 곳부터,", "쿨소닉 초음파 리프팅"],
+    headline: ["피부 깊은 층부터 설계하는", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
     photo: stock("coolsonic"),
     facts: [
       { label: "시술 시간", value: "약 30~40분" },
       { label: "마취", value: "마취 크림" },
-      { label: "회복", value: "바로 일상 가능" },
+      { label: "회복", value: "일상생활 바로 가능" },
       { label: "권장 주기", value: "4~6개월" },
     ],
     recommend: [
@@ -108,7 +108,7 @@ export const treatments: Treatment[] = [
     ],
     cautions: [
       "시술 당일은 사우나 · 음주 · 과격한 운동을 피해 주세요.",
-      "일시적으로 부위가 뻐근하거나 살짝 붓는 느낌이 있을 수 있습니다.",
+      "시술 부위에 일시적인 뻐근함이나 가벼운 붓기가 있을 수 있습니다.",
     ],
   },
   {

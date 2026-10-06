@@ -81,27 +81,27 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "초음파를 한 점에 모읍니다",
+        title: "초음파 에너지 집속",
         text: "초음파 에너지를 피부 속 목표 지점에 집속합니다. 에너지는 표피를 통과해 목표한 깊이에서만 작용합니다.",
       },
       {
-        title: "원하는 깊이에 열 응고점을 만듭니다",
-        text: "진피층부터 근막층(SMAS)까지, 부위마다 깊이를 골라 아주 작은 열 응고점을 촘촘히 만듭니다.",
+        title: "목표 깊이에 열응고점 형성",
+        text: "진피층부터 근막층(SMAS)까지 부위별로 깊이를 선택해, 미세한 열응고점을 촘촘하게 형성합니다.",
       },
       {
-        title: "조이고, 새로 채웁니다",
-        text: "자극받은 조직이 수축하며 당겨지고, 몇 주에 걸쳐 새 콜라겐이 만들어지며 탄력이 차오릅니다.",
+        title: "조직 수축과 콜라겐 재생",
+        text: "열 자극을 받은 조직이 수축하고, 수 주에 걸쳐 콜라겐 재생이 유도됩니다.",
       },
     ],
     depths: ["1.5mm", "3.0mm", "4.5mm"],
     principleImage: {
       src: cs("principle"),
-      alt: "쿨소닉 원리 그림: 냉각 어플리케이터가 피부 표면을 식히고, 모인 초음파가 피부 속에 열 응고점을 만드는 모습",
+      alt: "쿨소닉 원리 그림: 냉각 어플리케이터가 피부 표면을 식히고, 모인 초음파가 피부 속에 열응고점을 만드는 모습",
       marks: [
         { x: 36, y: 16, label: "냉각 어플리케이터", side: "left" },
         { x: 22, y: 40, label: "피부 표면 냉각", side: "right" },
-        { x: 52, y: 42, label: "한 점에 모이는 초음파", side: "right" },
-        { x: 82.7, y: 58, label: "열 응고점", side: "left", above: true },
+        { x: 52, y: 42, label: "집속 초음파", side: "right" },
+        { x: 82.7, y: 58, label: "열응고점", side: "left", above: true },
       ],
       layers: [
         { y: 46, label: "표피 · 진피" },
@@ -133,7 +133,7 @@ export const deviceStory: Record<string, DeviceStory> = {
             "1.5 · 3.0 · 4.5mm",
             "1.5 · 3.0 · 4.5mm",
             "1.5 · 2.0 · 3.0 · 4.5mm",
-            "진피 ~ 피하 (넓게)",
+            "진피 ~ 피하",
           ],
         },
         {
@@ -143,10 +143,10 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "특징",
           values: [
-            "식히며 시술 · 굴곡 부위 밀착",
-            "초음파 영상으로 층을 보며 시술",
-            "모드가 다양 · 얼굴 · 바디",
-            "피부 전체를 고르게 가열 · 탄력 · 피부결",
+            "표면 냉각 · 굴곡 부위 밀착",
+            "초음파 영상으로 층 확인",
+            "다양한 시술 모드 · 얼굴 · 바디",
+            "피부 전반 균일 가열 · 탄력 · 피부결",
           ],
         },
         {
@@ -176,13 +176,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
-        text: "쿨소닉은 펜형 어플리케이터로 굴곡진 피부에도 밀착하기 쉽도록 설계했습니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
+        text: "쿨소닉은 펜형 어플리케이터로 굴곡진 피부에도 밀착하기 쉽도록 설계되었습니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
         image: cs("handpiece"),
         alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
       },
       {
         title: "쿨링으로 통증 부담을 줄이는 초음파 리프팅",
-        text: "쿨소닉은 피부 표면을 냉각하면서 고강도 집속 초음파(HIFU)를 전달합니다. ACC 냉각 기술을 적용해 시술 중 열감과 통증 부담을 줄이도록 설계했습니다.",
+        text: "쿨소닉은 피부 표면을 냉각하면서 고강도 집속 초음파(HIFU)를 전달합니다. ACC 냉각 기술을 적용해 시술 중 열감과 통증 부담을 줄이도록 설계되었습니다.",
         image: cs("coolsonic-cooling"),
         video: "/videos/coolsonic-cooling.mp4",
         alt: "쿨소닉 ACC 냉각 어플리케이터",
@@ -197,7 +197,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 상담",
-        text: "고민과 원하는 변화를 듣고, 피부 두께와 처짐 방향을 보며 부위별 깊이와 샷 수를 정합니다.",
+        text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 설계합니다.",
         image: photo("process-consult"),
         alt: "대표원장 1:1 상담",
       },

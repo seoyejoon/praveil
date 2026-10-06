@@ -151,11 +151,11 @@ export default function TreatmentDetail({
           />
         </div>
         <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
-          <SectionHead en="Doctor" title={`${t.title}, 의료진의 중요성?`} />
+          <SectionHead en="Doctor" title={`${t.title}, 의료진이 중요한 이유`} />
           <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장님이 직접
-            정밀한 진단을 통해 시술 적합 유무를 판단하고, 1:1 맞춤으로 시술을
+            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 직접
+            정밀한 진단을 통해 시술 적합 여부를 판단하고, 1:1 맞춤으로 시술을
             진행하고 있습니다.
           </p>
           <div className="mt-10 border-t border-ink/15 pt-8">
@@ -227,7 +227,7 @@ export default function TreatmentDetail({
           </div>
           <Reveal delay={150} className="lg:pt-3">
             <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
-              Summary · 한눈에 보기
+              Summary
             </p>
             <p className="mt-5 text-[16px] leading-[1.85] text-ink md:text-[18px]">
               {g.answer}
@@ -693,7 +693,7 @@ export default function TreatmentDetail({
               title={`${t.title} 통증 · 회복 · 주의사항`}
             />
             <p className="mt-5 text-[15px] leading-relaxed text-muted md:text-[17px]">
-              시술 전에 미리 알아 두시면 더 편안합니다.
+              시술 전 꼭 확인해 주세요.
             </p>
           </div>
           <ol className="grid">

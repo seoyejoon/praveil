@@ -29,7 +29,59 @@ export default function SmoothScroll() {
         `${Math.max(0, full - window.innerHeight)}px`,
       );
     }
-    if (reducedMotion()) return;
+    // PC에서 브라우저 크기를 바꾸면 스크롤 효과 위치를 모두 다시 계산하는데,
+    // 이때 보던 자리를 잃고 맨 위로 튀거나 고정 장면(시그니처 등)이 하얗게 비는 일이 있음
+    // → 크기를 바꾸기 시작할 때 보던 자리(고정 장면의 진행도 · 또는 섹션 안 위치)를 기억했다가, 다 바뀐 뒤 되돌림
+    type Anchor =
+      | { st: ScrollTrigger; p: number }
+      | { el: Element; p: number }
+      | null;
+    let anchor: Anchor = null;
+    let lastW = window.innerWidth;
+    let restoreTimer = 0;
+    const capture = (): Anchor => {
+      const st = ScrollTrigger.getAll().find((t) => t.pin && t.isActive);
+      if (st) return { st, p: st.progress };
+      const el = [...document.querySelectorAll("main > *, main section")].find(
+        (e) => {
+          const r = e.getBoundingClientRect();
+          return r.top <= 1 && r.bottom > 1;
+        },
+      );
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { el, p: -r.top / Math.max(1, r.height) };
+    };
+    const restore = () => {
+      const a = anchor;
+      anchor = null;
+      if (!a) return;
+      let y: number;
+      if ("st" in a) y = a.st.start + (a.st.end - a.st.start) * a.p;
+      else {
+        const r = a.el.getBoundingClientRect();
+        y = window.scrollY + r.top + r.height * a.p;
+      }
+      const L = (window as unknown as { __lenis?: Lenis }).__lenis;
+      if (L) L.scrollTo(y, { immediate: true, force: true });
+      else window.scrollTo(0, y);
+      ScrollTrigger.update();
+    };
+    const onResize = () => {
+      // 휴대폰 주소창처럼 높이만 바뀌는 경우는 제외 (가로 폭이 바뀔 때만)
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      if (!anchor) anchor = capture();
+      clearTimeout(restoreTimer);
+      restoreTimer = window.setTimeout(restore, 450);
+    };
+    window.addEventListener("resize", onResize, true);
+    const cleanupResize = () => {
+      window.removeEventListener("resize", onResize, true);
+      clearTimeout(restoreTimer);
+    };
+
+    if (reducedMotion()) return cleanupResize;
     const lenis = new Lenis({
       duration: 1.15,
       smoothWheel: true,
@@ -43,6 +95,7 @@ export default function SmoothScroll() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
     return () => {
+      cleanupResize();
       gsap.ticker.remove(tick);
       lenis.destroy();
       delete (window as unknown as { __lenis?: Lenis }).__lenis;

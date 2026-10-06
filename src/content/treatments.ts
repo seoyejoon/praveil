@@ -58,7 +58,7 @@ export const treatments: Treatment[] = [
       pulse: [64.2, 88.4],
       chips: [
         { x: 55, y: 22, en: "Depth", label: "1.5 · 3.0 · 4.5mm 깊이별 시술" },
-        { x: 50, y: 50, en: "Cooling", label: "피부를 식히며 시술" },
+        { x: 50, y: 50, en: "Cooling", label: "피부 표면 냉각 시스템" },
       ],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),

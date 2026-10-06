@@ -573,7 +573,7 @@ export function StoryCompare({
         title={`${title}, 다른 리프팅 장비와 어떻게 다른가요?`}
       />
       <p className="mt-4 text-[15px] text-muted">
-        상담 때 많이 함께 물어보시는 리프팅 장비를 나란히 정리했습니다.
+        상담 시 자주 비교되는 리프팅 장비의 일반적인 특징을 정리했습니다.
       </p>
       <p className="mt-8 text-xs text-muted md:hidden">
         ← 옆으로 밀어서 비교해 보세요

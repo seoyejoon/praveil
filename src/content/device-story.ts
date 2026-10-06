@@ -71,7 +71,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         src: "/videos/coolsonic-brand.mp4",
         poster: cs("coolsonic-brand"),
       },
-      text: "쿨소닉은 아스테라시스(ASTERASYS)의 집속 초음파(HIFU) 리프팅 장비입니다. 피부 표면을 식히면서 피부 속 깊은 층에 에너지를 전달합니다. 프라베일은 이 장비를 직접 보유하고, 대표원장이 시술합니다.",
+      text: "쿨소닉은 아스테라시스(ASTERASYS)의 집속 초음파(HIFU) 리프팅 장비입니다. 피부 표면을 냉각하는 동시에 피부 속 목표 깊이까지 에너지를 전달하며, 프라베일에서는 대표원장이 직접 시술합니다.",
       specs: [
         { label: "방식", value: "고강도 집속 초음파 (HIFU)" },
         { label: "작용 층", value: "진피층 ~ 근막층 (SMAS)" },
@@ -82,7 +82,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "초음파를 한 점에 모읍니다",
-        text: "돋보기로 햇빛을 모으듯 초음파 에너지를 피부 속 한 점에 모읍니다. 피부 표면은 지나가고 속에서만 작용합니다.",
+        text: "초음파 에너지를 피부 속 목표 지점에 집속합니다. 에너지는 표피를 통과해 목표한 깊이에서만 작용합니다.",
       },
       {
         title: "원하는 깊이에 열 응고점을 만듭니다",
@@ -203,13 +203,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "마취",
-        text: "시술 부위에 마취 크림을 발라 시술 중 불편함을 줄입니다.",
+        text: "시술 부위에 마취 크림을 도포해 시술 중 불편감을 줄입니다.",
         image: photo("process-anesthesia"),
         alt: "시술 부위에 마취 크림을 바르는 모습",
       },
       {
         title: "시술",
-        text: "약 30~40분, 피부를 식히며 정해 둔 깊이대로 층마다 나누어 시술합니다.",
+        text: "피부 표면을 냉각하면서, 진단 단계에서 설계한 깊이에 맞춰 층별로 나누어 시술합니다.",
         image: photo("process-treatment"),
         alt: "대표원장이 쿨소닉으로 시술하는 모습",
       },

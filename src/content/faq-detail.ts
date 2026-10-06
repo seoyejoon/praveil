@@ -25,7 +25,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 
 얼굴이 얇거나 볼이 이미 꺼져 있다면, 탄력을 올릴 부위와 볼륨을 지켜야 할 부위를 나누어 계획합니다.
 
-상담 때는 임신 · 수유 여부, 피부 염증이나 상처, 복용 중인 약, 이전 시술 이력을 꼭 알려주세요. 임플란트 · 교정장치 · 심박동기 같은 삽입물도 알려주셔야 합니다. **시술 가능 여부와 주의사항은 제품 사용설명서 기준으로 최종 판단합니다.** [FDA 일반 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)`,
+상담 때는 임신 · 수유 여부, 피부 염증이나 상처, 복용 중인 약, 이전 시술 이력을 꼭 알려 주세요. 임플란트 · 교정장치 · 심박동기 같은 삽입물도 알려 주셔야 합니다. **시술 가능 여부와 주의사항은 제품 사용설명서 기준으로 최종 판단합니다.** [FDA 일반 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)`,
     },
     {
       q: "쿨소닉은 아픈가요? 마취가 필요한가요?",
@@ -63,7 +63,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 
 추가 시술 전에는 기대한 변화가 있었는지, 불편한 증상은 없는지 확인합니다. 같은 부위에 다시 에너지를 줄 필요가 있는지도 봅니다. [MFU-V 경과 평가 연구](https://pubmed.ncbi.nlm.nih.gov/27168269/)
 
-다른 병원에서 리프팅을 받으셨다면 장비명, 날짜, 부위를 알려주세요. 깊이와 샷 수까지 알면 중복 시술을 피하는 데 도움이 됩니다.`,
+다른 병원에서 리프팅을 받으셨다면 장비명, 날짜, 부위를 알려 주세요. 깊이와 샷 수까지 알면 중복 시술을 피하는 데 도움이 됩니다.`,
     },
     {
       q: "쿨소닉 시술 후 일상생활과 주의사항은 어떻게 되나요?",
@@ -87,7 +87,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 
 필러는 초음파 열의 영향을 받을 수 있습니다. 필러를 맞은 부위라면 **시술 간격과 깊이를 조절**합니다. [Vachiramon 등의 필러 · MFU 연구, 2023](https://pubmed.ncbi.nlm.nih.gov/36374232/)
 
-실리프팅 · 보톡스도 받은 이력을 모두 알려주세요. 같은 날 받아도 되는지, 간격을 둘지 정해 드립니다. [실리프팅 · MFU-V 병행 연구, 2020](https://pubmed.ncbi.nlm.nih.gov/32272512/)`,
+실리프팅 · 보톡스도 받은 이력을 모두 알려 주세요. 같은 날 받아도 되는지, 간격을 둘지 정해 드립니다. [실리프팅 · MFU-V 병행 연구, 2020](https://pubmed.ncbi.nlm.nih.gov/32272512/)`,
     },
     {
       q: "인천에서 쿨소닉 시술 가격은 얼마인가요?",

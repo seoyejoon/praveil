@@ -82,7 +82,7 @@ export const mainBest = {
       name: "쿨소닉",
       category: "리프팅",
       href: "/lifting/coolsonic",
-      text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 한 번에 설계합니다.",
+      text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 함께 관리합니다.",
       image: photo("best-coolsonic"),
       mobileImage: photo("best-coolsonic-m"),
       headline: ["무너진 얼굴선을 다시 세우는", "쿨링 초음파 리프팅 쿨소닉"],
@@ -94,7 +94,7 @@ export const mainBest = {
       name: "쿨페이즈",
       category: "리프팅",
       href: "/lifting/coolphase",
-      text: "고주파로 피부 속 콜라겐을 자극해, 결과 탄력을 함께 끌어올립니다.",
+      text: "고주파로 피부 속 콜라겐을 자극해, 피부결 · 탄력을 함께 끌어올립니다.",
       image: photo("best-coolphase"),
       mobileImage: photo("best-coolphase-m"),
       headline: [
@@ -145,13 +145,13 @@ export const mainWhy = {
     {
       icon: "consult",
       title: "1:1 맞춤 설계",
-      text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 가장 알맞은 시술 계획을 세웁니다.",
+      text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 꼭 맞는 시술 계획을 세웁니다.",
       image: photo("special-1"),
     },
     {
       icon: "genuine",
       title: "정품 · 정량 원칙",
-      text: "프라베일 맑고고운의원에서 사용되는 모든 제품은 정품 · 정량 사용을 원칙으로 합니다.",
+      text: "프라베일 맑고고운의원에서 사용하는 모든 제품은 정품 · 정량을 원칙으로 합니다.",
       image: photo("special-3"),
     },
     {

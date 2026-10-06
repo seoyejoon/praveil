@@ -79,8 +79,8 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       },
       {
         when: "2~4주",
-        title: "붓기 회복",
-        text: "붓기가 가라앉으며 턱선 · 볼 라인의 변화를 확인하기 시작하는 시기입니다.",
+        title: "초기 변화",
+        text: "당김감이 줄고, 턱선 · 볼 라인의 변화를 조금씩 느끼기 시작하는 시기입니다.",
       },
       {
         when: "1~3개월",
@@ -747,7 +747,7 @@ export const chooseCriteria = (title: string, pain: string) => [
 ];
 
 // 마지막 업데이트 (원고를 고치면 함께 바꿔 주세요)
-export const guideUpdated = "2026-09-30";
+export const guideUpdated = "2026-10-06";
 
 // "인천광역시 남동구 성말로 10" → "인천 남동구" (지역 검색어로 씀)
 export function areaOf(address: string) {

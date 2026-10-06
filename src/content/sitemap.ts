@@ -116,7 +116,7 @@ export const sitemap: SiteSection[] = [
   },
   {
     key: "acne-pore",
-    label: "여드름·모공",
+    label: "여드름 · 모공",
     en: "Acne & Pore",
     href: "/acne-pore",
     treatment: true,
@@ -138,7 +138,7 @@ export const sitemap: SiteSection[] = [
   },
   {
     key: "removal",
-    label: "제모·문신제거",
+    label: "제모 · 문신제거",
     en: "Removal",
     href: "/removal/hair",
     treatment: true,

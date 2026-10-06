@@ -82,7 +82,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "초음파 에너지 집속",
-        text: "초음파 에너지를 피부 속 목표 지점에 집속합니다. 표피 손상을 줄이면서 목표한 깊이에 에너지를 전달합니다.",
+        text: "초음파 에너지를 피부 속 한 지점에 모읍니다. 표피 손상을 줄이면서 원하는 깊이에만 에너지를 전달합니다.",
       },
       {
         title: "목표 깊이에 열응고점 형성",
@@ -174,7 +174,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달",
-        text: "1.5 · 3.0 · 4.5mm 3가지 어플리케이터로, 부위에 따라 깊이를 바꿔가며 에너지를 전달합니다.",
+        text: "부위에 따라 3가지 어플리케이터를 바꿔가며, 필요한 깊이에 에너지를 전달합니다.",
         image: cs("coolsonic-applicator"),
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",

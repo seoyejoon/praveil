@@ -4,7 +4,7 @@ import { doctor, features, hospital } from "./mock/hospital";
 import { categories, procedures } from "./mock/procedures";
 import { notices, popups } from "./mock/board";
 import { hasDatabase } from "./db";
-import { demoBeforeAfter, demoNotices, showDemo } from "./demo";
+import { demoBeforeAfter, showDemo } from "./demo";
 import * as db from "./source-db";
 import { procedureDetails } from "@/content/procedure-details";
 import type { Popup } from "./types";
@@ -78,11 +78,7 @@ export async function getNotices() {
   const list = hasDatabase
     ? await db.getNotices()
     : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  return showDemo
-    ? [...demoNotices, ...list].sort((a, b) =>
-        b.createdAt.localeCompare(a.createdAt),
-      )
-    : list;
+  return list;
 }
 
 export async function getNotice(id: number) {

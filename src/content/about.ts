@@ -155,7 +155,7 @@ export const aboutEquipment = {
 export const doctorProfile = {
   nameEn: "Han Jae Woong",
   photo: photo("doctor"),
-  quote: ["20여 년, 오직 '피부'라는", "하나의 세계만을 들여다봤습니다."],
+  quote: ["20년, 오직 '피부'라는", "하나의 세계만을 들여다봤습니다."],
   greeting: [
     "같은 고민도 피부마다 답이 다릅니다. 그래서 프라베일에서는 시술을 고르기 전에 피부를 먼저 읽습니다.",
     "많이 하는 것보다 꼭 맞게 하는 것, 한 번의 변화보다 오래 건강한 피부를 목표로 합니다. 상담한 제가 직접 시술하고, 경과까지 끝까지 확인하겠습니다.",

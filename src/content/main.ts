@@ -35,7 +35,7 @@ export const mainHero = {
 export const mainScan = {
   eyebrow: "Custom Planning",
   title: ["당신만을 위한 단 하나의 계획,", "프라베일 커스텀 플래닝"],
-  text: "피부 상태와 고민을 정밀하게 진단하고,\n이를 바탕으로 꼭 필요한 시술만 담은 나만의 계획을 세웁니다.",
+  text: "프라베일은 환자마다 다른 피부 상태와 고민을 정밀하게 진단하고,\n이를 바탕으로 환자에게 꼭 필요한 시술만을 계획합니다.",
   // 분석 카드: point = 얼굴 점 번호(MediaPipe), top = 카드 세로 위치(%)
   // 수치는 넣지 않는다 (의료광고: 실제 측정값처럼 보이지 않게)
   items: [

@@ -2,6 +2,7 @@
 // 사용: DATABASE_URL=... node scripts/seed-test-posts.mjs
 //  - 다시 실행하면 기존 [테스트] 글을 지우고 새로 넣음 (다른 글은 건드리지 않음)
 //  - 지우기만: DATABASE_URL=... node scripts/seed-test-posts.mjs --delete
+//  - 공지 · 이벤트만: --news (전후사례 테스트 글은 건드리지 않음)
 //  - 사진은 홈페이지 public/images/test 에 있음 (IMAGE_BASE 로 주소 지정, 기본: 미리보기 사이트)
 // ※ 테스트용: 전후사례의 시술 전 사진도 공개 주소를 씀. 실제 글은 관리자에서 올리면 보호 저장소에 저장됨.
 import pg from "pg";
@@ -95,8 +96,11 @@ try {
       console.warn(
         `⚠ 관리자에 '${id}' 게시판이 없습니다. 관리자 > 게시판 설정에서 먼저 만들어 주세요.`,
       );
+  const newsOnly = process.argv.includes("--news");
   const del = await client.query(
-    "DELETE FROM posts WHERE hospital_id=$1 AND title LIKE '[테스트]%'",
+    newsOnly
+      ? "DELETE FROM posts WHERE hospital_id=$1 AND title LIKE '[테스트]%' AND board_id IN ('notice','event')"
+      : "DELETE FROM posts WHERE hospital_id=$1 AND title LIKE '[테스트]%'",
     [h],
   );
   console.log(`기존 테스트 글 ${del.rowCount}개 삭제`);
@@ -127,7 +131,10 @@ try {
         });
       await insert("event", "이벤트", title, period, content, u, 6 - i);
     }
-    for (const [i, [title, category, summary, n]] of cases.entries()) {
+    for (const [i, [title, category, summary, n]] of (newsOnly
+      ? []
+      : cases
+    ).entries()) {
       const c = i + 1;
       const stages = Array.from({ length: n }, (_, s) => ({
         beforeImageUrl: img(`test-ba-${c}-${s + 1}-before`),
@@ -154,7 +161,9 @@ try {
         3 - i,
       );
     }
-    console.log("공지 3 · 이벤트 3 · 전후사례 3 등록");
+    console.log(
+      newsOnly ? "공지 3 · 이벤트 3 등록" : "공지 3 · 이벤트 3 · 전후사례 3 등록",
+    );
   }
   await client.query("COMMIT");
 } catch (e) {

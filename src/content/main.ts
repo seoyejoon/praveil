@@ -172,8 +172,8 @@ export const mainWhy = {
 export const mainDoctor = {
   label: "Doctor",
   nameEn: "Han Jae Woong",
-  quote: ["20년, 오직 '피부'라는", "하나의 세계만을 들여다봤습니다."],
-  text: "같은 고민도 피부마다 답이 다릅니다.\n오랜 시간 쌓아 온 경험으로 피부를 먼저 읽고, 꼭 맞는 방법만 정직하게 권하겠습니다.",
+  quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
+  text: "현재 피부 상태를 기준으로 치료의 우선순위를 정하고,\n불필요한 과정보다는 필요한 진료에 집중합니다.",
   image: photo("doctor-cutout"),
 };
 

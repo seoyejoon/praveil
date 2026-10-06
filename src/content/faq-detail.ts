@@ -102,9 +102,9 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
   ],
 };
 
-/** 구조화 데이터용: 표기 기호를 걷어 낸 일반 글 */
+/** 구조화 데이터용: 표기 기호와 출처 링크를 걷어 낸 일반 글 */
 export const faqPlain = (a: string) =>
   a
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/\s*\[[^\]]+\]\([^)]+\)(?:,\s*\[[^\]]+\]\([^)]+\))*/g, "")
     .replace(/\*\*/g, "")
     .replace(/\n{2,}/g, " ");

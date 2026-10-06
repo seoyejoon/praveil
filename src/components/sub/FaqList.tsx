@@ -2,34 +2,58 @@ import { ChevronDown, Plus } from "lucide-react";
 import MoreToggle from "@/components/sub/MoreToggle";
 
 // 답변: 빈 줄 = 문단, **굵게**, [글자](주소) = 출처 링크
+// - 출처 링크는 문장 사이에서 빼서 답변 아래 "참고 자료"로 모아 보여줌
+const LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
 function Answer({ text }: { text: string }) {
-  return text.split(/\n{2,}/).map((para, i) => (
-    <p key={i} className={i ? "mt-4" : undefined}>
-      {para.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/).map((part, k) => {
-        const bold = part.match(/^\*\*([^*]+)\*\*$/);
-        if (bold)
-          return (
-            <strong key={k} className="font-semibold text-ink">
-              {bold[1]}
-            </strong>
-          );
-        const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-        if (link)
-          return (
-            <a
-              key={k}
-              href={link[2]}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="text-[0.92em] text-gold underline decoration-gold/40 underline-offset-4 transition hover:decoration-gold"
-            >
-              {link[1]}
-            </a>
-          );
-        return part;
-      })}
-    </p>
-  ));
+  const sources: { label: string; href: string }[] = [];
+  for (const [, label, href] of text.matchAll(LINK))
+    if (!sources.some((s) => s.href === href && s.label === label))
+      sources.push({ label, href });
+  const body = text
+    .replace(/\s*\[[^\]]+\]\([^)]+\)(?:,\s*\[[^\]]+\]\([^)]+\))*/g, "")
+    .trim();
+  return (
+    <>
+      {body.split(/\n{2,}/).map((para, i) => (
+        <p key={i} className={i ? "mt-4" : undefined}>
+          {para.split(/(\*\*[^*]+\*\*)/).map((part, k) => {
+            const bold = part.match(/^\*\*([^*]+)\*\*$/);
+            return bold ? (
+              <strong key={k} className="font-semibold text-ink">
+                {bold[1]}
+              </strong>
+            ) : (
+              part
+            );
+          })}
+        </p>
+      ))}
+      {sources.length > 0 && (
+        <div className="mt-6 border-t border-ink/10 pt-4">
+          <p className="text-[12px] font-semibold tracking-[0.08em] text-ink/50">
+            참고 자료
+          </p>
+          <ul className="mt-2 grid gap-1.5 text-[13px] leading-snug">
+            {sources.map((s) => (
+              <li key={s.href + s.label} className="flex gap-2">
+                <span aria-hidden className="text-gold/70">
+                  ·
+                </span>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="text-muted underline decoration-ink/20 underline-offset-4 transition hover:text-gold hover:decoration-gold"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
 }
 
 // 자주 묻는 질문 (첫 질문은 펼쳐 둠, 모바일은 mobileLimit 개까지만 먼저 보임)

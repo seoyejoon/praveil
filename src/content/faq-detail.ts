@@ -13,7 +13,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
     },
     {
       q: "쿨소닉은 어떤 부위에 시술할 수 있나요?",
-      a: `쿨소닉 국내 공식 제품 안내에 기재된 사용 목적은 **눈썹 리프팅**입니다. 실제 적용 부위는 제품의 허가사항과 사용방법, 해당 부위의 해부학적 조건을 확인한 뒤 결정해야 합니다. 펜형 어플리케이터가 굴곡진 피부에 밀착하기 쉽다는 구조적 특징도, 모든 부위에 같은 조건으로 시술할 수 있다는 의미는 아닙니다. [국내 사용 목적](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
+      a: `쿨소닉의 실제 적용 부위는 **제품의 허가사항과 사용방법, 해당 부위의 해부학적 조건**을 확인한 뒤 결정합니다. 펜형 어플리케이터가 굴곡진 피부에 밀착하기 쉽다는 구조적 특징도, 모든 부위에 같은 조건으로 시술할 수 있다는 의미는 아닙니다. [쿨소닉 국내 공식 제품 안내](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
 
 특히 눈썹 리프팅과 눈꺼풀에 직접 초음파를 조사하는 것은 구분해야 합니다. 눈 주변에서는 초음파 에너지가 안구에 전달되지 않도록 시술 위치와 사용방법을 확인하는 것이 중요합니다. FDA의 미용 목적 집속 초음파 장치 지침에서도 안구 손상을 별도의 위험으로 다룹니다. [FDA 집속 초음파 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)
 

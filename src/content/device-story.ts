@@ -75,7 +75,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       specs: [
         { label: "방식", value: "고강도 집속 초음파 (HIFU)" },
         { label: "작용 층", value: "진피층 ~ 근막층 (SMAS)" },
-        { label: "시술 부위", value: "턱선 · 볼 · 이중턱 · 눈가 · 이마 · 목" },
+        { label: "시술 부위", value: "얼굴 · 목 (상담 후 부위 결정)" },
         { label: "냉각", value: "시술 중 피부 표면 냉각" },
       ],
     },

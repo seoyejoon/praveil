@@ -57,7 +57,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       "쿨소닉은 고강도 집속 초음파(HIFU) 에너지를 피부 속 깊은 층에 전달해 처진 턱선 · 볼 윤곽과 탄력을 관리하는 비절개 리프팅입니다. 시술 중 피부 표면을 냉각해 열감에 대한 부담을 낮췄으며, 시술 후 일상생활에 바로 복귀할 수 있습니다.",
     principle:
       "초음파 에너지를 피부 속 한 지점에 집속해, 진피층부터 근막층(SMAS)까지 원하는 깊이에 작은 열응고점을 만듭니다. 이 자극으로 조직이 수축하고 시간이 지나며 새 콜라겐이 만들어집니다. 깊이가 다른 카트리지를 부위마다 나누어 쓰는 것이 설계의 핵심입니다.",
-    area: "턱선 · 볼 · 이중턱 · 눈가 · 이마 · 목",
+    area: "얼굴 · 목 (상담 후 부위 결정)",
     onset: "직후 당김감, 1~3개월에 걸쳐 변화",
     profile: {
       method: "집속 초음파 (HIFU)",
@@ -65,7 +65,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       concern: "턱선 · 볼 처짐, 윤곽",
       pain: "뼈 가까운 부위 뻐근함",
       recovery: "바로 일상",
-      interval: "4~6개월",
+      interval: "6개월~1년",
     },
     compare: LIFTING,
     pain: "시술 전 마취 크림을 도포하고, 피부 표면을 냉각하면서 에너지를 전달합니다. 광대 · 턱뼈처럼 뼈와 가까운 부위는 뻐근함이 느껴질 수 있어, 부위별로 에너지를 조절해 진행합니다.",
@@ -88,7 +88,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
         text: "콜라겐 재생이 진행되는 시기로, 탄력 변화의 정도는 개인에 따라 다릅니다.",
       },
       {
-        when: "4~6개월 이후",
+        when: "6개월 이후",
         title: "다음 관리 상담",
         text: "유지 기간은 개인마다 다르며, 피부 상태를 확인한 뒤 다음 관리 시기를 정합니다.",
       },

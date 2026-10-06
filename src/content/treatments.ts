@@ -70,7 +70,7 @@ export const treatments: Treatment[] = [
       { label: "시술 시간", value: "약 30~40분" },
       { label: "마취", value: "마취 크림" },
       { label: "회복", value: "일상생활 바로 가능" },
-      { label: "권장 주기", value: "4~6개월" },
+      { label: "권장 주기", value: "6개월~1년" },
     ],
     recommend: [
       "턱선 · 볼살이 처져 보이는 분",

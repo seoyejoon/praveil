@@ -13,11 +13,11 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
     },
     {
       q: "쿨소닉은 어떤 부위에 시술할 수 있나요?",
-      a: `주로 얼굴과 목에 시술하며, 실제 부위는 **허가사항과 해당 부위의 해부학적 조건**을 확인한 뒤 정합니다. 펜형 어플리케이터라 굴곡진 부위에도 밀착이 쉽지만, 모든 부위를 같은 조건으로 시술한다는 뜻은 아닙니다. [쿨소닉 국내 공식 제품 안내](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
+      a: `쿨소닉은 주로 얼굴과 목에 시술합니다. 펜형 어플리케이터라 볼, 턱선처럼 굴곡진 부위에도 잘 밀착되지만, 부위마다 피부 두께와 뼈 · 신경 위치가 달라 **진찰 후 시술 부위와 깊이를 정합니다.** [쿨소닉 국내 공식 제품 안내](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
 
-눈가는 특히 주의합니다. 눈썹 라인을 올리는 시술과 눈꺼풀에 직접 에너지를 주는 것은 다르며, 초음파가 안구에 닿지 않도록 위치를 정확히 잡아야 합니다. [FDA 집속 초음파 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)
+눈가는 특히 조심해야 하는 부위입니다. 눈썹 위쪽을 당겨 올리는 시술은 가능하지만, 눈꺼풀에 직접 에너지를 주지는 않습니다. 초음파가 눈에 닿지 않도록 위치를 정확히 잡아 시술합니다. [FDA 집속 초음파 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)
 
-턱선이나 팔자주름이 고민이시라면, 원인이 피부 처짐인지 지방 · 볼륨 감소인지 먼저 진단합니다. 같은 부위라도 원인에 따라 맞는 치료가 달라집니다.`,
+턱선이나 팔자주름이 고민이시라면, 피부가 처진 것인지 지방 · 볼륨이 빠진 것인지 먼저 진단합니다. 원인에 따라 맞는 치료가 달라지기 때문입니다.`,
     },
     {
       q: "쿨소닉은 누구에게 적합하며, 시술 전 무엇을 확인해야 하나요?",

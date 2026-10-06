@@ -52,7 +52,7 @@ export const treatments: Treatment[] = [
     description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
-      mobileSrc: "/images/photos/best-coolsonic-m.webp",
+      mobileSrc: photo("hero-coolsonic-m"),
       src: photo("hero-coolsonic"),
       pulse: [64.2, 88.4],
       chips: [

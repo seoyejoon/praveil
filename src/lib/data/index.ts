@@ -4,7 +4,7 @@ import { doctor, features, hospital } from "./mock/hospital";
 import { categories, procedures } from "./mock/procedures";
 import { notices, popups } from "./mock/board";
 import { hasDatabase } from "./db";
-import { demoBeforeAfter, showDemo } from "./demo";
+import { demoBeforeAfter, demoNotices, showDemo } from "./demo";
 import * as db from "./source-db";
 import { procedureDetails } from "@/content/procedure-details";
 import type { Popup } from "./types";
@@ -78,6 +78,12 @@ export async function getNotices() {
   const list = hasDatabase
     ? await db.getNotices()
     : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  // 미리보기: 보여주기용 공지 · 이벤트 예시를 함께 (DB의 [테스트] 글은 겹치므로 숨김)
+  if (showDemo)
+    return [
+      ...demoNotices,
+      ...list.filter((n) => !n.title.startsWith("[테스트]")),
+    ].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   return list;
 }
 

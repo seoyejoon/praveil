@@ -66,7 +66,7 @@ export const treatments: Treatment[] = [
       ],
     },
     device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
-    headline: ["차갑게 식히며 부담을 덜어낸", "쿨소닉 초음파 리프팅"],
+    headline: ["강력한 Cooling + HIFU", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
     photo: stock("coolsonic"),

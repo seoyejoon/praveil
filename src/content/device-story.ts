@@ -71,7 +71,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         src: "/videos/coolsonic-brand.mp4",
         poster: cs("coolsonic-brand"),
       },
-      text: "쿨소닉은 아스테라시스(ASTERASYS)의 집속 초음파(HIFU) 리프팅 장비입니다. 피부 표면을 냉각하는 동시에 피부 속 목표 깊이까지 에너지를 전달하며, 프라베일에서는 대표원장이 직접 시술합니다.",
+      text: "쿨소닉은 고강도 집속 초음파(HIFU)에 ACC 냉각 기술을 더한 리프팅 장비입니다. 표피는 차갑게 보호하면서 1.5 · 3.0 · 4.5mm 깊이에 에너지를 전달해, 근막층(SMAS)까지 단계적으로 리프팅합니다.",
       specs: [
         { label: "방식", value: "고강도 집속 초음파 (HIFU)" },
         { label: "작용 층", value: "진피층 ~ 근막층 (SMAS)" },

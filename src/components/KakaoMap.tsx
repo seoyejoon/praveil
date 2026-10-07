@@ -141,9 +141,20 @@ export default function KakaoMap({ className = "" }: Props) {
     };
   }, [timestamp]);
 
+  // 지도 위 휠: 브라우저 기본 스크롤을 막아 페이지가 같이 올라가지 않게 (지도 확대 · 축소는 그대로)
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box) return;
+    const stop = (e: WheelEvent) => e.preventDefault();
+    box.addEventListener("wheel", stop, { passive: false });
+    return () => box.removeEventListener("wheel", stop);
+  }, []);
+
   return (
+    // data-lenis-prevent: 마우스가 지도 위에 있을 때 휠은 지도 확대 · 축소만 (페이지는 안 움직임)
     <div
       ref={boxRef}
+      data-lenis-prevent
       className={`kakao-roughmap relative overflow-hidden bg-sand ${className}`}
     >
       <div

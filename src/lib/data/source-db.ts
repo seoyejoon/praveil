@@ -79,15 +79,16 @@ export async function getHospital(): Promise<Hospital> {
     ),
     lunch: str(clinic.lunch) || fallbackHospital.lunch,
     hoursNotice: str(clinic.hoursNotice) || fallbackHospital.hoursNotice,
-    directions: orFallback(
-      arr(clinic.directions)
-        .map((d) => ({
-          title: str(obj(d).title),
-          body: str(obj(d).body),
-        }))
-        .filter((d) => !d.body.includes("확정 전")),
-      fallbackHospital.directions,
-    ),
+    directions: (() => {
+      const list = arr(clinic.directions).map((d) => ({
+        title: str(obj(d).title),
+        body: str(obj(d).body),
+      }));
+      // 관리자에 '확정 전' 임시 안내가 남아 있으면 기본 안내(네이버 정보)를 씀
+      return list.length && !list.some((d) => d.body.includes("확정 전"))
+        ? list
+        : fallbackHospital.directions;
+    })(),
     mapLinks: {
       tmap: str(maps.tmap) || fallbackHospital.mapLinks.tmap,
       naver: str(maps.naver) || fallbackHospital.mapLinks.naver,

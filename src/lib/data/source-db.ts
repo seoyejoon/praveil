@@ -89,11 +89,12 @@ export async function getHospital(): Promise<Hospital> {
         ? list
         : fallbackHospital.directions;
     })(),
+    // 길찾기 링크는 확정된 병원 링크(mock/hospital.ts)를 우선
     mapLinks: {
-      tmap: str(maps.tmap) || fallbackHospital.mapLinks.tmap,
-      naver: str(maps.naver) || fallbackHospital.mapLinks.naver,
-      kakao: str(maps.kakao) || fallbackHospital.mapLinks.kakao,
-      google: str(maps.google) || fallbackHospital.mapLinks.google,
+      tmap: fallbackHospital.mapLinks.tmap || str(maps.tmap) || undefined,
+      naver: fallbackHospital.mapLinks.naver || str(maps.naver) || undefined,
+      kakao: fallbackHospital.mapLinks.kakao || str(maps.kakao) || undefined,
+      google: fallbackHospital.mapLinks.google || str(maps.google) || undefined,
     },
   };
 }

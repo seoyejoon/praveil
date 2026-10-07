@@ -34,10 +34,10 @@ export const hospital: Hospital = {
   ],
   coords: { lat: 37.4451996, lng: 126.7015395 },
   mapLinks: {
-    naver: "https://map.naver.com/p/entry/place/1157284242",
-    google:
-      "https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent("인천광역시 남동구 성말로 10"),
+    naver: "https://naver.me/5A3GtvSE",
+    kakao: "https://place.map.kakao.com/858400071",
+    tmap: "https://tmap.life/f690c10b",
+    google: "https://maps.app.goo.gl/B5Fcic4ehzanmjE99",
   },
 };
 

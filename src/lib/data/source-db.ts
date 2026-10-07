@@ -38,6 +38,9 @@ const loadHospital = cached("hospital", async () => {
   return row ?? null;
 });
 
+const orFallback = <T>(list: T[], fallback: T[]) =>
+  list.length ? list : fallback;
+
 export async function getHospital(): Promise<Hospital> {
   const row = await loadHospital();
   if (!row) return fallbackHospital;
@@ -53,30 +56,38 @@ export async function getHospital(): Promise<Hospital> {
       str(terms.businessRegistrationNumber) || fallbackHospital.businessNumber,
     phone: str(clinic.phone) || fallbackHospital.phone,
     address: str(clinic.address) || fallbackHospital.address,
-    addressDetail: str(clinic.addressDetail),
-    kakaoUrl: str(clinic.kakaoUrl) || "#",
-    naverReservationUrl: str(clinic.naverReservationUrl) || "#",
-    instagramUrl: str(clinic.instagramUrl) || "#",
-    hours: arr(clinic.hours).map((h) => {
-      const hour = obj(h);
-      return {
-        label: str(hour.label),
-        time: str(hour.time),
-        note: str(hour.note) || undefined,
-        closed: hour.closed === true,
-      };
-    }),
-    lunch: str(clinic.lunch),
-    hoursNotice: str(clinic.hoursNotice),
-    directions: arr(clinic.directions).map((d) => ({
-      title: str(obj(d).title),
-      body: str(obj(d).body),
-    })),
+    addressDetail: str(clinic.addressDetail) || fallbackHospital.addressDetail,
+    kakaoUrl: str(clinic.kakaoUrl) || fallbackHospital.kakaoUrl,
+    naverReservationUrl:
+      str(clinic.naverReservationUrl) || fallbackHospital.naverReservationUrl,
+    instagramUrl: str(clinic.instagramUrl) || fallbackHospital.instagramUrl,
+    // 관리자에 아직 입력하지 않은 항목은 기본 정보(mock/hospital.ts)로 채움
+    hours: orFallback(
+      arr(clinic.hours).map((h) => {
+        const hour = obj(h);
+        return {
+          label: str(hour.label),
+          time: str(hour.time),
+          note: str(hour.note) || undefined,
+          closed: hour.closed === true,
+        };
+      }),
+      fallbackHospital.hours,
+    ),
+    lunch: str(clinic.lunch) || fallbackHospital.lunch,
+    hoursNotice: str(clinic.hoursNotice) || fallbackHospital.hoursNotice,
+    directions: orFallback(
+      arr(clinic.directions).map((d) => ({
+        title: str(obj(d).title),
+        body: str(obj(d).body),
+      })),
+      fallbackHospital.directions,
+    ),
     mapLinks: {
-      tmap: str(maps.tmap) || undefined,
-      naver: str(maps.naver) || undefined,
-      kakao: str(maps.kakao) || undefined,
-      google: str(maps.google) || undefined,
+      tmap: str(maps.tmap) || fallbackHospital.mapLinks.tmap,
+      naver: str(maps.naver) || fallbackHospital.mapLinks.naver,
+      kakao: str(maps.kakao) || fallbackHospital.mapLinks.kakao,
+      google: str(maps.google) || fallbackHospital.mapLinks.google,
     },
   };
 }

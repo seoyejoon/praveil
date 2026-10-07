@@ -179,11 +179,11 @@ export const mainDoctor = {
 
 // 진료 분야 (시술 대분류 5개) 대표 사진
 export const mainCategoryImage: Record<string, string> = {
-  lifting: photo("cat-lifting"),
-  petit: photo("cat-filler"),
-  skin: photo("cat-skin-booster"),
-  "acne-pore": photo("cat-hair-removal"),
-  removal: photo("cat-tattoo-removal"),
+  lifting: photo("cat-main-lifting"),
+  petit: photo("cat-main-petit"),
+  skin: photo("cat-main-skin"),
+  "acne-pore": photo("cat-main-acne-pore"),
+  removal: photo("cat-main-removal"),
 };
 
 export const mainSpace = {

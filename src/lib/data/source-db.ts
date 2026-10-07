@@ -41,6 +41,9 @@ const loadHospital = cached("hospital", async () => {
 const orFallback = <T>(list: T[], fallback: T[]) =>
   list.length ? list : fallback;
 
+// 관리자 초기값으로 들어간 임시 번호(02-000-0000 같은)는 비어 있는 것으로 봄
+const real = (v: string) => (/^\d{2,3}-?0{3,4}-?0{4}$/.test(v) ? "" : v);
+
 export async function getHospital(): Promise<Hospital> {
   const row = await loadHospital();
   if (!row) return fallbackHospital;
@@ -54,7 +57,7 @@ export async function getHospital(): Promise<Hospital> {
     director: str(terms.representativeName) || fallbackHospital.director,
     businessNumber:
       str(terms.businessRegistrationNumber) || fallbackHospital.businessNumber,
-    phone: str(clinic.phone) || fallbackHospital.phone,
+    phone: real(str(clinic.phone)) || fallbackHospital.phone,
     address: str(clinic.address) || fallbackHospital.address,
     addressDetail: str(clinic.addressDetail) || fallbackHospital.addressDetail,
     kakaoUrl: str(clinic.kakaoUrl) || fallbackHospital.kakaoUrl,
@@ -77,10 +80,12 @@ export async function getHospital(): Promise<Hospital> {
     lunch: str(clinic.lunch) || fallbackHospital.lunch,
     hoursNotice: str(clinic.hoursNotice) || fallbackHospital.hoursNotice,
     directions: orFallback(
-      arr(clinic.directions).map((d) => ({
-        title: str(obj(d).title),
-        body: str(obj(d).body),
-      })),
+      arr(clinic.directions)
+        .map((d) => ({
+          title: str(obj(d).title),
+          body: str(obj(d).body),
+        }))
+        .filter((d) => !d.body.includes("확정 전")),
       fallbackHospital.directions,
     ),
     mapLinks: {

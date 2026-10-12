@@ -1,6 +1,10 @@
 # 카페24 서버 설치 순서 (홈페이지 + 관리자)
 
 서버 한 대(DEV A, 2GB)에 **홈페이지 · 관리자 · DB**를 함께 설치합니다.
+
+**카페24 구매 선택**: Node.js 24 → Next.js 15 → PostgreSQL 17 → DEV A (Ubuntu)
+- 이렇게 사면 Node.js · PM2 · Nginx · PostgreSQL 17이 미리 설치되어 있습니다. 아래 1번에서 **스왑, certbot, git**만 설치하면 됩니다.
+- 2GB에 맞춘 설정: 홈페이지는 서버에서 빌드하지 않음(GitHub Actions에서 빌드), 사진 · 영상은 Nginx가 직접 전송, 프로그램별 메모리 상한(PM2), DB 메모리 축소
 명령어는 서버에 SSH로 접속해서 위에서부터 차례대로 붙여 넣으면 됩니다. (Ubuntu 기준, Rocky Linux는 `apt` 대신 `dnf`)
 
 ```
@@ -33,6 +37,8 @@ sudo npm install -g pm2
 
 PostgreSQL 메모리 설정: `deploy/postgresql-2gb.conf` 내용을 `/etc/postgresql/*/main/postgresql.conf` 맨 아래에 붙여 넣고 `sudo systemctl restart postgresql`
 
+Nginx가 홈페이지 사진을 직접 읽을 수 있게: `sudo chmod o+x /opt /opt/praveil` (사진 폴더 권한은 배포할 때 자동으로 맞춰짐)
+
 ## 2. DB 만들기
 
 ```sh
@@ -57,7 +63,10 @@ sudo install -d -o root -g root -m 0755 /opt/psbox-admin-only/var/locks
 sudo touch /opt/psbox-admin-only/var/locks/media-snapshot-admission-v131.lock /opt/psbox-admin-only/var/locks/media-snapshot-v131.lock
 sudo chmod 0644 /opt/psbox-admin-only/var/locks/*.lock
 chmod o+x /opt/psbox-admin-only /opt/psbox-admin-only/storage && chmod -R o+rX storage/uploads   # Nginx가 이미지 읽기
-npm run build
+# 2GB 서버: 빌드하는 동안 홈페이지를 잠시 멈춰 메모리를 비움 (처음 설치 때는 아직 없어서 생략)
+pm2 stop praveil-web 2>/dev/null || true
+NODE_OPTIONS=--max-old-space-size=1536 npm run build
+pm2 start praveil-web 2>/dev/null || true
 ```
 
 **관리자 설정값 (.env.local)** — 비밀값은 `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` 로 하나씩 새로 만듭니다.
@@ -137,4 +146,4 @@ sudo nginx -t && sudo systemctl reload nginx
 ## 업데이트할 때
 
 - **홈페이지**: main 브랜치에 올리면 자동 배포 (또는 Actions에서 Run workflow)
-- **관리자**: `cd /opt/psbox-admin-only && git pull && npm ci && npm run praveil:setup && npm run build && pm2 reload praveil-admin`
+- **관리자**: `cd /opt/psbox-admin-only && git pull && npm ci && npm run praveil:setup && pm2 stop praveil-web && NODE_OPTIONS=--max-old-space-size=1536 npm run build; pm2 start praveil-web && pm2 reload praveil-admin` (빌드 중 1~2분 홈페이지가 멈추므로 밤에 하기)

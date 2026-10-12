@@ -56,6 +56,7 @@ jobs:
           scp -i ~/deploy_key -o StrictHostKeyChecking=accept-new praveil-web.tgz $USER@$HOST:/tmp/praveil-web.tgz
           $SSH "set -e
             mkdir -p $RELEASE && tar -xzf /tmp/praveil-web.tgz -C $RELEASE && rm /tmp/praveil-web.tgz
+            chmod -R o+rX $RELEASE/public $RELEASE/.next/static
             ln -sfn $RELEASE /opt/praveil/current
             pm2 reload praveil-web --update-env || pm2 start /opt/praveil/ecosystem.config.cjs --only praveil-web
             ls -1dt /opt/praveil/releases/* | tail -n +4 | xargs -r rm -rf"

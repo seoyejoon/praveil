@@ -1,13 +1,14 @@
 # 홈페이지를 GitHub에서 빌드해 카페24 서버로 올린다. (2GB 서버에서는 빌드하지 않음)
 # 필요한 설정 (GitHub 저장소 > Settings > Secrets and variables > Actions)
-#   Variables: NEXT_PUBLIC_SITE_URL (예: https://praveil.co.kr), NEXT_PUBLIC_KAKAO_MAP_KEY (선택)
-#   Secrets:   DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY  (없으면 빌드만 하고 결과물을 내려받을 수 있게 남긴다)
+#   Variables: NEXT_PUBLIC_SITE_URL (기본 https://praveil.com), NEXT_PUBLIC_KAKAO_MAP_KEY (선택)
+#   Secrets:   DEPLOY_HOST, DEPLOY_USER, DEPLOY_PASSWORD  (없으면 빌드만 하고 결과물을 내려받을 수 있게 남긴다)
+# 서버: 카페24 DEV A, 프로그램은 appuser 계정의 pm2(praveil-web, 포트 3000)로 실행
 name: Deploy homepage
 
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, claude/brave-noether-qwu6gl]
 
 concurrency:
   group: deploy-homepage
@@ -17,9 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://praveil.co.kr' }}
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://praveil.com' }}
       NEXT_PUBLIC_KAKAO_MAP_KEY: ${{ vars.NEXT_PUBLIC_KAKAO_MAP_KEY }}
-      HAS_SSH: ${{ secrets.DEPLOY_SSH_KEY != '' }}
+      HAS_SSH: ${{ secrets.DEPLOY_HOST != '' && secrets.DEPLOY_PASSWORD != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -48,15 +49,30 @@ jobs:
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
-          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
         run: |
-          install -m 600 /dev/null ~/deploy_key && echo "$KEY" > ~/deploy_key
-          SSH="ssh -i ~/deploy_key -o StrictHostKeyChecking=accept-new $USER@$HOST"
+          sudo apt-get install -y sshpass >/dev/null
+          SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 $USER@$HOST"
+          sshpass -e scp -o StrictHostKeyChecking=accept-new praveil-web.tgz deploy/ecosystem.config.cjs "$USER@$HOST:/tmp/"
+          $SSH 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          # 관리자(DB 기본 테이블)가 먼저 설치돼야 홈페이지가 DB를 읽을 수 있음
+          if ! sudo -u postgres psql -d psbox_admin -tAc "select to_regclass('public.hospitals')" 2>/dev/null | grep -q hospitals; then
+            echo "관리자가 아직 설치되지 않아 홈페이지 배포를 건너뜀 (관리자 배포 후 다시 실행)"; rm -f /tmp/praveil-web.tgz /tmp/ecosystem.config.cjs; exit 0
+          fi
           RELEASE=/opt/praveil/releases/$(date +%Y%m%d%H%M%S)
-          scp -i ~/deploy_key -o StrictHostKeyChecking=accept-new praveil-web.tgz $USER@$HOST:/tmp/praveil-web.tgz
-          $SSH "set -e
-            mkdir -p $RELEASE && tar -xzf /tmp/praveil-web.tgz -C $RELEASE && rm /tmp/praveil-web.tgz
-            chmod -R o+rX $RELEASE/public $RELEASE/.next/static
-            ln -sfn $RELEASE /opt/praveil/current
-            pm2 reload praveil-web --update-env || pm2 start /opt/praveil/ecosystem.config.cjs --only praveil-web
-            ls -1dt /opt/praveil/releases/* | tail -n +4 | xargs -r rm -rf"
+          mkdir -p $RELEASE && tar -xzf /tmp/praveil-web.tgz -C $RELEASE && rm /tmp/praveil-web.tgz
+          install -m 644 /tmp/ecosystem.config.cjs /opt/praveil/ecosystem.config.cjs && rm /tmp/ecosystem.config.cjs
+          chown -R appuser:appuser $RELEASE
+          chmod -R o+rX $RELEASE/public $RELEASE/.next/static
+          chmod o+x /opt/praveil/releases $RELEASE $RELEASE/.next
+          ln -sfn $RELEASE /opt/praveil/current
+          run() { sudo -u appuser -H bash -lc "$*"; }
+          # 카페24 샘플 앱(praveil)은 정리
+          run "pm2 delete praveil >/dev/null 2>&1 || true"
+          run "pm2 startOrReload /opt/praveil/ecosystem.config.cjs --only praveil-web --update-env && pm2 save >/dev/null"
+          ls -1dt /opt/praveil/releases/* | tail -n +4 | xargs -r rm -rf
+          sleep 4
+          curl -s -o /dev/null -w "homepage http %{http_code}\n" http://127.0.0.1:3000/ || true
+          free -m
+          REMOTE

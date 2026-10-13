@@ -13,8 +13,8 @@ module.exports = {
         HOSTNAME: "127.0.0.1",
         NODE_OPTIONS: "--max-old-space-size=256",
       },
-      // DATABASE_URL, REVALIDATE_SECRET 은 /opt/praveil/.env 에서 읽는다
-      node_args: "--env-file=/opt/praveil/.env",
+      // DATABASE_URL, REVALIDATE_SECRET 은 /opt/praveil/.env.web 에서 읽는다 (서버 설정 스크립트가 만듦)
+      node_args: "--env-file=/opt/praveil/.env.web",
       exec_mode: "fork",
       instances: 1,
       max_memory_restart: "380M",

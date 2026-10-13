@@ -1,0 +1,19 @@
+name: Server SSL
+# 무료 인증서 발급 + 최종 Nginx 설정 (deploy/server/ssl.sh, deploy/nginx/praveil.conf)
+on:
+  workflow_dispatch:
+
+jobs:
+  ssl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Issue certificate + apply nginx
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=accept-new deploy/nginx/praveil.conf "$USER@$HOST:/tmp/praveil-nginx.conf"
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" "DOMAIN=praveil.com bash -s" < deploy/server/ssl.sh

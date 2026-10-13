@@ -1,0 +1,28 @@
+name: Server sample posts
+# 보여주기용 공지 3 · 이벤트 3 을 서버 DB에 게시글로 등록 (scripts/seed-sample-posts.mjs)
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Insert posts
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=accept-new scripts/seed-sample-posts.mjs "$USER@$HOST:/tmp/seed-sample-posts.mjs"
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          A=/opt/psbox-admin-only
+          install -o appuser -m 644 /tmp/seed-sample-posts.mjs $A/scripts/seed-sample-posts.mjs && rm /tmp/seed-sample-posts.mjs
+          sudo -u appuser -H env -u DATABASE_URL bash -c "cd $A && node --env-file=.env.local scripts/seed-sample-posts.mjs"
+          rm -f $A/scripts/seed-sample-posts.mjs
+          # 홈페이지 캐시 새로 고침
+          . /etc/praveil/secrets.env
+          curl -s -o /dev/null -w "revalidate %{http_code}\n" -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" http://127.0.0.1:3000/api/revalidate || true
+          REMOTE

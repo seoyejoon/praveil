@@ -5,6 +5,12 @@ import { isOpen } from "@/lib/preview-lock";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  // 예전 미리보기(Vercel) 주소로 들어오면 실서버(praveil.com)로 영구 이동 (같은 내용이 두 곳에 있으면 검색에 불리)
+  if (process.env.VERCEL)
+    return NextResponse.redirect(
+      `https://praveil.com${pathname}${req.nextUrl.search}`,
+      308,
+    );
   if (isOpen(pathname)) return NextResponse.next();
   const url = req.nextUrl.clone();
   url.pathname = "/preparing";

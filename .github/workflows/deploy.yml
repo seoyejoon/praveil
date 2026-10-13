@@ -67,12 +67,14 @@ jobs:
           chmod -R o+rX $RELEASE/public $RELEASE/.next/static
           chmod o+x /opt/praveil/releases $RELEASE $RELEASE/.next
           ln -sfn $RELEASE /opt/praveil/current
-          run() { sudo -u appuser -H bash -lc "$*"; }
+          # 카페24 기본 설정(/etc/praveil/env, appdb)이 섞이지 않게 깨끗한 환경에서 실행 → .env.web 값을 씀
+          run() { sudo -u appuser -H env -u DATABASE_URL -u PORT -u HOST -u HOSTNAME bash -c "$*"; }
           # 카페24 샘플 앱(praveil)은 정리
           run "pm2 delete praveil >/dev/null 2>&1 || true"
-          run "pm2 startOrReload /opt/praveil/ecosystem.config.cjs --only praveil-web --update-env && pm2 save >/dev/null"
+          run "pm2 delete praveil-web >/dev/null 2>&1 || true"
+          run "pm2 start /opt/praveil/ecosystem.config.cjs --only praveil-web && pm2 save >/dev/null"
           ls -1dt /opt/praveil/releases/* | tail -n +4 | xargs -r rm -rf
-          sleep 4
+          sleep 10
           curl -s -o /dev/null -w "homepage http %{http_code}\n" http://127.0.0.1:3000/ || true
           free -m
           REMOTE

@@ -14,9 +14,16 @@ install -d /etc/letsencrypt/renewal-hooks/deploy
 printf '#!/bin/sh\nsystemctl reload nginx\n' > /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
 chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
 echo "== 최종 Nginx 설정 적용"
+cp -a /etc/nginx/sites-available/praveil-site /tmp/praveil-site.bak 2>/dev/null || true
 install -m 644 "$CONF" /etc/nginx/sites-available/praveil-site
 ln -sfn /etc/nginx/sites-available/praveil-site /etc/nginx/sites-enabled/praveil-site
-nginx -t && systemctl reload nginx
+if ! nginx -t; then
+  echo "!! Nginx 설정 오류 → 이전 설정으로 되돌림"
+  cp -a /tmp/praveil-site.bak /etc/nginx/sites-available/praveil-site
+  nginx -t && systemctl reload nginx
+  exit 1
+fi
+systemctl reload nginx
 systemctl list-timers --no-pager | grep -i certbot || true
 sleep 2
 for u in "https://$DOMAIN/" "https://www.$DOMAIN/" "https://admin.$DOMAIN/site-admin/login" "http://$DOMAIN/"; do

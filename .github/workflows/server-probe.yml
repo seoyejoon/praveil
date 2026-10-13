@@ -1,0 +1,31 @@
+name: Server probe
+# 서버 접속 확인 + 현재 상태 보기 (읽기만 함, 아무것도 바꾸지 않음)
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Read server state
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'bash -s' <<'REMOTE'
+          echo "== os"; cat /etc/os-release | head -3
+          echo "== whoami"; whoami
+          echo "== mem"; free -m
+          echo "== disk"; df -h / | tail -1
+          echo "== cpu"; nproc
+          echo "== tools"; for t in node npm pnpm pm2 nginx psql git certbot; do printf "%s: " $t; (command -v $t >/dev/null && ($t --version 2>&1 || $t -v 2>&1) | head -1) || echo missing; done
+          echo "== /opt"; ls -la /opt
+          echo "== /opt/praveil"; ls -la /opt/praveil 2>/dev/null | head -30
+          echo "== services"; systemctl list-units --type=service --state=running --no-pager | grep -Ei 'nginx|postgres|praveil|pm2|node' || true
+          echo "== listening"; ss -ltnp 2>/dev/null | head -20
+          echo "== nginx sites"; ls /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null
+          echo "== swap"; swapon --show
+          echo "== ufw"; ufw status 2>/dev/null | head -10
+          REMOTE

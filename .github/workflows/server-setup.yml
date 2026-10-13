@@ -1,0 +1,19 @@
+name: Server setup
+# 카페24 서버 기본 설정 (deploy/server/bootstrap.sh). 여러 번 실행해도 안전.
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Run bootstrap on server
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" \
+            "DOMAIN=praveil.com bash -s" < deploy/server/bootstrap.sh

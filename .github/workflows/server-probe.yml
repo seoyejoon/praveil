@@ -28,4 +28,15 @@ jobs:
           echo "== nginx sites"; ls /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null
           echo "== swap"; swapon --show
           echo "== ufw"; ufw status 2>/dev/null | head -10
+          echo "== nginx site"; cat /etc/nginx/sites-enabled/praveil 2>/dev/null | grep -v -i 'password\|secret'
+          echo "== cafe24 conf.d"; head -40 /etc/nginx/conf.d/cafe24-ratelimit.conf /etc/nginx/conf.d/cafe24-ssl-params.conf 2>/dev/null
+          echo "== ecosystem"; grep -v -i 'password\|secret\|DATABASE_URL' /opt/praveil/ecosystem.config.js 2>/dev/null
+          echo "== pm2 (appuser)"; sudo -u appuser -H bash -lc 'PM2_HOME=/opt/praveil/.pm2 pm2 ls' 2>&1 | head -20
+          echo "== appuser"; getent passwd appuser
+          echo "== pg conf.d"; ls /etc/postgresql/17/main/conf.d 2>/dev/null; grep -n "include_dir" /etc/postgresql/17/main/postgresql.conf
+          echo "== pg dbs"; sudo -u postgres psql -Atc "select datname from pg_database" 2>&1
+          echo "== pg roles"; sudo -u postgres psql -Atc "select rolname from pg_roles where rolname !~ '^pg_'" 2>&1
+          echo "== /opt/cafe24-vps"; ls -R /opt/cafe24-vps 2>/dev/null | head -20
+          echo "== letsencrypt"; ls /etc/letsencrypt/live 2>/dev/null
+          echo "== public ip"; curl -s -4 https://ifconfig.me || true; echo
           REMOTE

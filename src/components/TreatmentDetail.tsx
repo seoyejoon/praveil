@@ -10,6 +10,7 @@ import {
 import BestMark from "@/components/BestMark";
 import NaverReviews from "@/components/naver-reviews/NaverReviews";
 import BlogSection from "@/components/sub/BlogSection";
+import FaceZoneIcon, { hasFaceZone } from "@/components/sub/FaceZoneIcon";
 import type { BlogPost } from "@/lib/blog";
 import { BaPreview } from "@/components/BeforeAfterBoard";
 import ConsultCta from "@/components/sub/ConsultCta";
@@ -507,9 +508,19 @@ export default function TreatmentDetail({
                       />
                     </div>
                   )}
-                  <span className="font-display text-xs tracking-[0.2em] text-taupe">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="font-display text-xs tracking-[0.2em] text-taupe">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {!it.image && hasFaceZone(it.name) && (
+                      <span className="-mt-2 -mr-2 grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full bg-white/[0.06] text-white transition duration-500 group-hover:bg-gold/15 md:h-20 md:w-20">
+                        <FaceZoneIcon
+                          name={it.name}
+                          className="h-11 w-11 md:h-12 md:w-12"
+                        />
+                      </span>
+                    )}
+                  </div>
                   <h3 className="mt-6 text-lg font-semibold md:text-xl">
                     {it.name}
                   </h3>

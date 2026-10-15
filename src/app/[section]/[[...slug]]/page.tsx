@@ -74,7 +74,7 @@ export default async function SectionPage({ params }: Props) {
       getProcedures(),
       // 시술 페이지 미리 보기는 로그인 없이 시술 전 사진까지 보여 줌
       getBeforeAfterCases(true),
-      t.href === "/lifting/coolsonic" ? getBlogPosts(30) : [],
+      deviceStory[t.href] ? getBlogPosts(30) : [],
     ]);
     // 블로그: 이 시술 이름이 들어간 글 먼저
     const blog = [

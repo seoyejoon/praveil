@@ -12,6 +12,8 @@ export type HeroScene = {
   mobileSrc?: string;
   /** 핸드피스가 피부에 닿는 자리 (사진 속 %, [가로, 세로]) — 여기서 초음파 파장이 피부 쪽으로 퍼짐 */
   pulse?: [number, number];
+  /** PC 사진 위치 (object-position, 기본 "92% center") */
+  position?: string;
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
   chips?: { x: number; y: number; en: string; label: string }[];
 };
@@ -87,7 +89,9 @@ export default function SceneHero({
             className="absolute inset-0 h-full w-full animate-[fade-in_1s_ease_both] object-cover md:hidden"
           />
         )}
-        <div className={`absolute inset-0 ${scene.mobileSrc ? "max-md:hidden" : ""}`}>
+        <div
+          className={`absolute inset-0 ${scene.mobileSrc ? "max-md:hidden" : ""}`}
+        >
           {scene.video ? (
             <video
               src={scene.video}
@@ -107,6 +111,9 @@ export default function SceneHero({
               alt={`${title} 시술 장면`}
               fetchPriority="high"
               className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
+              style={
+                scene.position ? { objectPosition: scene.position } : undefined
+              }
             />
           )}
           {/* 유리 카드: 장비 특징을 한 줄씩, 차례로 떠오른 뒤 천천히 둥실 */}

@@ -50,24 +50,35 @@ export function StoryAbout({
   story: DeviceStory;
 }) {
   const { device, principle } = story;
+  const what = story.kind === "procedure" ? "시술" : "장비";
   return (
     <>
       {/* 어떤 장비인가요? (제조사 브랜드 영상이 있으면 어두운 카드에 영상) */}
       <section id="what" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
-        {device.film ? (
+        {device.film || device.photo ? (
           <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[#2b2b2b] text-white md:rounded-[40px] lg:grid-cols-[1.35fr_1fr]">
             <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]">
-              <video
-                src={device.film.src}
-                poster={device.film.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label={`${device.name} 장비 영상`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              {device.film ? (
+                <video
+                  src={device.film.src}
+                  poster={device.film.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${device.name} 장비 영상`}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={device.photo}
+                  alt={`${device.name} 시술 장면`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
             </div>
@@ -76,7 +87,7 @@ export function StoryAbout({
                 {device.maker} · {device.name}
               </p>
               <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
-                {title}, 어떤 장비인가요?
+                {title}, 어떤 {what}인가요?
               </h2>
               <Reveal>
                 <p className="mt-6 text-[15px] leading-[1.9] text-white/65 md:text-[16px]">
@@ -118,7 +129,10 @@ export function StoryAbout({
               </p>
             </div>
             <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
-              <SectionHead en="What is" title={`${title}, 어떤 장비인가요?`} />
+              <SectionHead
+                en="What is"
+                title={`${title}, 어떤 ${what}인가요?`}
+              />
               <Reveal>
                 <p className="mt-6 text-[15px] leading-[1.9] text-muted md:text-[17px]">
                   {device.text}
@@ -208,7 +222,11 @@ export function StoryAbout({
             </div>
             <Reveal delay={150}>
               <figure className="overflow-hidden rounded-[28px] bg-ivory p-4 md:p-8">
-                <HifuDiagram depths={story.depths} />
+                {story.diagram === "filler" ? (
+                  <FillerDiagram />
+                ) : (
+                  <HifuDiagram depths={story.depths} />
+                )}
                 <figcaption className="mt-3 text-center text-xs text-muted">
                   ※ 원리를 쉽게 보여 드리기 위한 그림입니다
                 </figcaption>
@@ -570,10 +588,11 @@ export function StoryCompare({
     >
       <SectionHead
         en="Compare"
-        title={`${title}, 다른 리프팅 장비와 어떻게 다른가요?`}
+        title={c.title ?? `${title}, 다른 리프팅 장비와 어떻게 다른가요?`}
       />
       <p className="mt-4 text-[15px] text-muted">
-        상담 시 자주 비교되는 리프팅 장비의 일반적인 특징을 정리했습니다.
+        {c.lead ??
+          "상담 시 자주 비교되는 리프팅 장비의 일반적인 특징을 정리했습니다."}
       </p>
       <p className="mt-8 text-xs text-muted md:hidden">
         ← 옆으로 밀어서 비교해 보세요
@@ -631,5 +650,123 @@ export function StoryCompare({
       </Reveal>
       <p className="mt-6 text-xs leading-relaxed text-muted">{c.note}</p>
     </section>
+  );
+}
+
+/** 필러 원리 그림: 피부 단면 + 부위에 따라 다른 층에 히알루론산을 넣어 꺼진 곳을 받쳐 줌 */
+function FillerDiagram() {
+  // 층: [이름, 위, 아래, 색]
+  const layers: [string, number, number, string][] = [
+    ["표피", 120, 134, "#f6dccb"],
+    ["진피층", 134, 196, "#f0cdb8"],
+    ["피하지방층", 196, 286, "#f6e5c4"],
+    ["골막 · 뼈", 286, 360, "#e6dccd"],
+  ];
+  // 주입 위치: [x, y, 가로 반지름, 세로 반지름, 이름]
+  const gels: [number, number, number, number, string][] = [
+    [110, 168, 26, 11, "잔주름 · 입술"],
+    [215, 242, 40, 22, "볼륨 (앞볼 · 옆볼)"],
+    [320, 280, 36, 13, "윤곽 · 이마"],
+  ];
+  return (
+    <svg
+      viewBox="0 0 600 400"
+      role="img"
+      aria-label="필러를 부위에 따라 진피층 · 피하지방층 · 골막 위에 나누어 넣어 꺼진 곳을 받쳐 주는 원리 그림"
+      className="h-auto w-full"
+    >
+      <defs>
+        <radialGradient id="gel">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.95" />
+          <stop offset="0.6" stopColor="#e7f1f6" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#bcd6e2" stopOpacity="0.85" />
+        </radialGradient>
+        <pattern id="fat2" width="26" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="13" cy="11" r="9" fill="#fbecd0" stroke="#efd6ab" />
+        </pattern>
+      </defs>
+
+      {/* 피부 층 */}
+      {layers.map(([name, y1, y2, c]) => (
+        <g key={name}>
+          <rect x="20" y={y1} width="380" height={y2 - y1} fill={c} />
+          {name === "피하지방층" && (
+            <rect
+              x="20"
+              y={y1}
+              width="380"
+              height={y2 - y1}
+              fill="url(#fat2)"
+              opacity="0.7"
+            />
+          )}
+          <line
+            x1="400"
+            y1={(y1 + y2) / 2}
+            x2="416"
+            y2={(y1 + y2) / 2}
+            stroke="#a88e6a"
+            strokeWidth="1"
+          />
+          <text x="422" y={(y1 + y2) / 2 + 7} fontSize="19" fill="#4a423b">
+            {name}
+          </text>
+        </g>
+      ))}
+
+      {/* 주사기 (위에서 비스듬히) */}
+      <g transform="rotate(-32 120 70)">
+        <rect
+          x="60"
+          y="58"
+          width="150"
+          height="24"
+          rx="6"
+          fill="#ffffff"
+          stroke="#cfc7bb"
+        />
+        <rect x="70" y="62" width="100" height="16" rx="4" fill="#dcebf2" />
+        <rect x="30" y="64" width="34" height="12" rx="3" fill="#2a2724" />
+        <rect x="210" y="67" width="70" height="6" rx="3" fill="#bdb6ac" />
+      </g>
+
+      {/* 넣은 필러: 층마다 다른 모양 */}
+      {gels.map(([x, y, rx, ry, label], i) => (
+        <g key={label}>
+          <ellipse
+            cx={x}
+            cy={y}
+            rx={rx}
+            ry={ry}
+            fill="url(#gel)"
+            stroke="#9cc0d0"
+            strokeWidth="1.2"
+          />
+          <line
+            x1={x}
+            y1={y - ry}
+            x2={x}
+            y2={i === 1 ? 82 : 104}
+            stroke="#a88e6a"
+            strokeDasharray="3 3"
+            strokeWidth="1"
+          />
+          <text
+            x={x}
+            y={i === 1 ? 74 : 96}
+            fontSize="15"
+            fill="#7d6649"
+            textAnchor="middle"
+            fontWeight={600}
+          >
+            {label}
+          </text>
+        </g>
+      ))}
+
+      <text x="210" y="390" fontSize="15" fill="#8a8378" textAnchor="middle">
+        부위마다 넣는 층과 제품을 다르게
+      </text>
+    </svg>
   );
 }

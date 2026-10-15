@@ -6,6 +6,7 @@ export const LOCKED = true;
 export const OPEN = [
   /^\/$/,
   /^\/lifting\/coolsonic\/?$/,
+  /^\/petit\/filler\/?$/,
   /^\/notice(\/.*)?$/,
   /^\/before-after(\/.*)?$/,
   /^\/terms\/?$/,

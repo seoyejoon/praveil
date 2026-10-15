@@ -4,12 +4,20 @@
 // ※ 임시 원고: 원장님 검토 후 확정해 주세요. 효과를 보장하는 표현 · 다른 병원과의 비교는 쓰지 않습니다.
 
 export type DeviceStory = {
+  /** 장비 시술(기본) · 장비가 아닌 시술(필러 등): 제목이 "어떤 장비인가요?" / "어떤 시술인가요?" 로 바뀜 */
+  kind?: "device" | "procedure";
+  /** 원리 그림 종류 (그림 사진이 없을 때): 초음파(기본) · 필러 */
+  diagram?: "hifu" | "filler";
+  /** 비용 안내 칸도 보여 줌 (장비 시술은 기본으로 숨김) */
+  showPrices?: boolean;
   /** 장비 소개 */
   device: {
     name: string;
     maker: string;
     /** 배경 없는 제품 사진 */
     image: string;
+    /** 제품 사진 대신 시술 장면 사진을 크게 (어두운 배경 구성) */
+    photo?: string;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     film?: { src: string; poster: string };
     text: string;
@@ -37,6 +45,9 @@ export type DeviceStory = {
   };
   /** 많이 비교하는 장비 비교표 (장비의 일반적인 특징, 우열 비교 아님) */
   compare?: {
+    /** 제목 · 설명 (없으면 리프팅 장비 비교 문구) */
+    title?: string;
+    lead?: string;
     columns: { name: string; maker: string; owned?: boolean; self?: boolean }[];
     rows: { label: string; values: string[] }[];
     note: string;
@@ -231,5 +242,137 @@ export const deviceStory: Record<string, DeviceStory> = {
       title: ["상담한 원장이,", "한 샷 한 샷 직접."],
       text: "프라베일의 쿨소닉은 대표원장이 처음부터 끝까지 직접 시술합니다.",
     },
+  },
+  "/petit/filler": {
+    kind: "procedure",
+    diagram: "filler",
+    showPrices: true,
+    device: {
+      name: "필러",
+      maker: "Hyaluronic Acid",
+      image: photo("cat-filler"),
+      photo: photo("cat-filler"),
+      text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
+      specs: [
+        { label: "성분", value: "히알루론산 (HA)" },
+        { label: "넣는 층", value: "진피층 ~ 골막 위 (부위별)" },
+        {
+          label: "시술 부위",
+          value: "이마 · 볼 · 팔자 · 입술 · 애교 · 목주름 등",
+        },
+        { label: "분해", value: "필요하면 분해 효소로 녹일 수 있음" },
+      ],
+    },
+    principle: [
+      {
+        title: "얼굴 비율 분석",
+        text: "정면 · 측면에서 얼굴 비율과 꺼진 부위를 확인하고, 채울 곳과 양을 정합니다.",
+      },
+      {
+        title: "부위별 층 · 제품 선택",
+        text: "잔주름 · 입술은 얕게, 볼륨은 피하지방층에, 윤곽은 골막 위에 넣는 등 부위에 맞춰 층과 제품을 고릅니다.",
+      },
+      {
+        title: "꺼진 곳을 받쳐 볼륨 회복",
+        text: "넣은 히알루론산이 꺼진 부위를 받쳐 주어, 시술 직후부터 볼륨 변화를 확인할 수 있습니다.",
+      },
+    ],
+    compare: {
+      title: "필러, 다른 쁘띠 시술과 어떻게 다른가요?",
+      lead: "상담 시 함께 많이 비교하는 시술의 일반적인 특징을 정리했습니다.",
+      columns: [
+        { name: "필러", maker: "볼륨 보충", self: true },
+        { name: "보톡스", maker: "근육 움직임 완화" },
+        { name: "스킨부스터", maker: "피부 속 수분 · 결" },
+        { name: "콜라겐부스터", maker: "콜라겐 생성 유도" },
+      ],
+      rows: [
+        {
+          label: "작용 방식",
+          values: [
+            "꺼진 곳에 볼륨을 직접 채움",
+            "주름을 만드는 근육의 움직임을 줄임",
+            "피부 속에 수분 · 영양을 채움",
+            "피부 스스로 콜라겐을 만들도록 도움",
+          ],
+        },
+        {
+          label: "주로 찾는 고민",
+          values: [
+            "꺼진 볼 · 이마, 팔자, 입술",
+            "이마 · 미간 · 눈가 표정 주름",
+            "건조함 · 피부결 · 잔주름",
+            "얇아진 피부 · 탄력 · 밀도",
+          ],
+        },
+        {
+          label: "효과 시점",
+          values: ["시술 직후", "3~7일 후", "1~2주 후", "1~3개월에 걸쳐"],
+        },
+        {
+          label: "회복",
+          values: [
+            "붓기 · 멍 1~3일",
+            "일상생활 바로 가능",
+            "작은 엠보 1~3일",
+            "붓기 · 엠보 1~3일",
+          ],
+        },
+      ],
+      note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
+    },
+    featuresTitle: "프라베일 필러의 4가지 특징",
+    features: [
+      {
+        title: "얼굴 비율부터 보는 디자인",
+        text: "꺼진 부위만 보지 않고 정면 · 측면 비율을 함께 봅니다. 얼굴 전체의 균형 안에서 채울 곳과 양을 정해, 자연스러운 라인을 만듭니다.",
+        image: photo("signature-3"),
+        alt: "대표원장이 얼굴 비율을 보며 필러 시술 부위를 확인하는 모습",
+      },
+      {
+        title: "부위에 맞춘 층 · 제품 선택",
+        text: "이마 · 볼 · 입술 · 눈 밑은 피부 두께와 움직임이 다릅니다. 부위마다 넣는 층과 제품의 단단함을 나누어 선택합니다.",
+        image: photo("cat-main-petit"),
+        alt: "앞볼 부위에 필러를 주입하는 모습",
+      },
+      {
+        title: "정품 · 정량, 시술 전 확인",
+        text: "정품 필러를 사용하고, 시술 전 제품을 직접 확인하실 수 있습니다. 상담 때 정한 양을 정확하게 지킵니다.",
+        image: photo("special-2"),
+        alt: "대표원장이 정품 필러로 시술하는 모습",
+      },
+      {
+        title: "과하지 않게, 필요한 만큼",
+        text: "한 번에 많이 넣기보다 자연스러운 선에서 멈춥니다. 붓기가 빠진 뒤 경과를 보고, 필요하면 조금 더 채우는 쪽을 권합니다.",
+        image: photo("cat-main-skin"),
+        alt: "턱 라인에 필러를 소량씩 나누어 주입하는 모습",
+      },
+    ],
+    process: [
+      {
+        title: "1:1 상담",
+        text: "고민 부위와 원하는 모습을 확인하고, 얼굴 비율을 보며 채울 곳 · 제품 · 양을 정합니다.",
+        image: photo("process-consult"),
+        alt: "대표원장 1:1 상담",
+      },
+      {
+        title: "마취",
+        text: "시술 부위에 마취 크림을 바르고, 입술처럼 예민한 부위는 조금 더 충분히 마취합니다.",
+        image: photo("process-anesthesia"),
+        alt: "시술 부위에 마취 크림을 바르는 모습",
+      },
+      {
+        title: "시술",
+        text: "상담 때 정한 부위에 필요한 양만 나누어 넣고, 모양을 확인하며 다듬습니다.",
+        image: photo("cat-main-petit"),
+        alt: "대표원장이 필러를 주입하는 모습",
+      },
+      {
+        title: "경과 확인",
+        text: "시술 직후 모양을 함께 확인하고, 주의사항과 경과 확인 시기를 안내합니다.",
+        image: photo("process-check"),
+        alt: "시술 후 경과를 확인하는 모습",
+      },
+    ],
   },
 };

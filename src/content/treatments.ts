@@ -297,9 +297,17 @@ export const treatments: Treatment[] = [
     href: "/petit/filler",
     en: "Filler",
     title: "필러",
-    description:
-      "볼륨 · 이마 · 팔자 · 입술 · 애교 · 상안검 · 깊은 주름 · 목주름",
+    description: "얼굴 비율에 맞춰 꺼진 곳만 채우는 볼륨 필러",
     image: photo("signature-3"),
+    scene: {
+      mobileSrc: photo("best-filler-m"),
+      src: photo("best-filler"),
+      position: "70% 28%",
+      chips: [
+        { x: 59, y: 22, en: "Design", label: "정면 · 측면 얼굴 비율 분석" },
+        { x: 56, y: 48, en: "Genuine", label: "정품 · 정량, 시술 전 확인" },
+      ],
+    },
     headline: ["꺼진 곳만 정확하게,", "얼굴 비율에 맞춘 필러"],
     intro:
       "필러는 꺼진 부위에 볼륨을 채워 얼굴의 균형을 맞추는 시술입니다. 프라베일은 많이 채우기보다, 얼굴 비율을 보고 꼭 필요한 곳에 필요한 양만 넣습니다.",

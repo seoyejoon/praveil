@@ -130,7 +130,7 @@ export default function TreatmentDetail({
     compare.length > 1 && { id: "compare", label: "비교" },
     { id: "result", label: "효과 · 유지" },
     { id: "aftercare", label: "통증 · 회복" },
-    !story && { id: "price", label: "비용" },
+    (!story || story.showPrices) && { id: "price", label: "비용" },
     { id: "faq", label: "자주 묻는 질문" },
     { id: "visit", label: "상담 · 위치" },
   ].filter(Boolean) as { id: string; label: string }[];
@@ -775,7 +775,7 @@ export default function TreatmentDetail({
       </section>
 
       {/* 비용 */}
-      {!story && (
+      {(!story || story.showPrices) && (
         <section
           id="price"
           className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6"
@@ -912,7 +912,7 @@ export default function TreatmentDetail({
       {/* 장비 시술: 의료진은 자주 묻는 질문 아래 */}
       {story && <div className="pb-16 md:pb-24">{doctorSection}</div>}
 
-      {t.href === "/lifting/coolsonic" && (
+      {story && (
         <>
           <BlogSection posts={blog} />
           <NaverReviews />

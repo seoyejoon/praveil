@@ -697,7 +697,7 @@ export const treatments: Treatment[] = [
     href: "/removal/tattoo",
     en: "Tattoo Removal",
     title: "문신제거",
-    description: "눈썹 · 아이라인 · 언더라인",
+    description: "색소와 피부 상태를 살피고 눈 보호를 고려하는 문신제거",
     image: photo("cat-tattoo-removal"),
     device: device("pico-k", "PICO-K", "피코 레이저"),
     headline: ["지우고 싶은 반영구,", "섬세한 문신제거"],

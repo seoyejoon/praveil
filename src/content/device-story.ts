@@ -277,6 +277,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/petit/filler": {
     kind: "procedure",
     diagram: "filler",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "필러",
@@ -874,6 +875,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/skin/booster": {
     kind: "procedure",
     diagram: "booster",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "스킨부스터",
@@ -1036,6 +1038,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/skin/collagen": {
     kind: "procedure",
     diagram: "collagen",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "콜라겐부스터",
@@ -1499,6 +1502,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/acne-pore": {
     kind: "procedure",
     diagram: "acne",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "여드름 · 모공 치료",
@@ -1663,6 +1667,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/removal/hair": {
     kind: "procedure",
     diagram: "hair",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "레이저 제모",
@@ -1818,6 +1823,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/removal/tattoo": {
     kind: "procedure",
     diagram: "pigment",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "레이저 문신제거",

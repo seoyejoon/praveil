@@ -126,11 +126,13 @@ export const treatments: Treatment[] = [
     // 병원 제공 보정 원본의 얼굴 · 손 · 시술 부위를 한 화면에 표시합니다.
     scene: {
       src: doctorPhotos.coolphase,
-      photoLayout: "full-frame",
-      photoAlt: "대표원장이 쿨페이즈 장비로 얼굴 부위를 시술하는 모습",
+      mobileSrc: doctorPhotos.coolphase,
+      desktopFit: "contain",
+      mobilePosition: "25% center",
+      alt: "대표원장이 쿨페이즈 장비로 얼굴 부위를 시술하는 모습",
       chips: [
-        { x: 58, y: 18, en: "RF", label: "모노폴라 고주파 에너지" },
-        { x: 56, y: 48, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
+        { x: 55, y: 22, en: "RF", label: "모노폴라 고주파 에너지" },
+        { x: 68, y: 50, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
       ],
     },
     headline: ["피부결부터 탄탄하게,", "쿨페이즈 고주파 리프팅"],
@@ -547,6 +549,17 @@ export const treatments: Treatment[] = [
     title: "스킨부스터",
     description: "피부 고민과 성분 · 사용목적을 살펴 계획하는 스킨부스터",
     image: photo("cat-skin-booster"),
+    scene: {
+      src: photo("cat-skin-booster"),
+      mobileSrc: photo("cat-skin-booster"),
+      desktopFit: "contain",
+      mobilePosition: "50% center",
+      alt: "대표원장이 얼굴 부위에 주사 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "Design", label: "피부 고민 · 상태 확인" },
+        { x: 68, y: 50, en: "Plan", label: "성분 · 사용방법별 계획" },
+      ],
+    },
     headline: ["피부 고민에 맞는 성분으로,", "맞춤 스킨부스터"],
     intro:
       "스킨부스터는 피부결 · 잔주름 같은 고민을 관리하는 여러 제품과 방법을 묶어 부르는 말입니다. 성분과 사용목적, 바르는 방식인지 주입하는 방식인지 확인하고 피부 상태에 맞춰 계획합니다.",
@@ -604,6 +617,16 @@ export const treatments: Treatment[] = [
     description:
       "재료의 차이를 살펴 주름과 피부 상태에 맞춰 계획하는 콜라겐부스터",
     image: photo("cat-skin-care"),
+    scene: {
+      src: photo("cat-skin-care"),
+      mobileSrc: photo("cat-skin-care"),
+      desktopFit: "contain",
+      alt: "프라베일의 시술실 내부 모습",
+      chips: [
+        { x: 55, y: 22, en: "Material", label: "제품별 재료 · 사용목적 확인" },
+        { x: 68, y: 50, en: "Plan", label: "피부 상태 · 주입 범위 계획" },
+      ],
+    },
     headline: ["서서히, 자연스럽게 채우는", "콜라겐부스터"],
     intro:
       "콜라겐부스터는 서로 다른 재료의 주입 시술을 묶어 부르는 말입니다. 재료와 사용목적을 구분하고 주름 · 꺼짐 · 피부 두께를 함께 살펴 사용할 제품과 범위를 정합니다.",
@@ -660,8 +683,14 @@ export const treatments: Treatment[] = [
     image: doctorPhotos.consult,
     scene: {
       src: doctorPhotos.consult,
-      photoLayout: "full-frame",
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      mobileSrc: doctorPhotos.consult,
+      desktopFit: "contain",
+      mobilePosition: "55% center",
+      alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      chips: [
+        { x: 55, y: 22, en: "Diagnosis", label: "여드름 · 자국 · 흉터 구분" },
+        { x: 55, y: 70, en: "Plan", label: "피부 상태별 단계적 치료 계획" },
+      ],
     },
     headline: ["원인부터 흉터까지,", "단계별 여드름 · 모공 관리"],
     intro:
@@ -733,6 +762,15 @@ export const treatments: Treatment[] = [
     description: "털의 굵기 · 색과 피부 톤에 맞춰 계획하는 레이저 제모",
     image: photo("cat-hair-removal"),
     device: device("clarity", "Clarity II", "레이저 제모"),
+    scene: {
+      src: "/images/equipment/hero/clarity.webp",
+      imageLayout: "device",
+      alt: "클라리티 레이저 제모 장비",
+      chips: [
+        { x: 67, y: 22, en: "Design", label: "피부 톤 · 털의 굵기 확인" },
+        { x: 68, y: 50, en: "Plan", label: "부위 · 성장 주기별 계획" },
+      ],
+    },
     headline: ["매일의 면도 고민을 가볍게,", "레이저 제모"],
     intro:
       "털의 색소가 레이저 빛을 흡수하며 생기는 열을 이용해 자라는 털의 양을 줄이는 시술입니다. 피부 톤과 털의 굵기 · 색을 살피고, 원하는 범위와 피부 반응에 맞춰 계획합니다.",
@@ -791,6 +829,15 @@ export const treatments: Treatment[] = [
     description: "색소와 피부 상태를 살피고 눈 보호를 고려하는 문신제거",
     image: photo("cat-tattoo-removal"),
     device: device("pico-k", "PICO-K", "피코 레이저"),
+    scene: {
+      src: "/images/equipment/hero/pico-k.webp",
+      imageLayout: "device",
+      alt: "PICO-K 피코 레이저 장비",
+      chips: [
+        { x: 67, y: 22, en: "Design", label: "색소 · 피부 상태 확인" },
+        { x: 68, y: 50, en: "Safety", label: "눈 보호 · 시술 가능 여부 확인" },
+      ],
+    },
     headline: ["번지고 바랜 반영구 색소,", "레이저 문신제거"],
     intro:
       "레이저로 반영구 색소를 잘게 나누고 몸이 이를 처리하며 옅어지도록 돕는 시술입니다. 색과 덧입힌 이력, 피부 상태를 살피고 눈 가까운 부위는 눈 상태와 보호 조건부터 확인합니다.",

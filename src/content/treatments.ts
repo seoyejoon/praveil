@@ -478,7 +478,7 @@ export const treatments: Treatment[] = [
     href: "/skin/booster",
     en: "Skin Booster",
     title: "스킨부스터",
-    description: "리쥬란힐러 · 리쥬란아이 · 엑소좀",
+    description: "피부 고민과 성분 · 사용목적을 살펴 계획하는 스킨부스터",
     image: photo("cat-skin-booster"),
     headline: ["지친 피부에 회복력을,", "스킨부스터"],
     intro:

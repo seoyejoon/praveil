@@ -259,6 +259,16 @@ export const treatments: Treatment[] = [
     title: "실리프팅",
     description: "피부 두께와 처짐 방향을 살펴 계획하는 흡수성 실리프팅",
     image: photo("clinic-5"),
+    // 기존 시술실 사진을 유지하고, 쿨소닉과 같은 첫 화면 틀에서 전체 구도를 표시합니다.
+    scene: {
+      src: photo("clinic-5"),
+      photoLayout: "full-frame",
+      photoAlt: "프라베일의 시술실 내부 모습",
+      chips: [
+        { x: 55, y: 22, en: "Design", label: "피부 두께 · 처짐 방향 확인" },
+        { x: 50, y: 50, en: "Thread", label: "흡수성 실 · 부위별 시술 계획" },
+      ],
+    },
     headline: ["처진 라인을 자연스럽게,", "흡수성 실리프팅"],
     intro:
       "흡수성 의료용 실을 피부 아래에 넣어 조직을 지지하는 시술입니다. 실의 재질과 구조 · 사용목적이 달라, 피부 두께와 처짐 · 볼륨 상태를 함께 보고 필요한 제품과 범위를 상담합니다.",

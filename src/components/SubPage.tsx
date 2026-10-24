@@ -41,7 +41,12 @@ export default function SubPage({
 }) {
   return (
     <div className="relative">
-      <div className="sticky top-0">
+      {/* 원본 사진형은 화면보다 길어질 수 있어 예약 버튼까지 자연스럽게 스크롤합니다. */}
+      <div
+        className={
+          scene?.photoLayout === "full-frame" ? "relative" : "sticky top-0"
+        }
+      >
         {scene ? (
           <SceneHero
             en={en}

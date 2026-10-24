@@ -1341,7 +1341,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   // 확인 필요: 실 개수 · 시술 시간 · 유지 기간 · 반복 주기 · 마취와 약 처방은 본원 진료 기준 확인 후 확정해야 합니다.
   // 확인 필요: 시술 가능 부위와 피부 상태, 이전 필러 · 실 · 수술 이력에 따른 계획을 담당 원장이 검수해야 합니다.
   // 확인 필요: 활동 제한 · 세안/화장 · 큰 입 벌림 · 압박/마사지와 경과 진료 시점은 실제 제품과 본원 지침으로 안내해야 합니다.
-  // 확인 필요: 사진은 기존 상담/주입 사진을 임시 재사용합니다. 실제 실리프팅 사진과 정확한 대체텍스트를 받으면 교체해야 합니다.
+  // 확인 필요: 사진은 기존 분석 상담 · 주입 · 병원 공간 사진을 임시 재사용합니다. 실제 실리프팅 사진과 정확한 대체텍스트를 받으면 교체해야 합니다.
   // 확인 필요: 가격 · 마취/사후관리/부가세 포함 범위를 확인해야 합니다.
   // 확인 필요: ASPS 자료는 일반 시술 안내이며 국내 특정 실 제품 허가나 본원 치료 결과를 대신하지 않습니다.
   "/lifting/thread": {
@@ -1351,8 +1351,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "실리프팅",
       maker: "흡수성 의료용 실",
-      image: "/images/photos/cat-injection.webp",
-      photo: "/images/photos/cat-injection.webp",
+      image: "/images/photos/cat-main-acne-pore.webp",
+      photo: "/images/photos/cat-main-acne-pore.webp",
       text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다.",
       specs: [
         {
@@ -1372,7 +1372,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "붓기 · 멍 · 당김 · 비대칭 등",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
     },
     principle: [
       {
@@ -1381,7 +1381,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실의 구조에 따른 지지",
-        text: "제품의 사용목적에 맞는 층과 방향에 실을 넣습니다. 돌기가 있는 실은 조직을 붙잡아 지지합니다.",
+        text: "제품의 사용목적에 맞는 층과 방향에 실을 넣습니다. 그림은 돌기가 있는 실이 조직을 붙잡아 지지하는 방식의 예시이며, 모든 실의 구조를 뜻하지 않습니다.",
       },
       {
         title: "모양과 불편감 함께 관찰",
@@ -1390,7 +1390,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "실리프팅, 다른 윤곽 관리와 어떻게 다른가요?",
-      lead: "피부가 처진 이유와 꺼진 위치를 구분하면 시술의 목적을 이해하기 쉽습니다.",
+      lead: "실의 지지 · 에너지 자극 · 볼륨 보완은 어떻게 다르고, 어떤 고민을 먼저 살펴볼까요?",
       columns: [
         {
           name: "실리프팅",
@@ -1443,30 +1443,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
     },
     featuresTitle: "실리프팅을 계획하는 4가지 기준",
+    // 확인 필요: 실리프팅 전용 특징 사진 4장. 현재 기존 상담실 · 접수 · 파우더룸 · 복도 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "처짐 방향부터 확인",
         text: "당기고 싶은 부위뿐 아니라 조직의 무게와 움직임을 함께 봅니다. 얼굴 전체의 균형 안에서 방향을 정합니다.",
-        image: "/images/photos/hero-consult.webp",
-        alt: "실리프팅 계획 설명용 기존 상담 사진",
+        image: "/images/photos/clinic-3.webp",
+        alt: "실리프팅 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
         title: "피부 두께에 맞춘 실 선택",
         text: "얇은 피부와 두꺼운 조직은 살펴볼 점이 다릅니다. 제품의 재질과 구조, 허가된 사용목적을 확인합니다.",
-        image: "/images/photos/cat-main-lifting.webp",
-        alt: "피부 두께별 계획 설명용 기존 시술 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "진료 방문 안내에 사용하는 병원 접수 공간 사진",
       },
       {
         title: "개수와 함께 보는 범위 · 배치",
         text: "실 개수 하나로 결과를 정하지 않습니다. 필요한 범위와 지지 방향을 정하고 피부에 가해질 부담을 함께 고려합니다.",
-        image: "/images/photos/special-2.webp",
-        alt: "시술 범위 설명용 기존 피부 시술 사진",
+        image: "/images/photos/clinic-4.webp",
+        alt: "병원 세안 · 파우더룸의 기존 사진",
       },
       {
         title: "초기 모양과 회복을 함께 확인",
         text: "붓기와 당김, 피부 패임을 살피고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
-        image: "/images/photos/signature-3.webp",
-        alt: "시술 경과 설명용 기존 진료 사진",
+        image: "/images/photos/clinic-6.webp",
+        alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
       },
     ],
     process: [
@@ -1486,7 +1487,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "시술",
         text: "제품별 사용방법에 맞춰 계획한 층과 방향에 실을 넣고, 조직의 지지와 좌우 균형을 확인합니다.",
         image: "/images/photos/cat-main-petit.webp",
-        alt: "실리프팅 전용 사진 교체 전 시술 과정 설명용 기존 사진",
+        alt: "기존 피부 주입 시술 참고 사진",
       },
       {
         title: "경과 확인",

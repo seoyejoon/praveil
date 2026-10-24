@@ -15,6 +15,8 @@ type Item = {
   headline?: string[];
   /** 모바일 전용 사진 (1080×1200, 없으면 PC 사진) */
   mobileImage?: string;
+  /** 촬영 원본을 확대하지 않고 문구 위에 전체 표시 */
+  photoFit?: "full-frame";
   /** 제목 둘째 줄에서 색을 넣을 시술명 */
   accent?: string;
   /** 마우스를 멈추면 커서 원 안에 뜨는 제품 사진 (배경 없는 사진) */
@@ -105,7 +107,11 @@ export default function MainBest({
           <div
             key={x.href}
             aria-hidden={i !== active}
-            className="absolute inset-0 overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:bottom-auto md:h-[58%] lg:inset-0 lg:h-auto"
+            className={
+              x.photoFit === "full-frame"
+                ? "absolute inset-x-5 top-32 flex items-center justify-center overflow-hidden transition-opacity duration-[900ms] md:inset-x-10 md:top-48 lg:inset-x-auto lg:right-10 lg:top-[22%] lg:w-[56%]"
+                : "absolute inset-0 overflow-hidden transition-opacity duration-[900ms] ease-[cubic-bezier(.45,0,.2,1)] md:top-24 md:bottom-auto md:h-[58%] lg:inset-0 lg:h-auto"
+            }
             style={{
               opacity: i === active ? 1 : 0,
               zIndex: i === active ? 2 : 1,
@@ -119,16 +125,27 @@ export default function MainBest({
                 src={x.image}
                 alt={`${x.name} 시술 장면`}
                 loading={i === 0 ? "eager" : "lazy"}
-                className="h-full w-full object-cover object-[center_30%] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+                width={x.photoFit === "full-frame" ? 7008 : undefined}
+                height={x.photoFit === "full-frame" ? 4672 : undefined}
+                className={
+                  x.photoFit === "full-frame"
+                    ? "block h-auto max-h-[48svh] w-full rounded-[24px] object-contain md:max-h-[36svh] lg:max-h-[60svh]"
+                    : "h-full w-full object-cover object-[center_30%] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+                }
                 style={{
-                  transform: `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
+                  transform:
+                    x.photoFit === "full-frame"
+                      ? undefined
+                      : `translateX(${i === active ? 0 : i < active ? -6 : 6}%) scale(1.06)`,
                 }}
               />
             </picture>
           </div>
         ))}
         {/* 글자가 잘 보이도록: 왼쪽 · 아래를 어둡게 */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(238,237,234,0.75),rgba(238,237,234,0.25)_38%,transparent_58%),linear-gradient(0deg,rgba(238,237,234,0.9),transparent_26%)] max-lg:bg-[linear-gradient(0deg,rgba(236,235,232,0.97),rgba(236,235,232,0.88)_24%,rgba(236,235,232,0)_46%),linear-gradient(180deg,rgba(236,235,232,0.85),rgba(236,235,232,0)_15%)]" />
+        <div
+          className={`pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(238,237,234,0.75),rgba(238,237,234,0.25)_38%,transparent_58%),linear-gradient(0deg,rgba(238,237,234,0.9),transparent_26%)] max-lg:bg-[linear-gradient(0deg,rgba(236,235,232,0.97),rgba(236,235,232,0.88)_24%,rgba(236,235,232,0)_46%),linear-gradient(180deg,rgba(236,235,232,0.85),rgba(236,235,232,0)_15%)] ${it.photoFit === "full-frame" ? "hidden" : ""}`}
+        />
 
         {/* 화면 아무 곳이나 누르면 지금 시술 페이지로 (마우스를 멈추면 커서가 '자세히 보기'로 바뀜) */}
         <Link
@@ -156,7 +173,10 @@ export default function MainBest({
           </div>
 
           {/* 가운데 아래: 지금 시술 소개 (바뀔 때마다 아래에서 떠오름) */}
-          <div key={active} className="mt-auto max-w-[800px]">
+          <div
+            key={active}
+            className={`mt-auto max-w-[800px] ${it.photoFit === "full-frame" ? "lg:mb-auto lg:max-w-[38%]" : ""}`}
+          >
             <p
               className="flex items-center gap-3 text-[13px] text-gold"
               style={{
@@ -167,7 +187,7 @@ export default function MainBest({
               {it.category}
             </p>
             <h3
-              className="mt-4 text-[min(7vw,30px)] leading-[1.25] font-light tracking-[-0.04em] whitespace-nowrap md:text-[min(5.2vw,52px)] 2xl:text-[60px]"
+              className={`mt-4 text-[min(7vw,30px)] leading-[1.25] font-light tracking-[-0.04em] md:text-[min(5.2vw,52px)] 2xl:text-[60px] ${it.photoFit === "full-frame" ? "break-keep lg:text-[min(3.1vw,48px)]" : "whitespace-nowrap"}`}
               style={{
                 animation: "fade-up 1s cubic-bezier(.22,1,.36,1) .35s both",
               }}

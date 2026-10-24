@@ -22,6 +22,10 @@ export type HeroScene = {
   desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
   chips?: { x: number; y: number; en: string; label: string }[];
+  /** 병원 원본 사진: 글자와 사진을 분리하고 확대 · 마스크 없이 전체 구도를 표시 */
+  photoLayout?: "full-frame";
+  photoAlt?: string;
+  photoAspect?: "portrait-mobile";
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
@@ -73,6 +77,19 @@ export default function SceneHero({
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  if (scene.photoLayout === "full-frame") {
+    return (
+      <FullFrameScene
+        en={en}
+        title={title}
+        description={description}
+        scene={scene}
+        facts={facts}
+        crumbs={crumbs}
+      />
+    );
+  }
 
   return (
     <section
@@ -186,6 +203,85 @@ export default function SceneHero({
           className="lg:ml-[5vw] lg:max-w-[42%] xl:ml-[9vw] xl:max-w-[36%]"
           wrap="lg:justify-center lg:pt-24 lg:pb-14 xl:pt-32 xl:pb-20"
         />
+      </div>
+    </section>
+  );
+}
+
+// 3:2 촬영 원본을 3:1 배경으로 확대하지 않습니다. 안내 카드도 사진 밖에 둡니다.
+function FullFrameScene({
+  en,
+  title,
+  description,
+  scene,
+  facts,
+  crumbs,
+}: {
+  en: string;
+  title: string;
+  description?: string;
+  scene: HeroScene;
+  facts: { label: string; value: string }[];
+  crumbs: Crumb[];
+}) {
+  return (
+    <section
+      data-dark-hero
+      data-light-hero
+      className="relative overflow-hidden bg-sand pt-24 pb-12 text-ink md:pt-32 lg:pb-20"
+    >
+      <div className="mx-auto grid max-w-[1600px] items-center gap-8 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+        <div className="order-2 lg:order-1">
+          <LightHeroText
+            en={en}
+            title={title}
+            description={description}
+            facts={facts}
+            crumbs={crumbs}
+            className="max-w-xl"
+            wrap="!px-0 !pb-0"
+          />
+          {scene.chips && (
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {scene.chips.map((chip, i) => (
+                <li
+                  key={chip.en}
+                  className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/55 px-4 py-3"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold font-display text-xs text-white">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <span className="block font-display text-[10px] tracking-[0.25em] text-gold uppercase">
+                      {chip.en}
+                    </span>
+                    <span className="mt-0.5 block text-sm font-medium">
+                      {chip.label}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <picture className="order-1 flex justify-center overflow-hidden rounded-[24px] lg:order-2 md:rounded-[32px]">
+          {scene.mobileSrc && (
+            <source
+              media="(max-width: 767px)"
+              srcSet={scene.mobileSrc}
+              width={scene.photoAspect === "portrait-mobile" ? 4672 : 7008}
+              height={scene.photoAspect === "portrait-mobile" ? 7008 : 4672}
+            />
+          )}
+          <img
+            src={scene.src}
+            alt={scene.photoAlt ?? `${title} 시술 장면`}
+            width={7008}
+            height={4672}
+            fetchPriority="high"
+            className={`block h-auto w-full rounded-[24px] object-contain md:rounded-[32px] ${scene.photoAspect === "portrait-mobile" ? "max-md:max-h-[420px] max-md:w-auto" : ""}`}
+          />
+        </picture>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 // 시술 상세 페이지 원고 (사이트맵 시술 16페이지 중 12개)
 // ※ 임시 원고: 시술 시간 · 회복 · 유지 기간 등은 일반적인 범위로 적었습니다. 원장님 검토 후 확정해 주세요.
 // ※ 의료광고: 효과를 보장하는 표현은 쓰지 않고, 개인차 · 부작용 안내를 모든 페이지에 둡니다.
+import { doctorPhotos } from "@/content/doctor-photos";
 
 const photo = (name: string) => `/images/photos/${name}.webp`;
 // 시술 분위기 사진 (무료 상업용, 출처: public/images/stock/SOURCES.txt)
@@ -52,9 +53,9 @@ export const treatments: Treatment[] = [
     description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
-      mobileSrc: photo("hero-coolsonic-m"),
-      src: photo("hero-coolsonic"),
-      pulse: [64.2, 88.4],
+      src: doctorPhotos.coolsonic,
+      photoLayout: "full-frame",
+      photoAlt: "대표원장이 쿨소닉 장비로 얼굴 부위를 시술하는 모습",
       chips: [
         {
           x: 55,
@@ -118,11 +119,11 @@ export const treatments: Treatment[] = [
     title: "쿨페이즈",
     description: "피부 표면을 식히는 쿨링 고주파 리프팅",
     image: photo("signature-2"),
-    // 기존 1900×920 원본을 3:1로 자르지 않고 높이에 맞춰 배치합니다.
+    // 병원 제공 보정 원본의 얼굴 · 손 · 시술 부위를 한 화면에 표시합니다.
     scene: {
-      src: photo("best-coolphase"),
-      mobileSrc: photo("best-coolphase-m"),
-      desktopFit: "contain",
+      src: doctorPhotos.coolphase,
+      photoLayout: "full-frame",
+      photoAlt: "대표원장이 쿨페이즈 장비로 얼굴 부위를 시술하는 모습",
       chips: [
         { x: 58, y: 18, en: "RF", label: "모노폴라 고주파 에너지" },
         { x: 56, y: 48, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
@@ -619,7 +620,12 @@ export const treatments: Treatment[] = [
     title: "여드름 · 모공",
     description:
       "여드름과 남은 자국 · 흉터 · 모공을 나눠 보는 단계별 피부 치료",
-    image: photo("cat-main-acne-pore"),
+    image: doctorPhotos.consult,
+    scene: {
+      src: doctorPhotos.consult,
+      photoLayout: "full-frame",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+    },
     headline: ["원인부터 흉터까지,", "단계별 여드름 · 모공 관리"],
     intro:
       "여드름은 원인과 단계에 따라 관리 방법이 다릅니다. 지금 올라오는 여드름, 남은 자국, 넓어진 모공과 흉터를 나누어 보고 순서대로 계획합니다.",

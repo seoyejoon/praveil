@@ -2,6 +2,8 @@
 // ※ 임시 원고: 원장님 약력 · 공간 설명 · 장비 목록은 자료를 받으면 교체합니다.
 // ※ 의료광고: '최고 · 유일' 같은 표현, 다른 병원과의 비교, 치료 경험담은 쓰지 않습니다.
 
+import { doctorPhotos } from "@/content/doctor-photos";
+
 const photo = (name: string) => `/images/photos/${name}.webp`;
 // 제조사 공식 제품 사진 (장비 구매 병원 사용 허가 범위)
 const device = (name: string) => `/images/equipment/${name}.webp`;
@@ -18,7 +20,7 @@ export const aboutHero = {
     en: "Doctor",
     title: "의료진소개",
     description: "상담부터 시술, 경과 확인까지 대표원장이 직접 책임집니다.",
-    image: photo("hero-consult"),
+    image: doctorPhotos.banner,
   },
 };
 
@@ -64,7 +66,8 @@ export const aboutPromise = {
     {
       title: "1:1 맞춤 설계",
       text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 가장 알맞은 시술 계획을 세웁니다.",
-      image: photo("special-1"),
+      image: doctorPhotos.consult,
+      photoFit: "full-frame" as const,
     },
     {
       title: "정품 · 정량 원칙",
@@ -154,7 +157,7 @@ export const aboutEquipment = {
 // 의료진소개
 export const doctorProfile = {
   nameEn: "Han Jae Woong",
-  photo: photo("doctor"),
+  photo: doctorPhotos.portrait,
   quote: ["20년, 오직 '피부'라는", "하나의 세계만을 들여다봤습니다."],
   greeting: [
     "같은 고민도 피부마다 답이 다릅니다. 그래서 프라베일에서는 시술을 고르기 전에 피부를 먼저 읽습니다.",

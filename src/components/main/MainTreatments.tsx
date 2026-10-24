@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/Reveal";
 import type { SiteSection } from "@/content/sitemap";
+import { mainCategoryPhotoFit } from "@/content/main";
 import { gsap } from "@/lib/gsap";
 
 // 진료 분야 5개: 큰 목록. PC는 줄에 마우스를 올리면 그 분야 사진이 마우스를 따라다닌다.
@@ -103,7 +104,7 @@ export default function MainTreatments({
             key={s.key}
             src={images[s.key]}
             alt=""
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${hover === s.key ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full transition-opacity duration-300 ${mainCategoryPhotoFit[s.key] === "full-frame" ? "bg-ivory object-contain" : "object-cover"} ${hover === s.key ? "opacity-100" : "opacity-0"}`}
           />
         ))}
       </div>

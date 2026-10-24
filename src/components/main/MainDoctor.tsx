@@ -16,8 +16,8 @@ type Props = {
   image: string;
 };
 
-// 대표원장: 어두운 배경 위 큰 영문 이름이 스크롤에 따라 옆으로 흐르고, 누끼 사진이 그 앞에 선다.
-// 들어올 때 사진이 아래에서 올라오며 선명해지고, 인용문이 한 줄씩 드러난 뒤 골드 선이 그어짐
+// 대표원장: 기존 두 단 구성을 유지하며 보정된 세로 원본 전체를 보여 줍니다.
+// 사진을 확대하거나 움직이지 않아 얼굴 · 팔이 잘리지 않습니다.
 export default function MainDoctor({
   nameEn,
   name,
@@ -41,28 +41,6 @@ export default function MainDoctor({
         ".doctor-name",
         { xPercent: 8 },
         { xPercent: -18, ease: "none", scrollTrigger: st },
-      );
-      gsap.fromTo(
-        ".doctor-photo",
-        { yPercent: 10 },
-        { yPercent: -4, ease: "none", scrollTrigger: st },
-      );
-      // 사진이 아래에서 올라오며 흐릿함이 걷힘
-      gsap.fromTo(
-        ".doctor-photo-wrap",
-        { y: 80, opacity: 0.2, filter: "blur(14px)" },
-        {
-          y: 0,
-          opacity: 1,
-          filter: "blur(0px)",
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: "top 85%",
-            end: "top 20%",
-            scrub: 0.6,
-          },
-        },
       );
       // 인용문 아래 골드 선이 그어짐
       gsap.fromTo(
@@ -95,18 +73,20 @@ export default function MainDoctor({
         {nameEn}
       </p>
 
-      <div className="relative mx-auto grid max-w-[1600px] items-end gap-10 px-5 pt-28 md:px-10 lg:min-h-svh lg:grid-cols-2 lg:pt-0">
-        <div className="doctor-photo-wrap order-2 flex justify-center lg:order-1">
+      <div className="relative mx-auto grid max-w-[1600px] items-center gap-10 px-5 py-28 md:px-10 lg:min-h-svh lg:grid-cols-2 lg:py-20">
+        <div className="order-2 flex justify-center lg:order-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image}
             alt={`${name} ${title}`}
             loading="lazy"
-            className="doctor-photo h-[58svh] w-auto max-w-full object-contain lg:h-[86svh]"
+            width={4672}
+            height={7008}
+            className="block h-auto w-full max-w-[360px] rounded-[28px] object-contain md:rounded-[40px] lg:max-w-[400px]"
           />
         </div>
 
-        <div className="order-1 lg:order-2 lg:pb-[18vh]">
+        <div className="order-1 lg:order-2">
           <Reveal
             variant="line"
             className="text-[26px] leading-[1.4] font-semibold tracking-[-0.04em] md:text-[42px]"

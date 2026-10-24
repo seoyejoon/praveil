@@ -526,7 +526,8 @@ export const treatments: Treatment[] = [
     href: "/skin/collagen",
     en: "Collagen Booster",
     title: "콜라겐부스터",
-    description: "리투오 · 쥬베룩 · 울트라콜",
+    description:
+      "재료의 차이를 살펴 주름과 피부 상태에 맞춰 계획하는 콜라겐부스터",
     image: photo("cat-skin-care"),
     headline: ["피부 스스로 채우도록,", "콜라겐부스터"],
     intro:

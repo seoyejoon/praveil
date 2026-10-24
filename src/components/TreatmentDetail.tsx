@@ -796,7 +796,8 @@ export default function TreatmentDetail({
               <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
                 부위 · 양 · 피부 상태에 따라 달라질 수 있어, 상담 후 정확한
-                비용을 안내해 드립니다.
+                비용을 안내해 드립니다. 표시 가격은 1회 기준 시작가이며 부가세
+                별도입니다.
               </p>
             </div>
             {prices.length ? (

@@ -496,7 +496,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
         a: "네, 프라베일의 엑소좀은 피부에 주입하는 방식으로 진행합니다. 피부 상태에 따라 단독 또는 다른 스킨부스터와 함께 계획합니다.",
       },
     ],
-    prices: ["rejuran-healer", "rejuran-eye", "exosome-isce"],
+    prices: ["rejuran-healer", "exosome-isce"],
   },
   "/skin/collagen": {
     answer:

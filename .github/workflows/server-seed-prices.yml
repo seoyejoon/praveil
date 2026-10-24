@@ -1,0 +1,28 @@
+name: Server seed prices
+# 시술 가격(인천 시세 참고)을 관리자 DB에 등록 · 비어 있는 것만 (scripts/seed-prices.mjs)
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Fill prices
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=accept-new scripts/seed-prices.mjs "$USER@$HOST:/tmp/seed-prices.mjs"
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          A=/opt/psbox-admin-only
+          install -o appuser -m 644 /tmp/seed-prices.mjs $A/scripts/seed-prices.mjs && rm /tmp/seed-prices.mjs
+          sudo -u appuser -H env -u DATABASE_URL bash -c "cd $A && node --env-file=.env.local scripts/seed-prices.mjs"
+          rm -f $A/scripts/seed-prices.mjs
+          # 홈페이지 캐시 새로 고침
+          . /etc/praveil/secrets.env
+          curl -s -o /dev/null -w "revalidate %{http_code}\n" -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" http://127.0.0.1:3000/api/revalidate || true
+          REMOTE

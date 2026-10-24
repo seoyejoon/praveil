@@ -116,8 +116,18 @@ export const treatments: Treatment[] = [
     href: "/lifting/coolphase",
     en: "Coolphase",
     title: "쿨페이즈",
-    description: "피부 표면을 식히며 고주파 열을 전달하는 탄력 관리",
+    description: "피부 표면을 식히는 쿨링 고주파 리프팅",
     image: photo("signature-2"),
+    // 기존 1900×920 원본을 3:1로 자르지 않고 높이에 맞춰 배치합니다.
+    scene: {
+      src: photo("best-coolphase"),
+      mobileSrc: photo("best-coolphase-m"),
+      desktopFit: "contain",
+      chips: [
+        { x: 58, y: 18, en: "RF", label: "모노폴라 고주파 에너지" },
+        { x: 56, y: 48, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
+      ],
+    },
     headline: ["피부결부터 탄탄하게,", "쿨페이즈 고주파 리프팅"],
     intro:
       "쿨페이즈는 고주파 전류로 피부 속에 열을 만들고, 피부 접촉면을 냉각하는 탄력 관리 장비입니다. 피부 두께와 탄력 저하, 볼륨 상태를 함께 보고 사용할 팁과 범위를 정합니다.",

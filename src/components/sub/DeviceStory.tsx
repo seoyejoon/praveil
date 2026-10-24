@@ -157,13 +157,28 @@ export function StoryAbout({
       </section>
 
       {/* 원리 */}
-      {story.principleImage ? (
+      {story.principleImage || story.principleLayout === "figure-first" ? (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
           <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
           {/* 그림과 설명 높이를 같게: 설명 3개가 그림 높이를 나눠 채움 */}
           <div className="mt-10 grid gap-6 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-stretch lg:gap-8">
             <Reveal>
-              <PrincipleFigure image={story.principleImage} />
+              {story.principleImage ? (
+                <PrincipleFigure image={story.principleImage} />
+              ) : (
+                <figure className="overflow-hidden rounded-[24px] bg-ivory p-4 md:rounded-[32px] md:p-8">
+                  {story.diagram === "filler" ? (
+                    <FillerDiagram />
+                  ) : story.diagram && story.diagram !== "hifu" ? (
+                    <TreatmentDiagram kind={story.diagram} />
+                  ) : (
+                    <HifuDiagram depths={story.depths} />
+                  )}
+                  <figcaption className="mt-3 text-center text-xs text-muted">
+                    ※ 원리를 쉽게 보여 드리기 위한 그림입니다
+                  </figcaption>
+                </figure>
+              )}
             </Reveal>
             <ol className="grid gap-3 lg:grid-rows-3">
               {principle.map((p, i) => (

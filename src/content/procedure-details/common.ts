@@ -15,18 +15,26 @@ export type ProcedureDetail = {
   /** 주의사항 · 부작용 */
   cautions: string[];
   faq: { q: string; a: string }[];
-  info: { time: string; anesthesia: string; recovery: string; interval: string };
+  info: {
+    time: string;
+    anesthesia: string;
+    recovery: string;
+    interval: string;
+  };
   /** 원장님 확인이 필요한 사항 (화면에 표시하지 않음) */
   check?: string;
 };
 
 // 프라베일 공통 포인트 (특장점 기반)
 export const pointDoctor = "상담부터 시술까지 대표원장이 직접 진행합니다.";
-export const pointConsult = "피부 상태와 고민을 1:1로 확인한 뒤 강도와 부위를 정합니다.";
-export const pointGenuine = "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.";
+export const pointConsult =
+  "피부 상태와 고민을 1:1로 확인한 뒤 강도와 부위를 정합니다.";
+export const pointGenuine =
+  "정품을 정량 그대로 사용하며, 원하시면 시술 전 제품을 확인하실 수 있습니다.";
 
 // 분야별 공통 주의사항
-export const cautionCommon = "시술 결과와 유지 기간은 피부 상태, 생활 습관 등에 따라 개인차가 있습니다.";
+export const cautionCommon =
+  "시술 결과와 유지 기간은 피부 상태, 생활 습관 등에 따라 개인차가 있습니다.";
 
 export const cautionEnergy = [
   "시술 직후 붉어짐, 열감, 가벼운 붓기가 나타날 수 있으며 대부분 수 시간에서 수일 내 가라앉습니다.",

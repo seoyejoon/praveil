@@ -105,7 +105,7 @@ export const sitemap: SiteSection[] = [
       {
         href: "/skin/booster",
         label: "스킨부스터",
-        items: ["리쥬란힐러", "리쥬란아이", "엑소좀"],
+        items: ["리쥬란힐러", "엑소좀"],
       },
       {
         href: "/skin/collagen",

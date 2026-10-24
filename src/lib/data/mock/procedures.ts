@@ -109,7 +109,6 @@ export const procedures: Procedure[] = [
   p("filler", "neck-wrinkle-filler", "목주름 필러"),
 
   p("skin-booster", "rejuran-healer", "리쥬란힐러"),
-  p("skin-booster", "rejuran-eye", "리쥬란아이"),
   p("skin-booster", "juvelook-skin", "쥬베룩스킨"),
   p("skin-booster", "exosome-isce", "엑소좀 (ISCE)"),
   p("skin-booster", "ultracol", "울트라콜"),

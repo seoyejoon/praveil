@@ -402,6 +402,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "ASTERASYS",
       image: "/images/photos/best-coolphase.webp",
       photo: "/images/photos/best-coolphase.webp",
+      photoAlt: "쿨페이즈 안내에 사용하는 기존 진료 현장 사진",
       text: "쿨페이즈는 피부에 팁을 접촉해 고주파 전류를 전달하는 모노폴라 RF 장비입니다. 조직의 전기 저항으로 열이 생기며, 피부에 닿는 부분은 직접 냉각합니다. 피부 두께와 탄력 저하 정도를 보고 적용 부위와 에너지를 정합니다.",
       specs: [
         {
@@ -438,7 +439,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "쿨페이즈, 다른 리프팅 장비와 무엇이 다른가요?",
-      lead: "같은 탄력 고민에도 에너지를 전달하는 방식과 시술 계획은 다릅니다.",
+      lead: "고주파와 초음파는 어떻게 열을 만들고, 시술 전에 무엇을 확인할까요?",
       columns: [
         {
           name: "쿨페이즈",
@@ -487,30 +488,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 비교 장비의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresTitle: "쿨페이즈 시술에서 살피는 4가지",
+    // 확인 필요: 쿨페이즈 전용 특징 사진 4장. 현재 기존 피부 분석 · 상담실 · 대기 공간 · 접수 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "고주파를 이용한 탄력 관리",
         text: "초음파를 한 점에 모으는 방식과 달리 고주파 전류로 조직에 열을 만듭니다. 탄력 저하가 있는 범위를 먼저 살핍니다.",
-        image: "/images/photos/best-coolphase.webp",
-        alt: "쿨페이즈 안내에 사용하는 기존 사진",
+        image: "/images/photos/cat-main-acne-pore.webp",
+        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
       },
       {
         title: "팁의 직접 접촉 냉각",
         text: "피부에 닿는 팁을 냉각하는 구조입니다. 냉각 기능이 있어도 열감과 통증은 생길 수 있어 시술 중 반응을 확인합니다.",
-        image: "/images/photos/signature-2.webp",
-        alt: "피부 상태를 살피는 설명용 기존 사진",
+        image: "/images/photos/clinic-3.webp",
+        alt: "쿨페이즈 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
         title: "피부 상태에 맞춘 범위 설정",
         text: "얼굴 전체를 같은 설정으로 진행하기보다 피부 두께와 굴곡, 이전 시술 이력을 확인해 계획합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "시술 전 상담을 설명하는 사진",
+        image: "/images/photos/clinic-2.webp",
+        alt: "병원 대기 공간의 기존 사진",
       },
       {
         title: "당일보다 경과까지 확인",
         text: "당일 열감이나 부기와 이후의 변화를 나누어 봅니다. 경과를 확인한 뒤 추가 관리가 필요한지 정합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "시술 후 경과 확인을 설명하는 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 진료 방문 안내에 사용하는 병원 접수 공간 사진",
       },
     ],
     process: [
@@ -521,8 +523,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 전 상담을 설명하는 사진",
       },
       {
-        title: "피부 준비 · 통증 관리",
-        text: "피부와 팁의 접촉 상태를 점검하고 필요한 통증 관리 방법을 설명합니다.",
+        title: "마취 · 피부 준비",
+        text: "필요한 통증 관리와 마취 여부를 안내한 뒤 피부와 팁의 접촉 상태를 점검합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },

@@ -1812,13 +1812,15 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
   },
-  // 확인 필요: 기존 treatments.ts에는 PICO-K가 연결되어 있으나 실제 보유 모델 · 펄스 길이 · 사용 파장 · 국내 허가 사용목적은 의료진이 확인해 주세요. 초안은 브랜드명과 파장을 확정하지 않았습니다.
+  // 확인 필요: 기존 안내의 PICO-K 보유 여부와 실제 모델 · 펄스 길이 · 사용 파장 · 국내 허가 사용목적은 의료진이 확인해 주세요. 브랜드명과 파장을 확정하지 않았습니다.
   // 확인 필요: 아이라인/언더라인의 실제 시행 여부를 먼저 확인해 주세요. 적합한 금속 각막 보호구의 보유·사용, 숙련 인력, 안과 병력 확인, 응급 안과 의뢰/협진 체계를 확보하지 못하면 해당 부위는 제공 가능으로 확정하면 안 됩니다.
   // 확인 필요: 눈가 안전 문구는 안전을 보장하지 않으며, 각막 보호구도 사용에 따른 위험이 있어 적절한 삽입·윤활·냉각·의료진 교육이 필요합니다. 본문에는 사용법을 세부 지시하지 않았습니다.
   // 확인 필요: 실제 눈썹/아이라인 제거 사진이 없어 상담 · 장비실 사진을 사용했습니다. cat-tattoo-removal은 일반 얼굴 레이저 장면이라 실제 아이라인 제거 사진으로 쓰지 않았습니다.
   // 확인 필요: 색소 반응 확인 방식과 알레르기/색소 어두워짐 상담, 마취 · 드레싱 · 후관리 기준을 의료진이 확정해 주세요. 고정 횟수와 완전 제거 보장은 넣지 않았습니다.
   "/removal/tattoo": {
+    kind: "procedure",
     diagram: "pigment",
+    showPrices: true,
     device: {
       name: "레이저 문신제거",
       maker: "TATTOO PIGMENT REMOVAL",
@@ -1843,7 +1845,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "색 변화와 피부 회복을 보며 계획 조정",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "기존 레이저 장비실 참고 사진",
     },
     principle: [
       {
@@ -1860,16 +1862,16 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "문신제거 방법을 비교할 때 알아둘 점",
-      lead: "레이저의 펄스 길이와 수술적 제거는 방식이 다릅니다. 아래는 일반적인 비교이며 제공 시술 목록을 뜻하지 않습니다.",
+      title: "레이저와 수술적 제거, 어떻게 다른가요?",
+      lead: "레이저가 빛을 전달하는 시간과 색소를 다루는 방법은 어떤 차이가 있을까요?",
       columns: [
         {
           name: "나노초 레이저",
-          maker: "짧은 레이저 펄스",
+          maker: "짧은 시간의 빛 전달",
         },
         {
           name: "피코초 레이저",
-          maker: "더 짧은 레이저 펄스",
+          maker: "더 짧은 시간의 빛 전달",
         },
         {
           name: "수술적 제거",
@@ -1910,33 +1912,34 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 각 방법의 일반적인 특징을 정리한 것으로, 어느 방법이 더 낫다는 뜻이 아닙니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
+      note: "※ 일반적인 방법 비교이며 실제 제공 시술 목록을 뜻하지 않습니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
     },
     featuresTitle: "문신제거에서 먼저 확인하는 4가지",
+    // 확인 필요: 문신제거 전용 특징 사진 4장. 현재 기존 피부 분석 · 상담실 · 대기 공간 · 접수 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "덧입힌 이력까지 듣는 상담",
         text: "처음 받은 색과 리터치 · 커버업 이력을 함께 확인합니다. 원하는 목표가 전체 제거인지 일부 수정인지부터 상의합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "반영구 시술 이력과 고민을 상담하는 참고 사진",
+        image: "/images/photos/cat-main-acne-pore.webp",
+        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
       },
       {
         title: "이름보다 색소 반응을 확인",
         text: "장비 이름만으로 결과를 정하지 않습니다. 현재 색과 피부 상태를 확인해 사용할 방식과 예상되는 한계를 설명합니다.",
-        image: "/images/photos/special-5.webp",
-        alt: "색소 레이저 장비가 놓인 진료실",
+        image: "/images/photos/clinic-3.webp",
+        alt: "문신제거 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
         title: "눈가에는 별도의 안전 판단",
         text: "아이라인은 눈을 감는 것만으로 보호되지 않습니다. 적합한 각막 보호구와 숙련된 시술 환경을 확보하기 어렵다면 시행을 미루거나 다른 의료진의 평가를 권합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "진료실에서 분석 화면을 확인하는 대표원장",
+        image: "/images/photos/clinic-2.webp",
+        alt: "병원 대기 공간의 기존 사진",
       },
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "대표원장이 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 진료 방문 안내에 사용하는 병원 접수 공간 사진",
       },
     ],
     process: [

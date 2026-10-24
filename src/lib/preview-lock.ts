@@ -8,6 +8,12 @@ export const OPEN = [
   /^\/$/,
   /^\/lifting\/coolsonic\/?$/,
   /^\/petit\/filler\/?$/,
+  // PR 2~11 공개 승인: 검토가 끝난 시술 페이지 10개만 추가합니다.
+  /^\/lifting\/(coolphase|laser|thread)\/?$/,
+  /^\/petit\/botox\/?$/,
+  /^\/skin\/(retuo|booster|collagen)\/?$/,
+  /^\/acne-pore\/?$/,
+  /^\/removal\/(hair|tattoo)\/?$/,
   /^\/notice(\/.*)?$/,
   /^\/before-after(\/.*)?$/,
   /^\/terms\/?$/,

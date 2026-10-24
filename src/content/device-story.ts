@@ -1342,6 +1342,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/lifting/thread": {
     kind: "procedure",
     diagram: "thread",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "실리프팅",

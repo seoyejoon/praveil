@@ -15,8 +15,8 @@ type Item = {
   headline?: string[];
   /** 모바일 전용 사진 (1080×1200, 없으면 PC 사진) */
   mobileImage?: string;
-  /** 촬영 원본을 확대하지 않고 문구 위에 전체 표시 */
-  photoFit?: "full-frame";
+  /** 원본 비율에 맞춘 사진 구도. background는 기존 배경형 배치 · 전환 효과를 유지 */
+  photoFit?: "full-frame" | "background";
   /** 제목 둘째 줄에서 색을 넣을 시술명 */
   accent?: string;
   /** 마우스를 멈추면 커서 원 안에 뜨는 제품 사진 (배경 없는 사진) */
@@ -130,7 +130,9 @@ export default function MainBest({
                 className={
                   x.photoFit === "full-frame"
                     ? "block h-auto max-h-[48svh] w-full rounded-[24px] object-contain md:max-h-[36svh] lg:max-h-[60svh]"
-                    : "h-full w-full object-cover object-[center_30%] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
+                    : x.photoFit === "background"
+                      ? "relative top-[8%] h-[64%] w-full object-cover object-[35%_center] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] [mask-image:linear-gradient(180deg,transparent,#000_4%,#000_96%,transparent)] md:absolute md:top-0 md:right-0 md:h-full md:w-auto md:max-w-none md:object-contain md:[mask-image:linear-gradient(90deg,transparent,#000_12%),linear-gradient(180deg,transparent,#000_4%,#000_96%,transparent)] md:[mask-composite:intersect] lg:top-[9%] lg:h-[90%]"
+                      : "h-full w-full object-cover object-[center_30%] transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] lg:object-[72%_center]"
                 }
                 style={{
                   transform:

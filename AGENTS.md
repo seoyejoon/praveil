@@ -16,6 +16,7 @@ Codex · Claude 공통 규칙입니다. 작업을 시작하기 전에 끝까지 
 4. `deploy/`, `.github/workflows/`, `src/middleware.ts`, `next.config.ts`, DB 관련 코드(`src/lib/data/`)는 요청이 없으면 건드리지 않기.
 5. 새 패키지를 설치하지 않기. 있는 컴포넌트와 Tailwind 만 씁니다.
 6. 병원이 주는 사진을 다시 압축하거나 크기를 바꾸지 않기 (화질이 떨어집니다). 받은 파일을 그대로 복사합니다.
+7. 이미 들어가 있는 사진 · 장비 사진(`device`, `image`)을 빼거나 다른 사진으로 바꾸지 않기. 확인이 필요하면 사진은 두고 `// 확인 필요:` 만 남깁니다.
 
 ## 기술 구성
 - Next.js 15 (App Router, standalone) · React 19 · Tailwind v4 · pnpm · TypeScript

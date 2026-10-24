@@ -698,13 +698,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
   },
-  // 확인 필요: 실제 사용하는 제품이 Re2O인지 Re2O Fine인지, 규격 · 공급 경로 · 사용설명서 · 로트 추적 기준. Fine 보유 또는 눈밑 적용은 추측하지 않음.
-  // 확인 필요: 병원에서 사용하는 주입 방법, 깊이 · 양 · 수화/혼합 방법, 마취 방식과 경과 확인 기준. 연구 프로토콜을 본원 방식으로 전재하지 않음.
-  // 확인 필요: 인체 유래 원료 설명 · 동의 절차, 제품의 국내 인체조직 분류와 적용 목적을 담당 원장이 검수. 의약품/의료기기와 같은 개별 허가로 표현하지 않음.
-  // 확인 필요: 원논문은 20명 · 20주 split-face 연구이며 phADM와 비가교 HA 혼합군 대 HA 대조군. 리투오 단독 효과 또는 장기 안전성 · 유지 기간을 보장하지 않음.
-  // 확인 필요: 2026년 혈관 합병증 증례는 원내 시술법과 준비 과정을 직접 확인하지 못한 단일 증례이므로 발생률이나 인과를 확정하지 않음. 혈관 위험과 hADM의 비가역성 설명은 의료진 검수.
-  // 확인 필요: 기존 treatment-guide.ts의 '콜라겐을 직접 채워 즉시 밀도 회복' 등 단순화 문구와 정량 유지 기간이 새 hADM 원고와 충돌하는지 별도 점검.
-  // 확인 필요: 가격 · 반복 횟수 · 간격 · 회복 일정은 본원 기준을 확인해 안내. 기존 사진은 설명용이며 실제 리투오 시술 사진으로 교체 필요.
+  // 확인 필요: 실제 사용하는 Re2O 제품 · 규격 · 공급 경로 · 설명서 · 적용 범위. Fine 제품이나 눈가 적용은 추측하지 않습니다.
+  // 확인 필요: 인체 유래 원료 설명 · 동의 절차, 주입 준비 · 깊이 · 양 · 통증 관리 · 이상 반응 대응 기준.
+  // 확인 필요: 가격 · 반복 횟수 · 간격 · 회복 일정은 본원 기준으로 검수합니다.
   "/skin/retuo": {
     kind: "procedure",
     diagram: "matrix",
@@ -714,7 +710,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "L&C BIO",
       image: "/images/photos/best-retuo.webp",
       photo: "/images/photos/best-retuo.webp",
-      text: "리투오는 인체 유래 무세포 동종진피(hADM)를 사용한 인체조직 제품입니다. 피부를 지지하는 세포외기질(ECM) 성분을 이용하며, 합성 고분자 PLLA 제제와 구성이 다릅니다. 피부결과 탄력 고민을 살피고 제품의 특성과 주의사항을 설명한 뒤 적용 여부를 정합니다.",
+      text: "리투오는 기증된 피부 조직에서 세포 성분을 제거한 무세포 동종진피(hADM) 제품입니다. 콜라겐 등 피부를 지지하는 성분을 이용하며, 피부결 · 잔주름 · 탄력 고민과 원료의 특성을 함께 살펴 시술 여부를 정합니다.",
       specs: [
         {
           label: "제품 분류",
@@ -742,7 +738,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "무세포 동종진피 성분 적용",
-        text: "살아 있는 세포를 넣는 시술이 아니라, 인체 진피에서 세포를 제거해 얻은 기질 성분을 이용합니다.",
+        text: "인체 피부 조직에서 세포를 제거해 얻은 성분을 이용합니다. 원료와 사용할 제품의 특성을 먼저 설명드립니다.",
       },
       {
         title: "조직 반응과 경과 관찰",
@@ -751,7 +747,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "리투오, 다른 주사 시술과 어떻게 다른가요?",
-      lead: "성분과 치료 목표가 다르므로 같은 부스터라는 이름만으로 고르지 않습니다.",
+      lead: "피부결 · 탄력 고민과 꺼진 부위의 볼륨은 어떤 차이가 있을까요?",
       columns: [
         {
           name: "리투오",
@@ -804,30 +800,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다. 비교 재료의 특정 제품을 본원에서 보유한다는 뜻이 아닙니다.",
     },
     featuresTitle: "리투오 상담에서 확인하는 4가지",
+    // 확인 필요: 리투오 전용 특징 사진 4장. 현재 기존 상담 · 주입 · 대기 공간 사진을 임시로 사용합니다.
     features: [
       {
         title: "인체 유래 원료를 먼저 설명",
         text: "인체조직에서 얻은 무세포 동종진피 제품임을 설명합니다. 원료와 제품 특성을 이해한 뒤 시술 여부를 정합니다.",
-        image: "/images/photos/best-retuo.webp",
-        alt: "리투오 상담 안내에 사용하는 기존 사진",
+        image: "/images/photos/special-1.webp",
+        alt: "대표원장이 환자와 상담하는 설명용 사진",
       },
       {
         title: "성분이 다른 부스터와 구분",
         text: "인체 유래 기질, 합성 고분자, 히알루론산은 재료가 다릅니다. 이름보다 치료 목표와 재료를 함께 확인합니다.",
-        image: "/images/photos/signature-4.webp",
-        alt: "피부 상태를 살피는 설명용 기존 사진",
+        image: "/images/photos/special-2.webp",
+        alt: "주입 시술의 차이를 설명하기 위한 기존 사진",
       },
       {
         title: "피부 두께와 시술 이력 확인",
         text: "같은 피부 고민이라도 두께와 이전 시술에 따라 접근이 달라집니다. 적용 범위와 방법을 진찰 후 정합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "피부 상태와 이전 시술을 상담하는 사진",
+        image: "/images/photos/hero-consult.webp",
+        alt: "대표원장이 환자의 고민을 듣는 상담 사진",
       },
       {
-        title: "이상 반응까지 함께 확인",
-        text: "변화뿐 아니라 지속되는 부기, 통증과 피부색 변화도 살핍니다. 인체 유래라는 이유로 부작용 가능성을 제외하지 않습니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "시술 후 경과 확인을 설명하는 사진",
+        title: "시술 후 경과도 함께 확인",
+        text: "초기 반응과 피부 상태의 변화를 나누어 살펴보고, 불편한 증상이 있는지도 함께 확인합니다.",
+        image: "/images/photos/hero-about.webp",
+        alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
       },
     ],
     process: [
@@ -838,8 +835,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 전 상담을 설명하는 사진",
       },
       {
-        title: "피부 준비 · 통증 관리",
-        text: "제품과 적용 방법을 설명하고 피부 준비와 통증 관리를 진행합니다.",
+        title: "마취 · 통증 관리",
+        text: "제품과 적용 방법을 설명하고, 부위와 상태에 맞는 통증 관리 방법을 안내합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },

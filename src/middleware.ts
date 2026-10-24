@@ -15,6 +15,8 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   url.pathname = "/preparing";
   url.search = "";
+  // nginx 가 https 로 알려 줘도 앱 서버는 http 로만 받으므로, 내부 이동은 http 로 (https 면 500 에러)
+  url.protocol = "http:";
   return NextResponse.rewrite(url);
 }
 

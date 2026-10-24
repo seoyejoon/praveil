@@ -676,7 +676,7 @@ function TreatmentDiagram({ kind }: { kind: TreatmentDiagramKind }) {
       note: "제품의 처리 방식 · 적용 부위 · 경과 확인",
     },
     booster: {
-      title: "제품에 따라 다른 피부 관리 경로",
+      title: "성분과 주입 방법에 맞춘 관리",
       note: "성분 · 제형 · 허가 용도를 먼저 확인",
     },
     collagen: {
@@ -867,7 +867,7 @@ function TreatmentDiagram({ kind }: { kind: TreatmentDiagramKind }) {
         <g>
           {(kind === "laser"
             ? ["집속 초음파", "미세침 고주파", "레이저"]
-            : ["성분 확인", "사용 경로", "피부 반응"]
+            : ["성분 확인", "주입 방법", "피부 반응"]
           ).map((label, i) => (
             <g key={label} transform={`translate(${35 + i * 185} 100)`}>
               <rect width="160" height="240" rx="14" fill="#efe7db" />
@@ -893,16 +893,48 @@ function TreatmentDiagram({ kind }: { kind: TreatmentDiagramKind }) {
                 </g>
               ) : (
                 <g fill="none" stroke="#9a7755" strokeWidth="3">
-                  <rect x="47" y="45" width="66" height="93" rx="9" />
-                  <path
-                    d={
-                      i === 0
-                        ? "M61 70 H99 M61 89 H99 M61 108 H88"
-                        : i === 1
-                          ? "M61 66 L99 118 M99 66 L61 118"
-                          : "M61 111 Q80 68 99 111"
-                    }
-                  />
+                  {i === 0 ? (
+                    // 앰플
+                    <g>
+                      <rect x="66" y="40" width="28" height="16" rx="3" />
+                      <rect x="58" y="56" width="44" height="84" rx="10" />
+                      <path
+                        d="M58 100 H102 V130 Q102 140 92 140 H68 Q58 140 58 130 Z"
+                        fill="#c99b83"
+                        stroke="none"
+                      />
+                    </g>
+                  ) : i === 1 ? (
+                    // 주사기
+                    <g>
+                      <path d="M70 34 H90 M80 34 V52" />
+                      <rect x="68" y="52" width="24" height="62" rx="3" />
+                      <path d="M68 72 H76 M68 88 H76 M68 104 H76" />
+                      <path d="M80 114 V144" strokeWidth="2" />
+                    </g>
+                  ) : (
+                    // 피부 속에 퍼진 성분
+                    <g>
+                      <path d="M18 76 Q49 64 80 76 T142 76" />
+                      <path d="M18 140 H142" stroke="#c99b83" />
+                      {[
+                        [46, 100],
+                        [80, 112],
+                        [114, 100],
+                        [63, 126],
+                        [97, 126],
+                      ].map(([cx, cy]) => (
+                        <circle
+                          key={cx + "-" + cy}
+                          cx={cx}
+                          cy={cy}
+                          r="7"
+                          fill="#c99b83"
+                          stroke="none"
+                        />
+                      ))}
+                    </g>
+                  )}
                   <circle cx="80" cy="170" r="5" fill="#9a7755" />
                 </g>
               )}

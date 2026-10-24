@@ -236,7 +236,7 @@ export const treatments: Treatment[] = [
     href: "/lifting/thread",
     en: "Thread Lifting",
     title: "실리프팅",
-    description: "민트실 · 잼버실",
+    description: "피부 두께와 처짐 방향을 살펴 계획하는 흡수성 실리프팅",
     image: photo("cat-injection"),
     headline: ["처진 부위를 당겨 올리는", "실리프팅"],
     intro:

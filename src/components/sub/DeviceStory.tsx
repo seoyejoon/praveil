@@ -925,7 +925,7 @@ function TreatmentDiagram({ kind }: { kind: TreatmentDiagramKind }) {
           {[105, 145, 185, 225, 265].map((x) => (
             <path
               key={x}
-              d={`M${x - 8} ${250 - x * 0.18} l10 -16 l8 10`}
+              d={`M${x - 8} ${248 - ((x - 77) * 57) / 243 - 10} L${x} ${248 - ((x - 77) * 57) / 243} l-5 12`}
               fill="none"
               stroke="#8d775f"
               strokeWidth="3"

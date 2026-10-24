@@ -142,13 +142,15 @@ export default function TreatmentDetail({
       className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items && !story ? "pt-16 md:pt-24" : ""}`}
     >
       <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
-        <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">
+        <div className="order-2 flex items-center justify-center px-6 py-8 lg:order-1 lg:p-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={mainDoctor.image}
             alt={`대표원장 ${doctor.name}`}
             loading="lazy"
-            className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto max-w-none object-contain object-bottom"
+            width={4672}
+            height={7008}
+            className="block h-auto w-full max-w-[340px] rounded-[20px] object-contain lg:max-w-[380px]"
           />
         </div>
         <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">

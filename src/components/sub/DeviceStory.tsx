@@ -57,7 +57,13 @@ export function StoryAbout({
       <section id="what" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
         {device.film || device.photo ? (
           <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[#2b2b2b] text-white md:rounded-[40px] lg:grid-cols-[1.35fr_1fr]">
-            <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]">
+            <div
+              className={
+                device.photoFullFrame && !device.film
+                  ? "relative flex items-center"
+                  : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
+              }
+            >
               {device.film ? (
                 <video
                   src={device.film.src}
@@ -76,11 +82,21 @@ export function StoryAbout({
                   src={device.photo}
                   alt={device.photoAlt ?? `${device.name} 시술 장면`}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  width={device.photoFullFrame ? 7008 : undefined}
+                  height={device.photoFullFrame ? 4672 : undefined}
+                  className={
+                    device.photoFullFrame
+                      ? "block h-auto w-full"
+                      : "absolute inset-0 h-full w-full object-cover"
+                  }
                 />
               )}
-              <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+              {(!device.photoFullFrame || device.film) && (
+                <>
+                  <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+                </>
+              )}
             </div>
             <div className="flex flex-col justify-center px-6 pt-4 pb-14 md:px-14 md:py-16">
               <p className="font-display text-[11px] tracking-[0.3em] text-taupe uppercase">
@@ -278,7 +294,7 @@ export function StoryFeatures({
               className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
             >
               <Reveal
-                className={`relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+                className={`relative ${f.fullFrame && !f.video ? "aspect-[3/2]" : "aspect-[4/3]"} overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
               >
                 {f.video ? (
                   <video
@@ -298,7 +314,9 @@ export function StoryFeatures({
                     src={f.image}
                     alt={f.alt}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    width={f.fullFrame ? 7008 : undefined}
+                    height={f.fullFrame ? 4672 : undefined}
+                    className={`absolute inset-0 h-full w-full ${f.fullFrame ? "object-contain" : "object-cover"}`}
                   />
                 )}
               </Reveal>
@@ -346,9 +364,14 @@ export function StoryProcess({
                 src={s.image}
                 alt={s.alt}
                 loading="lazy"
-                className="h-full w-full object-cover object-[70%_center]"
+                width={s.fullFrame ? 7008 : undefined}
+                height={s.fullFrame ? 4672 : undefined}
+                className={`h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`}
               />
-              <span className="absolute top-4 left-4 grid h-10 w-10 place-items-center rounded-full bg-white font-display text-sm text-gold">
+              {/* 원본 3:2 사진은 가운데에 표시하므로 번호는 사진 위 여백에 놓입니다. */}
+              <span
+                className={`absolute grid place-items-center rounded-full bg-white font-display text-sm text-gold ${s.fullFrame ? "top-3 left-3 h-8 w-8" : "top-4 left-4 h-10 w-10"}`}
+              >
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>

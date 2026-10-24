@@ -6,6 +6,10 @@ import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
 export type HeroScene = {
   /** 사진 (영상이 있으면 영상 첫 장면 · 영상을 못 틀 때 대신 보임) */
   src: string;
+  /** 장비 원본을 자르지 않고 같은 첫 화면 틀 안에 표시 */
+  imageLayout?: "device";
+  /** 시술 장면이 아닌 사진은 실제 내용을 설명 */
+  alt?: string;
   /** 짧은 반복 영상 (소리 없음, 사진과 같은 구도 3:1) */
   video?: string;
   /** 모바일 전용 세로형 사진 (원장 · 장비가 한 화면에) */
@@ -18,6 +22,10 @@ export type HeroScene = {
   desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
   chips?: { x: number; y: number; en: string; label: string }[];
+  /** 병원 원본 사진: 글자와 사진을 분리하고 확대 · 마스크 없이 전체 구도를 표시 */
+  photoLayout?: "full-frame";
+  photoAlt?: string;
+  photoAspect?: "portrait-mobile";
 };
 
 // 시술 장면 첫 화면: 밝은 벽 사진 (오른쪽에 원장 · 장비), 왼쪽 벽 위에 글자
@@ -70,6 +78,19 @@ export default function SceneHero({
     };
   }, []);
 
+  if (scene.photoLayout === "full-frame") {
+    return (
+      <FullFrameScene
+        en={en}
+        title={title}
+        description={description}
+        scene={scene}
+        facts={facts}
+        crumbs={crumbs}
+      />
+    );
+  }
+
   return (
     <section
       ref={rootRef}
@@ -79,14 +100,14 @@ export default function SceneHero({
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
+        className={`absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] will-change-transform lg:top-[84px] lg:aspect-[3/1] ${scene.imageLayout === "device" ? "" : "[mask-image:linear-gradient(180deg,#000_70%,transparent)] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"}`}
       >
         {/* 모바일: 세로형 사진 한 장 (가로 영상은 휴대폰에서 원장 · 장비가 잘림) */}
         {scene.mobileSrc && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={scene.mobileSrc}
-            alt={`${title} 시술 장면`}
+            alt={scene.alt ?? `${title} 시술 장면`}
             fetchPriority="high"
             className="absolute inset-0 h-full w-full animate-[fade-in_1s_ease_both] object-cover md:hidden"
           />
@@ -110,9 +131,13 @@ export default function SceneHero({
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={scene.src}
-              alt={`${title} 시술 장면`}
+              alt={scene.alt ?? `${title} 시술 장면`}
               fetchPriority="high"
-              className={`h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`}
+              className={
+                scene.imageLayout === "device"
+                  ? "absolute top-20 right-[18%] h-[64%] w-auto animate-[fade-in_1s_ease_both] object-contain md:top-8 md:right-[16%] md:h-[80%] lg:top-2 lg:h-[90%]"
+                  : `h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`
+              }
               style={
                 scene.position ? { objectPosition: scene.position } : undefined
               }
@@ -178,6 +203,85 @@ export default function SceneHero({
           className="lg:ml-[5vw] lg:max-w-[42%] xl:ml-[9vw] xl:max-w-[36%]"
           wrap="lg:justify-center lg:pt-24 lg:pb-14 xl:pt-32 xl:pb-20"
         />
+      </div>
+    </section>
+  );
+}
+
+// 3:2 촬영 원본을 3:1 배경으로 확대하지 않습니다. 안내 카드도 사진 밖에 둡니다.
+function FullFrameScene({
+  en,
+  title,
+  description,
+  scene,
+  facts,
+  crumbs,
+}: {
+  en: string;
+  title: string;
+  description?: string;
+  scene: HeroScene;
+  facts: { label: string; value: string }[];
+  crumbs: Crumb[];
+}) {
+  return (
+    <section
+      data-dark-hero
+      data-light-hero
+      className="relative overflow-hidden bg-sand pt-24 pb-12 text-ink md:pt-32 lg:pb-20"
+    >
+      <div className="mx-auto grid max-w-[1600px] items-center gap-8 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+        <div className="order-2 lg:order-1">
+          <LightHeroText
+            en={en}
+            title={title}
+            description={description}
+            facts={facts}
+            crumbs={crumbs}
+            className="max-w-xl"
+            wrap="!px-0 !pb-0"
+          />
+          {scene.chips && (
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {scene.chips.map((chip, i) => (
+                <li
+                  key={chip.en}
+                  className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/55 px-4 py-3"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold font-display text-xs text-white">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <span className="block font-display text-[10px] tracking-[0.25em] text-gold uppercase">
+                      {chip.en}
+                    </span>
+                    <span className="mt-0.5 block text-sm font-medium">
+                      {chip.label}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <picture className="order-1 flex justify-center overflow-hidden rounded-[24px] lg:order-2 md:rounded-[32px]">
+          {scene.mobileSrc && (
+            <source
+              media="(max-width: 767px)"
+              srcSet={scene.mobileSrc}
+              width={scene.photoAspect === "portrait-mobile" ? 4672 : 7008}
+              height={scene.photoAspect === "portrait-mobile" ? 7008 : 4672}
+            />
+          )}
+          <img
+            src={scene.src}
+            alt={scene.photoAlt ?? `${title} 시술 장면`}
+            width={7008}
+            height={4672}
+            fetchPriority="high"
+            className={`block h-auto w-full rounded-[24px] object-contain md:rounded-[32px] ${scene.photoAspect === "portrait-mobile" ? "max-md:max-h-[420px] max-md:w-auto" : ""}`}
+          />
+        </picture>
       </div>
     </section>
   );

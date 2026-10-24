@@ -1,14 +1,39 @@
 "use client";
 
-import { MessagesSquare, ScanFace, ShieldCheck, Sofa, Stethoscope } from "lucide-react";
+import {
+  MessagesSquare,
+  ScanFace,
+  ShieldCheck,
+  Sofa,
+  Stethoscope,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/Reveal";
 
-type Item = { icon: string; title: string; text: string; image: string };
-const icons = { doctor: Stethoscope, consult: MessagesSquare, genuine: ShieldCheck, device: ScanFace, space: Sofa };
+type Item = {
+  icon: string;
+  title: string;
+  text: string;
+  image: string;
+  photoFit?: "full-frame";
+};
+const icons = {
+  doctor: Stethoscope,
+  consult: MessagesSquare,
+  genuine: ShieldCheck,
+  device: ScanFace,
+  space: Sofa,
+};
 
 // 특장점: PC는 왼쪽 제목 · 사진이 멈춰 있고, 오른쪽 항목을 스크롤하면 사진이 바뀐다.
-export default function MainWhy({ title, items }: { label?: string; title: string[]; items: Item[] }) {
+export default function MainWhy({
+  title,
+  items,
+}: {
+  label?: string;
+  title: string[];
+  items: Item[];
+}) {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLLIElement | null)[]>([]);
 
@@ -16,7 +41,8 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
+          if (e.isIntersecting)
+            setActive(Number((e.target as HTMLElement).dataset.index));
         });
       },
       { rootMargin: "-45% 0px -45% 0px" },
@@ -32,7 +58,10 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
           <p className="mb-4 font-display text-[11px] font-light tracking-[0.4em] text-gold uppercase md:mb-5 md:text-xs">
             Why Praveil
           </p>
-          <Reveal variant="line" className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]">
+          <Reveal
+            variant="line"
+            className="text-[34px] leading-[1.2] font-bold tracking-[-0.04em] md:text-[56px]"
+          >
             {title.map((t) => (
               <span key={t}>
                 <span>{t}</span>
@@ -47,8 +76,14 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
                 src={item.image}
                 alt={`프라베일 맑고고운의원 ${item.title}`}
                 loading="lazy"
-                className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1.1s] ease-[cubic-bezier(.22,1,.36,1)] ${
-                  active === i ? "scale-100 opacity-100" : "scale-110 opacity-0"
+                className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1.1s] ease-[cubic-bezier(.22,1,.36,1)] ${
+                  item.photoFit === "full-frame"
+                    ? "object-contain"
+                    : "object-cover"
+                } ${active === i ? "opacity-100" : "opacity-0"} ${
+                  item.photoFit !== "full-frame" && active !== i
+                    ? "scale-110"
+                    : "scale-100"
                 }`}
               />
             ))}
@@ -69,19 +104,34 @@ export default function MainWhy({ title, items }: { label?: string; title: strin
             >
               <div className="flex gap-6 md:gap-10">
                 {(() => {
-                  const Icon = icons[item.icon as keyof typeof icons] ?? ShieldCheck;
+                  const Icon =
+                    icons[item.icon as keyof typeof icons] ?? ShieldCheck;
                   return (
                     <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-ivory text-gold md:h-16 md:w-16">
-                      <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={1.4} />
+                      <Icon
+                        className="h-6 w-6 md:h-7 md:w-7"
+                        strokeWidth={1.4}
+                      />
                     </span>
                   );
                 })()}
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold tracking-[-0.03em] md:text-[34px]">{item.title}</h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-black/60 md:text-lg">{item.text}</p>
-                  <div className="mt-6 aspect-[16/10] overflow-hidden rounded-[18px] lg:hidden">
+                  <h3 className="text-2xl font-bold tracking-[-0.03em] md:text-[34px]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-black/60 md:text-lg">
+                    {item.text}
+                  </p>
+                  <div
+                    className={`mt-6 overflow-hidden rounded-[18px] lg:hidden ${item.photoFit === "full-frame" ? "aspect-[3/2]" : "aspect-[16/10]"}`}
+                  >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.image} alt={`프라베일 맑고고운의원 ${item.title}`} loading="lazy" className="h-full w-full object-cover" />
+                    <img
+                      src={item.image}
+                      alt={`프라베일 맑고고운의원 ${item.title}`}
+                      loading="lazy"
+                      className={`h-full w-full ${item.photoFit === "full-frame" ? "object-contain" : "object-cover"}`}
+                    />
                   </div>
                 </div>
               </div>

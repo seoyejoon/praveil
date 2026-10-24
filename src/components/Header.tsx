@@ -7,6 +7,7 @@ import { ArrowRight, LogOut, Plus, UserRound } from "lucide-react";
 import Logo from "@/components/Logo";
 import MemberModal, { type SignupConfig } from "@/components/MemberModal";
 import BestMark from "@/components/BestMark";
+import { doctorPhotos } from "@/content/doctor-photos";
 import { menu } from "@/content/sitemap";
 
 type Props = {
@@ -19,7 +20,7 @@ type Props = {
 // PC 메뉴판 왼쪽 소개 · 오른쪽 사진
 const megaIntro: Record<
   string,
-  { title: string; text: string; image: string }
+  { title: string; text: string; image: string; photoFit?: "full-frame" }
 > = {
   about: {
     title: "프라베일 소개",
@@ -29,7 +30,8 @@ const megaIntro: Record<
   praveil: {
     title: "시술 안내",
     text: "피부 상태와 고민에 맞춰, 꼭 필요한 시술만 1:1로 설계합니다.",
-    image: "/images/menu/praveil.webp",
+    image: doctorPhotos.coolsonic,
+    photoFit: "full-frame",
   },
   community: {
     title: "프라베일 소식",
@@ -359,7 +361,11 @@ export default function Header({ member, signup }: Props) {
                       src={intro?.image}
                       alt=""
                       loading="lazy"
-                      className={`h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.2,.7,.2,1)] ${on && mega ? "scale-100" : "scale-[1.06]"}`}
+                      className={
+                        intro?.photoFit === "full-frame"
+                          ? "h-full w-full object-contain"
+                          : `h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.2,.7,.2,1)] ${on && mega ? "scale-100" : "scale-[1.06]"}`
+                      }
                     />
                   </div>
                 </div>

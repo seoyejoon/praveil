@@ -107,13 +107,19 @@ export default async function DoctorPage() {
       {/* 인사말 */}
       <section className="mx-auto max-w-[1400px] px-5 pt-20 pb-24 md:px-10 md:pt-28 md:pb-36">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          <Reveal variant="clip" className="relative">
+          <Reveal
+            variant="clip"
+            className="relative mx-auto w-full max-w-[440px] lg:mx-0"
+          >
             <div className="overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={p.photo}
                 alt={`${doctor.title} ${doctor.name}`}
-                className="aspect-[4/5] w-full object-cover object-top"
+                loading="lazy"
+                width={4672}
+                height={7008}
+                className="block h-auto w-full object-contain"
               />
             </div>
             <p className="absolute right-6 bottom-6 rounded-full bg-white/90 px-4 py-2 text-xs text-ink backdrop-blur">
@@ -243,7 +249,13 @@ export default async function DoctorPage() {
                       src={it.image}
                       alt={it.name}
                       loading="lazy"
-                      className="aspect-[4/3] w-full object-cover md:aspect-[4/5] transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                      width={it.photoFit === "full-frame" ? 7008 : undefined}
+                      height={it.photoFit === "full-frame" ? 4672 : undefined}
+                      className={
+                        it.photoFit === "full-frame"
+                          ? "aspect-[4/3] w-full bg-ivory object-contain md:aspect-[4/5]"
+                          : "aspect-[4/3] w-full object-cover md:aspect-[4/5] transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                      }
                     />
                   </div>
                   <p className="mt-5 flex items-center gap-2 text-xs text-taupe">
@@ -273,6 +285,7 @@ export default async function DoctorPage() {
       </section>
 
       <ConsultCta
+        id="visit"
         hospital={hospital}
         title={`${doctor.name} 원장에게`}
         strong="직접 상담받아 보세요."

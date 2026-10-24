@@ -1,4 +1,6 @@
 // 메인 페이지 문구 (2026.10 리뉴얼). 원장님 검토 후 확정.
+import { doctorPhotos } from "@/content/doctor-photos";
+
 const photo = (name: string) => `/images/photos/${name}.webp`;
 
 // 첫 화면: 스크롤에 따라 로비 → (유리 상담실 안으로 들어감) → 원장 상담 장면
@@ -83,8 +85,8 @@ export const mainBest = {
       category: "리프팅",
       href: "/lifting/coolsonic",
       text: "피부 깊은 층까지 고려한 초음파 리프팅. 처진 윤곽과 탄력을 함께 관리합니다.",
-      image: photo("best-coolsonic"),
-      mobileImage: photo("best-coolsonic-m"),
+      image: doctorPhotos.coolsonic,
+      photoFit: "full-frame" as const,
       headline: ["무너진 얼굴선을 다시 세우는", "쿨링 초음파 리프팅 쿨소닉"],
       accent: "쿨소닉",
       product: "/images/equipment/hero/coolsonic.webp",
@@ -95,8 +97,8 @@ export const mainBest = {
       category: "리프팅",
       href: "/lifting/coolphase",
       text: "고주파로 피부 속 콜라겐을 자극해, 피부결 · 탄력을 함께 끌어올립니다.",
-      image: photo("best-coolphase"),
-      mobileImage: photo("best-coolphase-m"),
+      image: doctorPhotos.coolphase,
+      photoFit: "full-frame" as const,
       headline: [
         "느슨해진 피부를 탄탄하게 조이는",
         "쿨링 고주파 리프팅 쿨페이즈",
@@ -146,7 +148,8 @@ export const mainWhy = {
       icon: "consult",
       title: "1:1 맞춤 설계",
       text: "같은 고민이라도 원인을 먼저 살펴, 한 분 한 분에게 맞는 시술을 제안합니다.",
-      image: photo("special-1"),
+      image: doctorPhotos.consult,
+      photoFit: "full-frame" as const,
     },
     {
       icon: "genuine",
@@ -174,7 +177,7 @@ export const mainDoctor = {
   nameEn: "Han Jae Woong",
   quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
   text: "현재 피부 상태를 기준으로 치료의 우선순위를 정하고,\n불필요한 과정보다는 필요한 진료에 집중합니다.",
-  image: photo("doctor-cutout"),
+  image: doctorPhotos.portrait,
 };
 
 // 진료 분야 (시술 대분류 5개) 대표 사진
@@ -182,8 +185,12 @@ export const mainCategoryImage: Record<string, string> = {
   lifting: photo("cat-main-lifting"),
   petit: photo("cat-main-petit"),
   skin: photo("cat-main-skin"),
-  "acne-pore": photo("cat-main-acne-pore"),
+  "acne-pore": doctorPhotos.consult,
   removal: photo("cat-main-removal"),
+};
+
+export const mainCategoryPhotoFit: Record<string, "full-frame" | undefined> = {
+  "acne-pore": "full-frame",
 };
 
 export const mainSpace = {

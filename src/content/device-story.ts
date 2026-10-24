@@ -1,3 +1,5 @@
+import { doctorPhotos } from "@/content/doctor-photos";
+
 // 장비 시술 페이지의 "장비 이야기" 원고 (장비 소개 · 원리 그림 · 특징 · 시술 장면)
 // - 글만 있던 설명을 장비 사진 · 원리 그림 · 실제 시술 장면과 함께 보여 줌
 // - 원고가 있는 시술만 TreatmentDetail 에서 이 구성으로 바뀜
@@ -32,6 +34,8 @@ export type DeviceStory = {
     photo?: string;
     /** 기존 설명용 사진을 특정 제품의 실제 시술 사진으로 오해하지 않도록 설명 */
     photoAlt?: string;
+    /** 병원 보정 원본은 얼굴 · 시술 부위가 잘리지 않게 전체 구도를 표시 */
+    photoFullFrame?: boolean;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     film?: { src: string; poster: string };
     text: string;
@@ -76,11 +80,20 @@ export type DeviceStory = {
     text: string;
     image: string;
     alt: string;
+    /** 사진 원본의 3:2 구도를 유지 */
+    fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
   }[];
   /** 시술 과정: 사진 + 설명 */
-  process: { title: string; text: string; image: string; alt: string }[];
+  process: {
+    title: string;
+    text: string;
+    image: string;
+    alt: string;
+    /** 사진 원본의 3:2 구도를 유지하고 번호를 사진 밖에 표시 */
+    fullFrame?: boolean;
+  }[];
   /** 시술 장면 영상 */
   video?: { src: string; poster: string; title: string[]; text: string };
 };
@@ -230,8 +243,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
-        image: photo("process-consult"),
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취",
@@ -242,8 +256,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "피부 표면을 냉각하면서, 상담 때 정한 깊이에 맞춰 층별로 나누어 시술합니다.",
-        image: photo("process-treatment"),
-        alt: "대표원장이 쿨소닉으로 시술하는 모습",
+        image: doctorPhotos.coolsonic,
+        alt: "대표원장이 쿨소닉으로 얼굴 부위를 시술하는 장면",
+        fullFrame: true,
       },
       {
         title: "경과 확인",
@@ -368,8 +383,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민 부위와 원하는 모습을 확인하고, 얼굴 비율을 보며 채울 곳 · 제품 · 양을 정합니다.",
-        image: photo("process-consult"),
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취",
@@ -399,8 +415,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "Coolfase",
       maker: "ASTERASYS",
       image: "/images/photos/best-coolphase.webp",
-      photo: "/images/photos/best-coolphase.webp",
-      photoAlt: "쿨페이즈 안내에 사용하는 기존 진료 현장 사진",
+      photo: doctorPhotos.coolphase,
+      photoAlt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
+      photoFullFrame: true,
       text: "쿨페이즈는 접촉 냉각을 더한 모노폴라 고주파(RF) 리프팅 장비입니다. 피부 표면을 식히면서 고주파 열을 전달해 피부결과 탄력을 관리합니다. 피부 두께와 탄력 상태에 맞춰 부위별 에너지를 정합니다.",
       specs: [
         {
@@ -490,8 +507,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "고주파로 피부결과 탄력 관리",
         text: "고주파 열 자극을 이용해 피부결과 탄력을 관리합니다. 탄력이 떨어진 부위와 잔주름 고민을 함께 살펴 시술 범위를 정합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "피부 표면을 식히는 접촉 냉각",
@@ -516,8 +534,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "피부 두께와 탄력 고민, 삽입물 · 이전 시술 이력을 살펴 부위별 시술 계획을 정합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "시술 전 상담을 설명하는 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 준비",
@@ -528,8 +547,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "피부 표면을 냉각하며 계획한 부위에 고주파를 전달합니다. 열감과 피부 반응에 맞춰 조절합니다.",
-        image: "/images/photos/process-treatment.webp",
-        alt: "시술 단계 설명에 재사용한 기존 사진",
+        image: doctorPhotos.coolphase,
+        alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
+        fullFrame: true,
       },
       {
         title: "경과 확인",
@@ -642,8 +662,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "표정을 보며 주사 위치 설정",
         text: "정면 사진만으로 판단하지 않고 표정을 지을 때의 움직임과 좌우 차이를 함께 확인합니다.",
-        image: "/images/photos/special-1.webp",
-        alt: "대표원장이 환자와 상담하는 설명용 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "부위와 제품에 맞춘 계획",
@@ -654,8 +675,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "원하는 표정 변화 함께 확인",
         text: "주름을 줄이고 싶은 정도와 유지하고 싶은 표정을 함께 듣고, 기대할 수 있는 변화와 한계를 설명합니다.",
-        image: "/images/photos/hero-consult.webp",
-        alt: "대표원장이 환자의 고민을 듣는 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "변화가 나타난 뒤 경과 확인",
@@ -668,8 +690,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민 부위, 표정, 복용 약과 이전 보툴리눔 톡신 시술 이력을 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "시술 전 상담을 설명하는 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 통증 관리",
@@ -794,8 +817,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "인체 유래 원료를 먼저 설명",
         text: "인체조직에서 얻은 무세포 동종진피 제품임을 설명합니다. 원료와 제품 특성을 이해한 뒤 시술 여부를 정합니다.",
-        image: "/images/photos/special-1.webp",
-        alt: "대표원장이 환자와 상담하는 설명용 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "성분이 다른 부스터와 구분",
@@ -806,8 +830,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 두께와 시술 이력 확인",
         text: "같은 피부 고민이라도 두께와 이전 시술에 따라 접근이 달라집니다. 적용 범위와 방법을 진찰 후 정합니다.",
-        image: "/images/photos/hero-consult.webp",
-        alt: "대표원장이 환자의 고민을 듣는 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "시술 후 경과도 함께 확인",
@@ -820,8 +845,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "피부 상태와 기대하는 변화, 알레르기 · 질환 · 이전 시술을 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "시술 전 상담을 설명하는 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 통증 관리",
@@ -954,8 +980,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "고민을 먼저 구분",
         text: "푸석함과 잔주름, 꺼짐은 살펴볼 원인이 다릅니다. 원하는 변화와 현재 피부 상태부터 함께 정리합니다.",
-        image: "/images/photos/hero-consult.webp",
-        alt: "피부 고민 상담에 사용하는 기존 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "제품명과 성분 확인",
@@ -980,8 +1007,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 계획",
         text: "피부 상태와 이전 시술 이력을 살피고, 스킨부스터의 범위와 기대할 수 있는 변화를 함께 정합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "기존 진료 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 준비",
@@ -1101,8 +1129,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "같은 이름 안의 재료 차이",
         text: "조직 유래 재료와 합성 고분자 입자는 성격이 다릅니다. 선택한 제품이 어떤 재료인지부터 설명합니다.",
-        image: "/images/photos/hero-consult.webp",
-        alt: "재료별 상담 설명에 사용하는 기존 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "피부 두께와 주입 부위 고려",
@@ -1127,8 +1156,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 제품 확인",
         text: "고민과 피부 두께, 이전 주입 이력을 확인하고 사용할 재료와 범위를 정합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "기존 진료 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 준비",
@@ -1153,13 +1183,15 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/lifting/laser": {
     kind: "procedure",
     diagram: "laser",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "고민에 맞춘 에너지 리프팅",
       maker: "HIFU · RF · LASER",
-      image: "/images/photos/cat-main-acne-pore.webp",
-      photo: "/images/photos/cat-main-acne-pore.webp",
-      text: "흔히 레이저리프팅이라고 부르지만, 모든 장비가 레이저는 아닙니다. 슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고 방식과 시술 부위를 정합니다.",
+      image: doctorPhotos.consult,
+      photo: doctorPhotos.consult,
+      photoFullFrame: true,
+      text: "슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고, 피부 상태에 맞는 장비와 시술 부위를 정합니다.",
       specs: [
         {
           label: "초음파",
@@ -1167,7 +1199,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "고주파",
-          value: "포텐자 · RF (사용 팁에 따라 방식 구분)",
+          value: "포텐자 · RF (팁별 방식 구분)",
         },
         {
           label: "레이저",
@@ -1178,20 +1210,20 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 두께 · 고민 부위 · 회복 여유",
         },
       ],
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
     },
     principle: [
       {
-        title: "고민의 원인을 나눠 봅니다",
-        text: "볼륨이 부족한지, 피부가 처진 것인지, 표면의 결이 거친 것인지 먼저 구분합니다. 비슷해 보이는 고민도 필요한 치료는 다를 수 있습니다.",
+        title: "피부 고민 구분",
+        text: "꺼짐 · 처짐 · 거친 피부결을 나누어 살핍니다. 비슷해 보이는 고민도 필요한 시술은 다를 수 있습니다.",
       },
       {
-        title: "다른 에너지를 구분해 고릅니다",
-        text: "집속 초음파는 목표 층에 에너지를 모읍니다. 미세침 고주파는 바늘을 통해 열을 전달하고, 레이저는 빛이 흡수되는 성질을 이용합니다.",
+        title: "고민에 맞는 에너지 전달",
+        text: "초음파는 목표 층에 모이고, 미세침 고주파는 바늘을 통해 에너지를 전달합니다. 레이저는 빛이 흡수되는 성질을 이용합니다.",
       },
       {
-        title: "피부 반응을 보며 경과를 확인합니다",
-        text: "열 자극 뒤 나타나는 조직 변화는 시간이 걸릴 수 있습니다. 시술 직후의 붓기와 이후의 변화를 나누어 보고 다음 계획을 조정합니다.",
+        title: "피부 반응과 경과 확인",
+        text: "열 자극 뒤 변화는 시간이 걸릴 수 있습니다. 직후의 붓기와 이후의 변화를 구분해 다음 계획을 정합니다.",
       },
     ],
     compare: {
@@ -1251,7 +1283,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 장비의 일반적인 방식 비교이며 실제 보유 모델 · 팁과 시행 범위는 상담에서 확인합니다. 맞는 방법은 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간에는 개인차가 있습니다.",
     },
-    featuresTitle: "장비를 고를 때 함께 보는 4가지",
+    featuresTitle: "레이저리프팅의 4가지 특징",
     features: [
       {
         title: "처짐과 꺼짐을 구분하는 상담",
@@ -1282,8 +1314,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "처짐 · 피부결 · 모공을 나누어 살피고 기존 시술과 복용약을 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 시술 준비",
@@ -1294,8 +1327,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "장비별 시술",
         text: "정한 방식과 부위에 맞춰 시술하며, 불편감이나 피부 반응에 따라 조절합니다.",
-        image: "/images/photos/cat-toning.webp",
-        alt: "보호 안경을 착용하고 얼굴에 레이저를 조사하는 참고 사진",
+        image: doctorPhotos.laser,
+        alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
+        fullFrame: true,
       },
       {
         title: "경과 확인",
@@ -1312,8 +1346,9 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "실리프팅",
       maker: "흡수성 의료용 실",
-      image: "/images/photos/cat-main-acne-pore.webp",
-      photo: "/images/photos/cat-main-acne-pore.webp",
+      image: doctorPhotos.consult,
+      photo: doctorPhotos.consult,
+      photoFullFrame: true,
       text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다.",
       specs: [
         {
@@ -1333,7 +1368,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "붓기 · 멍 · 당김 · 비대칭 등",
         },
       ],
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
     },
     principle: [
       {
@@ -1434,8 +1469,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 디자인",
         text: "처짐과 피부 두께, 이전 시술 이력을 보고 지지 방향과 실의 종류 · 범위를 정합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "기존 진료 상담 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 준비",
@@ -1464,8 +1500,9 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "여드름 · 모공 치료",
       maker: "ACNE · MARKS · SCARS · PORES",
-      image: "/images/photos/cat-main-acne-pore.webp",
-      photo: "/images/photos/cat-main-acne-pore.webp",
+      image: doctorPhotos.consult,
+      photo: doctorPhotos.consult,
+      photoFullFrame: true,
       text: "올라오는 여드름, 붉거나 갈색인 자국, 패인 흉터는 서로 다른 고민입니다. 염증을 먼저 살피고 필요한 약물 치료와 압출 · 각질 관리, 흉터 · 모공 시술을 나누어 계획합니다. 피부가 회복되는 속도를 보며 다음 단계를 정합니다.",
       specs: [
         {
@@ -1485,7 +1522,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "현재 염증 · 피부 민감도 · 회복 여유",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
     },
     principle: [
       {
@@ -1568,8 +1605,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "염증과 흔적을 나누어 봅니다",
         text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
-        image: "/images/photos/special-1.webp",
-        alt: "대표원장이 환자와 상담하는 설명용 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "상태에 맞는 순서를 정합니다",
@@ -1594,8 +1632,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "여드름 단계와 자국 · 흉터를 살피고, 복용약과 사용 중인 화장품을 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 시술 전 준비",
@@ -1606,8 +1645,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "단계별 치료",
         text: "진료 때 정한 범위에서 관리 또는 장비 시술을 진행하며 피부 반응을 확인합니다.",
-        image: "/images/photos/cat-toning.webp",
-        alt: "얼굴 부위 레이저 시술 참고 사진",
+        image: doctorPhotos.laser,
+        alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
+        fullFrame: true,
       },
       {
         title: "경과 확인",
@@ -1720,8 +1760,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 톤과 털 상태를 함께",
         text: "굵은 수염과 가는 털은 반응이 다를 수 있습니다. 피부색과 최근 태닝 여부까지 살펴 기대할 수 있는 변화를 설명합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "부위마다 다른 시술 계획",
@@ -1746,8 +1787,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "부위와 원하는 범위를 정하고, 피부 톤 · 털 굵기 · 복용약 · 태닝 여부를 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 시술 전 준비",
@@ -1758,8 +1800,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "레이저 조사",
         text: "정한 범위에 레이저를 조사하며 불편감과 피부 반응을 확인합니다.",
-        image: "/images/photos/cat-toning.webp",
-        alt: "얼굴 부위 레이저 시술 참고 사진",
+        image: doctorPhotos.laser,
+        alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
+        fullFrame: true,
       },
       {
         title: "경과 확인",
@@ -1871,8 +1914,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "덧입힌 이력까지 듣는 상담",
         text: "처음 받은 색과 리터치 · 커버업 이력을 함께 확인합니다. 원하는 목표가 전체 제거인지 일부 수정인지부터 상의합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "이름보다 색소 반응을 확인",
@@ -1897,8 +1941,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "반영구 이력과 피부 상태를 확인합니다. 눈가는 보호 방법과 시행 가능 여부부터 평가합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "대표원장 1:1 상담",
+        image: doctorPhotos.consult,
+        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        fullFrame: true,
       },
       {
         title: "마취 · 눈 보호",

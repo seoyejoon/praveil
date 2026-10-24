@@ -1494,13 +1494,13 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
   },
   // 확인 필요: 프락셀 · 피코프락셀의 실제 장비 모델과 파장 · 조사 모드, 블랙필의 실제 제품/성분, GA 스케일링의 사용 제품 · 농도를 확인해 주세요. 이 초안에는 추정 사양을 넣지 않았습니다.
-  // 확인 필요: 압출/관리 프로그램의 실제 포함 항목과 약물 진료의 운영 범위를 검수해 주세요. RF 미세침은 일반 비교 항목이며 이 페이지에서 병원 제공을 약속하지 않습니다.
-  // 확인 필요: 기존 treatments.ts의 2~4주 고정 주기, 모든 염증 여드름 압출처럼 읽힐 수 있는 설명은 새 원고에서 단정하지 않았습니다. 기존 노출 영역이 남으면 함께 점검해 주세요.
+  // 확인 필요: 압출 · 관리 프로그램의 실제 포함 항목과 약물 진료의 운영 범위를 검수해 주세요.
   // 확인 필요: cat-acne는 주사 장면이라 새 소개 사진으로 쓰지 않았습니다. 흉터 시술/압출의 실제 사진을 받으면 참고 사진을 교체해 주세요.
   // 확인 필요: 이소트레티노인 등 복용약에 대한 시술별 기준과 필링/레이저 후 안내를 의료진이 확정해 주세요.
   "/acne-pore": {
     kind: "procedure",
     diagram: "acne",
+    showPrices: true,
     device: {
       name: "여드름 · 모공 치료",
       maker: "ACNE · MARKS · SCARS · PORES",
@@ -1542,35 +1542,35 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "여드름 관리와 흉터 시술, 역할이 다릅니다",
-      lead: "현재 염증을 다루는 치료와 이미 남은 흉터를 다루는 치료를 구분한 일반 안내입니다.",
+      title: "여드름 관리와 흉터 시술, 어떻게 다른가요?",
+      lead: "현재 여드름을 다루는 진료 · 관리와 이미 남은 흉터를 다루는 시술은 어떤 차이가 있을까요?",
       columns: [
         {
-          name: "여드름 치료",
-          maker: "현재 염증 관리",
+          name: "여드름 진료",
+          maker: "현재 병변 · 약물 검토",
           self: true,
         },
         {
-          name: "압출 · 각질 관리",
-          maker: "면포 · 막힘 확인",
+          name: "압출관리",
+          maker: "필요한 면포 선택",
+        },
+        {
+          name: "필링 · 각질 관리",
+          maker: "성분 · 피부 상태 확인",
         },
         {
           name: "프락셔널 레이저",
           maker: "흉터 · 피부결 평가",
-        },
-        {
-          name: "미세침 고주파",
-          maker: "RF 열 자극",
         },
       ],
       rows: [
         {
           label: "주요 역할",
           values: [
-            "새 여드름과 염증 조절",
-            "필요한 면포 제거 · 각질 관리",
-            "피부 회복을 통한 흉터 개선 유도",
-            "바늘과 열 자극을 통한 피부 재형성 유도",
+            "여드름 종류에 맞는 치료 계획",
+            "필요한 면포의 제거 여부 확인",
+            "피부 표면 각질 · 모공 막힘 관리",
+            "흉터 · 피부결 평가 후 시술",
           ],
         },
         {
@@ -1578,8 +1578,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           values: [
             "여드름 종류 · 범위 · 병력",
             "면포 · 염증 · 민감도",
+            "사용 성분 · 강도 · 피부 민감도",
             "흉터 모양 · 깊이 · 피부 톤",
-            "피부 두께 · 흉터 · 사용할 팁",
           ],
         },
         {
@@ -1587,8 +1587,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           values: [
             "약물 치료가 필요할 수 있음",
             "모든 병변을 압출하지 않음",
+            "성분 · 농도 · 피부 자극 확인",
             "붉어짐 · 딱지 · 색 변화 가능",
-            "붉어짐 · 붓기 · 바늘 자국 가능",
           ],
         },
         {
@@ -1596,38 +1596,39 @@ export const deviceStory: Record<string, DeviceStory> = {
           values: [
             "새 병변이 생기는지 확인",
             "자극과 회복 상태 확인",
+            "피부 반응과 회복 상태 확인",
             "회복과 흉터 변화 확인",
-            "회복과 피부 반응 확인",
           ],
         },
       ],
       note: "※ 각 치료의 일반적인 특징을 정리한 것으로, 어느 치료가 더 낫다는 뜻이 아닙니다. 맞는 치료는 피부 상태와 고민에 따라 다르며, 효과 · 회복 기간은 사람마다 다릅니다.",
     },
     featuresTitle: "여드름 · 모공 치료에서 살피는 4가지",
+    // 확인 필요: 전용 특징 사진 4장. 현재 기존 상담 · 상담실 · 대기 공간 · 접수 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "염증과 흔적을 나누어 봅니다",
         text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "피부 분석 화면을 살피는 대표원장",
+        image: "/images/photos/special-1.webp",
+        alt: "대표원장이 환자와 상담하는 설명용 사진",
       },
       {
         title: "상태에 맞는 순서를 정합니다",
         text: "통증이 있는 염증을 먼저 살피고, 피부가 안정되면 흉터와 모공 치료를 논의합니다. 사용 중인 여드름 약도 함께 확인합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "여드름 치료 계획을 상담하는 참고 사진",
+        image: "/images/photos/clinic-3.webp",
+        alt: "진료 계획을 설명하는 병원 상담실 사진",
       },
       {
         title: "피부의 회복 여유를 남깁니다",
         text: "관리 강도와 시술 범위를 정할 때 붉어짐 · 건조함 등 현재 상태를 고려합니다. 자극을 반복하기보다 회복 경과를 봅니다.",
-        image: "/images/photos/clinic-5.webp",
-        alt: "피부 시술 장비와 베드가 있는 진료실",
+        image: "/images/photos/hero-about.webp",
+        alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
       },
       {
         title: "일상 관리까지 이어갑니다",
         text: "세안과 보습, 자외선 차단, 손으로 짜는 습관을 함께 점검합니다. 다음 진료에서는 새 병변과 자극 여부를 확인합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "대표원장이 얼굴 피부를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "다음 진료 방문을 설명하는 병원 접수 공간 사진",
       },
     ],
     process: [
@@ -1638,7 +1639,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "대표원장 1:1 상담",
       },
       {
-        title: "시술 전 준비",
+        title: "마취 · 시술 전 준비",
         text: "선택한 관리에 맞춰 세안과 소독을 진행합니다. 필요한 시술에만 마취를 적용합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "시술 전 마취 크림을 바르는 참고 사진",

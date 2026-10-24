@@ -366,8 +366,7 @@ export const treatments: Treatment[] = [
     href: "/petit/botox",
     en: "Botox",
     title: "보톡스",
-    description:
-      "표정주름 · 턱 · 슈퍼턱 · 특수부위 · 스킨 · 승모근 · 종아리 · 다한증",
+    description: "근육의 움직임과 표정을 살펴 계획하는 보툴리눔 톡신 시술",
     image: photo("cat-botox"),
     headline: ["표정은 살리고 주름은 부드럽게,", "부위별 보톡스"],
     intro:

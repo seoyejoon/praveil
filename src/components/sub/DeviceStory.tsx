@@ -74,7 +74,7 @@ export function StoryAbout({
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={device.photo}
-                  alt={`${device.name} 시술 장면`}
+                  alt={device.photoAlt ?? `${device.name} 시술 장면`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
                 />

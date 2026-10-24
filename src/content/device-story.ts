@@ -718,6 +718,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/skin/retuo": {
     kind: "procedure",
     diagram: "matrix",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "리투오 (Re2O)",

@@ -167,7 +167,8 @@ export const treatments: Treatment[] = [
     href: "/lifting/laser",
     en: "Laser Lifting",
     title: "레이저리프팅",
-    description: "슈링크 유니버스 · 포텐자 · 클라리티",
+    description:
+      "피부 고민에 맞춰 초음파 · 고주파 · 레이저를 구분하는 탄력 관리",
     image: photo("cat-lifting"),
     device: device("shrink-universe", "Shurink Universe", "초음파 리프팅"),
     headline: ["고민에 맞춰 고르는", "레이저 리프팅"],

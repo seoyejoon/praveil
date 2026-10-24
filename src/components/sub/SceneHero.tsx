@@ -14,6 +14,8 @@ export type HeroScene = {
   pulse?: [number, number];
   /** PC 사진 위치 (object-position, 기본 "92% center") */
   position?: string;
+  /** 3:1보다 세로가 긴 원본은 PC에서 높이에 맞춰 오른쪽에 배치해 얼굴 · 시술 부위를 보존 */
+  desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
   chips?: { x: number; y: number; en: string; label: string }[];
 };
@@ -110,7 +112,7 @@ export default function SceneHero({
               src={scene.src}
               alt={`${title} 시술 장면`}
               fetchPriority="high"
-              className="h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center]"
+              className={`h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`}
               style={
                 scene.position ? { objectPosition: scene.position } : undefined
               }

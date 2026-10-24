@@ -405,6 +405,17 @@ export const treatments: Treatment[] = [
     title: "보톡스",
     description: "근육의 움직임과 표정을 살펴 계획하는 보툴리눔 톡신 시술",
     image: photo("cat-botox"),
+    scene: {
+      src: photo("cat-botox"),
+      mobileSrc: photo("cat-botox"),
+      desktopFit: "contain",
+      mobilePosition: "40% center",
+      alt: "대표원장이 얼굴 부위에 주사 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "Design", label: "표정 · 근육 움직임 확인" },
+        { x: 68, y: 50, en: "Plan", label: "부위별 주사 위치 · 용량 계획" },
+      ],
+    },
     headline: ["표정은 살리고 주름은 부드럽게,", "부위별 보톡스"],
     intro:
       "보톡스는 근육의 과한 움직임을 줄여 주름을 부드럽게 하거나, 발달한 근육의 부피를 줄이는 시술입니다. 부위와 근육의 힘을 보고 용량을 정합니다.",

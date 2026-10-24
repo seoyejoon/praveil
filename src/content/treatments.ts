@@ -478,6 +478,17 @@ export const treatments: Treatment[] = [
     title: "리투오",
     description: "얇아지고 거칠어진 피부결 · 탄력을 위한 리투오 시술",
     image: photo("signature-4"),
+    scene: {
+      src: photo("signature-4"),
+      mobileSrc: photo("signature-4"),
+      desktopFit: "contain",
+      mobilePosition: "50% center",
+      alt: "대표원장이 얼굴 부위에 주사 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "Design", label: "피부 상태 · 목표 확인" },
+        { x: 68, y: 50, en: "Plan", label: "부위별 깊이 · 양 설계" },
+      ],
+    },
     headline: ["얇아진 피부에 밀도를,", "리투오 피부 관리"],
     intro:
       "리투오는 인체 피부 조직에서 세포 성분을 제거한 무세포 동종진피(hADM) 제품을 이용합니다. 피부결 · 잔주름 · 탄력 고민을 나누어 보고 원료의 특성과 주의사항을 설명한 뒤 시술 여부를 정합니다.",

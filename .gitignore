@@ -43,3 +43,6 @@ next-env.d.ts
 
 # design review exports (shared as files, not tracked)
 /design-preview/
+
+# 페이지 점검 화면 사진
+/.shots/

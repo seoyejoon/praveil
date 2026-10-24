@@ -1,62 +1,44 @@
-# Codex 작업 안내: 시술 페이지 10개를 필러 · 쿨소닉 페이지 구성으로
+# Codex 작업 시키는 법
 
-## 목표
-`/lifting/coolsonic`, `/petit/filler` 와 같은 구성(시술 소개 · 원리 · 비교 · 4가지 특징 · 과정 · FAQ 12 · 블로그 · 리뷰)을
-나머지 10개 시술 페이지에 적용한다. **레이아웃과 원고만** 잡는다. 아이콘 · 새 사진은 병원에서 나중에 준다.
+Codex 는 저장소의 `AGENTS.md`(규칙)와 `.agents/skills/`(작업 순서)를 자동으로 읽습니다.
+그래서 요청은 **무엇을 할지만 짧게** 쓰면 됩니다.
 
-| 순서 | 주소 | 종류 |
+## 스킬 (따로 설치할 필요 없음)
+| 스킬 | 언제 | 직접 부르기 |
 |---|---|---|
-| 1 | /lifting/coolphase | 장비 (kind 생략) |
-| 2 | /petit/botox | 시술 (`kind: "procedure"`) |
-| 3 | /skin/retuo | 시술 |
-| 4 | /skin/booster | 시술 |
-| 5 | /skin/collagen | 시술 |
-| 6 | /lifting/laser | 장비 |
-| 7 | /lifting/thread | 시술 |
-| 8 | /acne-pore | 시술 |
-| 9 | /removal/hair | 장비 |
-| 10 | /removal/tattoo | 장비 |
+| `praveil-page` | 시술 페이지를 필러 · 쿨소닉 형식으로 만들기 · 맞추기 | `$praveil-page` |
+| `praveil-copy` | 원고 · FAQ 쓰기 · 고치기 | `$praveil-copy` |
+| `praveil-check` | 커밋 · PR 전 점검 | `$praveil-check` |
 
-## 꼭 지킬 것
-- **브랜치**: `codex/pages-rollout` 에서만 작업. `claude/brave-noether-qwu6gl` 과 `main` 에는 절대 push 하지 말 것
-  (push 하면 실서버 praveil.com 에 자동 배포됨). 끝나면 PR 만 올린다.
-- 페이지 하나 끝날 때마다 커밋 1개 (`<시술명> 페이지 구성` 형식, 한글).
-- 새 패키지 설치 금지. 기존 컴포넌트만 사용.
-- `src/lib/preview-lock.ts`(준비 중 잠금)는 건드리지 말 것.
+요청에 맞는 스킬을 Codex 가 알아서 고릅니다. 확실히 쓰게 하려면 요청 앞에 `$스킬이름` 을 붙입니다.
 
-## 참고할 예시 (그대로 따라 하기)
-- 커밋 `13ad8fb` (필러 페이지): 무엇을 어디에 넣었는지 전부 들어 있음
-- `src/content/device-story.ts` 의 `"/petit/filler"`(시술형), `"/lifting/coolsonic"`(장비형)
-- `src/content/faq-detail.ts` 의 두 시술 FAQ
+## 요청 예시 (복사해서 쓰기)
 
-## 페이지마다 할 일
-1. `src/content/device-story.ts` 에 항목 추가
-   - `device`: name · maker · text · specs 4줄. 사진은 `photo` 에 기존 사진(`public/images/photos/`) 중 맞는 것
-   - `principle` 3단계 (원리 그림이 없으면 `diagram` 은 생략 → 기본 그림. 초음파 장비가 아니면 그림이 어색하므로
-     필요하면 `src/components/sub/DeviceStory.tsx` 의 `FillerDiagram` 처럼 단순한 SVG 를 새로 만들 것)
-   - `compare`: 같이 비교되는 시술 · 장비 3~4개, 일반적인 특징만 (title · lead 는 시술에 맞게)
-   - `featuresTitle` + `features` 4개 (사진은 기존 사진 재사용, 같은 페이지 안에서 겹치지 않게)
-   - `process` 4단계 (상담 · 마취 · 시술 · 경과 확인 / 사진: process-consult, process-anesthesia, 시술 장면, process-check)
-   - 가격 안내가 필요한 시술은 `showPrices: true`
-2. `src/content/faq-detail.ts` 에 FAQ 12개 (원장이 설명하는 말투, `[이름](주소)` 출처는 문단 끝)
-3. `src/content/treatments.ts` 의 `description` 을 한 줄 소개로 다듬기 (`scene` 은 사진이 정해지면 나중에)
-
-## 원고 규칙
-- 짧고 쉬운 한국어. 최상급 표현 금지 (최고, 유일, 최초, 가장 …)
-- 효과 보장 표현 금지, 다른 병원 · 장비와 우열 비교 금지 (비교표 아래 note 문구 유지)
-- 가운뎃점은 앞뒤 띄어쓰기 ` · `
-- 병원이 실제로 보유했는지 모르는 장비 · 제품 이름, 가격, 시술 횟수는 지어내지 말 것.
-  모르면 일반적인 표현으로 쓰고 코드에 `// 확인 필요:` 주석을 남길 것
-- 출처 링크는 실제로 열리는 주소(HTTP 200)만. 확인 못 하면 넣지 말 것
-
-## 확인 (커밋 전에 매번)
-```sh
-pnpm install
-pnpm exec prettier --write <바꾼 파일>
-pnpm exec tsc --noEmit && pnpm lint && DATABASE_URL= pnpm build
+**페이지 만들기**
 ```
-로컬에서 `DATABASE_URL= pnpm start` 후 해당 주소가 열리는지, 모바일(390px) 화면에서 옆으로 넘치지 않는지 확인.
-(잠금 때문에 '준비 중'이 뜨면 확인할 때만 `src/lib/preview-lock.ts` 의 `LOCKED` 를 잠시 false 로 — 커밋하지 말 것)
+$praveil-page 브랜치 codex/<작업이름> 에서 /lifting/coolphase, /petit/botox 를 필러 · 쿨소닉 페이지와 같은 구성으로 맞춰 줘.
+사진 · 아이콘은 기존 것을 임시로 쓰고 확인 필요로 남겨. 끝나면 $praveil-check 로 점검하고 PR 올려 줘.
+```
 
-## 끝나면
-PR 제목: `시술 페이지 10개 구성 (필러 · 쿨소닉 형식)` — 본문에 페이지별 `확인 필요` 목록을 정리.
+**첫 화면 사진 넣기** (사진 파일을 `public/images/photos/` 에 먼저 넣고)
+```
+$praveil-page best-botox.webp(PC), best-botox-m.webp(모바일)을 /petit/botox 첫 화면 scene 으로 넣어 줘.
+사진 파일은 다시 압축하지 마. 카드 2개가 얼굴을 가리지 않게 위치 잡고 PR 올려 줘.
+```
+
+**원고 고치기**
+```
+$praveil-copy /skin/booster FAQ 를 더 짧고 쉽게 다듬어 줘. 내용은 바꾸지 말고 말투만.
+```
+
+**원장님 확인 내용 반영**
+```
+아래 원장님 답변을 확인 필요 주석 자리에 반영하고, 반영한 주석은 지워 줘. PR 올려 줘.
+- 보톡스 제품: ○○○
+- ...
+```
+
+## 순서
+1. Codex 에게 요청 → Codex 가 `codex/...` 브랜치에 PR 을 올림
+2. Claude 에게 "PR 올라왔어, 검토해줘" → 검토 · 세부 수정 · 병합 · 배포
+3. 잠긴 페이지는 공개 전까지 손님에게 "준비 중"으로 보임

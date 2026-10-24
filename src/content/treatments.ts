@@ -116,7 +116,7 @@ export const treatments: Treatment[] = [
     href: "/lifting/coolphase",
     en: "Coolphase",
     title: "쿨페이즈",
-    description: "고주파로 피부 속 콜라겐을 자극하는 탄력 관리",
+    description: "피부 표면을 식히며 고주파 열을 전달하는 탄력 관리",
     image: photo("signature-2"),
     headline: ["피부결부터 탄탄하게,", "쿨페이즈 고주파 리프팅"],
     intro:

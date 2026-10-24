@@ -224,6 +224,8 @@ export function StoryAbout({
               <figure className="overflow-hidden rounded-[28px] bg-ivory p-4 md:p-8">
                 {story.diagram === "filler" ? (
                   <FillerDiagram />
+                ) : story.diagram && story.diagram !== "hifu" ? (
+                  <TreatmentDiagram kind={story.diagram} />
                 ) : (
                   <HifuDiagram depths={story.depths} />
                 )}
@@ -650,6 +652,394 @@ export function StoryCompare({
       </Reveal>
       <p className="mt-6 text-xs leading-relaxed text-muted">{c.note}</p>
     </section>
+  );
+}
+
+type TreatmentDiagramKind = Exclude<
+  NonNullable<DeviceStory["diagram"]>,
+  "hifu" | "filler"
+>;
+
+/** 실제 깊이 · 용량을 나타내지 않는 개념도. 초음파 그림을 다른 시술에 재사용하지 않음. */
+function TreatmentDiagram({ kind }: { kind: TreatmentDiagramKind }) {
+  const copy: Record<TreatmentDiagramKind, { title: string; note: string }> = {
+    rf: {
+      title: "고주파 에너지와 피부 표면 냉각",
+      note: "피부 속 열 자극 · 경과에 따른 조직 반응",
+    },
+    botox: {
+      title: "보툴리눔 톡신의 신경 · 근육 작용",
+      note: "근육의 움직임과 시술 부위에 맞춰 계획",
+    },
+    matrix: {
+      title: "조직 유래 기질을 이용하는 시술",
+      note: "제품의 처리 방식 · 적용 부위 · 경과 확인",
+    },
+    booster: {
+      title: "제품에 따라 다른 피부 관리 경로",
+      note: "성분 · 제형 · 허가 용도를 먼저 확인",
+    },
+    collagen: {
+      title: "성분에 따라 다른 조직 반응",
+      note: "같은 이름의 시술도 제품별로 구분",
+    },
+    laser: {
+      title: "장비마다 다른 에너지 전달 방식",
+      note: "초음파 · 고주파 · 레이저를 구분해 계획",
+    },
+    thread: {
+      title: "실을 이용한 조직 지지",
+      note: "실의 종류 · 삽입 층 · 방향은 진찰 후 결정",
+    },
+    acne: {
+      title: "모공 속 막힘과 염증을 나누어 치료",
+      note: "진행 중인 여드름과 남은 흔적은 다른 치료",
+    },
+    hair: {
+      title: "털의 색소에 반응하는 레이저",
+      note: "성장 단계 · 털 색 · 피부 톤에 맞춰 계획",
+    },
+    pigment: {
+      title: "색소 입자에 작용하는 레이저",
+      note: "색소 반응과 피부 회복을 확인하며 진행",
+    },
+  };
+  const skin = !["botox", "booster", "laser"].includes(kind);
+  return (
+    <svg
+      viewBox="0 0 600 420"
+      role="img"
+      aria-label={`${copy[kind].title} 개념도`}
+      className="h-auto w-full"
+    >
+      <text
+        x="300"
+        y="35"
+        textAnchor="middle"
+        fill="#4a423b"
+        fontSize="23"
+        fontWeight="600"
+      >
+        {copy[kind].title}
+      </text>
+      {skin && (
+        <g>
+          <rect x="30" y="130" width="350" height="20" fill="#f6dccb" />
+          <rect x="30" y="150" width="350" height="126" fill="#f0cdb8" />
+          <rect x="30" y="276" width="350" height="90" fill="#f6e5c4" />
+          {[
+            ["표피", 143],
+            ["진피", 218],
+            ["피하 조직", 325],
+          ].map(([label, y]) => (
+            <g key={label}>
+              <line
+                x1="385"
+                y1={Number(y) - 7}
+                x2="405"
+                y2={Number(y) - 7}
+                stroke="#a88e6a"
+              />
+              <text x="418" y={y} fontSize="22" fill="#4a423b">
+                {label}
+              </text>
+            </g>
+          ))}
+        </g>
+      )}
+      {kind === "rf" && (
+        <g>
+          <rect x="104" y="70" width="205" height="48" rx="12" fill="#2a2724" />
+          <rect x="116" y="118" width="181" height="12" rx="4" fill="#bed7df" />
+          <text x="206" y="102" textAnchor="middle" fill="#fff" fontSize="21">
+            고주파 · 냉각
+          </text>
+          <ellipse
+            cx="206"
+            cy="215"
+            rx="100"
+            ry="47"
+            fill="#cf8d70"
+            opacity=".3"
+          />
+          {[135, 175, 215, 255].map((x) => (
+            <path
+              key={x}
+              d={`M${x} 153 q-12 18 0 36 t0 36`}
+              fill="none"
+              stroke="#aa7057"
+              strokeWidth="3"
+            />
+          ))}
+          <text
+            x="206"
+            y="335"
+            textAnchor="middle"
+            fill="#715845"
+            fontSize="22"
+          >
+            피부 속 열 자극
+          </text>
+        </g>
+      )}
+      {kind === "botox" && (
+        <g>
+          <path
+            d="M75 120 H240 Q265 120 265 150 V180"
+            fill="none"
+            stroke="#a88e6a"
+            strokeWidth="18"
+            strokeLinecap="round"
+          />
+          <text x="75" y="92" fill="#4a423b" fontSize="23">
+            신경 신호
+          </text>
+          <circle cx="265" cy="198" r="14" fill="#7d6649" />
+          <path
+            d="M260 221 V249 M246 235 H274"
+            stroke="#7d6649"
+            strokeWidth="3"
+          />
+          <text x="304" y="207" fill="#4a423b" fontSize="22">
+            신호 전달 완화
+          </text>
+          {[0, 1, 2, 3].map((i) => (
+            <rect
+              key={i}
+              x="85"
+              y={265 + i * 17}
+              width="390"
+              height="12"
+              rx="6"
+              fill={i % 2 ? "#d8a48d" : "#c98c7b"}
+            />
+          ))}
+          <text
+            x="280"
+            y="361"
+            textAnchor="middle"
+            fill="#715845"
+            fontSize="23"
+          >
+            근육 수축 조절
+          </text>
+        </g>
+      )}
+      {(kind === "matrix" || kind === "collagen") && (
+        <g>
+          <path
+            d="M88 73 L145 118"
+            stroke="#2a2724"
+            strokeWidth="22"
+            strokeLinecap="round"
+          />
+          <path d="M145 118 L193 167" stroke="#8b8378" strokeWidth="4" />
+          {[0, 1, 2, 3, 4].map((i) => (
+            <circle
+              key={i}
+              cx={105 + i * 48}
+              cy={198 + (i % 2) * 24}
+              r="9"
+              fill={kind === "matrix" ? "#8da5a8" : "#b39b75"}
+            />
+          ))}
+          <path
+            d="M65 245 Q105 223 145 245 T225 245 T345 245"
+            fill="none"
+            stroke="#b47762"
+            strokeWidth="4"
+          />
+          <text x="206" y="100" fill="#4a423b" fontSize="21">
+            {kind === "matrix" ? "조직 유래 기질" : "제품별 성분"}
+          </text>
+          <text
+            x="206"
+            y="333"
+            textAnchor="middle"
+            fill="#715845"
+            fontSize="22"
+          >
+            적용 후 경과 관찰
+          </text>
+        </g>
+      )}
+      {(kind === "booster" || kind === "laser") && (
+        <g>
+          {(kind === "laser"
+            ? ["집속 초음파", "미세침 고주파", "레이저"]
+            : ["성분 확인", "사용 경로", "피부 반응"]
+          ).map((label, i) => (
+            <g key={label} transform={`translate(${35 + i * 185} 100)`}>
+              <rect width="160" height="240" rx="14" fill="#efe7db" />
+              {kind === "laser" ? (
+                <g fill="none" stroke="#9a7755" strokeWidth="3">
+                  <path
+                    d={
+                      i === 0
+                        ? "M36 40 L80 143 L124 40"
+                        : i === 1
+                          ? "M40 40 V117 M80 40 V132 M120 40 V117"
+                          : "M68 40 V143 M92 40 V143"
+                    }
+                  />
+                  <path d="M18 153 H142 M18 177 H142" stroke="#c99b83" />
+                  <circle
+                    cx="80"
+                    cy={i === 1 ? 132 : 153}
+                    r="9"
+                    fill="#c99b83"
+                    stroke="none"
+                  />
+                </g>
+              ) : (
+                <g fill="none" stroke="#9a7755" strokeWidth="3">
+                  <rect x="47" y="45" width="66" height="93" rx="9" />
+                  <path
+                    d={
+                      i === 0
+                        ? "M61 70 H99 M61 89 H99 M61 108 H88"
+                        : i === 1
+                          ? "M61 66 L99 118 M99 66 L61 118"
+                          : "M61 111 Q80 68 99 111"
+                    }
+                  />
+                  <circle cx="80" cy="170" r="5" fill="#9a7755" />
+                </g>
+              )}
+              <text
+                x="80"
+                y="216"
+                textAnchor="middle"
+                fill="#4a423b"
+                fontSize="20"
+              >
+                {label}
+              </text>
+            </g>
+          ))}
+        </g>
+      )}
+      {kind === "thread" && (
+        <g>
+          <path d="M77 248 L320 191" stroke="#8d775f" strokeWidth="4" />
+          {[105, 145, 185, 225, 265].map((x) => (
+            <path
+              key={x}
+              d={`M${x - 8} ${250 - x * 0.18} l10 -16 l8 10`}
+              fill="none"
+              stroke="#8d775f"
+              strokeWidth="3"
+            />
+          ))}
+          <path
+            d="M198 112 L258 90 M246 82 L258 90 L251 103"
+            fill="none"
+            stroke="#7d6649"
+            strokeWidth="3"
+          />
+          <text
+            x="203"
+            y="329"
+            textAnchor="middle"
+            fill="#715845"
+            fontSize="22"
+          >
+            삽입한 실로 조직 지지
+          </text>
+        </g>
+      )}
+      {(kind === "hair" || kind === "acne") && (
+        <g>
+          <path
+            d="M158 130 Q175 161 156 230 Q144 280 175 303 Q211 322 227 278 L239 130"
+            fill="#e4b59e"
+            stroke="#b5836c"
+            strokeWidth="3"
+          />
+          {kind === "hair" ? (
+            <g>
+              <path
+                d="M204 63 L189 259"
+                stroke="#4a3931"
+                strokeWidth="9"
+                strokeLinecap="round"
+              />
+              <path
+                d="M276 64 L205 249 M286 64 L218 261"
+                stroke="#a88e6a"
+                strokeWidth="3"
+              />
+              <ellipse cx="194" cy="270" rx="16" ry="24" fill="#795543" />
+              <text
+                x="215"
+                y="347"
+                textAnchor="middle"
+                fill="#715845"
+                fontSize="22"
+              >
+                털의 색소 · 모낭 주변 반응
+              </text>
+            </g>
+          ) : (
+            <g>
+              <ellipse cx="201" cy="154" rx="31" ry="19" fill="#b59773" />
+              <circle cx="191" cy="237" r="27" fill="#c77f69" opacity=".55" />
+              <text x="88" y="93" fill="#715845" fontSize="21">
+                모공 막힘
+              </text>
+              <text x="250" y="249" fill="#715845" fontSize="21">
+                염증
+              </text>
+              <text
+                x="204"
+                y="347"
+                textAnchor="middle"
+                fill="#715845"
+                fontSize="22"
+              >
+                상태에 따라 치료 구분
+              </text>
+            </g>
+          )}
+        </g>
+      )}
+      {kind === "pigment" && (
+        <g>
+          <path
+            d="M171 64 V191 M187 64 V191"
+            stroke="#a88e6a"
+            strokeWidth="3"
+          />
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+            <circle
+              key={i}
+              cx={115 + (i % 4) * 45}
+              cy={216 + Math.floor(i / 4) * 31}
+              r={i % 2 ? 5 : 9}
+              fill="#695651"
+            />
+          ))}
+          <path
+            d="M287 229 L339 229 M329 219 L339 229 L329 239"
+            fill="none"
+            stroke="#a88e6a"
+            strokeWidth="3"
+          />
+          <text
+            x="204"
+            y="341"
+            textAnchor="middle"
+            fill="#715845"
+            fontSize="22"
+          >
+            입자 반응 · 회복 과정 관찰
+          </text>
+        </g>
+      )}
+      <text x="300" y="402" textAnchor="middle" fill="#6b6259" fontSize="18">
+        {copy[kind].note}
+      </text>
+    </svg>
   );
 }
 

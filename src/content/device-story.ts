@@ -562,6 +562,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/petit/botox": {
     kind: "procedure",
     diagram: "botox",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "보톡스",

@@ -14,11 +14,13 @@ export type HeroScene = {
   video?: string;
   /** 모바일 전용 세로형 사진 (원장 · 장비가 한 화면에) */
   mobileSrc?: string;
+  /** 세로 화면에서 새 원본의 얼굴 · 손 · 접촉 부위를 기준으로 위치를 조정 */
+  mobilePosition?: string;
   /** 핸드피스가 피부에 닿는 자리 (사진 속 %, [가로, 세로]) — 여기서 초음파 파장이 피부 쪽으로 퍼짐 */
   pulse?: [number, number];
   /** PC 사진 위치 (object-position, 기본 "92% center") */
   position?: string;
-  /** 3:1보다 세로가 긴 원본은 PC에서 높이에 맞춰 오른쪽에 배치해 얼굴 · 시술 부위를 보존 */
+  /** 3:1보다 세로가 긴 원본은 태블릿부터 높이에 맞춰 오른쪽에 배치해 얼굴 · 시술 부위를 보존 */
   desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
   chips?: { x: number; y: number; en: string; label: string }[];
@@ -110,6 +112,11 @@ export default function SceneHero({
             alt={scene.alt ?? `${title} 시술 장면`}
             fetchPriority="high"
             className="absolute inset-0 h-full w-full animate-[fade-in_1s_ease_both] object-cover md:hidden"
+            style={
+              scene.mobilePosition
+                ? { objectPosition: scene.mobilePosition }
+                : undefined
+            }
           />
         )}
         <div
@@ -136,7 +143,7 @@ export default function SceneHero({
               className={
                 scene.imageLayout === "device"
                   ? "absolute top-20 right-[18%] h-[64%] w-auto animate-[fade-in_1s_ease_both] object-contain md:top-8 md:right-[16%] md:h-[80%] lg:top-2 lg:h-[90%]"
-                  : `h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`
+                  : `h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "md:absolute md:right-0 md:w-auto md:max-w-none md:object-contain md:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`
               }
               style={
                 scene.position ? { objectPosition: scene.position } : undefined

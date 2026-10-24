@@ -177,10 +177,20 @@ export const treatments: Treatment[] = [
     href: "/lifting/laser",
     en: "Laser Lifting",
     title: "레이저리프팅",
-    description:
-      "피부 고민에 맞춰 초음파 · 고주파 · 레이저를 구분하는 탄력 관리",
+    description: "피부 고민에 맞춘 초음파 · 고주파 · 레이저 리프팅",
     image: photo("cat-lifting"),
     device: device("shrink-universe", "Shurink Universe", "초음파 리프팅"),
+    // 확인 필요: 레이저리프팅 전용 첫 화면 사진 (PC · 모바일).
+    // 전용 사진 전까지 Claude가 복구한 장비 원본을 같은 첫 화면 틀에 표시합니다.
+    scene: {
+      src: "/images/equipment/hero/shrink-universe.webp",
+      alt: "슈링크 유니버스 집속 초음파 리프팅 장비",
+      imageLayout: "device",
+      chips: [
+        { x: 67, y: 22, en: "HIFU", label: "슈링크 유니버스 · 초음파 리프팅" },
+        { x: 63, y: 50, en: "Design", label: "피부 두께 · 고민별 시술 계획" },
+      ],
+    },
     headline: ["처짐 · 탄력 · 모공까지,", "고민별 레이저 리프팅"],
     intro:
       "처짐, 모공, 피부결처럼 같은 리프팅 고민도 원인이 다릅니다. 프라베일은 피부 상태를 먼저 보고, 목적에 맞는 장비를 골라 필요한 만큼 설계합니다.",

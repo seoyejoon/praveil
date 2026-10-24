@@ -6,6 +6,10 @@ import LightHeroText, { type Crumb } from "@/components/sub/LightHeroText";
 export type HeroScene = {
   /** 사진 (영상이 있으면 영상 첫 장면 · 영상을 못 틀 때 대신 보임) */
   src: string;
+  /** 장비 원본을 자르지 않고 같은 첫 화면 틀 안에 표시 */
+  imageLayout?: "device";
+  /** 시술 장면이 아닌 사진은 실제 내용을 설명 */
+  alt?: string;
   /** 짧은 반복 영상 (소리 없음, 사진과 같은 구도 3:1) */
   video?: string;
   /** 모바일 전용 세로형 사진 (원장 · 장비가 한 화면에) */
@@ -79,14 +83,14 @@ export default function SceneHero({
     >
       <div
         ref={stageRef}
-        className="absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] [mask-image:linear-gradient(180deg,#000_70%,transparent)] will-change-transform lg:top-[84px] lg:aspect-[3/1] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"
+        className={`absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] will-change-transform lg:top-[84px] lg:aspect-[3/1] ${scene.imageLayout === "device" ? "" : "[mask-image:linear-gradient(180deg,#000_70%,transparent)] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"}`}
       >
         {/* 모바일: 세로형 사진 한 장 (가로 영상은 휴대폰에서 원장 · 장비가 잘림) */}
         {scene.mobileSrc && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={scene.mobileSrc}
-            alt={`${title} 시술 장면`}
+            alt={scene.alt ?? `${title} 시술 장면`}
             fetchPriority="high"
             className="absolute inset-0 h-full w-full animate-[fade-in_1s_ease_both] object-cover md:hidden"
           />
@@ -110,9 +114,13 @@ export default function SceneHero({
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={scene.src}
-              alt={`${title} 시술 장면`}
+              alt={scene.alt ?? `${title} 시술 장면`}
               fetchPriority="high"
-              className={`h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`}
+              className={
+                scene.imageLayout === "device"
+                  ? "absolute top-20 right-[18%] h-[64%] w-auto animate-[fade-in_1s_ease_both] object-contain md:top-8 md:right-[16%] md:h-[80%] lg:top-2 lg:h-[90%]"
+                  : `h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover object-[92%_center] ${scene.desktopFit === "contain" ? "lg:absolute lg:right-0 lg:w-auto lg:max-w-none lg:object-contain lg:[mask-image:linear-gradient(90deg,transparent,#000_20%)]" : ""}`
+              }
               style={
                 scene.position ? { objectPosition: scene.position } : undefined
               }

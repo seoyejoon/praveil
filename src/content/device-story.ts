@@ -1153,13 +1153,14 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/lifting/laser": {
     kind: "procedure",
     diagram: "laser",
+    principleLayout: "figure-first",
     showPrices: true,
     device: {
       name: "고민에 맞춘 에너지 리프팅",
       maker: "HIFU · RF · LASER",
       image: "/images/photos/cat-main-acne-pore.webp",
       photo: "/images/photos/cat-main-acne-pore.webp",
-      text: "흔히 레이저리프팅이라고 부르지만, 모든 장비가 레이저는 아닙니다. 슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고 방식과 시술 부위를 정합니다.",
+      text: "슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고, 피부 상태에 맞는 장비와 시술 부위를 정합니다.",
       specs: [
         {
           label: "초음파",
@@ -1167,7 +1168,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "고주파",
-          value: "포텐자 · RF (사용 팁에 따라 방식 구분)",
+          value: "포텐자 · RF (팁별 방식 구분)",
         },
         {
           label: "레이저",
@@ -1182,16 +1183,16 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "고민의 원인을 나눠 봅니다",
-        text: "볼륨이 부족한지, 피부가 처진 것인지, 표면의 결이 거친 것인지 먼저 구분합니다. 비슷해 보이는 고민도 필요한 치료는 다를 수 있습니다.",
+        title: "피부 고민 구분",
+        text: "꺼짐 · 처짐 · 거친 피부결을 나누어 살핍니다. 비슷해 보이는 고민도 필요한 시술은 다를 수 있습니다.",
       },
       {
-        title: "다른 에너지를 구분해 고릅니다",
-        text: "집속 초음파는 목표 층에 에너지를 모읍니다. 미세침 고주파는 바늘을 통해 열을 전달하고, 레이저는 빛이 흡수되는 성질을 이용합니다.",
+        title: "고민에 맞는 에너지 전달",
+        text: "초음파는 목표 층에 모이고, 미세침 고주파는 바늘을 통해 에너지를 전달합니다. 레이저는 빛이 흡수되는 성질을 이용합니다.",
       },
       {
-        title: "피부 반응을 보며 경과를 확인합니다",
-        text: "열 자극 뒤 나타나는 조직 변화는 시간이 걸릴 수 있습니다. 시술 직후의 붓기와 이후의 변화를 나누어 보고 다음 계획을 조정합니다.",
+        title: "피부 반응과 경과 확인",
+        text: "열 자극 뒤 변화는 시간이 걸릴 수 있습니다. 직후의 붓기와 이후의 변화를 구분해 다음 계획을 정합니다.",
       },
     ],
     compare: {
@@ -1251,7 +1252,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 장비의 일반적인 방식 비교이며 실제 보유 모델 · 팁과 시행 범위는 상담에서 확인합니다. 맞는 방법은 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간에는 개인차가 있습니다.",
     },
-    featuresTitle: "장비를 고를 때 함께 보는 4가지",
+    featuresTitle: "레이저리프팅의 4가지 특징",
     features: [
       {
         title: "처짐과 꺼짐을 구분하는 상담",

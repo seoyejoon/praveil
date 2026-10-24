@@ -428,7 +428,7 @@ export const treatments: Treatment[] = [
     href: "/skin/retuo",
     en: "Retuo",
     title: "리투오",
-    description: "피부 속부터 채우는 콜라겐 부스터",
+    description: "인체 유래 무세포 동종진피 성분을 이용한 피부결 · 탄력 상담",
     image: photo("signature-4"),
     headline: ["얇아진 피부에 밀도를,", "리투오 콜라겐 부스터"],
     intro:

@@ -1178,11 +1178,14 @@ export const deviceStory: Record<string, DeviceStory> = {
   },
   // 확인 필요: 기존 treatments.ts의 슈링크 유니버스 · 포텐자 · 클라리티 목록을 참고했습니다. 현재 실제 운영 장비와 모델명 · 국내 허가 사용목적을 의료진이 확인해 주세요.
   // 확인 필요: 포텐자에서 실제 사용하는 팁(미세침 또는 비침습)과 적응증을 확인해 FAQ · 비교표를 확정해 주세요. 모드 전체를 병원 제공 범위로 약속하지 않습니다.
+  // 확인 필요: FAQ의 FDA K183566은 CLARITY II의 미국 자료입니다. 본원의 클라리티 모델과 국내 허가 사용목적을 대신하지 않습니다.
   // 확인 필요: FDA RF 미세침 2025-10-15 안전 공지는 웹 도구로 내용 확인했지만 직접 HTTP 요청에서 404라 본문 링크에서 제외했습니다. 화상 · 흉터 · 지방 감소 · 신경 손상 관련 장비별 동의서와 진료 기준을 검토해 주세요.
   // 확인 필요: cat-lifting은 쿨소닉 사진이라 새 주시술 사진에는 쓰지 않았습니다. 현재 장면 사진은 참고 사진이며 슈링크 · 포텐자 실제 시술 사진이 오면 교체해 주세요.
   // 확인 필요: 시술별 마취 · 회복 · 금기 · 병합 시술 기준을 의료진 사용설명서에 맞게 검수해 주세요.
   "/lifting/laser": {
+    kind: "procedure",
     diagram: "laser",
+    showPrices: true,
     device: {
       name: "고민에 맞춘 에너지 리프팅",
       maker: "HIFU · RF · LASER",
@@ -1207,7 +1210,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 두께 · 고민 부위 · 회복 여유",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
     },
     principle: [
       {
@@ -1225,7 +1228,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "슈링크 · 포텐자 · 클라리티, 무엇이 다른가요?",
-      lead: "이름보다 에너지와 사용 목적을 먼저 비교해 보세요. 같은 시술을 다른 이름으로 부르는 관계가 아닙니다.",
+      lead: "초음파 · 고주파 · 레이저는 어떻게 에너지를 전달하고, 어떤 피부 고민을 살펴볼까요?",
       columns: [
         {
           name: "슈링크 유니버스",
@@ -1278,33 +1281,34 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다.",
+      note: "※ 장비의 일반적인 방식 비교이며 실제 보유 모델 · 팁과 시행 범위는 상담에서 확인합니다. 맞는 방법은 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간에는 개인차가 있습니다.",
     },
     featuresTitle: "장비를 고를 때 함께 보는 4가지",
+    // 확인 필요: 레이저리프팅 전용 특징 사진 4장. 현재 기존 상담실 · 대기 공간 · 접수 · 파우더룸 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "처짐과 꺼짐을 구분하는 상담",
         text: "볼이 꺼진 부위와 탄력이 떨어진 부위를 함께 봅니다. 에너지를 더하는 것만으로 원하는 변화가 가능한지부터 설명합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "대표원장과 고민 부위를 상담하는 모습",
+        image: "/images/photos/clinic-3.webp",
+        alt: "장비 선택 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
         title: "피부 상태에 맞춘 에너지 선택",
         text: "초음파 · 고주파 · 레이저는 작용 방식이 다릅니다. 피부 두께와 표면 상태를 살펴 필요한 방식부터 제안합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "피부 분석 화면을 설명하는 대표원장",
+        image: "/images/photos/clinic-2.webp",
+        alt: "병원 대기 공간의 기존 사진",
       },
       {
         title: "강도와 범위를 함께 결정",
         text: "강도를 높이거나 넓게 시술하는 것보다 부위와 목표에 맞는 계획이 중요합니다. 시술 중 불편감과 피부 반응을 확인합니다.",
-        image: "/images/photos/clinic-5.webp",
-        alt: "장비와 진료 베드가 있는 시술실",
+        image: "/images/photos/clinic-1.webp",
+        alt: "진료 방문 안내에 사용하는 병원 접수 공간 사진",
       },
       {
         title: "회복 일정까지 포함한 계획",
         text: "중요한 일정을 확인하고, 붉어짐이나 붓기가 생길 가능성을 설명합니다. 경과를 본 뒤 추가 시술 여부를 정합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "대표원장이 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-4.webp",
+        alt: "세안과 회복 관리 안내에 사용하는 병원 파우더룸 사진",
       },
     ],
     process: [
@@ -1315,8 +1319,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "대표원장 1:1 상담",
       },
       {
-        title: "시술 전 준비",
-        text: "선택한 장비에 맞춰 세안과 필요한 마취를 진행하고, 레이저는 눈 보호구를 확인합니다.",
+        title: "마취 · 시술 준비",
+        text: "장비에 맞는 통증 관리와 마취 여부를 안내하고 피부를 준비합니다. 레이저는 적합한 눈 보호 방법도 확인합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "시술 부위에 마취 크림을 바르는 참고 사진",
       },

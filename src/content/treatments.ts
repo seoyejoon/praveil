@@ -169,17 +169,18 @@ export const treatments: Treatment[] = [
     title: "레이저리프팅",
     description:
       "피부 고민에 맞춰 초음파 · 고주파 · 레이저를 구분하는 탄력 관리",
-    image: photo("cat-lifting"),
-    device: device("shrink-universe", "Shurink Universe", "초음파 리프팅"),
+    image: photo("clinic-5"),
+    // 확인 필요: 첫 화면 사진 (PC 3000×1000 · 모바일 세로). 현재 기존 시술실 사진을 설명용으로 사용합니다.
+    // 확인 필요: 실제 운영 장비 모델 · 팁 · 국내 허가 범위. 여러 방식을 안내하는 페이지라 특정 장비 한 대를 대표 장비로 연결하지 않습니다.
     headline: ["고민에 맞춰 고르는", "레이저 리프팅"],
     intro:
       "처짐, 모공, 피부결처럼 같은 리프팅 고민도 원인이 다릅니다. 프라베일은 피부 상태를 먼저 보고, 목적에 맞는 장비를 골라 필요한 만큼 설계합니다.",
     photo: stock("laser"),
     facts: [
-      { label: "시술 시간", value: "약 20~40분" },
-      { label: "마취", value: "마취 크림" },
-      { label: "회복", value: "장비에 따라 다름" },
-      { label: "권장 주기", value: "상담 후 안내" },
+      { label: "시술 계획", value: "고민 · 피부 두께 확인" },
+      { label: "통증 관리", value: "장비 · 부위별로 안내" },
+      { label: "회복", value: "방식 · 피부 반응별 차이" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
     ],
     recommend: [
       "처짐과 피부결을 함께 관리하고 싶은 분",
@@ -200,21 +201,19 @@ export const treatments: Treatment[] = [
         text: "한 번에 끝내기보다 피부 회복 주기에 맞춰 단계를 나눕니다.",
       },
     ],
+    // 확인 필요: 기존 안내 장비 3종의 실제 보유 모델 · 팁과 적용 목적. 아이콘 · 전용 사진은 병원 확인 후 추가합니다.
     items: [
       {
         name: "슈링크 유니버스",
-        text: "집속 초음파로 처진 윤곽 · 이중턱 라인을 관리합니다.",
-        image: "/images/equipment/shrink-universe.webp",
+        text: "집속 초음파 방식 · 피부 두께와 탄력 고민 상담",
       },
       {
         name: "포텐자",
-        text: "마이크로니들 고주파로 모공 · 흉터 · 탄력을 함께 관리합니다.",
-        image: "/images/equipment/potenza.webp",
+        text: "고주파 방식 · 실제 사용할 팁과 피부결 고민 확인",
       },
       {
         name: "클라리티",
-        text: "레이저로 피부결 · 톤 · 탄력을 정돈합니다.",
-        image: "/images/equipment/clarity.webp",
+        text: "레이저 방식 · 실제 모델과 적용 목적 확인",
       },
     ],
     faq: [
@@ -228,8 +227,8 @@ export const treatments: Treatment[] = [
       },
     ],
     cautions: [
-      "포텐자 시술 후에는 며칠간 붉어짐 · 작은 딱지가 생길 수 있습니다.",
-      "시술 후 자외선 차단제를 꼭 발라 주세요.",
+      "미세침을 쓰는 방식은 붉어짐 · 부기 · 작은 자국이 생길 수 있습니다. 세안 · 화장과 보습 · 자외선 차단 방법은 피부 상태에 맞춰 안내합니다.",
+      "물집이나 심해지는 통증, 진물 · 피부색 변화 · 감각 이상이 생기면 병원에 알려 주세요.",
     ],
   },
   {

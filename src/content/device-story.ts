@@ -1655,13 +1655,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
   },
-  // 확인 필요: 기존 treatments.ts에는 Clarity II가 연결되어 있으나 현재 보유 · 실제 제모 사용 모델과 국내 허가 범위는 의료진 확인이 필요합니다. 초안의 장비 이름 · 파장 · 냉각 사양은 일반 표현으로 두었습니다.
+  // 확인 필요: 기존 안내의 Clarity II 보유 · 실제 제모 사용 모델과 국내 허가 범위는 의료진 확인이 필요합니다. 장비 이름 · 파장 · 냉각 사양은 일반 표현으로 두었습니다.
   // 확인 필요: 여성 · 남성 실제 시술 부위, 비키니/브라질리언 등 제공 범위, 담당자 및 보호구 운영을 확인해 주세요. 메뉴명만으로 추가 부위를 약속하지 않았습니다.
   // 확인 필요: 면도 시점 · 마취 · 냉각 방법 · 눈 주변 제외 범위와 임신/수유 시술 기준을 병원 프로토콜에 맞춰 확정해 주세요.
-  // 확인 필요: 고정 횟수 · 4~6주 일정 · 영구적 무모 상태를 약속하지 않았습니다. 기존 treatments.ts의 facts와 다른 노출 영역도 함께 점검해 주세요.
   // 확인 필요: 본문 사진은 기존 장비실/상담 및 얼굴 레이저 참고 사진입니다. 제모 실제 장면을 받으면 교체해 주세요.
   "/removal/hair": {
+    kind: "procedure",
     diagram: "hair",
+    showPrices: true,
     device: {
       name: "레이저 제모",
       maker: "LASER HAIR REDUCTION",
@@ -1686,7 +1687,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "성장 주기와 피부 반응에 따라 조정",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "기존 레이저 장비실 참고 사진",
     },
     principle: [
       {
@@ -1704,7 +1705,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "레이저 · 면도 · 왁싱은 어떻게 다른가요?",
-      lead: "털을 없애는 위치와 관리 방식이 달라, 생활 습관과 피부 상태를 함께 고려합니다.",
+      lead: "털을 정리하는 위치와 다시 자라는 양, 피부에 주는 자극은 어떤 차이가 있을까요?",
       columns: [
         {
           name: "레이저 제모",
@@ -1757,30 +1758,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 제모 방법의 일반적인 특징을 정리한 것으로, 어느 방법이 모두에게 더 낫다는 뜻이 아닙니다. 맞는 방법과 시술 간격 · 반응은 피부와 털 상태에 따라 다릅니다.",
     },
     featuresTitle: "레이저 제모에서 확인하는 4가지",
+    // 확인 필요: 제모 전용 특징 사진 4장. 현재 기존 피부 분석 · 상담실 · 대기 공간 · 복도 사진을 설명용으로 사용합니다.
     features: [
       {
         title: "피부 톤과 털 상태를 함께",
         text: "굵은 수염과 가는 털은 반응이 다를 수 있습니다. 피부색과 최근 태닝 여부까지 살펴 기대할 수 있는 변화를 설명합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "시술 부위와 피부 상태를 상담하는 참고 사진",
+        image: "/images/photos/cat-main-acne-pore.webp",
+        alt: "대표원장이 피부 분석 화면을 설명하는 기존 사진",
       },
       {
         title: "부위마다 다른 시술 계획",
         text: "원하는 경계와 남길 부분을 먼저 확인합니다. 얼굴과 몸의 피부 상태, 일상에서 받는 자극을 고려합니다.",
-        image: "/images/photos/cat-main-acne-pore.webp",
-        alt: "피부 분석 결과를 설명하는 대표원장",
+        image: "/images/photos/clinic-3.webp",
+        alt: "제모 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
         title: "피부 반응을 보며 조절",
         text: "눈 보호와 냉각을 포함한 준비를 확인한 뒤 진행합니다. 열감과 피부 반응을 살피면서 시술합니다.",
-        image: "/images/photos/special-5.webp",
-        alt: "레이저 장비와 시술 베드가 있는 진료실",
+        image: "/images/photos/clinic-2.webp",
+        alt: "병원 대기 공간의 기존 사진",
       },
       {
         title: "다음 예약은 자라는 상태에 맞춰",
         text: "털이 얼마나 다시 자라는지, 자극이 남아 있는지 확인합니다. 미리 정한 횟수를 채우는 것보다 경과에 맞춰 계획을 조정합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "대표원장이 피부를 확인하는 참고 사진",
+        image: "/images/photos/clinic-6.webp",
+        alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
       },
     ],
     process: [
@@ -1791,7 +1793,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "대표원장 1:1 상담",
       },
       {
-        title: "시술 전 준비",
+        title: "마취 · 시술 전 준비",
         text: "면도 상태를 확인하고 피부를 정리합니다. 필요한 마취 · 냉각과 파장에 맞는 눈 보호구를 준비합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "필요한 시술 전 마취 크림을 바르는 참고 사진",

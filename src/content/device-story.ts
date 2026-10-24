@@ -554,7 +554,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "Botulinum Toxin",
       image: "/images/photos/cat-botox.webp",
       photo: "/images/photos/cat-botox.webp",
-      text: "보톡스는 보툴리눔 톡신 제제를 주사해 목표 근육의 움직임을 일시적으로 줄이는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 살펴 계획합니다.",
+      text: "보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 이용하는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 살펴 계획합니다.",
       specs: [
         {
           label: "방식",
@@ -569,7 +569,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "부위 · 표정 · 근육의 힘 확인",
         },
         {
-          label: "제제 선택",
+          label: "제품 선택",
           value: "사용 제품과 허가 범위 확인 후 결정",
         },
       ],
@@ -582,16 +582,16 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "필요한 부위에 제제 주사",
-        text: "부위와 제품별 기준에 맞춰 주사 위치와 용량을 정합니다. 서로 다른 제품의 단위를 그대로 바꾸어 쓰지 않습니다.",
+        text: "부위와 제품별 기준에 맞춰 주사 위치와 용량을 정합니다. 제품마다 용량 단위가 달라 숫자만으로 비교하지 않습니다.",
       },
       {
         title: "신경의 전달 신호 감소",
-        text: "보툴리눔 톡신이 신경의 아세틸콜린 방출을 억제해 근육의 수축을 일시적으로 줄입니다.",
+        text: "신경에서 근육으로 전달되는 신호를 줄여 목표 근육의 수축을 일시적으로 줄입니다.",
       },
     ],
     compare: {
       title: "주름 고민, 보톡스와 다른 시술은 어떻게 고르나요?",
-      lead: "움직임 때문에 생긴 주름인지, 꺼짐이나 피부 탄력이 문제인지 먼저 구분합니다.",
+      lead: "움직일 때 생기는 주름과 꺼짐 · 탄력 저하는 어떻게 구분할까요?",
       columns: [
         {
           name: "보톡스",
@@ -644,30 +644,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다. 비교 항목은 특정 제품의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresTitle: "보톡스 시술에서 살피는 4가지",
+    // 확인 필요: 보톡스 전용 특징 사진 4장. 현재는 기존 상담 · 주입 · 대기 공간 사진을 임시로 사용합니다.
     features: [
       {
         title: "표정을 보며 주사 위치 설정",
         text: "정면 사진만으로 판단하지 않고 표정을 지을 때의 움직임과 좌우 차이를 함께 확인합니다.",
-        image: "/images/photos/cat-botox.webp",
-        alt: "보톡스 시술 안내에 사용하는 기존 사진",
+        image: "/images/photos/special-1.webp",
+        alt: "대표원장이 환자와 상담하는 설명용 사진",
       },
       {
         title: "부위와 제품에 맞춘 계획",
         text: "같은 이름의 보톡스 시술도 부위와 제제가 다르면 계획이 달라집니다. 제품 정보와 시술 이력을 확인합니다.",
         image: "/images/photos/signature-3.webp",
-        alt: "부위별 시술 계획을 설명하는 기존 사진",
+        alt: "주입 시술의 계획을 설명하기 위한 기존 사진",
       },
       {
         title: "원하는 표정 변화 함께 확인",
         text: "주름을 줄이고 싶은 정도와 유지하고 싶은 표정을 함께 듣고, 기대할 수 있는 변화와 한계를 설명합니다.",
-        image: "/images/photos/process-consult.webp",
-        alt: "표정과 고민을 상담하는 설명용 사진",
+        image: "/images/photos/hero-consult.webp",
+        alt: "대표원장이 환자의 고민을 듣는 상담 사진",
       },
       {
         title: "변화가 나타난 뒤 경과 확인",
         text: "시술 직후 추가하기보다 변화가 나타나는 과정을 보고 불편감과 좌우 움직임을 확인합니다.",
-        image: "/images/photos/process-check.webp",
-        alt: "시술 후 경과 확인을 설명하는 사진",
+        image: "/images/photos/hero-about.webp",
+        alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
       },
     ],
     process: [
@@ -678,7 +679,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 전 상담을 설명하는 사진",
       },
       {
-        title: "피부 준비 · 필요 시 냉각",
+        title: "마취 · 통증 관리",
         text: "주사 부위를 확인하고 피부를 준비합니다. 통증 관리 방법은 부위에 맞춰 안내합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",

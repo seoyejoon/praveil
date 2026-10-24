@@ -582,7 +582,7 @@ export const treatments: Treatment[] = [
     en: "Acne & Pore",
     title: "여드름 · 모공",
     description:
-      "프락셀 · 피코프락셀 · 블랙필 · 아크네 프로그램 · 압출관리 · GA 스케일링",
+      "여드름과 남은 자국 · 흉터 · 모공을 나눠 보는 단계별 피부 치료",
     image: photo("cat-acne"),
     headline: ["원인부터 흉터까지,", "단계별 여드름 · 모공 관리"],
     intro:

@@ -25,11 +25,11 @@ export const mainHero = {
   ],
   // 밖에서 본 유리문 (가운데 이음새에서 좌우로 열림). openSrc = 같은 사진에서 문틀 · 손잡이만 지운 것
   entrance: {
-    src: photo("hero-entrance"),
-    openSrc: photo("hero-entrance-open"),
-    // AI 업스케일(Real-ESRGAN x4) 후 3200px로 저장
-    width: 3200,
-    height: 1801,
+    src: "/images/photos/hero-entrance-corridor.png",
+    openSrc: "/images/photos/hero-entrance-corridor-open.png",
+    // 실제 사진을 참고해 오른쪽 복도를 복원한, 같은 구도의 문 닫힘 · 열림 이미지
+    width: 1672,
+    height: 941,
   },
 };
 

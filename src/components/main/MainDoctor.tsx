@@ -16,7 +16,7 @@ type Props = {
   image: string;
 };
 
-// 대표원장: 기존 두 단 구성을 유지하며 보정된 세로 원본 전체를 보여 줍니다.
+// 대표원장: 기존 두 단 구성을 유지하며 이전의 배경 없는 인물 사진을 보여 줍니다.
 // 사진을 확대하거나 움직이지 않아 얼굴 · 팔이 잘리지 않습니다.
 export default function MainDoctor({
   nameEn,
@@ -80,8 +80,8 @@ export default function MainDoctor({
             src={image}
             alt={`${name} ${title}`}
             loading="lazy"
-            width={4672}
-            height={7008}
+            width={770}
+            height={1355}
             className="block h-auto w-full max-w-[360px] rounded-[28px] object-contain md:rounded-[40px] lg:max-w-[400px]"
           />
         </div>

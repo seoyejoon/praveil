@@ -54,10 +54,11 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
         onClick={() => setOpen(false)}
         className={`fixed inset-0 z-30 bg-[#1d1915]/25 backdrop-blur-[3px] transition-opacity duration-500 lg:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
-      <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3 lg:hidden">
+      {/* 닫힌 메뉴와 빈 여백이 아래 페이지의 버튼을 가로막지 않도록 합니다. */}
+      <div className="pointer-events-none fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3 lg:hidden">
         <ul
           id="quick-menu"
-          className="flex flex-col items-end gap-2"
+          className={`flex flex-col items-end gap-2 ${open ? "pointer-events-auto" : "pointer-events-none"}`}
           aria-hidden={!open}
         >
           {items.map(({ href, label, Icon, external, internal, accent }, i) => {
@@ -120,7 +121,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
           aria-expanded={open}
           aria-controls="quick-menu"
           aria-label={open ? "상담 메뉴 닫기" : "상담 메뉴 열기"}
-          className="relative grid h-14 w-14 place-items-center rounded-full bg-espresso text-[#f1e2c6] shadow-[0_14px_30px_-12px_rgba(29,26,23,0.8)] transition active:scale-95"
+          className="pointer-events-auto relative grid h-14 w-14 place-items-center rounded-full bg-espresso text-[#f1e2c6] shadow-[0_14px_30px_-12px_rgba(29,26,23,0.8)] transition active:scale-95"
         >
           {!open && (
             <span
@@ -152,7 +153,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
             else window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           aria-label="맨 위로"
-          className={`mr-1 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink/70 shadow-[0_8px_20px_-10px_rgba(29,26,23,0.45)] backdrop-blur transition-[opacity,translate] duration-300 ${showTop && !open ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}
+          className={`mr-1 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink/70 shadow-[0_8px_20px_-10px_rgba(29,26,23,0.45)] backdrop-blur transition-[opacity,translate] duration-300 ${showTop && !open ? "pointer-events-auto opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}
         >
           <ArrowUp className="h-[18px] w-[18px]" strokeWidth={1.5} />
         </button>

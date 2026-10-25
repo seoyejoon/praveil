@@ -25,6 +25,8 @@ import {
   StoryProcess,
 } from "@/components/sub/DeviceStory";
 import type { DeviceStory } from "@/content/device-story";
+import TreatmentMedia from "@/components/sub/TreatmentMedia";
+import { treatmentMedia } from "@/content/treatment-media";
 import Reveal from "@/components/Reveal";
 import { mainDoctor } from "@/content/main";
 import {
@@ -307,6 +309,10 @@ export default function TreatmentDetail({
             </Reveal>
           </div>
         </section>
+      )}
+
+      {treatmentMedia[t.href] && (
+        <TreatmentMedia items={treatmentMedia[t.href]} />
       )}
 
       {/* 어떤 고민에 고려하나요? */}

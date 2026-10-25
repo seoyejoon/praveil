@@ -44,13 +44,22 @@ export default async function Home() {
           const t = findTreatment(it.href);
           return {
             ...it,
+            // 메인 시그니처만 기존 배경형으로 복원하고 의료진 소개의 사진 카드는 유지합니다.
+            ...(it.href === "/lifting/coolphase"
+              ? { photoFit: "background" as const, mobileImage: it.image }
+              : {}),
             headline: it.headline ?? t?.headline,
             points: t?.points.map((p) => p.title),
           };
         })}
       />
       <MainWhy {...mainWhy} />
-      <MainDoctor {...mainDoctor} name={doctor.name} title={doctor.title} />
+      <MainDoctor
+        {...mainDoctor}
+        image={mainDoctor.homeImage}
+        name={doctor.name}
+        title={doctor.title}
+      />
       <MainTreatments
         sections={sitemap.filter((s) => s.treatment)}
         images={mainCategoryImage}

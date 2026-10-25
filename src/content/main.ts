@@ -179,6 +179,7 @@ export const mainDoctor = {
   quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
   text: "현재 피부 상태를 기준으로 치료의 우선순위를 정하고,\n불필요한 과정보다는 필요한 진료에 집중합니다.",
   image: doctorPhotos.portrait,
+  homeImage: photo("doctor-cutout"),
 };
 
 // 진료 분야 (시술 대분류 5개) 대표 사진

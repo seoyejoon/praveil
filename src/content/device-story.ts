@@ -419,6 +419,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: doctorPhotos.coolphase,
       photoAlt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
       photoFullFrame: true,
+      film: {
+        src: "/videos/coolphase-device.mp4",
+        poster: "/images/coolphase/device.webp",
+      },
       text: "쿨페이즈는 접촉 냉각을 더한 모노폴라 고주파(RF) 리프팅 장비입니다. 피부 표면을 식히면서 고주파 열을 전달해 피부결과 탄력을 관리합니다. 피부 두께와 탄력 상태에 맞춰 부위별 에너지를 정합니다.",
       specs: [
         {
@@ -453,6 +457,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "열 자극 이후 콜라겐이 재구성되는 과정을 통해 탄력 변화를 기대할 수 있습니다. 변화의 정도와 시점에는 개인차가 있습니다.",
       },
     ],
+    principleImage: {
+      src: "/images/coolphase/principle.webp",
+      alt: "쿨페이즈 제조사 원리 영상의 피부 단면: 접촉 팁의 표면 냉각과 피부 속 고주파 열 전달을 보여 주는 개념도",
+      marks: [
+        { x: 47.5, y: 43, label: "피부 표면 냉각", side: "left" },
+        { x: 54, y: 65, label: "고주파 열 전달", side: "right" },
+      ],
+      layers: [],
+    },
     compare: {
       title: "쿨페이즈, 다른 리프팅 장비와 무엇이 다른가요?",
       lead: "피부결과 탄력, 처진 윤곽 중 어떤 고민이 있나요? 에너지 전달 방식과 피부 상태를 함께 살펴 선택합니다.",
@@ -508,21 +521,22 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "고주파로 피부결과 탄력 관리",
         text: "고주파 열 자극을 이용해 피부결과 탄력을 관리합니다. 탄력이 떨어진 부위와 잔주름 고민을 함께 살펴 시술 범위를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        image: "/images/coolphase/principle-feature.webp",
+        alt: "쿨페이즈 제조사 영상에서 보여 주는 고주파 열 전달 개념도",
       },
       {
         title: "피부 표면을 식히는 접촉 냉각",
         text: "피부에 닿는 팁으로 표면을 직접 냉각합니다. 시술 중 느껴지는 열감과 통증을 확인하면서 에너지를 조절합니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "쿨페이즈 상담 안내에 사용하는 병원 상담실 사진",
+        image: "/images/coolphase/principle-feature.webp",
+        video: "/videos/coolphase-cooling.mp4",
+        alt: "쿨페이즈 접촉 냉각과 고주파 열 전달을 보여 주는 제조사 원리 영상",
       },
       {
         title: "피부 두께와 굴곡에 맞춘 설계",
         text: "얼굴 전체 · 턱선 · 눈가 · 목은 피부 두께와 굴곡이 다릅니다. 이전 시술 이력까지 살펴 부위별로 계획합니다.",
-        image: "/images/photos/clinic-2.webp",
-        alt: "병원 대기 공간의 기존 사진",
+        image: "/images/coolphase/tip.webp",
+        video: "/videos/coolphase-tip.mp4",
+        alt: "쿨페이즈 얼굴용 접촉 팁의 형태를 보여 주는 제조사 영상",
       },
       {
         title: "시술 후 경과까지 이어지는 관리",

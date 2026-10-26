@@ -36,6 +36,8 @@ export type DeviceStory = {
     photoAlt?: string;
     /** 병원 보정 원본은 얼굴 · 시술 부위가 잘리지 않게 전체 구도를 표시 */
     photoFullFrame?: boolean;
+    /** 공식 제품 자료는 기존 카드 안에서 전체 프레임을 유지 */
+    mediaContain?: boolean;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     film?: { src: string; poster: string };
     text: string;
@@ -51,6 +53,11 @@ export type DeviceStory = {
   principleImage?: {
     src: string;
     alt: string;
+    /** 공식 작동 원리 영상. src는 재생 전 포스터 */
+    video?: string;
+    /** 기존 8:5 원리 그림 영역 안에 공식 자료 전체를 표시 */
+    framed?: boolean;
+    note?: string;
     /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
     marks: {
       x: number;
@@ -84,6 +91,8 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
+    /** 공식 도해·영상의 가장자리를 자르지 않고 기존 카드에 표시 */
+    mediaContain?: boolean;
   }[];
   /** 시술 과정: 사진 + 설명 */
   process: {
@@ -739,7 +748,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
       image: "/images/photos/best-retuo.webp",
-      photo: "/images/photos/best-retuo.webp",
+      photo: "/images/official/retuo-product.jpg",
       text: "리투오는 기증된 피부 조직에서 세포 성분을 제거한 무세포 동종진피(hADM) 제품입니다. 콜라겐 등 피부를 지지하는 성분을 이용하며, 피부결 · 잔주름 · 탄력 고민과 원료의 특성을 함께 살펴 시술 여부를 정합니다.",
       specs: [
         {
@@ -759,7 +768,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 상태 · 부위 확인 후 결정",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "휴메딕스 공식 리투오 Re2O 제품 패키지",
+      mediaContain: true,
     },
     principle: [
       {
@@ -832,22 +842,25 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "리투오 상담에서 확인하는 4가지",
     features: [
       {
-        title: "인체 유래 원료를 먼저 설명",
-        text: "인체조직에서 얻은 무세포 동종진피 제품임을 설명합니다. 원료와 제품 특성을 이해한 뒤 시술 여부를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "리투오 · 무세포 동종진피 원료",
+        text: "리투오는 기증된 피부 조직에서 세포를 제거한 hADM 제품입니다. 휴메딕스 공식 제품 자료의 원료와 구성 정보를 바탕으로 제품 특성을 설명합니다.",
+        image: "/images/official/retuo-product.jpg",
+        alt: "리투오 · 무세포 동종진피 원료 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "성분이 다른 부스터와 구분",
-        text: "인체 유래 기질, 합성 고분자, 히알루론산은 재료가 다릅니다. 이름보다 치료 목표와 재료를 함께 확인합니다.",
-        image: "/images/photos/special-2.webp",
-        alt: "주입 시술의 차이를 설명하기 위한 기존 사진",
+        title: "원료와 사용목적을 함께 확인",
+        text: "리투오의 인체조직 유래 재료는 합성 고분자나 히알루론산 제품과 구분합니다. 사용할 제품과 부위를 확인한 뒤 적용 방법을 정합니다.",
+        image: "/images/official/retuo-official.jpg",
+        alt: "원료와 사용목적을 함께 확인 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "피부 두께와 시술 이력 확인",
         text: "같은 피부 고민이라도 두께와 이전 시술에 따라 접근이 달라집니다. 적용 범위와 방법을 진찰 후 정합니다.",
-        image: doctorPhotos.consult,
+        image: "/images/photos/retouched/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
       },
@@ -895,8 +908,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "스킨부스터",
       maker: "성분 · 사용목적별 계획",
       image: "/images/photos/cat-skin-booster.webp",
-      photo: "/images/photos/cat-skin-booster.webp",
-      text: "스킨부스터는 피부결 · 잔주름 같은 고민을 관리하는 여러 제품과 방법을 묶어 부르는 말입니다. PN, 히알루론산 등 성분마다 역할과 사용목적이 달라, 제품명과 피부 상태를 함께 확인해 계획합니다. 바르는 제품과 주입용 제품은 사용방법을 구분합니다.",
+      photo: "/images/official/rejuran-product.png",
+      text: "스킨부스터는 피부결 · 잔주름 같은 고민을 관리하는 여러 제품과 방법을 묶어 부르는 말입니다. PN, 히알루론산 등 성분마다 역할과 사용목적이 달라, 제품명과 피부 상태를 함께 확인해 계획합니다. 바르는 제품과 주입용 제품은 사용방법을 구분합니다. 사진은 PN 성분 제품인 리쥬란이며, 다른 스킨부스터와 성분을 구분합니다.",
       specs: [
         {
           label: "분류",
@@ -915,7 +928,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "붓기 · 멍 · 주입 자국 등 개인차",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "파마리서치 공식 리쥬란 제품 이미지",
+      mediaContain: true,
     },
     principle: [
       {
@@ -996,17 +1010,20 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "스킨부스터를 계획하는 4가지 기준",
     features: [
       {
-        title: "고민을 먼저 구분",
-        text: "푸석함과 잔주름, 꺼짐은 살펴볼 원인이 다릅니다. 원하는 변화와 현재 피부 상태부터 함께 정리합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "리쥬란 · PN 성분을 확인",
+        text: "리쥬란은 연어에서 유래한 PN을 주성분으로 하는 제품입니다. 제조사 원료 이미지와 제품 정보를 함께 살펴 피부 상태와 사용목적에 맞는지 확인합니다.",
+        image: "/images/official/rejuran-section2_img02.jpg",
+        alt: "리쥬란 · PN 성분을 확인 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "제품명과 성분 확인",
-        text: "같은 스킨부스터라는 이름 안에서도 성분과 사용목적이 다릅니다. 사용할 제품과 설명서를 확인해 계획합니다.",
-        image: "/images/photos/special-2.webp",
-        alt: "제품별 계획 설명용 기존 시술 사진",
+        title: "리쥬란 제품과 정품 표시 확인",
+        text: "제조사에서 안내하는 제품명과 DOT 표시를 확인합니다. 바르는 화장품과 주입용 제품은 구분하고, 사용할 제품의 설명서에 맞춰 계획합니다.",
+        image: "/images/official/rejuran-authentic.png",
+        alt: "리쥬란 제품과 정품 표시 확인 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "피부 두께와 부위 고려",
@@ -1058,8 +1075,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "콜라겐부스터",
       maker: "재료별 조직 수복 계획",
       image: "/images/photos/cat-skin-care.webp",
-      photo: "/images/photos/cat-skin-care.webp",
-      text: "콜라겐부스터는 서로 다른 재료의 주입 시술을 묶어 부르는 말입니다. 인체조직에서 얻은 성분과 합성 고분자 재료는 특성이 다릅니다. 제품별 원료와 사용목적을 구분하고 피부 상태와 주입 부위에 맞춰 계획합니다.",
+      photo: "/images/official/juvelook-product.png",
+      text: "콜라겐부스터는 서로 다른 재료의 주입 시술을 묶어 부르는 말입니다. 인체조직에서 얻은 성분과 합성 고분자 재료는 특성이 다릅니다. 제품별 원료와 사용목적을 구분하고 피부 상태와 주입 부위에 맞춰 계획합니다. 사진은 쥬베룩 제품이며, 아래에서 리투오 · 쥬베룩 · 울트라콜의 재료를 나누어 설명합니다.",
       specs: [
         {
           label: "재료 구분",
@@ -1078,7 +1095,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "붓기 · 멍 · 결절 · 염증 등",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      photoAlt: "쥬베룩 공식 제품 바이알",
+      mediaContain: true,
     },
     principle: [
       {
@@ -1086,8 +1104,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "주름, 꺼짐, 피부 두께를 살피고 필요한 변화와 시술로 기대할 수 있는 범위를 정합니다.",
       },
       {
-        title: "재료의 성격 구분",
-        text: "진피 조직을 바탕으로 한 재료와 합성 고분자 입자 재료를 구분합니다. 사용목적과 주입 방법도 제품별로 확인합니다.",
+        title: "쥬베룩의 PDLLA 미세입자",
+        text: "제조사 자료는 구형의 다공성 PDLLA 입자를 설명합니다. 리투오의 hADM, 울트라콜의 PDO와 재료가 다르므로 제품마다 사용목적과 주입 계획을 구분합니다.",
       },
       {
         title: "안정된 뒤 경과 평가",
@@ -1146,23 +1164,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "콜라겐부스터를 계획하는 4가지 기준",
     features: [
       {
-        title: "같은 이름 안의 재료 차이",
-        text: "조직 유래 재료와 합성 고분자 입자는 성격이 다릅니다. 선택한 제품이 어떤 재료인지부터 설명합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "리투오 · 인체조직 유래 hADM",
+        text: "리투오는 피부 조직에서 세포를 제거해 얻은 hADM을 사용합니다. 합성 고분자 입자 제품과 원료의 성격이 다르므로 시술 목표와 함께 설명합니다.",
+        image: "/images/official/retuo-product.jpg",
+        alt: "리투오 · 인체조직 유래 hADM · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "피부 두께와 주입 부위 고려",
-        text: "얇은 부위와 움직임이 많은 부위는 계획이 달라집니다. 사용할 제품의 용도와 피부 상태를 함께 살핍니다.",
-        image: "/images/photos/cat-main-petit.webp",
-        alt: "주입 부위 계획 설명용 기존 시술 사진",
+        title: "쥬베룩 · PDLLA와 히알루론산",
+        text: "쥬베룩은 PDLLA 미세입자와 히알루론산으로 구성됩니다. 제조사의 입자 구조 자료를 바탕으로 제품 특성을 설명하고 피부 두께와 부위에 맞춰 계획합니다.",
+        image: "/images/official/juvelook-structure.png",
+        alt: "쥬베룩 · PDLLA와 히알루론산 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "양보다 분포와 목표 확인",
-        text: "한 번에 많은 양을 정하기보다 다룰 부위와 기대할 변화를 먼저 정합니다. 주입량과 방법은 제품에 맞춰 결정합니다.",
-        image: "/images/photos/special-2.webp",
-        alt: "주입 계획 설명용 기존 진료 사진",
+        title: "울트라콜 · PDO 미세입자",
+        text: "울트라콜은 PDO를 재료로 사용하는 제품입니다. 제조사 제품군 이미지를 참고하되, 실제 사용할 규격과 목적은 상담에서 확인합니다.",
+        image: "/images/official/ultracol-product.png",
+        alt: "울트라콜 · PDO 미세입자 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "덩어리감까지 살피는 경과 확인",
@@ -1198,6 +1221,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
+    principleImage: {
+      src: "/images/official/juvelook-structure.png",
+      alt: "쥬베룩 공식 PDLLA 미세입자 구조 이미지",
+      marks: [],
+      layers: [],
+      framed: true,
+      note: "JUVELOOK · PDLLA 미세입자를 나타낸 제조사 이미지입니다. 실제 입자의 크기와는 다릅니다.",
+    },
   },
   "/lifting/laser": {
     kind: "procedure",
@@ -1205,12 +1236,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleLayout: "figure-first",
     showPrices: true,
     device: {
-      name: "고민에 맞춘 에너지 리프팅",
-      maker: "HIFU · RF · LASER",
-      image: doctorPhotos.consult,
-      photo: doctorPhotos.consult,
+      name: "포텐자 · 슈링크 유니버스 · 클라리티2",
+      maker: "JEISYS · CLASSYS · LUTRONIC",
+      image: "/images/photos/retouched/consult.jpg",
+      photo: "/images/photos/retouched/consult.jpg",
       photoFullFrame: true,
-      text: "슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고, 피부 상태에 맞는 장비와 시술 부위를 정합니다.",
+      text: "슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고, 피부 상태에 맞는 장비와 시술 부위를 정합니다. 영상은 고주파 장비인 포텐자의 제조사 소개 장면입니다.",
       specs: [
         {
           label: "초음파",
@@ -1230,6 +1261,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
       ],
       photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      film: {
+        src: "/videos/official-potenza-intro.mp4",
+        poster: "/images/official/potenza-intro-poster.jpg",
+      },
+      mediaContain: true,
     },
     principle: [
       {
@@ -1305,22 +1341,30 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "레이저리프팅의 4가지 특징",
     features: [
       {
-        title: "처짐과 꺼짐을 구분하는 상담",
-        text: "볼이 꺼진 부위와 탄력이 떨어진 부위를 함께 봅니다. 에너지를 더하는 것만으로 원하는 변화가 가능한지부터 설명합니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "장비 선택 상담 안내에 사용하는 병원 상담실 사진",
+        title: "슈링크 유니버스 · 초음파를 목표 층에",
+        text: "집속 초음파가 한 지점에 모이는 성질을 이용합니다. 제조사 모식도처럼 에너지가 모이는 깊이를 구분하고, 피부 두께와 처짐 부위에 맞춰 카트리지를 정합니다.",
+        image: "/images/official/shurink-principle.jpg",
+        alt: "슈링크 유니버스 · 초음파를 목표 층에 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "피부 상태에 맞춘 에너지 선택",
-        text: "초음파 · 고주파 · 레이저는 작용 방식이 다릅니다. 피부 두께와 표면 상태를 살펴 필요한 방식부터 제안합니다.",
-        image: "/images/photos/clinic-2.webp",
-        alt: "병원 대기 공간의 기존 사진",
+        title: "포텐자 · 팁에 따라 달라지는 RF",
+        text: "미세침 팁은 피부 안으로 고주파 에너지를 전달합니다. 영상은 제조사의 미세침 RF 작동 예시이며, 시술 목적과 피부 상태에 따라 팁과 설정을 구분합니다.",
+        image: "/images/official/potenza-principle-poster.jpg",
+        alt: "포텐자 · 팁에 따라 달라지는 RF · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
+        video: "/videos/official-potenza-principle.mp4",
       },
       {
-        title: "강도와 범위를 함께 결정",
-        text: "강도를 높이거나 넓게 시술하는 것보다 부위와 목표에 맞는 계획이 중요합니다. 시술 중 불편감과 피부 반응을 확인합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "진료 방문 안내에 사용하는 병원 접수 공간 사진",
+        title: "클라리티2 · 파장과 조사 범위 조절",
+        text: "클라리티2는 755nm와 1064nm 파장을 사용하는 레이저입니다. 초음파 · 고주파와 작용 방식이 달라, 피부 고민에 맞는 사용목적과 조사 범위를 먼저 확인합니다.",
+        image: "/images/official/clarity-poster.jpg",
+        alt: "클라리티2 · 파장과 조사 범위 조절 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
+        video: "/videos/official-clarity.mp4",
       },
       {
         title: "회복 일정까지 포함한 계획",
@@ -1357,6 +1401,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],
+    principleImage: {
+      src: "/images/official/potenza-principle-poster.jpg",
+      alt: "포텐자의 미세침과 고주파 에너지 전달을 보여주는 제조사 원리 영상",
+      marks: [],
+      layers: [],
+      framed: true,
+      note: "JEISYS MEDICAL · 포텐자 미세침 RF 원리. 팁에 따라 작동 방식이 달라집니다.",
+      video: "/videos/official-potenza-principle.mp4",
+    },
   },
   "/lifting/thread": {
     kind: "procedure",
@@ -1366,10 +1419,10 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "실리프팅",
       maker: "흡수성 의료용 실",
-      image: doctorPhotos.consult,
-      photo: doctorPhotos.consult,
-      photoFullFrame: true,
-      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다.",
+      image: "/images/photos/retouched/consult.jpg",
+      photo: "/images/official/mint-product.png",
+      photoFullFrame: false,
+      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다. 제품 이미지는 민트실의 제조사 제품군이며, 사용할 규격은 진찰 후 선택합니다.",
       specs: [
         {
           label: "방법",
@@ -1388,7 +1441,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "붓기 · 멍 · 당김 · 비대칭 등",
         },
       ],
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      photoAlt: "한스바이오메드 MINT 흡수성 실 제품군",
+      mediaContain: true,
     },
     principle: [
       {
@@ -1396,8 +1450,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "처진 부위와 지방량, 피부 두께를 확인하고 실이 조직을 지지할 방향과 범위를 정합니다.",
       },
       {
-        title: "실의 구조에 따른 지지",
-        text: "제품의 사용목적에 맞는 층과 방향에 실을 넣습니다. 그림은 돌기가 있는 실이 조직을 붙잡아 지지하는 방식의 예시이며, 모든 실의 구조를 뜻하지 않습니다.",
+        title: "민트실의 돌기가 조직을 지지",
+        text: "제조사 그림은 민트실 표면에 배치된 나선형 돌기를 보여줍니다. 실의 구조와 사용목적을 확인하고 조직을 지지할 층과 방향을 정합니다.",
       },
       {
         title: "모양과 불편감 함께 관찰",
@@ -1467,10 +1521,12 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "실리프팅 상담 안내에 사용하는 병원 상담실 사진",
       },
       {
-        title: "피부 두께에 맞춘 실 선택",
-        text: "얇은 피부와 두꺼운 조직은 살펴볼 점이 다릅니다. 제품의 재질과 구조, 허가된 사용목적을 확인합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "진료 방문 안내에 사용하는 병원 접수 공간 사진",
+        title: "민트실 · 재질과 돌기 구조 확인",
+        text: "민트실은 PDO 재질의 흡수성 실입니다. 제조사의 360° 나선형 돌기 구조를 참고해 피부 두께와 조직의 무게에 맞는 규격과 배치를 정합니다.",
+        image: "/images/official/mint-structure.png",
+        alt: "민트실 · 재질과 돌기 구조 확인 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "개수와 함께 보는 범위 · 배치",
@@ -1512,6 +1568,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
+    principleImage: {
+      src: "/images/official/mint-structure.png",
+      alt: "한스바이오메드 MINT의 나선형 돌기 구조",
+      marks: [],
+      layers: [],
+      framed: true,
+      note: "HANSBIOMED · 민트실의 360° 나선형 돌기 구조를 보여주는 제조사 그림입니다.",
+    },
   },
   "/acne-pore": {
     kind: "procedure",
@@ -1684,8 +1748,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleLayout: "figure-first",
     showPrices: true,
     device: {
-      name: "레이저 제모",
-      maker: "LASER HAIR REDUCTION",
+      name: "클라리티2 레이저 제모",
+      maker: "CYNOSURE LUTRONIC",
       image: "/images/photos/cat-hair-removal.webp",
       photo: "/images/photos/cat-hair-removal.webp",
       text: "레이저 제모는 털의 멜라닌 색소가 빛을 흡수하는 성질을 이용해 모낭에 열을 전달하는 시술입니다. 털의 굵기와 색, 피부 톤을 함께 살피고 부위에 맞게 설정을 조절합니다. 한 번에 모든 털을 없애기보다 자라는 양을 줄이는 방향으로 계획합니다.",
@@ -1708,6 +1772,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
       ],
       photoAlt: "기존 레이저 장비실 참고 사진",
+      film: {
+        src: "/videos/official-clarity.mp4",
+        poster: "/images/official/clarity-poster.jpg",
+      },
+      mediaContain: true,
     },
     principle: [
       {
@@ -1715,8 +1784,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "피부 톤과 털의 색 · 굵기를 함께 확인합니다. 최근 태닝이나 피부 자극이 있으면 시술 시기를 먼저 조정할 수 있습니다.",
       },
       {
-        title: "모낭에 빛 에너지를 전달",
-        text: "털의 멜라닌이 흡수한 빛이 열로 바뀌어 모낭에 작용합니다. 피부 상태에 맞춰 에너지와 냉각 방법을 정합니다.",
+        title: "모낭에 에너지를 전달하며 범위 확인",
+        text: "털의 멜라닌이 흡수한 빛이 열로 바뀌어 모낭에 작용합니다. 그림은 클라리티2의 조사 간격을 보여주며, 피부 상태에 맞춰 에너지와 냉각을 조절합니다.",
       },
       {
         title: "다시 자라는 양을 보며 조정",
@@ -1780,23 +1849,29 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "레이저 제모에서 확인하는 4가지",
     features: [
       {
-        title: "피부 톤과 털 상태를 함께",
-        text: "굵은 수염과 가는 털은 반응이 다를 수 있습니다. 피부색과 최근 태닝 여부까지 살펴 기대할 수 있는 변화를 설명합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "클라리티2 · 피부와 털에 맞춘 설정",
+        text: "클라리티2는 755nm와 1064nm 파장을 사용합니다. 털의 색 · 굵기와 피부 톤, 최근 태닝 여부를 함께 살펴 적용할 설정을 정합니다.",
+        image: "/images/official/clarity-poster.jpg",
+        alt: "클라리티2 · 피부와 털에 맞춘 설정 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
+        video: "/videos/official-clarity.mp4",
       },
       {
-        title: "부위마다 다른 시술 계획",
-        text: "원하는 경계와 남길 부분을 먼저 확인합니다. 얼굴과 몸의 피부 상태, 일상에서 받는 자극을 고려합니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "제모 상담 안내에 사용하는 병원 상담실 사진",
+        title: "IntelliTrak · 조사 범위를 확인",
+        text: "제조사의 핸드피스에는 움직임에 따른 조사 간격을 조절하는 IntelliTrak 기능이 적용되어 있습니다. 원하는 경계와 남길 부분을 먼저 확인하고 시술 범위를 정합니다.",
+        image: "/images/official/clarity-tracking.png",
+        alt: "IntelliTrak · 조사 범위를 확인 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "피부 반응을 보며 조절",
-        text: "눈 보호와 냉각을 포함한 준비를 확인한 뒤 진행합니다. 열감과 피부 반응을 살피면서 시술합니다.",
-        image: "/images/photos/clinic-2.webp",
-        alt: "병원 대기 공간의 기존 사진",
+        title: "온도 표시와 피부 반응을 함께",
+        text: "클라리티2는 시술 중 피부 표면 온도를 확인하는 기능을 제공합니다. 표시값만으로 판단하지 않고 열감과 피부 반응, 냉각 상태를 함께 살핍니다.",
+        image: "/images/official/clarity-temperature.png",
+        alt: "온도 표시와 피부 반응을 함께 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "다음 예약은 자라는 상태에 맞춰",
@@ -1833,6 +1908,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],
+    principleImage: {
+      src: "/images/official/clarity-tracking-detail.jpg",
+      alt: "루트로닉 클라리티2 IntelliTrak의 레이저 조사 간격 모식도",
+      marks: [],
+      layers: [],
+      framed: true,
+      note: "LUTRONIC · IntelliTrak의 조사 경로와 간격을 설명하는 제조사 모식도입니다.",
+    },
   },
   "/removal/tattoo": {
     kind: "procedure",
@@ -1840,10 +1923,10 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleLayout: "figure-first",
     showPrices: true,
     device: {
-      name: "레이저 문신제거",
-      maker: "TATTOO PIGMENT REMOVAL",
+      name: "피코케이 레이저 문신제거",
+      maker: "SPECLIPSE · PICO-K",
       image: "/images/photos/cat-hair-removal.webp",
-      photo: "/images/photos/cat-hair-removal.webp",
+      photo: "/images/official/pico-picok_img_6.png",
       text: "문신제거는 피부에 들어간 색소에 레이저를 조사해 입자를 잘게 나누고, 몸이 이를 처리하는 과정을 이용합니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다. 눈썹과 아이라인은 눈과 가까운 만큼 시술 가능 여부와 보호 방법부터 확인합니다.",
       specs: [
         {
@@ -1863,7 +1946,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "색 변화와 피부 회복을 보며 계획 조정",
         },
       ],
-      photoAlt: "기존 레이저 장비실 참고 사진",
+      photoAlt: "스페클립스 PICO-K 제조사 공식 장비 이미지",
+      mediaContain: true,
     },
     principle: [
       {
@@ -1935,17 +2019,20 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "문신제거에서 먼저 확인하는 4가지",
     features: [
       {
-        title: "덧입힌 이력까지 듣는 상담",
-        text: "처음 받은 색과 리터치 · 커버업 이력을 함께 확인합니다. 원하는 목표가 전체 제거인지 일부 수정인지부터 상의합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "피코케이 · 짧은 펄스로 색소에 작용",
+        text: "피코케이는 1064nm · 532nm 파장을 사용하는 피코초 레이저입니다. 제조사 모식도는 색소에 에너지가 작용하는 원리를 설명하며, 색과 덧입힌 이력에 따라 반응은 달라집니다.",
+        image: "/images/official/pico-picok_img_1_2.png",
+        alt: "피코케이 · 짧은 펄스로 색소에 작용 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
-        title: "이름보다 색소 반응을 확인",
-        text: "장비 이름만으로 결과를 정하지 않습니다. 현재 색과 피부 상태를 확인해 사용할 방식과 예상되는 한계를 설명합니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "문신제거 상담 안내에 사용하는 병원 상담실 사진",
+        title: "핸드피스와 조사 범위 선택",
+        text: "제조사 핸드피스 자료를 참고해 조사 범위를 확인합니다. 장비 이름만으로 결과를 정하지 않고 현재 색과 피부 상태에 맞는 설정과 예상되는 한계를 설명합니다.",
+        image: "/images/official/pico-picok_img_5.png",
+        alt: "핸드피스와 조사 범위 선택 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaContain: true,
       },
       {
         title: "눈가에는 별도의 안전 판단",
@@ -1987,5 +2074,13 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],
+    principleImage: {
+      src: "/images/official/pico-picok_img_2_2.png",
+      alt: "피코케이의 빔과 색소 입자를 나타내는 제조사 모식도",
+      marks: [],
+      layers: [],
+      framed: true,
+      note: "SPECLIPSE · PICO-K의 빔과 색소 반응을 설명하는 모식도입니다. 실제 시술 결과 사진이 아닙니다.",
+    },
   },
 };

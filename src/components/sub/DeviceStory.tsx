@@ -75,7 +75,7 @@ export function StoryAbout({
                   playsInline
                   preload="metadata"
                   aria-label={`${device.name} 장비 영상`}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className={`absolute inset-0 h-full w-full ${device.mediaContain ? "object-contain" : "object-cover"}`}
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -88,7 +88,7 @@ export function StoryAbout({
                   className={
                     device.photoFullFrame
                       ? "block h-auto w-full"
-                      : "absolute inset-0 h-full w-full object-cover"
+                      : `absolute inset-0 h-full w-full ${device.mediaContain ? "object-contain" : "object-cover"}`
                   }
                 />
               )}
@@ -301,7 +301,7 @@ export function StoryFeatures({
                     playsInline
                     preload="metadata"
                     aria-label={f.alt}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className={`absolute inset-0 h-full w-full ${f.mediaContain ? "object-contain" : "object-cover"}`}
                   />
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -311,7 +311,7 @@ export function StoryFeatures({
                     loading="lazy"
                     width={f.fullFrame ? 7008 : undefined}
                     height={f.fullFrame ? 4672 : undefined}
-                    className={`absolute inset-0 h-full w-full ${f.fullFrame ? "object-contain" : "object-cover"}`}
+                    className={`absolute inset-0 h-full w-full ${f.fullFrame || f.mediaContain ? "object-contain" : "object-cover"}`}
                   />
                 )}
               </Reveal>
@@ -560,14 +560,38 @@ function PrincipleFigure({
 }) {
   return (
     <figure>
-      <div className="relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          className="block h-auto w-full"
-        />
+      <div
+        className={`relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px] ${image.framed ? "aspect-[8/5]" : ""}`}
+      >
+        {image.video ? (
+          <video
+            src={image.video}
+            poster={image.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={image.alt}
+            className={
+              image.framed
+                ? "h-full w-full object-contain"
+                : "block h-auto w-full"
+            }
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            className={
+              image.framed
+                ? "h-full w-full object-contain"
+                : "block h-auto w-full"
+            }
+          />
+        )}
         {/* 가리키는 표시 */}
         {image.marks.map((m) => (
           <div
@@ -602,6 +626,11 @@ function PrincipleFigure({
           ))}
         </div>
       </div>
+      {image.note && (
+        <figcaption className="px-1 pt-4 text-xs leading-relaxed text-muted md:pt-5">
+          {image.note}
+        </figcaption>
+      )}
     </figure>
   );
 }

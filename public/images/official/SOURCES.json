@@ -1,0 +1,114 @@
+{
+  "checkedAt": "2026-10-26",
+  "sources": {
+    "potenza": {
+      "page": "https://www.jeisys.co.kr/brands/potenza",
+      "assets": [
+        "https://www.jeisys.co.kr/kor/pub/video/img_product_b01.mp4",
+        "https://www.jeisys.co.kr/kor/pub/video/img_product_b03_2.mp4"
+      ],
+      "local": ["official-potenza-intro.mp4", "official-potenza-principle.mp4"],
+      "clipSeconds": [
+        [0, 6],
+        [12, 32]
+      ]
+    },
+    "clarity": {
+      "page": "https://www.cynosure.com/product/clarity-ii/",
+      "local": ["official-clarity.mp4"],
+      "assets": [
+        "https://www.cynosure.com/wp-content/uploads/2025/07/PRD-2017-CL-Website-video-updates-Clarity-II-1.mp4"
+      ],
+      "clipSeconds": [[2, 18.5]],
+      "crop": {
+        "x": 920,
+        "y": 0,
+        "width": 1000,
+        "height": 600,
+        "outputWidth": 1280,
+        "outputHeight": 768,
+        "reason": "Remove blank left-hand canvas while preserving the device area"
+      },
+      "diagramPage": "https://kr.lutronic.com/product/sub01.html"
+    },
+    "shurink": {
+      "page": "https://classys.co.kr/product/shurink-universe/",
+      "assets": [
+        "https://classys.co.kr/wp-content/uploads/sites/5/2024/08/shu_tech1-1.jpg"
+      ]
+    },
+    "mint": {
+      "page": "https://www.hansbiomed.com/product/product_view?cat=all&idx=83&ptype=productKRDevice&subCat=all&type=device",
+      "diagramPage": "https://hansbiomed.co.uk/pages/common-questions",
+      "assets": [
+        "https://www.hansbiomed.com/upload/products/productKRDevice/mint001.png",
+        "https://hansbiomed.co.uk/cdn/shop/files/MINTPDO_1-01_550x.png?v=1669987470"
+      ]
+    },
+    "retuo": {
+      "page": "https://humedix.com/m/home.php?go=Bmenu_02_08&code=08&item_num=157",
+      "assets": [
+        "https://humedix.com/file/up_prod_i/main_img_list_157.jpg",
+        "https://humedix.com/file/up_prod_i/main_img2_list_157.jpg"
+      ]
+    },
+    "rejuran": {
+      "page": "https://www.rejuran.co.kr/",
+      "assets": [
+        "https://www.rejuran.co.kr/HTML/rejuran/img/REJURAN.png",
+        "https://www.rejuran.co.kr/HTML/rejuran/img/section8_img01.png",
+        "https://www.rejuran.co.kr/HTML/rejuran/img/section2_img02.jpg"
+      ]
+    },
+    "juvelook": {
+      "page": "https://juvelook.com/",
+      "technology": "https://juvelook.com/en/technology/technology.php",
+      "assets": [
+        "https://juvelook.com/images/main/main_product_img01.png?ver=260508",
+        "https://juvelook.com/images/main/main_tech_img.png"
+      ]
+    },
+    "ultracol": {
+      "page": "https://ultracol.com/en/",
+      "assets": ["https://ultracol.com/images/main/product.png"]
+    },
+    "pico": {
+      "page": "https://www.speclipse.com/bbs/content.php?co_id=pico_k",
+      "assets": [
+        "https://www.speclipse.com/theme/basic/img/picok_img_6.png",
+        "https://www.speclipse.com/theme/basic/img/picok_img_2_2.png",
+        "https://www.speclipse.com/theme/basic/img/picok_img_1_2.png",
+        "https://www.speclipse.com/theme/basic/img/picok_img_5.png"
+      ]
+    }
+  },
+  "additionalAssets": {
+    "clarity-tracking.png": "https://kr.lutronic.com/images/sub/product/clarity2_intel.png",
+    "clarity-tracking-detail.jpg": "https://kr.lutronic.com/images/sub/product/pritel_img02.jpg",
+    "clarity-temperature.png": "https://kr.lutronic.com/images/sub/product/realtime.png"
+  },
+  "imagePolicy": "Downloaded manufacturer images kept byte-for-byte; CSS contain preserves full frame. Video excerpts are muted H.264. Potenza keeps the full source frame; Clarity II removes the blank left-hand canvas as recorded in sources.clarity.crop. Posters extracted from the final clips.",
+  "hashes": {
+    "clarity-poster.jpg": "2f5cf9bfda102c2632622df662aa28d124e6bab16d6151baf1cf113834ba7001",
+    "clarity-temperature.png": "6d3c9d679bd0adcfaf4affeb54b1d048d95b1a7f3e1c84127b7b69100469a6d3",
+    "clarity-tracking-detail.jpg": "3bf2ce2b5ea8c4bf8599264455b59f75ad29c44c46123a4214558e00f292b52e",
+    "clarity-tracking.png": "998a7e0234cddd751dd47e350ad2e3f44bed532ed0bd91a54f2962ff36d079e7",
+    "juvelook-product.png": "7b1aa0b5cecdeca96e6659cc45e37203764960bcd68b785d66f4baf529356fae",
+    "juvelook-structure.png": "118f089b76e962deb0b0ecc6b2d99047d54868ab235bb2c097cce526a4024fab",
+    "mint-product.png": "75e484512f94ad87b9df4ca5cffca7c4ebadc6b11eecabc8f689502bcd900175",
+    "mint-structure.png": "e7e0ea8d990ce077797b6d76116a2c610825e1c57e280b641b37e40cd9481bf8",
+    "pico-picok_img_1_2.png": "b546fcb81f19ae29f4c7d840cd1e296ed2518ab1dba91be3cdb858d278b2ed6f",
+    "pico-picok_img_2_2.png": "fd89219c897458ec0dc29a92228828dc3335471594e97887f2326e660a8cc388",
+    "pico-picok_img_5.png": "6fa62952ee5ba88808096745f86630382c3ac0a8c5aefc22c621db6b0e0d97a0",
+    "pico-picok_img_6.png": "0636b48756d3e4117bfbc82314fe9b31bac75aadc16ceb13b5e575af171168c4",
+    "potenza-intro-poster.jpg": "694f73f75e489cbaaf9deb9703deb2aecdb833aa128a3d732fa7a97b98bb0eac",
+    "potenza-principle-poster.jpg": "ca9cb978cbcbee10e455ab9de20999edc50ed5051e8f9790829ef605661535d4",
+    "rejuran-authentic.png": "e539221f229035e286efe86fab316a2c6ced6bb1c6f4b42c4f173a51095af5a3",
+    "rejuran-product.png": "d0a421c9609fc96c33dedbb0db7e2b30000ad38b01e8434d09267deee3c5eb4d",
+    "rejuran-section2_img02.jpg": "8a8dad9a7c2910df46a9196762c167cc54fc726fd61a04dfb69a62127e9b31fe",
+    "retuo-official.jpg": "053cda8be487781e8d71465e7e391bb06a723a3aafee6de7266a141579617fb7",
+    "retuo-product.jpg": "857bdadc3fd63792433eb12a8396c8db4a7cbdbca4a9257e3efdf71af16f415d",
+    "shurink-principle.jpg": "5b8f9ada1f4a9377926b00f6e22537b3c4f71cc6b9db114e7b41cbf66faafa47",
+    "ultracol-product.png": "f6ffe1ba85ae35098f2453d1e1717ecf7dbfb3e7dc998b6db413a42604ccbdf6"
+  }
+}

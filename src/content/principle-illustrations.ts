@@ -6,12 +6,13 @@ export type PrincipleKind = Exclude<
 >;
 
 type PrincipleIllustration = {
+  assetVersion?: string;
   alt: string;
   note: string;
   marks: { x: number; y: number; label: string }[];
 };
 
-// Locally rendered explanatory illustrations. Positions identify visual features;
+// Explanatory illustrations. Positions identify visual features;
 // they do not specify treatment depths, doses, device settings, or outcomes.
 export const principleIllustrations: Record<
   PrincipleKind,
@@ -45,21 +46,23 @@ export const principleIllustrations: Record<
     ],
   },
   matrix: {
-    alt: "피부 단면과 조직 유래 기질을 망상 구조로 구분해 표현한 리투오 시술의 입체 개념도",
-    note: "기질의 구조를 이해하기 위한 그림이며, 실제 분포나 크기를 뜻하지 않습니다.",
+    assetVersion: "20261026",
+    alt: "피부 단면에서 리투오의 무세포 동종진피 기질과 주변 진피의 콜라겐 구조를 구분한 입체 모식도",
+    note: "리투오의 조직 유래 기질(hADM)과 주변 피부 조직을 구분한 설명용 모식도입니다.",
     marks: [
-      { x: 39, y: 51, label: "성분 적용" },
-      { x: 49.7, y: 55, label: "조직 유래 기질" },
-      { x: 65.2, y: 62.2, label: "주변 피부 조직" },
+      { x: 40, y: 49, label: "성분 주입" },
+      { x: 62, y: 56, label: "조직 유래 기질(hADM)" },
+      { x: 77, y: 35, label: "주변 진피 조직" },
     ],
   },
   booster: {
-    alt: "피부에 성분을 주입하는 방식과 표면에 바르는 방식을 구분해 표현한 스킨부스터 입체 개념도",
-    note: "주입형과 도포형을 함께 표현한 예시입니다. 적용 방법은 제품별로 다릅니다.",
+    assetVersion: "20261026",
+    alt: "피부의 진피 안에 리쥬란의 PN 성분을 주입하는 개념과 주변 콜라겐 구조를 구분한 입체 모식도",
+    note: "리쥬란(PN)의 주입 개념도입니다. 다른 스킨부스터와 성분 · 사용방법을 구분합니다.",
     marks: [
-      { x: 45.7, y: 50.9, label: "주입 방식" },
-      { x: 66.4, y: 35.3, label: "도포 방식" },
-      { x: 58.9, y: 60.9, label: "피부 반응 관찰" },
+      { x: 38, y: 45, label: "PN 성분 주입" },
+      { x: 52, y: 53, label: "폴리뉴클레오티드(PN)" },
+      { x: 78, y: 58, label: "주변 진피 조직" },
     ],
   },
   collagen: {

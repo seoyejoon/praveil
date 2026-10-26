@@ -6,6 +6,9 @@ import {
 /** Labels remain HTML so they stay legible on phones and when text is enlarged. */
 export default function TreatmentPrinciple({ kind }: { kind: PrincipleKind }) {
   const illustration = principleIllustrations[kind];
+  const version = illustration.assetVersion
+    ? `?v=${illustration.assetVersion}`
+    : "";
   return (
     <figure
       id="principle-illustration"
@@ -15,8 +18,8 @@ export default function TreatmentPrinciple({ kind }: { kind: PrincipleKind }) {
       <div className="relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/images/principles/${kind}.webp`}
-          srcSet={`/images/principles/${kind}-mobile.webp 800w, /images/principles/${kind}.webp 1600w`}
+          src={`/images/principles/${kind}.webp${version}`}
+          srcSet={`/images/principles/${kind}-mobile.webp${version} 800w, /images/principles/${kind}.webp${version} 1600w`}
           sizes="(min-width: 1400px) 740px, (min-width: 1024px) 55vw, (min-width: 768px) calc(100vw - 80px), calc(100vw - 40px)"
           alt={illustration.alt}
           width={1600}

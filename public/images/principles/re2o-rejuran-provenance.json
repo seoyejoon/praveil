@@ -1,0 +1,21 @@
+{
+  "createdAt": "2026-10-26",
+  "type": "AI-generated explanatory medical illustration, not manufacturer artwork or a clinical result",
+  "tool": "Built-in image_gen",
+  "assets": {
+    "matrix": {
+      "page": "/skin/retuo",
+      "subject": "Re2O hADM material and surrounding dermal tissue",
+      "factualReference": "https://humedix.com/m/home.php?go=Bmenu_02_08&code=08&item_num=157",
+      "files": ["matrix.webp", "matrix-mobile.webp"]
+    },
+    "booster": {
+      "page": "/skin/booster",
+      "subject": "Rejuran PN injection concept; not a diagram for every skin booster",
+      "factualReference": "https://www.rejuran.co.kr/",
+      "files": ["booster.webp", "booster-mobile.webp"]
+    }
+  },
+  "styleReference": "Existing public Coolsonic principle image, used for visual quality and lighting only, not its mechanism",
+  "limitations": "Conceptual composition and enlarged materials. Does not specify a treatment depth, dose, exact distribution or clinical outcome. Labels remain HTML for mobile legibility."
+}

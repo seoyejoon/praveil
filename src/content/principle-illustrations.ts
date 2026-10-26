@@ -28,21 +28,23 @@ export const principleIllustrations: Record<
     ],
   },
   filler: {
+    assetVersion: "20261026b",
     alt: "피부 단면 안에서 서로 다른 층에 놓인 필러를 보여 주는 입체 개념도",
     note: "부위와 제품에 따라 주입하는 층이 달라집니다.",
     marks: [
-      { x: 32.5, y: 49.2, label: "얕은 층의 필러" },
-      { x: 48.8, y: 65.6, label: "볼륨을 위한 필러" },
-      { x: 62.6, y: 77.7, label: "깊은 층의 필러" },
+      { x: 34, y: 40, label: "얕은 층의 필러" },
+      { x: 56, y: 56, label: "볼륨을 위한 필러" },
+      { x: 78, y: 69, label: "깊은 층의 필러" },
     ],
   },
   botox: {
+    assetVersion: "20261026b",
     alt: "신경 말단과 근육 사이의 접합부를 확대해 보툴리눔 톡신의 작용 위치를 보여 주는 입체 개념도",
     note: "신경 · 근육 접합부를 확대한 개념도입니다.",
     marks: [
-      { x: 42, y: 37, label: "신경 말단" },
-      { x: 41.1, y: 53.5, label: "톡신의 작용 위치" },
-      { x: 63.5, y: 72.9, label: "근육 섬유" },
+      { x: 49, y: 36, label: "신경 말단" },
+      { x: 46, y: 57, label: "톡신의 작용 위치" },
+      { x: 72, y: 79, label: "근육 섬유" },
     ],
   },
   matrix: {
@@ -92,12 +94,13 @@ export const principleIllustrations: Record<
     ],
   },
   acne: {
+    assetVersion: "20261026b",
     alt: "모공 속 막힘과 주변 염증, 피부 표면의 패인 흔적을 구분한 여드름 · 모공 입체 개념도",
     note: "진행 중인 여드름과 남은 흉터를 구분하기 위한 개념도입니다.",
     marks: [
-      { x: 35.4, y: 41.5, label: "모공 막힘" },
-      { x: 40.9, y: 58.2, label: "주변 염증" },
-      { x: 63.2, y: 43.5, label: "패인 흉터" },
+      { x: 29, y: 25, label: "모공 막힘" },
+      { x: 35, y: 41, label: "주변 염증" },
+      { x: 75, y: 36, label: "패인 흉터" },
     ],
   },
   hair: {

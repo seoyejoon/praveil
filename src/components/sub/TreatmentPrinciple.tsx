@@ -13,9 +13,9 @@ export default function TreatmentPrinciple({ kind }: { kind: PrincipleKind }) {
     <figure
       id="principle-illustration"
       data-principle={kind}
-      className="scroll-mt-44 md:scroll-mt-60"
+      className="scroll-mt-44 overflow-hidden rounded-[24px] bg-[#1d2a30] md:scroll-mt-60 md:rounded-[32px]"
     >
-      <div className="relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]">
+      <div className="relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/images/principles/${kind}.webp${version}`}
@@ -39,18 +39,18 @@ export default function TreatmentPrinciple({ kind }: { kind: PrincipleKind }) {
           </span>
         ))}
       </div>
-      <figcaption className="px-1 pt-4 md:pt-5">
-        <ol className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] leading-relaxed text-ink md:gap-x-6 md:text-sm">
+      <figcaption className="border-t border-white/10 px-5 py-5 md:px-6 md:py-6">
+        <ol className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] leading-relaxed text-white md:gap-x-6 md:text-sm">
           {illustration.marks.map((mark, index) => (
             <li key={mark.label} className="flex items-center gap-2">
-              <span aria-hidden="true" className="font-display text-mocha">
+              <span aria-hidden="true" className="font-display text-taupe">
                 {index + 1}
               </span>
               {mark.label}
             </li>
           ))}
         </ol>
-        <p className="mt-3 text-xs leading-relaxed text-muted">
+        <p className="mt-3 text-xs leading-relaxed text-white/70">
           {illustration.note} 실제 크기 · 깊이와는 다를 수 있습니다.
         </p>
       </figcaption>

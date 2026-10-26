@@ -1451,7 +1451,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "민트실의 돌기가 조직을 지지",
-        text: "제조사 그림은 민트실 표면에 배치된 나선형 돌기를 보여줍니다. 실의 구조와 사용목적을 확인하고 조직을 지지할 층과 방향을 정합니다.",
+        text: "그림은 돌기가 있는 실과 주변 조직의 관계를 설명합니다. 실의 구조와 사용목적을 확인하고 조직을 지지할 층과 방향을 정합니다.",
       },
       {
         title: "모양과 불편감 함께 관찰",
@@ -1569,12 +1569,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     principleImage: {
-      src: "/images/official/mint-structure.png",
-      alt: "한스바이오메드 MINT의 나선형 돌기 구조",
+      src: "/images/principles/thread.webp?v=20261026b",
+      alt: "돌기가 있는 실과 주변 결합조직의 지지 구조를 확대한 입체 개념도",
       marks: [],
       layers: [],
       framed: true,
-      note: "HANSBIOMED · 민트실의 360° 나선형 돌기 구조를 보여주는 제조사 그림입니다.",
+      note: "돌기가 있는 실과 주변 조직의 관계를 표현한 설명용 모식도입니다. 특정 제품의 실제 구조 · 크기 · 삽입 깊이와는 다를 수 있습니다.",
     },
   },
   "/acne-pore": {
@@ -1785,7 +1785,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "모낭에 에너지를 전달하며 범위 확인",
-        text: "털의 멜라닌이 흡수한 빛이 열로 바뀌어 모낭에 작용합니다. 그림은 클라리티2의 조사 간격을 보여주며, 피부 상태에 맞춰 에너지와 냉각을 조절합니다.",
+        text: "털의 멜라닌이 흡수한 빛이 열로 바뀌어 모낭에 작용합니다. 그림은 털의 색소와 모낭에 에너지가 전달되는 개념이며, 피부 상태에 맞춰 에너지와 냉각을 조절합니다.",
       },
       {
         title: "다시 자라는 양을 보며 조정",
@@ -1909,12 +1909,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     principleImage: {
-      src: "/images/official/clarity-tracking-detail.jpg",
-      alt: "루트로닉 클라리티2 IntelliTrak의 레이저 조사 간격 모식도",
+      src: "/images/principles/hair.webp?v=20261026b",
+      alt: "털의 색소와 모낭에 레이저 에너지가 작용하는 원리를 보여 주는 입체 개념도",
       marks: [],
       layers: [],
       framed: true,
-      note: "LUTRONIC · IntelliTrak의 조사 경로와 간격을 설명하는 제조사 모식도입니다.",
+      note: "털의 멜라닌과 모낭에 에너지가 작용하는 개념을 표현했습니다. 실제 크기 · 깊이 · 빛의 색이나 시술 결과를 재현한 그림은 아닙니다.",
     },
   },
   "/removal/tattoo": {
@@ -2075,12 +2075,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     principleImage: {
-      src: "/images/official/pico-picok_img_2_2.png",
-      alt: "피코케이의 빔과 색소 입자를 나타내는 제조사 모식도",
+      src: "/images/principles/pigment.webp?v=20261026b",
+      alt: "피부 속 문신 색소와 레이저 작용으로 잘게 나뉜 입자를 구분한 입체 개념도",
       marks: [],
       layers: [],
       framed: true,
-      note: "SPECLIPSE · PICO-K의 빔과 색소 반응을 설명하는 모식도입니다. 실제 시술 결과 사진이 아닙니다.",
+      note: "색소 입자에 레이저가 작용하는 개념을 표현했습니다. 입자 크기 · 빛의 색은 이해를 돕기 위한 표현이며 실제 전후 결과가 아닙니다.",
     },
   },
 };

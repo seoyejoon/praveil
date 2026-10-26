@@ -552,16 +552,22 @@ function HifuDiagram({
   );
 }
 
-/** 원리 그림 사진 + 그 위 표시 (넓은 화면: 이름표, 좁은 화면: 번호 + 아래 설명) */
+/** 원리 그림과 표시, 안내 문구를 하나의 프레임 안에 배치합니다. */
 function PrincipleFigure({
   image,
 }: {
   image: NonNullable<DeviceStory["principleImage"]>;
 }) {
   return (
-    <figure>
+    <figure
+      className={
+        image.note
+          ? "overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"
+          : undefined
+      }
+    >
       <div
-        className={`relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px] ${image.framed ? "aspect-[8/5]" : ""}`}
+        className={`relative overflow-hidden ${image.note ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${image.framed ? "aspect-[8/5]" : ""}`}
       >
         {image.video ? (
           <video
@@ -627,7 +633,7 @@ function PrincipleFigure({
         </div>
       </div>
       {image.note && (
-        <figcaption className="px-1 pt-4 text-xs leading-relaxed text-muted md:pt-5">
+        <figcaption className="border-t border-white/10 px-5 py-5 text-xs leading-relaxed text-white/70 md:px-6 md:py-6">
           {image.note}
         </figcaption>
       )}

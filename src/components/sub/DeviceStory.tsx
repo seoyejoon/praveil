@@ -381,7 +381,21 @@ export function StoryProcess({
                 loading="lazy"
                 width={s.fullFrame ? 7008 : undefined}
                 height={s.fullFrame ? 4672 : undefined}
-                className={`h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`}
+                className={
+                  s.image === "/images/photos/retouched/coolsonic-consult.jpg"
+                    ? "absolute inset-0 h-full w-full object-cover"
+                    : `h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`
+                }
+                style={
+                  s.image === "/images/photos/retouched/coolsonic-consult.jpg"
+                    ? {
+                        objectPosition: "45% 50%",
+                        // 상담실 조명의 노란 기운을 줄여 옆 과정 사진의 톤에 맞춥니다.
+                        filter:
+                          "brightness(1.06) contrast(0.97) saturate(0.85) hue-rotate(-6deg)",
+                      }
+                    : undefined
+                }
               />
               {/* 원본 3:2 사진은 가운데에 표시하므로 번호는 사진 위 여백에 놓입니다. */}
               <span

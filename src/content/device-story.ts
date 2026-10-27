@@ -104,6 +104,8 @@ export type DeviceStory = {
     alt: string;
     /** 사진 원본의 3:2 구도를 유지하고 번호를 사진 밖에 표시 */
     fullFrame?: boolean;
+    /** 지정한 사진만 원본 비율로 카드를 채우며 얼굴 · 시술 부위 중심을 유지 */
+    coverPosition?: string;
   }[];
   /** 시술 장면 영상 */
   video?: { src: string; poster: string; title: string[]; text: string };
@@ -274,6 +276,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.coolsonic,
         alt: "대표원장이 쿨소닉으로 얼굴 부위를 시술하는 장면",
         fullFrame: true,
+        coverPosition: "42% 50%",
       },
       {
         title: "경과 확인",

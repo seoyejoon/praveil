@@ -181,7 +181,17 @@ export function StoryAbout({
           <div className="mt-10 grid gap-6 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-stretch lg:gap-8">
             <Reveal>
               {story.principleImage ? (
-                <PrincipleFigure image={story.principleImage} />
+                story.diagram &&
+                story.diagram !== "hifu" &&
+                story.principleImage.src.startsWith("/images/principles/") ? (
+                  <TreatmentPrinciple
+                    kind={story.diagram}
+                    alt={story.principleImage.alt}
+                    note={story.principleImage.note}
+                  />
+                ) : (
+                  <PrincipleFigure image={story.principleImage} />
+                )
               ) : story.diagram && story.diagram !== "hifu" ? (
                 <TreatmentPrinciple kind={story.diagram} />
               ) : (

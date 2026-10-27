@@ -53,13 +53,10 @@ export const treatments: Treatment[] = [
     description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
     image: photo("signature-1"),
     scene: {
-      mobileSrc: doctorPhotos.coolsonic,
-      src: doctorPhotos.coolsonic,
-      desktopFit: "contain",
-      mobilePosition: "25% center",
+      mobileSrc: photo("hero-coolsonic-m"),
+      src: photo("hero-coolsonic"),
       alt: "대표원장이 쿨소닉 장비로 얼굴 부위를 시술하는 모습",
-      // 새 3:2 원본을 오른쪽에 맞춘 구도에서 핸드피스 접촉점에 파장을 표시합니다.
-      pulse: [71.5, 88.4],
+      pulse: [64.2, 88.4],
       chips: [
         {
           x: 55,
@@ -123,16 +120,14 @@ export const treatments: Treatment[] = [
     title: "쿨페이즈",
     description: "피부 표면을 식히는 쿨링 고주파 리프팅",
     image: photo("signature-2"),
-    // 병원 제공 보정 원본의 얼굴 · 손 · 시술 부위를 한 화면에 표시합니다.
+    // 확인한 3:1 히어로와 모바일 전용 사진으로 구도를 유지합니다.
     scene: {
-      src: doctorPhotos.coolphase,
-      mobileSrc: doctorPhotos.coolphase,
-      desktopFit: "contain",
-      mobilePosition: "25% center",
+      src: photo("hero-coolphase"),
+      mobileSrc: photo("hero-coolphase-m"),
       alt: "대표원장이 쿨페이즈 장비로 얼굴 부위를 시술하는 모습",
       chips: [
         { x: 55, y: 22, en: "RF", label: "모노폴라 고주파 에너지" },
-        { x: 68, y: 50, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
+        { x: 50, y: 50, en: "Cooling", label: "피부에 닿는 팁의 직접 냉각" },
       ],
     },
     headline: ["피부결부터 탄탄하게,", "쿨페이즈 고주파 리프팅"],

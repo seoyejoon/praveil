@@ -258,8 +258,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        image: "/images/photos/retouched/coolsonic-consult.jpg",
+        alt: "대표원장이 환자와 마주 앉아 상담하는 장면",
         fullFrame: true,
       },
       {

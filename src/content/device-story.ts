@@ -405,6 +405,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취",
@@ -573,6 +574,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 준비",
@@ -586,6 +588,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.coolphase,
         alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "경과 확인",
@@ -730,6 +733,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 통증 관리",
@@ -890,6 +894,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 통증 관리",
@@ -1057,6 +1062,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 준비",
@@ -1069,6 +1075,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "제품의 사용방법에 맞춰 정한 부위를 시술합니다. 외용 제품은 주입용 제품과 구분해 사용합니다.",
         image: "/images/photos/cat-injection.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
+        coverPosition: "43% 50%",
       },
       {
         title: "경과 확인",
@@ -1213,6 +1220,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 준비",
@@ -1225,6 +1233,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "제품별 사용목적과 주입 방법을 확인해 정한 부위를 시술합니다. 양과 분포는 피부 상태에 맞춰 조절합니다.",
         image: "/images/photos/cat-injection.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
+        coverPosition: "43% 50%",
       },
       {
         title: "경과 확인",
@@ -1392,6 +1401,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 시술 준비",
@@ -1405,6 +1415,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.laser,
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
         fullFrame: true,
+        coverPosition: "35% 50%",
       },
       {
         title: "경과 확인",
@@ -1560,6 +1571,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 준비",
@@ -1732,6 +1744,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 시술 전 준비",
@@ -1745,6 +1758,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.laser,
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
         fullFrame: true,
+        coverPosition: "35% 50%",
       },
       {
         title: "경과 확인",
@@ -1899,6 +1913,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 시술 전 준비",
@@ -1912,6 +1927,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.laser,
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
         fullFrame: true,
+        coverPosition: "35% 50%",
       },
       {
         title: "경과 확인",
@@ -2066,6 +2082,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
+        coverPosition: "50% 50%",
       },
       {
         title: "마취 · 눈 보호",

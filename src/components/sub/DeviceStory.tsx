@@ -299,11 +299,13 @@ export function StoryFeatures({
               className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
             >
               <Reveal
-                className={`relative ${f.fullFrame && !f.video ? "aspect-[3/2]" : "aspect-[4/3]"} overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+                className={`relative ${f.paddedWidescreen ? "aspect-video" : f.mediaSize ? "" : f.fullFrame && !f.video ? "aspect-[3/2]" : "aspect-[4/3]"} overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
               >
                 {f.video ? (
                   <video
                     src={f.video}
+                    width={f.mediaSize?.width}
+                    height={f.mediaSize?.height}
                     poster={f.image}
                     autoPlay
                     muted
@@ -311,7 +313,11 @@ export function StoryFeatures({
                     playsInline
                     preload="metadata"
                     aria-label={f.alt}
-                    className={`absolute inset-0 h-full w-full ${f.mediaContain ? "object-contain" : "object-cover"}`}
+                    className={
+                      f.mediaSize && !f.paddedWidescreen
+                        ? "block h-auto w-full"
+                        : "absolute inset-0 h-full w-full object-cover"
+                    }
                   />
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -319,9 +325,13 @@ export function StoryFeatures({
                     src={f.image}
                     alt={f.alt}
                     loading="lazy"
-                    width={f.fullFrame ? 7008 : undefined}
-                    height={f.fullFrame ? 4672 : undefined}
-                    className={`absolute inset-0 h-full w-full ${f.fullFrame || f.mediaContain ? "object-contain" : "object-cover"}`}
+                    width={f.mediaSize?.width ?? (f.fullFrame ? 7008 : undefined)}
+                    height={f.mediaSize?.height ?? (f.fullFrame ? 4672 : undefined)}
+                    className={
+                      f.mediaSize && !f.paddedWidescreen
+                        ? "block h-auto w-full"
+                        : `absolute inset-0 h-full w-full ${f.fullFrame ? "object-contain" : "object-cover"}`
+                    }
                   />
                 )}
               </Reveal>

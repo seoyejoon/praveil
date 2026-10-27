@@ -91,8 +91,10 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
-    /** 공식 도해·영상의 가장자리를 자르지 않고 기존 카드에 표시 */
-    mediaContain?: boolean;
+    /** 공식 도해·영상의 원본 비율에 카드 높이를 맞춰 전체 내용을 표시 */
+    mediaSize?: { width: number; height: number };
+    /** 1280×960 파일에 덧붙은 상하 120px 여백만 제외하고 16:9 본문을 표시 */
+    paddedWidescreen?: boolean;
   }[];
   /** 시술 과정: 사진 + 설명 */
   process: {
@@ -227,12 +229,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: cs("coolsonic-applicator"),
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",
+        mediaSize: { width: 792, height: 864 },
       },
       {
         title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
         text: "쿨소닉의 어플리케이터는 굴곡진 피부에도 밀착하기 쉬운 펜형 구조입니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
         image: cs("handpiece"),
         alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
+        mediaSize: { width: 1200, height: 788 },
       },
       {
         title: "쿨링으로 통증 부담을 줄이는 초음파 리프팅",
@@ -240,12 +244,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: cs("coolsonic-cooling"),
         video: "/videos/coolsonic-cooling.mp4",
         alt: "쿨소닉 ACC 냉각 어플리케이터",
+        mediaSize: { width: 792, height: 864 },
       },
       {
         title: "콜라겐과 탄성섬유의 재생 유도",
         text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도해 탄력과 리프팅 효과를 기대할 수 있습니다.",
         image: cs("principle"),
         alt: "피부 속 목표 조직에 열응고점을 만드는 쿨소닉 집속 초음파 원리",
+        mediaSize: { width: 1600, height: 901 },
       },
     ],
     process: [
@@ -532,6 +538,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "고주파 열 자극을 이용해 피부결과 탄력을 관리합니다. 탄력이 떨어진 부위와 잔주름 고민을 함께 살펴 시술 범위를 정합니다.",
         image: "/images/coolphase/principle-feature.webp",
         alt: "쿨페이즈 제조사 영상에서 보여 주는 고주파 열 전달 개념도",
+        paddedWidescreen: true,
       },
       {
         title: "피부 표면을 식히는 접촉 냉각",
@@ -539,6 +546,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/coolphase/principle-feature.webp",
         video: "/videos/coolphase-cooling.mp4",
         alt: "쿨페이즈 접촉 냉각과 고주파 열 전달을 보여 주는 제조사 원리 영상",
+        paddedWidescreen: true,
       },
       {
         title: "피부 두께와 굴곡에 맞춘 설계",
@@ -546,6 +554,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/coolphase/tip.webp",
         video: "/videos/coolphase-tip.mp4",
         alt: "쿨페이즈 얼굴용 접촉 팁의 형태를 보여 주는 제조사 영상",
+        paddedWidescreen: true,
       },
       {
         title: "시술 후 경과까지 이어지는 관리",
@@ -847,7 +856,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/retuo-product.jpg",
         alt: "리투오 · 무세포 동종진피 원료 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 479, height: 479 },
       },
       {
         title: "원료와 사용목적을 함께 확인",
@@ -855,7 +864,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/retuo-official.jpg",
         alt: "원료와 사용목적을 함께 확인 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 479, height: 479 },
       },
       {
         title: "피부 두께와 시술 이력 확인",
@@ -1015,7 +1024,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/rejuran-section2_img02.jpg",
         alt: "리쥬란 · PN 성분을 확인 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 720, height: 232 },
       },
       {
         title: "리쥬란 제품과 정품 표시 확인",
@@ -1023,7 +1032,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/rejuran-authentic.png",
         alt: "리쥬란 제품과 정품 표시 확인 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 890, height: 1008 },
       },
       {
         title: "피부 두께와 부위 고려",
@@ -1169,7 +1178,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/retuo-product.jpg",
         alt: "리투오 · 인체조직 유래 hADM · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 479, height: 479 },
       },
       {
         title: "쥬베룩 · PDLLA와 히알루론산",
@@ -1177,7 +1186,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/juvelook-structure.png",
         alt: "쥬베룩 · PDLLA와 히알루론산 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 800, height: 800 },
       },
       {
         title: "울트라콜 · PDO 미세입자",
@@ -1185,7 +1194,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/ultracol-product.png",
         alt: "울트라콜 · PDO 미세입자 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 419, height: 289 },
       },
       {
         title: "덩어리감까지 살피는 경과 확인",
@@ -1226,7 +1235,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "쥬베룩 공식 PDLLA 미세입자 구조 이미지",
       marks: [],
       layers: [],
-      framed: true,
+      framed: false,
       note: "JUVELOOK · PDLLA 미세입자를 나타낸 제조사 이미지입니다. 실제 입자의 크기와는 다릅니다.",
     },
   },
@@ -1346,7 +1355,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/shurink-principle.jpg",
         alt: "슈링크 유니버스 · 초음파를 목표 층에 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 640, height: 263 },
       },
       {
         title: "포텐자 · 팁에 따라 달라지는 RF",
@@ -1354,7 +1363,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/potenza-principle-poster.jpg",
         alt: "포텐자 · 팁에 따라 달라지는 RF · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 1280, height: 720 },
         video: "/videos/official-potenza-principle.mp4",
       },
       {
@@ -1363,7 +1372,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/clarity-poster.jpg",
         alt: "클라리티2 · 파장과 조사 범위 조절 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 1280, height: 768 },
         video: "/videos/official-clarity.mp4",
       },
       {
@@ -1406,7 +1415,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "포텐자의 미세침과 고주파 에너지 전달을 보여주는 제조사 원리 영상",
       marks: [],
       layers: [],
-      framed: true,
+      framed: false,
       note: "JEISYS MEDICAL · 포텐자 미세침 RF 원리. 팁에 따라 작동 방식이 달라집니다.",
       video: "/videos/official-potenza-principle.mp4",
     },
@@ -1526,7 +1535,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/mint-structure.png",
         alt: "민트실 · 재질과 돌기 구조 확인 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 550, height: 550 },
       },
       {
         title: "개수와 함께 보는 범위 · 배치",
@@ -1854,7 +1863,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/clarity-poster.jpg",
         alt: "클라리티2 · 피부와 털에 맞춘 설정 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 1280, height: 768 },
         video: "/videos/official-clarity.mp4",
       },
       {
@@ -1863,7 +1872,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/clarity-tracking.png",
         alt: "IntelliTrak · 조사 범위를 확인 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 408, height: 464 },
       },
       {
         title: "온도 표시와 피부 반응을 함께",
@@ -1871,7 +1880,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/clarity-temperature.png",
         alt: "온도 표시와 피부 반응을 함께 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 841, height: 328 },
       },
       {
         title: "다음 예약은 자라는 상태에 맞춰",
@@ -2024,7 +2033,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/pico-picok_img_1_2.png",
         alt: "피코케이 · 짧은 펄스로 색소에 작용 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 549, height: 549 },
       },
       {
         title: "핸드피스와 조사 범위 선택",
@@ -2032,7 +2041,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/pico-picok_img_5.png",
         alt: "핸드피스와 조사 범위 선택 · 제조사 공식 자료",
         fullFrame: false,
-        mediaContain: true,
+        mediaSize: { width: 604, height: 355 },
       },
       {
         title: "눈가에는 별도의 안전 판단",

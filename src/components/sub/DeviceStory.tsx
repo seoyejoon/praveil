@@ -382,6 +382,7 @@ export function StoryProcess({
                 width={s.fullFrame ? 7008 : undefined}
                 height={s.fullFrame ? 4672 : undefined}
                 className={
+                  s.coverPosition ||
                   s.image === "/images/photos/retouched/coolsonic-consult.jpg"
                     ? "absolute inset-0 h-full w-full object-cover"
                     : `h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`
@@ -394,7 +395,9 @@ export function StoryProcess({
                         filter:
                           "brightness(1.06) contrast(0.97) saturate(0.85) hue-rotate(-6deg)",
                       }
-                    : undefined
+                    : s.coverPosition
+                      ? { objectPosition: s.coverPosition }
+                      : undefined
                 }
               />
               {/* 원본 3:2 사진은 가운데에 표시하므로 번호는 사진 위 여백에 놓입니다. */}

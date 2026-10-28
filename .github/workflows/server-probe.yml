@@ -1,42 +1,54 @@
-name: Server probe
-# 서버 접속 확인 + 현재 상태 보기 (읽기만 함, 아무것도 바꾸지 않음)
+name: Server SSL verification
+# Proposed one-time check on a separate codex branch. No homepage deployment or configuration changes.
 on:
   workflow_dispatch:
-
+permissions:
+  contents: read
+concurrency:
+  group: praveil-ssl-verification
+  cancel-in-progress: false
 jobs:
   probe:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - run: sudo apt-get install -y sshpass >/dev/null
-      - name: Read server state
+      - name: Check renewal timer, logs and staging renewal
+        shell: bash
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
         run: |
-          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'bash -s' <<'REMOTE'
-          echo "== os"; cat /etc/os-release | head -3
-          echo "== whoami"; whoami
-          echo "== mem"; free -m
-          echo "== disk"; df -h / | tail -1
-          echo "== cpu"; nproc
-          echo "== tools"; for t in node npm pnpm pm2 nginx psql git certbot; do printf "%s: " $t; (command -v $t >/dev/null && ($t --version 2>&1 || $t -v 2>&1) | head -1) || echo missing; done
-          echo "== /opt"; ls -la /opt
-          echo "== /opt/praveil"; ls -la /opt/praveil 2>/dev/null | head -30
-          echo "== services"; systemctl list-units --type=service --state=running --no-pager | grep -Ei 'nginx|postgres|praveil|pm2|node' || true
-          echo "== listening"; ss -ltnp 2>/dev/null | head -20
-          echo "== nginx sites"; ls /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null
-          echo "== swap"; swapon --show
-          echo "== ufw"; ufw status 2>/dev/null | head -10
-          echo "== nginx site"; cat /etc/nginx/sites-enabled/praveil 2>/dev/null | grep -v -i 'password\|secret'
-          echo "== cafe24 conf.d"; head -40 /etc/nginx/conf.d/cafe24-ratelimit.conf /etc/nginx/conf.d/cafe24-ssl-params.conf 2>/dev/null
-          echo "== ecosystem"; grep -v -i 'password\|secret\|DATABASE_URL' /opt/praveil/ecosystem.config.js 2>/dev/null
-          echo "== pm2 (appuser)"; sudo -u appuser -H bash -lc 'PM2_HOME=/opt/praveil/.pm2 pm2 ls' 2>&1 | head -20
-          echo "== appuser"; getent passwd appuser
-          echo "== pg conf.d"; ls /etc/postgresql/17/main/conf.d 2>/dev/null; grep -n "include_dir" /etc/postgresql/17/main/postgresql.conf
-          echo "== pg dbs"; sudo -u postgres psql -Atc "select datname from pg_database" 2>&1
-          echo "== pg roles"; sudo -u postgres psql -Atc "select rolname from pg_roles where rolname !~ '^pg_'" 2>&1
-          echo "== /opt/cafe24-vps"; ls -R /opt/cafe24-vps 2>/dev/null | head -20
-          echo "== letsencrypt"; ls /etc/letsencrypt/live 2>/dev/null
-          echo "== public ip"; curl -s -4 https://ifconfig.me || true; echo
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'sudo -n bash -s' <<'REMOTE' 2>&1 | sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/[server address]/g'
+          set -eu
+          echo '== certificate and renewal schedule'
+          certbot --version
+          certbot certificates --cert-name praveil.com
+          systemctl is-enabled certbot.timer || true
+          systemctl is-active certbot.timer || true
+          systemctl show certbot.timer -p NextElapseUSecRealtime -p LastTriggerUSec -p Result
+          systemctl show certbot.service -p Result -p ExecMainStatus -p ExecMainStartTimestamp -p ExecMainExitTimestamp
+          systemctl list-timers --all certbot.timer --no-pager
+          echo '== recent renewal checks'
+          journalctl -u certbot.service --since '30 days ago' --no-pager -o cat -n 50
+          echo '== renewal method and reload hook'
+          awk '/^(authenticator|installer|server|webroot_path|renew_before_expiry|praveil.com|www.praveil.com|admin.praveil.com)[[:space:]=]/ {print}' /etc/letsencrypt/renewal/praveil.com.conf
+          if test -x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh && grep -Fxq 'systemctl reload nginx' /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh; then echo 'nginx_reload_hook=ready'; else echo 'nginx_reload_hook=needs_review'; fi
+          echo '== simulation guards'
+          conf=/etc/letsencrypt/renewal/praveil.com.conf
+          grep -Eq '^[[:space:]]*authenticator[[:space:]]*=[[:space:]]*webroot[[:space:]]*$' "$conf" || { echo 'Dry run skipped: review authentication method'; exit 2; }
+          for config in "$conf" /etc/letsencrypt/cli.ini; do
+            test -f "$config" || continue
+            if grep -Eq '^[[:space:]]*(pre[-_]hook|post[-_]hook|deploy[-_]hook)[[:space:]]*=' "$config"; then echo 'Dry run skipped: configured hooks require review'; exit 2; fi
+            if grep -E '^[[:space:]]*installer[[:space:]]*=' "$config" | grep -Eiv '=[[:space:]]*(none)?[[:space:]]*$'; then echo 'Dry run skipped: installer requires review'; exit 2; fi
+          done
+          before=$(sha256sum /etc/letsencrypt/live/praveil.com/fullchain.pem | cut -d ' ' -f1)
+          echo '== simulated renewal (staging, no directory hooks)'
+          args=(renew --cert-name praveil.com --dry-run --non-interactive --no-directory-hooks --server https://acme-staging-v02.api.letsencrypt.org/directory)
+          if certbot --help all 2>/dev/null | grep -q -- '--no-random-sleep-on-renew'; then args+=(--no-random-sleep-on-renew); fi
+          timeout 300s certbot "${args[@]}"
+          after=$(sha256sum /etc/letsencrypt/live/praveil.com/fullchain.pem | cut -d ' ' -f1)
+          test "$before" = "$after"
+          echo 'production_certificate_unchanged=yes'
           REMOTE

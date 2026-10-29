@@ -60,7 +60,9 @@ export async function getHospital(): Promise<Hospital> {
     phone: real(str(clinic.phone)) || fallbackHospital.phone,
     address: str(clinic.address) || fallbackHospital.address,
     addressDetail: str(clinic.addressDetail) || fallbackHospital.addressDetail,
-    kakaoUrl: str(clinic.kakaoUrl) || fallbackHospital.kakaoUrl,
+    kakaoUrl: /^https:\/\//.test(str(clinic.kakaoUrl))
+      ? str(clinic.kakaoUrl)
+      : fallbackHospital.kakaoUrl,
     naverReservationUrl:
       str(clinic.naverReservationUrl) || fallbackHospital.naverReservationUrl,
     instagramUrl: str(clinic.instagramUrl) || fallbackHospital.instagramUrl,

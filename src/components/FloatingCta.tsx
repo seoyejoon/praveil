@@ -44,7 +44,7 @@ export default function FloatingCta({ hospital }: { hospital: Hospital }) {
       external: true,
     },
     { href: `tel:${hospital.phone}`, label: "전화 상담", Icon: Phone },
-  ];
+  ].filter((it) => it.href); // 주소가 없는 버튼(카카오톡 채널 미입력 등)은 숨김
 
   return (
     <>

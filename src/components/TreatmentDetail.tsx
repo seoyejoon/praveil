@@ -844,8 +844,9 @@ export default function TreatmentDetail({
                   {t.title} 비용은 상담 후 안내해 드립니다.
                 </p>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                  전화 · 카카오톡으로 원하는 부위를 알려 주시면 대략적인 비용을
-                  먼저 안내해 드릴 수 있습니다.
+                  {hospital.kakaoUrl ? "전화 · 카카오톡" : "전화"}으로 원하는
+                  부위를 알려 주시면 대략적인 비용을 먼저 안내해 드릴 수
+                  있습니다.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-2.5">
                   <a
@@ -855,15 +856,17 @@ export default function TreatmentDetail({
                     <Phone className="h-4 w-4" strokeWidth={1.6} />
                     {hospital.phone}
                   </a>
-                  <a
-                    href={hospital.kakaoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
-                  >
-                    <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
-                    카카오톡 문의
-                  </a>
+                  {hospital.kakaoUrl && (
+                    <a
+                      href={hospital.kakaoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold"
+                    >
+                      <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
+                      카카오톡 문의
+                    </a>
+                  )}
                 </div>
               </div>
             )}

@@ -86,7 +86,7 @@ export default function QuickMenu({ hospital }: { hospital: Hospital }) {
       external: true,
     },
     { href: "/location", label: "오시는 길", icon: icons.pin, internal: true },
-  ];
+  ].filter((it) => it.href); // 주소가 없는 버튼(카카오톡 채널 미입력 등)은 숨김
   const cls =
     "group/q relative grid h-12 w-12 place-items-center rounded-full text-ink/70 transition duration-300 hover:bg-gold/15 hover:text-mocha";
   const showTop = progress > 0.04;

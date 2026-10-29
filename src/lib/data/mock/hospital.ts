@@ -10,7 +10,8 @@ export const hospital: Hospital = {
   address: "인천광역시 남동구 성말로 10",
   addressDetail: "효명프라자 4층 403 · 404호",
   businessNumber: "000-00-00000",
-  kakaoUrl: "#",
+  // 카카오톡 채널 주소가 정해지면 관리자에 입력 (비어 있으면 카카오톡 버튼을 숨김)
+  kakaoUrl: "",
   naverReservationUrl: "https://m.booking.naver.com/booking/13/bizes/466071",
   instagramUrl: "https://www.instagram.com/newrizz_clinic/",
   hours: [

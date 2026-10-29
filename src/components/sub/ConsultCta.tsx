@@ -53,15 +53,17 @@ export default function ConsultCta({
               <Phone className="h-4 w-4" strokeWidth={1.6} />
               {hospital.phone}
             </a>
-            <a
-              href={hospital.kakaoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm transition hover:border-white"
-            >
-              <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
-              카카오톡 상담
-            </a>
+            {hospital.kakaoUrl && (
+              <a
+                href={hospital.kakaoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm transition hover:border-white"
+              >
+                <MessageCircle className="h-4 w-4" strokeWidth={1.6} />
+                카카오톡 상담
+              </a>
+            )}
             <a
               href={hospital.naverReservationUrl}
               target="_blank"

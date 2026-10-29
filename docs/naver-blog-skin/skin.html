@@ -249,28 +249,24 @@
       }
 
       /* A-2: 아래 정보 띠 */
-      /* 고른 시안. 베이지를 줄이려고 바탕은 흰색 */
-      #title-a2 {
-        background: var(--cream);
-      }
-      #title-a2 .copy {
+      .a2 .copy {
         bottom: 64px;
       }
-      #title-a2 .arch.main {
+      .a2 .arch.main {
         right: 72px;
         bottom: 64px;
         width: 300px;
         height: 300px;
         border-radius: 150px 150px 0 0;
       }
-      #title-a2 .arch-line {
+      .a2 .arch-line {
         right: 54px;
         bottom: 64px;
         width: 336px;
         height: 318px;
         border-radius: 168px 168px 0 0;
       }
-      #title-a2 .arch.side {
+      .a2 .arch.side {
         right: 384px;
         bottom: 64px;
         width: 150px;
@@ -278,11 +274,11 @@
         border-radius: 75px 75px 0 0;
       }
       /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
-      #title-a2 .arch.side .photo,
+      .a2 .arch.side .photo,
       #mobile-cover .arch.side .photo {
         object-position: 62% 20%;
       }
-      #title-a2 .strip {
+      .a2 .strip {
         position: absolute;
         left: 0;
         right: 0;
@@ -296,22 +292,43 @@
         gap: 28px;
         font-size: 12px;
       }
-      #title-a2 .strip .en {
+      .a2 .strip .en {
         font-size: 10px;
         color: var(--taupe);
         letter-spacing: 0.3em;
         margin-right: 8px;
       }
-      #title-a2 .strip .bar {
+      .a2 .strip .bar {
         width: 1px;
         height: 14px;
         background: rgba(255, 255, 255, 0.2);
       }
-      #title-a2 .strip .tel {
+      .a2 .strip .tel {
         margin-left: auto;
         font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.03em;
+      }
+
+      /* A-2 짙은 판: 바탕 · 띠 모두 짙게, 띠는 금색 선으로 구분 */
+      #title-a2-dark {
+        background: var(--espresso);
+      }
+      #title-a2-dark .copy .en {
+        color: var(--taupe);
+      }
+      #title-a2-dark .logo {
+        color: var(--ivory);
+      }
+      #title-a2-dark .lead {
+        color: var(--line);
+      }
+      #title-a2-dark .arch-line {
+        border-color: var(--mocha);
+      }
+      #title-a2-dark .strip {
+        background: var(--ink);
+        border-top: 1px solid var(--mocha);
       }
 
       /* A-3: 철학 3줄 + 두 아치 (로비 · 원장 진료) */
@@ -969,7 +986,37 @@
     </section>
 
     <!-- 타이틀 A-2: 아래 정보 띠 -->
-    <section class="asset title title-ax" id="title-a2">
+    <section class="asset title title-ax a2" id="title-a2">
+      <div class="copy">
+        <p class="en">Lifting · Petit · Skin</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
+      </div>
+      <div class="arch-line"></div>
+      <div class="arch side">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/laser.jpg"
+        />
+      </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <div class="strip">
+        <span
+          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
+        >
+        <i class="bar"></i>
+        <span>목 10:00 – 20:30 야간진료</span>
+        <i class="bar"></i>
+        <span>토 10:00 – 15:00</span>
+        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
+      </div>
+    </section>
+
+    <!-- 타이틀 A-2 짙은 판 (비교용) -->
+    <section class="asset title title-ax a2" id="title-a2-dark">
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>

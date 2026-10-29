@@ -344,6 +344,7 @@
       }
       #title-a3 .arch.small .photo,
       #post-header .arch.small .photo,
+      #post-footer .arch.small .photo,
       #mobile-cover .arch.small .photo {
         /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
         object-position: 50% 0%;
@@ -706,139 +707,112 @@
         border-bottom: 0;
       }
 
+      /* 글 꼬리: A-3 구성. 휴대폰에서 약 1/5 크기로 보여서 글자를 크게 (본문 42px 이상) */
       #post-footer {
         width: 1720px;
         background: var(--ivory);
-        padding: 120px 120px 110px;
+        padding: 130px 120px 120px;
       }
-      #post-footer .head {
-        text-align: center;
+      #post-footer .panel {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 600px;
+        background: var(--sand);
       }
-      #post-footer .head .en {
-        font-size: 22px;
+      #post-footer .copy {
+        position: relative;
+        width: 880px;
+        display: flex;
+        flex-direction: column;
+      }
+      #post-footer .copy > .en {
+        font-size: 30px;
         color: var(--gold);
       }
-      #post-footer .head h3 {
-        margin-top: 22px;
-        font-size: 52px;
-        font-weight: 600;
-        line-height: 1.4;
-      }
-      #post-footer .head p {
-        margin-top: 20px;
-        font-size: 28px;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-      #post-footer .grid {
-        margin-top: 80px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 36px;
-      }
-      #post-footer .card {
-        background: var(--cream);
-        padding: 56px 60px;
-      }
-      #post-footer .card .en {
-        font-size: 18px;
-        color: var(--gold);
-      }
-      #post-footer .card h4 {
-        margin-top: 12px;
-        font-size: 34px;
-        font-weight: 600;
+      #post-footer .logo {
+        margin-top: 36px;
+        width: 640px;
+        color: var(--ink);
       }
       #post-footer dl {
-        margin-top: 30px;
-        border-top: 2px solid var(--taupe);
+        margin-top: 80px;
+        border-top: 3px solid var(--taupe);
       }
       #post-footer dl div {
         display: flex;
         justify-content: space-between;
-        padding: 20px 0;
-        border-bottom: 2px solid var(--line);
-        font-size: 27px;
+        align-items: baseline;
+        padding: 26px 0;
+        border-bottom: 3px solid var(--line);
       }
       #post-footer dt {
+        font-size: 42px;
         color: var(--muted);
       }
       #post-footer dd {
+        font-size: 48px;
         font-weight: 600;
         font-variant-numeric: tabular-nums;
       }
       #post-footer dd em {
         font-style: normal;
+        font-size: 34px;
         font-weight: 500;
         color: var(--mocha);
-        font-size: 22px;
-        margin-left: 10px;
+        margin-left: 14px;
       }
       #post-footer .closed dd {
         color: var(--gold);
       }
-      #post-footer .card .note {
-        margin-top: 22px;
-        font-size: 22px;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-      #post-footer .loc p:not(.en) {
-        margin-top: 30px;
-        font-size: 28px;
-        line-height: 1.65;
-      }
-      #post-footer .loc ul {
-        margin-top: 30px;
-        list-style: none;
-        border-top: 2px solid var(--line);
-      }
-      #post-footer .loc li {
+      #post-footer .tel {
+        margin-top: 70px;
         display: flex;
-        gap: 24px;
-        padding: 18px 0;
-        border-bottom: 2px solid var(--line);
-        font-size: 23px;
+        align-items: baseline;
+        gap: 30px;
+        font-size: 88px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      #post-footer .tel .en {
+        font-size: 32px;
+        font-weight: 400;
+        color: var(--gold);
+      }
+      #post-footer .addr {
+        margin-top: 30px;
+        font-size: 42px;
         line-height: 1.55;
         color: var(--muted);
       }
-      #post-footer .loc li b {
-        flex: none;
-        width: 80px;
-        color: var(--ink);
-        font-weight: 600;
-      }
-      #post-footer .bar {
-        margin-top: 36px;
-        background: var(--espresso);
-        color: var(--ivory);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 46px 60px;
-      }
-      #post-footer .bar .logo {
-        width: 300px;
-      }
-      #post-footer .bar .tel {
-        font-size: 46px;
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-        letter-spacing: 0.02em;
-      }
-      #post-footer .bar .tel span {
-        font-size: 22px;
-        font-weight: 400;
-        color: var(--taupe);
-        margin-right: 22px;
-        letter-spacing: 0.2em;
-      }
       #post-footer .legal {
-        margin-top: 34px;
-        text-align: center;
-        font-size: 20px;
+        margin-top: 70px;
+        padding-top: 40px;
+        border-top: 3px solid var(--line);
+        font-size: 32px;
+        line-height: 1.6;
         color: var(--muted);
-        line-height: 1.7;
+      }
+      #post-footer .arch {
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+      }
+      #post-footer .arch.main {
+        right: 110px;
+        width: 400px;
+        height: 760px;
+        border-radius: 200px 200px 0 0;
+      }
+      #post-footer .arch.small {
+        right: 420px;
+        width: 270px;
+        height: 480px;
+        border-radius: 135px 135px 0 0;
+        border: 12px solid var(--ivory);
+        border-bottom: 0;
       }
 
       /* 본문 소제목 띠 (1720 × 200) */
@@ -1140,62 +1114,52 @@
       <p class="en">Praveil Point</p>
     </section>
 
-    <!-- 글 꼬리 -->
+    <!-- 글 꼬리: A-3 구성 -->
     <section class="asset" id="post-footer">
-      <div class="head">
+      <div class="panel"></div>
+      <div class="copy">
         <p class="en">Visit Praveil</p>
-        <h3>상담은 대표원장이 직접 진행합니다</h3>
-        <p>
-          피부 상태와 원하시는 방향을 먼저 듣고, 나에게 맞는 계획을 함께
-          정합니다.
+        <div class="logo">{{LOGO}}</div>
+        <dl>
+          <div>
+            <dt>월 · 화 · 수 · 금</dt>
+            <dd>10:00 – 19:00</dd>
+          </div>
+          <div>
+            <dt>목요일</dt>
+            <dd><em>야간진료</em> 10:00 – 20:30</dd>
+          </div>
+          <div>
+            <dt>토요일</dt>
+            <dd>10:00 – 15:00</dd>
+          </div>
+          <div>
+            <dt>점심시간</dt>
+            <dd>13:00 – 14:00</dd>
+          </div>
+          <div class="closed">
+            <dt>일요일 · 공휴일</dt>
+            <dd>휴진</dd>
+          </div>
+        </dl>
+        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
+        <p class="addr">
+          인천광역시 남동구 성말로 10<br />효명프라자 4층 403 · 404호
+        </p>
+        <p class="legal">
+          시술 결과와 회복 기간은 개인에 따라 다를 수 있습니다.<br />시술 전
+          의료진과 충분히 상담해 주세요.
         </p>
       </div>
-      <div class="grid">
-        <div class="card">
-          <p class="en">Hours</p>
-          <h4>진료시간</h4>
-          <dl>
-            <div>
-              <dt>월 · 화 · 수 · 금</dt>
-              <dd>10:00 – 19:00</dd>
-            </div>
-            <div>
-              <dt>목요일</dt>
-              <dd>10:00 – 20:30<em>야간진료</em></dd>
-            </div>
-            <div>
-              <dt>토요일</dt>
-              <dd>10:00 – 15:00</dd>
-            </div>
-            <div>
-              <dt>점심시간</dt>
-              <dd>13:00 – 14:00</dd>
-            </div>
-            <div class="closed">
-              <dt>일요일 · 공휴일</dt>
-              <dd>휴진</dd>
-            </div>
-          </dl>
-          <p class="note">진료 마감 30분 전까지 접수해 주세요.</p>
-        </div>
-        <div class="card loc">
-          <p class="en">Location</p>
-          <h4>오시는 길</h4>
-          <p>인천광역시 남동구 성말로 10<br />효명프라자 4층 403 · 404호</p>
-          <ul>
-            <li><b>지하철</b>인천 1호선 예술회관역 6번 출구</li>
-            <li><b>주차</b>건물 지하주차장 이용 (2시간 무료)</li>
-          </ul>
-        </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
-      <div class="bar">
-        <div class="logo">{{LOGO}}</div>
-        <p class="tel"><span>TEL</span>032-429-7522</p>
+      <div class="arch small">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+        />
       </div>
-      <p class="legal">
-        시술 결과와 회복 기간은 개인에 따라 다를 수 있습니다. 시술 전 의료진과
-        충분히 상담해 주세요.
-      </p>
     </section>
 
     <!-- 6. 모바일 커버: A-3 구성에서 로고와 사진만 -->

@@ -54,4 +54,11 @@ await page.goto(pathToFileURL(join(here, "preview.html")).href);
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: join(out, "preview.png"), fullPage: true });
 console.log("preview.png");
+
+// 타이틀 시안 모아 보기 (확인용)
+await page.setViewportSize({ width: 1046, height: 900 });
+await page.goto(pathToFileURL(join(here, "title-options.html")).href);
+await page.evaluate(() => document.fonts.ready);
+await page.screenshot({ path: join(out, "title-options.png"), fullPage: true });
+console.log("title-options.png");
 await browser.close();

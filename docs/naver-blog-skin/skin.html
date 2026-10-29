@@ -90,15 +90,15 @@
         background: var(--gold);
       }
 
-      /* ── 1. 타이틀 (966 × 400) ── */
-      #title {
+      /* ── 1. 타이틀 (966 × 400) · 시안 A: 아이보리 + 아치 사진 ── */
+      #title-a {
         width: 966px;
         height: 400px;
         background: var(--ivory);
         display: grid;
         grid-template-columns: 400px 1fr;
       }
-      #title .copy {
+      #title-a .copy {
         position: relative;
         padding: 0 0 0 64px;
         display: flex;
@@ -106,33 +106,162 @@
         justify-content: center;
         gap: 26px;
       }
-      #title .copy .en {
+      #title-a .copy .en {
         font-size: 11px;
         color: var(--gold);
       }
-      #title .logo {
+      #title-a .logo {
         width: 290px;
         color: var(--ink);
       }
-      #title .ko {
+      #title-a .ko {
         font-size: 17px;
         font-weight: 500;
         letter-spacing: 0.02em;
       }
-      #title .lead {
+      #title-a .lead {
         font-size: 14px;
         line-height: 1.75;
         color: var(--muted);
         font-weight: 400;
       }
-      #title .pic {
+      #title-a .pic {
         position: relative;
         margin: 28px 28px 28px 0;
         border-radius: 172px 172px 0 0;
         overflow: hidden;
       }
-      #title .pic .photo {
+      #title-a .pic .photo {
         object-position: 50% 60%;
+      }
+
+      /* 타이틀 공통 크기 */
+      .title {
+        width: 966px;
+        height: 400px;
+      }
+
+      /* 시안 B: 사진 전체 + 왼쪽 어둡게 */
+      #title-b {
+        background: var(--espresso);
+      }
+      /* 사진 속 간판과 로고가 겹치지 않게 사진을 오른쪽으로 */
+      #title-b .photo {
+        left: 30%;
+        width: 70%;
+        object-position: 50% 55%;
+      }
+      #title-b .fade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          var(--espresso) 30%,
+          rgba(29, 26, 23, 0.6) 42%,
+          rgba(29, 26, 23, 0) 62%
+        );
+      }
+      #title-b .copy {
+        position: absolute;
+        left: 72px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 26px;
+        color: #fff;
+      }
+      #title-b .en {
+        font-size: 11px;
+        color: var(--taupe);
+      }
+      #title-b .logo {
+        width: 300px;
+      }
+      #title-b .lead {
+        font-size: 14px;
+        line-height: 1.75;
+        color: var(--line);
+      }
+
+      /* 시안 C: 가운데 로고 + 아치 사진 세 장 */
+      #title-c {
+        background: var(--ivory);
+      }
+      #title-c .head {
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      #title-c .en {
+        font-size: 11px;
+        color: var(--gold);
+        margin-right: -0.35em;
+      }
+      #title-c .logo {
+        width: 300px;
+      }
+      #title-c .arches {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 22px;
+      }
+      #title-c .arch {
+        position: relative;
+        width: 210px;
+        height: 190px;
+        border-radius: 105px 105px 0 0;
+        overflow: hidden;
+      }
+      #title-c .arch.mid {
+        width: 250px;
+        height: 230px;
+        border-radius: 125px 125px 0 0;
+      }
+
+      /* 시안 D: 짙은 바탕 + 오른쪽 사진 */
+      #title-d {
+        background: var(--espresso);
+        display: grid;
+        grid-template-columns: 430px 1fr;
+      }
+      #title-d .copy {
+        padding-left: 72px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 26px;
+        color: var(--ivory);
+      }
+      #title-d .en {
+        font-size: 11px;
+        color: var(--taupe);
+      }
+      #title-d .logo {
+        width: 290px;
+      }
+      #title-d .lead {
+        font-size: 14px;
+        line-height: 1.75;
+        color: var(--taupe);
+      }
+      #title-d .pic {
+        position: relative;
+        border-left: 1px solid var(--gold);
+      }
+      #title-d .pic .photo {
+        object-position: 50% 50%;
       }
 
       /* ── 2. 스킨 배경 (2560 × 720) ── */
@@ -544,8 +673,8 @@
     </style>
   </head>
   <body>
-    <!-- 1. 타이틀 -->
-    <section class="asset" id="title">
+    <!-- 1. 타이틀 시안 A: 아이보리 + 아치 사진 -->
+    <section class="asset" id="title-a">
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>
@@ -554,6 +683,50 @@
       </div>
       <div class="pic">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+    </section>
+
+    <!-- 타이틀 시안 B: 사진 전체 + 왼쪽 어둡게 -->
+    <section class="asset title" id="title-b">
+      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
+      <div class="fade"></div>
+      <div class="copy">
+        <p class="en">Lifting · Petit · Skin</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
+      </div>
+    </section>
+
+    <!-- 타이틀 시안 C: 가운데 로고 + 아치 사진 세 장 -->
+    <section class="asset title" id="title-c">
+      <div class="head">
+        <p class="en">Lifting · Petit · Skin</p>
+        <div class="logo">{{LOGO}}</div>
+      </div>
+      <div class="arches">
+        <div class="arch">
+          <img class="photo" src="../../public/images/photos/clinic-2.webp" />
+        </div>
+        <div class="arch mid">
+          <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+        </div>
+        <div class="arch">
+          <img class="photo" src="../../public/images/photos/clinic-6.webp" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 타이틀 시안 D: 짙은 바탕 + 오른쪽 사진 -->
+    <section class="asset title" id="title-d">
+      <div class="copy">
+        <p class="en">Praveil Clinic</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
+      </div>
+      <div class="pic">
+        <img class="photo" src="../../public/images/photos/hero-about.webp" />
       </div>
     </section>
 

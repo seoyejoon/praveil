@@ -32,7 +32,10 @@ function Answer({ text }: { text: string }) {
         <p className="mt-6 border-t border-ink/10 pt-4 text-[13px] leading-[1.9]">
           <span className="mr-3 font-semibold text-ink/50">참고 자료</span>
           {sources.map((s, i) => (
-            <span key={s.href + s.label} className="whitespace-nowrap">
+            <span
+              key={s.href + s.label}
+              className="break-keep md:whitespace-nowrap"
+            >
               {i > 0 && (
                 <span aria-hidden className="mx-2 text-ink/25">
                   |

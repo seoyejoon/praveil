@@ -411,9 +411,7 @@ export function StoryProcess({
                 }
               />
               {/* 원본 3:2 사진은 가운데에 표시하므로 번호는 사진 위 여백에 놓입니다. */}
-              <span
-                className={`absolute grid place-items-center rounded-full bg-white font-display text-sm text-gold ${s.fullFrame ? "top-3 left-3 h-8 w-8" : "top-4 left-4 h-10 w-10"}`}
-              >
+              <span className="absolute top-4 left-4 grid h-10 w-10 place-items-center rounded-full bg-white font-display text-sm text-gold">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
@@ -605,6 +603,8 @@ function PrincipleFigure({
 }: {
   image: NonNullable<DeviceStory["principleImage"]>;
 }) {
+  // 표시(marks)가 없는 공식 자료는 다른 페이지 원리 그림과 같은 8:5 박스를 채움
+  const fill = !image.framed && image.marks.length === 0;
   return (
     <figure
       className={
@@ -614,7 +614,7 @@ function PrincipleFigure({
       }
     >
       <div
-        className={`relative overflow-hidden ${image.note ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${image.framed ? "aspect-[8/5]" : ""}`}
+        className={`relative overflow-hidden ${image.note ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${image.framed || fill ? "aspect-[8/5]" : ""}`}
       >
         {image.video ? (
           <video
@@ -629,7 +629,9 @@ function PrincipleFigure({
             className={
               image.framed
                 ? "h-full w-full object-contain"
-                : "block h-auto w-full"
+                : fill
+                  ? "absolute inset-0 h-full w-full object-contain"
+                  : "block h-auto w-full"
             }
           />
         ) : (
@@ -641,7 +643,9 @@ function PrincipleFigure({
             className={
               image.framed
                 ? "h-full w-full object-contain"
-                : "block h-auto w-full"
+                : fill
+                  ? "absolute inset-0 h-full w-full object-cover"
+                  : "block h-auto w-full"
             }
           />
         )}

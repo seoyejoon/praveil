@@ -721,7 +721,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "원하는 표정 변화 함께 확인",
         text: "주름을 줄이고 싶은 정도와 유지하고 싶은 표정을 함께 듣고, 기대할 수 있는 변화와 한계를 설명합니다.",
-        image: doctorPhotos.consult,
+        image: "/images/photos/hero-consult.webp",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
       },
@@ -750,8 +750,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 주사",
         text: "설계한 부위에 제품별 기준에 맞춰 주사합니다.",
-        image: "/images/photos/process-treatment.webp",
-        alt: "주사 시술 단계 설명에 재사용한 기존 사진",
+        image: "/images/photos/cat-injection.webp",
+        alt: "부위에 맞춰 주사하는 대표원장",
       },
       {
         title: "주의사항 · 경과 안내",
@@ -770,7 +770,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
       image: "/images/photos/best-retuo.webp",
-      photo: "/images/official/retuo-product.jpg",
+      photo: "/images/photos/best-retuo.webp",
       text: "리투오는 기증된 피부 조직에서 세포 성분을 제거한 무세포 동종진피(hADM) 제품입니다. 콜라겐 등 피부를 지지하는 성분을 이용하며, 피부결 · 잔주름 · 탄력 고민과 원료의 특성을 함께 살펴 시술 여부를 정합니다.",
       specs: [
         {
@@ -790,8 +790,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 상태 · 부위 확인 후 결정",
         },
       ],
-      photoAlt: "휴메딕스 공식 리투오 Re2O 제품 패키지",
-      mediaContain: true,
+      photoAlt: "대표원장이 리투오를 시술하는 장면",
     },
     principle: [
       {
@@ -913,8 +912,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "계획한 부위에 적용",
         text: "진찰로 정한 부위와 방법에 따라 진행하며 피부 반응을 살핍니다.",
-        image: "/images/photos/process-treatment.webp",
-        alt: "시술 단계 설명에 재사용한 기존 사진",
+        image: "/images/photos/cat-skin-booster.webp",
+        alt: "계획한 부위에 주입하는 대표원장",
       },
       {
         title: "경과 · 이상 반응 안내",
@@ -1730,7 +1729,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "염증과 흔적을 나누어 봅니다",
         text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
-        image: doctorPhotos.consult,
+        image: "/images/photos/hero-consult.webp",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
       },

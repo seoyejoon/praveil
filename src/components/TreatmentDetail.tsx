@@ -495,7 +495,7 @@ export default function TreatmentDetail({
               title={`${t.title} 세부 시술`}
             />
             <ul
-              className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"}`}
+              className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
             >
               {t.items.map((it, i) => (
                 <Reveal

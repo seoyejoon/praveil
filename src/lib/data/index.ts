@@ -113,3 +113,8 @@ export async function getBeforeAfterCases(member: boolean) {
         stages: c.stages.map((st) => ({ ...st, before: "" })),
       }));
 }
+
+// 외부 서비스 (구글 · 네이버 · 메타 · 카카오): 관리자에서 켠 것만
+export async function getTracking(): Promise<Record<string, string>> {
+  return hasDatabase ? db.getTracking() : {};
+}

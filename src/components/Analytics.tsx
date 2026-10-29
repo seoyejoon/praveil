@@ -46,9 +46,26 @@ export default function Analytics() {
       const a = (e.target as Element | null)?.closest?.("a[href]");
       if (!a) return;
       const href = a.getAttribute("href") ?? "";
-      if (href.startsWith("tel:")) send("phone_click", location.pathname);
-      else if (/booking\.naver\.com|pf\.kakao\.com/.test(href))
-        send("consultation_click", location.pathname);
+      const kind = href.startsWith("tel:")
+        ? "phone_click"
+        : /booking\.naver\.com|pf\.kakao\.com/.test(href)
+          ? "consultation_click"
+          : "";
+      if (!kind) return;
+      send(kind, location.pathname);
+      // 외부 서비스(구글 · 메타)가 켜져 있으면 전환으로도 알림
+      const w = window as Window & {
+        gtag?: (...a: unknown[]) => void;
+        fbq?: (...a: unknown[]) => void;
+      };
+      try {
+        w.gtag?.(
+          "event",
+          kind === "phone_click" ? "phone_call" : "booking_click",
+          { page_path: location.pathname },
+        );
+        w.fbq?.("track", kind === "phone_click" ? "Contact" : "Schedule");
+      } catch {}
     };
     document.addEventListener("click", onClick, { capture: true });
     return () =>

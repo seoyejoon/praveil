@@ -406,3 +406,37 @@ export async function getPopups(): Promise<Popup[]> {
       device: p.device,
     }));
 }
+
+// ---------- 외부 서비스 (관리자 > 외부 서비스) ----------
+
+// 관리자에서 켠 서비스만, 형식이 맞는 값만 홈페이지에 붙인다 (관리자 저장 규칙과 같은 형식)
+const trackingFormats: Record<string, RegExp> = {
+  google_tag_manager: /^GTM-[A-Z0-9]{4,20}$/,
+  google_site_verification: /^[A-Za-z0-9_-]{10,160}$/,
+  google_analytics: /^G-[A-Z0-9]{6,20}$/,
+  naver_site_verification: /^[A-Za-z0-9_-]{10,128}$/,
+  naver_analytics: /^s_[A-Za-z0-9]{6,30}$/,
+  meta_domain_verification: /^[A-Za-z0-9_-]{5,160}$/,
+  meta_pixel: /^\d{5,20}$/,
+  kakao_pixel: /^\d{5,20}$/,
+};
+
+const loadTracking = cached("tracking", () =>
+  sql<{ provider: string; trackingId: string }>(
+    `SELECT provider, tracking_id AS "trackingId" FROM hospital_tracking_integrations
+     WHERE enabled AND hospital_id = (SELECT id FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1)`,
+  ),
+);
+
+export async function getTracking(): Promise<Record<string, string>> {
+  try {
+    const rows = await loadTracking();
+    return Object.fromEntries(
+      rows
+        .filter((r) => trackingFormats[r.provider]?.test(r.trackingId))
+        .map((r) => [r.provider, r.trackingId]),
+    );
+  } catch {
+    return {};
+  }
+}

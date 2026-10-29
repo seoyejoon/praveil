@@ -12,14 +12,15 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import PopupLayer from "@/components/PopupLayer";
 import Analytics from "@/components/Analytics";
-import { getHospital, getPopups } from "@/lib/data";
+import TrackingTags from "@/components/TrackingTags";
+import { getHospital, getPopups, getTracking } from "@/lib/data";
 import { getMember, getSignupSettings } from "@/lib/member";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
 
 // 관리자에서 바꾼 내용이 바로 보이도록 요청마다 화면을 만든다. (DB 조회 결과는 source-db.ts 에서 캐시)
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "프라베일 맑고고운의원",
@@ -37,6 +38,23 @@ export const metadata: Metadata = {
   robots: isPreviewHost ? { index: false, follow: false } : undefined,
 };
 
+// 검색 · 광고 사이트 소유 확인 값 (관리자 > 외부 서비스)
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTracking();
+  const other: Record<string, string> = {};
+  if (t.naver_site_verification)
+    other["naver-site-verification"] = t.naver_site_verification;
+  if (t.meta_domain_verification)
+    other["facebook-domain-verification"] = t.meta_domain_verification;
+  return {
+    ...baseMetadata,
+    verification: {
+      ...(t.google_site_verification && { google: t.google_site_verification }),
+      ...(Object.keys(other).length && { other }),
+    },
+  };
+}
+
 const DAYS: Record<string, string> = {
   월: "Monday",
   화: "Tuesday",
@@ -50,11 +68,12 @@ const DAYS: Record<string, string> = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [hospital, popups, member, signup] = await Promise.all([
+  const [hospital, popups, member, signup, tracking] = await Promise.all([
     getHospital(),
     getPopups(),
     getMember(),
     getSignupSettings(),
+    getTracking(),
   ]);
   const [region = "", locality = "", ...street] = hospital.address.split(" ");
   // 병원 기본 정보 (모든 페이지 공통): 검색엔진 · AI가 병원 이름 · 주소 · 전화 · 진료시간을 정확히 알도록
@@ -125,6 +144,7 @@ export default async function RootLayout({
         <SmoothScroll />
         <CustomCursor />
         <Analytics />
+        {!isPreviewHost && <TrackingTags ids={tracking} />}
       </body>
     </html>
   );

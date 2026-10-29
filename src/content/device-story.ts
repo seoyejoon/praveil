@@ -91,9 +91,13 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
-    /** 공식 도해·영상의 원본 비율에 카드 높이를 맞춰 전체 내용을 표시 */
+    /** 원본 크기. 4:3 박스와 비율이 크게 다르면 자르지 않고 전체를 보여 줌 (남는 자리는 흐린 배경) */
     mediaSize?: { width: number; height: number };
-    /** 1280×960 파일에 덧붙은 상하 120px 여백만 제외하고 16:9 본문을 표시 */
+    /** 자르지 않고 보여 줄 때 남는 자리를 채울 색 [위 · 왼쪽, 아래 · 오른쪽] (사진 가장자리 색) */
+    mediaEdges?: [string, string];
+    /** 박스 채우기 방식을 직접 지정 (기본: 비율로 자동) */
+    mediaFit?: "contain" | "cover";
+    /** 1280×960(4:3) 파일 안에 16:9 본문과 상하 여백이 함께 있는 영상 · 도해 */
     paddedWidescreen?: boolean;
   }[];
   /** 시술 과정: 사진 + 설명 */
@@ -232,6 +236,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",
         mediaSize: { width: 792, height: 864 },
+        mediaFit: "cover",
       },
       {
         title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
@@ -247,6 +252,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         video: "/videos/coolsonic-cooling.mp4",
         alt: "쿨소닉 ACC 냉각 어플리케이터",
         mediaSize: { width: 792, height: 864 },
+        mediaEdges: ["#06141a", "#06141a"],
       },
       {
         title: "콜라겐과 탄성섬유의 재생 유도",
@@ -864,6 +870,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "리투오 · 무세포 동종진피 원료 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 479, height: 479 },
+        mediaEdges: ["#fffeff", "#fffeff"],
       },
       {
         title: "원료와 사용목적을 함께 확인",
@@ -872,6 +879,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "원료와 사용목적을 함께 확인 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 479, height: 479 },
+        mediaEdges: ["#fffeff", "#fffeff"],
       },
       {
         title: "피부 두께와 시술 이력 확인",
@@ -1033,6 +1041,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "리쥬란 · PN 성분을 확인 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 720, height: 232 },
+        mediaEdges: ["#0090a2", "#014b6b"],
       },
       {
         title: "리쥬란 제품과 정품 표시 확인",
@@ -1041,6 +1050,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "리쥬란 제품과 정품 표시 확인 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 890, height: 1008 },
+        mediaEdges: ["#1d2227", "#1d2227"],
       },
       {
         title: "피부 두께와 부위 고려",
@@ -1189,6 +1199,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "리투오 · 인체조직 유래 hADM · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 479, height: 479 },
+        mediaEdges: ["#fffeff", "#fffeff"],
       },
       {
         title: "쥬베룩 · PDLLA와 히알루론산",
@@ -1197,6 +1208,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "쥬베룩 · PDLLA와 히알루론산 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 800, height: 800 },
+        mediaFit: "cover",
       },
       {
         title: "울트라콜 · PDO 미세입자",
@@ -1368,6 +1380,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "슈링크 유니버스 · 초음파를 목표 층에 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 640, height: 263 },
+        mediaEdges: ["#f3f5f7", "#f3f5f7"],
       },
       {
         title: "포텐자 · 팁에 따라 달라지는 RF",
@@ -1376,6 +1389,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "포텐자 · 팁에 따라 달라지는 RF · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 1280, height: 720 },
+        mediaEdges: ["#bbc9d1", "#a7bbce"],
+        mediaFit: "contain",
         video: "/videos/official-potenza-principle.mp4",
       },
       {
@@ -1550,6 +1565,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "민트실 · 재질과 돌기 구조 확인 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 550, height: 550 },
+        mediaEdges: ["#fcfaff", "#fdfbff"],
       },
       {
         title: "개수와 함께 보는 범위 · 배치",
@@ -1890,6 +1906,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "IntelliTrak · 조사 범위를 확인 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 408, height: 464 },
+        mediaEdges: ["#ffffff", "#ffffff"],
       },
       {
         title: "온도 표시와 피부 반응을 함께",
@@ -1898,6 +1915,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "온도 표시와 피부 반응을 함께 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 841, height: 328 },
+        mediaEdges: ["#f4f2ef", "#f4f2ef"],
       },
       {
         title: "다음 예약은 자라는 상태에 맞춰",
@@ -2053,6 +2071,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "피코케이 · 짧은 펄스로 색소에 작용 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 549, height: 549 },
+        mediaFit: "cover",
       },
       {
         title: "핸드피스와 조사 범위 선택",
@@ -2061,6 +2080,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "핸드피스와 조사 범위 선택 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 604, height: 355 },
+        mediaFit: "contain",
+        mediaEdges: ["#f4f2ef", "#f4f2ef"],
       },
       {
         title: "눈가에는 별도의 안전 판단",

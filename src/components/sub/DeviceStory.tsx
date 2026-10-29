@@ -293,61 +293,71 @@ export function StoryFeatures({
           title={story.featuresTitle ?? `${title}만의 특별함`}
         />
         <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
-          {story.features.map((f, i) => (
-            <li
-              key={f.title}
-              className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
-            >
-              <Reveal
-                className={`relative ${f.paddedWidescreen ? "aspect-video" : f.mediaSize ? "" : f.fullFrame && !f.video ? "aspect-[3/2]" : "aspect-[4/3]"} overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+          {story.features.map((f, i) => {
+            // 박스는 모두 4:3 으로 통일. 비율이 크게 다른 공식 도해 · 영상은 자르지 않고
+            // 전체를 보여 주며, 남는 자리는 사진 가장자리 색(mediaEdges)으로 채움
+            const ratio = f.mediaSize
+              ? f.mediaSize.width / f.mediaSize.height
+              : f.paddedWidescreen
+                ? 4 / 3
+                : null;
+            const fit =
+              f.mediaFit ??
+              (ratio && (ratio < 1.2 || ratio > 1.8) ? "contain" : "cover");
+            const edges = fit === "contain" ? f.mediaEdges : undefined;
+            return (
+              <li
+                key={f.title}
+                className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
               >
-                {f.video ? (
-                  <video
-                    src={f.video}
-                    width={f.mediaSize?.width}
-                    height={f.mediaSize?.height}
-                    poster={f.image}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label={f.alt}
-                    className={
-                      f.mediaSize && !f.paddedWidescreen
-                        ? "block h-auto w-full"
-                        : "absolute inset-0 h-full w-full object-cover"
-                    }
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={f.image}
-                    alt={f.alt}
-                    loading="lazy"
-                    width={f.mediaSize?.width ?? (f.fullFrame ? 7008 : undefined)}
-                    height={f.mediaSize?.height ?? (f.fullFrame ? 4672 : undefined)}
-                    className={
-                      f.mediaSize && !f.paddedWidescreen
-                        ? "block h-auto w-full"
-                        : `absolute inset-0 h-full w-full ${f.fullFrame ? "object-contain" : "object-cover"}`
-                    }
-                  />
-                )}
-              </Reveal>
-              <Reveal delay={120} className={i % 2 ? "md:order-1" : ""}>
-                <p className="font-display text-sm tracking-[0.3em] text-gold">
-                  POINT {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-4 text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[30px]">
-                  {f.title}
-                </h3>
-                <p className="mt-4 text-[15px] leading-[1.85] text-muted md:text-[17px]">
-                  {f.text}
-                </p>
-              </Reveal>
-            </li>
-          ))}
+                <Reveal
+                  className={`relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+                >
+                  {edges && (
+                    <div
+                      aria-hidden
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(${ratio && ratio > 4 / 3 ? "to bottom" : "to right"}, ${edges[0]} 50%, ${edges[1]} 50%)`,
+                      }}
+                    />
+                  )}
+                  {f.video ? (
+                    <video
+                      src={f.video}
+                      poster={f.image}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={f.alt}
+                      className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={f.image}
+                      alt={f.alt}
+                      loading="lazy"
+                      className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
+                    />
+                  )}
+                </Reveal>
+                <Reveal delay={120} className={i % 2 ? "md:order-1" : ""}>
+                  <p className="font-display text-sm tracking-[0.3em] text-gold">
+                    POINT {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-4 text-[22px] leading-snug font-semibold tracking-[-0.03em] md:text-[30px]">
+                    {f.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-[1.85] text-muted md:text-[17px]">
+                    {f.text}
+                  </p>
+                </Reveal>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

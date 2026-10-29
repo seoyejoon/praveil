@@ -249,13 +249,12 @@
       }
 
       /* A-2: 아래 정보 띠 */
+      /* 고른 시안. 베이지를 줄이려고 바탕은 흰색 */
+      #title-a2 {
+        background: var(--cream);
+      }
       #title-a2 .copy {
         bottom: 64px;
-      }
-      #title-a2 .watermark {
-        right: 44px;
-        top: 6px;
-        font-size: 120px;
       }
       #title-a2 .arch.main {
         right: 72px;
@@ -272,11 +271,16 @@
         border-radius: 168px 168px 0 0;
       }
       #title-a2 .arch.side {
-        right: 392px;
+        right: 384px;
         bottom: 64px;
-        width: 120px;
-        height: 170px;
-        border-radius: 60px 60px 0 0;
+        width: 150px;
+        height: 214px;
+        border-radius: 75px 75px 0 0;
+      }
+      /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
+      #title-a2 .arch.side .photo,
+      #mobile-cover .arch.side .photo {
+        object-position: 62% 20%;
       }
       #title-a2 .strip {
         position: absolute;
@@ -342,12 +346,11 @@
         border: 6px solid var(--ivory);
         border-bottom: 0;
       }
-      #title-a3 .arch.small .photo,
-      #post-header .arch.small .photo,
-      #post-footer .arch.small .photo,
-      #mobile-cover .arch.small .photo {
-        /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
-        object-position: 62% 20%;
+      #title-a3 .arch.small .photo {
+        /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
+        object-position: 50% 0%;
+        transform: scale(1.6);
+        transform-origin: 50% 22%;
       }
       #title-a3 .copy {
         gap: 20px;
@@ -517,25 +520,9 @@
         border: 2px solid var(--line);
       }
       #widget-hours {
-        padding: 0 24px 40px;
+        padding: 44px 24px 40px;
         background: var(--ivory);
         border: 0;
-      }
-      /* 위쪽 베이지 면에서 로비 아치가 올라옴 (타이틀 A-3 과 같은 구성) */
-      #widget-hours .top {
-        margin: 0 -24px 40px;
-        height: 250px;
-        background: var(--sand);
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-      }
-      #widget-hours .top .arch {
-        position: relative;
-        width: 190px;
-        height: 210px;
-        border-radius: 95px 95px 0 0;
-        overflow: hidden;
       }
       #widget-hours .en {
         font-size: 18px;
@@ -589,8 +576,8 @@
       #widget-hours .tel {
         margin-top: 24px;
         padding: 18px 0 16px;
-        background: var(--sand);
-        color: var(--ink);
+        background: var(--espresso);
+        color: #fff;
         text-align: center;
         font-size: 30px;
         font-weight: 600;
@@ -601,7 +588,7 @@
         display: block;
         font-size: 16px;
         font-weight: 400;
-        color: var(--gold);
+        color: var(--taupe);
         letter-spacing: 0.3em;
         margin-bottom: 4px;
       }
@@ -611,15 +598,12 @@
         align-items: center;
         gap: 22px;
         padding: 0 28px;
-        background: var(--ivory);
       }
       .btn .ico {
-        align-self: flex-end;
-        width: 60px;
-        height: 84px;
-        padding-top: 6px;
-        border-radius: 30px 30px 0 0;
-        background: var(--sand);
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--ivory);
         display: grid;
         place-items: center;
         flex: none;
@@ -644,201 +628,222 @@
         font-size: 15px;
         color: var(--gold);
       }
-      /* 네이버 예약은 베이지 바탕으로 한 단계 강조 */
-      .btn.accent {
-        background: var(--sand);
-        border-color: var(--sand);
+      .btn.dark {
+        background: var(--espresso);
+        border-color: var(--espresso);
+        color: #fff;
       }
-      .btn.accent .ico {
-        background: var(--ivory);
+      .btn.dark .ico {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .btn.dark .ico svg {
+        stroke: var(--taupe);
+      }
+      .btn.dark small {
+        color: var(--taupe);
       }
 
       /* ── 4. 프로필 (600 × 600) ── */
       #profile {
         width: 600px;
         height: 600px;
-        background: var(--ivory);
-        color: var(--ink);
-      }
-      /* 네이버 모바일은 프로필을 원으로 잘라 보여서, 로고는 가운데 원 안에 둠 */
-      #profile .arch {
-        position: absolute;
-        left: 110px;
-        bottom: 0;
-        width: 380px;
-        height: 470px;
-        border-radius: 190px 190px 0 0;
-        background: var(--sand);
-      }
-      #profile .inner {
-        position: absolute;
-        inset: 0;
+        background: var(--espresso);
+        color: var(--ivory);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 26px;
-        padding-top: 70px;
+        gap: 34px;
       }
       #profile .logo {
-        width: 330px;
+        width: 360px;
       }
       #profile .en {
         font-size: 30px;
-        color: var(--gold);
+        color: var(--taupe);
         letter-spacing: 0.5em;
         margin-right: -0.5em;
       }
 
       /* ── 5. 글 머리 · 글 꼬리 (본문 860px, 2배) ── */
-      /* 글 머리: 타이틀 A-3 구성을 단순하게. 휴대폰에서는 약 1/5 크기로 보여서 글은 로고만 크게 */
       #post-header {
         width: 1720px;
         height: 560px;
-        background: var(--ivory);
+        background: var(--espresso);
       }
-      #post-header .panel {
+      #post-header .photo {
+        left: auto;
+        width: 62%;
+        object-position: 50% 45%;
+      }
+      #post-header .fade {
         position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 760px;
-        background: var(--sand);
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          var(--espresso) 38%,
+          rgba(29, 26, 23, 0.55) 52%,
+          rgba(29, 26, 23, 0) 72%
+        );
       }
-      #post-header .logo {
+      #post-header .copy {
         position: absolute;
         left: 120px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 720px;
-        color: var(--ink);
-      }
-      #post-header .arch {
-        position: absolute;
+        top: 0;
         bottom: 0;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 34px;
+        color: var(--ivory);
       }
-      #post-header .arch.main {
-        right: 120px;
-        width: 380px;
-        height: 470px;
-        border-radius: 190px 190px 0 0;
+      #post-header .en {
+        font-size: 22px;
+        color: var(--taupe);
       }
-      #post-header .arch.small {
-        right: 440px;
-        width: 250px;
-        height: 330px;
-        border-radius: 125px 125px 0 0;
-        border: 10px solid var(--ivory);
-        border-bottom: 0;
+      #post-header .logo {
+        width: 520px;
+      }
+      #post-header .ko {
+        font-size: 30px;
+        font-weight: 300;
+        color: var(--line);
+        letter-spacing: 0.04em;
       }
 
-      /* 글 꼬리: A-3 구성. 휴대폰에서 약 1/5 크기로 보여서 글자를 크게 (본문 42px 이상) */
       #post-footer {
         width: 1720px;
         background: var(--ivory);
-        padding: 130px 120px 120px;
+        padding: 120px 120px 110px;
       }
-      #post-footer .panel {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 600px;
-        background: var(--sand);
+      #post-footer .head {
+        text-align: center;
       }
-      #post-footer .copy {
-        position: relative;
-        width: 880px;
-        display: flex;
-        flex-direction: column;
-      }
-      #post-footer .copy > .en {
-        font-size: 30px;
+      #post-footer .head .en {
+        font-size: 22px;
         color: var(--gold);
       }
-      #post-footer .logo {
-        margin-top: 36px;
-        width: 640px;
-        color: var(--ink);
+      #post-footer .head h3 {
+        margin-top: 22px;
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      #post-footer .head p {
+        margin-top: 20px;
+        font-size: 28px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      #post-footer .grid {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      #post-footer .card {
+        background: var(--cream);
+        padding: 56px 60px;
+      }
+      #post-footer .card .en {
+        font-size: 18px;
+        color: var(--gold);
+      }
+      #post-footer .card h4 {
+        margin-top: 12px;
+        font-size: 34px;
+        font-weight: 600;
       }
       #post-footer dl {
-        margin-top: 80px;
-        border-top: 3px solid var(--taupe);
+        margin-top: 30px;
+        border-top: 2px solid var(--taupe);
       }
       #post-footer dl div {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
-        padding: 26px 0;
-        border-bottom: 3px solid var(--line);
+        padding: 20px 0;
+        border-bottom: 2px solid var(--line);
+        font-size: 27px;
       }
       #post-footer dt {
-        font-size: 42px;
         color: var(--muted);
       }
       #post-footer dd {
-        font-size: 48px;
         font-weight: 600;
         font-variant-numeric: tabular-nums;
       }
       #post-footer dd em {
         font-style: normal;
-        font-size: 34px;
         font-weight: 500;
         color: var(--mocha);
-        margin-left: 14px;
+        font-size: 22px;
+        margin-left: 10px;
       }
       #post-footer .closed dd {
         color: var(--gold);
       }
-      #post-footer .tel {
-        margin-top: 70px;
-        display: flex;
-        align-items: baseline;
-        gap: 30px;
-        font-size: 88px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        font-variant-numeric: tabular-nums;
+      #post-footer .card .note {
+        margin-top: 22px;
+        font-size: 22px;
+        color: var(--muted);
+        line-height: 1.6;
       }
-      #post-footer .tel .en {
-        font-size: 32px;
-        font-weight: 400;
-        color: var(--gold);
-      }
-      #post-footer .addr {
+      #post-footer .loc p:not(.en) {
         margin-top: 30px;
-        font-size: 42px;
+        font-size: 28px;
+        line-height: 1.65;
+      }
+      #post-footer .loc ul {
+        margin-top: 30px;
+        list-style: none;
+        border-top: 2px solid var(--line);
+      }
+      #post-footer .loc li {
+        display: flex;
+        gap: 24px;
+        padding: 18px 0;
+        border-bottom: 2px solid var(--line);
+        font-size: 23px;
         line-height: 1.55;
         color: var(--muted);
       }
+      #post-footer .loc li b {
+        flex: none;
+        width: 80px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      #post-footer .bar {
+        margin-top: 36px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 46px 60px;
+      }
+      #post-footer .bar .logo {
+        width: 300px;
+      }
+      #post-footer .bar .tel {
+        font-size: 46px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em;
+      }
+      #post-footer .bar .tel span {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--taupe);
+        margin-right: 22px;
+        letter-spacing: 0.2em;
+      }
       #post-footer .legal {
-        margin-top: 70px;
-        padding-top: 40px;
-        border-top: 3px solid var(--line);
-        font-size: 32px;
-        line-height: 1.6;
+        margin-top: 34px;
+        text-align: center;
+        font-size: 20px;
         color: var(--muted);
-      }
-      #post-footer .arch {
-        position: absolute;
-        bottom: 0;
-        overflow: hidden;
-      }
-      #post-footer .arch.main {
-        right: 110px;
-        width: 400px;
-        height: 760px;
-        border-radius: 200px 200px 0 0;
-      }
-      #post-footer .arch.small {
-        right: 420px;
-        width: 270px;
-        height: 480px;
-        border-radius: 135px 135px 0 0;
-        border: 12px solid var(--ivory);
-        border-bottom: 0;
+        line-height: 1.7;
       }
 
       /* 본문 소제목 띠 (1720 × 200) */
@@ -862,45 +867,67 @@
         height: 2px;
       }
 
-      /* ── 6. 모바일 커버 (1080 × 1080) · A-3 구성에서 글을 빼고 로고와 사진만 ── */
+      /* ── 6. 모바일 커버 (1080 × 1080) · 타이틀 A-2 를 단순하게 ── */
       #mobile-cover {
         width: 1080px;
         height: 1080px;
-        background: var(--ivory);
-      }
-      #mobile-cover .panel {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 420px;
-        background: var(--sand);
+        background: var(--cream);
       }
       #mobile-cover .logo {
         position: absolute;
         left: 90px;
-        top: 230px;
+        top: 200px;
         width: 560px;
         color: var(--ink);
       }
       #mobile-cover .arch {
         position: absolute;
-        bottom: 0;
+        bottom: 150px;
         overflow: hidden;
+      }
+      #mobile-cover .arch-line {
+        position: absolute;
+        right: 66px;
+        bottom: 150px;
+        width: 428px;
+        height: 560px;
+        border: 2px solid var(--taupe);
+        border-bottom: 0;
+        border-radius: 214px 214px 0 0;
       }
       #mobile-cover .arch.main {
         right: 90px;
-        width: 400px;
-        height: 620px;
-        border-radius: 200px 200px 0 0;
+        width: 380px;
+        height: 520px;
+        border-radius: 190px 190px 0 0;
       }
-      #mobile-cover .arch.small {
-        right: 420px;
-        width: 270px;
-        height: 400px;
-        border-radius: 135px 135px 0 0;
-        border: 10px solid var(--ivory);
-        border-bottom: 0;
+      #mobile-cover .arch.side {
+        right: 500px;
+        width: 250px;
+        height: 350px;
+        border-radius: 125px 125px 0 0;
+      }
+      #mobile-cover .strip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 150px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        font-size: 52px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+      #mobile-cover .strip .en {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--taupe);
       }
     </style>
   </head>
@@ -943,7 +970,6 @@
 
     <!-- 타이틀 A-2: 아래 정보 띠 -->
     <section class="asset title title-ax" id="title-a2">
-      <p class="watermark">CLINIC</p>
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>
@@ -952,7 +978,10 @@
       </div>
       <div class="arch-line"></div>
       <div class="arch side">
-        <img class="photo" src="../../public/images/photos/clinic-2.webp" />
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/laser.jpg"
+        />
       </div>
       <div class="arch main">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
@@ -988,7 +1017,7 @@
       <div class="arch small">
         <img
           class="photo"
-          src="../../public/images/photos/retouched/laser.jpg"
+          src="../../public/images/photos/retouched/doctor-portrait.jpg"
         />
       </div>
     </section>
@@ -1051,11 +1080,6 @@
 
     <!-- 3. 위젯 -->
     <section class="asset widget" id="widget-hours">
-      <div class="top">
-        <div class="arch">
-          <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-        </div>
-      </div>
       <p class="en">Hours</p>
       <h3>진료시간</h3>
       <dl>
@@ -1084,7 +1108,7 @@
       <p class="tel"><span>TEL</span>032-429-7522</p>
     </section>
 
-    <section class="asset widget btn accent" id="widget-reserve">
+    <section class="asset widget btn dark" id="widget-reserve">
       <div class="ico">
         <svg viewBox="0 0 24 24">
           <rect x="3.5" y="5" width="17" height="15.5" rx="1.5" />
@@ -1120,25 +1144,19 @@
 
     <!-- 4. 프로필 -->
     <section class="asset" id="profile">
-      <div class="arch"></div>
-      <div class="inner">
-        <div class="logo">{{MARK}}</div>
-        <p class="en">Clinic</p>
-      </div>
+      <div class="logo">{{MARK}}</div>
+      <p class="en">Clinic</p>
     </section>
 
-    <!-- 5. 글 머리: A-3 구성을 단순하게 -->
+    <!-- 5. 글 머리 -->
     <section class="asset" id="post-header">
-      <div class="panel"></div>
-      <div class="logo">{{LOGO}}</div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="arch small">
-        <img
-          class="photo"
-          src="../../public/images/photos/retouched/laser.jpg"
-        />
+      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
+      <div class="fade"></div>
+      <div class="copy">
+        <p class="en">Praveil Clinic Journal</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="ko">피부를 먼저 읽고, 나에게 맞게 설계합니다.</p>
       </div>
     </section>
 
@@ -1148,67 +1166,78 @@
       <p class="en">Praveil Point</p>
     </section>
 
-    <!-- 글 꼬리: A-3 구성 -->
+    <!-- 글 꼬리 -->
     <section class="asset" id="post-footer">
-      <div class="panel"></div>
-      <div class="copy">
+      <div class="head">
         <p class="en">Visit Praveil</p>
+        <h3>상담은 대표원장이 직접 진행합니다</h3>
+        <p>
+          피부 상태와 원하시는 방향을 먼저 듣고, 나에게 맞는 계획을 함께
+          정합니다.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <p class="en">Hours</p>
+          <h4>진료시간</h4>
+          <dl>
+            <div>
+              <dt>월 · 화 · 수 · 금</dt>
+              <dd>10:00 – 19:00</dd>
+            </div>
+            <div>
+              <dt>목요일</dt>
+              <dd>10:00 – 20:30<em>야간진료</em></dd>
+            </div>
+            <div>
+              <dt>토요일</dt>
+              <dd>10:00 – 15:00</dd>
+            </div>
+            <div>
+              <dt>점심시간</dt>
+              <dd>13:00 – 14:00</dd>
+            </div>
+            <div class="closed">
+              <dt>일요일 · 공휴일</dt>
+              <dd>휴진</dd>
+            </div>
+          </dl>
+          <p class="note">진료 마감 30분 전까지 접수해 주세요.</p>
+        </div>
+        <div class="card loc">
+          <p class="en">Location</p>
+          <h4>오시는 길</h4>
+          <p>인천광역시 남동구 성말로 10<br />효명프라자 4층 403 · 404호</p>
+          <ul>
+            <li><b>지하철</b>인천 1호선 예술회관역 6번 출구</li>
+            <li><b>주차</b>건물 지하주차장 이용 (2시간 무료)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bar">
         <div class="logo">{{LOGO}}</div>
-        <dl>
-          <div>
-            <dt>월 · 화 · 수 · 금</dt>
-            <dd>10:00 – 19:00</dd>
-          </div>
-          <div>
-            <dt>목요일</dt>
-            <dd><em>야간진료</em> 10:00 – 20:30</dd>
-          </div>
-          <div>
-            <dt>토요일</dt>
-            <dd>10:00 – 15:00</dd>
-          </div>
-          <div>
-            <dt>점심시간</dt>
-            <dd>13:00 – 14:00</dd>
-          </div>
-          <div class="closed">
-            <dt>일요일 · 공휴일</dt>
-            <dd>휴진</dd>
-          </div>
-        </dl>
-        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
-        <p class="addr">
-          인천광역시 남동구 성말로 10<br />효명프라자 4층 403 · 404호
-        </p>
-        <p class="legal">
-          시술 결과와 회복 기간은 개인에 따라 다를 수 있습니다.<br />시술 전
-          의료진과 충분히 상담해 주세요.
-        </p>
+        <p class="tel"><span>TEL</span>032-429-7522</p>
       </div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="arch small">
-        <img
-          class="photo"
-          src="../../public/images/photos/retouched/laser.jpg"
-        />
-      </div>
+      <p class="legal">
+        시술 결과와 회복 기간은 개인에 따라 다를 수 있습니다. 시술 전 의료진과
+        충분히 상담해 주세요.
+      </p>
     </section>
 
-    <!-- 6. 모바일 커버: A-3 구성에서 로고와 사진만 -->
+    <!-- 6. 모바일 커버: 타이틀 A-2 를 단순하게 -->
     <section class="asset" id="mobile-cover">
-      <div class="panel"></div>
       <div class="logo">{{LOGO}}</div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="arch small">
+      <div class="arch-line"></div>
+      <div class="arch side">
         <img
           class="photo"
           src="../../public/images/photos/retouched/laser.jpg"
         />
       </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <p class="strip"><span class="en">Tel</span>032-429-7522</p>
     </section>
   </body>
 </html>

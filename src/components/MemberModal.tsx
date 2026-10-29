@@ -153,7 +153,7 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
         {!config ? (
           <p className="mt-10 mb-4 text-center text-sm leading-relaxed text-muted">회원 기능을 준비 중입니다.</p>
         ) : tab === "login" ? (
-          <form onSubmit={onLogin} className="mt-8 space-y-3">
+          <form key="login" onSubmit={onLogin} className="mt-8 space-y-3">
             {notice && <p className="rounded-xl bg-gold/10 px-4 py-3 text-sm text-mocha">{notice}</p>}
             <input name="identifier" required autoComplete="username" placeholder="아이디 또는 이메일" className={input} />
             <input name="password" type="password" required autoComplete="current-password" placeholder="비밀번호" className={input} />
@@ -171,7 +171,8 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
         ) : !config.enabled ? (
           <p className="mt-10 mb-4 text-center text-sm text-muted">현재 회원가입을 받고 있지 않습니다.</p>
         ) : (
-          <form onSubmit={onSignup} className="mt-8 space-y-3">
+          {/* key: 로그인 · 가입 칸이 서로 재사용되지 않게 (입력값 · 비밀번호가 다른 칸으로 넘어가지 않도록) */}
+          <form key="signup" onSubmit={onSignup} className="mt-8 space-y-3">
             <input name="username" autoComplete="username" placeholder="아이디 * (영문 소문자 · 숫자 4~30자)" pattern="[a-z0-9][a-z0-9._\-]{3,29}" required className={input} />
             <input name="name" required minLength={2} autoComplete="name" placeholder="이름 *" className={input} />
             <input name="email" type="email" required autoComplete="email" placeholder="이메일 *" className={input} />

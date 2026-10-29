@@ -72,8 +72,8 @@ export default async function SectionPage({ params }: Props) {
       getHospital(),
       getDoctor(),
       getProcedures(),
-      // 시술 페이지 미리 보기는 로그인 없이 시술 전 사진까지 보여 줌
-      getBeforeAfterCases(true),
+      // 시술 전 사진은 회원에게만: 시술 페이지(정적 페이지)에서는 항상 잠금, 회원은 전후사진 게시판에서 확인
+      getBeforeAfterCases(false),
       deviceStory[t.href] ? getBlogPosts(30) : [],
     ]);
     // 블로그: 이 시술 이름이 들어간 글 먼저

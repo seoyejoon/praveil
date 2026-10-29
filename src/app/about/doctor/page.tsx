@@ -249,13 +249,7 @@ export default async function DoctorPage() {
                       src={it.image}
                       alt={it.name}
                       loading="lazy"
-                      width={it.photoFit === "full-frame" ? 7008 : undefined}
-                      height={it.photoFit === "full-frame" ? 4672 : undefined}
-                      className={
-                        it.photoFit === "full-frame"
-                          ? "aspect-[4/3] w-full bg-ivory object-contain md:aspect-[4/5]"
-                          : "aspect-[4/3] w-full object-cover md:aspect-[4/5] transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
-                      }
+                      className="aspect-[4/3] w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105 md:aspect-[4/5]"
                     />
                   </div>
                   <p className="mt-5 flex items-center gap-2 text-xs text-taupe">

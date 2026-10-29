@@ -14,7 +14,7 @@ import {
   aboutPromise,
   aboutSpace,
 } from "@/content/about";
-import { mainCategoryImage, mainCategoryPhotoFit } from "@/content/main";
+import { mainCategoryImage } from "@/content/main";
 import { sitemap } from "@/content/sitemap";
 import { areaOf, josa } from "@/content/treatment-guide";
 import { getDoctor, getHospital } from "@/lib/data";
@@ -212,7 +212,7 @@ export default async function AboutIntroPage() {
               className={`group relative overflow-hidden rounded-[24px] bg-ivory ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
             >
               <div
-                className={`overflow-hidden ${it.photoFit === "full-frame" ? "aspect-[3/2]" : i < 2 ? "aspect-[16/9]" : "aspect-[4/3]"}`}
+                className={`overflow-hidden ${i < 2 ? "aspect-[16/9]" : "aspect-[4/3]"}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -220,9 +220,7 @@ export default async function AboutIntroPage() {
                   alt={it.title}
                   loading="lazy"
                   className={
-                    it.photoFit === "full-frame"
-                      ? "h-full w-full object-contain"
-                      : "h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                    "h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
                   }
                 />
               </div>
@@ -352,29 +350,17 @@ export default async function AboutIntroPage() {
               <Reveal as="li" key={f.key} delay={i * 80}>
                 <Link
                   href={f.href}
-                  className={`group relative block overflow-hidden rounded-[20px] ${mainCategoryPhotoFit[f.key] === "full-frame" ? "h-full bg-ink" : "aspect-[4/3] md:aspect-[4/5]"}`}
+                  className="group relative block aspect-[4/3] overflow-hidden rounded-[20px] md:aspect-[4/5]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={mainCategoryImage[f.key]}
                     alt={f.label}
                     loading="lazy"
-                    className={
-                      mainCategoryPhotoFit[f.key] === "full-frame"
-                        ? "block aspect-[3/2] w-full object-contain"
-                        : "absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
-                    }
+                    className="absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
                   />
-                  {mainCategoryPhotoFit[f.key] !== "full-frame" && (
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.1),rgba(24,19,15,0.75))]" />
-                  )}
-                  <div
-                    className={
-                      mainCategoryPhotoFit[f.key] === "full-frame"
-                        ? "p-6"
-                        : "absolute inset-x-0 bottom-0 p-6"
-                    }
-                  >
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.1),rgba(24,19,15,0.75))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
                     <p className="font-display text-[11px] tracking-[0.25em] text-taupe uppercase">
                       {f.en}
                     </p>

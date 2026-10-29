@@ -1,6 +1,11 @@
 // 관리자(psbox-admin-only/lib/public-hospital-policy.ts)와 같은 기본 약관 문구. 관리자에서 직접 입력하면 그 글이 우선한다.
 
-export type PolicyHospital = { name: string; address?: string; region?: string; phone?: string };
+export type PolicyHospital = {
+  name: string;
+  address?: string;
+  region?: string;
+  phone?: string;
+};
 export type PublicPolicyTerms = {
   businessName: string;
   representativeName: string;
@@ -18,7 +23,10 @@ function contactLines(hospital: PolicyHospital, businessName: string) {
   ].join("\n");
 }
 
-export function defaultHospitalTerms(hospital: PolicyHospital, terms: PublicPolicyTerms) {
+export function defaultHospitalTerms(
+  hospital: PolicyHospital,
+  terms: PublicPolicyTerms,
+) {
   const businessName = terms.businessName || hospital.name;
   return `본 약관은 ${businessName}(이하 “본원”)이 운영하는 홈페이지에서 제공하는 회원 및 온라인 서비스의 이용 조건을 정합니다.
 
@@ -77,23 +85,73 @@ ${contactLines(hospital, businessName)}
 시행일: 2026년 8월 26일`;
 }
 
-export function defaultHospitalPrivacy(hospital: PolicyHospital, terms: PublicPolicyTerms) {
+// 외부 분석 · 광고 도구 (관리자 > 외부 서비스에서 켠 것만 방침에 적음)
+const externalTools: Record<
+  string,
+  { name: string; company: string; optOut: string }
+> = {
+  google: {
+    name: "구글 애널리틱스 · 구글 태그 매니저",
+    company: "Google LLC",
+    optOut:
+      "구글 애널리틱스 차단 부가기능(https://tools.google.com/dlpage/gaoptout)",
+  },
+  naver: {
+    name: "네이버 애널리틱스",
+    company: "네이버 주식회사",
+    optOut: "브라우저의 쿠키 차단 설정",
+  },
+  meta: {
+    name: "Meta 픽셀",
+    company: "Meta Platforms, Inc.",
+    optOut: "Meta 광고 설정(https://www.facebook.com/adpreferences)",
+  },
+  kakao: {
+    name: "카카오 픽셀",
+    company: "주식회사 카카오",
+    optOut: "카카오 맞춤형 광고 설정(https://info.ad.daum.net/optout.do)",
+  },
+};
+const toolOf: Record<string, keyof typeof externalTools> = {
+  google_analytics: "google",
+  google_tag_manager: "google",
+  naver_analytics: "naver",
+  meta_pixel: "meta",
+  kakao_pixel: "kakao",
+};
+
+function externalToolLines(enabled: string[]) {
+  const tools = [...new Set(enabled.map((p) => toolOf[p]).filter(Boolean))].map(
+    (k) => externalTools[k],
+  );
+  if (!tools.length) return "";
+  return `
+본원은 홈페이지 이용 현황을 분석하고 광고 효과를 측정하기 위해 아래 외부 도구를 사용합니다. 이 도구들은 쿠키 등을 통해 방문 페이지, 이용 시간, 기기 · 브라우저 정보, 유입 경로 같은 행태정보를 수집하며, 이름 · 연락처처럼 개인을 바로 알아볼 수 있는 정보는 수집하지 않습니다. 수집된 정보는 각 사업자의 개인정보처리방침에 따라 처리되며, 해외 사업자의 경우 해외 서버에 저장될 수 있습니다.
+${tools.map((t) => `- ${t.name} (${t.company}): 거부 방법 · ${t.optOut}`).join("\n")}
+`;
+}
+
+export function defaultHospitalPrivacy(
+  hospital: PolicyHospital,
+  terms: PublicPolicyTerms,
+  enabledTracking: string[] = [],
+) {
   const businessName = terms.businessName || hospital.name;
-  return `${businessName}(이하 “본원”)은 이용자의 개인정보를 중요하게 생각하며 관련 법령에 따라 안전하게 처리합니다. 본 방침은 홈페이지 회원가입, 상담·예약 및 게시판 이용 과정에서 처리하는 개인정보에 적용됩니다.
+  return `${businessName}(이하 “본원”)은 이용자의 개인정보를 중요하게 생각하며 관련 법령에 따라 안전하게 처리합니다. 본 방침은 홈페이지 회원가입, 게시판 이용과 홈페이지 방문 과정에서 처리하는 개인정보에 적용됩니다.
 
 1. 개인정보의 처리 목적
-본원은 회원 식별·인증과 회원정보 관리, 상담·예약 접수 및 안내, 게시판과 이벤트 운영, 문의·민원 처리, 서비스 보안과 부정 이용 방지, 선택 동의한 이용자에 대한 소식 안내를 위해 개인정보를 처리합니다.
+본원은 회원 식별 · 인증과 회원정보 관리, 예약 확인 및 안내, 게시판과 이벤트 운영, 문의 · 민원 처리, 홈페이지 이용 통계 분석, 서비스 보안과 부정 이용 방지, 선택 동의한 이용자에 대한 소식 안내를 위해 개인정보를 처리합니다.
 
 2. 처리하는 개인정보 항목
 1) 회원가입 필수: 이름, 이메일, 비밀번호, 설정에 따라 휴대전화번호
 2) 회원가입 선택: 주소, 생년월일, 성별, 가입경로 등 이용자가 선택하여 입력한 정보
-3) 소셜 로그인 이용 시: 소셜 서비스가 제공하는 식별자와 이용자가 동의한 프로필·이메일 정보
-4) 상담·예약 시: 이름, 연락처, 상담 또는 예약 내용과 이용자가 직접 입력한 정보
-5) 서비스 이용 과정에서 자동 생성: 접속 IP, 접속 일시, 서비스 이용 기록, 쿠키, 기기·브라우저 정보
+3) 소셜 로그인 이용 시: 소셜 서비스가 제공하는 식별자와 이용자가 동의한 프로필 · 이메일 정보
+4) 서비스 이용 과정에서 자동 생성: 접속 일시, 방문한 페이지, 유입 경로, 기기 · 브라우저 정보, 쿠키
 본원은 회원가입 단계에서 진료기록 등 민감정보를 수집하지 않습니다. 상담 또는 진료 과정에서 별도의 개인정보나 민감정보가 필요한 경우 해당 절차에서 별도로 안내하고 동의를 받습니다.
 
 3. 개인정보의 수집 방법
-홈페이지 회원가입·상담·예약·게시판에서 이용자가 직접 입력하는 방법, 소셜 로그인 동의 화면에서 제공받는 방법, 홈페이지 이용 과정에서 접속 기록 등이 자동 생성되는 방법으로 수집합니다.
+홈페이지 회원가입 · 게시판에서 이용자가 직접 입력하는 방법, 소셜 로그인 동의 화면에서 제공받는 방법, 홈페이지 이용 과정에서 접속 기록 등이 자동 생성되는 방법으로 수집합니다.
+홈페이지의 온라인 예약은 네이버 예약을 통해 받습니다. 네이버 예약에서 입력한 정보(이름, 연락처, 예약 일시 등)는 네이버 주식회사의 개인정보처리방침에 따라 수집되며, 본원은 예약 확인과 안내를 위해 필요한 범위에서 이를 제공받아 이용합니다.
 
 4. 개인정보의 보유 및 이용 기간
 개인정보는 처리 목적이 달성되거나 회원이 탈퇴하면 지체 없이 파기합니다. 다만 관계 법령에 따른 보존 의무가 있는 경우에는 해당 기간 동안 별도로 보관합니다.
@@ -105,7 +163,9 @@ export function defaultHospitalPrivacy(hospital: PolicyHospital, terms: PublicPo
 본원은 이용자의 개인정보를 본 방침에 명시한 목적 범위에서 처리하며, 이용자의 별도 동의가 있거나 법령에 특별한 규정이 있는 경우를 제외하고 제3자에게 제공하지 않습니다.
 
 6. 개인정보 처리업무의 위탁
-본원은 안정적인 홈페이지와 알림 서비스 운영을 위해 호스팅, 데이터 보관, 본인확인 또는 메시지 발송 업무의 일부를 전문 업체에 위탁할 수 있습니다. 수탁자와 위탁 내용이 확정되거나 변경되는 경우 본 방침 또는 별도 공지를 통해 공개하며, 수탁자가 개인정보를 안전하게 처리하도록 관리·감독합니다.
+본원은 안정적인 홈페이지 운영을 위해 서버 호스팅과 데이터 보관 업무를 전문 업체에 위탁합니다.
+- 수탁자: 카페24 주식회사 / 위탁 업무: 홈페이지 서버 운영 및 데이터 보관
+본원은 수탁자가 개인정보를 안전하게 처리하도록 관리 · 감독하며, 수탁자나 위탁 내용이 바뀌는 경우 본 방침을 통해 알립니다.
 
 7. 이용자의 권리와 행사 방법
 이용자는 자신의 개인정보에 대해 열람, 정정, 삭제, 처리정지 및 회원 탈퇴를 요청할 수 있습니다. 권리 행사는 회원정보 화면 또는 아래 연락처를 통해 할 수 있으며 본원은 본인 확인 후 관련 법령에 따라 처리합니다.
@@ -114,10 +174,15 @@ export function defaultHospitalPrivacy(hospital: PolicyHospital, terms: PublicPo
 보유 기간이 지나거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다. 전자적 파일은 복구하기 어려운 방법으로 삭제하고 종이 문서는 분쇄하거나 소각합니다. 법령에 따라 별도 보관하는 정보는 다른 개인정보와 분리하여 보관합니다.
 
 9. 개인정보의 안전성 확보 조치
-본원은 개인정보 접근 권한 관리, 비밀번호 및 중요 정보의 안전한 저장, 접속 기록 관리, 보안프로그램 운영, 전송 구간 암호화(HTTPS) 등 개인정보 보호에 필요한 기술적·관리적 조치를 시행합니다.
+본원은 개인정보 접근 권한 관리, 비밀번호 및 중요 정보의 안전한 저장, 접속 기록 관리, 보안프로그램 운영, 전송 구간 암호화(HTTPS) 등 개인정보 보호에 필요한 기술적 · 관리적 조치를 시행합니다.
 
-10. 쿠키의 이용과 거부
-본원은 로그인 상태 유지와 서비스 편의 제공을 위해 쿠키를 사용할 수 있습니다. 이용자는 브라우저 설정을 통해 쿠키 저장을 허용하거나 거부할 수 있으나 쿠키를 거부하면 로그인 등 일부 서비스 이용이 제한될 수 있습니다.
+10. 쿠키 및 행태정보의 수집 · 이용과 거부
+본원은 로그인 상태 유지를 위해 쿠키를 사용합니다. 또한 홈페이지 이용 통계를 위해 방문한 페이지, 유입 경로, 전화 · 예약 버튼 이용 여부를 기록하며, 이때 IP 주소는 저장하지 않고 하루 단위로 바뀌는 익명 값으로만 방문자 수를 셉니다.
+${externalToolLines(enabledTracking)}
+이용자는 브라우저 설정에서 쿠키 저장을 허용하거나 거부할 수 있습니다. 쿠키를 거부하면 로그인 등 일부 서비스 이용이 제한될 수 있습니다.
+- 크롬: 설정 > 개인정보 보호 및 보안 > 서드 파티 쿠키
+- 엣지: 설정 > 쿠키 및 사이트 권한 > 쿠키 및 사이트 데이터 관리
+- 사파리(아이폰): 설정 > 앱 > Safari > 모든 쿠키 차단
 
 11. 만 14세 미만 아동
 본원은 원칙적으로 만 14세 미만 아동의 홈페이지 회원가입을 받지 않습니다. 진료 과정에서 아동의 개인정보 처리가 필요한 경우에는 관련 법령에 따라 법정대리인의 동의를 받는 등 필요한 조치를 합니다.
@@ -126,16 +191,25 @@ export function defaultHospitalPrivacy(hospital: PolicyHospital, terms: PublicPo
 개인정보 열람, 정정, 삭제, 처리정지, 회원 탈퇴 및 침해 관련 문의는 아래 연락처로 접수할 수 있습니다.
 담당부서: ${terms.privacyOfficer || `${businessName} 개인정보 담당자`}
 ${contactLines(hospital, businessName)}
+개인정보 침해에 대한 신고나 상담은 개인정보침해신고센터(국번 없이 118, privacy.kisa.or.kr), 개인정보분쟁조정위원회(1833-6972, www.kopico.go.kr)에도 할 수 있습니다.
 
 13. 처리방침의 변경
 본 방침이 변경되는 경우 시행일과 주요 변경 내용을 홈페이지를 통해 관련 법령에 따라 사전에 안내합니다.
 
-공고일 및 시행일: 2026년 8월 26일`;
+공고일 및 시행일: 2026년 10월 29일`;
 }
 
-export function resolveHospitalPolicy(hospital: PolicyHospital, terms: PublicPolicyTerms, kind: "terms" | "privacy") {
-  const stored = (kind === "terms" ? terms.termsOfService : terms.privacyPolicy).trim();
+export function resolveHospitalPolicy(
+  hospital: PolicyHospital,
+  terms: PublicPolicyTerms,
+  kind: "terms" | "privacy",
+  enabledTracking: string[] = [],
+) {
+  const stored = (
+    kind === "terms" ? terms.termsOfService : terms.privacyPolicy
+  ).trim();
   if (stored) return stored;
-  return kind === "terms" ? defaultHospitalTerms(hospital, terms) : defaultHospitalPrivacy(hospital, terms);
+  return kind === "terms"
+    ? defaultHospitalTerms(hospital, terms)
+    : defaultHospitalPrivacy(hospital, terms, enabledTracking);
 }
-

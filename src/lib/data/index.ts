@@ -36,6 +36,8 @@ export async function getPolicy(kind: "terms" | "privacy") {
     },
     terms,
     kind,
+    // 외부 분석 도구: 관리자에서 켠 것만 개인정보처리방침에 적음
+    kind === "privacy" ? Object.keys(await getTracking()) : [],
   );
 }
 

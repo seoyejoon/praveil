@@ -863,46 +863,88 @@
         height: 2px;
       }
 
-      /* ── 6. 모바일 커버 (1080 × 1080) ── */
+      /* ── 6. 모바일 커버 (1080 × 1080) · 타이틀 A-3 과 같은 구성을 세로로 ── */
       #mobile-cover {
         width: 1080px;
         height: 1080px;
-        background: var(--espresso);
+        background: var(--ivory);
       }
-      #mobile-cover .photo {
-        object-position: 50% 55%;
-      }
-      #mobile-cover .shade {
+      #mobile-cover .panel {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          rgba(21, 19, 17, 0.1) 30%,
-          rgba(21, 19, 17, 0.75) 100%
-        );
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 420px;
+        background: var(--sand);
+      }
+      #mobile-cover .motto {
+        position: absolute;
+        right: 60px;
+        top: 70px;
+        font-family: "Oswald", sans-serif;
+        font-size: 21px;
+        color: var(--gold);
+        letter-spacing: 0.35em;
       }
       #mobile-cover .copy {
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 150px;
-        text-align: center;
-        color: #fff;
+        left: 90px;
+        top: 220px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 30px;
+        gap: 34px;
+      }
+      #mobile-cover .copy .en {
+        font-size: 22px;
+        color: var(--gold);
       }
       #mobile-cover .logo {
-        width: 560px;
+        width: 520px;
+        color: var(--ink);
       }
-      #mobile-cover .ko {
-        font-size: 36px;
+      #mobile-cover ol {
+        list-style: none;
+        width: 440px;
+        border-top: 2px solid var(--line);
+      }
+      #mobile-cover li {
+        display: flex;
+        gap: 26px;
+        align-items: baseline;
+        padding: 18px 0;
+        border-bottom: 2px solid var(--line);
+        font-size: 26px;
+      }
+      #mobile-cover li b {
+        font-family: "Oswald", sans-serif;
         font-weight: 400;
-        letter-spacing: 0.08em;
-      }
-      #mobile-cover .en {
         font-size: 22px;
-        color: var(--taupe);
+        color: var(--gold);
+        letter-spacing: 0.1em;
+      }
+      #mobile-cover .arch {
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+      }
+      #mobile-cover .arch.main {
+        right: 90px;
+        width: 400px;
+        height: 620px;
+        border-radius: 200px 200px 0 0;
+      }
+      #mobile-cover .arch.small {
+        right: 420px;
+        width: 270px;
+        height: 400px;
+        border-radius: 135px 135px 0 0;
+        border: 10px solid var(--ivory);
+        border-bottom: 0;
+      }
+      #mobile-cover .arch.small .photo {
+        object-position: 50% 0%;
+        transform: scale(1.6);
+        transform-origin: 50% 22%;
       }
     </style>
   </head>
@@ -1197,13 +1239,27 @@
       </p>
     </section>
 
-    <!-- 6. 모바일 커버 -->
+    <!-- 6. 모바일 커버: 타이틀 A-3 과 같은 구성 -->
     <section class="asset" id="mobile-cover">
-      <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      <div class="shade"></div>
+      <div class="panel"></div>
+      <p class="motto">Not More, But Right</p>
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>
+        <ol>
+          <li><b>01</b>피부를 먼저 읽습니다.</li>
+          <li><b>02</b>나에게 맞게 설계합니다.</li>
+          <li><b>03</b>자연스러운 변화를 만듭니다.</li>
+        </ol>
+      </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <div class="arch small">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+        />
       </div>
     </section>
   </body>

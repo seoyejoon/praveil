@@ -342,7 +342,9 @@
         border: 6px solid var(--ivory);
         border-bottom: 0;
       }
-      #title-a3 .arch.small .photo {
+      #title-a3 .arch.small .photo,
+      #post-header .arch.small .photo,
+      #mobile-cover .arch.small .photo {
         /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
         object-position: 50% 0%;
         transform: scale(1.6);
@@ -662,49 +664,46 @@
       }
 
       /* ── 5. 글 머리 · 글 꼬리 (본문 860px, 2배) ── */
+      /* 글 머리: 타이틀 A-3 구성을 단순하게. 휴대폰에서는 약 1/5 크기로 보여서 글은 로고만 크게 */
       #post-header {
         width: 1720px;
         height: 560px;
-        background: var(--espresso);
+        background: var(--ivory);
       }
-      #post-header .photo {
-        left: auto;
-        width: 62%;
-        object-position: 50% 45%;
-      }
-      #post-header .fade {
+      #post-header .panel {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          90deg,
-          var(--espresso) 38%,
-          rgba(29, 26, 23, 0.55) 52%,
-          rgba(29, 26, 23, 0) 72%
-        );
-      }
-      #post-header .copy {
-        position: absolute;
-        left: 120px;
+        right: 0;
         top: 0;
         bottom: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 34px;
-        color: var(--ivory);
-      }
-      #post-header .en {
-        font-size: 22px;
-        color: var(--taupe);
+        width: 760px;
+        background: var(--sand);
       }
       #post-header .logo {
-        width: 520px;
+        position: absolute;
+        left: 120px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 720px;
+        color: var(--ink);
       }
-      #post-header .ko {
-        font-size: 30px;
-        font-weight: 300;
-        color: var(--line);
-        letter-spacing: 0.04em;
+      #post-header .arch {
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+      }
+      #post-header .arch.main {
+        right: 120px;
+        width: 380px;
+        height: 470px;
+        border-radius: 190px 190px 0 0;
+      }
+      #post-header .arch.small {
+        right: 440px;
+        width: 250px;
+        height: 330px;
+        border-radius: 125px 125px 0 0;
+        border: 10px solid var(--ivory);
+        border-bottom: 0;
       }
 
       #post-footer {
@@ -863,7 +862,7 @@
         height: 2px;
       }
 
-      /* ── 6. 모바일 커버 (1080 × 1080) · 타이틀 A-3 과 같은 구성을 세로로 ── */
+      /* ── 6. 모바일 커버 (1080 × 1080) · A-3 구성에서 글을 빼고 로고와 사진만 ── */
       #mobile-cover {
         width: 1080px;
         height: 1080px;
@@ -877,50 +876,12 @@
         width: 420px;
         background: var(--sand);
       }
-      #mobile-cover .motto {
-        position: absolute;
-        right: 60px;
-        top: 70px;
-        font-family: "Oswald", sans-serif;
-        font-size: 21px;
-        color: var(--gold);
-        letter-spacing: 0.35em;
-      }
-      #mobile-cover .copy {
+      #mobile-cover .logo {
         position: absolute;
         left: 90px;
-        top: 220px;
-        display: flex;
-        flex-direction: column;
-        gap: 34px;
-      }
-      #mobile-cover .copy .en {
-        font-size: 22px;
-        color: var(--gold);
-      }
-      #mobile-cover .logo {
-        width: 520px;
+        top: 230px;
+        width: 560px;
         color: var(--ink);
-      }
-      #mobile-cover ol {
-        list-style: none;
-        width: 440px;
-        border-top: 2px solid var(--line);
-      }
-      #mobile-cover li {
-        display: flex;
-        gap: 26px;
-        align-items: baseline;
-        padding: 18px 0;
-        border-bottom: 2px solid var(--line);
-        font-size: 26px;
-      }
-      #mobile-cover li b {
-        font-family: "Oswald", sans-serif;
-        font-weight: 400;
-        font-size: 22px;
-        color: var(--gold);
-        letter-spacing: 0.1em;
       }
       #mobile-cover .arch {
         position: absolute;
@@ -940,11 +901,6 @@
         border-radius: 135px 135px 0 0;
         border: 10px solid var(--ivory);
         border-bottom: 0;
-      }
-      #mobile-cover .arch.small .photo {
-        object-position: 50% 0%;
-        transform: scale(1.6);
-        transform-origin: 50% 22%;
       }
     </style>
   </head>
@@ -1163,15 +1119,18 @@
       <p class="en">Clinic</p>
     </section>
 
-    <!-- 5. 글 머리 -->
+    <!-- 5. 글 머리: A-3 구성을 단순하게 -->
     <section class="asset" id="post-header">
-      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
-      <div class="fade"></div>
-      <div class="copy">
-        <p class="en">Praveil Clinic Journal</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="ko">피부를 먼저 읽고, 나에게 맞게 설계합니다.</p>
+      <div class="panel"></div>
+      <div class="logo">{{LOGO}}</div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <div class="arch small">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+        />
       </div>
     </section>
 
@@ -1239,19 +1198,10 @@
       </p>
     </section>
 
-    <!-- 6. 모바일 커버: 타이틀 A-3 과 같은 구성 -->
+    <!-- 6. 모바일 커버: A-3 구성에서 로고와 사진만 -->
     <section class="asset" id="mobile-cover">
       <div class="panel"></div>
-      <p class="motto">Not More, But Right</p>
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <ol>
-          <li><b>01</b>피부를 먼저 읽습니다.</li>
-          <li><b>02</b>나에게 맞게 설계합니다.</li>
-          <li><b>03</b>자연스러운 변화를 만듭니다.</li>
-        </ol>
-      </div>
+      <div class="logo">{{LOGO}}</div>
       <div class="arch main">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>

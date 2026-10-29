@@ -11,6 +11,7 @@ import QuickMenu from "@/components/QuickMenu";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import PopupLayer from "@/components/PopupLayer";
+import Analytics from "@/components/Analytics";
 import { getHospital, getPopups } from "@/lib/data";
 import { getMember, getSignupSettings } from "@/lib/member";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
@@ -123,6 +124,7 @@ export default async function RootLayout({
         <PopupLayer popups={popups} />
         <SmoothScroll />
         <CustomCursor />
+        <Analytics />
       </body>
     </html>
   );

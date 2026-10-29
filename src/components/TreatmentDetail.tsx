@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
 import NaverReviews from "@/components/naver-reviews/NaverReviews";
+import AreaTabs from "@/components/sub/AreaTabs";
 import BlogSection from "@/components/sub/BlogSection";
 import FaceZoneIcon, { hasFaceZone } from "@/components/sub/FaceZoneIcon";
 import type { BlogPost } from "@/lib/blog";
@@ -113,6 +114,8 @@ export default function TreatmentDetail({
   };
   const space = `/images/photos/clinic-${spaceNo[t.href] ?? 1}.webp`;
   const eun = josa(t.title, "은", "는");
+  // 부위마다 자세한 설명이 있으면 부위별 탭으로
+  const byArea = t.items?.some((it) => it.detail) ?? false;
   const summary = [
     { label: "시술 방식", value: g.profile.method },
     { label: "시술 부위", value: g.area },
@@ -490,53 +493,66 @@ export default function TreatmentDetail({
         <section className="bg-espresso px-5 py-24 text-white md:px-10 md:py-32">
           <div className="mx-auto max-w-[1400px]">
             <SectionHead
-              en="Program"
+              en={byArea ? "By Area" : "Program"}
               tone="dark"
-              title={`${t.title} 세부 시술`}
+              title={
+                byArea ? (
+                  <>
+                    {t.title}, 부위별로
+                    <br className="md:hidden" /> 어떻게 다른가요?
+                  </>
+                ) : (
+                  `${t.title} 세부 시술`
+                )
+              }
             />
-            <ul
-              className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
-            >
-              {t.items.map((it, i) => (
-                <Reveal
-                  as="li"
-                  key={it.name}
-                  delay={(i % 4) * 80}
-                  className="group rounded-[20px] border border-white/12 p-6 transition duration-500 hover:border-gold/60 hover:bg-white/[0.04] md:p-8"
-                >
-                  {it.image && (
-                    <div className="-mx-2 -mt-2 mb-6 overflow-hidden rounded-[14px] md:-mx-4 md:-mt-4">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={it.image}
-                        alt={`${it.name} 장비`}
-                        loading="lazy"
-                        className="aspect-[4/3] w-full bg-[#f3f0eb] object-contain transition-[scale] duration-[1.2s] group-hover:scale-105"
-                      />
-                    </div>
-                  )}
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="font-display text-xs tracking-[0.2em] text-taupe">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {!it.image && hasFaceZone(it.name) && (
-                      <span className="-mt-2 -mr-2 grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full bg-white/[0.06] text-white transition duration-500 group-hover:bg-gold/15 md:h-20 md:w-20">
-                        <FaceZoneIcon
-                          name={it.name}
-                          className="h-11 w-11 md:h-12 md:w-12"
+            {byArea ? (
+              <AreaTabs items={t.items} />
+            ) : (
+              <ul
+                className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
+              >
+                {t.items.map((it, i) => (
+                  <Reveal
+                    as="li"
+                    key={it.name}
+                    delay={(i % 4) * 80}
+                    className="group rounded-[20px] border border-white/12 p-6 transition duration-500 hover:border-gold/60 hover:bg-white/[0.04] md:p-8"
+                  >
+                    {it.image && (
+                      <div className="-mx-2 -mt-2 mb-6 overflow-hidden rounded-[14px] md:-mx-4 md:-mt-4">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={it.image}
+                          alt={`${it.name} 장비`}
+                          loading="lazy"
+                          className="aspect-[4/3] w-full bg-[#f3f0eb] object-contain transition-[scale] duration-[1.2s] group-hover:scale-105"
                         />
-                      </span>
+                      </div>
                     )}
-                  </div>
-                  <h3 className="mt-6 text-lg font-semibold md:text-xl">
-                    {it.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/55">
-                    {it.text}
-                  </p>
-                </Reveal>
-              ))}
-            </ul>
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-display text-xs tracking-[0.2em] text-taupe">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {!it.image && hasFaceZone(it.name) && (
+                        <span className="-mt-2 -mr-2 grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full bg-white/[0.06] text-white transition duration-500 group-hover:bg-gold/15 md:h-20 md:w-20">
+                          <FaceZoneIcon
+                            name={it.name}
+                            className="h-11 w-11 md:h-12 md:w-12"
+                          />
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="mt-6 text-lg font-semibold md:text-xl">
+                      {it.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/55">
+                      {it.text}
+                    </p>
+                  </Reveal>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
       )}

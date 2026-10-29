@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- 스킨을 블로그에 붙였을 때의 모습 (PC 2단, 대략적인 배치). render.mjs 가 out/preview.png 로 저장 -->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "Pretendard";
+        src: url("../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Regular.woff2");
+      }
+      body {
+        margin: 0;
+        width: 1440px;
+        font-family: "Pretendard", sans-serif;
+        background: #f6f2ec url("out/background.png") no-repeat center top;
+        color: #151311;
+      }
+      .wrap {
+        width: 966px;
+        margin: 0 auto;
+        padding: 40px 0 80px;
+      }
+      .menu {
+        display: flex;
+        gap: 28px;
+        padding: 16px 24px;
+        background: #ffffff;
+        border-bottom: 1px solid #e8e2d9;
+        font-size: 13px;
+        color: #6b6560;
+      }
+      .menu b {
+        color: #151311;
+      }
+      .cols {
+        display: flex;
+        gap: 26px;
+        margin-top: 26px;
+        align-items: flex-start;
+      }
+      .post {
+        flex: 1;
+        background: #ffffff;
+        padding: 40px 40px 60px;
+      }
+      .post img {
+        display: block;
+        width: 100%;
+      }
+      .post h1 {
+        font-size: 26px;
+        font-weight: 500;
+        margin: 36px 0 12px;
+      }
+      .post p {
+        font-size: 14px;
+        line-height: 1.9;
+        color: #6b6560;
+        margin: 0 0 24px;
+      }
+      .side {
+        width: 170px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .side img {
+        display: block;
+        width: 170px;
+      }
+      .prof {
+        background: #ffffff;
+        padding: 12px;
+        font-size: 12px;
+        text-align: center;
+        color: #6b6560;
+      }
+      .prof img {
+        width: 146px;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <img src="out/title.png" width="966" style="display: block" />
+      <div class="menu">
+        <b>블로그</b><span>병원소개</span><span>리프팅</span
+        ><span>쁘띠시술</span><span>피부시술</span><span>오시는 길</span>
+      </div>
+      <div class="cols">
+        <div class="post">
+          <img src="out/post-header.png" />
+          <h1>본문 제목이 들어가는 자리입니다</h1>
+          <p>
+            본문 문단이 들어가는 자리입니다. 실제 글은 스마트에디터에서
+            작성합니다.
+          </p>
+          <img src="out/post-divider.png" />
+          <p>소제목 띠 아래로 본문이 이어집니다.</p>
+          <img src="out/post-footer.png" />
+        </div>
+        <div class="side">
+          <div class="prof">
+            <img src="out/profile.png" /><br />프라베일 맑고고운의원
+          </div>
+          <img src="out/widget-hours.png" />
+          <img src="out/widget-reserve.png" />
+          <img src="out/widget-home.png" />
+          <img src="out/widget-map.png" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

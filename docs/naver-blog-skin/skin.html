@@ -90,195 +90,70 @@
         background: var(--gold);
       }
 
-      /* ── 1. 타이틀 (966 × 400) · 시안 A: 아이보리 + 아치 사진 ── */
-      #title-a {
+      /* ── 1. 타이틀 (966 × 400) ──
+         아이보리 바탕 · 왼쪽 로고 · 오른쪽 아치 선 + 로비 아치 + 원장 레이저 시술 아치
+         · 아래 짙은 진료시간 · 전화 띠 (블로그 메뉴도 짙은 색으로 이어짐) */
+      #title {
         width: 966px;
         height: 400px;
         background: var(--ivory);
-        display: grid;
-        grid-template-columns: 400px 1fr;
       }
-      #title-a .copy {
-        position: relative;
-        padding: 0 0 0 64px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 26px;
-      }
-      #title-a .copy .en {
-        font-size: 11px;
-        color: var(--gold);
-      }
-      #title-a .logo {
-        width: 290px;
-        color: var(--ink);
-      }
-      #title-a .ko {
-        font-size: 17px;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-      }
-      #title-a .lead {
-        font-size: 14px;
-        line-height: 1.75;
-        color: var(--muted);
-        font-weight: 400;
-      }
-      #title-a .pic {
-        position: relative;
-        margin: 28px 28px 28px 0;
-        border-radius: 172px 172px 0 0;
-        overflow: hidden;
-      }
-      #title-a .pic .photo {
-        object-position: 50% 60%;
-      }
-
-      /* 타이틀 공통 크기 */
-      .title {
-        width: 966px;
-        height: 400px;
-      }
-
-      /* ── A 발전형 공통: 아이보리 바탕, 왼쪽 글 · 오른쪽 아치 ── */
-      .title-ax {
-        background: var(--ivory);
-      }
-      .title-ax .copy {
+      #title .copy {
         position: absolute;
         left: 64px;
         top: 0;
-        bottom: 0;
+        bottom: 64px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 22px;
       }
-      .title-ax .copy .en {
+      #title .copy .en {
         font-size: 11px;
         color: var(--gold);
       }
-      .title-ax .logo {
+      #title .logo {
         width: 290px;
         color: var(--ink);
       }
-      .title-ax .lead {
+      #title .lead {
         font-size: 14px;
         line-height: 1.75;
         color: var(--muted);
       }
-      /* 배경에 크게 깔리는 영문 글자 */
-      .title-ax .watermark {
+      #title .arch {
         position: absolute;
-        font-family: "Oswald", sans-serif;
-        font-weight: 300;
-        line-height: 1;
-        color: var(--sand);
-        letter-spacing: 0.04em;
-        white-space: nowrap;
-      }
-      .title-ax .arch {
-        position: absolute;
+        bottom: 64px;
         overflow: hidden;
       }
-      .title-ax .arch-line {
-        position: absolute;
-        border: 1px solid var(--taupe);
-        border-bottom: 0;
-      }
-      .title-ax .vertical {
-        position: absolute;
-        right: 30px;
-        top: 50%;
-        transform: translateY(-50%);
-        writing-mode: vertical-rl;
-        font-size: 9px;
-        color: var(--taupe);
-        white-space: nowrap;
-        letter-spacing: 0.4em;
-      }
-
-      /* A-1: 겹친 아치 + 작은 아치 사진 + 키워드 */
-      #title-a1 .watermark {
-        left: 40px;
-        bottom: -62px;
-        font-size: 150px;
-      }
-      #title-a1 .arch.main {
-        right: 76px;
-        bottom: 0;
-        width: 330px;
-        height: 364px;
-        border-radius: 165px 165px 0 0;
-      }
-      #title-a1 .arch-line {
-        right: 94px;
-        bottom: 0;
-        width: 330px;
-        height: 382px;
-        border-radius: 165px 165px 0 0;
-      }
-      #title-a1 .arch.small {
-        right: 366px;
-        bottom: 0;
-        width: 148px;
-        height: 200px;
-        border-radius: 74px 74px 0 0;
-        border: 6px solid var(--ivory);
-        border-bottom: 0;
-      }
-      #title-a1 .keys {
-        display: flex;
-        gap: 16px;
-        font-size: 12px;
-        color: var(--mocha);
-        font-weight: 500;
-      }
-      #title-a1 .keys span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      #title-a1 .keys span::before {
-        content: "";
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: var(--gold);
-      }
-
-      /* A-2: 아래 정보 띠 */
-      .a2 .copy {
-        bottom: 64px;
-      }
-      .a2 .arch.main {
+      #title .arch.main {
         right: 72px;
-        bottom: 64px;
         width: 300px;
         height: 300px;
         border-radius: 150px 150px 0 0;
       }
-      .a2 .arch-line {
-        right: 54px;
-        bottom: 64px;
-        width: 336px;
-        height: 318px;
-        border-radius: 168px 168px 0 0;
-      }
-      .a2 .arch.side {
+      #title .arch.side {
         right: 384px;
-        bottom: 64px;
         width: 150px;
         height: 214px;
         border-radius: 75px 75px 0 0;
       }
+      #title .arch-line {
+        position: absolute;
+        right: 54px;
+        bottom: 64px;
+        width: 336px;
+        height: 318px;
+        border: 1px solid var(--taupe);
+        border-bottom: 0;
+        border-radius: 168px 168px 0 0;
+      }
       /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
-      .a2 .arch.side .photo,
+      #title .arch.side .photo,
       #mobile-cover .arch.side .photo {
         object-position: 62% 20%;
       }
-      .a2 .strip {
+      #title .strip {
         position: absolute;
         left: 0;
         right: 0;
@@ -292,231 +167,22 @@
         gap: 28px;
         font-size: 12px;
       }
-      .a2 .strip .en {
+      #title .strip .en {
         font-size: 10px;
         color: var(--taupe);
         letter-spacing: 0.3em;
         margin-right: 8px;
       }
-      .a2 .strip .bar {
+      #title .strip .bar {
         width: 1px;
         height: 14px;
         background: rgba(255, 255, 255, 0.2);
       }
-      .a2 .strip .tel {
+      #title .strip .tel {
         margin-left: auto;
         font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.03em;
-      }
-
-      /* A-2 짙은 판: 바탕 · 띠 모두 짙게, 띠는 금색 선으로 구분 */
-      #title-a2-dark {
-        background: var(--espresso);
-      }
-      #title-a2-dark .copy .en {
-        color: var(--taupe);
-      }
-      #title-a2-dark .logo {
-        color: var(--ivory);
-      }
-      #title-a2-dark .lead {
-        color: var(--line);
-      }
-      #title-a2-dark .arch-line {
-        border-color: var(--mocha);
-      }
-      #title-a2-dark .strip {
-        background: var(--ink);
-        border-top: 1px solid var(--mocha);
-      }
-
-      /* A-3: 철학 3줄 + 두 아치 (로비 · 원장 진료) */
-      #title-a3 .panel {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 430px;
-        background: var(--sand);
-      }
-      #title-a3 .watermark {
-        right: 30px;
-        top: 18px;
-        font-size: 15px;
-        color: var(--gold);
-        letter-spacing: 0.35em;
-      }
-      #title-a3 .arch.main {
-        right: 64px;
-        bottom: 0;
-        width: 290px;
-        height: 330px;
-        border-radius: 145px 145px 0 0;
-      }
-      #title-a3 .arch.small {
-        right: 300px;
-        bottom: 0;
-        width: 170px;
-        height: 230px;
-        border-radius: 85px 85px 0 0;
-        border: 6px solid var(--ivory);
-        border-bottom: 0;
-      }
-      #title-a3 .arch.small .photo {
-        /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
-        object-position: 50% 0%;
-        transform: scale(1.6);
-        transform-origin: 50% 22%;
-      }
-      #title-a3 .copy {
-        gap: 20px;
-      }
-      #title-a3 .logo {
-        width: 270px;
-      }
-      #title-a3 ol {
-        list-style: none;
-        border-top: 1px solid var(--line);
-      }
-      #title-a3 li {
-        display: flex;
-        gap: 14px;
-        align-items: baseline;
-        padding: 9px 0;
-        border-bottom: 1px solid var(--line);
-        font-size: 13px;
-        color: var(--ink);
-      }
-      #title-a3 li b {
-        font-family: "Oswald", sans-serif;
-        font-weight: 400;
-        font-size: 11px;
-        color: var(--gold);
-        letter-spacing: 0.1em;
-      }
-
-      /* 시안 B: 사진 전체 + 왼쪽 어둡게 */
-      #title-b {
-        background: var(--espresso);
-      }
-      /* 사진 속 간판과 로고가 겹치지 않게 사진을 오른쪽으로 */
-      #title-b .photo {
-        left: 30%;
-        width: 70%;
-        object-position: 50% 55%;
-      }
-      #title-b .fade {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          90deg,
-          var(--espresso) 30%,
-          rgba(29, 26, 23, 0.6) 42%,
-          rgba(29, 26, 23, 0) 62%
-        );
-      }
-      #title-b .copy {
-        position: absolute;
-        left: 72px;
-        top: 0;
-        bottom: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 26px;
-        color: #fff;
-      }
-      #title-b .en {
-        font-size: 11px;
-        color: var(--taupe);
-      }
-      #title-b .logo {
-        width: 300px;
-      }
-      #title-b .lead {
-        font-size: 14px;
-        line-height: 1.75;
-        color: var(--line);
-      }
-
-      /* 시안 C: 가운데 로고 + 아치 사진 세 장 */
-      #title-c {
-        background: var(--ivory);
-      }
-      #title-c .head {
-        position: absolute;
-        top: 52px;
-        left: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-      }
-      #title-c .en {
-        font-size: 11px;
-        color: var(--gold);
-        margin-right: -0.35em;
-      }
-      #title-c .logo {
-        width: 300px;
-      }
-      #title-c .arches {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 22px;
-      }
-      #title-c .arch {
-        position: relative;
-        width: 210px;
-        height: 190px;
-        border-radius: 105px 105px 0 0;
-        overflow: hidden;
-      }
-      #title-c .arch.mid {
-        width: 250px;
-        height: 230px;
-        border-radius: 125px 125px 0 0;
-      }
-
-      /* 시안 D: 짙은 바탕 + 오른쪽 사진 */
-      #title-d {
-        background: var(--espresso);
-        display: grid;
-        grid-template-columns: 430px 1fr;
-      }
-      #title-d .copy {
-        padding-left: 72px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 26px;
-        color: var(--ivory);
-      }
-      #title-d .en {
-        font-size: 11px;
-        color: var(--taupe);
-      }
-      #title-d .logo {
-        width: 290px;
-      }
-      #title-d .lead {
-        font-size: 14px;
-        line-height: 1.75;
-        color: var(--taupe);
-      }
-      #title-d .pic {
-        position: relative;
-        border-left: 1px solid var(--gold);
-      }
-      #title-d .pic .photo {
-        object-position: 50% 50%;
       }
 
       /* ── 2. 스킨 배경 (2560 × 720) ── */
@@ -888,7 +554,7 @@
       #mobile-cover {
         width: 1080px;
         height: 1080px;
-        background: var(--cream);
+        background: var(--ivory);
       }
       #mobile-cover .logo {
         position: absolute;
@@ -949,44 +615,8 @@
     </style>
   </head>
   <body>
-    <!-- 1. 타이틀 시안 A: 아이보리 + 아치 사진 -->
-    <section class="asset" id="title-a">
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-      <div class="pic">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-    </section>
-
-    <!-- 타이틀 A-1: 겹친 아치 + 작은 아치 사진 + 키워드 -->
-    <section class="asset title title-ax" id="title-a1">
-      <p class="watermark">PRAVEIL</p>
-      <div class="copy">
-        <p class="en">Not More, But Right</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-        <p class="keys">
-          <span>1:1 맞춤 상담</span><span>대표원장 직접 시술</span
-          ><span>정품 · 정량</span>
-        </p>
-      </div>
-      <div class="arch-line"></div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="arch small">
-        <img class="photo" src="../../public/images/photos/clinic-2.webp" />
-      </div>
-      <p class="vertical en">Praveil Clinic · Incheon</p>
-    </section>
-
-    <!-- 타이틀 A-2: 아래 정보 띠 -->
-    <section class="asset title title-ax a2" id="title-a2">
+    <!-- 1. 타이틀 -->
+    <section class="asset" id="title">
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>
@@ -1012,104 +642,6 @@
         <i class="bar"></i>
         <span>토 10:00 – 15:00</span>
         <p class="tel"><span class="en">Tel</span>032-429-7522</p>
-      </div>
-    </section>
-
-    <!-- 타이틀 A-2 짙은 판 (비교용) -->
-    <section class="asset title title-ax a2" id="title-a2-dark">
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-      <div class="arch-line"></div>
-      <div class="arch side">
-        <img
-          class="photo"
-          src="../../public/images/photos/retouched/laser.jpg"
-        />
-      </div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="strip">
-        <span
-          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
-        >
-        <i class="bar"></i>
-        <span>목 10:00 – 20:30 야간진료</span>
-        <i class="bar"></i>
-        <span>토 10:00 – 15:00</span>
-        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
-      </div>
-    </section>
-
-    <!-- 타이틀 A-3: 철학 3줄 + 두 아치 (로비 · 원장 진료) -->
-    <section class="asset title title-ax" id="title-a3">
-      <div class="panel"></div>
-      <p class="watermark">Not More, But Right</p>
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <ol>
-          <li><b>01</b>피부를 먼저 읽습니다.</li>
-          <li><b>02</b>나에게 맞게 설계합니다.</li>
-          <li><b>03</b>자연스러운 변화를 만듭니다.</li>
-        </ol>
-      </div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="arch small">
-        <img
-          class="photo"
-          src="../../public/images/photos/retouched/doctor-portrait.jpg"
-        />
-      </div>
-    </section>
-
-    <!-- 타이틀 시안 B: 사진 전체 + 왼쪽 어둡게 -->
-    <section class="asset title" id="title-b">
-      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
-      <div class="fade"></div>
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-    </section>
-
-    <!-- 타이틀 시안 C: 가운데 로고 + 아치 사진 세 장 -->
-    <section class="asset title" id="title-c">
-      <div class="head">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-      </div>
-      <div class="arches">
-        <div class="arch">
-          <img class="photo" src="../../public/images/photos/clinic-2.webp" />
-        </div>
-        <div class="arch mid">
-          <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-        </div>
-        <div class="arch">
-          <img class="photo" src="../../public/images/photos/clinic-6.webp" />
-        </div>
-      </div>
-    </section>
-
-    <!-- 타이틀 시안 D: 짙은 바탕 + 오른쪽 사진 -->
-    <section class="asset title" id="title-d">
-      <div class="copy">
-        <p class="en">Praveil Clinic</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-      <div class="pic">
-        <img class="photo" src="../../public/images/photos/hero-about.webp" />
       </div>
     </section>
 

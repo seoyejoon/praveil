@@ -25,6 +25,7 @@ async function send(action: string, body: Record<string, unknown>) {
 }
 
 // 로그인 / 회원가입 팝업 (탭으로 전환)
+// - 두 폼은 key 로 따로 그림: 로그인에 적은 아이디 · 비밀번호가 가입 칸으로 넘어가지 않게
 export default function MemberModal({ open, initialTab = "login", config, onClose }: {
   open: boolean;
   initialTab?: Tab;
@@ -171,7 +172,6 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
         ) : !config.enabled ? (
           <p className="mt-10 mb-4 text-center text-sm text-muted">현재 회원가입을 받고 있지 않습니다.</p>
         ) : (
-          {/* key: 로그인 · 가입 칸이 서로 재사용되지 않게 (입력값 · 비밀번호가 다른 칸으로 넘어가지 않도록) */}
           <form key="signup" onSubmit={onSignup} className="mt-8 space-y-3">
             <input name="username" autoComplete="username" placeholder="아이디 * (영문 소문자 · 숫자 4~30자)" pattern="[a-z0-9][a-z0-9._\-]{3,29}" required className={input} />
             <input name="name" required minLength={2} autoComplete="name" placeholder="이름 *" className={input} />

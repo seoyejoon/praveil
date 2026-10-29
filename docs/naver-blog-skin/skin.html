@@ -346,10 +346,8 @@
       #post-header .arch.small .photo,
       #post-footer .arch.small .photo,
       #mobile-cover .arch.small .photo {
-        /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
-        object-position: 50% 0%;
-        transform: scale(1.6);
-        transform-origin: 50% 22%;
+        /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
+        object-position: 62% 20%;
       }
       #title-a3 .copy {
         gap: 20px;
@@ -519,9 +517,25 @@
         border: 2px solid var(--line);
       }
       #widget-hours {
-        padding: 44px 24px 40px;
+        padding: 0 24px 40px;
         background: var(--ivory);
         border: 0;
+      }
+      /* 위쪽 베이지 면에서 로비 아치가 올라옴 (타이틀 A-3 과 같은 구성) */
+      #widget-hours .top {
+        margin: 0 -24px 40px;
+        height: 250px;
+        background: var(--sand);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      #widget-hours .top .arch {
+        position: relative;
+        width: 190px;
+        height: 210px;
+        border-radius: 95px 95px 0 0;
+        overflow: hidden;
       }
       #widget-hours .en {
         font-size: 18px;
@@ -575,8 +589,8 @@
       #widget-hours .tel {
         margin-top: 24px;
         padding: 18px 0 16px;
-        background: var(--espresso);
-        color: #fff;
+        background: var(--sand);
+        color: var(--ink);
         text-align: center;
         font-size: 30px;
         font-weight: 600;
@@ -587,7 +601,7 @@
         display: block;
         font-size: 16px;
         font-weight: 400;
-        color: var(--taupe);
+        color: var(--gold);
         letter-spacing: 0.3em;
         margin-bottom: 4px;
       }
@@ -597,12 +611,15 @@
         align-items: center;
         gap: 22px;
         padding: 0 28px;
+        background: var(--ivory);
       }
       .btn .ico {
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        background: var(--ivory);
+        align-self: flex-end;
+        width: 60px;
+        height: 84px;
+        padding-top: 6px;
+        border-radius: 30px 30px 0 0;
+        background: var(--sand);
         display: grid;
         place-items: center;
         flex: none;
@@ -627,39 +644,48 @@
         font-size: 15px;
         color: var(--gold);
       }
-      .btn.dark {
-        background: var(--espresso);
-        border-color: var(--espresso);
-        color: #fff;
+      /* 네이버 예약은 베이지 바탕으로 한 단계 강조 */
+      .btn.accent {
+        background: var(--sand);
+        border-color: var(--sand);
       }
-      .btn.dark .ico {
-        background: rgba(255, 255, 255, 0.08);
-      }
-      .btn.dark .ico svg {
-        stroke: var(--taupe);
-      }
-      .btn.dark small {
-        color: var(--taupe);
+      .btn.accent .ico {
+        background: var(--ivory);
       }
 
       /* ── 4. 프로필 (600 × 600) ── */
       #profile {
         width: 600px;
         height: 600px;
-        background: var(--espresso);
-        color: var(--ivory);
+        background: var(--ivory);
+        color: var(--ink);
+      }
+      /* 네이버 모바일은 프로필을 원으로 잘라 보여서, 로고는 가운데 원 안에 둠 */
+      #profile .arch {
+        position: absolute;
+        left: 110px;
+        bottom: 0;
+        width: 380px;
+        height: 470px;
+        border-radius: 190px 190px 0 0;
+        background: var(--sand);
+      }
+      #profile .inner {
+        position: absolute;
+        inset: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 34px;
+        gap: 26px;
+        padding-top: 70px;
       }
       #profile .logo {
-        width: 360px;
+        width: 330px;
       }
       #profile .en {
         font-size: 30px;
-        color: var(--taupe);
+        color: var(--gold);
         letter-spacing: 0.5em;
         margin-right: -0.5em;
       }
@@ -962,7 +988,7 @@
       <div class="arch small">
         <img
           class="photo"
-          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+          src="../../public/images/photos/retouched/laser.jpg"
         />
       </div>
     </section>
@@ -1025,6 +1051,11 @@
 
     <!-- 3. 위젯 -->
     <section class="asset widget" id="widget-hours">
+      <div class="top">
+        <div class="arch">
+          <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+        </div>
+      </div>
       <p class="en">Hours</p>
       <h3>진료시간</h3>
       <dl>
@@ -1053,7 +1084,7 @@
       <p class="tel"><span>TEL</span>032-429-7522</p>
     </section>
 
-    <section class="asset widget btn dark" id="widget-reserve">
+    <section class="asset widget btn accent" id="widget-reserve">
       <div class="ico">
         <svg viewBox="0 0 24 24">
           <rect x="3.5" y="5" width="17" height="15.5" rx="1.5" />
@@ -1089,8 +1120,11 @@
 
     <!-- 4. 프로필 -->
     <section class="asset" id="profile">
-      <div class="logo">{{MARK}}</div>
-      <p class="en">Clinic</p>
+      <div class="arch"></div>
+      <div class="inner">
+        <div class="logo">{{MARK}}</div>
+        <p class="en">Clinic</p>
+      </div>
     </section>
 
     <!-- 5. 글 머리: A-3 구성을 단순하게 -->
@@ -1103,7 +1137,7 @@
       <div class="arch small">
         <img
           class="photo"
-          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+          src="../../public/images/photos/retouched/laser.jpg"
         />
       </div>
     </section>
@@ -1157,7 +1191,7 @@
       <div class="arch small">
         <img
           class="photo"
-          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+          src="../../public/images/photos/retouched/laser.jpg"
         />
       </div>
     </section>
@@ -1172,7 +1206,7 @@
       <div class="arch small">
         <img
           class="photo"
-          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+          src="../../public/images/photos/retouched/laser.jpg"
         />
       </div>
     </section>

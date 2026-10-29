@@ -343,7 +343,10 @@
         border-bottom: 0;
       }
       #title-a3 .arch.small .photo {
-        object-position: 35% 30%;
+        /* 원장 세로 프로필: 얼굴 · 상반신이 보이게 확대 */
+        object-position: 50% 0%;
+        transform: scale(1.6);
+        transform-origin: 50% 22%;
       }
       #title-a3 .copy {
         gap: 20px;
@@ -985,7 +988,10 @@
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
       <div class="arch small">
-        <img class="photo" src="../../public/images/photos/signature-2.webp" />
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/doctor-portrait.jpg"
+        />
       </div>
     </section>
 

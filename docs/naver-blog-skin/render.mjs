@@ -31,7 +31,7 @@ await page.evaluate(
   [logo, mark],
 );
 await page.evaluate(() => document.fonts.ready);
-await page.waitForLoadState("networkidle");
+await page.waitForLoadState("networkidle", { timeout: 120000 });
 // 높이가 소수점이면 가장자리에 회색 줄이 생겨서 정수로 맞춤
 await page.evaluate(() => {
   for (const el of document.querySelectorAll(".asset")) {

@@ -21,32 +21,40 @@ const mark = logo.replace(/viewBox="[^"]*"/, 'viewBox="0 0 146 29.84"');
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 3000, height: 1000 } });
-await page.goto(pathToFileURL(join(here, "skin.html")).href);
-await page.evaluate(
-  ([svg, markSvg]) => {
-    for (const el of document.querySelectorAll(".logo")) {
-      el.innerHTML = el.textContent.includes("MARK") ? markSvg : svg;
-    }
-  },
-  [logo, mark],
-);
-await page.evaluate(() => document.fonts.ready);
-await page.waitForLoadState("load", { timeout: 120000 });
-// 높이가 소수점이면 가장자리에 회색 줄이 생겨서 정수로 맞춤
-await page.evaluate(() => {
-  for (const el of document.querySelectorAll(".asset")) {
-    el.style.height = `${Math.ceil(el.getBoundingClientRect().height)}px`;
-  }
-});
 
-for (const el of await page.locator(".asset").all()) {
-  const id = await el.getAttribute("id");
-  const box = await el.boundingBox();
-  await el.screenshot({ path: join(out, `${id}.png`) });
-  console.log(
-    `${id}.png  ${Math.round(box.width)} × ${Math.round(box.height)}`,
+// html 파일의 .asset 하나하나를 dir/<id>.png 로 저장
+async function render(file, dir) {
+  mkdirSync(dir, { recursive: true });
+  await page.goto(pathToFileURL(join(here, file)).href);
+  await page.evaluate(
+    ([svg, markSvg]) => {
+      for (const el of document.querySelectorAll(".logo")) {
+        el.innerHTML = el.textContent.includes("MARK") ? markSvg : svg;
+      }
+    },
+    [logo, mark],
   );
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForLoadState("load", { timeout: 120000 });
+  // 높이가 소수점이면 가장자리에 회색 줄이 생겨서 정수로 맞춤
+  await page.evaluate(() => {
+    for (const el of document.querySelectorAll(".asset")) {
+      el.style.height = `${Math.ceil(el.getBoundingClientRect().height)}px`;
+    }
+  });
+  for (const el of await page.locator(".asset").all()) {
+    const id = await el.getAttribute("id");
+    const box = await el.boundingBox();
+    await el.screenshot({ path: join(dir, `${id}.png`) });
+    console.log(
+      `${id}.png  ${Math.round(box.width)} × ${Math.round(box.height)}`,
+    );
+  }
 }
+
+await render("skin.html", out);
+// 블로그 글 3개에 들어가는 그림 (본문은 posts/*.md)
+await render("posts.html", join(out, "posts"));
 
 // 위젯 그림은 홈페이지 서버에서 바로 열리도록 public 에도 복사 (위젯 코드가 이 주소를 씀)
 const pub = join(here, "../../public/images/naver-blog");

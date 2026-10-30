@@ -14,7 +14,7 @@
 | `widget-reserve.png` · `widget-home.png` · `widget-map.png` | 340 × 128 (보이는 크기 170 × 64)  | 위젯 직접등록 (`widgets.html`)                                |
 | `post-header.png`                                           | 1720 × 560                        | 글 맨 위                                                      |
 | `post-divider.png`                                          | 1720 × 220                        | 글 중간 소제목 띠                                             |
-| `post-footer.png`                                           | 1720 × 2815                       | 글 맨 아래 (진료시간 · 오시는 길 · 전화)                      |
+| `post-footer.png`                                           | 1720 × 2326                       | 글 맨 아래 (진료시간 · 오시는 길 · 전화)                      |
 | `mobile-cover.png`                                          | 1080 × 1080                       | 모바일 앱 → 블로그 홈 → 홈편집 → 커버 이미지                  |
 
 `preview.png` 는 확인용이라 올리지 않습니다.

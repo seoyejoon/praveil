@@ -1,0 +1,822 @@
+<!doctype html>
+<!--
+  프라베일 맑고고운의원 네이버 블로그 스킨 원본
+  각 .asset 하나가 이미지 파일 하나가 됩니다. render.mjs 가 id 이름으로 out/ 에 저장합니다.
+  색은 src/app/globals.css 토큰과 같은 값만 씁니다.
+-->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "Pretendard";
+        font-weight: 300;
+        src: url("../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Light.woff2");
+      }
+      @font-face {
+        font-family: "Pretendard";
+        font-weight: 400;
+        src: url("../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Regular.woff2");
+      }
+      @font-face {
+        font-family: "Pretendard";
+        font-weight: 500;
+        src: url("../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Medium.woff2");
+      }
+      @font-face {
+        font-family: "Pretendard";
+        font-weight: 600;
+        src: url("../../node_modules/pretendard/dist/web/static/woff2/Pretendard-SemiBold.woff2");
+      }
+      :root {
+        --ivory: #f6f2ec;
+        --cream: #ffffff;
+        --sand: #ece5da;
+        --taupe: #c2b096;
+        --gold: #a88e6a;
+        --mocha: #7d6649;
+        --muted: #6b6560;
+        --espresso: #1d1a17;
+        --ink: #151311;
+        --line: #e8e2d9;
+        --photos: url("../../public/images/photos/");
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #888;
+        font-family: "Pretendard", sans-serif;
+        color: var(--ink);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: flex-start;
+        word-break: keep-all;
+      }
+      .asset {
+        position: relative;
+        overflow: hidden;
+        flex: none;
+      }
+      .en {
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+      }
+      .logo svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        fill: currentColor;
+      }
+      .photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rule {
+        width: 32px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      /* ── 1. 타이틀 (966 × 400) ──
+         아이보리 바탕 · 왼쪽 로고 · 오른쪽 아치 선 + 로비 아치 + 원장 레이저 시술 아치
+         · 아래 짙은 진료시간 · 전화 띠 (블로그 메뉴도 짙은 색으로 이어짐) */
+      #title {
+        width: 966px;
+        height: 400px;
+        background: var(--ivory);
+      }
+      #title .copy {
+        position: absolute;
+        left: 64px;
+        top: 0;
+        bottom: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+      }
+      #title .copy .en {
+        font-size: 11px;
+        color: var(--gold);
+      }
+      #title .logo {
+        width: 290px;
+        color: var(--ink);
+      }
+      #title .lead {
+        font-size: 14px;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+      #title .arch {
+        position: absolute;
+        bottom: 64px;
+        overflow: hidden;
+      }
+      #title .arch.main {
+        right: 72px;
+        width: 300px;
+        height: 300px;
+        border-radius: 150px 150px 0 0;
+      }
+      #title .arch.side {
+        right: 384px;
+        width: 150px;
+        height: 214px;
+        border-radius: 75px 75px 0 0;
+      }
+      #title .arch-line {
+        position: absolute;
+        right: 54px;
+        bottom: 64px;
+        width: 336px;
+        height: 318px;
+        border: 1px solid var(--taupe);
+        border-bottom: 0;
+        border-radius: 168px 168px 0 0;
+      }
+      /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
+      #title .arch.side .photo,
+      #mobile-cover .arch.side .photo {
+        object-position: 62% 20%;
+      }
+      #title .strip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 64px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        align-items: center;
+        padding: 0 64px;
+        gap: 28px;
+        font-size: 12px;
+      }
+      #title .strip .en {
+        font-size: 10px;
+        color: var(--taupe);
+        letter-spacing: 0.3em;
+        margin-right: 8px;
+      }
+      #title .strip .bar {
+        width: 1px;
+        height: 14px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+      #title .strip .tel {
+        margin-left: auto;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+
+      /* ── 2. 스킨 배경 (2560 × 720) ── */
+      #background {
+        width: 2560px;
+        height: 720px;
+        background: linear-gradient(var(--sand), var(--ivory));
+      }
+      #background svg {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ── 3. 위젯 (사이드 170px, 2배로 그려 선명하게) ── */
+      .widget {
+        width: 340px;
+        background: var(--cream);
+        border: 2px solid var(--line);
+      }
+      #widget-hours {
+        padding: 44px 24px 40px;
+        background: var(--ivory);
+        border: 0;
+      }
+      #widget-hours .en {
+        font-size: 18px;
+        color: var(--gold);
+        text-align: center;
+      }
+      #widget-hours h3 {
+        margin-top: 10px;
+        font-size: 30px;
+        font-weight: 600;
+        text-align: center;
+      }
+      #widget-hours dl {
+        margin-top: 30px;
+        border-top: 2px solid var(--taupe);
+      }
+      #widget-hours dl div {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 16px 2px;
+        border-bottom: 2px solid var(--line);
+        font-size: 21px;
+      }
+      #widget-hours dt {
+        color: var(--muted);
+        font-size: 19px;
+      }
+      #widget-hours dd {
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+      #widget-hours dd small {
+        display: block;
+        text-align: right;
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--mocha);
+        margin-top: 2px;
+      }
+      #widget-hours .closed dd {
+        color: var(--gold);
+      }
+      #widget-hours .note {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--muted);
+        text-align: center;
+      }
+      #widget-hours .tel {
+        margin-top: 24px;
+        padding: 18px 0 16px;
+        background: var(--espresso);
+        color: #fff;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      #widget-hours .tel span {
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--taupe);
+        letter-spacing: 0.3em;
+        margin-bottom: 4px;
+      }
+      .btn {
+        height: 128px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 0 28px;
+      }
+      .btn .ico {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--ivory);
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .btn .ico svg {
+        width: 30px;
+        height: 30px;
+        stroke: var(--mocha);
+        fill: none;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .btn b {
+        display: block;
+        font-size: 28px;
+        font-weight: 600;
+      }
+      .btn small {
+        display: block;
+        margin-top: 4px;
+        font-size: 15px;
+        color: var(--gold);
+      }
+      .btn.dark {
+        background: var(--espresso);
+        border-color: var(--espresso);
+        color: #fff;
+      }
+      .btn.dark .ico {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .btn.dark .ico svg {
+        stroke: var(--taupe);
+      }
+      .btn.dark small {
+        color: var(--taupe);
+      }
+
+      /* ── 4. 프로필 (600 × 600) ── */
+      #profile {
+        width: 600px;
+        height: 600px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+      }
+      #profile .logo {
+        width: 360px;
+      }
+      #profile .en {
+        font-size: 30px;
+        color: var(--taupe);
+        letter-spacing: 0.5em;
+        margin-right: -0.5em;
+      }
+
+      /* ── 5. 글 머리 · 글 꼬리 (본문 860px, 2배) ── */
+      #post-header {
+        width: 1720px;
+        height: 560px;
+        background: var(--espresso);
+      }
+      #post-header .photo {
+        left: auto;
+        width: 62%;
+        object-position: 50% 45%;
+      }
+      #post-header .fade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          var(--espresso) 38%,
+          rgba(29, 26, 23, 0.55) 52%,
+          rgba(29, 26, 23, 0) 72%
+        );
+      }
+      #post-header .copy {
+        position: absolute;
+        left: 120px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 34px;
+        color: var(--ivory);
+      }
+      #post-header .en {
+        font-size: 22px;
+        color: var(--taupe);
+      }
+      #post-header .logo {
+        width: 520px;
+      }
+      #post-header .ko {
+        font-size: 30px;
+        font-weight: 300;
+        color: var(--line);
+        letter-spacing: 0.04em;
+      }
+
+      #post-footer {
+        width: 1720px;
+        background: var(--ivory);
+        padding: 120px 120px 110px;
+      }
+      #post-footer .head {
+        text-align: center;
+      }
+      #post-footer .head .en {
+        font-size: 22px;
+        color: var(--gold);
+      }
+      #post-footer .head h3 {
+        margin-top: 22px;
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      #post-footer .head p {
+        margin-top: 20px;
+        font-size: 28px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      #post-footer .grid {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      #post-footer .card {
+        background: var(--cream);
+        padding: 56px 60px;
+      }
+      #post-footer .card .en {
+        font-size: 18px;
+        color: var(--gold);
+      }
+      #post-footer .card h4 {
+        margin-top: 12px;
+        font-size: 34px;
+        font-weight: 600;
+      }
+      #post-footer dl {
+        margin-top: 30px;
+        border-top: 2px solid var(--taupe);
+      }
+      #post-footer dl div {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        border-bottom: 2px solid var(--line);
+        font-size: 27px;
+      }
+      #post-footer dt {
+        color: var(--muted);
+      }
+      #post-footer dd {
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+      #post-footer dd em {
+        font-style: normal;
+        font-weight: 500;
+        color: var(--mocha);
+        font-size: 22px;
+        margin-left: 10px;
+      }
+      #post-footer .closed dd {
+        color: var(--gold);
+      }
+      #post-footer .card .note {
+        margin-top: 22px;
+        font-size: 22px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      #post-footer .loc p:not(.en) {
+        margin-top: 30px;
+        font-size: 28px;
+        line-height: 1.65;
+      }
+      #post-footer .loc ul {
+        margin-top: 30px;
+        list-style: none;
+        border-top: 2px solid var(--line);
+      }
+      #post-footer .loc li {
+        display: flex;
+        gap: 24px;
+        padding: 18px 0;
+        border-bottom: 2px solid var(--line);
+        font-size: 23px;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+      #post-footer .loc li b {
+        flex: none;
+        width: 80px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      #post-footer .bar {
+        margin-top: 36px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 46px 60px;
+      }
+      #post-footer .bar .logo {
+        width: 300px;
+      }
+      #post-footer .bar .tel {
+        font-size: 46px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em;
+      }
+      #post-footer .bar .tel span {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--taupe);
+        margin-right: 22px;
+        letter-spacing: 0.2em;
+      }
+      #post-footer .legal {
+        margin-top: 34px;
+        text-align: center;
+        font-size: 20px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* 본문 소제목 띠 (1720 × 200) */
+      #post-divider {
+        width: 1720px;
+        height: 220px;
+        background: var(--cream);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+      #post-divider .en {
+        font-size: 24px;
+        color: var(--gold);
+        margin-right: -0.35em;
+      }
+      #post-divider .rule {
+        width: 56px;
+        height: 2px;
+      }
+
+      /* ── 6. 모바일 커버 (1080 × 1080) · 타이틀 A-2 를 단순하게 ── */
+      #mobile-cover {
+        width: 1080px;
+        height: 1080px;
+        background: var(--ivory);
+      }
+      #mobile-cover .logo {
+        position: absolute;
+        left: 90px;
+        top: 200px;
+        width: 560px;
+        color: var(--ink);
+      }
+      #mobile-cover .arch {
+        position: absolute;
+        bottom: 150px;
+        overflow: hidden;
+      }
+      #mobile-cover .arch-line {
+        position: absolute;
+        right: 66px;
+        bottom: 150px;
+        width: 428px;
+        height: 560px;
+        border: 2px solid var(--taupe);
+        border-bottom: 0;
+        border-radius: 214px 214px 0 0;
+      }
+      #mobile-cover .arch.main {
+        right: 90px;
+        width: 380px;
+        height: 520px;
+        border-radius: 190px 190px 0 0;
+      }
+      #mobile-cover .arch.side {
+        right: 500px;
+        width: 250px;
+        height: 350px;
+        border-radius: 125px 125px 0 0;
+      }
+      #mobile-cover .strip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 150px;
+        background: var(--espresso);
+        color: var(--ivory);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        font-size: 52px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+      #mobile-cover .strip .en {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--taupe);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. 타이틀 -->
+    <section class="asset" id="title">
+      <div class="copy">
+        <p class="en">Lifting · Petit · Skin</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
+      </div>
+      <div class="arch-line"></div>
+      <div class="arch side">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/laser.jpg"
+        />
+      </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <div class="strip">
+        <span
+          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
+        >
+        <i class="bar"></i>
+        <span>목 10:00 – 20:30 야간진료</span>
+        <i class="bar"></i>
+        <span>토 10:00 – 15:00</span>
+        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
+      </div>
+    </section>
+
+    <!-- 2. 스킨 배경: 위쪽 아치 선 무늬, 아래로 갈수록 바탕색(ivory)에 이어짐 -->
+    <section class="asset" id="background">
+      <svg width="2560" height="720" viewBox="0 0 2560 720">
+        <g fill="none" stroke="#c2b096" stroke-opacity="0.35" stroke-width="1">
+          <path d="M120 720 V360 a240 240 0 0 1 480 0 V720" />
+          <path d="M180 720 V380 a180 180 0 0 1 360 0 V720" />
+          <path d="M1960 720 V360 a240 240 0 0 1 480 0 V720" />
+          <path d="M2020 720 V380 a180 180 0 0 1 360 0 V720" />
+        </g>
+      </svg>
+    </section>
+
+    <!-- 3. 위젯 -->
+    <section class="asset widget" id="widget-hours">
+      <p class="en">Hours</p>
+      <h3>진료시간</h3>
+      <dl>
+        <div>
+          <dt>월 · 화 · 수 · 금</dt>
+          <dd>10:00 – 19:00</dd>
+        </div>
+        <div>
+          <dt>목요일</dt>
+          <dd>10:00 – 20:30<small>야간진료</small></dd>
+        </div>
+        <div>
+          <dt>토요일</dt>
+          <dd>10:00 – 15:00</dd>
+        </div>
+        <div>
+          <dt>점심시간</dt>
+          <dd>13:00 – 14:00</dd>
+        </div>
+        <div class="closed">
+          <dt>일 · 공휴일</dt>
+          <dd>휴진</dd>
+        </div>
+      </dl>
+      <p class="note">진료 마감 30분 전까지<br />접수해 주세요.</p>
+      <p class="tel"><span>TEL</span>032-429-7522</p>
+    </section>
+
+    <section class="asset widget btn dark" id="widget-reserve">
+      <div class="ico">
+        <svg viewBox="0 0 24 24">
+          <rect x="3.5" y="5" width="17" height="15.5" rx="1.5" />
+          <path d="M3.5 9.5h17M8 3v4M16 3v4M8.5 14.5l2.3 2.3 4.7-4.7" />
+        </svg>
+      </div>
+      <div><b>네이버 예약</b><small class="en">Reservation</small></div>
+    </section>
+
+    <section class="asset widget btn" id="widget-home">
+      <div class="ico">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" />
+          <path
+            d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5s-1.1 5.9-3.6 8.5c-2.5-2.6-3.6-5.4-3.6-8.5s1.1-5.9 3.6-8.5z"
+          />
+        </svg>
+      </div>
+      <div><b>홈페이지</b><small class="en">Website</small></div>
+    </section>
+
+    <section class="asset widget btn" id="widget-map">
+      <div class="ico">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"
+          />
+          <circle cx="12" cy="10" r="2.3" />
+        </svg>
+      </div>
+      <div><b>오시는 길</b><small class="en">Location</small></div>
+    </section>
+
+    <!-- 4. 프로필 -->
+    <section class="asset" id="profile">
+      <div class="logo">{{MARK}}</div>
+      <p class="en">Clinic</p>
+    </section>
+
+    <!-- 5. 글 머리 -->
+    <section class="asset" id="post-header">
+      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
+      <div class="fade"></div>
+      <div class="copy">
+        <p class="en">Praveil Clinic Journal</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="ko">피부를 먼저 읽고, 나에게 맞게 설계합니다.</p>
+      </div>
+    </section>
+
+    <!-- 본문 소제목 띠 -->
+    <section class="asset" id="post-divider">
+      <div class="rule"></div>
+      <p class="en">Praveil Point</p>
+    </section>
+
+    <!-- 글 꼬리 -->
+    <section class="asset" id="post-footer">
+      <div class="head">
+        <p class="en">Visit Praveil</p>
+        <h3>상담은 대표원장이 직접 진행합니다</h3>
+        <p>
+          피부 상태와 원하시는 방향을 먼저 듣고, 나에게 맞는 계획을 함께
+          정합니다.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <p class="en">Hours</p>
+          <h4>진료시간</h4>
+          <dl>
+            <div>
+              <dt>월 · 화 · 수 · 금</dt>
+              <dd>10:00 – 19:00</dd>
+            </div>
+            <div>
+              <dt>목요일</dt>
+              <dd>10:00 – 20:30<em>야간진료</em></dd>
+            </div>
+            <div>
+              <dt>토요일</dt>
+              <dd>10:00 – 15:00</dd>
+            </div>
+            <div>
+              <dt>점심시간</dt>
+              <dd>13:00 – 14:00</dd>
+            </div>
+            <div class="closed">
+              <dt>일요일 · 공휴일</dt>
+              <dd>휴진</dd>
+            </div>
+          </dl>
+          <p class="note">진료 마감 30분 전까지 접수해 주세요.</p>
+        </div>
+        <div class="card loc">
+          <p class="en">Location</p>
+          <h4>오시는 길</h4>
+          <p>인천광역시 남동구 성말로 10<br />효명프라자 4층 403 · 404호</p>
+          <ul>
+            <li><b>지하철</b>인천 1호선 예술회관역 6번 출구</li>
+            <li><b>주차</b>건물 지하주차장 이용 (2시간 무료)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bar">
+        <div class="logo">{{LOGO}}</div>
+        <p class="tel"><span>TEL</span>032-429-7522</p>
+      </div>
+      <p class="legal">
+        시술 결과와 회복 기간은 개인에 따라 다를 수 있습니다. 시술 전 의료진과
+        충분히 상담해 주세요.
+      </p>
+    </section>
+
+    <!-- 6. 모바일 커버: 타이틀 A-2 를 단순하게 -->
+    <section class="asset" id="mobile-cover">
+      <div class="logo">{{LOGO}}</div>
+      <div class="arch-line"></div>
+      <div class="arch side">
+        <img
+          class="photo"
+          src="../../public/images/photos/retouched/laser.jpg"
+        />
+      </div>
+      <div class="arch main">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <p class="strip"><span class="en">Tel</span>032-429-7522</p>
+    </section>
+  </body>
+</html>

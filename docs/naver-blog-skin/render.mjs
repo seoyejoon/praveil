@@ -36,6 +36,7 @@ async function render(file, dir) {
   );
   await page.evaluate(() => document.fonts.ready);
   await page.waitForLoadState("load", { timeout: 120000 });
+  await page.evaluate(() => (document.body.style.background = "transparent"));
   // 높이가 소수점이면 가장자리에 회색 줄이 생겨서 정수로 맞춤
   await page.evaluate(() => {
     for (const el of document.querySelectorAll(".asset")) {
@@ -45,7 +46,8 @@ async function render(file, dir) {
   for (const el of await page.locator(".asset").all()) {
     const id = await el.getAttribute("id");
     const box = await el.boundingBox();
-    await el.screenshot({ path: join(dir, `${id}.png`) });
+    // 빈 타이틀은 투명 PNG 로 (다른 그림은 모두 자기 바탕색이 있음)
+    await el.screenshot({ path: join(dir, `${id}.png`), omitBackground: true });
     console.log(
       `${id}.png  ${Math.round(box.width)} × ${Math.round(box.height)}`,
     );
@@ -67,7 +69,7 @@ for (const name of ["hours", "reserve", "home", "map"]) {
 }
 
 // 블로그에 붙였을 때 모습 (확인용, 업로드하지 않음)
-await page.setViewportSize({ width: 1440, height: 900 });
+await page.setViewportSize({ width: 1920, height: 900 });
 await page.goto(pathToFileURL(join(here, "preview.html")).href);
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: join(out, "preview.png"), fullPage: true });

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 스킨을 블로그에 붙였을 때의 모습 (PC 2단, 대략적인 배치). render.mjs 가 out/preview.png 로 저장 -->
+<!-- 스킨을 블로그에 붙였을 때의 모습 (PC 2단, 네이버와 같은 세로 위치). render.mjs 가 out/preview.png 로 저장 -->
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
@@ -10,23 +10,26 @@
       }
       body {
         margin: 0;
-        width: 1440px;
+        width: 1920px;
         font-family: "Pretendard", sans-serif;
-        background: #f6f2ec url("out/background.png") no-repeat center top;
+        background: #f6f2ec url("out/background.png") repeat-x center top;
         color: #151311;
       }
       .wrap {
         width: 966px;
         margin: 0 auto;
-        padding: 40px 0 80px;
+        padding: 33px 0 80px;
       }
       .menu {
+        box-sizing: border-box;
+        height: 38px;
         display: flex;
+        align-items: center;
         gap: 28px;
-        padding: 16px 24px;
-        /* 타이틀 아래 짙은 띠와 이어지는 짙은 메뉴 (리모콘 블로그 메뉴 색) */
+        padding: 0 24px;
+        /* 배경의 짙은 띠와 이어지는 짙은 메뉴 (리모콘 블로그 메뉴 색 · 금색 테두리) */
         background: #1d1a17;
-        border-top: 1px solid #7d6649;
+        border: 1px solid #7d6649;
         font-size: 13px;
         color: #c2b096;
       }
@@ -84,7 +87,12 @@
   </head>
   <body>
     <div class="wrap">
-      <img src="out/title.png" width="966" style="display: block" />
+      <img
+        src="out/title.png"
+        width="966"
+        height="520"
+        style="display: block"
+      />
       <div class="menu">
         <b>블로그</b><span>병원소개</span><span>리프팅</span
         ><span>쁘띠시술</span><span>피부시술</span><span>오시는 길</span>

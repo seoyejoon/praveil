@@ -90,110 +90,117 @@
         background: var(--gold);
       }
 
-      /* ── 1. 타이틀 (966 × 400) ──
-         아이보리 바탕 · 왼쪽 로고 · 오른쪽 아치 선 + 로비 아치 + 원장 레이저 시술 아치
-         · 아래 짙은 진료시간 · 전화 띠 (블로그 메뉴도 짙은 색으로 이어짐) */
+      /* ── 1 · 2. 화면 전체 폭 머리 (스킨 배경 2560 × 600 + 빈 타이틀 966 × 520) ──
+         네이버 PC 블로그는 본문 폭(966)이 고정이라, 머리 디자인 전체를 스킨 배경에 그리고
+         타이틀 칸(높이 520)은 투명하게 비워 배경이 보이게 합니다. (리모콘: 가로 반복 · 가운데 위)
+         세로 위치: 0~32 네이버 윗줄 · 33~488 타이틀 칸 · 489~552 진료시간 띠 · 553~590 블로그 메뉴
+         가운데 본문 폭 966 은 x 797~1763. 양 끝은 단색이라 가로 반복해도 이음매가 없습니다. */
       #title {
         width: 966px;
-        height: 400px;
+        height: 520px;
+        background: transparent;
+      }
+      #background {
+        width: 2560px;
+        height: 600px;
         background: var(--ivory);
       }
-      #title .copy {
+      #background .copy {
         position: absolute;
-        left: 64px;
-        top: 0;
-        bottom: 64px;
+        left: 861px;
+        top: 33px;
+        bottom: 111px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 22px;
+        gap: 26px;
       }
-      #title .copy .en {
-        font-size: 11px;
+      #background .copy .en {
+        font-size: 13px;
         color: var(--gold);
       }
-      #title .logo {
-        width: 290px;
+      #background .logo {
+        width: 340px;
         color: var(--ink);
       }
-      #title .lead {
-        font-size: 14px;
+      #background .lead {
+        font-size: 16px;
         line-height: 1.75;
         color: var(--muted);
       }
-      #title .arch {
+      #background .arch {
         position: absolute;
-        bottom: 64px;
+        bottom: 111px;
         overflow: hidden;
       }
-      #title .arch.main {
-        right: 72px;
-        width: 300px;
-        height: 300px;
-        border-radius: 150px 150px 0 0;
+      #background .arch.main {
+        right: 860px;
+        width: 340px;
+        height: 370px;
+        border-radius: 170px 170px 0 0;
       }
-      #title .arch.side {
-        right: 384px;
-        width: 150px;
-        height: 214px;
-        border-radius: 75px 75px 0 0;
-      }
-      #title .arch-line {
-        position: absolute;
-        right: 54px;
-        bottom: 64px;
-        width: 336px;
-        height: 318px;
-        border: 1px solid var(--taupe);
-        border-bottom: 0;
-        border-radius: 168px 168px 0 0;
+      #background .arch.side {
+        right: 1212px;
+        width: 170px;
+        height: 244px;
+        border-radius: 85px 85px 0 0;
       }
       /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
-      #title .arch.side .photo,
+      #background .arch.side .photo,
       #mobile-cover .arch.side .photo {
         object-position: 62% 20%;
       }
-      #title .strip {
+      #background .arch-line {
+        position: absolute;
+        right: 840px;
+        bottom: 111px;
+        width: 380px;
+        height: 392px;
+        border: 1px solid var(--taupe);
+        border-bottom: 0;
+        border-radius: 190px 190px 0 0;
+      }
+      #background .strip {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0;
+        top: 489px;
         height: 64px;
         background: var(--espresso);
         color: var(--ivory);
         display: flex;
         align-items: center;
-        padding: 0 64px;
+        padding: 0 861px;
         gap: 28px;
         font-size: 12px;
       }
-      #title .strip .en {
+      #background .strip .en {
         font-size: 10px;
         color: var(--taupe);
         letter-spacing: 0.3em;
         margin-right: 8px;
       }
-      #title .strip .bar {
+      #background .strip .bar {
         width: 1px;
         height: 14px;
         background: rgba(255, 255, 255, 0.2);
       }
-      #title .strip .tel {
+      #background .strip .tel {
         margin-left: auto;
         font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.03em;
       }
-
-      /* ── 2. 스킨 배경 (2560 × 720) ── */
-      #background {
-        width: 2560px;
-        height: 720px;
-        background: linear-gradient(var(--sand), var(--ivory));
-      }
-      #background svg {
+      /* 블로그 메뉴 뒤 짙은 띠 (메뉴 위아래 금색 선과 같은 줄) */
+      #background .menu {
         position: absolute;
-        inset: 0;
+        left: 0;
+        right: 0;
+        top: 553px;
+        height: 38px;
+        background: var(--espresso);
+        border-top: 1px solid var(--mocha);
+        border-bottom: 1px solid var(--mocha);
       }
 
       /* ── 3. 위젯 (사이드 170px, 2배로 그려 선명하게) ── */
@@ -618,8 +625,11 @@
     </style>
   </head>
   <body>
-    <!-- 1. 타이틀 -->
-    <section class="asset" id="title">
+    <!-- 1. 빈 타이틀 (투명) -->
+    <section class="asset" id="title"></section>
+
+    <!-- 2. 스킨 배경: 화면 전체 폭 머리 -->
+    <section class="asset" id="background">
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>
@@ -646,18 +656,7 @@
         <span>토 10:00 – 15:00</span>
         <p class="tel"><span class="en">Tel</span>032-429-7522</p>
       </div>
-    </section>
-
-    <!-- 2. 스킨 배경: 위쪽 아치 선 무늬, 아래로 갈수록 바탕색(ivory)에 이어짐 -->
-    <section class="asset" id="background">
-      <svg width="2560" height="720" viewBox="0 0 2560 720">
-        <g fill="none" stroke="#c2b096" stroke-opacity="0.35" stroke-width="1">
-          <path d="M120 720 V360 a240 240 0 0 1 480 0 V720" />
-          <path d="M180 720 V380 a180 180 0 0 1 360 0 V720" />
-          <path d="M1960 720 V360 a240 240 0 0 1 480 0 V720" />
-          <path d="M2020 720 V380 a180 180 0 0 1 360 0 V720" />
-        </g>
-      </svg>
+      <div class="menu"></div>
     </section>
 
     <!-- 3. 위젯 -->

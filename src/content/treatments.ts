@@ -388,6 +388,8 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "볼륨",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("cat-filler"),
         text: "앞볼 · 옆볼 · 관자 등 꺼진 부위",
         en: "Volume",
         detail:
@@ -404,6 +406,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "이마",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("signature-3"),
         text: "둥글고 매끈한 이마 라인",
         en: "Forehead",
         detail:
@@ -420,6 +424,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "팔자",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("cat-main-petit"),
         text: "코 옆 깊은 주름",
         en: "Nasolabial Fold",
         detail:
@@ -436,6 +442,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "입술",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("special-2"),
         text: "입술 볼륨 · 라인",
         en: "Lips",
         detail:
@@ -452,6 +460,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "애교",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("best-filler"),
         text: "눈 밑 애교살",
         en: "Aegyo",
         detail:
@@ -468,6 +478,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "상안검",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("special-1"),
         text: "꺼진 윗눈꺼풀",
         en: "Upper Eyelid",
         detail:
@@ -484,6 +496,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "깊은 주름",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("special-3"),
         text: "깊게 팬 주름",
         en: "Deep Wrinkles",
         detail:
@@ -500,6 +514,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "목주름",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("special-4"),
         text: "목의 가로 주름",
         en: "Neck Lines",
         detail:
@@ -577,6 +593,8 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "표정주름",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("cat-botox"),
         text: "이마 · 미간 · 눈가",
         en: "Expression Lines",
         detail:
@@ -593,6 +611,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "턱",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("cat-injection"),
         text: "발달한 턱 근육",
         en: "Jaw",
         detail:
@@ -610,6 +630,8 @@ export const treatments: Treatment[] = [
       {
         // 확인 필요: 슈퍼턱에 포함하는 범위 (침샘 · 측두근 등)
         name: "슈퍼턱",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("special-5"),
         text: "턱 · 옆 라인 함께",
         en: "Super Jaw",
         detail:
@@ -626,6 +648,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "특수부위",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("signature-2"),
         text: "입꼬리 · 턱끝 · 콧등 등",
         en: "Special Area",
         detail:
@@ -642,6 +666,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "스킨",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("cat-main-skin"),
         text: "피부결 · 모공 · 유분",
         en: "Skin Botox",
         detail:
@@ -658,6 +684,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "승모근",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("signature-4"),
         text: "어깨 · 목 라인",
         en: "Trapezius",
         detail:
@@ -674,6 +702,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "종아리",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("process-treatment"),
         text: "종아리 라인",
         en: "Calf",
         detail:
@@ -690,6 +720,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "다한증",
+        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
+        image: photo("signature-1"),
         text: "겨드랑이 등 땀",
         en: "Hyperhidrosis",
         detail:

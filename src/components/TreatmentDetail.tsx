@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import BestMark from "@/components/BestMark";
 import NaverReviews from "@/components/naver-reviews/NaverReviews";
-import AreaTabs from "@/components/sub/AreaTabs";
+import AreaRows from "@/components/sub/AreaRows";
 import BlogSection from "@/components/sub/BlogSection";
 import FaceZoneIcon, { hasFaceZone } from "@/components/sub/FaceZoneIcon";
 import type { BlogPost } from "@/lib/blog";
@@ -507,7 +507,7 @@ export default function TreatmentDetail({
               }
             />
             {byArea ? (
-              <AreaTabs items={t.items} />
+              <AreaRows items={t.items} />
             ) : (
               <ul
                 className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}

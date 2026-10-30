@@ -53,7 +53,7 @@ async function render(file, dir) {
 }
 
 await render("skin.html", out);
-// 블로그 글 3개에 들어가는 그림 (본문은 posts/*.md)
+// 블로그 글 3개에 들어가는 그림 (본문은 posts/*.txt)
 await render("posts.html", join(out, "posts"));
 
 // 위젯 그림은 홈페이지 서버에서 바로 열리도록 public 에도 복사 (위젯 코드가 이 주소를 씀)

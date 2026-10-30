@@ -1,7 +1,7 @@
 // skin.html 의 .asset 하나하나를 out/<id>.png 로 저장합니다.
 // 실행: node docs/naver-blog-skin/render.mjs  (pnpm install 후, 프리텐다드 글꼴을 node_modules 에서 읽음)
 import { createRequire } from "node:module";
-import { readFileSync, mkdirSync } from "node:fs";
+import { readFileSync, mkdirSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -31,7 +31,7 @@ await page.evaluate(
   [logo, mark],
 );
 await page.evaluate(() => document.fonts.ready);
-await page.waitForLoadState("networkidle", { timeout: 120000 });
+await page.waitForLoadState("load", { timeout: 120000 });
 // 높이가 소수점이면 가장자리에 회색 줄이 생겨서 정수로 맞춤
 await page.evaluate(() => {
   for (const el of document.querySelectorAll(".asset")) {
@@ -45,6 +45,16 @@ for (const el of await page.locator(".asset").all()) {
   await el.screenshot({ path: join(out, `${id}.png`) });
   console.log(
     `${id}.png  ${Math.round(box.width)} × ${Math.round(box.height)}`,
+  );
+}
+
+// 위젯 그림은 홈페이지 서버에서 바로 열리도록 public 에도 복사 (위젯 코드가 이 주소를 씀)
+const pub = join(here, "../../public/images/naver-blog");
+mkdirSync(pub, { recursive: true });
+for (const name of ["hours", "reserve", "home", "map"]) {
+  copyFileSync(
+    join(out, `widget-${name}.png`),
+    join(pub, `widget-${name}.png`),
   );
 }
 

@@ -29,12 +29,11 @@
    - 블로그 메뉴: 바탕 `#1d1a17`, 글자 `#c2b096`, 선택한 메뉴 `#ffffff` (타이틀 아래 짙은 띠와 이어지게). 구분선 색을 고를 수 있으면 `#7d6649`
    - 포스트 영역 · 위젯 바탕: `#ffffff`, 테두리 · 구분선 `#e8e2d9`, 강조 글자 `#a88e6a`
 3. **프로필**: `profile.png` 를 블로그 프로필 이미지로 올립니다.
-4. **위젯 그림 주소 만들기**: 새 글을 비공개로 쓰고 `widget-*.png` 4장을 올려 저장합니다.
-   글에서 그림을 새 탭으로 열어 주소(`https://postfiles.pstatic.net/...`)를 복사합니다.
-5. **위젯 등록**: `widgets.html` 의 블록을 하나씩 위젯 직접등록에 붙여 넣고, `이미지주소/...` 를 4번의 주소로 바꿉니다.
+4. **위젯 등록**: `widgets.html` 의 블록을 하나씩 위젯 직접등록에 그대로 붙여 넣습니다.
+   위젯 그림은 홈페이지 서버(`https://praveil.com/images/naver-blog/`)에 있어 주소를 따로 만들 필요가 없습니다.
    레이아웃 화면에서 프로필 아래로 진료시간 → 네이버 예약 → 홈페이지 → 오시는 길 순서로 끌어다 놓습니다.
-6. **글 머리 · 꼬리**: `post-header.png` · `post-footer.png` 를 넣은 빈 글을 스마트에디터 **내 템플릿**으로 저장해 두면 글마다 다시 올리지 않아도 됩니다. 소제목 띠(`post-divider.png`)는 필요할 때 본문 중간에 넣습니다.
-7. **모바일 커버**: 네이버 블로그 앱 → 내 블로그 → 홈편집 → 커버 이미지에 `mobile-cover.png` 를 올립니다.
+5. **글 머리 · 꼬리**: `post-header.png` · `post-footer.png` 를 넣은 빈 글을 스마트에디터 **내 템플릿**으로 저장해 두면 글마다 다시 올리지 않아도 됩니다. 소제목 띠(`post-divider.png`)는 필요할 때 본문 중간에 넣습니다.
+6. **모바일 커버**: 네이버 블로그 앱 → 내 블로그 → 홈편집 → 커버 이미지에 `mobile-cover.png` 를 올립니다.
 
 ## 고치는 법
 
@@ -45,6 +44,7 @@ pnpm install --frozen-lockfile   # 프리텐다드 글꼴
 node docs/naver-blog-skin/render.mjs
 ```
 
+- 위젯 그림은 `render.mjs` 가 `public/images/naver-blog/` 에도 복사합니다. 서버 캐시가 30일이라, 그림을 고치면 파일 이름을 바꿔(예: `widget-hours-2.png`) 올리고 `widgets.html` 주소도 같이 바꿔 주세요.
 - 진료시간 · 전화 · 주소는 `src/lib/data/mock/hospital.ts` 값을 옮겨 적은 것입니다. 바뀌면 `skin.html` 도 같이 고쳐 주세요.
 - 원장님 사진은 홈페이지와 같은 보정본 `public/images/photos/retouched/laser.jpg` 를 씁니다.
 - 지난 타이틀 시안(A · A-1 · A-3 · B · C · D, A-2 흰 바탕 · 짙은 판)은 git 기록에 남아 있습니다.

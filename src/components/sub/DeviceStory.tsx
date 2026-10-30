@@ -281,10 +281,53 @@ export function StoryAbout({
 export function StoryFeatures({
   title,
   story,
+  layout = "rows",
 }: {
   title: string;
   story: DeviceStory;
+  /** rows: 사진 · 글 좌우 번갈아 / cards: 아치 사진 카드 한 줄 (모바일은 옆으로 넘김) */
+  layout?: "rows" | "cards";
 }) {
+  if (layout === "cards")
+    return (
+      <section className="mt-20 bg-ivory px-5 py-24 md:mt-28 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1300px]">
+          <SectionHead
+            en="Point"
+            title={story.featuresTitle ?? `${title}만의 특별함`}
+          />
+          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
+            {story.features.map((f, i) => (
+              <Reveal
+                as="li"
+                key={f.title}
+                delay={i * 120}
+                className="group w-[78%] shrink-0 snap-start md:w-auto"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[24px] bg-sand">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={f.image}
+                    alt={f.alt}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
+                  />
+                  <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-4 py-1.5 font-display text-[11px] tracking-[0.3em] text-gold backdrop-blur-sm">
+                    POINT {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-center text-[19px] leading-snug font-semibold tracking-[-0.03em] break-keep md:text-[21px]">
+                  {f.title}
+                </h3>
+                <p className="mt-3 text-center text-[14px] leading-[1.8] break-keep text-muted md:text-[15px]">
+                  {f.text}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+    );
   return (
     <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1300px]">

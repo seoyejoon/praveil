@@ -81,6 +81,8 @@ export type DeviceStory = {
   };
   /** 특징 파트 제목 (없으면 "○○만의 특별함") */
   featuresTitle?: string;
+  /** 특징 위치 · 모양: "after-ba" 는 전후사진 아래에 아치 사진 카드로 (부위별 지그재그와 겹치지 않게) */
+  featuresPlacement?: "after-ba";
   /** 특징: 사진 또는 영상 + 설명 */
   features: {
     title: string;
@@ -378,6 +380,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
     },
     featuresTitle: "프라베일 필러의 4가지 특징",
+    featuresPlacement: "after-ba",
     features: [
       {
         title: "얼굴 비율부터 보는 디자인",

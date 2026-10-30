@@ -459,9 +459,11 @@ export default function TreatmentDetail({
         </>
       )}
 
-      {/* 특징 3가지 */}
+      {/* 특징 3가지 (필러처럼 after-ba 면 전후사진 아래로) */}
       {story ? (
-        <StoryFeatures title={t.title} story={story} />
+        story.featuresPlacement !== "after-ba" && (
+          <StoryFeatures title={t.title} story={story} />
+        )
       ) : (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
           <SectionHead en="Point" title={`프라베일 ${t.title}의 특징`} />
@@ -924,6 +926,10 @@ export default function TreatmentDetail({
             </span>
           </Link>
         </section>
+      )}
+
+      {story?.featuresPlacement === "after-ba" && (
+        <StoryFeatures title={t.title} story={story} layout="cards" />
       )}
 
       {/* 자주 묻는 질문 */}

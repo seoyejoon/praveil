@@ -649,7 +649,7 @@ export const treatments: Treatment[] = [
         // 확인 필요: 슈퍼턱에 포함하는 범위 (침샘 · 측두근 등)
         name: "슈퍼턱",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-5"),
+        image: photo("special-2"),
         text: "턱 · 옆 라인 함께",
         en: "Super Jaw",
         detail:
@@ -667,7 +667,7 @@ export const treatments: Treatment[] = [
       {
         name: "특수부위",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-2"),
+        image: photo("cat-skin-booster"),
         text: "입꼬리 · 턱끝 · 콧등 등",
         en: "Special Area",
         detail:
@@ -721,7 +721,7 @@ export const treatments: Treatment[] = [
       {
         name: "종아리",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("process-treatment"),
+        image: photo("signature-3"),
         text: "종아리 라인",
         en: "Calf",
         detail:
@@ -739,7 +739,7 @@ export const treatments: Treatment[] = [
       {
         name: "다한증",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-1"),
+        image: photo("cat-main-petit"),
         text: "겨드랑이 등 땀",
         en: "Hyperhidrosis",
         detail:

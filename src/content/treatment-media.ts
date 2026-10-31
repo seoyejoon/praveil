@@ -19,24 +19,8 @@ export type ProductMedia = {
   clips?: ProductClip[];
 };
 
-const filler: ProductMedia = {
-  id: "filler-example",
-  name: "히알루론산 필러 제품 예시",
-  english: "Restylane Lidocaine",
-  maker: "GALDERMA",
-  description:
-    "병원에서 제공한 레스틸렌 리도카인 제품 이미지입니다. 실제 사용할 제품은 상담 시 확인합니다.",
-  image: {
-    src: "/images/equipment/hero/filler.webp",
-    alt: "히알루론산 필러 제품 예시인 레스틸렌 리도카인 패키지",
-    credit: "병원 제공 갈더마 제품 이미지",
-  },
-  source: { label: "병원 제공 제품 자료" },
-};
-
 // Only named products already present in the clinic's treatment content are mapped.
 // Unconfirmed brands (botulinum toxin, exosomes, etc.) keep their general diagrams.
 // Coolsonic and Coolphase use in-section videos through device-story.ts.
-export const treatmentMedia: Record<string, ProductMedia[]> = {
-  "/petit/filler": [filler],
-};
+// 필러는 '어떤 제품을 쓰나요?' 섹션과 겹쳐 뺌 (2026-10-31)
+export const treatmentMedia: Record<string, ProductMedia[]> = {};

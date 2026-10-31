@@ -89,6 +89,8 @@ export type DeviceStory = {
       en?: string;
       /** 제조사 · 나라 (모르면 비움) */
       maker?: string;
+      /** 제품 사진 (배경 없는 제품 사진이 잘 맞음, 4:3 칸에 전체가 보이게) */
+      image?: string;
       text: string;
       tags: string[];
     }[];

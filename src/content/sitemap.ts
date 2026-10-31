@@ -50,7 +50,7 @@ export const sitemap: SiteSection[] = [
       {
         href: "/lifting/thread",
         label: "실리프팅",
-        items: ["민트실", "잼버실"],
+        items: ["QTL실", "잼버실"],
       },
     ],
   },

@@ -424,6 +424,10 @@ export const treatments: Treatment[] = [
   },
   {
     href: "/lifting/thread",
+    variants: [
+      { href: "/lifting/thread/qtl", label: "QTL실" },
+      { href: "/lifting/thread/jamber", label: "잼버실" },
+    ],
     en: "Thread Lifting",
     title: "실리프팅",
     description: "피부 두께와 처짐 방향을 살펴 계획하는 흡수성 실리프팅",
@@ -490,6 +494,110 @@ export const treatments: Treatment[] = [
     cautions: [
       "회복 중 얼굴을 강하게 문지르거나 압박하지 마세요. 마사지 · 큰 입 벌림 · 치과 치료의 재개 시점은 시술 부위와 경과에 맞춰 상의해 주세요.",
       "붉어짐 · 열감이나 통증이 심해지고 진물 · 실 노출 · 새로운 감각이나 표정 변화가 생기면 병원에 알려 주세요. 패임이나 비대칭을 스스로 마사지해 풀려고 하지 마세요.",
+    ],
+  },
+  {
+    href: "/lifting/thread/qtl",
+    variantOf: "/lifting/thread",
+    en: "QTL Thread",
+    title: "QTL 실리프팅",
+    description: "처진 조직을 받쳐 라인을 정리하는 리프팅 실",
+    image: photo("clinic-5"),
+    // 확인 필요: QTL 실리프팅 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-thread-20261027"),
+      mobileSrc: photo("hero-thread-20261027-m"),
+      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
+      chips: [
+        { x: 48, y: 18, en: "Design", label: "처짐 방향 · 피부 두께 확인" },
+        { x: 60, y: 66, en: "Lift", label: "부위별 실 개수 · 배치 계획" },
+      ],
+    },
+    headline: ["처진 라인을 받쳐 올리는,", "QTL 실리프팅"],
+    intro:
+      "QTL 실리프팅은 의료용 실을 피부 아래에 넣어 처진 조직을 받쳐 주는 시술입니다. 처짐 방향과 피부 두께를 보고 실의 개수와 배치를 정합니다.",
+    photo: stock("thread"),
+    facts: [
+      { label: "방법", value: "의료용 실 삽입" },
+      { label: "통증 관리", value: "국소 마취 등 범위별 안내" },
+      { label: "회복", value: "붓기 · 멍 · 당김 개인차" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
+    ],
+    recommend: [
+      "볼 · 턱선 처짐이 신경 쓰이는 분",
+      "에너지 리프팅 후에도 처짐이 고민인 분",
+      "처진 라인을 자연스럽게 정리하고 싶은 분",
+    ],
+    points: [
+      {
+        title: "처짐 방향 먼저",
+        text: "조직의 무게와 처지는 방향을 보고 실을 넣을 방향을 정합니다.",
+      },
+      {
+        title: "개수 · 배치 설계",
+        text: "필요한 범위에 맞춰 실의 개수와 배치를 나누어 정합니다.",
+      },
+      {
+        title: "경과 확인",
+        text: "당김 · 붓기가 안정된 뒤 모양과 좌우 균형을 확인합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붓기 · 멍 · 당김 · 일시적인 패임이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "실이 만져지거나 노출되는 느낌, 통증 · 열감이 오래가면 바로 병원에 알려 주세요.",
+    ],
+  },
+  {
+    href: "/lifting/thread/jamber",
+    variantOf: "/lifting/thread",
+    en: "Jamber Thread",
+    title: "잼버실",
+    description: "꺼진 부위를 실로 받쳐 볼륨을 채우는 볼륨 실리프팅",
+    image: photo("clinic-5"),
+    // 확인 필요: 잼버실 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-thread-20261027"),
+      mobileSrc: photo("hero-thread-20261027-m"),
+      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
+      chips: [
+        { x: 48, y: 18, en: "Volume", label: "꺼진 부위 · 피부 두께 확인" },
+        { x: 60, y: 66, en: "Thread", label: "볼륨형 실 · 부위별 계획" },
+      ],
+    },
+    headline: ["꺼진 부위를 실로 받쳐,", "잼버실 볼륨 리프팅"],
+    intro:
+      "잼버실은 꺼진 부위를 받쳐 볼륨을 채우는 데 쓰는 볼륨형 실입니다. 팔자 주변 · 앞볼처럼 꺼진 부위와 피부 두께를 보고 범위를 정합니다.",
+    photo: stock("thread"),
+    facts: [
+      { label: "방법", value: "볼륨형 실 삽입" },
+      { label: "통증 관리", value: "국소 마취 등 범위별 안내" },
+      { label: "회복", value: "붓기 · 멍 개인차" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
+    ],
+    recommend: [
+      "팔자 주변 · 앞볼이 꺼져 보이는 분",
+      "필러보다 다른 방법을 상담하고 싶은 분",
+      "꺼짐과 처짐을 함께 보고 싶은 분",
+    ],
+    points: [
+      {
+        title: "꺼진 부위 확인",
+        text: "꺼진 위치와 깊이, 피부 두께를 먼저 살핍니다.",
+      },
+      {
+        title: "범위 설계",
+        text: "필요한 부위에 맞춰 실의 개수와 방향을 정합니다.",
+      },
+      {
+        title: "경과 확인",
+        text: "붓기가 빠진 뒤 모양과 좌우 균형을 확인합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붓기 · 멍 · 일시적인 울퉁불퉁함이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "실이 만져지거나 노출되는 느낌, 통증 · 열감이 오래가면 바로 병원에 알려 주세요.",
     ],
   },
 

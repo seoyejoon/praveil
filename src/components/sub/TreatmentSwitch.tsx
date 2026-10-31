@@ -16,7 +16,7 @@ import {
 // - 주소: ?type=exosome (첫 번째 시술은 주소 그대로)
 // - 첫 화면 제목 아래 버튼: 맨 위에서 바꿈
 // - 화면 아래 떠 있는 버튼: 지금 읽던 섹션 그대로 다른 시술로 바꿈
-type Variant = { key: string; label: string };
+type Variant = { key: string; label: string; title: string };
 type Ctx = {
   variants: Variant[];
   active: number;
@@ -46,7 +46,11 @@ export default function TreatmentSwitch({
   const pending = useRef<{ sig: string; index: number; ratio: number } | null>(
     null,
   );
-  const labels = variants.map((v) => v.label);
+  // 섹션 제목에서 뺄 이름: 시술 이름(긴 것부터) · 버튼 이름
+  const labels = [
+    ...variants.map((v) => v.title),
+    ...variants.map((v) => v.label),
+  ].sort((a, b) => b.length - a.length);
 
   useEffect(() => {
     const key = new URLSearchParams(location.search).get("type");
@@ -136,7 +140,7 @@ export function HeroSwitch() {
     <div
       role="tablist"
       aria-label="시술 선택"
-      className="inline-flex rounded-full border border-ink/10 bg-white/70 p-1 backdrop-blur-sm"
+      className="inline-flex max-w-full rounded-full border border-ink/10 bg-white/75 p-1.5 shadow-[0_10px_30px_-18px_rgba(40,30,20,0.5)] backdrop-blur-sm"
     >
       {ctx.variants.map((v, i) => {
         const on = i === ctx.active;
@@ -147,7 +151,7 @@ export function HeroSwitch() {
             role="tab"
             aria-selected={on}
             onClick={() => ctx.select(i, false)}
-            className={`rounded-full px-5 py-2.5 text-[14px] transition duration-300 md:px-7 md:text-[15px] ${on ? "bg-ink font-semibold text-white" : "text-ink/60 hover:text-ink"}`}
+            className={`rounded-full px-4 py-3 text-[14px] whitespace-nowrap transition duration-300 md:px-7 md:text-[15px] ${on ? "bg-ink font-semibold text-white" : "text-ink/60 hover:text-ink"}`}
           >
             {v.label}
           </button>

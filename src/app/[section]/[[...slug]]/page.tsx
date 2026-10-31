@@ -208,6 +208,7 @@ export default async function SectionPage({ params }: Props) {
       const variants = t.variants.map((v) => ({
         key: v.href.split("/").pop()!,
         label: v.label,
+        title: findTreatment(v.href)!.title,
       }));
       return (
         <TreatmentSwitch variants={variants}>

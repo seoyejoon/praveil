@@ -22,7 +22,7 @@ export default function LightHeroText({
   className?: string;
   /** 바깥 틀에 더할 클래스 (세로 위치 등) */
   wrap?: string;
-  /** 제목 아래: 한 페이지 안 하위 시술 전환 버튼 */
+  /** 상담 예약 버튼 자리: 한 페이지 안 하위 시술 전환 버튼 */
   switcher?: React.ReactNode;
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
@@ -43,14 +43,6 @@ export default function LightHeroText({
         >
           {title}
         </h1>
-        {switcher && (
-          <div
-            className="mt-5 md:mt-6"
-            style={{ animation: `slide-in 1s ${ease} 0.5s both` }}
-          >
-            {switcher}
-          </div>
-        )}
         {description && (
           <p
             className="mt-3 text-[15px] leading-relaxed text-ink/70 md:mt-5 md:text-lg"
@@ -59,12 +51,12 @@ export default function LightHeroText({
             {description}
           </p>
         )}
-        {/* 상담 예약 (아래 상담 · 위치 안내로) */}
+        {/* 상담 예약 (아래 상담 · 위치 안내로). 하위 시술이 있으면 그 자리에 전환 버튼 */}
         <div
           className="mt-7 md:mt-10"
           style={{ animation: `fade-up 1s ${ease} 0.75s both` }}
         >
-          <MagneticButton href="#visit">상담 예약</MagneticButton>
+          {switcher ?? <MagneticButton href="#visit">상담 예약</MagneticButton>}
         </div>
         {facts.length > 0 && (
           <dl

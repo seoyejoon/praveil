@@ -196,6 +196,11 @@ export const treatments: Treatment[] = [
   },
   {
     href: "/lifting/laser",
+    variants: [
+      { href: "/lifting/laser/shrink", label: "슈링크" },
+      { href: "/lifting/laser/potenza", label: "포텐자" },
+      { href: "/lifting/laser/clarity", label: "클라리티" },
+    ],
     en: "Laser Lifting",
     title: "레이저리프팅",
     description: "피부 고민에 맞춘 초음파 · 고주파 · 레이저 리프팅",
@@ -271,6 +276,150 @@ export const treatments: Treatment[] = [
     cautions: [
       "미세침을 쓰는 방식은 붉어짐 · 부기 · 작은 자국이 생길 수 있습니다. 세안 · 화장과 보습 · 자외선 차단 방법은 피부 상태에 맞춰 안내합니다.",
       "물집이나 심해지는 통증, 진물 · 피부색 변화 · 감각 이상이 생기면 병원에 알려 주세요.",
+    ],
+  },
+  {
+    href: "/lifting/laser/shrink",
+    variantOf: "/lifting/laser",
+    en: "Shurink Universe",
+    title: "슈링크 유니버스",
+    description: "집속 초음파로 처진 윤곽과 탄력을 관리하는 리프팅",
+    image: photo("cat-lifting"),
+    // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-laser-20261027"),
+      mobileSrc: photo("hero-laser-20261027-m"),
+      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
+      chips: [
+        { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 깊이별 카트리지" },
+        { x: 60, y: 66, en: "Design", label: "처짐 부위 · 피부 두께 계획" },
+      ],
+    },
+    headline: ["처진 윤곽을 깊이별로,", "슈링크 유니버스"],
+    intro:
+      "슈링크 유니버스는 초음파 에너지를 피부 속 한 지점에 모아 전달하는 리프팅 장비입니다. 처짐 부위와 피부 두께를 보고 깊이와 샷 수를 정합니다.",
+    photo: stock("laser"),
+    facts: [
+      { label: "방식", value: "집속 초음파 (HIFU)" },
+      { label: "통증 관리", value: "마취 크림 · 부위별 안내" },
+      { label: "회복", value: "열감 · 붓기 개인차" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
+    ],
+    recommend: [
+      "턱선 · 볼 처짐이 신경 쓰이는 분",
+      "탄력이 떨어져 윤곽이 흐려진 분",
+      "일상 복귀가 빠른 리프팅을 찾는 분",
+    ],
+    points: [
+      {
+        title: "깊이별 계획",
+        text: "처짐 부위와 피부 두께에 맞춰 카트리지 깊이를 고릅니다.",
+      },
+      { title: "샷 수 설계", text: "부위마다 필요한 샷 수를 나누어 정합니다." },
+      {
+        title: "경과 확인",
+        text: "열감 · 붓기가 가라앉은 뒤 변화를 함께 봅니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 부위에 열감 · 붓기 · 누를 때 아픔이 생길 수 있으며 대부분 시간이 지나며 가라앉습니다.",
+      "필러 · 실리프팅을 받은 부위라면 날짜와 부위를 미리 알려 주세요.",
+    ],
+  },
+  {
+    href: "/lifting/laser/potenza",
+    variantOf: "/lifting/laser",
+    en: "Potenza",
+    title: "포텐자",
+    description: "미세침 고주파로 모공 · 피부결 · 탄력을 관리하는 리프팅",
+    image: photo("cat-lifting"),
+    // 확인 필요: 포텐자 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-laser-20261027"),
+      mobileSrc: photo("hero-laser-20261027-m"),
+      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
+      chips: [
+        { x: 48, y: 18, en: "RF", label: "미세침 고주파 · 팁별 방식" },
+        { x: 60, y: 66, en: "Design", label: "모공 · 피부결 · 탄력 계획" },
+      ],
+    },
+    headline: ["모공과 피부결까지,", "포텐자 고주파 리프팅"],
+    intro:
+      "포텐자는 아주 가는 바늘(미세침)로 피부 속에 고주파 에너지를 전달하는 장비입니다. 모공 · 피부결 · 탄력 고민을 보고 팁과 깊이를 정합니다.",
+    photo: stock("laser"),
+    facts: [
+      { label: "방식", value: "미세침 고주파 (RF)" },
+      { label: "통증 관리", value: "마취 크림 · 부위별 안내" },
+      { label: "회복", value: "붉은기 · 바늘 자국 개인차" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
+    ],
+    recommend: [
+      "넓어진 모공 · 거친 피부결이 고민인 분",
+      "여드름 흉터 · 피부결을 함께 관리하고 싶은 분",
+      "탄력과 피부결을 같이 보고 싶은 분",
+    ],
+    points: [
+      { title: "팁 선택", text: "고민에 맞춰 RF팁 · 펌핑팁 중 고릅니다." },
+      {
+        title: "깊이 조절",
+        text: "피부 두께와 부위에 맞춰 바늘 깊이를 정합니다.",
+      },
+      {
+        title: "함께 하는 관리",
+        text: "필요하면 재생관리 · 부스터와 함께 계획합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붉은기 · 붓기 · 작은 바늘 자국이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "피부에 염증 · 상처가 있거나 금속 삽입물 · 심장 박동기가 있으면 꼭 알려 주세요.",
+    ],
+  },
+  {
+    href: "/lifting/laser/clarity",
+    variantOf: "/lifting/laser",
+    en: "Clarity II",
+    title: "클라리티",
+    description: "두 가지 파장의 레이저로 피부결 · 탄력을 관리하는 이너리프팅",
+    image: photo("cat-lifting"),
+    // 확인 필요: 클라리티 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-laser-20261027"),
+      mobileSrc: photo("hero-laser-20261027-m"),
+      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
+      chips: [
+        { x: 48, y: 18, en: "Laser", label: "755nm · 1064nm 레이저" },
+        { x: 60, y: 66, en: "Design", label: "피부 톤 · 고민별 계획" },
+      ],
+    },
+    headline: ["빛으로 다듬는 피부결,", "클라리티 이너리프팅"],
+    intro:
+      "클라리티2는 755nm와 1064nm 두 가지 파장을 사용하는 레이저입니다. 피부 톤과 고민을 보고 파장과 조사 범위를 정해 피부결 · 탄력을 관리합니다.",
+    photo: stock("laser"),
+    facts: [
+      { label: "방식", value: "레이저 (755 · 1064nm)" },
+      { label: "통증 관리", value: "부위별 안내" },
+      { label: "회복", value: "붉은기 · 열감 개인차" },
+      { label: "평가 간격", value: "경과 확인 후 결정" },
+    ],
+    recommend: [
+      "피부결과 탄력을 함께 관리하고 싶은 분",
+      "바늘 시술이 부담스러운 분",
+      "다른 리프팅과 함께 관리하고 싶은 분",
+    ],
+    points: [
+      { title: "파장 선택", text: "피부 톤과 고민에 맞춰 파장을 고릅니다." },
+      { title: "조사 범위", text: "얼굴 부위마다 범위와 세기를 조절합니다." },
+      {
+        title: "함께 하는 관리",
+        text: "재생관리 · PDRN과 함께 하는 패키지로 계획합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붉은기 · 열감 · 붓기가 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "시술 전후 햇빛 노출을 줄이고, 최근 태닝 · 광과민 약 복용 여부를 알려 주세요.",
     ],
   },
   {
@@ -1018,6 +1167,10 @@ export const treatments: Treatment[] = [
   },
   {
     href: "/skin/collagen",
+    variants: [
+      { href: "/skin/collagen/juvelook", label: "쥬베룩" },
+      { href: "/skin/collagen/ultracol", label: "울트라콜" },
+    ],
     en: "Collagen Booster",
     title: "콜라겐부스터",
     description:
@@ -1075,6 +1228,104 @@ export const treatments: Treatment[] = [
     cautions: [
       "주입 부위에 붓기 · 멍이나 덩어리감이 생길 수 있으며, 오래가거나 통증 · 열감이 동반되면 병원에 알려 주세요.",
       "마사지 여부와 방법은 실제 사용한 제품에 맞춰 안내합니다. 임의로 세게 누르거나 문지르지 마세요.",
+    ],
+  },
+  {
+    href: "/skin/collagen/juvelook",
+    variantOf: "/skin/collagen",
+    en: "Juvelook",
+    title: "쥬베룩",
+    description: "PDLLA와 히알루론산으로 피부결 · 탄력을 관리하는 콜라겐부스터",
+    image: photo("cat-skin-care"),
+    // 확인 필요: 쥬베룩 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-collagen-20261027"),
+      mobileSrc: photo("hero-collagen-20261027-m"),
+      alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "PDLLA", label: "PDLLA · 히알루론산 성분" },
+        { x: 50, y: 64, en: "Plan", label: "피부 두께 · 주입 범위 계획" },
+      ],
+    },
+    headline: ["서서히 차오르는 피부결,", "쥬베룩"],
+    intro:
+      "쥬베룩은 PDLLA 미세입자와 히알루론산으로 만든 콜라겐부스터입니다. 피부결 · 탄력 · 얕은 꺼짐 고민을 보고 양과 범위를 정합니다.",
+    photo: stock("collagen"),
+    facts: [
+      { label: "성분", value: "PDLLA · 히알루론산" },
+      { label: "통증 관리", value: "마취 크림 등 부위별 안내" },
+      { label: "회복", value: "붓기 · 엠보 개인차" },
+      { label: "횟수 · 간격", value: "경과 확인 후 안내" },
+    ],
+    recommend: [
+      "피부가 얇아지고 결이 거칠어진 분",
+      "얕은 꺼짐 · 잔주름이 신경 쓰이는 분",
+      "서서히 자연스러운 변화를 원하는 분",
+    ],
+    points: [
+      {
+        title: "성분 확인",
+        text: "PDLLA · 히알루론산 구성과 제품 라인을 확인합니다.",
+      },
+      {
+        title: "양 · 범위 계획",
+        text: "피부 두께와 부위에 맞춰 cc와 범위를 정합니다.",
+      },
+      { title: "경과 확인", text: "붓기와 덩어리감이 없는지 함께 살핍니다." },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붓기 · 작은 엠보 · 멍이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "드물게 덩어리감(결절)이 생길 수 있어, 오래가거나 커지면 바로 알려 주세요.",
+    ],
+  },
+  {
+    href: "/skin/collagen/ultracol",
+    variantOf: "/skin/collagen",
+    en: "Ultracol",
+    title: "울트라콜",
+    description: "PDO 성분으로 피부결 · 볼륨을 관리하는 콜라겐부스터",
+    image: photo("cat-skin-care"),
+    // 확인 필요: 울트라콜 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    scene: {
+      src: photo("hero-collagen-20261027"),
+      mobileSrc: photo("hero-collagen-20261027-m"),
+      alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "PDO", label: "PDO 성분 · 제품 규격 확인" },
+        { x: 50, y: 64, en: "Plan", label: "부위 · 양 계획" },
+      ],
+    },
+    headline: ["얇아진 피부에 탄탄함을,", "울트라콜"],
+    intro:
+      "울트라콜은 PDO(폴리디옥사논)를 재료로 한 콜라겐부스터입니다. 피부결 · 탄력 · 볼륨 고민을 보고 제품 규격과 양을 정합니다.",
+    photo: stock("collagen"),
+    facts: [
+      { label: "성분", value: "PDO (폴리디옥사논)" },
+      { label: "통증 관리", value: "마취 크림 등 부위별 안내" },
+      { label: "회복", value: "붓기 · 엠보 개인차" },
+      { label: "횟수 · 간격", value: "경과 확인 후 안내" },
+    ],
+    recommend: [
+      "피부가 얇아지고 탄력이 떨어진 분",
+      "피부결과 볼륨을 함께 관리하고 싶은 분",
+      "서서히 자연스러운 변화를 원하는 분",
+    ],
+    points: [
+      {
+        title: "규격 선택",
+        text: "울트라콜100 · 볼륨부스터 울트라콜200 중 고릅니다.",
+      },
+      {
+        title: "양 · 범위 계획",
+        text: "피부 두께와 부위에 맞춰 cc와 범위를 정합니다.",
+      },
+      { title: "경과 확인", text: "붓기와 덩어리감이 없는지 함께 살핍니다." },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붓기 · 작은 엠보 · 멍이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "드물게 덩어리감(결절)이 생길 수 있어, 오래가거나 커지면 바로 알려 주세요.",
     ],
   },
 

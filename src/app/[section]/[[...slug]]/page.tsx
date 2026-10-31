@@ -15,7 +15,8 @@ import {
   treatmentGuide,
 } from "@/content/treatment-guide";
 import { deviceStory } from "@/content/device-story";
-import { findTreatment } from "@/content/treatments";
+import { findTreatment, type Treatment } from "@/content/treatments";
+import TreatmentSwitch, { HeroSwitch } from "@/components/sub/TreatmentSwitch";
 import {
   getBeforeAfterCases,
   getDoctor,
@@ -76,115 +77,147 @@ export default async function SectionPage({ params }: Props) {
       getBeforeAfterCases(false),
       deviceStory[t.href] ? getBlogPosts(30) : [],
     ]);
-    // 블로그: 이 시술 이름이 들어간 글 먼저
-    const blog = [
-      ...posts.filter((p) => p.title.includes(t.title)),
-      ...posts.filter((p) => !p.title.includes(t.title)),
-    ];
-    // 전후사진: 제목에 시술 이름이 있는 사례 먼저, 없으면 같은 분류 사례 (최대 3개)
-    const cases = allCases.map(withCategoryKey);
-    const named = cases.filter((c) => c.title.includes(t.title));
-    const baCases = (
-      named.length ? named : cases.filter((c) => c.category === s.key)
-    ).slice(0, 3);
-    const g = treatmentGuide[t.href];
-    const area = areaOf(hospital.address);
-    const prices = g.prices
-      .map((slug) => procedures.find((p) => p.slug === slug))
-      .filter((p) => p && p.prices.length > 0) as typeof procedures;
-    const compare = (g.compare ?? []).map((href) => ({
-      href,
-      title: findTreatment(href)!.title,
-      profile: treatmentGuide[href].profile,
-    }));
-    const faq = faqDetail[t.href] ?? [
-      ...t.faq,
-      ...g.faq,
-      ...commonFaq(t.title, hospital, doctor.name, prices.length > 0),
-    ];
-    const url = `${SITE_URL}${t.href}`;
-    // 구조화 데이터: 이 페이지가 어떤 시술을, 어느 병원이, 어떤 질문에 답하는지 검색엔진 · AI에 알려 줌
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "MedicalWebPage",
-          "@id": `${url}#webpage`,
-          url,
-          name: `${t.title} | ${hospital.name}`,
-          description: g.answer,
-          inLanguage: "ko-KR",
-          dateModified: guideUpdated,
-          about: { "@id": `${url}#procedure` },
-          mainEntity: { "@id": `${url}#faq` },
-          breadcrumb: { "@id": `${url}#breadcrumb` },
-          publisher: { "@id": `${SITE_URL}/#clinic` },
-        },
-        {
-          "@type": "MedicalProcedure",
-          "@id": `${url}#procedure`,
-          name: t.title,
-          alternateName: t.en,
-          description: g.answer,
-          howPerformed: g.principle,
-          bodyLocation: g.area,
-          followup: g.recovery,
-        },
-        {
-          "@type": "FAQPage",
-          "@id": `${url}#faq`,
-          mainEntity: faq.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: faqPlain(f.a) },
-          })),
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": `${url}#breadcrumb`,
-          itemListElement: [
-            { name: "HOME", item: SITE_URL },
-            { name: s.label, item: `${SITE_URL}${s.href}` },
-            { name: page.label, item: url },
-          ].map((b, i) => ({ "@type": "ListItem", position: i + 1, ...b })),
-        },
-      ],
+    // 시술 한 개 그리기 (하위 시술이 있으면 여러 번)
+    const build = (
+      tt: Treatment,
+      variantKey = "",
+      switcher?: React.ReactNode,
+    ) => {
+      // 블로그: 이 시술 이름이 들어간 글 먼저
+      const blog = [
+        ...posts.filter((p) => p.title.includes(tt.title)),
+        ...posts.filter((p) => !p.title.includes(tt.title)),
+      ];
+      // 전후사진: 제목에 시술 이름이 있는 사례 먼저, 없으면 같은 분류 사례 (최대 3개)
+      const cases = allCases.map(withCategoryKey);
+      const named = cases.filter((c) => c.title.includes(tt.title));
+      const baCases = (
+        named.length ? named : cases.filter((c) => c.category === s.key)
+      ).slice(0, 3);
+      const g = treatmentGuide[tt.href];
+      const area = areaOf(hospital.address);
+      const prices = g.prices
+        .map((slug) => procedures.find((p) => p.slug === slug))
+        .filter((p) => p && p.prices.length > 0) as typeof procedures;
+      const compare = (g.compare ?? []).map((href) => {
+        const c = findTreatment(href)!;
+        return {
+          // 하위 시술은 부모 페이지 + ?type= 으로 연결
+          href: c.variantOf
+            ? `${c.variantOf}?type=${href.split("/").pop()}`
+            : href,
+          me: href === tt.href,
+          title: c.title,
+          profile: treatmentGuide[href].profile,
+        };
+      });
+      const faq = faqDetail[tt.href] ?? [
+        ...tt.faq,
+        ...g.faq,
+        ...commonFaq(tt.title, hospital, doctor.name, prices.length > 0),
+      ];
+      // 하위 시술(variant)은 따로 주소가 없어 부모 주소 + 구분값
+      const url = `${SITE_URL}${path}${variantKey ? `?type=${variantKey}` : ""}`;
+      // 구조화 데이터: 이 페이지가 어떤 시술을, 어느 병원이, 어떤 질문에 답하는지 검색엔진 · AI에 알려 줌
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "MedicalWebPage",
+            "@id": `${url}#webpage`,
+            url,
+            name: `${tt.title} | ${hospital.name}`,
+            description: g.answer,
+            inLanguage: "ko-KR",
+            dateModified: guideUpdated,
+            about: { "@id": `${url}#procedure` },
+            mainEntity: { "@id": `${url}#faq` },
+            breadcrumb: { "@id": `${url}#breadcrumb` },
+            publisher: { "@id": `${SITE_URL}/#clinic` },
+          },
+          {
+            "@type": "MedicalProcedure",
+            "@id": `${url}#procedure`,
+            name: tt.title,
+            alternateName: tt.en,
+            description: g.answer,
+            howPerformed: g.principle,
+            bodyLocation: g.area,
+            followup: g.recovery,
+          },
+          {
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: faq.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: faqPlain(f.a) },
+            })),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${url}#breadcrumb`,
+            itemListElement: [
+              { name: "HOME", item: SITE_URL },
+              { name: s.label, item: `${SITE_URL}${s.href}` },
+              { name: page.label, item: url },
+            ].map((b, i) => ({ "@type": "ListItem", position: i + 1, ...b })),
+          },
+        ],
+      };
+      return (
+        <SubPage
+          key={variantKey}
+          en={tt.en}
+          title={tt.title}
+          description={tt.description}
+          image={tt.image}
+          device={tt.device}
+          scene={tt.scene}
+          crumbs={[{ label: s.label, href: s.href }, { label: page.label }]}
+          tabs={s.pages}
+          current={path}
+          switcher={switcher}
+        >
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+            }}
+          />
+          <TreatmentDetail
+            t={tt}
+            g={g}
+            best={page.best}
+            hospital={hospital}
+            doctor={doctor}
+            prices={prices}
+            compare={compare}
+            faq={faq}
+            area={area}
+            updated={guideUpdated}
+            story={deviceStory[tt.href]}
+            baCases={baCases}
+            blog={blog}
+          />
+        </SubPage>
+      );
     };
-    return (
-      <SubPage
-        en={t.en}
-        title={t.title}
-        description={t.description}
-        image={t.image}
-        device={t.device}
-        scene={t.scene}
-        crumbs={[{ label: s.label, href: s.href }, { label: page.label }]}
-        tabs={s.pages}
-        current={path}
-      >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
-        <TreatmentDetail
-          t={t}
-          g={g}
-          best={page.best}
-          hospital={hospital}
-          doctor={doctor}
-          prices={prices}
-          compare={compare}
-          faq={faq}
-          area={area}
-          updated={guideUpdated}
-          story={deviceStory[path]}
-          baCases={baCases}
-          blog={blog}
-        />
-      </SubPage>
-    );
+
+    if (t.variants) {
+      const variants = t.variants.map((v) => ({
+        key: v.href.split("/").pop()!,
+        label: v.label,
+      }));
+      return (
+        <TreatmentSwitch variants={variants}>
+          {t.variants.map((v, i) =>
+            build(findTreatment(v.href)!, variants[i].key, <HeroSwitch />),
+          )}
+        </TreatmentSwitch>
+      );
+    }
+    return build(t);
   }
 
   return (

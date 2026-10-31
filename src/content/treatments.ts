@@ -29,6 +29,10 @@ export type TreatmentItem = {
 
 export type Treatment = {
   href: string;
+  /** 한 페이지 안에서 바꿔 보는 하위 시술 (예: 스킨부스터 → 리쥬란힐러 · 엑소좀). 각 href 의 원고를 씀 */
+  variants?: { href: string; label: string }[];
+  /** 위 variants 의 하나 (단독 주소는 없고 부모 페이지 안에서만 보임) */
+  variantOf?: string;
   en: string;
   title: string;
   /** 위 사진 설명 한 줄 */
@@ -841,6 +845,10 @@ export const treatments: Treatment[] = [
   },
   {
     href: "/skin/booster",
+    variants: [
+      { href: "/skin/booster/rejuran", label: "리쥬란힐러" },
+      { href: "/skin/booster/exosome", label: "엑소좀" },
+    ],
     en: "Skin Booster",
     title: "스킨부스터",
     description: "피부 고민과 성분 · 사용목적을 살펴 계획하는 스킨부스터",
@@ -902,6 +910,110 @@ export const treatments: Treatment[] = [
     cautions: [
       "주입하는 방법에서는 작은 자국 · 붓기 · 멍이 생길 수 있으며 회복에는 개인차가 있습니다.",
       "세안 · 화장 시점과 열 · 마찰을 피하는 기간은 제품과 시술 부위의 상태에 맞춰 안내합니다.",
+    ],
+  },
+  {
+    href: "/skin/booster/rejuran",
+    variantOf: "/skin/booster",
+    en: "Rejuran Healer",
+    title: "리쥬란힐러",
+    description: "PN 성분으로 피부결 · 탄력을 관리하는 스킨부스터",
+    image: photo("cat-skin-booster"),
+    // 확인 필요: 리쥬란힐러 전용 첫 화면 사진 (지금은 스킨부스터 사진)
+    scene: {
+      src: photo("hero-booster-20261027"),
+      mobileSrc: photo("hero-booster-20261027-m"),
+      alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "PN", label: "PN 성분 · 정품 확인" },
+        { x: 50, y: 64, en: "Plan", label: "피부 두께 · 부위별 계획" },
+      ],
+    },
+    headline: ["얇아진 피부결을 촘촘하게,", "리쥬란힐러"],
+    intro:
+      "리쥬란힐러는 연어에서 얻은 PN(폴리뉴클레오티드) 성분을 피부에 주입하는 스킨부스터입니다. 피부결 · 탄력 · 잔주름 고민을 관리하며, 피부 두께와 부위를 보고 범위를 정합니다.",
+    photo: stock("booster"),
+    facts: [
+      { label: "주성분", value: "PN (폴리뉴클레오티드)" },
+      { label: "통증 관리", value: "마취 크림 등 부위별 안내" },
+      { label: "회복", value: "작은 엠보 · 붓기 개인차" },
+      { label: "횟수 · 간격", value: "경과 확인 후 안내" },
+    ],
+    recommend: [
+      "피부가 얇아지고 결이 거칠어진 분",
+      "잔주름 · 탄력이 신경 쓰이는 분",
+      "피부 컨디션을 꾸준히 관리하고 싶은 분",
+    ],
+    points: [
+      {
+        title: "정품 확인",
+        text: "제조사 정품 표시를 확인하고, 시술 전 제품을 보여 드립니다.",
+      },
+      {
+        title: "부위별 범위",
+        text: "피부 두께와 예민한 부위를 살펴 주입 범위를 정합니다.",
+      },
+      {
+        title: "경과 확인",
+        text: "피부가 안정된 뒤 변화를 함께 보고 다음 관리를 상의합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "주입 부위에 작은 엠보 · 붓기 · 멍이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "최근 필러를 맞았거나 흡수되지 않는 필러가 있는 부위, 임신 · 수유 중에는 시술하지 않습니다.",
+    ],
+  },
+  {
+    href: "/skin/booster/exosome",
+    variantOf: "/skin/booster",
+    en: "Exosome",
+    title: "엑소좀",
+    description: "예민하고 지친 피부 컨디션을 관리하는 스킨부스터",
+    image: photo("cat-skin-booster"),
+    // 확인 필요: 엑소좀 전용 첫 화면 사진 (지금은 스킨부스터 사진)
+    scene: {
+      src: photo("hero-booster-20261027"),
+      mobileSrc: photo("hero-booster-20261027-m"),
+      alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
+      chips: [
+        { x: 55, y: 22, en: "Care", label: "피부 컨디션 · 예민도 확인" },
+        { x: 50, y: 64, en: "Plan", label: "단독 · 함께 받는 시술 계획" },
+      ],
+    },
+    headline: ["지치고 예민해진 피부에,", "엑소좀"],
+    intro:
+      "엑소좀은 세포가 내보내는 아주 작은 주머니에서 얻은 성분을 활용한 스킨부스터입니다. 피부가 예민해지고 컨디션이 떨어졌을 때 단독으로, 또는 다른 시술과 함께 계획합니다.",
+    photo: stock("booster"),
+    facts: [
+      { label: "제품", value: "ISCE 엑소좀" },
+      { label: "통증 관리", value: "부위 · 방법별 안내" },
+      { label: "회복", value: "붉은기 · 붓기 개인차" },
+      { label: "횟수 · 간격", value: "경과 확인 후 안내" },
+    ],
+    recommend: [
+      "피부가 예민해지고 쉽게 붉어지는 분",
+      "레이저 · 시술 뒤 피부가 지쳐 보이는 분",
+      "피부 컨디션 관리를 함께 받고 싶은 분",
+    ],
+    points: [
+      {
+        title: "피부 상태 먼저",
+        text: "예민도와 붉은기, 최근 받은 시술을 먼저 확인합니다.",
+      },
+      {
+        title: "단독 · 함께",
+        text: "단독으로 할지, 다른 시술과 함께 할지 피부 상태에 맞춰 정합니다.",
+      },
+      {
+        title: "경과 확인",
+        text: "피부 반응을 보며 다음 관리 시기를 안내합니다.",
+      },
+    ],
+    faq: [],
+    cautions: [
+      "시술 후 붉은기 · 붓기 · 작은 자국이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
+      "피부에 염증 · 상처가 있거나 임신 · 수유 중이면 상담 때 꼭 알려 주세요.",
     ],
   },
   {

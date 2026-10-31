@@ -45,6 +45,8 @@ import type { BeforeAfterCase, Doctor, Hospital, Procedure } from "@/lib/data";
 
 export type CompareColumn = {
   href: string;
+  /** 지금 페이지의 시술 (하위 시술은 주소가 달라 따로 표시) */
+  me?: boolean;
   title: string;
   profile: TreatmentGuide["profile"];
 };
@@ -398,7 +400,7 @@ export default function TreatmentDetail({
                         <span className="sr-only">항목</span>
                       </th>
                       {compare.map((c) => {
-                        const me = c.href === t.href;
+                        const me = c.me ?? c.href === t.href;
                         return (
                           <th
                             key={c.href}
@@ -441,7 +443,7 @@ export default function TreatmentDetail({
                           {r.label}
                         </th>
                         {compare.map((c) => {
-                          const me = c.href === t.href;
+                          const me = c.me ?? c.href === t.href;
                           const last = ri === compareRows.length - 1;
                           return (
                             <td

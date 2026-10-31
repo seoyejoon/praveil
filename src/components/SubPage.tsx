@@ -21,6 +21,7 @@ export default function SubPage({
   crumbs = [],
   tabs,
   current,
+  switcher,
   children,
 }: {
   en: string;
@@ -37,6 +38,8 @@ export default function SubPage({
   tabs?: SubTab[];
   /** 지금 페이지 주소 (탭 표시용) */
   current?: string;
+  /** 첫 화면 제목 아래 전환 버튼 (사진형 첫 화면에서만) */
+  switcher?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -50,6 +53,7 @@ export default function SubPage({
             scene={scene}
             facts={facts}
             crumbs={crumbs}
+            switcher={switcher}
           />
         ) : device ? (
           <DeviceHero

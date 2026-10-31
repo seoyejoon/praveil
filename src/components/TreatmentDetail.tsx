@@ -23,6 +23,7 @@ import {
   StoryFacts,
   StoryFeatures,
   StoryCompare,
+  StoryProducts,
   StoryProcess,
 } from "@/components/sub/DeviceStory";
 import type { DeviceStory } from "@/content/device-story";
@@ -360,8 +361,10 @@ export default function TreatmentDetail({
         </section>
       )}
 
-      {/* 다른 시술과 어떻게 다른가요? */}
-      {story?.compare ? (
+      {/* 다른 시술과 어떻게 다른가요? (필러 · 보톡스는 쓰는 제품 소개) */}
+      {story?.products ? (
+        <StoryProducts story={story} />
+      ) : story?.compare ? (
         <StoryCompare title={t.title} story={story} />
       ) : (
         <>

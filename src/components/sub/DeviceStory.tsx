@@ -736,6 +736,87 @@ function PrincipleFigure({
 }
 
 /** 많이 비교하는 장비 비교표 */
+/** 쓰는 제품 소개: 가격표 제품을 카드로 (비교표 대신) */
+export function StoryProducts({ story }: { story: DeviceStory }) {
+  const p = story.products;
+  if (!p) return null;
+  return (
+    <section
+      id="product"
+      className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-36"
+    >
+      <SectionHead en="Product" title={p.title} />
+      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
+        {p.lead}
+      </p>
+      <ul className="mt-10 grid gap-3 md:mt-14 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
+        {p.items.map((it, i) => (
+          <Reveal
+            as="li"
+            key={it.name}
+            delay={(i % 3) * 100}
+            className="flex flex-col rounded-[24px] border border-line bg-white p-7 transition-colors duration-500 hover:border-gold md:p-9"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <span className="font-display text-xs tracking-[0.3em] text-gold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {it.maker && (
+                <span className="text-right text-[12px] text-muted">
+                  {it.maker}
+                </span>
+              )}
+            </div>
+            <p className="mt-8 font-display text-[30px] leading-none tracking-[0.04em] uppercase md:text-[36px]">
+              {it.en ?? it.name}
+            </p>
+            {it.en && (
+              <h3 className="mt-3 text-[16px] font-semibold">{it.name}</h3>
+            )}
+            <p className="mt-5 text-[14px] leading-[1.85] text-muted md:text-[15px]">
+              {it.text}
+            </p>
+            <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-7">
+              {it.tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-ivory px-3 py-1 text-[12px] text-mocha"
+                >
+                  {t}
+                </span>
+              ))}
+              <a
+                href="#price"
+                className="ml-auto text-[13px] text-ink underline decoration-gold underline-offset-[5px] transition hover:text-gold"
+              >
+                가격 보기
+              </a>
+            </div>
+          </Reveal>
+        ))}
+        {p.guide && (
+          <Reveal
+            as="li"
+            delay={200}
+            className="flex flex-col justify-end rounded-[24px] bg-espresso p-7 text-white md:p-9"
+          >
+            <p className="font-display text-xs tracking-[0.3em] text-taupe uppercase">
+              Consult
+            </p>
+            <h3 className="mt-4 text-[20px] font-semibold tracking-[-0.02em] md:text-[22px]">
+              {p.guide.title}
+            </h3>
+            <p className="mt-3 text-[14px] leading-[1.85] text-white/65 md:text-[15px]">
+              {p.guide.text}
+            </p>
+          </Reveal>
+        )}
+      </ul>
+      <p className="mt-6 text-xs leading-relaxed text-muted">{p.note}</p>
+    </section>
+  );
+}
+
 export function StoryCompare({
   title,
   story,

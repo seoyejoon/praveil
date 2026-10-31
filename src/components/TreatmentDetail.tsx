@@ -17,6 +17,7 @@ import { BaPreview } from "@/components/BeforeAfterBoard";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import MoreToggle from "@/components/sub/MoreToggle";
+import PriceCard from "@/components/sub/PriceCard";
 import SectionHead from "@/components/sub/SectionHead";
 import {
   StoryAbout,
@@ -832,32 +833,7 @@ export default function TreatmentDetail({
             {prices.length ? (
               <div className="grid gap-3">
                 {prices.map((p) => (
-                  <div
-                    key={p.slug}
-                    className="rounded-[20px] bg-white p-6 md:p-8"
-                  >
-                    <h3 className="text-lg font-semibold">{p.name}</h3>
-                    <dl className="mt-3">
-                      {p.prices.map((row) => (
-                        <div
-                          key={`${row.label}-${row.note}`}
-                          className="flex items-baseline justify-between gap-4 border-t border-line py-3 first:border-t-0"
-                        >
-                          <dt className="text-[15px] text-muted">
-                            {row.label}
-                            {row.note && (
-                              <span className="ml-2 text-xs text-gold">
-                                {row.note}
-                              </span>
-                            )}
-                          </dt>
-                          <dd className="text-[17px] font-semibold tracking-[-0.02em]">
-                            {row.price}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
+                  <PriceCard key={p.slug} p={p} />
                 ))}
               </div>
             ) : (

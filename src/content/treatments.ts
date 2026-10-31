@@ -497,7 +497,7 @@ export const treatments: Treatment[] = [
       {
         name: "상안검",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-1"),
+        image: photo("signature-4"),
         text: "꺼진 윗눈꺼풀",
         en: "Upper Eyelid",
         detail:
@@ -515,7 +515,7 @@ export const treatments: Treatment[] = [
       {
         name: "깊은 주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-3"),
+        image: photo("cat-skin-booster"),
         text: "깊게 팬 주름",
         en: "Deep Wrinkles",
         detail:
@@ -533,7 +533,7 @@ export const treatments: Treatment[] = [
       {
         name: "목주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-4"),
+        image: photo("cat-main-skin"),
         text: "목의 가로 주름",
         en: "Neck Lines",
         detail:

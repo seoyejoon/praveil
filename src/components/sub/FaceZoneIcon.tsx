@@ -74,6 +74,25 @@ const zones: Record<string, React.ReactNode> = {
       />
     </>
   ),
+  // 눈 밑 꺼짐 (애교살보다 아래)
+  눈밑: (
+    <>
+      <path
+        d="M22.2 29.6c2.3 2.6 5 2.6 7.2 0-2.3 1.3-4.9 1.3-7.2 0Z"
+        fill={G}
+        fillOpacity=".55"
+        stroke={G}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M34.6 29.6c2.3 2.6 5 2.6 7.2 0-2.3 1.3-4.9 1.3-7.2 0Z"
+        fill={G}
+        fillOpacity=".55"
+        stroke={G}
+        strokeLinejoin="round"
+      />
+    </>
+  ),
   상안검: (
     <>
       <path

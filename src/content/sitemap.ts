@@ -72,6 +72,7 @@ export const sitemap: SiteSection[] = [
           "팔자",
           "입술",
           "애교",
+          "눈밑",
           "상안검",
           "깊은 주름",
           "목주름",

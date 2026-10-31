@@ -820,9 +820,8 @@ export default function TreatmentDetail({
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                부위 · 양 · 피부 상태에 따라 달라질 수 있어, 상담 후 정확한
-                비용을 안내해 드립니다. 표시 가격은 1회 기준 시작가이며 부가세
-                별도입니다.
+                병원 가격표 기준입니다. 부위 · 양 · 피부 상태에 따라 달라질 수
+                있어, 상담 후 정확한 비용을 안내해 드립니다.
               </p>
             </div>
             {prices.length ? (
@@ -836,7 +835,7 @@ export default function TreatmentDetail({
                     <dl className="mt-3">
                       {p.prices.map((row) => (
                         <div
-                          key={row.label}
+                          key={`${row.label}-${row.note}`}
                           className="flex items-baseline justify-between gap-4 border-t border-line py-3 first:border-t-0"
                         >
                           <dt className="text-[15px] text-muted">

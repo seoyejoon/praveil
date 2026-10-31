@@ -323,6 +323,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       "nasolabial-filler",
       "lip-filler",
       "aegyo-filler",
+      "under-eye-filler",
       "upper-eyelid-filler",
       "deep-wrinkle-filler",
       "neck-wrinkle-filler",

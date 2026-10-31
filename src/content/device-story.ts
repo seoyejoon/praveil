@@ -707,6 +707,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다. 비교 항목은 특정 제품의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresTitle: "보톡스 시술에서 살피는 4가지",
+    featuresPlacement: "after-ba",
     features: [
       {
         title: "표정을 보며 주사 위치 설정",

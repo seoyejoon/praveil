@@ -3024,3 +3024,34 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
   },
 };
+
+// 보톡스: 얼굴 · 바디 (기본 원고에서 다른 점만 바꿈)
+const botoxStory = deviceStory["/petit/botox"];
+deviceStory["/petit/botox/face"] = botoxStory;
+deviceStory["/petit/botox/body"] = {
+  ...botoxStory,
+  device: {
+    ...botoxStory.device,
+    text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
+    specs: [
+      { label: "방식", value: "보툴리눔 톡신 제제 주사" },
+      { label: "주된 작용", value: "근육 부피 · 땀 분비를 일시적으로 줄임" },
+      { label: "시술 계획", value: "근육 두께 · 범위 · 좌우 차이 확인" },
+      { label: "제품 선택", value: "국산 · 수입 제품 중 상담 후 선택" },
+    ],
+  },
+  principle: [
+    {
+      title: "근육 · 땀 범위 확인",
+      text: "근육이 솟은 범위와 두께, 땀이 많이 나는 범위를 먼저 살핍니다.",
+    },
+    {
+      title: "여러 지점에 나누어 주사",
+      text: "큰 근육과 넓은 부위는 여러 지점에 고르게 나누어 넣습니다. 제품마다 용량 단위가 달라 숫자만으로 비교하지 않습니다.",
+    },
+    {
+      title: "신경의 전달 신호 감소",
+      text: "신경에서 근육 · 땀샘으로 전달되는 신호를 줄여, 근육의 힘과 땀 분비를 일시적으로 줄입니다.",
+    },
+  ],
+};

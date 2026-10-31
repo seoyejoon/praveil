@@ -1138,6 +1138,47 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
   },
 };
 
+// 보톡스: 얼굴 · 바디 (기본 원고에서 다른 점만 바꿈)
+const botoxGuide = treatmentGuide["/petit/botox"];
+const BOTOX_SPLIT = ["/petit/botox/face", "/petit/botox/body"];
+treatmentGuide["/petit/botox/face"] = {
+  ...botoxGuide,
+  answer:
+    "얼굴 보톡스는 보툴리눔 톡신을 이마 · 미간 · 눈가 · 턱 등 얼굴 근육에 소량 주사해, 표정주름을 부드럽게 하거나 발달한 턱 근육의 부피를 줄이는 시술입니다. 피부 얕은 층에 넣어 피부결을 관리하는 스킨보톡스도 있습니다.",
+  area: "이마 · 미간 · 눈가 · 턱 · 입꼬리 · 턱끝 · 얼굴 피부",
+  profile: {
+    ...botoxGuide.profile,
+    concern: "표정주름 · 턱 라인 · 피부결",
+  },
+  compare: BOTOX_SPLIT,
+  prices: [
+    "wrinkle-botox",
+    "jaw-botox",
+    "super-jaw-botox",
+    "special-area-botox",
+    "skin-botox",
+  ],
+};
+treatmentGuide["/petit/botox/body"] = {
+  ...botoxGuide,
+  answer:
+    "바디 보톡스는 보툴리눔 톡신을 승모근 · 종아리처럼 발달한 큰 근육에 주사해 부피를 줄이거나, 겨드랑이처럼 땀이 많은 부위에 주사해 땀 분비를 줄이는 시술입니다.",
+  area: "승모근 · 종아리 · 겨드랑이",
+  profile: {
+    ...botoxGuide.profile,
+    depth: "근육 · 피부 (부위별)",
+    concern: "승모근 · 종아리 라인 · 땀",
+  },
+  compare: BOTOX_SPLIT,
+  faq: [
+    {
+      q: "승모근 · 종아리 보톡스는 몇 번 맞아야 하나요?",
+      a: "근육 발달 정도에 따라 다르며, 경과를 보고 다음 시기와 간격을 정합니다.",
+    },
+  ],
+  prices: ["trapezius-botox", "calf-botox", "hyperhidrosis-botox"],
+};
+
 // 병원 고르는 기준 (모든 시술 공통, 프라베일의 방식과 나란히)
 // ※ 다른 병원을 낮추는 비교가 아니라, 확인해 볼 기준만 안내합니다.
 export const chooseCriteria = (title: string, pain: string) => [

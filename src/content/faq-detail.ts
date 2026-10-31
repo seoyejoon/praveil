@@ -1234,6 +1234,10 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
   ],
 };
 
+// 보톡스: 얼굴 · 바디는 기본 보톡스 질문을 함께 씀
+faqDetail["/petit/botox/face"] = faqDetail["/petit/botox"];
+faqDetail["/petit/botox/body"] = faqDetail["/petit/botox"];
+
 /** 구조화 데이터용: 표기 기호와 출처 링크를 걷어 낸 일반 글 */
 export const faqPlain = (a: string) =>
   a

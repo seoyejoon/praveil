@@ -1653,6 +1653,73 @@ export const treatments: Treatment[] = [
   },
 ];
 
+// 보톡스: 얼굴 · 바디로 나눠 보기 (기본 원고를 그대로 쓰고 다른 점만 바꿈)
+const botox = treatments.find((t) => t.href === "/petit/botox")!;
+const FACE_AREAS = ["표정주름", "턱", "슈퍼턱", "특수부위", "스킨"];
+botox.variants = [
+  { href: "/petit/botox/face", label: "얼굴 보톡스" },
+  { href: "/petit/botox/body", label: "바디 보톡스" },
+];
+treatments.push(
+  {
+    ...botox,
+    variants: undefined,
+    href: "/petit/botox/face",
+    variantOf: "/petit/botox",
+    en: "Face Botox",
+    title: "얼굴 보톡스",
+    description: "표정주름과 턱 라인, 피부결을 부위별로 계획하는 보톡스",
+    headline: ["표정은 살리고 주름은 부드럽게,", "얼굴 보톡스"],
+    intro:
+      "얼굴 보톡스는 이마 · 미간 · 눈가 같은 표정주름, 발달한 턱 근육, 입꼬리 · 턱끝 같은 작은 부위, 피부결까지 부위별로 나누어 계획하는 보톡스입니다. 표정과 근육의 힘을 보고 용량을 정합니다.",
+    recommend: [
+      "이마 · 미간 · 눈가 주름이 신경 쓰이는 분",
+      "사각턱 · 넓은 하관이 고민인 분",
+      "입꼬리 · 턱끝 · 피부결을 함께 관리하고 싶은 분",
+    ],
+    items: botox.items!.filter((it) => FACE_AREAS.includes(it.name)),
+  },
+  {
+    ...botox,
+    variants: undefined,
+    href: "/petit/botox/body",
+    variantOf: "/petit/botox",
+    en: "Body Botox",
+    title: "바디 보톡스",
+    description: "승모근 · 종아리 라인과 땀 고민을 관리하는 보톡스",
+    scene: botox.scene && {
+      ...botox.scene,
+      chips: [
+        { x: 55, y: 22, en: "Muscle", label: "근육 두께 · 범위 확인" },
+        { x: 50, y: 64, en: "Plan", label: "부위별 주사 위치 · 용량 계획" },
+      ],
+    },
+    headline: ["어깨 · 종아리 라인과 땀까지,", "바디 보톡스"],
+    intro:
+      "바디 보톡스는 승모근 · 종아리처럼 발달한 큰 근육의 부피를 줄이거나, 겨드랑이처럼 땀이 많은 부위를 관리하는 보톡스입니다. 근육의 두께와 범위, 땀이 나는 범위를 보고 용량을 정합니다.",
+    recommend: [
+      "승모근이 솟아 목이 짧아 보이는 분",
+      "종아리 근육이 도드라져 보이는 분",
+      "겨드랑이 땀으로 불편한 분",
+    ],
+    points: [
+      {
+        title: "근육 범위 확인",
+        text: "근육이 솟은 범위와 두께, 좌우 차이를 먼저 확인합니다.",
+      },
+      {
+        title: "넓게 고르게",
+        text: "큰 근육은 여러 지점에 나누어 고르게 넣습니다.",
+      },
+      {
+        title: "정품 사용",
+        text: "정품을 사용하며, 시술 전 제품을 확인하실 수 있습니다.",
+      },
+    ],
+    items: botox.items!.filter((it) => !FACE_AREAS.includes(it.name)),
+  },
+);
+
 export const findTreatment = (href: string) =>
   treatments.find((t) => t.href === href);
 

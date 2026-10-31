@@ -866,7 +866,7 @@ export default function TreatmentDetail({
                   {t.title} 비용은 상담 후 안내해 드립니다.
                 </p>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                  {hospital.kakaoUrl ? "전화 · 카카오톡" : "전화"}으로 원하는
+                  {hospital.kakaoUrl ? "전화 · 카카오톡으로" : "전화로"} 원하는
                   부위를 알려 주시면 대략적인 비용을 먼저 안내해 드릴 수
                   있습니다.
                 </p>

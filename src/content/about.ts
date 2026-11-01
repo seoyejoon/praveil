@@ -134,7 +134,7 @@ export const aboutEquipment = {
       name: "포텐자",
       en: "Potenza",
       type: "마이크로니들 고주파",
-      href: "/lifting/laser",
+      href: "/lifting/laser?type=potenza",
       image: device("potenza"),
     },
     {

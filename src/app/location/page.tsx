@@ -64,7 +64,7 @@ export default async function LocationPage() {
       : []),
     {
       q: "예약은 어떻게 하나요?",
-      a: `전화(${hospital.phone}) · 카카오톡 · 네이버 예약으로 하실 수 있습니다. 예약하시면 기다리지 않고 상담받으실 수 있습니다.`,
+      a: `전화(${hospital.phone})${hospital.kakaoUrl ? " · 카카오톡" : ""} · 네이버 예약으로 하실 수 있습니다. 예약하시면 기다리지 않고 상담받으실 수 있습니다.`,
     },
   ];
 

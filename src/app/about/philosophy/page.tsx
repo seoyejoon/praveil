@@ -52,7 +52,11 @@ export default async function AboutIntroPage() {
         : hospital.hours[0]?.time,
     },
     { label: "진료 방식", value: "대표원장 1:1 상담 · 직접 시술" },
-    { label: "예약", value: "전화 · 카카오톡 · 네이버 예약" },
+    // 카카오톡 채널 주소가 있을 때만 안내
+    {
+      label: "예약",
+      value: `전화${hospital.kakaoUrl ? " · 카카오톡" : ""} · 네이버 예약`,
+    },
   ];
 
   const faq = [
@@ -71,7 +75,7 @@ export default async function AboutIntroPage() {
     },
     {
       q: "예약하고 가야 하나요?",
-      a: "예약하시면 기다리는 시간 없이 상담받으실 수 있습니다. 전화 · 카카오톡 · 네이버 예약으로 편하게 예약해 주세요.",
+      a: `예약하시면 기다리는 시간 없이 상담받으실 수 있습니다. 전화${hospital.kakaoUrl ? " · 카카오톡" : ""} · 네이버 예약으로 편하게 예약해 주세요.`,
     },
     {
       q: "상담만 받아도 되나요?",

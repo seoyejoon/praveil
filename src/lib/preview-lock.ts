@@ -14,6 +14,9 @@ export const OPEN = [
   /^\/skin\/(retuo|booster|collagen)\/?$/,
   /^\/acne-pore\/?$/,
   /^\/removal\/(hair|tattoo)\/?$/,
+  // 2026-11-01 병원 요청으로 공개: 병원소개 · 의료진 · 오시는길
+  /^\/about\/(philosophy|doctor)\/?$/,
+  /^\/location\/?$/,
   /^\/notice(\/.*)?$/,
   /^\/before-after(\/.*)?$/,
   /^\/terms\/?$/,

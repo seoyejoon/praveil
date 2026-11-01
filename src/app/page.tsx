@@ -65,16 +65,19 @@ export default async function Home() {
         images={mainCategoryImage}
       />
       <MainSpace {...mainSpace} />
-      <MainNews
-        items={notices.map((n) => ({
-          id: n.id,
-          type: n.type,
-          title: n.title,
-          summary: n.summary,
-          createdAt: n.createdAt,
-          cover: coverOf(n),
-        }))}
-      />
+      {/* 소식: 공지 · 이벤트 글이 하나도 없으면 칸을 숨김 (빈 목록 대신) */}
+      {notices.length > 0 && (
+        <MainNews
+          items={notices.map((n) => ({
+            id: n.id,
+            type: n.type,
+            title: n.title,
+            summary: n.summary,
+            createdAt: n.createdAt,
+            cover: coverOf(n),
+          }))}
+        />
+      )}
     </>
   );
 }

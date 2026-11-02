@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // 이용약관 · 개인정보처리방침 공통 화면 (글자 위주, 읽기 쉬운 폭)
-// 관리자 원문의 "제1조 (…)" 줄은 제목으로, 나머지는 문단으로 보여 줌
+// 관리자 원문의 "제1조 (…)" · "1. …" 제목 줄은 제목으로, 나머지는 문단으로 보여 줌
 export default function PolicyPage({
   en,
   title,
@@ -15,8 +15,10 @@ export default function PolicyPage({
     .split(/\n{2,}/)
     .map((b) => b.trim())
     .filter(Boolean);
+  // 약관 "제1조 …", 개인정보처리방침 "1. 개인정보의 처리 목적" 같은 짧은 첫 줄 (문장으로 끝나는 목록 줄은 제외)
   const isHead = (line: string) =>
-    /^(제\s*\d+\s*조|[■□●◆]|부\s*칙)/.test(line) && line.length < 60;
+    (/^(제\s*\d+\s*조|[■□●◆]|부\s*칙)/.test(line) && line.length < 60) ||
+    (/^\d{1,2}\.\s/.test(line) && line.length < 40 && !/[다요]\.$/.test(line));
   return (
     <article className="px-5 pt-32 pb-24 md:px-10 md:pt-44 md:pb-32">
       <header className="mx-auto max-w-[860px]">

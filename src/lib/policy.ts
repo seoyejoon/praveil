@@ -196,7 +196,7 @@ ${externalToolLines(enabledTracking)}
 
 12. 개인정보 관련 문의
 개인정보 열람, 정정, 삭제, 처리정지, 회원 탈퇴 및 침해 관련 문의는 아래 연락처로 접수할 수 있습니다.
-담당부서: ${terms.privacyOfficer || `${businessName} 개인정보 담당자`}
+개인정보 보호책임자: ${terms.privacyOfficer || `${businessName} 개인정보 담당자`}
 ${contactLines(hospital, businessName)}
 개인정보 침해에 대한 신고나 상담은 개인정보침해신고센터(국번 없이 118, privacy.kisa.or.kr), 개인정보분쟁조정위원회(1833-6972, www.kopico.go.kr)에도 할 수 있습니다.
 

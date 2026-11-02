@@ -65,7 +65,7 @@ export default function NoticeList({ notices }: { notices: Notice[] }) {
                         NEW
                       </span>
                     )}
-                    <span className="line-clamp-1">{n.title}</span>
+                    <span className="line-clamp-2 md:line-clamp-1">{n.title}</span>
                   </span>
                   <span className="order-3 col-span-2 font-display text-xs tracking-widest text-muted md:order-none md:col-span-1 md:text-sm">
                     {formatDate(n.createdAt)}

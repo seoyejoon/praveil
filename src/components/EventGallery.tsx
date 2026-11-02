@@ -11,9 +11,11 @@ const filters = ["전체", "진행 중", "종료"] as const;
 // 이벤트 목록: 대표 사진 카드 + 진행 중 / 종료 표시
 export default function EventGallery({ events }: { events: Notice[] }) {
   const [filter, setFilter] = useState<(typeof filters)[number]>("전체");
+  // 진행 중인 이벤트를 먼저 (같은 상태끼리는 원래 순서 = 최신순)
   const list = events
     .map((e) => ({ ...e, status: eventStatus(e.summary), cover: coverOf(e) }))
-    .filter((e) => filter === "전체" || e.status === filter);
+    .filter((e) => filter === "전체" || e.status === filter)
+    .sort((a, b) => Number(a.status === "종료") - Number(b.status === "종료"));
 
   return (
     <div>
@@ -35,7 +37,9 @@ export default function EventGallery({ events }: { events: Notice[] }) {
         <p className="mt-10 rounded-[24px] border border-line py-24 text-center text-sm text-muted">
           {filter === "진행 중"
             ? "지금 진행 중인 이벤트가 없습니다."
-            : "등록된 이벤트가 없습니다."}
+            : filter === "종료"
+              ? "종료된 이벤트가 없습니다."
+              : "등록된 이벤트가 없습니다."}
         </p>
       ) : (
         <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-3 md:gap-x-5 xl:grid-cols-4">

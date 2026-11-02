@@ -1205,7 +1205,7 @@ export const chooseCriteria = (title: string, pain: string) => [
 ];
 
 // 마지막 업데이트 (원고를 고치면 함께 바꿔 주세요)
-export const guideUpdated = "2026-10-06";
+export const guideUpdated = "2026-11-02";
 
 // "인천광역시 남동구 성말로 10" → "인천 남동구" (지역 검색어로 씀)
 export function areaOf(address: string) {

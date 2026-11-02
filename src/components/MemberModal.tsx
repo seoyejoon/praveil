@@ -37,10 +37,21 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  // 동의 체크 (전체 동의로 한꺼번에 켜고 끔)
+  const [agree, setAgree] = useState({ termsAgreed: false, privacyAgreed: false, marketingAgreed: false });
+  const allAgreed = agree.termsAgreed && agree.privacyAgreed && agree.marketingAgreed;
   // 약관 '보기': 페이지를 떠나지 않고 이 창 위에 팝업으로
-  const [policy, setPolicy] = useState<{ title: string; body: string } | null>(null);
-  async function openPolicy(kind: "terms" | "privacy") {
-    const title = kind === "terms" ? "이용약관" : "개인정보 수집 · 이용 동의";
+  // - 이용약관은 전문, 개인정보 · 마케팅은 개인정보보호법에 맞춘 동의 안내(목적 · 항목 · 기간 · 거부 권리)
+  const [policy, setPolicy] = useState<{ title: string; body: string; link?: { href: string; label: string } } | null>(null);
+  async function openPolicy(kind: "terms" | "privacy" | "marketing") {
+    if (kind === "privacy")
+      return setPolicy({
+        title: "개인정보 수집 · 이용 동의 (필수)",
+        body: privacyConsent(config),
+        link: { href: "/privacy", label: "개인정보처리방침 전문 보기" },
+      });
+    if (kind === "marketing") return setPolicy({ title: "이벤트 · 소식 받기 (선택)", body: marketingConsent });
+    const title = "이용약관";
     setPolicy({ title, body: "불러오는 중…" });
     try {
       const r = await fetch(`/api/policy/${kind}`);
@@ -56,6 +67,7 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
     setTab(initialTab);
     setError("");
     setNotice("");
+    setAgree({ termsAgreed: false, privacyAgreed: false, marketingAgreed: false });
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -197,26 +209,44 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
             <input name="passwordConfirm" type="password" required minLength={8} autoComplete="new-password" placeholder="비밀번호 확인 *" className={input} />
 
             <div className="space-y-2.5 rounded-2xl bg-ivory px-4 py-4 text-sm">
-              {[
-                { name: "termsAgreed", label: "이용약관 동의 (필수)", href: "/terms" },
-                { name: "privacyAgreed", label: "개인정보 수집 · 이용 동의 (필수)", href: "/privacy" },
-                { name: "marketingAgreed", label: "이벤트 · 소식 받기 (선택)" },
-              ].map((c) => (
+              <label className="flex items-center gap-2.5 border-b border-ink/10 pb-3 font-semibold">
+                <input
+                  type="checkbox"
+                  checked={allAgreed}
+                  onChange={(e) => {
+                    const v = e.target.checked;
+                    setAgree({ termsAgreed: v, privacyAgreed: v, marketingAgreed: v });
+                  }}
+                  className="h-4 w-4 accent-[#3a2f28]"
+                />
+                <span className="flex-1">전체 동의 (선택 항목 포함)</span>
+              </label>
+              {(
+                [
+                  { name: "termsAgreed", label: "이용약관 동의 (필수)", kind: "terms" },
+                  { name: "privacyAgreed", label: "개인정보 수집 · 이용 동의 (필수)", kind: "privacy" },
+                  { name: "marketingAgreed", label: "이벤트 · 소식 받기 (선택)", kind: "marketing" },
+                ] as const
+              ).map((c) => (
                 <label key={c.name} className="flex items-center gap-2.5">
-                  <input type="checkbox" name={c.name} className="h-4 w-4 accent-[#3a2f28]" />
+                  <input
+                    type="checkbox"
+                    name={c.name}
+                    checked={agree[c.name]}
+                    onChange={(e) => setAgree((a) => ({ ...a, [c.name]: e.target.checked }))}
+                    className="h-4 w-4 accent-[#3a2f28]"
+                  />
                   <span className="flex-1">{c.label}</span>
-                  {c.href && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        openPolicy(c.href === "/terms" ? "terms" : "privacy");
-                      }}
-                      className="text-xs text-muted underline underline-offset-2"
-                    >
-                      보기
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openPolicy(c.kind);
+                    }}
+                    className="text-xs text-muted underline underline-offset-2"
+                  >
+                    보기
+                  </button>
                 </label>
               ))}
             </div>
@@ -246,6 +276,11 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
               </div>
               <div data-lenis-prevent className="overflow-y-auto overscroll-contain px-6 py-5 text-[14px] leading-relaxed whitespace-pre-line text-ink/80">
                 {policy.body}
+                {policy.link && (
+                  <a href={policy.link.href} target="_blank" rel="noopener" className="mt-4 block text-[13px] text-mocha underline underline-offset-4">
+                    {policy.link.label}
+                  </a>
+                )}
               </div>
               <div className="border-t border-line p-4">
                 <button type="button" onClick={() => setPolicy(null)} className="h-12 w-full rounded-full bg-ink text-[15px] text-cream">
@@ -259,3 +294,47 @@ export default function MemberModal({ open, initialTab = "login", config, onClos
     </div>
   );
 }
+
+// 개인정보 수집 · 이용 동의 안내 (개인정보보호법: 목적 · 항목 · 보유 기간 · 거부 권리와 불이익)
+// - 항목은 관리자 '회원가입 설정'에서 켠 칸에 맞춰 보여 줌
+function privacyConsent(config: SignupConfig) {
+  const extra = [
+    ["phone", "휴대폰 번호"],
+    ["birthday", "생년월일"],
+    ["gender", "성별"],
+    ["address", "주소"],
+  ] as const;
+  const f = config?.fields;
+  const required = ["아이디", "이름", "이메일", "비밀번호", ...extra.filter(([k]) => f?.[k].enabled && f[k].required).map(([, l]) => l)];
+  const optional = extra.filter(([k]) => f?.[k].enabled && !f[k].required).map(([, l]) => l);
+  return [
+    "1. 수집 · 이용 목적",
+    "회원 식별 · 로그인, 회원정보 관리, 시술 전후사진 등 회원 전용 콘텐츠 제공, 공지 안내와 문의 응대",
+    "",
+    "2. 수집 항목",
+    `필수: ${required.join(", ")}`,
+    optional.length ? `선택: ${optional.join(", ")}` : "",
+    "",
+    "3. 보유 · 이용 기간",
+    "회원 탈퇴 시까지 보관하며, 탈퇴하면 지체 없이 파기합니다. 다만 관계 법령에 따라 보존해야 하는 정보는 정해진 기간 동안 보관합니다.",
+    "",
+    "4. 동의를 거부할 권리",
+    "개인정보 수집 · 이용에 동의하지 않을 수 있습니다. 다만 동의하지 않으면 회원가입을 할 수 없습니다.",
+  ]
+    .filter((l, i, a) => !(l === "" && a[i - 1] === ""))
+    .join("\n");
+}
+
+const marketingConsent = [
+  "1. 이용 목적",
+  "이벤트 · 새 소식 안내",
+  "",
+  "2. 이용 항목",
+  "이메일, 휴대폰 번호(입력한 경우)",
+  "",
+  "3. 보유 · 이용 기간",
+  "동의를 철회하거나 회원 탈퇴 시까지",
+  "",
+  "4. 동의를 거부할 권리",
+  "동의하지 않아도 회원가입과 홈페이지 이용에 제한이 없습니다. 동의한 뒤에도 언제든지 철회할 수 있습니다.",
+].join("\n");

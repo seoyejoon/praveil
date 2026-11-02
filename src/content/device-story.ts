@@ -862,7 +862,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "리투오 · 무세포 동종진피 원료",
-        text: "리투오는 기증된 피부 조직에서 세포를 제거한 hADM 제품입니다. 휴메딕스 공식 제품 자료의 원료와 구성 정보를 바탕으로 제품 특성을 설명합니다.",
+        text: "리투오는 기증된 피부 조직에서 세포를 제거한 hADM 제품으로, 엘앤씨바이오가 만들고 휴메딕스가 국내에 공급합니다. 제조사 공식 제품 자료의 원료와 구성 정보를 바탕으로 제품 특성을 설명합니다.",
         image: "/images/official/retuo-product.jpg",
         alt: "리투오 · 무세포 동종진피 원료 · 제조사 공식 자료",
         fullFrame: false,

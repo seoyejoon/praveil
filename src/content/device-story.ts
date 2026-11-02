@@ -141,6 +141,7 @@ const cs = (name: string) => `/images/coolsonic/${name}.webp`;
 
 export const deviceStory: Record<string, DeviceStory> = {
   "/lifting/coolsonic": {
+    showPrices: true,
     device: {
       name: "CoolSonic",
       maker: "ASTERASYS",

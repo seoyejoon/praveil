@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "오시는 길",
     description: `${h.address} ${h.addressDetail}. ${h.name} 오시는 길 · 주차 · 진료시간 안내.`,
+    alternates: { canonical: "/location" },
   };
 }
 

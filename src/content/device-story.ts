@@ -39,8 +39,7 @@ export type DeviceStory = {
     /** 공식 제품 자료는 기존 카드 안에서 전체 프레임을 유지 */
     mediaContain?: boolean;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
-    /** youtube: 제조사 유튜브 영상 ID (있으면 mp4 대신 소리 없이 자동 반복 재생) */
-    film?: { src: string; poster: string; youtube?: string };
+    film?: { src: string; poster: string };
     text: string;
     specs: { label: string; value: string }[];
   };
@@ -113,8 +112,6 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
-    /** 제조사 유튜브 영상 ID (있으면 video 대신) */
-    youtube?: string;
     /** 원본 크기. 4:3 박스와 비율이 크게 다르면 자르지 않고 전체를 보여 줌 (남는 자리는 흐린 배경) */
     mediaSize?: { width: number; height: number };
     /** 자르지 않고 보여 줄 때 남는 자리를 채울 색 [위 · 왼쪽, 아래 · 오른쪽] (사진 가장자리 색) */
@@ -1870,11 +1867,11 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleImage: {
       src: "/images/shrink/principle.webp",
       video: "/videos/shrink-principle.mp4",
-      alt: "같은 4.5mm 깊이에서 일반 모드(점)와 MP 모드(이어진 선)로 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
+      alt: "MPT 4.5mm 카트리지가 피부 속 정한 깊이에 열응고점을 만드는 모습을 보여 주는 제조사 영상",
       framed: true,
       marks: [],
       layers: [],
-      note: "CLASSYS · 왼쪽 일반(Dot) 모드, 오른쪽 MP 모드. 실제 크기 · 깊이와는 다를 수 있습니다.",
+      note: "CLASSYS · MPT 4.5mm 카트리지. 실제 크기 · 깊이와는 다를 수 있습니다.",
     },
     principle: [
       {
@@ -1965,7 +1962,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "1.5 · 2.0 · 3.0 · 4.5mm 카트리지로 얕은 피부층부터 깊은 층까지 나누어 전달합니다. 피부 두께와 처짐 부위에 맞춰 깊이를 조합합니다.",
         image: "/images/shrink/booster-depth.webp",
         video: "/videos/shrink-booster-depth.mp4",
-        alt: "1.5mm 깊이에서 일반 모드와 MP 모드로 열응고점이 생기는 모습을 보여 주는 제조사 영상",
+        alt: "울트라 부스터 카트리지가 피부 속에 둥근 모양으로 열응고점을 만드는 모습을 보여 주는 제조사 영상",
       },
       {
         title: "대표원장의 부위별 설계",

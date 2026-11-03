@@ -164,25 +164,25 @@ export default function TreatmentDetail({
       id="doctor"
       className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items && !story ? "pt-16 md:pt-24" : ""}`}
     >
-      <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-espresso px-6 py-14 text-white md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-20">
+      <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-espresso px-6 py-12 text-white md:rounded-[40px] md:px-14 md:py-14 lg:grid-cols-[1.25fr_1fr] lg:items-center lg:gap-14">
         <div>
           <SectionHead
             en="Doctor"
             tone="dark"
             title={`${t.title}, 의료진이 중요한 이유`}
           />
-          <p className="mt-6 text-[15px] leading-[1.85] text-white/65 md:text-[17px]">
+          <p className="mt-4 text-[15px] leading-[1.8] text-white/65 md:text-[16px]">
             {hospital.name}
             {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 상담부터
             시술, 경과 확인까지 직접 진행합니다.
           </p>
-          <ol className="mt-10 border-t border-white/15">
+          <ol className="mt-7 border-t border-white/15">
             {doctorReasons.map((r, i) => (
               <Reveal
                 as="li"
                 key={r.title}
                 delay={i * 100}
-                className="flex gap-5 border-b border-white/15 py-6 md:gap-8 md:py-7"
+                className="flex gap-5 border-b border-white/15 py-4 md:gap-7 md:py-5"
               >
                 <span className="font-display text-[28px] leading-none font-extralight text-gold md:text-[36px]">
                   {String(i + 1).padStart(2, "0")}
@@ -191,7 +191,7 @@ export default function TreatmentDetail({
                   <h3 className="text-[18px] font-semibold tracking-[-0.02em] md:text-[20px]">
                     {r.title}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-white/60 md:text-[15px]">
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-white/60 md:text-[15px]">
                     {r.text}
                   </p>
                 </div>
@@ -203,9 +203,9 @@ export default function TreatmentDetail({
         {/* 원장 카드: 밝은 아치 안에 원장 사진 + 이름 · 학회 */}
         <Reveal
           delay={150}
-          className="mx-auto w-full max-w-[460px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] text-ink md:rounded-[32px]"
+          className="mx-auto grid w-full max-w-[460px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] text-ink md:rounded-[32px] lg:max-w-none lg:grid-cols-[0.9fr_1fr]"
         >
-          <div className="relative aspect-[4/4.2] overflow-hidden">
+          <div className="relative aspect-[4/3.6] overflow-hidden lg:aspect-auto lg:min-h-[340px]">
             <div className="absolute inset-x-[12%] top-[8%] bottom-0 rounded-t-full bg-white/60" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -215,7 +215,7 @@ export default function TreatmentDetail({
               className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto max-w-none object-contain object-bottom"
             />
           </div>
-          <div className="border-t border-ink/10 bg-white px-7 py-6 md:px-8">
+          <div className="flex flex-col justify-center border-t border-ink/10 bg-white px-7 py-6 lg:border-t-0 lg:border-l lg:px-6">
             <p className="text-sm text-gold">{doctor.title}</p>
             <p className="mt-1 flex items-baseline gap-3 text-[24px] font-semibold tracking-[-0.03em]">
               {doctor.name}
@@ -224,7 +224,7 @@ export default function TreatmentDetail({
               </span>
             </p>
             {doctor.credentials.length > 0 && (
-              <ul className="mt-4 grid gap-1.5 text-[13px] text-ink/70">
+              <ul className="mt-3 grid gap-1 text-[13px] text-ink/70">
                 {doctor.credentials.map((c) => (
                   <li key={c} className="flex gap-2">
                     <span

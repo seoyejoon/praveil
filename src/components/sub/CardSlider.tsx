@@ -92,7 +92,7 @@ export default function CardSlider({
       {/* 오른쪽은 화면 끝까지 (본문 폭 밖으로) */}
       <ul
         ref={track}
-        className="no-scrollbar -mx-5 mt-5 flex cursor-grab snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 pb-2 select-none md:mr-[calc(50%-50vw)] md:ml-0 md:scroll-px-0 md:pr-10 md:pl-0"
+        className="no-scrollbar -mx-5 mt-6 flex cursor-grab md:mt-14 snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 pb-2 select-none md:mr-[calc(50%-50vw)] md:ml-0 md:scroll-px-0 md:pr-10 md:pl-0"
       >
         {children}
       </ul>

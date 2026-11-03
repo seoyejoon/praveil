@@ -241,12 +241,7 @@ export default async function AboutIntroPage() {
         className="scroll-mt-36 bg-ivory px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <SectionHead en={aboutSpace.en} title={aboutSpace.title} />
-            <p className="text-[15px] leading-relaxed text-muted lg:text-right">
-              {aboutSpace.text}
-            </p>
-          </div>
+          <SectionHead en={aboutSpace.en} title={aboutSpace.title} />
           <SpaceGallery items={aboutSpace.items} alt={hospital.name} />
         </div>
       </section>
@@ -257,9 +252,6 @@ export default async function AboutIntroPage() {
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
         <SectionHead en={aboutEquipment.en} title={aboutEquipment.title} />
-        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
-          {aboutEquipment.text}
-        </p>
         <CardSlider label="장비">
           {aboutEquipment.items.map((it, i) => (
             <li

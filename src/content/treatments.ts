@@ -285,19 +285,19 @@ export const treatments: Treatment[] = [
     title: "슈링크 유니버스",
     description: "집속 초음파로 처진 윤곽과 탄력을 관리하는 리프팅",
     image: photo("cat-lifting"),
-    // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    // 첫 화면: 레이저리프팅 3가지가 서로 다르게 (슈링크 = 제조사 장비 영상 장면)
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
-      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
+      src: "/images/shrink/device.webp",
+      alt: "클래시스 슈링크 유니버스 장비 · 제조사 공식 영상 장면",
+      photoLayout: "full-frame",
       chips: [
-        { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 깊이별 카트리지" },
+        { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 일반 · MP 모드" },
         { x: 60, y: 66, en: "Design", label: "처짐 부위 · 피부 두께 계획" },
       ],
     },
     headline: ["처진 윤곽을 깊이별로,", "슈링크 유니버스"],
     intro:
-      "슈링크 유니버스는 초음파 에너지를 피부 속 한 지점에 모아 전달하는 리프팅 장비입니다. 처짐 부위와 피부 두께를 보고 깊이와 샷 수를 정합니다.",
+      "슈링크 유니버스는 초음파 에너지를 피부 속 정한 깊이에 모아 열응고점을 만드는 리프팅 장비입니다. 처짐 부위와 피부 두께를 보고 깊이 · 모드 · 샷 수를 정합니다.",
     photo: stock("laser"),
     facts: [
       { label: "방식", value: "집속 초음파 (HIFU)" },
@@ -334,7 +334,7 @@ export const treatments: Treatment[] = [
     title: "포텐자",
     description: "미세침 고주파로 모공 · 피부결 · 탄력을 관리하는 리프팅",
     image: photo("cat-lifting"),
-    // 확인 필요: 포텐자 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    // 확인 필요: 포텐자 전용 첫 화면 사진 (지금은 레이저리프팅 대표 사진 · 슈링크 · 클라리티와는 다르게 둠)
     scene: {
       src: photo("hero-laser-20261027"),
       mobileSrc: photo("hero-laser-20261027-m"),
@@ -383,11 +383,11 @@ export const treatments: Treatment[] = [
     title: "클라리티",
     description: "두 가지 파장의 레이저로 피부결 · 탄력을 관리하는 이너리프팅",
     image: photo("cat-lifting"),
-    // 확인 필요: 클라리티 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    // 첫 화면: 대표원장 레이저 시술 사진 (병원 보정본)
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
-      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
+      src: "/images/photos/retouched/web/laser.jpg",
+      alt: "대표원장이 레이저로 얼굴 부위를 시술하는 모습",
+      photoLayout: "full-frame",
       chips: [
         { x: 48, y: 18, en: "Laser", label: "755nm · 1064nm 레이저" },
         { x: 60, y: 66, en: "Design", label: "피부 톤 · 고민별 계획" },
@@ -555,11 +555,12 @@ export const treatments: Treatment[] = [
     title: "잼버실",
     description: "꺼진 부위를 실로 받쳐 볼륨을 채우는 볼륨 실리프팅",
     image: photo("clinic-5"),
-    // 확인 필요: 잼버실 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    // 확인 필요: 잼버실 전용 첫 화면 사진 (QTL실과 다르게, 지금은 대표원장 얼굴 부위 주입 시술 사진)
     scene: {
-      src: photo("hero-thread-20261027"),
-      mobileSrc: photo("hero-thread-20261027-m"),
-      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
+      src: photo("best-filler"),
+      mobileSrc: photo("best-filler-m"),
+      alt: "대표원장이 얼굴의 꺼진 부위를 시술하는 모습",
+      photoLayout: "full-frame",
       chips: [
         { x: 48, y: 18, en: "Volume", label: "꺼진 부위 · 피부 두께 확인" },
         { x: 60, y: 66, en: "Thread", label: "볼륨형 실 · 부위별 계획" },
@@ -567,7 +568,7 @@ export const treatments: Treatment[] = [
     },
     headline: ["꺼진 부위를 실로 받쳐,", "잼버실 볼륨 리프팅"],
     intro:
-      "잼버실은 꺼진 부위를 받쳐 볼륨을 채우는 데 쓰는 볼륨형 실입니다. 팔자 주변 · 앞볼처럼 꺼진 부위와 피부 두께를 보고 범위를 정합니다.",
+      "잼버실은 스프링처럼 촘촘히 말린 녹는 실을 꺼진 부위 아래에 넣어, 안에서부터 받쳐 볼륨을 채우는 시술입니다. 눈밑 · 팔자 · 앞볼처럼 꺼진 위치와 피부 두께를 보고 범위를 정합니다.",
     photo: stock("thread"),
     facts: [
       { label: "방법", value: "볼륨형 실 삽입" },

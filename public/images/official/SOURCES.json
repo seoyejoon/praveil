@@ -120,7 +120,9 @@
   "additionalAssets": {
     "clarity-tracking.png": "https://kr.lutronic.com/images/sub/product/clarity2_intel.png",
     "clarity-tracking-detail.jpg": "https://kr.lutronic.com/images/sub/product/pritel_img02.jpg",
-    "clarity-temperature.png": "https://kr.lutronic.com/images/sub/product/realtime.png"
+    "clarity-temperature.png": "https://kr.lutronic.com/images/sub/product/realtime.png",
+    "clarity-device.png": "https://kr.lutronic.com/images/sub/product/clarity2_img.png",
+    "clarity-cartridges.jpg": "https://kr.lutronic.com/images/sub/product/cartr_img01.jpg"
   },
   "imagePolicy": "Downloaded manufacturer images kept byte-for-byte; CSS contain preserves full frame. Video excerpts are muted H.264. Potenza keeps the full source frame; Clarity II removes the blank left-hand canvas as recorded in sources.clarity.crop. Posters extracted from the final clips.",
   "hashes": {
@@ -144,6 +146,8 @@
     "retuo-official.jpg": "053cda8be487781e8d71465e7e391bb06a723a3aafee6de7266a141579617fb7",
     "retuo-product.jpg": "857bdadc3fd63792433eb12a8396c8db4a7cbdbca4a9257e3efdf71af16f415d",
     "shurink-principle.jpg": "5b8f9ada1f4a9377926b00f6e22537b3c4f71cc6b9db114e7b41cbf66faafa47",
-    "ultracol-product.png": "f6ffe1ba85ae35098f2453d1e1717ecf7dbfb3e7dc998b6db413a42604ccbdf6"
+    "ultracol-product.png": "f6ffe1ba85ae35098f2453d1e1717ecf7dbfb3e7dc998b6db413a42604ccbdf6",
+    "clarity-device.png": "918d5d6e156abcddd98e3d35bb83db04decfc1b5beed1e8855bdb83c5fbb9f39",
+    "clarity-cartridges.jpg": "0bbe33cbbc4dba87d1ae0b6e5de2e119ed20656206d3906925edb61717870fcb"
   }
 }

@@ -93,12 +93,14 @@ export function StoryAbout({
                   }
                 />
               )}
-              {(!device.photoFullFrame || device.film) && (
-                <>
-                  <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
-                </>
-              )}
+              {/* 영상 · 사진이 잘리지 않게 넣은 경우(mediaContain)는 오른쪽 그림자를 씌우지 않음 (글자가 가려짐) */}
+              {(!device.photoFullFrame || device.film) &&
+                !device.mediaContain && (
+                  <>
+                    <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+                  </>
+                )}
             </div>
             <div className="flex flex-col justify-center px-6 pt-4 pb-14 md:px-14 md:py-16">
               <p className="font-display text-[11px] tracking-[0.3em] text-taupe uppercase">

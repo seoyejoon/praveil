@@ -205,24 +205,30 @@
 
       /* 시안: 머리 배경을 병원 입구 사진으로 꽉 채우고, 왼쪽을 어둡게 깔아 글씨를 올림
          (세로 위치 · 진료시간 띠 · 메뉴 띠는 위 배경과 같음) */
-      #background-photo {
+      #background-photo,
+      #background-photo-2 {
         width: 2560px;
         height: 600px;
         background: var(--ivory);
       }
-      #background-photo .shot {
+      #background-photo .shot,
+      #background-photo-2 .shot {
         position: absolute;
-        left: 780px;
+        left: 1080px;
         top: 0;
-        width: 1780px;
+        width: 1220px;
         height: 489px;
         overflow: hidden;
       }
       #background-photo .shot .photo {
-        object-position: 50% 38%;
+        object-position: 50% 62%;
+      }
+      #background-photo-2 .shot .photo {
+        object-position: 50% 58%;
       }
       /* 글씨 쪽은 짙게, 사진 쪽은 밝게. 양 끝은 짙은 색으로 맞춰 가로 반복해도 이음매가 없음 */
-      #background-photo .shade {
+      #background-photo .shade,
+      #background-photo-2 .shade {
         position: absolute;
         left: 0;
         right: 0;
@@ -231,16 +237,16 @@
         background:
           linear-gradient(
             90deg,
-            var(--espresso) 27%,
-            rgba(29, 26, 23, 0.9) 40%,
-            rgba(29, 26, 23, 0.35) 52%,
-            rgba(29, 26, 23, 0) 62%,
-            rgba(29, 26, 23, 0) 88%,
-            var(--espresso) 100%
+            var(--espresso) 42.2%,
+            rgba(29, 26, 23, 0.55) 48%,
+            rgba(29, 26, 23, 0) 56%,
+            rgba(29, 26, 23, 0) 84%,
+            var(--espresso) 89.8%
           ),
-          linear-gradient(rgba(29, 26, 23, 0) 70%, rgba(29, 26, 23, 0.5) 100%);
+          linear-gradient(rgba(29, 26, 23, 0) 75%, rgba(29, 26, 23, 0.45) 100%);
       }
-      #background-photo .copy {
+      #background-photo .copy,
+      #background-photo-2 .copy {
         position: absolute;
         left: 861px;
         top: 33px;
@@ -251,14 +257,17 @@
         gap: 26px;
         color: var(--ivory);
       }
-      #background-photo .copy .en {
+      #background-photo .copy .en,
+      #background-photo-2 .copy .en {
         font-size: 13px;
         color: var(--taupe);
       }
-      #background-photo .logo {
+      #background-photo .logo,
+      #background-photo-2 .logo {
         width: 340px;
       }
-      #background-photo .lead {
+      #background-photo .lead,
+      #background-photo-2 .lead {
         font-size: 16px;
         line-height: 1.75;
         color: var(--line);
@@ -699,10 +708,38 @@
       <div class="menu"></div>
     </section>
 
-    <!-- 2-1. 시안: 사진을 꽉 채운 머리 배경 -->
+    <!-- 2-1. 시안: 로비 사진 (멀리서 본 듯 작게) -->
     <section class="asset hb" id="background-photo">
       <div class="shot">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <div class="shade"></div>
+      <div class="copy">
+        <p class="en">Lifting · Petit · Skin</p>
+        <div class="logo">{{LOGO}}</div>
+        <div class="rule"></div>
+        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
+      </div>
+      <div class="strip">
+        <span
+          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
+        >
+        <i class="bar"></i>
+        <span>목 10:00 – 20:30 야간진료</span>
+        <i class="bar"></i>
+        <span>토 10:00 – 15:00</span>
+        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
+      </div>
+      <div class="menu"></div>
+    </section>
+
+    <!-- 2-2. 시안: 입구 밖에서 본 사진 -->
+    <section class="asset hb" id="background-photo-2">
+      <div class="shot">
+        <img
+          class="photo"
+          src="../../public/images/photos/hero-entrance.webp"
+        />
       </div>
       <div class="shade"></div>
       <div class="copy">

@@ -331,7 +331,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
     },
     {
       q: "필러나 다른 콜라겐부스터와는 무엇이 다른가요?",
-      a: `리투오는 인체 유래 피부 기질을, 히알루론산 필러는 젤 성분을, PLLA 계열은 합성 고분자 재료를 이용합니다. 재료가 달라 같은 부스터라는 이름만으로 효과를 묶어 설명하지 않습니다. [리투오](https://www.lncbio.co.kr/bbs/board.php?bo_table=products1&wr_id=14), [HA 필러](https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020023B.pdf), [PLLA](https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030050S039b.pdf)
+      a: `리투오는 인체 유래 피부 기질을, 쥬베룩은 PDLLA 미세입자와 히알루론산을, 울트라콜은 PDO를, 히알루론산 필러는 젤 성분을 이용합니다. 재료가 달라 같은 부스터라는 이름만으로 효과를 묶어 설명하지 않습니다. [리투오](https://www.lncbio.co.kr/bbs/board.php?bo_table=products1&wr_id=14), [HA 필러](https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020023B.pdf)
 
 리투오는 히알루론산 필러처럼 녹이는 주사로 되돌리는 시술이 아닙니다. 시술 전 원료와 목표, 관리 방법을 충분히 설명드리고 함께 결정합니다.`,
     },

@@ -107,9 +107,10 @@ export default async function DoctorPage() {
       {/* 인사말 */}
       <section className="mx-auto max-w-[1400px] px-5 pt-20 pb-24 md:px-10 md:pt-28 md:pb-36">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+          {/* 모바일은 첫 화면에 같은 사진이 있어 PC에서만 보여 줌 */}
           <Reveal
             variant="clip"
-            className="relative mx-auto w-full max-w-[440px] lg:mx-0"
+            className="relative mx-auto hidden w-full max-w-[440px] lg:mx-0 lg:block"
           >
             <div className="overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}

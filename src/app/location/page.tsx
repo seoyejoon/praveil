@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bus, Car, Building2 } from "lucide-react";
+import { Bus, Car, Building2, Phone } from "lucide-react";
 import { mapApps } from "@/components/MapLinks";
 import Reveal from "@/components/Reveal";
 import SubPage from "@/components/SubPage";
@@ -15,15 +15,15 @@ import { getHospital } from "@/lib/data";
 export async function generateMetadata(): Promise<Metadata> {
   const h = await getHospital();
   return {
-    title: "오시는 길",
-    description: `${h.address} ${h.addressDetail}. ${h.name} 오시는 길 · 주차 · 진료시간 안내.`,
+    title: "진료안내 · 오시는 길",
+    description: `${h.address} ${h.addressDetail}. ${h.name} 진료시간 · 오시는 길 · 주차 안내.`,
     alternates: { canonical: "/location" },
   };
 }
 
 const icons = [Building2, Bus, Car];
 
-// 오시는 길: 큰 주소 + 지도 앱 바로가기 → 찾아오는 방법 (지도 · 진료시간 · 전화는 바로 아래 푸터에)
+// 진료안내 · 오시는 길: 주소 · 지도 앱 바로가기 + 진료시간 · 전화 → 찾아오는 방법 → 자주 묻는 질문 (지도는 바로 아래 푸터에)
 export default async function LocationPage() {
   const hospital = await getHospital();
   const { hero } = locationPage;
@@ -77,44 +77,102 @@ export default async function LocationPage() {
       image={hero.image}
       crumbs={[
         { label: about.label, href: about.href },
-        { label: "오시는 길" },
+        { label: "진료안내 · 오시는 길" },
       ]}
       tabs={about.pages}
       current="/location"
     >
-      <section className="mx-auto max-w-[1400px] px-5 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24">
-        <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
-          Address
-        </p>
+      <section className="mx-auto grid max-w-[1400px] gap-12 px-5 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+        <div>
+          <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
+            Address
+          </p>
+          <Reveal
+            variant="line"
+            className="mt-5 text-[28px] leading-[1.35] font-light tracking-[-0.03em] md:text-[48px]"
+          >
+            <span>
+              <span>{hospital.address}</span>
+            </span>
+            <span>
+              <span className="font-semibold">{hospital.addressDetail}</span>
+            </span>
+          </Reveal>
+          <Reveal delay={150}>
+            <ul className="mt-10 flex flex-wrap gap-2.5">
+              {mapApps(hospital.mapLinks, hospital.address, hospital.name).map(
+                (m) => (
+                  <li key={m.key}>
+                    <a
+                      href={m.href}
+                      target={m.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold hover:bg-ivory"
+                    >
+                      {m.icon}
+                      {m.label}
+                    </a>
+                  </li>
+                ),
+              )}
+            </ul>
+          </Reveal>
+        </div>
+
+        {/* 진료시간 · 전화 */}
         <Reveal
-          variant="line"
-          className="mt-5 text-[28px] leading-[1.35] font-light tracking-[-0.03em] md:text-[48px]"
+          delay={200}
+          className="rounded-[24px] bg-ivory p-7 md:rounded-[32px] md:p-10"
         >
-          <span>
-            <span>{hospital.address}</span>
-          </span>
-          <span>
-            <span className="font-semibold">{hospital.addressDetail}</span>
-          </span>
-        </Reveal>
-        <Reveal delay={150}>
-          <ul className="mt-10 flex flex-wrap gap-2.5">
-            {mapApps(hospital.mapLinks, hospital.address, hospital.name).map(
-              (m) => (
-                <li key={m.key}>
-                  <a
-                    href={m.href}
-                    target={m.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm transition hover:border-gold hover:bg-ivory"
-                  >
-                    {m.icon}
-                    {m.label}
-                  </a>
-                </li>
-              ),
+          <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
+            Hours
+          </p>
+          <h2 className="mt-3 text-[22px] font-semibold tracking-[-0.03em] md:text-[26px]">
+            진료시간
+          </h2>
+          <dl className="mt-6 border-t border-ink/80">
+            {hospital.hours.map((h) => (
+              <div
+                key={h.label}
+                className="flex items-baseline justify-between gap-4 border-b border-line py-3.5"
+              >
+                <dt className="text-[15px] text-muted">{h.label}</dt>
+                <dd
+                  className={`text-right text-[15px] font-medium tracking-[-0.01em] md:text-base ${h.closed ? "text-muted" : ""}`}
+                >
+                  {h.time}
+                  {h.note && (
+                    <span className="ml-2 text-xs text-gold">{h.note}</span>
+                  )}
+                </dd>
+              </div>
+            ))}
+            {hospital.lunch && (
+              <div className="flex items-baseline justify-between gap-4 border-b border-line py-3.5">
+                <dt className="text-[15px] text-muted">점심시간</dt>
+                <dd className="text-right text-[15px] font-medium md:text-base">
+                  {hospital.lunch}
+                </dd>
+              </div>
             )}
-          </ul>
+          </dl>
+          {hospital.hoursNotice && (
+            <p className="mt-4 text-[13px] text-muted">
+              {hospital.hoursNotice}
+            </p>
+          )}
+          <a
+            href={`tel:${hospital.phone.replace(/[^0-9+]/g, "")}`}
+            className="mt-7 flex items-center justify-between rounded-full bg-ink px-6 py-4 text-white transition hover:bg-espresso"
+          >
+            <span className="flex items-center gap-2.5 text-sm">
+              <Phone className="h-4 w-4" strokeWidth={1.6} />
+              전화 문의
+            </span>
+            <span className="text-[17px] font-semibold tracking-[-0.01em]">
+              {hospital.phone}
+            </span>
+          </a>
         </Reveal>
       </section>
 
@@ -150,7 +208,7 @@ export default async function LocationPage() {
             })}
           </ul>
           <p className="mt-10 text-sm text-muted">
-            지도 · 진료시간 · 전화번호는 아래에서 확인하실 수 있습니다.
+            지도는 바로 아래에서 확인하실 수 있습니다.
           </p>
         </div>
       </section>

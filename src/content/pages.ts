@@ -44,8 +44,8 @@ export const noticePage = {
 export const locationPage = {
   hero: {
     en: "Location",
-    title: "오시는 길",
-    description: "인천 남동구 구월동, 효명프라자 4층",
+    title: "진료안내 · 오시는 길",
+    description: "진료시간과 찾아오시는 방법을 안내합니다.",
     image: images.pageHero.location,
   },
 };

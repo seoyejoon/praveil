@@ -65,7 +65,7 @@ export const aboutPromise = {
     },
     {
       title: "1:1 맞춤 설계",
-      text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 가장 알맞은 시술 계획을 세웁니다.",
+      text: "환자마다 다른 피부 상태와 고민 부위, 적응증을 고려해 알맞은 시술 계획을 세웁니다.",
       image: doctorPhotos.consult,
       photoFit: "full-frame" as const,
     },

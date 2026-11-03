@@ -34,7 +34,6 @@ export default async function AboutIntroPage() {
   const [hospital, doctor] = await Promise.all([getHospital(), getDoctor()]);
   const area = areaOf(hospital.address);
   const fields = sitemap.filter((s) => s.treatment);
-  const night = hospital.hours.find((h) => h.note);
   const parking = hospital.directions.find((d) => d.title.includes("주차"));
   const answer = `${hospital.name}${josa(hospital.name, "은", "는")} ${area}에 있는 피부 · 미용 의원입니다. ${aboutIntro.body}`;
 
@@ -45,11 +44,14 @@ export default async function AboutIntroPage() {
       label: "진료 분야",
       value: fields.map((f) => f.label.replaceAll("·", " · ")).join(", "),
     },
+    // 진료시간은 요일별로 한 줄씩 (휴진 줄은 뺌)
     {
       label: "진료시간",
-      value: night
-        ? `${night.label} ${night.time.split("–").pop()?.trim()}까지 ${night.note}`
-        : hospital.hours[0]?.time,
+      value: hospital.hours
+        .filter((h) => !h.closed)
+        .map((h) => `${h.label} ${h.time}${h.note ? ` (${h.note})` : ""}`)
+        .join("\n"),
+      wide: true,
     },
     { label: "진료 방식", value: "대표원장 1:1 상담 · 직접 시술" },
     // 카카오톡 채널 주소가 있을 때만 안내
@@ -145,10 +147,10 @@ export default async function AboutIntroPage() {
             {facts.map((f) => (
               <div
                 key={f.label}
-                className="border-b border-line py-6 pr-4 md:py-8"
+                className={`border-b border-line py-6 pr-4 md:py-8 ${"wide" in f ? "col-span-2 lg:col-span-1" : ""}`}
               >
                 <dt className="text-[13px] text-gold">{f.label}</dt>
-                <dd className="mt-2 text-[15px] leading-snug font-medium tracking-[-0.02em] md:text-lg">
+                <dd className="mt-2 text-[15px] leading-snug font-medium tracking-[-0.02em] whitespace-pre-line md:text-lg">
                   {f.value}
                 </dd>
               </div>
@@ -263,23 +265,17 @@ export default async function AboutIntroPage() {
                 key={it.name}
                 delay={(i % 3) * 100}
                 className={`group relative overflow-hidden rounded-[20px] ${
-                  [
-                    "col-span-2 md:col-span-7",
-                    "md:col-span-5",
-                    "md:col-span-4",
-                    "md:col-span-4",
-                    "md:col-span-4",
-                    "col-span-2 md:col-span-12",
-                  ][i]
+                  i === 0 || i === 5
+                    ? "col-span-2 md:col-span-4"
+                    : "md:col-span-4"
                 }`}
               >
+                {/* PC: 3장씩 두 줄 같은 크기 · 모바일: 첫 · 마지막은 넓게 */}
                 <div
                   className={
-                    i === 5
-                      ? "aspect-[16/9] md:aspect-[21/8]"
-                      : i === 0
-                        ? "aspect-[4/3] md:aspect-auto md:h-full md:min-h-[360px]"
-                        : "aspect-square md:aspect-auto md:h-full md:min-h-[360px]"
+                    i === 0 || i === 5
+                      ? "aspect-[4/3]"
+                      : "aspect-square md:aspect-[4/3]"
                   }
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -372,8 +368,11 @@ export default async function AboutIntroPage() {
                       {f.label}
                       <ArrowUpRight className="h-4 w-4" strokeWidth={1.6} />
                     </p>
-                    <p className="mt-2 text-xs leading-relaxed text-white/70">
-                      {f.pages.map((p) => p.label).join(" · ")}
+                    {/* 하위 메뉴가 하나뿐이면(여드름 · 모공) 이름이 겹치므로 세부 시술을 보여 줌 */}
+                    <p className="mt-2 min-h-[3.25em] text-xs leading-relaxed text-white/70">
+                      {f.pages.length > 1
+                        ? f.pages.map((p) => p.label).join(" · ")
+                        : (f.pages[0].items ?? []).slice(0, 3).join(" · ")}
                     </p>
                   </div>
                 </Link>

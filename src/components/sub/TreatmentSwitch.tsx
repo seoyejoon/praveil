@@ -20,7 +20,7 @@ type Variant = { key: string; label: string; title: string };
 type Ctx = {
   variants: Variant[];
   active: number;
-  select: (i: number, keep: boolean) => void;
+  select: (i: number, keep: boolean, from?: Element) => void;
 };
 
 const SwitchContext = createContext<Ctx | null>(null);
@@ -43,9 +43,13 @@ export default function TreatmentSwitch({
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const box = useRef<HTMLDivElement>(null);
-  const pending = useRef<{ sig: string; index: number; ratio: number } | null>(
-    null,
-  );
+  // top: 누른 링크가 있던 섹션의 화면 위치 (그 자리 그대로 다른 시술로 바꿈)
+  const pending = useRef<{
+    sig: string;
+    index: number;
+    ratio: number;
+    top?: number;
+  } | null>(null);
   // 섹션 제목에서 뺄 이름: 시술 이름(긴 것부터) · 버튼 이름
   const labels = [
     ...variants.map((v) => v.title),
@@ -65,10 +69,19 @@ export default function TreatmentSwitch({
     );
 
   const select = useCallback(
-    (i: number, keep: boolean) => {
+    (i: number, keep: boolean, from?: Element) => {
       if (i === active) return;
       pending.current = null;
-      if (keep) {
+      const list0 = sections();
+      const at = from ? list0.indexOf(from as HTMLElement) : -1;
+      if (from && at >= 0) {
+        pending.current = {
+          sig: signature(from, labels),
+          index: at,
+          ratio: 0,
+          top: from.getBoundingClientRect().top,
+        };
+      } else if (keep) {
         // 지금 화면 위쪽에 걸친 섹션과, 그 안에서 얼마나 읽었는지
         const list = sections();
         let index = -1;
@@ -107,14 +120,32 @@ export default function TreatmentSwitch({
     if (!target) return;
     const r = target.getBoundingClientRect();
     window.scrollTo({
-      top: window.scrollY + r.top - HEADER + p.ratio * r.height,
+      top:
+        p.top !== undefined
+          ? window.scrollY + r.top - p.top
+          : window.scrollY + r.top - HEADER + p.ratio * r.height,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
+  // 본문 안 링크(예: 비교표의 '엑소좀 보기')가 같은 페이지의 다른 시술이면, 새로 열지 않고 그 자리에서 바꿈
+  const onClick = (e: React.MouseEvent) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey) return;
+    const a = (e.target as Element).closest("a[href]");
+    if (!a) return;
+    const url = new URL((a as HTMLAnchorElement).href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname)
+      return;
+    const i = variants.findIndex((v) => v.key === url.searchParams.get("type"));
+    if (i < 0) return;
+    e.preventDefault();
+    const from = sections().find((s) => s.contains(a));
+    select(i, true, from);
+  };
+
   return (
     <SwitchContext.Provider value={{ variants, active, select }}>
-      <div ref={box}>
+      <div ref={box} onClickCapture={onClick}>
         {children.map((child, i) =>
           i === active ? (
             <div key={variants[i].key} data-variant={variants[i].key}>

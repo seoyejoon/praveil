@@ -96,9 +96,25 @@ export default async function SectionPage({ params }: Props) {
       ).slice(0, 3);
       const g = treatmentGuide[tt.href];
       const area = areaOf(hospital.address);
+      // 한 가격 항목에 여러 하위 시술 줄이 섞여 있으면(예: QTL실 · 잼버실) 이 시술 줄만
+      const siblings = tt.variantOf
+        ? (findTreatment(tt.variantOf)?.variants ?? [])
+        : [];
+      const mine = siblings.find((v) => v.href === tt.href)?.label;
+      const onlyMine = (p: (typeof procedures)[number]) => {
+        if (!mine) return p;
+        const rows = p.prices.filter((r) => r.label.includes(mine));
+        const others = p.prices.filter((r) =>
+          siblings.some((v) => v.label !== mine && r.label.includes(v.label)),
+        );
+        return rows.length && rows.length + others.length === p.prices.length
+          ? { ...p, prices: rows }
+          : p;
+      };
       const prices = g.prices
         .map((slug) => procedures.find((p) => p.slug === slug))
-        .filter((p) => p && p.prices.length > 0) as typeof procedures;
+        .filter((p) => p && p.prices.length > 0)
+        .map((p) => onlyMine(p!)) as typeof procedures;
       const compare = (g.compare ?? []).map((href) => {
         const c = findTreatment(href)!;
         return {

@@ -2444,7 +2444,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       marks: [],
       layers: [],
       framed: true,
-      note: "실과 주변 조직의 관계를 표현한 설명용 모식도입니다. 특정 제품의 실제 구조 · 크기 · 삽입 깊이와는 다를 수 있습니다.",
+      note: "돌기가 있는 실을 예로 든 설명용 모식도입니다. 잼버실은 꺼진 부위를 받치는 볼륨형 실로, 실제 구조 · 크기 · 삽입 깊이와는 다릅니다.",
     },
     principle: [
       {

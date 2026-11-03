@@ -1849,7 +1849,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     diagram: "laser",
     principleLayout: "figure-first",
     showPrices: true,
-    // 영상 · 그림: 클래시스 슈링크 유니버스 공식 사이트(shurinkuniverse.co.kr) 제품 · 원리 영상 (크기만 줄임)
+    // 원리 · 모드 영상 · 그림: 클래시스 슈링크 유니버스 공식 사이트(shurinkuniverse.co.kr) 제품 · 원리 영상 (크기만 줄임)
+    // 장비 소개 영상: 클래시스 공식 유튜브 슈링크 유니버스 프로모션 영상에서 장비 장면만 잘라 씀 (소리 없음 · 가로 1280px)
     device: {
       name: "슈링크 유니버스",
       maker: "CLASSYS",

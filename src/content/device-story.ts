@@ -39,7 +39,8 @@ export type DeviceStory = {
     /** 공식 제품 자료는 기존 카드 안에서 전체 프레임을 유지 */
     mediaContain?: boolean;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
-    film?: { src: string; poster: string };
+    /** youtube: 제조사 유튜브 영상 ID (있으면 mp4 대신 소리 없이 자동 반복 재생) */
+    film?: { src: string; poster: string; youtube?: string };
     text: string;
     specs: { label: string; value: string }[];
   };
@@ -112,6 +113,8 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 짧은 반복 영상 (image 는 첫 장면) */
     video?: string;
+    /** 제조사 유튜브 영상 ID (있으면 video 대신) */
+    youtube?: string;
     /** 원본 크기. 4:3 박스와 비율이 크게 다르면 자르지 않고 전체를 보여 줌 (남는 자리는 흐린 배경) */
     mediaSize?: { width: number; height: number };
     /** 자르지 않고 보여 줄 때 남는 자리를 채울 색 [위 · 왼쪽, 아래 · 오른쪽] (사진 가장자리 색) */
@@ -1853,6 +1856,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/shrink-device.mp4",
         poster: "/images/shrink/device.webp",
+        // 클래시스 공식 유튜브 '슈링크 유니버스 프로모션 영상'
+        youtube: "gVurCMY-65I",
       },
       text: "슈링크 유니버스는 클래시스에서 만든 집속 초음파(HIFU) 리프팅 장비입니다. 피부 속 정한 깊이에 열응고점(TCP)을 만들어 탄력과 윤곽을 관리하며, 점을 찍듯 나누어 주는 일반(Dot) 모드와 점을 촘촘히 이어 주는 MP(Micro Pulsed) 모드를 피부 상태에 맞춰 고릅니다.",
       specs: [
@@ -1960,6 +1965,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "1.5 · 2.0 · 3.0 · 4.5mm 카트리지로 얕은 피부층부터 깊은 층까지 나누어 전달합니다. 피부 두께와 처짐 부위에 맞춰 깊이를 조합합니다.",
         image: "/images/shrink/booster-depth.webp",
         video: "/videos/shrink-booster-depth.mp4",
+        // 제조사 유튜브 소개 영상 (카트리지 · 핸드피스 그래픽)
+        youtube: "yg2EivLf68A",
+        mediaSize: { width: 1280, height: 720 },
         alt: "1.5mm 깊이에서 일반 모드와 MP 모드로 열응고점이 생기는 모습을 보여 주는 제조사 영상",
       },
       {

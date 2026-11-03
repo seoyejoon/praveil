@@ -11,6 +11,10 @@ import type { DeviceStory } from "@/content/device-story";
 const factIcons = [Clock, Droplets, Sparkles, CalendarDays];
 
 /** 한눈에 보기: 핵심 정보 4개 (아이콘 카드) */
+// 제조사 유튜브 영상: 소리 없이 자동 반복, 조작 버튼 숨김 (youtube-nocookie)
+const yt = (id: string) =>
+  `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&rel=0&playsinline=1&modestbranding=1`;
+
 export function StoryFacts({
   facts,
 }: {
@@ -66,7 +70,15 @@ export function StoryAbout({
                   : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
               }
             >
-              {device.film ? (
+              {device.film?.youtube ? (
+                <iframe
+                  src={yt(device.film.youtube)}
+                  title={`${device.name} 제조사 영상`}
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  loading="lazy"
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                />
+              ) : device.film ? (
                 <video
                   src={device.film.src}
                   poster={device.film.poster}
@@ -368,7 +380,15 @@ export function StoryFeatures({
                       }}
                     />
                   )}
-                  {f.video ? (
+                  {f.youtube ? (
+                    <iframe
+                      src={yt(f.youtube)}
+                      title={f.alt}
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      loading="lazy"
+                      className="pointer-events-none absolute inset-0 h-full w-full"
+                    />
+                  ) : f.video ? (
                     <video
                       src={f.video}
                       poster={f.image}

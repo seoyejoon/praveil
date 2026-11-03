@@ -739,12 +739,7 @@ export default function TreatmentDetail({
             <SectionHead
               en="Result"
               tone="dark"
-              title={
-                <>
-                  <span className="block">{t.title}</span>
-                  <span className="block">효과 발현 기간 및 유지기간</span>
-                </>
-              }
+              title={`${t.title} 효과 발현 기간 및 유지기간`}
             />
             <ol className="no-scrollbar -mx-6 mt-12 flex scroll-px-6 gap-3 overflow-x-auto overscroll-x-contain px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
               {g.timeline.map((s, i) => (

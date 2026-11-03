@@ -1576,6 +1576,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         { label: "용량", value: "2cc ~ 6cc (제품별)" },
       ],
     },
+    // 원리 그림: 콜라겐부스터 공통 그림을 쓰고, 설명만 울트라콜에 맞춤
+    principleImage: {
+      src: "/images/principles/collagen.webp",
+      alt: "조직 유래 기질과 합성 고분자 입자를 나란히 구분한 콜라겐부스터 개념도. 울트라콜의 PDO는 합성 고분자 쪽입니다.",
+      marks: [],
+      layers: [],
+      note: "울트라콜의 PDO는 오른쪽 '합성 고분자 입자'에 해당합니다. 재료의 차이를 보여 드리기 위한 그림이며, 실제 크기 · 깊이와는 다릅니다.",
+    },
     principle: [
       {
         title: "피부 두께 · 고민 확인",

@@ -78,8 +78,8 @@ export const principleIllustrations: Record<
     alt: "조직 유래 기질의 망상 구조와 합성 고분자 입자를 나란히 구분한 콜라겐부스터 입체 개념도",
     note: "두 재료의 차이를 설명하는 그림이며, 함께 주입한다는 의미는 아닙니다.",
     marks: [
-      { x: 31.5, y: 54.7, label: "조직 유래 기질" },
-      { x: 61.1, y: 56.2, label: "합성 고분자 입자" },
+      { x: 31.5, y: 54.7, label: "조직 유래 기질", labelX: 24, labelY: 38 },
+      { x: 61.1, y: 56.2, label: "합성 고분자 입자", labelX: 72, labelY: 72 },
     ],
   },
   laser: {

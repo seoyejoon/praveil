@@ -127,7 +127,7 @@ export default async function DoctorPage() {
             </p>
             <Reveal
               variant="line"
-              className="mt-6 text-[28px] leading-[1.4] font-light tracking-[-0.03em] md:text-[42px]"
+              className="mt-6 text-[28px] leading-[1.4] font-semibold tracking-[-0.04em] md:text-[42px]"
             >
               {p.quote.map((q) => (
                 <span key={q}>
@@ -240,8 +240,13 @@ export default async function DoctorPage() {
                 <Link href={it.href} className="group block">
                   <div className="overflow-hidden rounded-[20px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {/* 세로 사진(mobileImage)이 있으면 그걸로: 가로 사진은 인물이 오른쪽에 치우쳐 있음 */}
                     <img
-                      src={it.image}
+                      src={
+                        "mobileImage" in it && it.mobileImage
+                          ? it.mobileImage
+                          : it.image
+                      }
                       alt={it.name}
                       loading="lazy"
                       className="aspect-[4/3] w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105 md:aspect-[4/5]"

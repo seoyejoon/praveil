@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import AboutPage from "@/components/AboutPage";
 import Reveal from "@/components/Reveal";
-import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import JsonLd from "@/components/sub/JsonLd";
 import CardSlider from "@/components/sub/CardSlider";
@@ -207,7 +206,7 @@ export default async function AboutIntroPage() {
           {aboutPromise.items.map((it, i) => (
             <li
               key={it.title}
-              className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-[24px] bg-ivory md:w-[calc((100%-2rem)/3)]"
+              className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-[24px] bg-ivory md:w-[400px]"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -252,45 +251,57 @@ export default async function AboutIntroPage() {
         </div>
       </section>
 
-      {/* 장비 */}
+      {/* 장비: 다섯 가지 약속과 같은 슬라이드 (오른쪽 끝까지 · 마우스로 끌어 넘김) */}
       <section
         id="equipment"
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
-        <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
-          <SectionHead en={aboutEquipment.en} title={aboutEquipment.title} />
-          <p className="text-[15px] leading-relaxed text-muted lg:text-right">
-            {aboutEquipment.text}
-          </p>
-        </div>
-        <ul className="mt-12 grid grid-cols-2 gap-x-3 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-5">
+        <SectionHead en={aboutEquipment.en} title={aboutEquipment.title} />
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+          {aboutEquipment.text}
+        </p>
+        <CardSlider label="장비">
           {aboutEquipment.items.map((it, i) => (
-            <Reveal as="li" key={it.name} delay={(i % 4) * 80}>
-              <Link href={it.href} className="group block">
-                <div className="overflow-hidden rounded-[20px] bg-ivory">
+            <li
+              key={it.name}
+              className="flex w-[82%] shrink-0 snap-start md:w-[400px]"
+            >
+              <Link
+                href={it.href}
+                draggable={false}
+                className="group flex w-full flex-col overflow-hidden rounded-[24px] bg-ivory"
+              >
+                <div className="aspect-square overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={it.image}
                     alt={`${it.name} 장비`}
                     loading="lazy"
-                    className="aspect-square w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                    className="h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
                   />
                 </div>
-                <p className="mt-4 font-display text-[11px] tracking-[0.25em] text-gold uppercase">
-                  {it.en}
-                </p>
-                <p className="mt-1 flex items-center gap-1 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-gold">
-                  {it.name}
-                  <ArrowUpRight
-                    className="h-4 w-4 text-muted transition group-hover:text-gold"
-                    strokeWidth={1.6}
-                  />
-                </p>
-                <p className="mt-0.5 text-sm text-muted">{it.type}</p>
+                <div className="p-7 md:p-8">
+                  <span className="font-display text-sm text-gold">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="mt-3 font-display text-[11px] tracking-[0.25em] text-gold uppercase">
+                    {it.en}
+                  </p>
+                  <h3 className="mt-1 flex items-center gap-1 text-xl font-semibold tracking-[-0.02em] transition group-hover:text-gold">
+                    {it.name}
+                    <ArrowUpRight
+                      className="h-4 w-4 text-muted transition group-hover:text-gold"
+                      strokeWidth={1.6}
+                    />
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted">
+                    {it.type}
+                  </p>
+                </div>
               </Link>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </CardSlider>
       </section>
 
       {/* 진료 분야 */}
@@ -341,8 +352,6 @@ export default async function AboutIntroPage() {
           <FaqList items={faq} />
         </div>
       </section>
-
-      <ConsultCta hospital={hospital} title="어떤 시술이 맞을지 고민된다면," />
     </AboutPage>
   );
 }

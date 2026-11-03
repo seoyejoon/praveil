@@ -21,8 +21,6 @@ export default function AboutPage({
       title={hero.title}
       description={hero.description}
       image={hero.image}
-      // 의료진: 원장이 사진 오른쪽에 있어 모바일에서도 보이게
-      imagePosition={page === "doctor" ? "72% 28%" : undefined}
       // 병원소개 · 의료진소개는 같은 모양으로, 상단 경로(HOME - 병원소개 - …)는 숨김 (아래 탭으로 이동)
       crumbs={[]}
       tabs={about.pages}

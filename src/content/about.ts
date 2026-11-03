@@ -21,7 +21,8 @@ export const aboutHero = {
     en: "Doctor",
     title: "의료진소개",
     description: "상담부터 시술, 경과 확인까지 대표원장이 직접 책임집니다.",
-    image: doctorPhotos.banner,
+    // 원장 사진은 바로 아래 인사말에 있어, 첫 화면은 병원 입구 사진 (병원소개와 같은 모양)
+    image: photo("hero-entrance"),
   },
 };
 

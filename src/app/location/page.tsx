@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const icons = [Building2, Bus, Car];
 
-// 진료안내 · 오시는 길: 주소 · 지도 앱 바로가기 + 진료시간 · 전화 → 구글 지도 → 찾아오는 방법
+// 진료안내 · 오시는 길: 주소 · 지도 앱 바로가기 · 구글 지도 + 진료시간 · 전화 → 찾아오는 방법
 export default async function LocationPage() {
   const hospital = await getHospital();
   const { hero } = locationPage;
@@ -36,7 +36,8 @@ export default async function LocationPage() {
       current="/location"
     >
       <section className="mx-auto grid max-w-[1400px] gap-12 px-5 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-        <div>
+        {/* 주소 · 지도 앱 바로가기 · 구글 지도 (오른쪽 진료시간 칸과 높이를 맞춤) */}
+        <div className="flex flex-col">
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
             Address
           </p>
@@ -69,6 +70,18 @@ export default async function LocationPage() {
                 ),
               )}
             </ul>
+          </Reveal>
+          <Reveal
+            delay={250}
+            className="mt-8 flex min-h-[300px] flex-1 overflow-hidden rounded-[24px] border border-line md:min-h-[340px] md:rounded-[28px]"
+          >
+            <iframe
+              title={`${hospital.name} 위치 (구글 지도)`}
+              src={`https://www.google.com/maps?q=${mapQuery}&hl=ko&z=17&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block h-full min-h-[300px] w-full flex-1 md:min-h-[340px]"
+            />
           </Reveal>
         </div>
 
@@ -126,19 +139,6 @@ export default async function LocationPage() {
               {hospital.phone}
             </span>
           </a>
-        </Reveal>
-      </section>
-
-      {/* 구글 지도 */}
-      <section className="mx-auto max-w-[1400px] px-5 pb-16 md:px-10 md:pb-24">
-        <Reveal className="overflow-hidden rounded-[24px] border border-line md:rounded-[32px]">
-          <iframe
-            title={`${hospital.name} 위치 (구글 지도)`}
-            src={`https://www.google.com/maps?q=${mapQuery}&hl=ko&z=17&output=embed`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="block h-[360px] w-full md:h-[520px]"
-          />
         </Reveal>
       </section>
 

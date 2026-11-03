@@ -4,7 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import AboutPage from "@/components/AboutPage";
 import BestMark from "@/components/BestMark";
 import Reveal from "@/components/Reveal";
-import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import JsonLd from "@/components/sub/JsonLd";
 import SectionHead from "@/components/sub/SectionHead";
@@ -23,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// 의료진소개: 인사말 → 약력 → 진료 방식 4단계 → 대표 시술 → 자주 묻는 질문 → 상담
+// 의료진소개: 인사말 → 약력 → 진료 방식 4단계 → 시그니처 시술 → 자주 묻는 질문
 export default async function DoctorPage() {
   const [hospital, doctor] = await Promise.all([getHospital(), getDoctor()]);
   const area = areaOf(hospital.address);
@@ -37,11 +36,7 @@ export default async function DoctorPage() {
   const faq = [
     {
       q: "대표원장님이 직접 시술하나요?",
-      a: `네. ${hospital.name}에서는 ${doctor.title} ${doctor.name} 원장이 상담부터 시술, 경과 확인까지 직접 진행합니다.`,
-    },
-    {
-      q: "상담한 의사와 시술하는 의사가 다를 수 있나요?",
-      a: "아니요. 상담한 원장이 그대로 시술합니다. 얼굴과 피부를 직접 본 사람이 시술해야 설계한 대로 정확하게 진행할 수 있기 때문입니다.",
+      a: `네. ${hospital.name}에서는 ${doctor.title} ${doctor.name} 원장님이 모든 시술을 책임 집도하고 있습니다.`,
     },
     {
       q: "상담만 받아 봐도 되나요?",
@@ -107,10 +102,9 @@ export default async function DoctorPage() {
       {/* 인사말 */}
       <section className="mx-auto max-w-[1400px] px-5 pt-20 pb-24 md:px-10 md:pt-28 md:pb-36">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          {/* 모바일은 첫 화면에 같은 사진이 있어 PC에서만 보여 줌 */}
           <Reveal
             variant="clip"
-            className="relative mx-auto hidden w-full max-w-[440px] lg:mx-0 lg:block"
+            className="relative mx-auto w-full max-w-[440px] lg:mx-0"
           >
             <div className="overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -238,7 +232,7 @@ export default async function DoctorPage() {
           <SectionHead
             en="Signature"
             tone="dark"
-            title="대표원장이 직접 설계하는 대표 시술"
+            title="대표원장이 직접 설계하는 시그니처 시술"
           />
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
             {mainBest.items.map((it, i) => (
@@ -278,13 +272,6 @@ export default async function DoctorPage() {
           <FaqList items={faq} />
         </div>
       </section>
-
-      <ConsultCta
-        id="visit"
-        hospital={hospital}
-        title={`${doctor.name} 원장에게`}
-        strong="직접 상담받아 보세요."
-      />
     </AboutPage>
   );
 }

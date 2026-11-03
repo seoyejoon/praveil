@@ -24,7 +24,7 @@ const megaIntro: Record<
 > = {
   about: {
     title: "프라베일 소개",
-    text: "20년 경력의 대표원장이 상담부터 시술까지 직접 책임지는 프라이빗 클리닉입니다.",
+    text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도하는 프라이빗 클리닉입니다.",
     image: "/images/menu/about.webp",
   },
   praveil: {

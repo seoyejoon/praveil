@@ -6,7 +6,8 @@ import { doctorPhotos } from "@/content/doctor-photos";
 
 const photo = (name: string) => `/images/photos/${name}.webp`;
 // 제조사 공식 제품 사진 (장비 구매 병원 사용 허가 범위)
-const device = (name: string) => `/images/equipment/${name}.webp`;
+// 장비 카드 사진: 원본(equipment/)에서 여백만 정리해 장비 높이를 같게 맞춘 사본 (equipment/card/)
+const device = (name: string) => `/images/equipment/card/${name}.webp`;
 
 // 병원소개 · 의료진소개 상단 (탭은 사이트맵 '병원소개' 분류를 따름)
 export const aboutHero = {
@@ -14,7 +15,7 @@ export const aboutHero = {
     en: "About Praveil",
     title: "병원소개",
     description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.",
-    image: photo("hero-about"),
+    image: photo("hero-lobby"),
   },
   doctor: {
     en: "Doctor",
@@ -60,7 +61,7 @@ export const aboutPromise = {
   items: [
     {
       title: "대표원장 책임 진료",
-      text: "20년 경력의 대표원장이 상담부터 시술까지 직접 책임집니다.",
+      text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
       image: photo("special-2"),
     },
     {
@@ -106,7 +107,7 @@ export const aboutSpace = {
 // 사진: 제조사 공식 제품 사진 또는 병원 촬영본 배경 정리 (public/images/equipment)
 export const aboutEquipment = {
   en: "Equipment",
-  title: "시술 목적에 맞춘 장비",
+  title: "프라베일의 프리미엄 장비 소개",
   text: "같은 리프팅이라도 작용하는 깊이와 방식이 다릅니다. 고민에 맞는 장비를 골라 필요한 만큼만 사용합니다.",
   items: [
     {
@@ -158,10 +159,11 @@ export const aboutEquipment = {
 export const doctorProfile = {
   nameEn: "Han Jae Woong",
   photo: doctorPhotos.portrait,
-  quote: ["20년, 오직 '피부'라는", "하나의 세계만을 들여다봤습니다."],
+  // 제목 · 첫 문단은 메인 페이지 원장 소개(mainDoctor)와 같게
+  quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
   greeting: [
-    "같은 고민도 피부마다 답이 다릅니다. 그래서 프라베일에서는 시술을 고르기 전에 피부를 먼저 읽습니다.",
-    "많이 하는 것보다 꼭 맞게 하는 것, 한 번의 변화보다 오래 건강한 피부를 목표로 합니다. 상담한 제가 직접 시술하고, 경과까지 끝까지 확인하겠습니다.",
+    "현재 피부 상태를 기준으로 치료의 우선순위를 정하고, 불필요한 과정보다는 필요한 진료에 집중합니다.",
+    "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다. 상담부터 경과 확인까지 직접 함께하겠습니다.",
   ],
   // 약력: 자료를 받으면 채움 (비어 있으면 화면에 나오지 않음)
   education: [] as string[],

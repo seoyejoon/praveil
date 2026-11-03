@@ -6,7 +6,9 @@ import Reveal from "@/components/Reveal";
 import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import JsonLd from "@/components/sub/JsonLd";
+import CardSlider from "@/components/sub/CardSlider";
 import SectionHead from "@/components/sub/SectionHead";
+import SpaceGallery from "@/components/sub/SpaceGallery";
 import {
   aboutEquipment,
   aboutIntro,
@@ -72,20 +74,12 @@ export default async function AboutIntroPage() {
     },
     ...(parking ? [{ q: "주차할 수 있나요?", a: `${parking.body}.` }] : []),
     {
-      q: "상담과 시술은 누가 하나요?",
-      a: `대표원장 ${doctor.name} 원장이 상담부터 시술, 경과 확인까지 직접 진행합니다.`,
-    },
-    {
       q: "예약하고 가야 하나요?",
       a: `예약하시면 기다리는 시간 없이 상담받으실 수 있습니다. 전화${hospital.kakaoUrl ? " · 카카오톡" : ""} · 네이버 예약으로 편하게 예약해 주세요.`,
     },
     {
       q: "상담만 받아도 되나요?",
       a: "네. 상담 후 바로 시술하지 않으셔도 괜찮습니다. 피부 상태와 필요한 방법을 충분히 설명해 드립니다.",
-    },
-    {
-      q: "어떤 시술을 하나요?",
-      a: `${fields.map((f) => `${f.label}(${f.pages.map((p) => p.label).join(" · ")})`).join(", ")}를 진료합니다.`,
     },
   ];
 
@@ -163,7 +157,7 @@ export default async function AboutIntroPage() {
       <section className="relative overflow-hidden bg-espresso px-5 py-24 text-white md:px-10 md:py-36">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/photos/hero-lobby.webp"
+          src="/images/photos/hero-about.webp"
           alt=""
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover opacity-20"
@@ -209,17 +203,13 @@ export default async function AboutIntroPage() {
         className="mx-auto max-w-[1400px] scroll-mt-36 px-5 py-24 md:scroll-mt-44 md:px-10 md:py-36"
       >
         <SectionHead en={aboutPromise.en} title={aboutPromise.title} />
-        <ul className="mt-12 grid gap-3 md:mt-16 md:grid-cols-2 md:gap-4 lg:grid-cols-6">
+        <CardSlider label="약속">
           {aboutPromise.items.map((it, i) => (
-            <Reveal
-              as="li"
+            <li
               key={it.title}
-              delay={(i % 3) * 100}
-              className={`group relative overflow-hidden rounded-[24px] bg-ivory ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
+              className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-[24px] bg-ivory md:w-[calc((100%-2rem)/3)]"
             >
-              <div
-                className={`overflow-hidden ${i < 2 ? "aspect-[16/9]" : "aspect-[4/3]"}`}
-              >
+              <div className="aspect-[4/3] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={it.image}
@@ -241,9 +231,9 @@ export default async function AboutIntroPage() {
                   {it.text}
                 </p>
               </div>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </CardSlider>
       </section>
 
       {/* 공간 */}
@@ -258,45 +248,7 @@ export default async function AboutIntroPage() {
               {aboutSpace.text}
             </p>
           </div>
-          <ul className="mt-12 grid grid-cols-2 gap-3 md:mt-16 md:grid-cols-12 md:gap-4">
-            {aboutSpace.items.map((it, i) => (
-              <Reveal
-                as="li"
-                key={it.name}
-                delay={(i % 3) * 100}
-                className={`group relative overflow-hidden rounded-[20px] ${
-                  i === 0 || i === 5
-                    ? "col-span-2 md:col-span-4"
-                    : "md:col-span-4"
-                }`}
-              >
-                {/* PC: 3장씩 두 줄 같은 크기 · 모바일: 첫 · 마지막은 넓게 */}
-                <div
-                  className={
-                    i === 0 || i === 5
-                      ? "aspect-[4/3]"
-                      : "aspect-square md:aspect-[4/3]"
-                  }
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={it.image}
-                    alt={`${hospital.name} ${it.name}`}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,rgba(24,19,15,0.6))] p-5 text-white md:p-7">
-                  <p className="text-base font-semibold md:text-lg">
-                    {it.name}
-                  </p>
-                  <p className="mt-0.5 text-xs text-white/75 md:text-sm">
-                    {it.text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+          <SpaceGallery items={aboutSpace.items} alt={hospital.name} />
         </div>
       </section>
 

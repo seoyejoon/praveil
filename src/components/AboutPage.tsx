@@ -1,6 +1,5 @@
 import SubPage from "@/components/SubPage";
 import { aboutHero } from "@/content/about";
-import { doctorPhotos } from "@/content/doctor-photos";
 import { sitemap } from "@/content/sitemap";
 
 // 병원소개 하위 페이지 공통 틀: 상단 사진 + 탭(병원소개 · 의료진소개 · 오시는 길) + 본문
@@ -22,18 +21,10 @@ export default function AboutPage({
       title={hero.title}
       description={hero.description}
       image={hero.image}
-      scene={
-        page === "doctor"
-          ? {
-              src: doctorPhotos.banner,
-              mobileSrc: doctorPhotos.portrait,
-              photoLayout: "full-frame",
-              photoAspect: "portrait-mobile",
-              photoAlt: "프라베일 대표원장 프로필",
-            }
-          : undefined
-      }
-      crumbs={[{ label: about.label, href: about.href }, { label: hero.title }]}
+      // 의료진: 원장이 사진 오른쪽에 있어 모바일에서도 보이게
+      imagePosition={page === "doctor" ? "72% 28%" : undefined}
+      // 병원소개 · 의료진소개는 같은 모양으로, 상단 경로(HOME - 병원소개 - …)는 숨김 (아래 탭으로 이동)
+      crumbs={[]}
       tabs={about.pages}
       current={current}
     >

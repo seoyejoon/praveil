@@ -15,6 +15,7 @@ export default function SubPage({
   title,
   description,
   image,
+  imagePosition,
   device,
   scene,
   facts = [],
@@ -28,6 +29,8 @@ export default function SubPage({
   title: string;
   description?: string;
   image: string;
+  /** 사진에서 보여 줄 위치 (예: "75% 30%" — 인물이 오른쪽에 있을 때) */
+  imagePosition?: string;
   /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
   device?: HeroDevice;
   /** 밝은 시술 장면 사진 (왼쪽이 빈 벽인 가로 사진): 왼쪽 글자 · 오른쪽 장면 */
@@ -74,6 +77,9 @@ export default function SubPage({
               src={image}
               alt=""
               fetchPriority="high"
+              style={
+                imagePosition ? { objectPosition: imagePosition } : undefined
+              }
               className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
             />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />

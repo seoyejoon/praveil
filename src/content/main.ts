@@ -142,7 +142,7 @@ export const mainWhy = {
     {
       icon: "doctor",
       title: "대표원장 책임 진료",
-      text: "20년 경력의 대표원장이 상담부터 시술까지 직접 책임집니다.",
+      text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
       image: photo("special-2"),
     },
     {

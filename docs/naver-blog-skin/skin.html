@@ -386,25 +386,61 @@
       }
 
       /* ── 5. 글 머리 · 글 꼬리 (본문 860px, 2배) ── */
+      /* 글 머리: PC 머리와 같은 느낌 (오른쪽 로비 사진 · 짙은 바탕 · 흘러내리는 비단 곡선) */
       #post-header {
         width: 1720px;
         height: 560px;
         background: var(--espresso);
       }
-      #post-header .photo {
-        left: auto;
-        width: 62%;
-        object-position: 50% 45%;
+      #post-header .shot {
+        position: absolute;
+        left: 780px;
+        top: 0;
+        width: 940px;
+        height: 560px;
+        overflow: hidden;
+      }
+      #post-header .shot .photo {
+        object-position: 50% 55%;
       }
       #post-header .fade {
         position: absolute;
         inset: 0;
         background: linear-gradient(
           90deg,
-          var(--espresso) 38%,
+          var(--espresso) 45.3%,
           rgba(29, 26, 23, 0.55) 52%,
-          rgba(29, 26, 23, 0) 72%
+          rgba(29, 26, 23, 0) 62%
         );
+      }
+      #post-header .pattern {
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 640px,
+          #000 760px,
+          #000 940px,
+          transparent 1080px
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent 640px,
+          #000 760px,
+          #000 940px,
+          transparent 1080px
+        );
+      }
+      #post-header .pattern .lo {
+        stroke: var(--mocha);
+        stroke-width: 1.3;
+        stroke-opacity: 0.5;
+      }
+      #post-header .pattern .hi {
+        stroke: var(--gold);
+        stroke-width: 2;
+        stroke-opacity: 0.85;
       }
       #post-header .copy {
         position: absolute;
@@ -431,7 +467,6 @@
         letter-spacing: 0.04em;
       }
 
-      /* 글 꼬리: 휴대폰에서는 약 1/5 크기로 보여서 한 줄로 쌓고 글자를 크게 (본문 44px 이상) */
       #post-footer {
         width: 1720px;
         background: var(--ivory);
@@ -792,10 +827,38 @@
       <p class="en">Clinic</p>
     </section>
 
-    <!-- 5. 글 머리 -->
+    <!-- 5. 글 머리: PC 머리와 같은 느낌 -->
     <section class="asset" id="post-header">
-      <img class="photo" src="../../public/images/photos/hero-entrance.webp" />
+      <div class="shot">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
       <div class="fade"></div>
+      <svg class="pattern" width="1720" height="560" viewBox="0 0 1720 560">
+        <g fill="none">
+          <path class="hi" d="M560 -40 C 590 160, 760 300, 1140 440" />
+          <path class="lo" d="M575 -40 C 605 160, 768 304, 1140 447" />
+          <path class="lo" d="M590 -40 C 620 160, 775 308, 1140 454" />
+          <path class="lo" d="M605 -40 C 635 160, 782 311, 1140 460" />
+          <path class="lo" d="M620 -40 C 650 160, 790 315, 1140 467" />
+          <path class="hi" d="M635 -40 C 665 160, 798 319, 1140 474" />
+          <path class="lo" d="M650 -40 C 680 160, 805 322, 1140 480" />
+          <path class="lo" d="M665 -40 C 695 160, 812 326, 1140 487" />
+          <path class="lo" d="M680 -40 C 710 160, 820 330, 1140 494" />
+          <path class="lo" d="M695 -40 C 725 160, 828 334, 1140 501" />
+          <path class="hi" d="M710 -40 C 740 160, 835 338, 1140 508" />
+          <path class="lo" d="M725 -40 C 755 160, 842 341, 1140 514" />
+          <path class="lo" d="M740 -40 C 770 160, 850 345, 1140 521" />
+          <path class="lo" d="M755 -40 C 785 160, 858 349, 1140 528" />
+          <path class="lo" d="M770 -40 C 800 160, 865 352, 1140 534" />
+          <path class="hi" d="M785 -40 C 815 160, 872 356, 1140 541" />
+          <path class="lo" d="M800 -40 C 830 160, 880 360, 1140 548" />
+          <path class="lo" d="M815 -40 C 845 160, 888 364, 1140 555" />
+          <path class="lo" d="M830 -40 C 860 160, 895 368, 1140 562" />
+          <path class="lo" d="M845 -40 C 875 160, 902 371, 1140 568" />
+          <path class="hi" d="M860 -40 C 890 160, 910 375, 1140 575" />
+          <path class="lo" d="M875 -40 C 905 160, 918 379, 1140 582" />
+        </g>
+      </svg>
       <div class="copy">
         <p class="en">Praveil Clinic Journal</p>
         <div class="logo">{{LOGO}}</div>

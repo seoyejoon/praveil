@@ -467,19 +467,19 @@ export const deviceStory: Record<string, DeviceStory> = {
         src: "/videos/coolphase-device.mp4",
         poster: "/images/coolphase/device.webp",
       },
-      text: "쿨페이즈는 접촉 냉각을 더한 모노폴라 고주파(RF) 리프팅 장비입니다. 피부 표면을 식히면서 고주파 열을 전달해 피부결과 탄력을 관리합니다. 피부 두께와 탄력 상태에 맞춰 부위별 에너지를 정합니다.",
+      text: "쿨페이즈는 아스테라시스에서 만든 모노폴라(단극성) 고주파 리프팅 장비입니다. 팁이 피부 표면을 직접 식히는 냉각 기술(DCC)로 표피를 보호하면서 진피층에 고주파 열을 전달해, 피부 탄력 · 잔주름 · 모공 · 피부결을 함께 관리합니다. 피부 두께와 고민 부위에 맞춰 에너지와 샷 수를 정합니다.",
       specs: [
         {
           label: "방식",
           value: "모노폴라 고주파 (RF)",
         },
         {
-          label: "전달 방식",
-          value: "피부에 팁을 접촉해 전달",
+          label: "통증 관리",
+          value: "대부분 마취 없이 진행",
         },
         {
           label: "냉각",
-          value: "팁의 직접 접촉 냉각",
+          value: "DCC 직접 접촉 냉각",
         },
         {
           label: "시술 부위",
@@ -511,85 +511,85 @@ export const deviceStory: Record<string, DeviceStory> = {
       layers: [],
     },
     compare: {
-      title: "쿨페이즈, 다른 리프팅 장비와 무엇이 다른가요?",
-      lead: "피부결과 탄력, 처진 윤곽 중 어떤 고민이 있나요? 에너지 전달 방식과 피부 상태를 함께 살펴 선택합니다.",
+      title: "쿨페이즈, 다른 고주파 리프팅과 차이점",
+      lead: "같은 고주파 리프팅도 전달 방식과 피부 표면을 보호하는 방법이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
       columns: [
-        {
-          name: "쿨페이즈",
-          maker: "아스테라시스",
-          self: true,
-        },
-        {
-          name: "써마지 FLX",
-          maker: "솔타메디칼",
-        },
-        {
-          name: "쿨소닉",
-          maker: "아스테라시스",
-        },
+        { name: "쿨페이즈", maker: "아스테라시스 · 국내", self: true },
+        { name: "써마지 FLX", maker: "솔타메디칼 · 미국" },
+        { name: "올리지오", maker: "원텍 · 국내" },
+        // 확인 필요: 인모드는 핸드피스가 여럿이라 대표 고주파 핸드피스(포르마) 기준으로 정리
+        { name: "인모드", maker: "인모드 · 이스라엘" },
       ],
       rows: [
         {
-          label: "에너지",
+          label: "고주파 방식",
           values: [
-            "모노폴라 고주파 (RF)",
-            "모노폴라 고주파 (RF)",
-            "집속 초음파 (HIFU)",
-          ],
-        },
-        {
-          label: "열을 만드는 방식",
-          values: [
-            "고주파 전류와 조직의 저항",
-            "고주파 전류와 조직의 저항",
-            "목표 깊이에 초음파 집속",
+            "모노폴라 (단극성)",
+            "모노폴라 (단극성)",
+            "모노폴라 (단극성)",
+            "바이폴라 (양극성) · 핸드피스별",
           ],
         },
         {
           label: "표면 보호",
-          values: ["팁의 직접 접촉 냉각", "냉각 기능", "어플리케이터 냉각"],
+          values: [
+            "팁의 직접 접촉 냉각 (DCC)",
+            "냉각 스프레이",
+            "접촉 냉각",
+            "피부 온도 감지 · 조절",
+          ],
+        },
+        {
+          label: "주로 상담하는 고민",
+          values: [
+            "탄력 · 잔주름 · 모공 · 피부결",
+            "탄력 · 피부결 · 잔주름",
+            "탄력 · 잔주름",
+            "탄력 · 윤곽 (핸드피스별)",
+          ],
         },
         {
           label: "계획할 때 확인",
           values: [
-            "팁 · 피부 두께 · 열 반응",
-            "팁 · 시술 부위 · 열 반응",
-            "어플리케이터 깊이 · 조직 두께",
+            "피부 두께 · 부위별 에너지",
+            "팁 · 시술 부위 · 샷 수",
+            "팁 · 시술 부위 · 샷 수",
+            "핸드피스 · 시술 부위",
           ],
         },
       ],
       note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 비교 장비의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresTitle: "쿨페이즈 리프팅의 4가지 특징",
+    // 특징: 장면이 겹치지 않게 (원리 영상 · 장비 영상 · 팁 영상 · 시술 사진)
     features: [
       {
-        title: "고주파로 피부결과 탄력 관리",
-        text: "고주파 열 자극을 이용해 피부결과 탄력을 관리합니다. 탄력이 떨어진 부위와 잔주름 고민을 함께 살펴 시술 범위를 정합니다.",
-        image: "/images/coolphase/principle-feature.webp",
-        alt: "쿨페이즈 제조사 영상에서 보여 주는 고주파 열 전달 개념도",
-        paddedWidescreen: true,
-      },
-      {
-        title: "피부 표면을 식히는 접촉 냉각",
-        text: "피부에 닿는 팁으로 표면을 직접 냉각합니다. 시술 중 느껴지는 열감과 통증을 확인하면서 에너지를 조절합니다.",
+        title: "표면은 시원하게, 피부 속은 고주파로",
+        text: "팁이 피부 표면을 직접 식히는 DCC(Direct Contact Cooling) 냉각으로 표피를 보호하면서 진피층에 고주파 열을 전달합니다. 그래서 대부분 마취 없이 시술합니다.",
         image: "/images/coolphase/principle-feature.webp",
         video: "/videos/coolphase-cooling.mp4",
-        alt: "쿨페이즈 접촉 냉각과 고주파 열 전달을 보여 주는 제조사 원리 영상",
-        paddedWidescreen: true,
+        alt: "쿨페이즈 팁의 직접 접촉 냉각과 피부 속 고주파 열 전달을 보여 주는 제조사 원리 영상",
       },
       {
-        title: "피부 두께와 굴곡에 맞춘 설계",
-        text: "얼굴 전체 · 턱선 · 눈가 · 목은 피부 두께와 굴곡이 다릅니다. 이전 시술 이력까지 살펴 부위별로 계획합니다.",
-        image: "/images/coolphase/tip.webp",
-        video: "/videos/coolphase-tip.mp4",
-        alt: "쿨페이즈 얼굴용 접촉 팁의 형태를 보여 주는 제조사 영상",
-        paddedWidescreen: true,
+        title: "얼굴 전체에 고르게, 모노폴라 고주파",
+        text: "단극성(모노폴라) 고주파는 피부 속에 넓게 열을 전달합니다. 얼굴 전체의 탄력과 잔주름을 함께 살피며, 피부 두께에 맞춰 부위마다 에너지를 나누어 정합니다.",
+        image: "/images/coolphase/device.webp",
+        video: "/videos/coolphase-device.mp4",
+        alt: "쿨페이즈 장비와 핸드피스를 보여 주는 제조사 영상",
       },
       {
-        title: "시술 후 경과까지 이어지는 관리",
-        text: "시술 직후의 피부 반응과 이후 탄력 변화를 나누어 확인합니다. 피부 상태에 맞춰 다음 관리 시기를 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 진료 방문 안내에 사용하는 병원 접수 공간 사진",
+        title: "얼굴 굴곡에 맞춘 페이스 팁",
+        text: "볼 · 턱선 · 이마처럼 굴곡이 다른 부위에도 팁을 고르게 밀착해 시술합니다. 눈가처럼 예민한 부위는 보호 방법을 확인한 뒤 범위를 정합니다.",
+        image: "/images/coolphase/tip-loop.webp",
+        video: "/videos/coolphase-tip-loop.mp4",
+        alt: "쿨페이즈 얼굴용 팁(Face Tip)의 모양을 보여 주는 제조사 영상",
+      },
+      {
+        title: "탄력부터 모공 · 피부결까지",
+        text: "처진 탄력뿐 아니라 늘어진 모공과 거친 피부결 고민도 함께 살핍니다. 대표원장이 직접 시술하며, 경과를 보고 다음 관리 시기를 함께 정합니다.",
+        image: doctorPhotos.coolphase,
+        alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
+        fullFrame: true,
       },
     ],
     process: [
@@ -602,8 +602,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         coverPosition: "50% 50%",
       },
       {
-        title: "마취 · 준비",
-        text: "부위에 맞는 마취 · 통증 관리 방법을 안내하고, 피부와 팁의 접촉 상태를 점검합니다.",
+        title: "준비",
+        text: "대부분 마취 없이 진행합니다. 피부를 깨끗이 하고, 통증에 예민하시면 미리 말씀해 주세요.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },

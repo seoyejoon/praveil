@@ -239,8 +239,8 @@ export default async function DoctorPage() {
               <Reveal as="li" key={it.href + it.name} delay={i * 100}>
                 <Link href={it.href} className="group block">
                   <div className="overflow-hidden rounded-[20px]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     {/* 세로 사진(mobileImage)이 있으면 그걸로: 가로 사진은 인물이 오른쪽에 치우쳐 있음 */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={
                         "mobileImage" in it && it.mobileImage

@@ -231,6 +231,10 @@ export function BaPreview({
           <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
             {title} 전후사진
           </h2>
+          <p className="mt-3 text-[13px] text-muted md:text-sm">
+            의료법에 따라 시술 전 사진은 로그인 후 볼 수 있습니다. 결과는 개인에
+            따라 다를 수 있습니다.
+          </p>
         </div>
         <Link
           href="/before-after"
@@ -247,6 +251,30 @@ export function BaPreview({
         </Link>
       </div>
       <ul className="no-scrollbar -mx-5 mt-10 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
+        {/* 아직 등록된 사례가 없으면 같은 자리에 빈 카드 (관리자에서 등록하면 자동으로 채워짐) */}
+        {cases.length === 0 &&
+          [0, 1, 2].map((n) => (
+            <li key={n} className="min-w-[82%] snap-start md:min-w-0">
+              <div className="grid grid-cols-2 gap-1.5" aria-hidden>
+                {(["BEFORE", "AFTER"] as const).map((tag) => (
+                  <div
+                    key={tag}
+                    className={`relative grid aspect-[4/5] place-items-center overflow-hidden bg-ivory ${tag === "BEFORE" ? "rounded-l-[20px]" : "rounded-r-[20px]"}`}
+                  >
+                    <Lock className="h-5 w-5 text-taupe/70" strokeWidth={1.5} />
+                    <span
+                      className={`absolute top-3 left-3 rounded-full px-3 py-1 font-display text-[10px] tracking-[0.2em] text-white md:text-[11px] ${tag === "BEFORE" ? "bg-black/35" : "bg-gold/80"}`}
+                    >
+                      {tag}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-lg font-semibold tracking-[-0.02em] text-ink/40">
+                {title} 사례 준비 중
+              </p>
+            </li>
+          ))}
         {cases.map((c) => (
           <li key={c.id} className="min-w-[82%] snap-start md:min-w-0">
             <Link href={`/before-after/${c.id}`} className="group block">

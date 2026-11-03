@@ -3,7 +3,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  Lock,
   MessageCircle,
   Phone,
 } from "lucide-react";
@@ -145,57 +144,107 @@ export default function TreatmentDetail({
     { id: "visit", label: "상담 · 위치" },
   ].filter(Boolean) as { id: string; label: string }[];
 
-  // 모든 시술 페이지는 복원한 쿨소닉 의료진 사진과 배치를 사용합니다.
+  // 의료진이 중요한 이유: 어두운 판 위에 이유 3가지 + 오른쪽 원장 카드 (모든 시술 페이지 공통)
+  const doctorReasons = [
+    {
+      title: "직접 진단",
+      text: `피부 두께 · 처짐 · 볼륨을 대표원장이 직접 보고 ${t.title} 시술이 맞는지부터 판단합니다.`,
+    },
+    {
+      title: "1:1 맞춤 설계",
+      text: "같은 시술도 얼굴마다 다르게. 부위별로 양 · 세기 · 범위를 나누어 정합니다.",
+    },
+    {
+      title: "책임 집도 · 경과 확인",
+      text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도하고, 경과까지 직접 확인합니다.",
+    },
+  ];
   const doctorSection = (
     <section
       id="doctor"
       className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${t.items && !story ? "pt-16 md:pt-24" : ""}`}
     >
-      <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] md:rounded-[40px] lg:grid-cols-[1fr_1.1fr]">
-        <div className="relative order-2 min-h-[360px] lg:order-1 lg:min-h-[600px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/photos/doctor-cutout.webp"
-            alt={`대표원장 ${doctor.name}`}
-            loading="lazy"
-            className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto max-w-none object-contain object-bottom"
+      <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-espresso px-6 py-14 text-white md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-20">
+        <div>
+          <SectionHead
+            en="Doctor"
+            tone="dark"
+            title={`${t.title}, 의료진이 중요한 이유`}
           />
-        </div>
-        <div className="order-1 flex flex-col justify-center px-6 pt-14 pb-4 md:px-16 md:pt-20 lg:order-2 lg:pb-20">
-          <SectionHead en="Doctor" title={`${t.title}, 의료진이 중요한 이유`} />
-          <p className="mt-6 text-[15px] leading-[1.85] text-muted md:text-[17px]">
+          <p className="mt-6 text-[15px] leading-[1.85] text-white/65 md:text-[17px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 직접
-            진단해 시술 적합 여부를 판단하고, 1:1 맞춤으로 시술합니다.
+            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 상담부터
+            시술, 경과 확인까지 직접 진행합니다.
           </p>
-          <div className="mt-10 border-t border-ink/15 pt-8">
+          <ol className="mt-10 border-t border-white/15">
+            {doctorReasons.map((r, i) => (
+              <Reveal
+                as="li"
+                key={r.title}
+                delay={i * 100}
+                className="flex gap-5 border-b border-white/15 py-6 md:gap-8 md:py-7"
+              >
+                <span className="font-display text-[28px] leading-none font-extralight text-gold md:text-[36px]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-[18px] font-semibold tracking-[-0.02em] md:text-[20px]">
+                    {r.title}
+                  </h3>
+                  <p className="mt-2 text-[14px] leading-relaxed text-white/60 md:text-[15px]">
+                    {r.text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        {/* 원장 카드: 밝은 아치 안에 원장 사진 + 이름 · 학회 */}
+        <Reveal
+          delay={150}
+          className="mx-auto w-full max-w-[460px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] text-ink md:rounded-[32px]"
+        >
+          <div className="relative aspect-[4/4.2] overflow-hidden">
+            <div className="absolute inset-x-[12%] top-[8%] bottom-0 rounded-t-full bg-white/60" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/photos/doctor-cutout.webp"
+              alt={`대표원장 ${doctor.name}`}
+              loading="lazy"
+              className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto max-w-none object-contain object-bottom"
+            />
+          </div>
+          <div className="border-t border-ink/10 bg-white px-7 py-6 md:px-8">
             <p className="text-sm text-gold">{doctor.title}</p>
-            <p className="mt-1 flex items-baseline gap-3 text-[26px] font-semibold tracking-[-0.03em]">
+            <p className="mt-1 flex items-baseline gap-3 text-[24px] font-semibold tracking-[-0.03em]">
               {doctor.name}
-              <span className="font-display text-xs font-normal tracking-[0.3em] text-muted uppercase">
+              <span className="font-display text-[11px] font-normal tracking-[0.3em] text-muted uppercase">
                 {mainDoctor.nameEn}
               </span>
             </p>
-            <ul className="mt-6 grid gap-2 text-[14px] text-ink/75 sm:grid-cols-2">
-              {doctor.credentials.map((c) => (
-                <li key={c} className="flex gap-2">
-                  <span
-                    aria-hidden
-                    className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
-                  />
-                  {c}
-                </li>
-              ))}
-            </ul>
+            {doctor.credentials.length > 0 && (
+              <ul className="mt-4 grid gap-1.5 text-[13px] text-ink/70">
+                {doctor.credentials.map((c) => (
+                  <li key={c} className="flex gap-2">
+                    <span
+                      aria-hidden
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
+                    />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            )}
             <Link
               href="/about/doctor"
-              className="mt-8 inline-flex items-center gap-2 text-sm text-ink underline decoration-gold underline-offset-[6px] transition hover:text-gold"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-ink underline decoration-gold underline-offset-[6px] transition hover:text-gold"
             >
               의료진 소개 보기
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -872,41 +921,10 @@ export default function TreatmentDetail({
         </section>
       )}
 
-      {/* 전후사진 (회원 공개) */}
-      {baCases.length > 0 ? (
-        <section className="mx-auto max-w-[1400px] px-5 pt-12 md:px-10 md:pt-28">
-          <BaPreview cases={baCases} title={t.title} />
-        </section>
-      ) : (
-        <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
-          <Link
-            href="/before-after"
-            className="group flex flex-col gap-6 rounded-[24px] border border-line p-8 transition hover:border-gold md:flex-row md:items-center md:justify-between md:p-10"
-          >
-            <div className="flex items-center gap-5">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ivory text-gold">
-                <Lock className="h-5 w-5" strokeWidth={1.5} />
-              </span>
-              <div>
-                <p className="font-display text-[11px] tracking-[0.3em] text-gold uppercase">
-                  Before &amp; After
-                </p>
-                <p className="mt-1 text-lg font-semibold tracking-[-0.02em] md:text-xl">
-                  {t.title} 전후사진은 회원에게만 공개합니다
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  의료법에 따라 로그인 후 볼 수 있습니다. 결과는 개인에 따라
-                  다를 수 있습니다.
-                </p>
-              </div>
-            </div>
-            <span className="flex items-center gap-2 self-start rounded-full bg-espresso px-6 py-3.5 text-sm text-white transition group-hover:bg-mocha md:self-auto">
-              전후사진 보기
-              <ArrowRight className="h-4 w-4" strokeWidth={1.6} />
-            </span>
-          </Link>
-        </section>
-      )}
+      {/* 전후사진: 실제 사례 목록 (없으면 같은 모양의 빈 카드) */}
+      <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-28">
+        <BaPreview cases={baCases} title={t.title} />
+      </section>
 
       {story?.featuresPlacement === "after-ba" && (
         <StoryFeatures title={t.title} story={story} layout="cards" />

@@ -175,9 +175,24 @@
         width: 100px;
         height: 4px;
       }
-      .cover .logo {
-        width: 620px;
-        color: var(--line);
+      /* 로고는 오른쪽 위. 사진이 밝아서 위쪽을 살짝 어둡게 깔아 잘 보이게 */
+      .cover .brand {
+        position: absolute;
+        top: 120px;
+        right: 140px;
+        width: 520px;
+        color: var(--ivory);
+      }
+      .cover .top-shade {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1720px;
+        height: 420px;
+        background: linear-gradient(
+          rgba(29, 26, 23, 0.6) 0%,
+          rgba(29, 26, 23, 0) 100%
+        );
       }
       /* ── 본문 카드 (가로 1720): 휴대폰에서 1/5 로 보여도 읽히게 글자 40px 이상 ── */
       /* 소제목은 블로그 글로 쓰므로 카드에는 내용만 */
@@ -355,6 +370,7 @@
         />
       </div>
       <div class="fade"></div>
+      <div class="top-shade"></div>
       <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
           <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
@@ -385,8 +401,8 @@
         <p class="en">Location · Parking</p>
         <h1>오시는 길<br />주차 안내</h1>
         <div class="rule"></div>
-        <div class="logo">{{LOGO}}</div>
       </div>
+      <div class="logo brand">{{LOGO}}</div>
     </section>
 
     <section class="asset card" id="p1-subway">
@@ -454,6 +470,7 @@
         <img class="photo" src="../../public/images/photos/hero-consult.webp" />
       </div>
       <div class="fade"></div>
+      <div class="top-shade"></div>
       <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
           <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
@@ -484,8 +501,8 @@
         <p class="en">Reservation</p>
         <h1>진료 예약<br />안내</h1>
         <div class="rule"></div>
-        <div class="logo">{{LOGO}}</div>
       </div>
+      <div class="logo brand">{{LOGO}}</div>
     </section>
 
     <section class="asset card" id="p2-ways">
@@ -549,6 +566,7 @@
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
       <div class="fade"></div>
+      <div class="top-shade"></div>
       <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
           <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
@@ -579,8 +597,8 @@
         <p class="en">Notice</p>
         <h1>뉴리즈의원 인천점<br />병원명 변경 안내</h1>
         <div class="rule"></div>
-        <div class="logo">{{LOGO}}</div>
       </div>
+      <div class="logo brand">{{LOGO}}</div>
     </section>
 
     <section class="asset card" id="p3-change">

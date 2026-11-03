@@ -1,0 +1,28 @@
+name: Server post rename notice
+# 병원명 변경 안내 공지 · 팝업 등록 (일회용 · 실행 후 삭제, scripts/post-rename-notice.mjs)
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - name: Post rename notice
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=accept-new scripts/post-rename-notice.mjs "$USER@$HOST:/tmp/post-rename-notice.mjs"
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          A=/opt/psbox-admin-only
+          install -o appuser -m 644 /tmp/post-rename-notice.mjs $A/scripts/post-rename-notice.mjs && rm /tmp/post-rename-notice.mjs
+          sudo -u appuser -H env -u DATABASE_URL bash -c "cd $A && node --env-file=.env.local scripts/post-rename-notice.mjs"
+          rm -f $A/scripts/post-rename-notice.mjs
+          # 홈페이지 캐시 새로 고침
+          . /etc/praveil/secrets.env
+          curl -s -o /dev/null -w "revalidate %{http_code}\n" -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" http://127.0.0.1:3000/api/revalidate || true
+          REMOTE

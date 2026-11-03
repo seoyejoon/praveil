@@ -437,12 +437,14 @@ export function StoryProcess({
                 height={s.fullFrame ? 4672 : undefined}
                 className={
                   s.coverPosition ||
-                  s.image === "/images/photos/retouched/coolsonic-consult.jpg"
+                  s.image ===
+                    "/images/photos/retouched/web/coolsonic-consult.jpg"
                     ? "absolute inset-0 h-full w-full object-cover"
                     : `h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`
                 }
                 style={
-                  s.image === "/images/photos/retouched/coolsonic-consult.jpg"
+                  s.image ===
+                  "/images/photos/retouched/web/coolsonic-consult.jpg"
                     ? {
                         objectPosition: "45% 50%",
                         // 상담실 조명의 노란 기운을 줄여 옆 과정 사진의 톤에 맞춥니다.

@@ -284,7 +284,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
-        image: "/images/photos/retouched/coolsonic-consult.jpg",
+        image: "/images/photos/retouched/web/coolsonic-consult.jpg",
         alt: "대표원장이 환자와 마주 앉아 상담하는 장면",
         fullFrame: true,
       },
@@ -879,7 +879,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 두께와 시술 이력 확인",
         text: "같은 피부 고민이라도 두께와 이전 시술에 따라 접근이 달라집니다. 적용 범위와 방법을 진찰 후 정합니다.",
-        image: "/images/photos/retouched/consult.jpg",
+        image: "/images/photos/retouched/web/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
       },
@@ -1662,8 +1662,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "포텐자 · 슈링크 유니버스 · 클라리티2",
       maker: "JEISYS · CLASSYS · LUTRONIC",
-      image: "/images/photos/retouched/consult.jpg",
-      photo: "/images/photos/retouched/consult.jpg",
+      image: "/images/photos/retouched/web/consult.jpg",
+      photo: "/images/photos/retouched/web/consult.jpg",
       photoFullFrame: true,
       text: "슈링크 유니버스는 집속 초음파, 포텐자는 고주파, 클라리티는 레이저를 사용합니다. 처짐 · 피부결 · 모공 중 어떤 고민이 중심인지 보고, 피부 상태에 맞는 장비와 시술 부위를 정합니다. 영상은 고주파 장비인 포텐자의 제조사 소개 장면입니다.",
       specs: [
@@ -1899,7 +1899,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "뼈 · 신경 주변은 조심스럽게",
         text: "뼈에 가까운 부위와 눈가처럼 예민한 곳은 깊이와 세기를 조절하며 진행합니다.",
-        image: "/images/photos/retouched/consult.jpg",
+        image: "/images/photos/retouched/web/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       },
       {
@@ -1946,7 +1946,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "포텐자",
       maker: "JEISYS",
-      image: "/images/photos/retouched/consult.jpg",
+      image: "/images/photos/retouched/web/consult.jpg",
       film: {
         src: "/videos/official-potenza-intro.mp4",
         poster: "/images/official/potenza-intro-poster.jpg",
@@ -2005,7 +2005,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "깊이와 부위 조절",
         text: "이마 · 볼 · 코 주변처럼 피부 두께가 다른 곳은 바늘 깊이를 나누어 정합니다.",
-        image: "/images/photos/retouched/consult.jpg",
+        image: "/images/photos/retouched/web/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       },
       {
@@ -2033,7 +2033,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "정한 팁과 깊이로 부위마다 고주파를 전달합니다.",
-        image: "/images/photos/retouched/laser.jpg",
+        image: "/images/photos/retouched/web/laser.jpg",
         alt: "대표원장의 얼굴 부위 장비 시술 장면",
       },
       {
@@ -2052,7 +2052,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "클라리티2",
       maker: "LUTRONIC",
-      image: "/images/photos/retouched/laser.jpg",
+      image: "/images/photos/retouched/web/laser.jpg",
       film: {
         src: "/videos/official-clarity.mp4",
         poster: "/images/official/clarity-poster.jpg",
@@ -2139,7 +2139,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "정한 파장과 세기로 부위마다 레이저를 조사합니다.",
-        image: "/images/photos/retouched/laser.jpg",
+        image: "/images/photos/retouched/web/laser.jpg",
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
       },
       {
@@ -2158,7 +2158,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "실리프팅",
       maker: "흡수성 의료용 실",
-      image: "/images/photos/retouched/consult.jpg",
+      image: "/images/photos/retouched/web/consult.jpg",
       photo: "/images/official/mint-product.png",
       photoFullFrame: false,
       text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다. 제품 이미지는 민트실의 제조사 제품군이며, 사용할 규격은 진찰 후 선택합니다.",
@@ -2326,8 +2326,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "QTL 실리프팅",
       maker: "QTL THREAD",
-      image: "/images/photos/retouched/consult.jpg",
-      photo: "/images/photos/retouched/consult.jpg",
+      image: "/images/photos/retouched/web/consult.jpg",
+      photo: "/images/photos/retouched/web/consult.jpg",
       photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       photoFullFrame: true,
       text: "QTL 실리프팅은 의료용 실을 피부 아래에 넣어 처진 조직을 받쳐 주는 시술입니다. 처짐 방향과 조직의 무게, 피부 두께를 보고 실을 넣을 층과 방향, 개수를 정합니다. 가격표에는 1줄 기준으로 안내합니다.",
@@ -2371,7 +2371,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "개수와 함께 보는 배치",
         text: "실 개수 하나로 결과를 정하지 않습니다. 필요한 범위와 지지 방향을 정하고 피부에 가해질 부담을 함께 고려합니다.",
-        image: "/images/photos/retouched/consult.jpg",
+        image: "/images/photos/retouched/web/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       },
       {
@@ -2424,8 +2424,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "잼버실",
       maker: "JAMBER THREAD",
-      image: "/images/photos/retouched/consult.jpg",
-      photo: "/images/photos/retouched/consult.jpg",
+      image: "/images/photos/retouched/web/consult.jpg",
+      photo: "/images/photos/retouched/web/consult.jpg",
       photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       photoFullFrame: true,
       text: "잼버실은 꺼진 부위를 받쳐 볼륨을 채우는 데 쓰는 볼륨형 실입니다. 팔자 주변 · 앞볼처럼 꺼진 위치와 깊이, 피부 두께를 보고 실의 개수와 방향을 정합니다. 가격표에는 1줄 기준으로 안내합니다.",
@@ -2469,7 +2469,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 개수 · 방향",
         text: "팔자 주변 · 앞볼처럼 부위에 맞춰 실의 개수와 방향을 나누어 정합니다.",
-        image: "/images/photos/retouched/consult.jpg",
+        image: "/images/photos/retouched/web/consult.jpg",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
       },
       {

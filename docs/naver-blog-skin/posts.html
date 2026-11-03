@@ -90,100 +90,95 @@
         background: var(--gold);
       }
 
-      /* ── 글 표지 (1720 × 720): 글 머리와 같은 짙은 바탕 + 사진, 글 제목을 크게 ── */
+      /* ── 글 표지 (1720 × 1720 정사각형): 모바일 커버와 같은 구성 ──
+         위: 사진이 아래로 짙게 사라짐 / 가운데: 흘러내리는 비단 곡선 / 아래: 큰 제목 + 로고 */
       .cover {
         width: 1720px;
-        height: 720px;
+        height: 1720px;
         background: var(--espresso);
       }
-      /* 글 머리와 같은 구성: 오른쪽 사진 · 짙은 바탕 · 글씨와 사진 사이에 비단 곡선 */
       .cover .shot {
         position: absolute;
-        left: 960px;
+        left: 0;
         top: 0;
-        width: 760px;
-        height: 720px;
+        width: 1720px;
+        height: 1120px;
         overflow: hidden;
       }
       .cover .fade {
         position: absolute;
-        inset: 0;
+        left: 0;
+        top: 0;
+        width: 1720px;
+        height: 1120px;
         background: linear-gradient(
-          90deg,
-          var(--espresso) 55.8%,
-          rgba(29, 26, 23, 0.55) 61%,
-          rgba(29, 26, 23, 0) 68%
+          rgba(29, 26, 23, 0) 40%,
+          rgba(29, 26, 23, 0.7) 75%,
+          var(--espresso) 100%
         );
       }
       #p1-cover .shot .photo {
-        object-position: 50% 50%;
+        object-position: 50% 45%;
       }
       #p2-cover .shot .photo {
-        object-position: 72% 50%;
+        object-position: 70% 40%;
       }
       #p3-cover .shot .photo {
-        object-position: 45% 50%;
+        object-position: 50% 45%;
       }
-      /* 표지 비단 곡선: 글 머리와 같은 금색 선 다발이 글씨와 사진 사이로 흘러내림 */
       .cover .pattern {
         position: absolute;
         left: 0;
         top: 0;
         -webkit-mask-image: linear-gradient(
-          90deg,
-          transparent 780px,
-          #000 880px,
-          #000 1040px,
-          transparent 1160px
+          transparent 1330px,
+          #000 1440px,
+          #000 1720px
         );
         mask-image: linear-gradient(
-          90deg,
-          transparent 780px,
-          #000 880px,
-          #000 1040px,
-          transparent 1160px
+          transparent 1330px,
+          #000 1440px,
+          #000 1720px
         );
       }
       .cover .pattern .lo {
         stroke: var(--mocha);
-        stroke-width: 1.4;
+        stroke-width: 1.8;
         stroke-opacity: 0.55;
       }
       .cover .pattern .hi {
         stroke: var(--gold);
-        stroke-width: 2.2;
+        stroke-width: 2.8;
         stroke-opacity: 0.9;
       }
       .cover .copy {
         position: absolute;
-        left: 120px;
-        top: 0;
-        bottom: 0;
+        left: 140px;
+        right: 140px;
+        bottom: 150px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 40px;
+        gap: 48px;
         color: var(--ivory);
       }
       .cover .en {
-        font-size: 28px;
+        font-size: 40px;
         color: var(--taupe);
       }
       .cover h1 {
-        font-size: 92px;
+        font-size: 150px;
         font-weight: 600;
-        line-height: 1.25;
+        line-height: 1.22;
         letter-spacing: -0.01em;
       }
       .cover .rule {
-        width: 64px;
-        height: 3px;
+        width: 100px;
+        height: 4px;
       }
       .cover .logo {
-        width: 420px;
+        width: 620px;
         color: var(--line);
       }
-
       /* ── 본문 카드 (가로 1720): 휴대폰에서 1/5 로 보여도 읽히게 글자 40px 이상 ── */
       /* 소제목은 블로그 글로 쓰므로 카드에는 내용만 */
       .card {
@@ -360,30 +355,30 @@
         />
       </div>
       <div class="fade"></div>
-      <svg class="pattern" width="1720" height="720" viewBox="0 0 1720 720">
+      <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
-          <path class="hi" d="M760 -40 C 780 220, 900 420, 1200 600" />
-          <path class="lo" d="M773 -40 C 793 220, 906 423, 1200 606" />
-          <path class="lo" d="M786 -40 C 806 220, 913 426, 1200 612" />
-          <path class="lo" d="M799 -40 C 819 220, 920 430, 1200 618" />
-          <path class="lo" d="M812 -40 C 832 220, 926 433, 1200 623" />
-          <path class="hi" d="M825 -40 C 845 220, 932 436, 1200 629" />
-          <path class="lo" d="M838 -40 C 858 220, 939 440, 1200 635" />
-          <path class="lo" d="M851 -40 C 871 220, 946 443, 1200 641" />
-          <path class="lo" d="M864 -40 C 884 220, 952 446, 1200 647" />
-          <path class="lo" d="M877 -40 C 897 220, 958 449, 1200 653" />
-          <path class="hi" d="M890 -40 C 910 220, 965 452, 1200 658" />
-          <path class="lo" d="M903 -40 C 923 220, 972 456, 1200 664" />
-          <path class="lo" d="M916 -40 C 936 220, 978 459, 1200 670" />
-          <path class="lo" d="M929 -40 C 949 220, 984 462, 1200 676" />
-          <path class="lo" d="M942 -40 C 962 220, 991 466, 1200 682" />
-          <path class="hi" d="M955 -40 C 975 220, 998 469, 1200 688" />
-          <path class="lo" d="M968 -40 C 988 220, 1004 472, 1200 694" />
-          <path class="lo" d="M981 -40 C 1001 220, 1010 475, 1200 699" />
-          <path class="lo" d="M994 -40 C 1014 220, 1017 478, 1200 705" />
-          <path class="lo" d="M1007 -40 C 1027 220, 1024 482, 1200 711" />
-          <path class="hi" d="M1020 -40 C 1040 220, 1030 485, 1200 717" />
-          <path class="lo" d="M1033 -40 C 1053 220, 1036 488, 1200 723" />
+          <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
+          <path class="lo" d="M902 1240 C 982 1440, 1249 1503, 1820 1548" />
+          <path class="lo" d="M924 1240 C 1004 1440, 1258 1507, 1820 1555" />
+          <path class="lo" d="M946 1240 C 1026 1440, 1266 1510, 1820 1563" />
+          <path class="lo" d="M968 1240 C 1048 1440, 1275 1513, 1820 1571" />
+          <path class="hi" d="M990 1240 C 1070 1440, 1284 1516, 1820 1578" />
+          <path class="lo" d="M1012 1240 C 1092 1440, 1293 1520, 1820 1586" />
+          <path class="lo" d="M1034 1240 C 1114 1440, 1302 1523, 1820 1594" />
+          <path class="lo" d="M1056 1240 C 1136 1440, 1310 1526, 1820 1602" />
+          <path class="lo" d="M1078 1240 C 1158 1440, 1319 1530, 1820 1609" />
+          <path class="hi" d="M1100 1240 C 1180 1440, 1328 1533, 1820 1617" />
+          <path class="lo" d="M1122 1240 C 1202 1440, 1337 1536, 1820 1625" />
+          <path class="lo" d="M1144 1240 C 1224 1440, 1346 1540, 1820 1632" />
+          <path class="lo" d="M1166 1240 C 1246 1440, 1354 1543, 1820 1640" />
+          <path class="lo" d="M1188 1240 C 1268 1440, 1363 1546, 1820 1648" />
+          <path class="hi" d="M1210 1240 C 1290 1440, 1372 1550, 1820 1656" />
+          <path class="lo" d="M1232 1240 C 1312 1440, 1381 1553, 1820 1663" />
+          <path class="lo" d="M1254 1240 C 1334 1440, 1390 1556, 1820 1671" />
+          <path class="lo" d="M1276 1240 C 1356 1440, 1398 1559, 1820 1679" />
+          <path class="lo" d="M1298 1240 C 1378 1440, 1407 1563, 1820 1686" />
+          <path class="hi" d="M1320 1240 C 1400 1440, 1416 1566, 1820 1694" />
+          <path class="lo" d="M1342 1240 C 1422 1440, 1425 1569, 1820 1702" />
         </g>
       </svg>
       <div class="copy">
@@ -459,30 +454,30 @@
         <img class="photo" src="../../public/images/photos/hero-consult.webp" />
       </div>
       <div class="fade"></div>
-      <svg class="pattern" width="1720" height="720" viewBox="0 0 1720 720">
+      <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
-          <path class="hi" d="M760 -40 C 780 220, 900 420, 1200 600" />
-          <path class="lo" d="M773 -40 C 793 220, 906 423, 1200 606" />
-          <path class="lo" d="M786 -40 C 806 220, 913 426, 1200 612" />
-          <path class="lo" d="M799 -40 C 819 220, 920 430, 1200 618" />
-          <path class="lo" d="M812 -40 C 832 220, 926 433, 1200 623" />
-          <path class="hi" d="M825 -40 C 845 220, 932 436, 1200 629" />
-          <path class="lo" d="M838 -40 C 858 220, 939 440, 1200 635" />
-          <path class="lo" d="M851 -40 C 871 220, 946 443, 1200 641" />
-          <path class="lo" d="M864 -40 C 884 220, 952 446, 1200 647" />
-          <path class="lo" d="M877 -40 C 897 220, 958 449, 1200 653" />
-          <path class="hi" d="M890 -40 C 910 220, 965 452, 1200 658" />
-          <path class="lo" d="M903 -40 C 923 220, 972 456, 1200 664" />
-          <path class="lo" d="M916 -40 C 936 220, 978 459, 1200 670" />
-          <path class="lo" d="M929 -40 C 949 220, 984 462, 1200 676" />
-          <path class="lo" d="M942 -40 C 962 220, 991 466, 1200 682" />
-          <path class="hi" d="M955 -40 C 975 220, 998 469, 1200 688" />
-          <path class="lo" d="M968 -40 C 988 220, 1004 472, 1200 694" />
-          <path class="lo" d="M981 -40 C 1001 220, 1010 475, 1200 699" />
-          <path class="lo" d="M994 -40 C 1014 220, 1017 478, 1200 705" />
-          <path class="lo" d="M1007 -40 C 1027 220, 1024 482, 1200 711" />
-          <path class="hi" d="M1020 -40 C 1040 220, 1030 485, 1200 717" />
-          <path class="lo" d="M1033 -40 C 1053 220, 1036 488, 1200 723" />
+          <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
+          <path class="lo" d="M902 1240 C 982 1440, 1249 1503, 1820 1548" />
+          <path class="lo" d="M924 1240 C 1004 1440, 1258 1507, 1820 1555" />
+          <path class="lo" d="M946 1240 C 1026 1440, 1266 1510, 1820 1563" />
+          <path class="lo" d="M968 1240 C 1048 1440, 1275 1513, 1820 1571" />
+          <path class="hi" d="M990 1240 C 1070 1440, 1284 1516, 1820 1578" />
+          <path class="lo" d="M1012 1240 C 1092 1440, 1293 1520, 1820 1586" />
+          <path class="lo" d="M1034 1240 C 1114 1440, 1302 1523, 1820 1594" />
+          <path class="lo" d="M1056 1240 C 1136 1440, 1310 1526, 1820 1602" />
+          <path class="lo" d="M1078 1240 C 1158 1440, 1319 1530, 1820 1609" />
+          <path class="hi" d="M1100 1240 C 1180 1440, 1328 1533, 1820 1617" />
+          <path class="lo" d="M1122 1240 C 1202 1440, 1337 1536, 1820 1625" />
+          <path class="lo" d="M1144 1240 C 1224 1440, 1346 1540, 1820 1632" />
+          <path class="lo" d="M1166 1240 C 1246 1440, 1354 1543, 1820 1640" />
+          <path class="lo" d="M1188 1240 C 1268 1440, 1363 1546, 1820 1648" />
+          <path class="hi" d="M1210 1240 C 1290 1440, 1372 1550, 1820 1656" />
+          <path class="lo" d="M1232 1240 C 1312 1440, 1381 1553, 1820 1663" />
+          <path class="lo" d="M1254 1240 C 1334 1440, 1390 1556, 1820 1671" />
+          <path class="lo" d="M1276 1240 C 1356 1440, 1398 1559, 1820 1679" />
+          <path class="lo" d="M1298 1240 C 1378 1440, 1407 1563, 1820 1686" />
+          <path class="hi" d="M1320 1240 C 1400 1440, 1416 1566, 1820 1694" />
+          <path class="lo" d="M1342 1240 C 1422 1440, 1425 1569, 1820 1702" />
         </g>
       </svg>
       <div class="copy">
@@ -554,30 +549,30 @@
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
       <div class="fade"></div>
-      <svg class="pattern" width="1720" height="720" viewBox="0 0 1720 720">
+      <svg class="pattern" width="1720" height="1720" viewBox="0 0 1720 1720">
         <g fill="none">
-          <path class="hi" d="M760 -40 C 780 220, 900 420, 1200 600" />
-          <path class="lo" d="M773 -40 C 793 220, 906 423, 1200 606" />
-          <path class="lo" d="M786 -40 C 806 220, 913 426, 1200 612" />
-          <path class="lo" d="M799 -40 C 819 220, 920 430, 1200 618" />
-          <path class="lo" d="M812 -40 C 832 220, 926 433, 1200 623" />
-          <path class="hi" d="M825 -40 C 845 220, 932 436, 1200 629" />
-          <path class="lo" d="M838 -40 C 858 220, 939 440, 1200 635" />
-          <path class="lo" d="M851 -40 C 871 220, 946 443, 1200 641" />
-          <path class="lo" d="M864 -40 C 884 220, 952 446, 1200 647" />
-          <path class="lo" d="M877 -40 C 897 220, 958 449, 1200 653" />
-          <path class="hi" d="M890 -40 C 910 220, 965 452, 1200 658" />
-          <path class="lo" d="M903 -40 C 923 220, 972 456, 1200 664" />
-          <path class="lo" d="M916 -40 C 936 220, 978 459, 1200 670" />
-          <path class="lo" d="M929 -40 C 949 220, 984 462, 1200 676" />
-          <path class="lo" d="M942 -40 C 962 220, 991 466, 1200 682" />
-          <path class="hi" d="M955 -40 C 975 220, 998 469, 1200 688" />
-          <path class="lo" d="M968 -40 C 988 220, 1004 472, 1200 694" />
-          <path class="lo" d="M981 -40 C 1001 220, 1010 475, 1200 699" />
-          <path class="lo" d="M994 -40 C 1014 220, 1017 478, 1200 705" />
-          <path class="lo" d="M1007 -40 C 1027 220, 1024 482, 1200 711" />
-          <path class="hi" d="M1020 -40 C 1040 220, 1030 485, 1200 717" />
-          <path class="lo" d="M1033 -40 C 1053 220, 1036 488, 1200 723" />
+          <path class="hi" d="M880 1240 C 960 1440, 1240 1500, 1820 1540" />
+          <path class="lo" d="M902 1240 C 982 1440, 1249 1503, 1820 1548" />
+          <path class="lo" d="M924 1240 C 1004 1440, 1258 1507, 1820 1555" />
+          <path class="lo" d="M946 1240 C 1026 1440, 1266 1510, 1820 1563" />
+          <path class="lo" d="M968 1240 C 1048 1440, 1275 1513, 1820 1571" />
+          <path class="hi" d="M990 1240 C 1070 1440, 1284 1516, 1820 1578" />
+          <path class="lo" d="M1012 1240 C 1092 1440, 1293 1520, 1820 1586" />
+          <path class="lo" d="M1034 1240 C 1114 1440, 1302 1523, 1820 1594" />
+          <path class="lo" d="M1056 1240 C 1136 1440, 1310 1526, 1820 1602" />
+          <path class="lo" d="M1078 1240 C 1158 1440, 1319 1530, 1820 1609" />
+          <path class="hi" d="M1100 1240 C 1180 1440, 1328 1533, 1820 1617" />
+          <path class="lo" d="M1122 1240 C 1202 1440, 1337 1536, 1820 1625" />
+          <path class="lo" d="M1144 1240 C 1224 1440, 1346 1540, 1820 1632" />
+          <path class="lo" d="M1166 1240 C 1246 1440, 1354 1543, 1820 1640" />
+          <path class="lo" d="M1188 1240 C 1268 1440, 1363 1546, 1820 1648" />
+          <path class="hi" d="M1210 1240 C 1290 1440, 1372 1550, 1820 1656" />
+          <path class="lo" d="M1232 1240 C 1312 1440, 1381 1553, 1820 1663" />
+          <path class="lo" d="M1254 1240 C 1334 1440, 1390 1556, 1820 1671" />
+          <path class="lo" d="M1276 1240 C 1356 1440, 1398 1559, 1820 1679" />
+          <path class="lo" d="M1298 1240 C 1378 1440, 1407 1563, 1820 1686" />
+          <path class="hi" d="M1320 1240 C 1400 1440, 1416 1566, 1820 1694" />
+          <path class="lo" d="M1342 1240 C 1422 1440, 1425 1569, 1820 1702" />
         </g>
       </svg>
       <div class="copy">

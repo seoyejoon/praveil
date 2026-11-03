@@ -10,7 +10,7 @@
 | `title.png`                                                 | 966 × 520 (투명)                  | 리모콘 → 타이틀 → 디자인 → 직접등록 (빈 칸으로 배경이 보이게) |
 | `background.png`                                            | 2560 × 600                        | 리모콘 → 스킨배경 → 직접등록 (화면 전체 폭 머리)              |
 | `profile.png`                                               | 600 × 600                         | 관리 → 기본 설정 → 블로그 정보 → 프로필 이미지                |
-| `widget-hours.png`                                          | 340 × 700 (보이는 크기 170 × 350) | 위젯 직접등록 (`widgets.html`)                                |
+| `widget-hours.png`                                          | 340 × 856 (보이는 크기 170 × 428) | 위젯 직접등록 (`widgets.html`)                                |
 | `widget-reserve.png` · `widget-home.png` · `widget-map.png` | 340 × 128 (보이는 크기 170 × 64)  | 위젯 직접등록 (`widgets.html`)                                |
 | `post-header.png`                                           | 1720 × 560                        | 글 맨 위                                                      |
 | `post-divider.png`                                          | 1720 × 220                        | 글 중간 소제목 띠                                             |
@@ -51,7 +51,7 @@ pnpm install --frozen-lockfile   # 프리텐다드 글꼴
 node docs/naver-blog-skin/render.mjs
 ```
 
-- 위젯 그림은 `render.mjs` 가 `public/images/naver-blog/` 에도 복사합니다. 서버 캐시가 30일이라, 그림을 고치면 파일 이름을 바꿔(예: `widget-hours-2.png`) 올리고 `widgets.html` 주소도 같이 바꿔 주세요.
+- 위젯 그림은 `render.mjs` 가 `public/images/naver-blog/widget-*-<번호>.png` 로 복사합니다. 서버 캐시가 30일이라, 그림을 고치면 `render.mjs` 의 `WIDGET_VERSION` 을 올리고 `widgets.html` 주소도 같이 바꿔 주세요. (지금 2번)
 - 진료시간 · 전화 · 주소는 `src/lib/data/mock/hospital.ts` 값을 옮겨 적은 것입니다. 바뀌면 `skin.html` 도 같이 고쳐 주세요.
 - 원장님 사진은 홈페이지와 같은 보정본 `public/images/photos/retouched/laser.jpg` 를 씁니다.
 - 지난 타이틀 시안(A · A-1 · A-3 · B · C · D, A-2 흰 바탕 · 짙은 판)은 git 기록에 남아 있습니다.

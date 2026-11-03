@@ -20,7 +20,8 @@ const logo = readFileSync(join(here, "../../public/praveil-logo.svg"), "utf8")
 const mark = logo.replace(/viewBox="[^"]*"/, 'viewBox="0 0 146 29.84"');
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 3000, height: 1000 } });
+// 창 높이가 낮으면 창 경계에 걸친 그림의 가장자리가 잘려서 넉넉하게
+const page = await browser.newPage({ viewport: { width: 3000, height: 4000 } });
 
 // html 파일의 .asset 하나하나를 dir/<id>.png 로 저장
 async function render(file, dir) {
@@ -59,12 +60,14 @@ await render("skin.html", out);
 await render("posts.html", join(out, "posts"));
 
 // 위젯 그림은 홈페이지 서버에서 바로 열리도록 public 에도 복사 (위젯 코드가 이 주소를 씀)
+// 서버 캐시가 30일이라 그림을 바꿀 때마다 WIDGET_VERSION 을 올리고 widgets.html 주소도 같이 바꿈
+const WIDGET_VERSION = 2;
 const pub = join(here, "../../public/images/naver-blog");
 mkdirSync(pub, { recursive: true });
 for (const name of ["hours", "reserve", "home", "map"]) {
   copyFileSync(
     join(out, `widget-${name}.png`),
-    join(pub, `widget-${name}.png`),
+    join(pub, `widget-${name}-${WIDGET_VERSION}.png`),
   );
 }
 

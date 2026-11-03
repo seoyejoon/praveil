@@ -233,42 +233,96 @@
         color: var(--line);
       }
 
-      /* ── 3. 위젯 (사이드 170px, 2배로 그려 선명하게) ── */
+      /* ── 3. 위젯 (사이드 170px, 2배로 그려 선명하게) · PC 머리와 같은 짙은 바탕 · 금색 비단 곡선 ── */
       .widget {
         width: 340px;
-        background: var(--cream);
-        border: 2px solid var(--line);
+        background: var(--espresso);
+        color: var(--ivory);
       }
+      .widget .lines {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .widget .lines .lo,
+      #profile .lines .lo {
+        stroke: var(--mocha);
+        stroke-width: 1.2;
+        stroke-opacity: 0.55;
+      }
+      .widget .lines .hi,
+      #profile .lines .hi {
+        stroke: var(--gold);
+        stroke-width: 1.8;
+        stroke-opacity: 0.9;
+      }
+      /* 진료시간: 위에 로비 사진이 짙게 사라지고, 그 경계로 곡선이 흐름 */
       #widget-hours {
-        padding: 44px 24px 40px;
-        background: var(--ivory);
-        border: 0;
+        /* 높이를 정수로 고정 (소수점이면 바로 아래 버튼 그림의 가장자리가 잘림) */
+        height: 856px;
+        padding: 0 24px 34px;
+      }
+      #widget-hours .top {
+        position: relative;
+        margin: 0 -24px;
+        height: 200px;
+        overflow: hidden;
+      }
+      #widget-hours .top .photo {
+        object-position: 50% 42%;
+      }
+      #widget-hours .top::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(29, 26, 23, 0) 30%,
+          rgba(29, 26, 23, 0.75) 75%,
+          var(--espresso) 100%
+        );
+      }
+      #widget-hours .lines {
+        -webkit-mask-image: linear-gradient(
+          transparent 90px,
+          #000 170px,
+          #000 230px,
+          transparent 280px
+        );
+        mask-image: linear-gradient(
+          transparent 90px,
+          #000 170px,
+          #000 230px,
+          transparent 280px
+        );
       }
       #widget-hours .en {
+        position: relative;
+        margin-top: 6px;
         font-size: 18px;
-        color: var(--gold);
+        color: var(--taupe);
         text-align: center;
       }
       #widget-hours h3 {
+        position: relative;
         margin-top: 10px;
         font-size: 30px;
         font-weight: 600;
         text-align: center;
       }
       #widget-hours dl {
-        margin-top: 30px;
-        border-top: 2px solid var(--taupe);
+        margin-top: 26px;
+        border-top: 2px solid var(--mocha);
       }
       #widget-hours dl div {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         padding: 16px 2px;
-        border-bottom: 2px solid var(--line);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.08);
         font-size: 21px;
       }
       #widget-hours dt {
-        color: var(--muted);
+        color: var(--taupe);
         font-size: 19px;
       }
       #widget-hours dd {
@@ -280,7 +334,7 @@
         text-align: right;
         font-size: 17px;
         font-weight: 500;
-        color: var(--mocha);
+        color: var(--gold);
         margin-top: 2px;
       }
       #widget-hours .closed dd {
@@ -290,14 +344,13 @@
         margin-top: 20px;
         font-size: 18px;
         line-height: 1.6;
-        color: var(--muted);
+        color: var(--taupe);
         text-align: center;
       }
       #widget-hours .tel {
         margin-top: 24px;
         padding: 18px 0 16px;
-        background: var(--espresso);
-        color: #fff;
+        border: 2px solid var(--mocha);
         text-align: center;
         font-size: 30px;
         font-weight: 600;
@@ -308,22 +361,33 @@
         display: block;
         font-size: 16px;
         font-weight: 400;
-        color: var(--taupe);
+        color: var(--gold);
         letter-spacing: 0.3em;
         margin-bottom: 4px;
       }
+      /* 버튼: 짙은 바탕 · 금색 아이콘, 오른쪽에 곡선이 살짝 흐름. 네이버 예약은 금색 테두리로 강조 */
       .btn {
         height: 128px;
         display: flex;
         align-items: center;
         gap: 22px;
         padding: 0 28px;
+        border: 2px solid var(--espresso);
+      }
+      .btn .lines {
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 250px,
+          #000 300px
+        );
+        mask-image: linear-gradient(90deg, transparent 250px, #000 300px);
       }
       .btn .ico {
+        position: relative;
         width: 64px;
         height: 64px;
         border-radius: 50%;
-        background: var(--ivory);
+        border: 2px solid var(--mocha);
         display: grid;
         place-items: center;
         flex: none;
@@ -331,11 +395,14 @@
       .btn .ico svg {
         width: 30px;
         height: 30px;
-        stroke: var(--mocha);
+        stroke: var(--gold);
         fill: none;
         stroke-width: 1.6;
         stroke-linecap: round;
         stroke-linejoin: round;
+      }
+      .btn > div:last-of-type {
+        position: relative;
       }
       .btn b {
         display: block;
@@ -346,24 +413,20 @@
         display: block;
         margin-top: 4px;
         font-size: 15px;
-        color: var(--gold);
-      }
-      .btn.dark {
-        background: var(--espresso);
-        border-color: var(--espresso);
-        color: #fff;
-      }
-      .btn.dark .ico {
-        background: rgba(255, 255, 255, 0.08);
-      }
-      .btn.dark .ico svg {
-        stroke: var(--taupe);
-      }
-      .btn.dark small {
         color: var(--taupe);
       }
+      .btn.accent {
+        border-color: var(--gold);
+      }
+      .btn.accent .ico {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .btn.accent .ico svg {
+        stroke: var(--espresso);
+      }
 
-      /* ── 4. 프로필 (600 × 600) ── */
+      /* ── 4. 프로필 (600 × 600) · 짙은 바탕, 아래쪽에 비단 곡선 (모바일은 원으로 잘려도 로고가 가운데) ── */
       #profile {
         width: 600px;
         height: 600px;
@@ -375,8 +438,30 @@
         justify-content: center;
         gap: 34px;
       }
+      #profile .lines {
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-mask-image: linear-gradient(
+          transparent 330px,
+          #000 420px,
+          #000 540px,
+          transparent 600px
+        );
+        mask-image: linear-gradient(
+          transparent 330px,
+          #000 420px,
+          #000 540px,
+          transparent 600px
+        );
+      }
+      #profile .logo,
+      #profile .en {
+        position: relative;
+      }
       #profile .logo {
         width: 360px;
+        margin-top: -60px;
       }
       #profile .en {
         font-size: 30px;
@@ -759,6 +844,27 @@
 
     <!-- 3. 위젯 -->
     <section class="asset widget" id="widget-hours">
+      <div class="top">
+        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
+      </div>
+      <svg class="lines" width="340" height="320" viewBox="0 0 340 320">
+        <g fill="none">
+          <path class="hi" d="M-40 80 C 10 170, 140 200, 380 170" />
+          <path class="lo" d="M-31 80 C 19 170, 144 202, 380 174" />
+          <path class="lo" d="M-22 80 C 28 170, 149 204, 380 178" />
+          <path class="lo" d="M-13 80 C 37 170, 154 207, 380 182" />
+          <path class="lo" d="M-4 80 C 46 170, 158 209, 380 186" />
+          <path class="hi" d="M5 80 C 55 170, 162 211, 380 190" />
+          <path class="lo" d="M14 80 C 64 170, 167 214, 380 194" />
+          <path class="lo" d="M23 80 C 73 170, 172 216, 380 198" />
+          <path class="lo" d="M32 80 C 82 170, 176 218, 380 202" />
+          <path class="lo" d="M41 80 C 91 170, 180 220, 380 206" />
+          <path class="hi" d="M50 80 C 100 170, 185 222, 380 210" />
+          <path class="lo" d="M59 80 C 109 170, 190 225, 380 215" />
+          <path class="lo" d="M68 80 C 118 170, 194 227, 380 219" />
+          <path class="lo" d="M77 80 C 127 170, 198 229, 380 223" />
+        </g>
+      </svg>
       <p class="en">Hours</p>
       <h3>진료시간</h3>
       <dl>
@@ -787,7 +893,21 @@
       <p class="tel"><span>TEL</span>032-429-7522</p>
     </section>
 
-    <section class="asset widget btn dark" id="widget-reserve">
+    <section class="asset widget btn accent" id="widget-reserve">
+      <svg class="lines" width="340" height="128" viewBox="0 0 340 128">
+        <g fill="none">
+          <path class="hi" d="M262 -20 C 278 40, 318 90, 380 112" />
+          <path class="lo" d="M268 -20 C 284 40, 321 92, 380 115" />
+          <path class="lo" d="M274 -20 C 290 40, 324 93, 380 117" />
+          <path class="lo" d="M280 -20 C 296 40, 327 94, 380 120" />
+          <path class="lo" d="M286 -20 C 302 40, 330 96, 380 123" />
+          <path class="hi" d="M292 -20 C 308 40, 333 98, 380 126" />
+          <path class="lo" d="M298 -20 C 314 40, 336 99, 380 128" />
+          <path class="lo" d="M304 -20 C 320 40, 339 100, 380 131" />
+          <path class="lo" d="M310 -20 C 326 40, 342 102, 380 134" />
+          <path class="lo" d="M316 -20 C 332 40, 345 104, 380 136" />
+        </g>
+      </svg>
       <div class="ico">
         <svg viewBox="0 0 24 24">
           <rect x="3.5" y="5" width="17" height="15.5" rx="1.5" />
@@ -798,6 +918,20 @@
     </section>
 
     <section class="asset widget btn" id="widget-home">
+      <svg class="lines" width="340" height="128" viewBox="0 0 340 128">
+        <g fill="none">
+          <path class="hi" d="M262 -20 C 278 40, 318 90, 380 112" />
+          <path class="lo" d="M268 -20 C 284 40, 321 92, 380 115" />
+          <path class="lo" d="M274 -20 C 290 40, 324 93, 380 117" />
+          <path class="lo" d="M280 -20 C 296 40, 327 94, 380 120" />
+          <path class="lo" d="M286 -20 C 302 40, 330 96, 380 123" />
+          <path class="hi" d="M292 -20 C 308 40, 333 98, 380 126" />
+          <path class="lo" d="M298 -20 C 314 40, 336 99, 380 128" />
+          <path class="lo" d="M304 -20 C 320 40, 339 100, 380 131" />
+          <path class="lo" d="M310 -20 C 326 40, 342 102, 380 134" />
+          <path class="lo" d="M316 -20 C 332 40, 345 104, 380 136" />
+        </g>
+      </svg>
       <div class="ico">
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="8.5" />
@@ -810,6 +944,20 @@
     </section>
 
     <section class="asset widget btn" id="widget-map">
+      <svg class="lines" width="340" height="128" viewBox="0 0 340 128">
+        <g fill="none">
+          <path class="hi" d="M262 -20 C 278 40, 318 90, 380 112" />
+          <path class="lo" d="M268 -20 C 284 40, 321 92, 380 115" />
+          <path class="lo" d="M274 -20 C 290 40, 324 93, 380 117" />
+          <path class="lo" d="M280 -20 C 296 40, 327 94, 380 120" />
+          <path class="lo" d="M286 -20 C 302 40, 330 96, 380 123" />
+          <path class="hi" d="M292 -20 C 308 40, 333 98, 380 126" />
+          <path class="lo" d="M298 -20 C 314 40, 336 99, 380 128" />
+          <path class="lo" d="M304 -20 C 320 40, 339 100, 380 131" />
+          <path class="lo" d="M310 -20 C 326 40, 342 102, 380 134" />
+          <path class="lo" d="M316 -20 C 332 40, 345 104, 380 136" />
+        </g>
+      </svg>
       <div class="ico">
         <svg viewBox="0 0 24 24">
           <path
@@ -823,6 +971,32 @@
 
     <!-- 4. 프로필 -->
     <section class="asset" id="profile">
+      <svg class="lines" width="600" height="600" viewBox="0 0 600 600">
+        <g fill="none">
+          <path class="hi" d="M-60 300 C 60 420, 300 470, 680 470" />
+          <path class="lo" d="M-46 300 C 74 420, 307 474, 680 476" />
+          <path class="lo" d="M-32 300 C 88 420, 314 477, 680 483" />
+          <path class="lo" d="M-18 300 C 102 420, 321 480, 680 489" />
+          <path class="lo" d="M-4 300 C 116 420, 328 484, 680 495" />
+          <path class="hi" d="M10 300 C 130 420, 335 488, 680 502" />
+          <path class="lo" d="M24 300 C 144 420, 342 491, 680 508" />
+          <path class="lo" d="M38 300 C 158 420, 349 494, 680 514" />
+          <path class="lo" d="M52 300 C 172 420, 356 498, 680 520" />
+          <path class="lo" d="M66 300 C 186 420, 363 502, 680 527" />
+          <path class="hi" d="M80 300 C 200 420, 370 505, 680 533" />
+          <path class="lo" d="M94 300 C 214 420, 377 508, 680 539" />
+          <path class="lo" d="M108 300 C 228 420, 384 512, 680 546" />
+          <path class="lo" d="M122 300 C 242 420, 391 516, 680 552" />
+          <path class="lo" d="M136 300 C 256 420, 398 519, 680 558" />
+          <path class="hi" d="M150 300 C 270 420, 405 522, 680 564" />
+          <path class="lo" d="M164 300 C 284 420, 412 526, 680 571" />
+          <path class="lo" d="M178 300 C 298 420, 419 530, 680 577" />
+          <path class="lo" d="M192 300 C 312 420, 426 533, 680 583" />
+          <path class="lo" d="M206 300 C 326 420, 433 536, 680 590" />
+          <path class="hi" d="M220 300 C 340 420, 440 540, 680 596" />
+          <path class="lo" d="M234 300 C 354 420, 447 544, 680 602" />
+        </g>
+      </svg>
       <div class="logo">{{MARK}}</div>
       <p class="en">Clinic</p>
     </section>

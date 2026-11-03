@@ -3,8 +3,31 @@
 const G = "#c4a77d";
 
 const zones: Record<string, React.ReactNode> = {
+  // 관자놀이 (눈 바깥 위쪽 양옆)
+  관자: (
+    <>
+      <ellipse
+        cx="17"
+        cy="22"
+        rx="3"
+        ry="4.2"
+        fill={G}
+        fillOpacity=".45"
+        stroke={G}
+      />
+      <ellipse
+        cx="47"
+        cy="22"
+        rx="3"
+        ry="4.2"
+        fill={G}
+        fillOpacity=".45"
+        stroke={G}
+      />
+    </>
+  ),
   // 앞볼 · 옆볼
-  볼륨: (
+  볼: (
     <>
       <ellipse
         cx="22.5"
@@ -280,6 +303,9 @@ const bodies: Record<string, React.ReactNode> = {
     </>
   ),
 };
+
+// 예전 이름(볼륨)도 볼 그림으로
+zones["볼륨"] = zones["볼"];
 
 export const hasFaceZone = (name: string) => name in zones || name in bodies;
 

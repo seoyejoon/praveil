@@ -398,7 +398,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       note: "※ 제조사 공개 자료를 바탕으로 한 일반 정보입니다. 어느 제품이 더 낫다는 뜻이 아니며, 효과와 유지 기간은 사람마다 다릅니다.",
     },
-    featuresTitle: "프라베일 필러의 4가지 특징",
+    featuresTitle: "프라베일 필러 시술의 특별함",
     featuresPlacement: "after-ba",
     features: [
       {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ReceiptText } from "lucide-react";
 import { useRef } from "react";
 import type { DeviceStory } from "@/content/device-story";
 
@@ -104,9 +104,11 @@ export default function ProductSlider({ products }: { products: Products }) {
                 ))}
                 <a
                   href="#price"
-                  className="ml-auto text-[13px] text-ink underline decoration-gold underline-offset-[5px] transition hover:text-gold"
+                  aria-label={`${it.name} 가격 보기`}
+                  title="가격 보기"
+                  className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-ink/70 transition hover:border-gold hover:bg-gold hover:text-white"
                 >
-                  가격 보기
+                  <ReceiptText className="h-4 w-4" strokeWidth={1.6} />
                 </a>
               </div>
             </div>

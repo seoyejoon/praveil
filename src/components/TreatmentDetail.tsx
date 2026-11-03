@@ -17,6 +17,7 @@ import ConsultCta from "@/components/sub/ConsultCta";
 import FaqList from "@/components/sub/FaqList";
 import MoreToggle from "@/components/sub/MoreToggle";
 import PriceCard from "@/components/sub/PriceCard";
+import PriceMatrix, { splitForMatrix } from "@/components/sub/PriceMatrix";
 import SectionHead from "@/components/sub/SectionHead";
 import {
   StoryAbout,
@@ -144,6 +145,7 @@ export default function TreatmentDetail({
   ].filter(Boolean) as { id: string; label: string }[];
 
   // 의료진이 중요한 이유: 어두운 판 위에 이유 3가지 + 오른쪽 원장 카드 (모든 시술 페이지 공통)
+  const priceSplit = splitForMatrix(prices);
   const doctorReasons = [
     {
       title: "직접 진단",
@@ -843,7 +845,9 @@ export default function TreatmentDetail({
           id="price"
           className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6"
         >
-          <div className="mx-auto grid max-w-[1560px] gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div
+            className={`mx-auto grid max-w-[1560px] grid-cols-1 gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 ${priceSplit.matrix.length ? "" : "lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"}`}
+          >
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
@@ -851,7 +855,19 @@ export default function TreatmentDetail({
                 있어, 상담 후 정확한 비용을 안내해 드립니다.
               </p>
             </div>
-            {prices.length ? (
+            {/* 부위 × 제품이 반복되는 가격(필러 · 보톡스)은 한 표로, 나머지는 카드 */}
+            {priceSplit.matrix.length ? (
+              <div className="grid min-w-0 gap-6">
+                <PriceMatrix procedures={priceSplit.matrix} />
+                {priceSplit.rest.length > 0 && (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {priceSplit.rest.map((p) => (
+                      <PriceCard key={p.slug} p={p} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : prices.length ? (
               <div className="grid gap-3">
                 {prices.map((p) => (
                   <PriceCard key={p.slug} p={p} />

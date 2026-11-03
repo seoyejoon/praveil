@@ -52,7 +52,12 @@ export default function TreatmentPrinciple({
                 strokeWidth="1.5"
                 vectorEffect="non-scaling-stroke"
               />
-              <circle cx={mark.x * 16} cy={mark.y * 10} r="6" fill="currentColor" />
+              <circle
+                cx={mark.x * 16}
+                cy={mark.y * 10}
+                r="6"
+                fill="currentColor"
+              />
             </g>
           ))}
         </svg>
@@ -66,7 +71,10 @@ export default function TreatmentPrinciple({
                 top: `${mark.labelY ?? mark.y}%`,
               }}
             >
-              <span aria-hidden="true" className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white font-display text-xs text-ink md:h-6 md:w-6 md:text-sm">
+              <span
+                aria-hidden="true"
+                className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white font-display text-xs text-ink md:h-6 md:w-6 md:text-sm"
+              >
                 {index + 1}
               </span>
               <span>{mark.label}</span>

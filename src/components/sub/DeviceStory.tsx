@@ -311,15 +311,16 @@ export function StoryFeatures({
             en="Point"
             title={story.featuresTitle ?? `${title}만의 특별함`}
           />
-          <ol className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
+          {/* 2 × 2 가로 카드: 왼쪽 사진 · 오른쪽 번호와 글 (모바일은 한 줄씩) */}
+          <ol className="mt-12 grid gap-4 md:mt-16 md:gap-5 lg:grid-cols-2">
             {story.features.map((f, i) => (
               <Reveal
                 as="li"
                 key={f.title}
-                delay={i * 120}
-                className="group w-[78%] shrink-0 snap-start md:w-auto"
+                delay={(i % 2) * 120}
+                className="group grid overflow-hidden rounded-[24px] bg-white sm:grid-cols-[0.85fr_1fr]"
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[24px] bg-sand">
+                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-auto sm:min-h-[260px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={f.image}
@@ -327,16 +328,18 @@ export function StoryFeatures({
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
                   />
-                  <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-4 py-1.5 font-display text-[11px] tracking-[0.3em] text-gold backdrop-blur-sm">
-                    POINT {String(i + 1).padStart(2, "0")}
-                  </span>
                 </div>
-                <h3 className="mt-6 text-center text-[19px] leading-snug font-semibold tracking-[-0.03em] break-keep md:text-[21px]">
-                  {f.title}
-                </h3>
-                <p className="mt-3 text-center text-[14px] leading-[1.8] break-keep text-muted md:text-[15px]">
-                  {f.text}
-                </p>
+                <div className="flex flex-col justify-center p-7 md:p-9">
+                  <span className="font-display text-[34px] leading-none font-extralight text-gold md:text-[40px]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-5 text-[19px] leading-snug font-semibold tracking-[-0.03em] break-keep md:text-[21px]">
+                    {f.title}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.8] break-keep text-muted md:text-[15px]">
+                    {f.text}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </ol>

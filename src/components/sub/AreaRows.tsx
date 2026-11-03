@@ -43,8 +43,8 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
               className="grid scroll-mt-40 items-center gap-8 border-t border-white/10 py-14 first:border-t-0 first:pt-0 md:scroll-mt-48 md:grid-cols-2 md:gap-14 md:py-20 lg:gap-24"
             >
               {/* 그림 */}
-              <Reveal
-                variant="clip"
+              {/* 사진은 움직임 없이 바로 (아래에서 올라오는 효과 없음) */}
+              <div
                 className={`group relative aspect-[4/3] overflow-hidden rounded-[24px] bg-white/[0.04] ring-1 ring-white/10 ${flip ? "md:order-2" : ""}`}
               >
                 {it.image ? (
@@ -83,7 +83,7 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                     {no} / {total}
                   </span>
                 </p>
-              </Reveal>
+              </div>
 
               {/* 글 */}
               <Reveal delay={120} className={flip ? "md:order-1" : ""}>
@@ -97,12 +97,15 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                     </span>
                   )}
                 </p>
-                <h3 className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[32px]">
-                  {it.name}
+                {/* 부위 이름 옆에 짧은 설명 */}
+                <h3 className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="text-[26px] font-semibold tracking-[-0.03em] md:text-[32px]">
+                    {it.name}
+                  </span>
+                  <span className="text-[15px] font-normal text-white/60 md:text-[17px]">
+                    {it.text}
+                  </span>
                 </h3>
-                <p className="mt-2 text-[15px] text-white/80 md:text-[17px]">
-                  {it.text}
-                </p>
                 {it.detail && (
                   <p className="mt-5 text-[15px] leading-[1.9] text-white/60 md:text-[16px]">
                     {it.detail}
@@ -128,17 +131,17 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                 )}
 
                 {it.recommend && (
-                  <div className="mt-7">
-                    <p className="text-xs tracking-[0.2em] text-taupe">
-                      이런 분께 권합니다
+                  <div className="mt-7 rounded-[18px] bg-white/[0.05] px-5 py-4 md:px-6">
+                    <p className="text-[13px] font-semibold text-gold">
+                      추천 대상
                     </p>
-                    <ul className="mt-3 flex flex-wrap gap-2">
+                    <ul className="mt-2.5 grid gap-1.5">
                       {it.recommend.map((r) => (
                         <li
                           key={r}
-                          className="flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-[13px] text-white/80 md:text-sm"
+                          className="flex items-start gap-2.5 text-[14px] leading-relaxed text-white/80 md:text-[15px]"
                         >
-                          <Check className="h-3.5 w-3.5 shrink-0 text-gold" />
+                          <Check className="mt-[5px] h-3.5 w-3.5 shrink-0 text-gold" />
                           {r}
                         </li>
                       ))}

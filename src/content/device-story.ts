@@ -169,7 +169,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "조직 수축과 콜라겐 재생",
-        text: "열 자극을 받은 조직이 수축하고, 수 주에 걸쳐 콜라겐 재생을 유도합니다.",
+        text: "열 자극을 받은 조직이 수축하고, 시간을 두고 콜라겐 재생을 유도합니다.",
       },
     ],
     depths: ["1.5mm", "3.0mm", "4.5mm"],
@@ -214,10 +214,6 @@ export const deviceStory: Record<string, DeviceStory> = {
             "1.5 · 2.0 · 3.0 · 4.5mm",
             "진피 ~ 피하",
           ],
-        },
-        {
-          label: "피부 표면 냉각",
-          values: ["냉각 어플리케이터", "없음", "없음", "냉각 스프레이"],
         },
         {
           label: "특징",

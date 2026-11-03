@@ -728,7 +728,7 @@ export default function TreatmentDetail({
         </section>
       )}
 
-      {/* 효과는 언제 나타나고 얼마나 유지되나요? */}
+      {/* 효과 발현 기간 및 유지기간 */}
       <section
         id="result"
         className="scroll-mt-36 px-3 pt-16 md:scroll-mt-44 md:px-6 md:pt-24"
@@ -739,7 +739,12 @@ export default function TreatmentDetail({
             <SectionHead
               en="Result"
               tone="dark"
-              title={`${t.title} 효과는 언제 나타나고, 얼마나 유지되나요?`}
+              title={
+                <>
+                  <span className="block">{t.title}</span>
+                  <span className="block">효과 발현 기간 및 유지기간</span>
+                </>
+              }
             />
             <ol className="no-scrollbar -mx-6 mt-12 flex scroll-px-6 gap-3 overflow-x-auto overscroll-x-contain px-6 md:mx-0 md:mt-20 md:grid md:grid-cols-4 md:gap-px md:overflow-hidden md:rounded-[20px] md:bg-white/10 md:px-0">
               {g.timeline.map((s, i) => (
@@ -780,7 +785,12 @@ export default function TreatmentDetail({
           <div className="lg:sticky lg:top-36 lg:self-start">
             <SectionHead
               en="Aftercare"
-              title={`${t.title} 통증 · 회복 · 주의사항`}
+              title={
+                <>
+                  <span className="block">{t.title}</span>
+                  <span className="block">통증 · 회복 · 주의사항</span>
+                </>
+              }
             />
             <p className="mt-5 text-[15px] leading-relaxed text-muted md:text-[17px]">
               시술 전 꼭 확인해 주세요.
@@ -939,7 +949,7 @@ export default function TreatmentDetail({
           <p className="font-display text-xs tracking-[0.35em] text-gold uppercase">
             FAQ
           </p>
-          <h2 className="mt-4 text-[28px] leading-snug font-bold tracking-[-0.03em] md:text-[40px]">
+          <h2 className="mt-4 text-[28px] leading-snug font-bold tracking-[-0.03em] text-balance break-keep md:text-[40px]">
             {t.title} 자주 묻는 질문
           </h2>
           <p className="mt-3 text-[15px] text-muted">

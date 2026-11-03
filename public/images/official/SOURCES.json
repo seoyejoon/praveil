@@ -7,19 +7,35 @@
         "https://www.jeisys.co.kr/kor/pub/video/img_product_b01.mp4",
         "https://www.jeisys.co.kr/kor/pub/video/img_product_b03_2.mp4"
       ],
-      "local": ["official-potenza-intro.mp4", "official-potenza-principle.mp4"],
+      "local": [
+        "official-potenza-intro.mp4",
+        "official-potenza-principle.mp4"
+      ],
       "clipSeconds": [
-        [0, 6],
-        [12, 32]
+        [
+          0,
+          6
+        ],
+        [
+          12,
+          32
+        ]
       ]
     },
     "clarity": {
       "page": "https://www.cynosure.com/product/clarity-ii/",
-      "local": ["official-clarity.mp4"],
+      "local": [
+        "official-clarity.mp4"
+      ],
       "assets": [
         "https://www.cynosure.com/wp-content/uploads/2025/07/PRD-2017-CL-Website-video-updates-Clarity-II-1.mp4"
       ],
-      "clipSeconds": [[2, 18.5]],
+      "clipSeconds": [
+        [
+          2,
+          18.5
+        ]
+      ],
       "crop": {
         "x": 920,
         "y": 0,
@@ -35,7 +51,24 @@
       "page": "https://classys.co.kr/product/shurink-universe/",
       "assets": [
         "https://classys.co.kr/wp-content/uploads/sites/5/2024/08/shu_tech1-1.jpg"
-      ]
+      ],
+      "videoPage": "https://shurinkuniverse.co.kr/",
+      "videos": [
+        "/wp-content/uploads/2026/10/Shurinkuniverse-Product-Web-1920x1080-1.mp4 (0~12초)",
+        "/wp-content/uploads/2025/12/Video_Presentation_ultraformer_mpt_skin_layer_tcp_depth_ultraf_4.5_normal_mp_20220803_v1-1.mp4",
+        "/wp-content/uploads/2025/12/Video_Presentation_ultraformer_mpt_skin_layer_tcp_depth_booster_1.5_normal_mp_20220803_v1-1.mp4",
+        "/wp-content/uploads/2025/12/F-handpiece-Normal-MP-2.mp4",
+        "/wp-content/uploads/2025/12/booster-handpiece-Normal-MP-2.mp4"
+      ],
+      "local": [
+        "videos/shrink-device.mp4",
+        "videos/shrink-principle.mp4",
+        "videos/shrink-booster-depth.mp4",
+        "videos/shrink-ultraf-mode.mp4",
+        "videos/shrink-booster-mode.mp4"
+      ],
+      "note": "크기만 줄임(1280px · 소리 없음). 모델이 나오는 광고 영상은 쓰지 않음",
+      "checkedAt": "2026-11-03"
     },
     "mint": {
       "page": "https://www.hansbiomed.com/product/product_view?cat=all&idx=83&ptype=productKRDevice&subCat=all&type=device",
@@ -70,7 +103,9 @@
     },
     "ultracol": {
       "page": "https://ultracol.com/en/",
-      "assets": ["https://ultracol.com/images/main/product.png"]
+      "assets": [
+        "https://ultracol.com/images/main/product.png"
+      ]
     },
     "pico": {
       "page": "https://www.speclipse.com/bbs/content.php?co_id=pico_k",

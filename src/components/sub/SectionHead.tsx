@@ -17,7 +17,8 @@ export default function SectionHead({
       >
         {en}
       </p>
-      <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
+      {/* 단어 중간에서 끊기지 않게 (한국어는 기본이 글자 단위 줄바꿈) */}
+      <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] text-balance break-keep md:text-[36px]">
         {title}
       </h2>
     </div>

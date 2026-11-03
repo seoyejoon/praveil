@@ -3049,6 +3049,37 @@ deviceStory["/petit/botox/body"] = {
       { label: "제품 선택", value: "국산 · 수입 제품 중 상담 후 선택" },
     ],
   },
+  // 살피는 4가지 · 과정: 얼굴(표정) 대신 근육 · 땀 기준으로 (사진은 얼굴 보톡스와 같은 것)
+  featuresTitle: "바디 보톡스에서 살피는 4가지",
+  features: [
+    {
+      ...botoxStory.features[0],
+      title: "근육 범위 · 두께 확인",
+      text: "어깨를 올리거나 까치발을 들 때 근육이 솟는 범위와 두께, 좌우 차이를 함께 확인합니다.",
+    },
+    {
+      ...botoxStory.features[1],
+      title: "부위와 제품에 맞춘 계획",
+      text: "같은 바디 보톡스도 부위와 제제가 다르면 계획이 달라집니다. 제품 정보와 시술 이력을 확인합니다.",
+    },
+    {
+      ...botoxStory.features[2],
+      title: "근육 · 지방 · 붓기 구분",
+      text: "라인이 굵어 보이는 원인이 근육인지, 지방이나 붓기인지 먼저 나누어 보고 기대할 수 있는 변화와 한계를 설명합니다.",
+    },
+    {
+      ...botoxStory.features[3],
+      title: "변화가 나타난 뒤 경과 확인",
+      text: "근육 부피는 서서히 줄어들어, 시술 직후 추가하기보다 경과를 보고 좌우 라인과 불편감을 확인합니다.",
+    },
+  ],
+  process: [
+    {
+      ...botoxStory.process[0],
+      text: "고민 부위, 근육 · 땀 범위, 복용 약과 이전 보툴리눔 톡신 시술 이력을 확인합니다.",
+    },
+    ...botoxStory.process.slice(1),
+  ],
   principle: [
     {
       title: "근육 · 땀 범위 확인",

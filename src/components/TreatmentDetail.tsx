@@ -30,7 +30,6 @@ import type { DeviceStory } from "@/content/device-story";
 import TreatmentMedia from "@/components/sub/TreatmentMedia";
 import { treatmentMedia } from "@/content/treatment-media";
 import Reveal from "@/components/Reveal";
-import { mainDoctor } from "@/content/main";
 import {
   chooseCriteria,
   josa,
@@ -200,50 +199,18 @@ export default function TreatmentDetail({
           </ol>
         </div>
 
-        {/* 원장 카드: 밝은 아치 안에 원장 사진 + 이름 · 학회 */}
+        {/* 원장 사진만 (상담실 단독 사진, 병원 보정본) */}
         <Reveal
           delay={150}
-          className="mx-auto grid w-full max-w-[460px] overflow-hidden rounded-[28px] bg-[linear-gradient(160deg,#f6f2ec,#ece5da)] text-ink md:rounded-[32px] lg:max-w-none lg:grid-cols-[0.9fr_1fr]"
+          className="mx-auto w-full max-w-[460px] overflow-hidden rounded-[28px] md:rounded-[32px] lg:max-w-none"
         >
-          <div className="relative aspect-[4/3.6] overflow-hidden lg:aspect-auto lg:min-h-[340px]">
-            <div className="absolute inset-x-[12%] top-[8%] bottom-0 rounded-t-full bg-white/60" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/photos/doctor-cutout.webp"
-              alt={`대표원장 ${doctor.name}`}
-              loading="lazy"
-              className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto max-w-none object-contain object-bottom"
-            />
-          </div>
-          <div className="flex flex-col justify-center border-t border-ink/10 bg-white px-7 py-6 lg:border-t-0 lg:border-l lg:px-6">
-            <p className="text-sm text-gold">{doctor.title}</p>
-            <p className="mt-1 flex items-baseline gap-3 text-[24px] font-semibold tracking-[-0.03em]">
-              {doctor.name}
-              <span className="font-display text-[11px] font-normal tracking-[0.3em] text-muted uppercase">
-                {mainDoctor.nameEn}
-              </span>
-            </p>
-            {doctor.credentials.length > 0 && (
-              <ul className="mt-3 grid gap-1 text-[13px] text-ink/70">
-                {doctor.credentials.map((c) => (
-                  <li key={c} className="flex gap-2">
-                    <span
-                      aria-hidden
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold"
-                    />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            )}
-            <Link
-              href="/about/doctor"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-ink underline decoration-gold underline-offset-[6px] transition hover:text-gold"
-            >
-              의료진 소개 보기
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
-            </Link>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/photos/retouched/web/coolsonic-consult.jpg"
+            alt={`상담실의 대표원장 ${doctor.name}`}
+            loading="lazy"
+            className="aspect-[4/3] w-full object-cover object-[62%_40%] lg:aspect-[5/4]"
+          />
         </Reveal>
       </div>
     </section>

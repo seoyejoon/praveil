@@ -285,11 +285,11 @@ export const treatments: Treatment[] = [
     title: "슈링크 유니버스",
     description: "집속 초음파로 처진 윤곽과 탄력을 관리하는 리프팅",
     image: photo("cat-lifting"),
-    // 첫 화면: 레이저리프팅 3가지가 서로 다르게 (슈링크 = 제조사 장비 영상 장면)
+    // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: "/images/shrink/device.webp",
-      alt: "클래시스 슈링크 유니버스 장비 · 제조사 공식 영상 장면",
-      photoLayout: "full-frame",
+      src: photo("hero-laser-20261027"),
+      mobileSrc: photo("hero-laser-20261027-m"),
+      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 일반 · MP 모드" },
         { x: 60, y: 66, en: "Design", label: "처짐 부위 · 피부 두께 계획" },
@@ -383,11 +383,11 @@ export const treatments: Treatment[] = [
     title: "클라리티",
     description: "두 가지 파장의 레이저로 피부결 · 탄력을 관리하는 이너리프팅",
     image: photo("cat-lifting"),
-    // 첫 화면: 대표원장 레이저 시술 사진 (병원 보정본)
+    // 확인 필요: 클라리티 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: "/images/photos/retouched/web/laser.jpg",
-      alt: "대표원장이 레이저로 얼굴 부위를 시술하는 모습",
-      photoLayout: "full-frame",
+      src: photo("hero-laser-20261027"),
+      mobileSrc: photo("hero-laser-20261027-m"),
+      alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "Laser", label: "755nm · 1064nm 레이저" },
         { x: 60, y: 66, en: "Design", label: "피부 톤 · 고민별 계획" },
@@ -555,12 +555,11 @@ export const treatments: Treatment[] = [
     title: "잼버실",
     description: "꺼진 부위를 실로 받쳐 볼륨을 채우는 볼륨 실리프팅",
     image: photo("clinic-5"),
-    // 확인 필요: 잼버실 전용 첫 화면 사진 (QTL실과 다르게, 지금은 대표원장 얼굴 부위 주입 시술 사진)
+    // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("best-filler"),
-      mobileSrc: photo("best-filler-m"),
-      alt: "대표원장이 얼굴의 꺼진 부위를 시술하는 모습",
-      photoLayout: "full-frame",
+      src: photo("hero-thread-20261027"),
+      mobileSrc: photo("hero-thread-20261027-m"),
+      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
       chips: [
         { x: 48, y: 18, en: "Volume", label: "꺼진 부위 · 피부 두께 확인" },
         { x: 60, y: 66, en: "Thread", label: "볼륨형 실 · 부위별 계획" },

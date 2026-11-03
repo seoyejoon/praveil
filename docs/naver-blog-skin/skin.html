@@ -100,65 +100,9 @@
         height: 520px;
         background: transparent;
       }
-      #background {
-        width: 2560px;
-        height: 600px;
-        background: var(--ivory);
-      }
-      #background .copy {
-        position: absolute;
-        left: 861px;
-        top: 33px;
-        bottom: 111px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 26px;
-      }
-      #background .copy .en {
-        font-size: 13px;
-        color: var(--gold);
-      }
-      #background .logo {
-        width: 340px;
-        color: var(--ink);
-      }
-      #background .lead {
-        font-size: 16px;
-        line-height: 1.75;
-        color: var(--muted);
-      }
-      #background .arch {
-        position: absolute;
-        bottom: 111px;
-        overflow: hidden;
-      }
-      #background .arch.main {
-        right: 860px;
-        width: 340px;
-        height: 370px;
-        border-radius: 170px 170px 0 0;
-      }
-      #background .arch.side {
-        right: 1212px;
-        width: 170px;
-        height: 244px;
-        border-radius: 85px 85px 0 0;
-      }
       /* 원장 레이저 시술 사진: 얼굴과 핸드피스 · 시술 부위가 함께 보이게 */
-      #background .arch.side .photo,
       #mobile-cover .arch.side .photo {
         object-position: 62% 20%;
-      }
-      #background .arch-line {
-        position: absolute;
-        right: 840px;
-        bottom: 111px;
-        width: 380px;
-        height: 392px;
-        border: 1px solid var(--taupe);
-        border-bottom: 0;
-        border-radius: 190px 190px 0 0;
       }
       .hb .strip {
         position: absolute;
@@ -203,16 +147,13 @@
         border-bottom: 1px solid var(--mocha);
       }
 
-      /* 시안: 머리 배경을 병원 입구 사진으로 꽉 채우고, 왼쪽을 어둡게 깔아 글씨를 올림
-         (세로 위치 · 진료시간 띠 · 메뉴 띠는 위 배경과 같음) */
-      #background-photo,
-      #background-photo-2 {
+      /* 머리 배경: 로비 사진을 오른쪽에 멀리서 본 듯 작게 두고, 왼쪽은 짙은 바탕 + 아치 문양 위에 글씨 */
+      #background {
         width: 2560px;
         height: 600px;
         background: var(--ivory);
       }
-      #background-photo .shot,
-      #background-photo-2 .shot {
+      #background .shot {
         position: absolute;
         left: 1080px;
         top: 0;
@@ -220,15 +161,11 @@
         height: 489px;
         overflow: hidden;
       }
-      #background-photo .shot .photo {
+      #background .shot .photo {
         object-position: 50% 62%;
       }
-      #background-photo-2 .shot .photo {
-        object-position: 50% 58%;
-      }
       /* 글씨 쪽은 짙게, 사진 쪽은 밝게. 양 끝은 짙은 색으로 맞춰 가로 반복해도 이음매가 없음 */
-      #background-photo .shade,
-      #background-photo-2 .shade {
+      #background .shade {
         position: absolute;
         left: 0;
         right: 0;
@@ -245,8 +182,32 @@
           ),
           linear-gradient(rgba(29, 26, 23, 0) 75%, rgba(29, 26, 23, 0.45) 100%);
       }
-      #background-photo .copy,
-      #background-photo-2 .copy {
+      /* 왼쪽 짙은 여백의 아치 문양: 글씨 쪽으로 갈수록 작아져 사진 쪽 원근감과 이어짐.
+         왼쪽 끝은 흐리게 사라져 가로 반복 이음매가 보이지 않음 (선 색 = mocha) */
+      #background .pattern {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.7;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 0,
+          #000 300px,
+          #000 760px,
+          transparent 860px
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent 0,
+          #000 300px,
+          #000 760px,
+          transparent 860px
+        );
+      }
+      #background .pattern .in {
+        stroke-opacity: 0.45;
+      }
+      #background .copy {
         position: absolute;
         left: 861px;
         top: 33px;
@@ -257,17 +218,14 @@
         gap: 26px;
         color: var(--ivory);
       }
-      #background-photo .copy .en,
-      #background-photo-2 .copy .en {
+      #background .copy .en {
         font-size: 13px;
         color: var(--taupe);
       }
-      #background-photo .logo,
-      #background-photo-2 .logo {
+      #background .logo {
         width: 340px;
       }
-      #background-photo .lead,
-      #background-photo-2 .lead {
+      #background .lead {
         font-size: 16px;
         line-height: 1.75;
         color: var(--line);
@@ -677,71 +635,37 @@
     <!-- 1. 빈 타이틀 (투명) -->
     <section class="asset" id="title"></section>
 
-    <!-- 2. 스킨 배경: 화면 전체 폭 머리 -->
+    <!-- 2. 스킨 배경: 화면 전체 폭 머리 (로비 사진 + 왼쪽 아치 문양) -->
     <section class="asset hb" id="background">
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-      <div class="arch-line"></div>
-      <div class="arch side">
-        <img
-          class="photo"
-          src="../../public/images/photos/retouched/laser.jpg"
-        />
-      </div>
-      <div class="arch main">
-        <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
-      </div>
-      <div class="strip">
-        <span
-          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
-        >
-        <i class="bar"></i>
-        <span>목 10:00 – 20:30 야간진료</span>
-        <i class="bar"></i>
-        <span>토 10:00 – 15:00</span>
-        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
-      </div>
-      <div class="menu"></div>
-    </section>
-
-    <!-- 2-1. 시안: 로비 사진 (멀리서 본 듯 작게) -->
-    <section class="asset hb" id="background-photo">
       <div class="shot">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
       <div class="shade"></div>
-      <div class="copy">
-        <p class="en">Lifting · Petit · Skin</p>
-        <div class="logo">{{LOGO}}</div>
-        <div class="rule"></div>
-        <p class="lead">피부를 먼저 읽고,<br />나에게 맞게 설계합니다.</p>
-      </div>
-      <div class="strip">
-        <span
-          ><span class="en">Hours</span>월 · 화 · 수 · 금 10:00 – 19:00</span
-        >
-        <i class="bar"></i>
-        <span>목 10:00 – 20:30 야간진료</span>
-        <i class="bar"></i>
-        <span>토 10:00 – 15:00</span>
-        <p class="tel"><span class="en">Tel</span>032-429-7522</p>
-      </div>
-      <div class="menu"></div>
-    </section>
-
-    <!-- 2-2. 시안: 입구 밖에서 본 사진 -->
-    <section class="asset hb" id="background-photo-2">
-      <div class="shot">
-        <img
-          class="photo"
-          src="../../public/images/photos/hero-entrance.webp"
-        />
-      </div>
-      <div class="shade"></div>
+      <svg class="pattern" width="900" height="489" viewBox="0 0 900 489">
+        <g fill="none" stroke="#7d6649" stroke-width="1">
+          <path d="M750.0 489 V363.0 a35.0 35.0 0 0 1 70.0 0 V489" />
+          <path class="in" d="M758.0 489 V363.0 a27.0 27.0 0 0 1 54.0 0 V489" />
+          <path d="M645.0 489 V335.3 a42.7 42.7 0 0 1 85.4 0 V489" />
+          <path class="in" d="M653.0 489 V335.3 a34.7 34.7 0 0 1 69.4 0 V489" />
+          <path d="M516.9 489 V301.5 a52.1 52.1 0 0 1 104.2 0 V489" />
+          <path class="in" d="M524.9 489 V301.5 a44.1 44.1 0 0 1 88.2 0 V489" />
+          <path d="M360.6 489 V260.2 a63.6 63.6 0 0 1 127.1 0 V489" />
+          <path
+            class="in"
+            d="M368.6 489 V260.2 a55.6 55.6 0 0 1 111.1 0 V489"
+          />
+          <path d="M170.0 489 V209.9 a77.5 77.5 0 0 1 155.1 0 V489" />
+          <path
+            class="in"
+            d="M178.0 489 V209.9 a69.5 69.5 0 0 1 139.1 0 V489"
+          />
+          <path d="M-62.7 489 V148.5 a94.6 94.6 0 0 1 189.2 0 V489" />
+          <path
+            class="in"
+            d="M-54.7 489 V148.5 a86.6 86.6 0 0 1 173.2 0 V489"
+          />
+        </g>
+      </svg>
       <div class="copy">
         <p class="en">Lifting · Petit · Skin</p>
         <div class="logo">{{LOGO}}</div>

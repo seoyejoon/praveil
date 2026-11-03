@@ -182,30 +182,36 @@
           ),
           linear-gradient(rgba(29, 26, 23, 0) 75%, rgba(29, 26, 23, 0.45) 100%);
       }
-      /* 왼쪽 짙은 여백의 잎 가지 라인 드로잉 (사진 속 화분과 어울리게, 선 색 = gold).
+      /* 왼쪽 짙은 여백의 비단 곡선: 왼쪽 위에서 글씨 쪽 아래로 흘러내리는 선 다발 (5줄마다 금색).
          왼쪽 끝은 흐리게 사라져 가로 반복 이음매가 보이지 않음 */
       #background .pattern {
         position: absolute;
         left: 0;
         top: 0;
-        opacity: 0.75;
         -webkit-mask-image: linear-gradient(
           90deg,
           transparent 0,
-          #000 300px,
-          #000 760px,
-          transparent 860px
+          #000 240px,
+          #000 730px,
+          transparent 850px
         );
         mask-image: linear-gradient(
           90deg,
           transparent 0,
-          #000 300px,
-          #000 760px,
-          transparent 860px
+          #000 240px,
+          #000 730px,
+          transparent 850px
         );
       }
-      #background .pattern .vein {
-        stroke-opacity: 0.5;
+      #background .pattern .lo {
+        stroke: var(--mocha);
+        stroke-width: 0.8;
+        stroke-opacity: 0.45;
+      }
+      #background .pattern .hi {
+        stroke: var(--gold);
+        stroke-width: 1.2;
+        stroke-opacity: 0.85;
       }
       #background .copy {
         position: absolute;
@@ -635,122 +641,36 @@
     <!-- 1. 빈 타이틀 (투명) -->
     <section class="asset" id="title"></section>
 
-    <!-- 2. 스킨 배경: 화면 전체 폭 머리 (로비 사진 + 왼쪽 잎 가지 문양) -->
+    <!-- 2. 스킨 배경: 화면 전체 폭 머리 (로비 사진 + 왼쪽 비단 곡선) -->
     <section class="asset hb" id="background">
       <div class="shot">
         <img class="photo" src="../../public/images/photos/hero-lobby.webp" />
       </div>
       <div class="shade"></div>
       <svg class="pattern" width="900" height="489" viewBox="0 0 900 489">
-        <g
-          fill="none"
-          stroke="#a88e6a"
-          stroke-width="1.1"
-          stroke-linecap="round"
-        >
-          <path d="M360 489 Q380 250 560 70" />
-          <g transform="translate(365.0 446.0) rotate(-39.6)">
-            <path d="M0 0 Q22.8 -15.2 50.6 0 Q22.8 15.2 0 0 Z" />
-            <path class="vein" d="M4.0 0 L41.5 0" />
-          </g>
-          <g transform="translate(372.6 404.0) rotate(-119.9)">
-            <path d="M0 0 Q21.7 -14.5 48.3 0 Q21.7 14.5 0 0 Z" />
-            <path class="vein" d="M3.9 0 L39.6 0" />
-          </g>
-          <g transform="translate(382.8 363.0) rotate(-32.1)">
-            <path d="M0 0 Q20.7 -13.8 46.0 0 Q20.7 13.8 0 0 Z" />
-            <path class="vein" d="M3.7 0 L37.7 0" />
-          </g>
-          <g transform="translate(395.7 323.0) rotate(-112.2)">
-            <path d="M0 0 Q19.7 -13.1 43.7 0 Q19.7 13.1 0 0 Z" />
-            <path class="vein" d="M3.5 0 L35.8 0" />
-          </g>
-          <g transform="translate(411.2 283.9) rotate(-24.4)">
-            <path d="M0 0 Q18.6 -12.4 41.4 0 Q18.6 12.4 0 0 Z" />
-            <path class="vein" d="M3.3 0 L33.9 0" />
-          </g>
-          <g transform="translate(429.4 245.8) rotate(-104.6)">
-            <path d="M0 0 Q17.6 -11.7 39.1 0 Q17.6 11.7 0 0 Z" />
-            <path class="vein" d="M3.1 0 L32.1 0" />
-          </g>
-          <g transform="translate(450.2 208.7) rotate(-16.8)">
-            <path d="M0 0 Q16.6 -11.0 36.8 0 Q16.6 11.0 0 0 Z" />
-            <path class="vein" d="M2.9 0 L30.2 0" />
-          </g>
-          <g transform="translate(473.7 172.6) rotate(-97.2)">
-            <path d="M0 0 Q15.5 -10.3 34.5 0 Q15.5 10.3 0 0 Z" />
-            <path class="vein" d="M2.8 0 L28.3 0" />
-          </g>
-          <g transform="translate(499.8 137.4) rotate(-9.6)">
-            <path d="M0 0 Q14.5 -9.7 32.2 0 Q14.5 9.7 0 0 Z" />
-            <path class="vein" d="M2.6 0 L26.4 0" />
-          </g>
-          <g transform="translate(528.6 103.2) rotate(-90.2)">
-            <path d="M0 0 Q13.5 -9.0 29.9 0 Q13.5 9.0 0 0 Z" />
-            <path class="vein" d="M2.4 0 L24.5 0" />
-          </g>
-          <g transform="translate(560.0 70.0) rotate(-45.0)">
-            <path d="M0 0 Q11.4 -7.8 25.3 0 Q11.4 7.8 0 0 Z" />
-            <path class="vein" d="M2.0 0 L20.7 0" />
-          </g>
-          <path d="M480 489 Q560 330 720 200" />
-          <g transform="translate(501.2 449.7) rotate(-17.9)">
-            <path d="M0 0 Q17.5 -11.7 38.9 0 Q17.5 11.7 0 0 Z" />
-            <path class="vein" d="M3.1 0 L31.9 0" />
-          </g>
-          <g transform="translate(525.0 411.3) rotate(-98.6)">
-            <path d="M0 0 Q16.4 -10.9 36.4 0 Q16.4 10.9 0 0 Z" />
-            <path class="vein" d="M2.9 0 L29.9 0" />
-          </g>
-          <g transform="translate(551.2 373.8) rotate(-11.4)">
-            <path d="M0 0 Q15.3 -10.2 34.0 0 Q15.3 10.2 0 0 Z" />
-            <path class="vein" d="M2.7 0 L27.9 0" />
-          </g>
-          <g transform="translate(580.0 337.2) rotate(-92.3)">
-            <path d="M0 0 Q14.2 -9.4 31.5 0 Q14.2 9.4 0 0 Z" />
-            <path class="vein" d="M2.5 0 L25.8 0" />
-          </g>
-          <g transform="translate(611.2 301.6) rotate(-5.3)">
-            <path d="M0 0 Q13.1 -8.7 29.0 0 Q13.1 8.7 0 0 Z" />
-            <path class="vein" d="M2.3 0 L23.8 0" />
-          </g>
-          <g transform="translate(645.0 266.8) rotate(-86.4)">
-            <path d="M0 0 Q11.9 -8.0 26.5 0 Q11.9 8.0 0 0 Z" />
-            <path class="vein" d="M2.1 0 L21.8 0" />
-          </g>
-          <g transform="translate(681.2 233.0) rotate(0.3)">
-            <path d="M0 0 Q10.8 -7.2 24.1 0 Q10.8 7.2 0 0 Z" />
-            <path class="vein" d="M1.9 0 L19.7 0" />
-          </g>
-          <g transform="translate(720.0 200.0) rotate(-39.1)">
-            <path d="M0 0 Q8.9 -6.1 19.8 0 Q8.9 6.1 0 0 Z" />
-            <path class="vein" d="M1.6 0 L16.2 0" />
-          </g>
-          <path d="M250 489 Q240 360 330 250" />
-          <g transform="translate(249.4 446.5) rotate(-45.0)">
-            <path d="M0 0 Q14.3 -9.5 31.7 0 Q14.3 9.5 0 0 Z" />
-            <path class="vein" d="M2.5 0 L26.0 0" />
-          </g>
-          <g transform="translate(254.4 405.1) rotate(-121.2)">
-            <path d="M0 0 Q13.0 -8.7 29.0 0 Q13.0 8.7 0 0 Z" />
-            <path class="vein" d="M2.3 0 L23.8 0" />
-          </g>
-          <g transform="translate(265.0 364.8) rotate(-29.5)">
-            <path d="M0 0 Q11.8 -7.9 26.2 0 Q11.8 7.9 0 0 Z" />
-            <path class="vein" d="M2.1 0 L21.5 0" />
-          </g>
-          <g transform="translate(281.1 325.4) rotate(-106.0)">
-            <path d="M0 0 Q10.6 -7.0 23.5 0 Q10.6 7.0 0 0 Z" />
-            <path class="vein" d="M1.9 0 L19.3 0" />
-          </g>
-          <g transform="translate(302.8 287.2) rotate(-15.1)">
-            <path d="M0 0 Q9.3 -6.2 20.7 0 Q9.3 6.2 0 0 Z" />
-            <path class="vein" d="M1.7 0 L17.0 0" />
-          </g>
-          <g transform="translate(330.0 250.0) rotate(-50.7)">
-            <path d="M0 0 Q7.4 -5.1 16.5 0 Q7.4 5.1 0 0 Z" />
-            <path class="vein" d="M1.3 0 L13.5 0" />
-          </g>
+        <g fill="none">
+          <path class="hi" d="M80 -40 C 120 150, 420 260, 860 380" />
+          <path class="lo" d="M95 -40 C 135 150, 429 264, 860 388" />
+          <path class="lo" d="M110 -40 C 150 150, 438 268, 860 395" />
+          <path class="lo" d="M125 -40 C 165 150, 447 271, 860 402" />
+          <path class="lo" d="M140 -40 C 180 150, 456 275, 860 410" />
+          <path class="hi" d="M155 -40 C 195 150, 465 279, 860 418" />
+          <path class="lo" d="M170 -40 C 210 150, 474 282, 860 425" />
+          <path class="lo" d="M185 -40 C 225 150, 483 286, 860 432" />
+          <path class="lo" d="M200 -40 C 240 150, 492 290, 860 440" />
+          <path class="lo" d="M215 -40 C 255 150, 501 294, 860 448" />
+          <path class="hi" d="M230 -40 C 270 150, 510 298, 860 455" />
+          <path class="lo" d="M245 -40 C 285 150, 519 301, 860 462" />
+          <path class="lo" d="M260 -40 C 300 150, 528 305, 860 470" />
+          <path class="lo" d="M275 -40 C 315 150, 537 309, 860 478" />
+          <path class="lo" d="M290 -40 C 330 150, 546 312, 860 485" />
+          <path class="hi" d="M305 -40 C 345 150, 555 316, 860 492" />
+          <path class="lo" d="M320 -40 C 360 150, 564 320, 860 500" />
+          <path class="lo" d="M335 -40 C 375 150, 573 324, 860 508" />
+          <path class="lo" d="M350 -40 C 390 150, 582 328, 860 515" />
+          <path class="lo" d="M365 -40 C 405 150, 591 331, 860 522" />
+          <path class="hi" d="M380 -40 C 420 150, 600 335, 860 530" />
+          <path class="lo" d="M395 -40 C 435 150, 609 339, 860 538" />
         </g>
       </svg>
       <div class="copy">

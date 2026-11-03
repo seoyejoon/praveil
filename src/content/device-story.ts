@@ -2125,8 +2125,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         coverPosition: "50% 50%",
       },
       {
-        title: "마취 · 준비",
-        text: "눈 보호 방법을 확인하고 피부를 깨끗하게 준비합니다.",
+        title: "보호 · 준비",
+        text: "눈 보호 방법을 확인하고 피부를 깨끗하게 준비합니다. 불편함이 걱정되면 미리 말씀해 주세요.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "기존 마취 준비 사진",
       },

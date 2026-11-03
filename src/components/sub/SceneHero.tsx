@@ -166,7 +166,7 @@ export default function SceneHero({
                 style={{ animationDelay: `${1.2 + i * 0.35}s` }}
               >
                 <div
-                  className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/55 py-2.5 pr-5 pl-3 shadow-[0_18px_40px_-20px_rgba(40,30,20,0.45)] backdrop-blur-md animate-[chip-float_6s_ease-in-out_infinite]"
+                  className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 py-2.5 pr-5 pl-3 shadow-[0_18px_40px_-20px_rgba(40,30,20,0.45)] backdrop-blur-md animate-[chip-float_6s_ease-in-out_infinite]"
                   style={{ animationDelay: `${i * 1.4}s` }}
                 >
                   <span className="grid h-8 w-8 place-items-center rounded-full bg-gold/90 font-display text-[11px] text-white">

@@ -13,7 +13,7 @@ export const aboutPage = {
   // 임시: 시술 목록 기준으로 작성. 실제 보유 장비 확정 후 교체
   equipment: [
     { name: "쿨소닉", en: "Coolsonic", type: "리프팅" },
-    { name: "쿨페이즈", en: "Coolphase", type: "리프팅" },
+    { name: "쿨페이즈", en: "Coolfase", type: "리프팅" },
     { name: "슈링크 유니버스", en: "Shrink Universe", type: "리프팅" },
     { name: "포텐자", en: "Potenza", type: "리프팅 · 모공" },
     { name: "클라리티", en: "Clarity", type: "레이저" },

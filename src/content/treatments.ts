@@ -135,9 +135,9 @@ export const treatments: Treatment[] = [
   },
   {
     href: "/lifting/coolphase",
-    en: "Coolphase",
+    en: "Coolfase",
     title: "쿨페이즈",
-    description: "피부 표면을 식히는 쿨링 고주파 리프팅",
+    description: "표피는 차갑게 보호하고, 진피 속은 깊게 채우는 고주파 리프팅",
     image: photo("signature-2"),
     // 확인한 3:1 히어로와 모바일 전용 사진으로 구도를 유지합니다.
     scene: {

@@ -93,7 +93,7 @@ export const mainBest = {
       product: "/images/equipment/hero/coolsonic.webp",
     },
     {
-      en: "Coolphase",
+      en: "Coolfase",
       name: "쿨페이즈",
       category: "리프팅",
       href: "/lifting/coolphase",

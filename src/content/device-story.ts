@@ -1578,7 +1578,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/official/juvelook-product.png",
       photoAlt: "쥬베룩 공식 제품 바이알",
       mediaContain: true,
-      text: "쥬베룩은 PDLLA(폴리-D,L-락트산) 미세입자와 히알루론산으로 구성된 콜라겐부스터입니다. 제조사의 입자 구조 자료를 바탕으로 제품 특성을 설명하고, 피부 두께와 부위에 맞춰 양과 범위를 정합니다. 가격표에는 2cc · 3cc · 4cc로 안내합니다.",
+      text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일시적으로 외부 물질을 채워 넣는 일반 필러와 달리, 피부 속 세포를 자극해 스스로 콜라겐을 만들도록 돕는 방식이라 시간이 흐를수록 서서히 차오르는 탄력을 확인하게 됩니다. 변화의 정도와 시점은 사람마다 다릅니다.",
       specs: [
         { label: "성분", value: "PDLLA · 히알루론산" },
         { label: "분류", value: "조직수복용재료 · 의료기기" },

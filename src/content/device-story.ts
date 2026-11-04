@@ -2119,8 +2119,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "다이아몬드 팁으로 표면을 쫀쫀하게",
         text: "다이아몬드 팁은 피부를 뚫지 않고 표면에 고르게 에너지를 전달합니다. 잔주름 · 거친 피부결 · 겉탄력을 관리하며, 바늘 팁보다 회복 부담이 적습니다.",
-        image: "/images/potenza/tips-ddr.webp",
-        video: "/videos/potenza-tips.mp4",
+        image: "/images/potenza/tips-ddr.webp?v=20261104b",
+        video: "/videos/potenza-tips.mp4?v=20261104b",
         alt: "포텐자 비침습 프로그램의 DDR 팁을 보여 주는 제조사 영상",
         // 16:9 는 기본값이 '잘라서 채우기'라 글자가 잘림 → 전체를 보여 주고 위아래는 영상 가장자리 색으로
         mediaSize: { width: 1280, height: 720 },

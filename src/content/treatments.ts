@@ -573,7 +573,7 @@ export const treatments: Treatment[] = [
         { x: 60, y: 66, en: "Thread", label: "볼륨형 실 · 부위별 계획" },
       ],
     },
-    headline: ["꺼진 부위를 실로 받쳐,", "잼버실 볼륨 리프팅"],
+    headline: ["스프링 형태의 PDO실,", "잼버실 리프팅"],
     intro:
       "잼버실은 스프링처럼 촘촘히 말린 녹는 실을 꺼진 부위 아래에 넣어, 안에서부터 받쳐 볼륨을 채우는 시술입니다. 눈밑 · 팔자 · 앞볼처럼 꺼진 위치와 피부 두께를 보고 범위를 정합니다.",
     photo: stock("thread"),

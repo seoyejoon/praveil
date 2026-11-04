@@ -40,7 +40,7 @@ export type DeviceStory = {
     mediaContain?: boolean;
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     /** edge: 영상 비율이 칸과 달라 남는 자리를 채울 색 (영상 가장자리 색) */
-    film?: { src: string; poster: string; edge?: string };
+    film?: { src: string; poster: string; edge?: string; fadeFrom?: string };
     text: string;
     specs: { label: string; value: string }[];
   };
@@ -2032,9 +2032,11 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "JEISYS",
       image: "/images/photos/retouched/web/consult.jpg",
       film: {
-        src: "/videos/potenza-device-web-v3.mp4",
-        poster: "/images/potenza/potenza-device-web-v3.webp",
+        src: "/videos/potenza-device-centered-v3.mp4",
+        poster: "/images/potenza/potenza-device-centered-v3.webp",
         edge: "#000000",
+        // 장비가 가운데 있어 기본 60% 그라디언트가 오른쪽 핸드피스를 덮는다
+        fadeFrom: "84%",
       },
       mediaContain: true,
       text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하면서 부스터를 함께 넣는 펌핑팁으로 운영합니다. 바늘 깊이를 0.5 ~ 4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",

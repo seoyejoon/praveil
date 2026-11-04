@@ -105,7 +105,12 @@ export function StoryAbout({
               {(!device.photoFullFrame || device.film) &&
                 (device.film || !device.mediaContain) && (
                   <>
-                    <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
+                    <div
+                      className="absolute inset-0 hidden lg:block"
+                      style={{
+                        backgroundImage: `linear-gradient(90deg,transparent ${device.film?.fadeFrom ?? "60%"},#2b2b2b)`,
+                      }}
+                    />
                     {/* 좁은 화면에서 영상은 글과 따로 놓이므로 아래 그림자를 씌우지 않음 */}
                     {!device.film && (
                       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />

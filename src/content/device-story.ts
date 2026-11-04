@@ -1847,8 +1847,6 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleImage: {
       src: "/images/official/potenza-principle-poster.jpg",
       alt: "포텐자의 미세침과 고주파 에너지 전달을 보여주는 제조사 원리 영상",
-      figureAspect: "16 / 9",
-      noteOverlay: true,
       marks: [],
       layers: [],
       framed: false,
@@ -2502,7 +2500,6 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     principleImage: {
       src: "/images/principles/thread.webp?v=20261026b",
-      noteOverlay: true,
       alt: "돌기가 있는 실과 주변 결합조직의 지지 구조를 확대한 입체 개념도",
       marks: [],
       layers: [],
@@ -2533,7 +2530,6 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principleImage: {
       src: "/images/principles/thread.webp?v=20261026b",
-      noteOverlay: true,
       alt: "돌기가 있는 실과 주변 결합조직의 지지 구조를 확대한 입체 개념도",
       marks: [],
       layers: [],
@@ -2686,7 +2682,6 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principleImage: {
       src: "/images/principles/thread.webp?v=20261026b",
-      noteOverlay: true,
       alt: "실과 주변 결합조직의 지지 구조를 확대한 입체 개념도",
       marks: [],
       layers: [],

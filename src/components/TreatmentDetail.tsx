@@ -849,10 +849,10 @@ export default function TreatmentDetail({
             className={`mx-auto grid max-w-[1560px] grid-cols-1 gap-10 rounded-[28px] bg-ivory px-6 py-16 md:rounded-[40px] md:px-16 md:py-20 ${priceSplit.matrix.length ? "" : "lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"}`}
           >
             <div>
-              <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
+              <SectionHead en="Price" title={`${t.title} 비용은 어떻게 되나요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                본원 가격표 기준이며, 시술 부위 · 양 · 피부 상태에 따라 달라질 수
-                있어, 상담 후 정확한 비용을 안내해 드립니다.
+                저희 병원의 시술 비용이며, 보다 자세한 비용은 내원 시 1:1 상담을
+                통해 안내 받아보실 수 있습니다.
               </p>
             </div>
             {/* 부위 × 제품이 반복되는 가격(필러 · 보톡스)은 한 표로, 나머지는 카드 */}

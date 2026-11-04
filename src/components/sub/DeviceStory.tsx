@@ -126,7 +126,7 @@ export function StoryAbout({
                 {title}, 어떤 {what}인가요?
               </h2>
               <Reveal>
-                <p className="mt-6 text-[15px] leading-[1.9] text-white/65 md:text-[16px]">
+                <p className="mt-6 text-[15px] leading-[1.9] whitespace-pre-line text-white/65 md:text-[16px]">
                   {device.text}
                 </p>
               </Reveal>
@@ -170,7 +170,7 @@ export function StoryAbout({
                 title={`${title}, 어떤 ${what}인가요?`}
               />
               <Reveal>
-                <p className="mt-6 text-[15px] leading-[1.9] text-muted md:text-[17px]">
+                <p className="mt-6 text-[15px] leading-[1.9] whitespace-pre-line text-muted md:text-[17px]">
                   {device.text}
                 </p>
               </Reveal>

@@ -80,7 +80,7 @@ export type DeviceStory = {
     /** 제목 · 설명 (없으면 리프팅 장비 비교 문구) */
     title?: string;
     lead?: string;
-    columns: { name: string; maker: string; owned?: boolean; self?: boolean }[];
+    columns: { name: string; maker?: string; owned?: boolean; self?: boolean }[];
     rows: { label: string; values: string[] }[];
     note: string;
   };
@@ -2556,11 +2556,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       title: "QTL 실리프팅, 다른 실리프팅과 차이점",
       lead: "같은 몰딩실도 돌기 모양과 배열, 조직을 붙잡는 방식이 다릅니다. 처짐 정도와 피부 두께를 함께 보고 고릅니다.",
       columns: [
-        { name: "QTL실", maker: "몰딩실", self: true },
-        { name: "민트실", maker: "몰딩실 · PDO" },
+        // 소재는 표 첫 행("실 종류 및 소재")에 있어 머리글에는 적지 않음
+        { name: "QTL실", self: true },
+        { name: "민트실" },
         // 확인 필요: 에피티콘 · 블루로즈 세부 사양 (제조사 자료 · 시술 기관 안내 기준으로 정리)
-        { name: "에피티콘", maker: "제테마 · PDO" },
-        { name: "블루로즈", maker: "몰딩실 · PDO" },
+        { name: "에피티콘" },
+        { name: "블루로즈" },
       ],
       rows: [
         {
@@ -2643,28 +2644,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     process: [
       {
-        title: "상담 · 계획",
-        text: "처짐과 피부 두께, 이전 시술 이력을 보고 지지 방향과 실의 개수 · 범위를 정합니다.",
+        title: "맞춤 상담 및 정밀 계획 수립",
+        text: "개개인의 처진 양상, 피부 두께, 그리고 이전 시술 이력 등을 면밀히 확인하여 가장 안정적인 지지 방향과 최적의 실 개수 및 범위를 정교하게 설계합니다.",
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
         coverPosition: "50% 50%",
       },
       {
-        title: "마취 · 준비",
-        text: "시술 부위를 소독하고 국소 마취를 합니다. 마취제 알레르기는 미리 알려 주세요.",
+        title: "안전한 마취 및 철저한 준비",
+        text: "시술 부위를 깨끗하게 소독한 뒤 국소 마취를 진행합니다. ※ 마취제 알레르기나 특이 체질이 있으신 경우 사전에 반드시 의료진에게 알려 주시기 바랍니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "시술",
-        text: "계획한 층과 방향에 실을 넣고, 조직의 지지와 좌우 균형을 확인합니다.",
+        title: "정교한 실 삽입 및 균형 확인",
+        text: "사전 계획한 해부학적 층과 방향에 따라 실을 안전하게 삽입하고, 조직이 단단히 지지되는지와 좌우 대칭이 조화로운지 꼼꼼하게 살핍니다.",
         image: "/images/photos/cat-main-petit.webp",
         alt: "기존 피부 시술 참고 사진",
       },
       {
-        title: "경과 확인",
-        text: "부기 · 당김 · 패임을 확인하고 일상생활 주의사항을 안내합니다.",
+        title: "경과 확인 및 일상 케어 안내",
+        text: "시술 직후 나타날 수 있는 부기, 당김, 미세한 패임 여부를 꼼꼼히 체크하고, 편안한 일상 복귀를 위한 주의사항을 친절하게 안내해 드립니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },

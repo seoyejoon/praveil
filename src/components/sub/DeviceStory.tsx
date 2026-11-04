@@ -832,11 +832,13 @@ export function StoryCompare({
                   scope="col"
                   className={`px-4 pt-6 pb-5 align-top font-normal md:px-6 ${col.self ? "rounded-t-[20px] bg-espresso text-white" : ""}`}
                 >
-                  <span
-                    className={`block text-[11px] ${col.self ? "text-taupe" : "text-muted"}`}
-                  >
-                    {col.maker}
-                  </span>
+                  {col.maker && (
+                    <span
+                      className={`block text-[11px] ${col.self ? "text-taupe" : "text-muted"}`}
+                    >
+                      {col.maker}
+                    </span>
+                  )}
                   <span className="mt-1 block text-lg font-semibold tracking-[-0.02em] md:text-xl">
                     {col.name}
                   </span>

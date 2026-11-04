@@ -665,7 +665,10 @@ function PrincipleFigure({
       }
     >
       <div
-        className={`relative overflow-hidden ${image.note ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${image.framed || fill ? "aspect-[8/5]" : ""}`}
+        className={`relative overflow-hidden ${image.note ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${!image.figureAspect && (image.framed || fill) ? "aspect-[8/5]" : ""}`}
+        style={
+          image.figureAspect ? { aspectRatio: image.figureAspect } : undefined
+        }
       >
         {image.video ? (
           <video

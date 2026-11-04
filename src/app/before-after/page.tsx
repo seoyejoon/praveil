@@ -26,7 +26,8 @@ export default async function BeforeAfterPage() {
       en="Before & After"
       title="전후사진"
       description="프라베일에서 시술받은 분들의 변화를 보여 드립니다."
-      image="/images/photos/hero-before-after.webp"
+      image="/images/photos/hero-before-after.webp?v=20261104"
+      mobileImage="/images/photos/hero-before-after-m.webp"
       crumbs={[
         { label: community.label, href: community.href },
         { label: "전후사진" },

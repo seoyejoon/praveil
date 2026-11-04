@@ -21,6 +21,7 @@ export default function AboutPage({
       title={hero.title}
       description={hero.description}
       image={hero.image}
+      mobileImage={hero.mobileImage}
       // 병원소개 · 의료진소개는 같은 모양으로, 상단 경로(HOME - 병원소개 - …)는 숨김 (아래 탭으로 이동)
       crumbs={[]}
       tabs={about.pages}

@@ -12,13 +12,16 @@ const boards = {
     en: "Notice",
     title: "공지사항",
     description: "진료 일정과 병원 소식을 알려 드립니다.",
-    image: "/images/photos/hero-notice.webp",
+    image: "/images/photos/hero-notice.webp?v=20261104",
+    mobileImage: "/images/photos/hero-notice-m.webp",
   },
   event: {
     en: "Event",
     title: "이벤트",
     description: "프라베일에서 진행하는 이벤트를 확인해 보세요.",
     image: "/images/photos/hero-event.webp",
+    // 확인 필요: 이벤트 세로 전용 사진 (없어서 PC 사진을 잘라 씀)
+    mobileImage: undefined,
   },
 };
 
@@ -53,6 +56,7 @@ export default async function NoticePage({ searchParams }: Props) {
       title={b.title}
       description={b.description}
       image={b.image}
+      mobileImage={b.mobileImage}
       crumbs={[
         { label: community.label, href: community.href },
         { label: b.title },

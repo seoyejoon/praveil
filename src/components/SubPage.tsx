@@ -15,6 +15,7 @@ export default function SubPage({
   title,
   description,
   image,
+  mobileImage,
   imagePosition,
   device,
   scene,
@@ -29,6 +30,8 @@ export default function SubPage({
   title: string;
   description?: string;
   image: string;
+  /** 세로 화면 전용 사진 (없으면 PC 사진을 잘라서 씀) */
+  mobileImage?: string;
   /** 사진에서 보여 줄 위치 (예: "75% 30%" — 인물이 오른쪽에 있을 때) */
   imagePosition?: string;
   /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
@@ -72,16 +75,20 @@ export default function SubPage({
             data-dark-hero
             className="relative h-[60svh] min-h-[420px] overflow-hidden bg-[#1f1b18] text-white md:h-[72svh] md:min-h-[560px]"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image}
-              alt=""
-              fetchPriority="high"
-              style={
-                imagePosition ? { objectPosition: imagePosition } : undefined
-              }
-              className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
-            />
+            <picture>
+              {mobileImage && (
+                <source media="(max-width: 767px)" srcSet={mobileImage} />
+              )}
+              <img
+                src={image}
+                alt=""
+                fetchPriority="high"
+                style={
+                  imagePosition ? { objectPosition: imagePosition } : undefined
+                }
+                className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
+              />
+            </picture>
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />
             <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
               {crumbs.length > 0 && (

@@ -3,7 +3,9 @@
 // ※ 의료광고: 효과를 보장하는 표현은 쓰지 않고, 개인차 · 부작용 안내를 모든 페이지에 둡니다.
 import { doctorPhotos } from "@/content/doctor-photos";
 
-const photo = (name: string) => `/images/photos/${name}.webp`;
+// 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
+const photo = (name: string) =>
+  `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 // 시술 분위기 사진 (무료 상업용, 출처: public/images/stock/SOURCES.txt)
 const stock = (name: string) => `/images/stock/${name}.webp`;
 const device = (file: string, name: string, type: string) => ({

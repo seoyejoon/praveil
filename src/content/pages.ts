@@ -47,6 +47,7 @@ export const locationPage = {
     title: "진료안내 · 오시는 길",
     description: "진료시간과 찾아오시는 방법을 안내합니다.",
     image: images.pageHero.location,
+    mobileImage: images.pageHero.locationMobile,
   },
 };
 

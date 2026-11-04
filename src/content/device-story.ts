@@ -57,6 +57,8 @@ export type DeviceStory = {
     video?: string;
     /** 기존 8:5 원리 그림 영역 안에 공식 자료 전체를 표시 */
     framed?: boolean;
+    /** 자료 원본 비율 (예: "16 / 9"). 8:5 가 아니면 적어야 위아래 여백 없이 꽉 참 */
+    figureAspect?: string;
     note?: string;
     /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
     marks: {
@@ -136,7 +138,9 @@ export type DeviceStory = {
   video?: { src: string; poster: string; title: string[]; text: string };
 };
 
-const photo = (name: string) => `/images/photos/${name}.webp`;
+// 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
+const photo = (name: string) =>
+  `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 const cs = (name: string) => `/images/coolsonic/${name}.webp`;
 
 export const deviceStory: Record<string, DeviceStory> = {
@@ -1853,8 +1857,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "CLASSYS",
       image: "/images/equipment/hero/shrink-universe.webp",
       film: {
-        src: "/videos/shrink-device.mp4",
-        poster: "/images/shrink/device.webp",
+        src: "/videos/shrink-device.mp4?v=20261104",
+        poster: "/images/shrink/device.webp?v=20261104",
       },
       text: "슈링크 유니버스는 클래시스에서 만든 집속 초음파(HIFU) 리프팅 장비입니다. 피부 속 정한 깊이에 열응고점(TCP)을 만들어 탄력과 윤곽을 관리하며, 점을 찍듯 나누어 주는 일반(Dot) 모드와 점을 촘촘히 이어 주는 MP(Micro Pulsed) 모드를 피부 상태에 맞춰 고릅니다.",
       specs: [
@@ -1867,11 +1871,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleImage: {
       src: "/images/shrink/principle.webp",
       video: "/videos/shrink-principle.mp4",
-      alt: "MPT 4.5mm 카트리지가 피부 속 정한 깊이에 열응고점을 만드는 모습을 보여 주는 제조사 영상",
+      alt: "같은 4.5mm 깊이에서 일반 모드(점)와 MP 모드(이어진 선)로 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       framed: true,
+      figureAspect: "16 / 9",
       marks: [],
       layers: [],
-      note: "CLASSYS · MPT 4.5mm 카트리지. 실제 크기 · 깊이와는 다를 수 있습니다.",
+      note: "CLASSYS · 왼쪽 일반(Dot) 모드, 오른쪽 MP 모드. 실제 크기 · 깊이와는 다를 수 있습니다.",
     },
     principle: [
       {
@@ -1892,7 +1897,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       lead: "같은 집속 초음파(HIFU) 리프팅도 에너지를 주는 방식과 핸드피스가 다릅니다. 고민 부위와 피부 상태를 함께 살펴 선택합니다.",
       columns: [
         { name: "슈링크 유니버스", maker: "클래시스 · 국내", self: true },
-        { name: "슈링크 (기존)", maker: "클래시스 · 국내" },
+        { name: "슈링크 (1세대)", maker: "클래시스 · 국내" },
         { name: "리니어지", maker: "제이시스메디칼 · 국내" },
         // 확인 필요: 리프테라 세부 사양 (기사 · 시술 기관 안내 기준으로 정리)
         { name: "리프테라", maker: "대한과학 · 국내" },
@@ -1962,14 +1967,17 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "1.5 · 2.0 · 3.0 · 4.5mm 카트리지로 얕은 피부층부터 깊은 층까지 나누어 전달합니다. 피부 두께와 처짐 부위에 맞춰 깊이를 조합합니다.",
         image: "/images/shrink/booster-depth.webp",
         video: "/videos/shrink-booster-depth.mp4",
-        alt: "울트라 부스터 카트리지가 피부 속에 둥근 모양으로 열응고점을 만드는 모습을 보여 주는 제조사 영상",
+        alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       },
       {
-        title: "대표원장의 부위별 설계",
-        text: "얼굴 전체를 같은 세기로 하지 않습니다. 대표원장이 지방량과 처진 정도를 직접 보고 부위마다 깊이 · 모드 · 샷 수를 나누어 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        title: "카트리지 교체 없이 바꾸는 두 가지 모드",
+        text: "하나의 카트리지로 일반(Dot) 모드와 MP 모드를 모두 씁니다. 부위에 따라 시술 중에 화면에서 바로 바꿀 수 있어, 카트리지를 갈아 끼우려고 멈추지 않습니다.",
+        image: "/images/shrink/mode-switch.webp",
+        video: "/videos/shrink-mode-switch.mp4",
+        alt: "울트라 F 핸드피스 하나로 두 가지 모드를 교체 없이 쓴다고 설명하는 제조사 영상",
+        // 영상 위쪽에 제조사 문구가 있어 자르지 않고 전체를 보여 줌
+        mediaSize: { width: 1280, height: 720 },
+        mediaEdges: ["#000000", "#000000"],
       },
     ],
     process: [
@@ -2030,6 +2038,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       video: "/videos/potenza-principle.mp4",
       alt: "포텐자 미세침이 피부층별로 고주파를 전달하고, 바이폴라 · 모노폴라 고주파가 퍼지는 모습을 보여 주는 제조사 영상",
       framed: true,
+      figureAspect: "16 / 9",
       marks: [],
       layers: [],
       note: "JEISYS MEDICAL · 층별 고주파 전달과 바이폴라 · 모노폴라 방식. 실제 크기 · 깊이와는 다를 수 있습니다.",

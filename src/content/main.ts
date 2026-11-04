@@ -1,7 +1,9 @@
 // 메인 페이지 문구 (2026.10 리뉴얼). 원장님 검토 후 확정.
 import { doctorPhotos } from "@/content/doctor-photos";
 
-const photo = (name: string) => `/images/photos/${name}.webp`;
+// 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
+const photo = (name: string) =>
+  `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 
 // 첫 화면: 스크롤에 따라 로비 → (유리 상담실 안으로 들어감) → 원장 상담 장면
 // focusX: 좁은 화면에서 사진을 어디 기준으로 자를지 (로고가 보이게)

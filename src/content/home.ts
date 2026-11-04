@@ -148,7 +148,9 @@ export const clinic = {
 };
 
 // 2026.09 병원 촬영본 (원본: 구글 드라이브 '최종보정'). 자리별로 잘라서 public/images/photos 에 둔다.
-const photo = (name: string) => `/images/photos/${name}.webp`;
+// 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
+const photo = (name: string) =>
+  `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 
 export const images = {
   hero: photo("hero"),
@@ -181,6 +183,7 @@ export const images = {
     treatments: photo("hero-treatments"),
     news: photo("hero-news"),
     location: photo("hero-location"),
+    locationMobile: photo("hero-location-m"),
   },
 };
 

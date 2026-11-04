@@ -4,7 +4,9 @@
 
 import { doctorPhotos } from "@/content/doctor-photos";
 
-const photo = (name: string) => `/images/photos/${name}.webp`;
+// 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
+const photo = (name: string) =>
+  `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 // 제조사 공식 제품 사진 (장비 구매 병원 사용 허가 범위)
 // 장비 카드 사진: 원본(equipment/)에서 여백만 정리해 장비 높이를 같게 맞춘 사본 (equipment/card/)
 const device = (name: string) => `/images/equipment/card/${name}.webp`;
@@ -16,6 +18,7 @@ export const aboutHero = {
     title: "병원소개",
     description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.",
     image: photo("hero-lobby"),
+    mobileImage: photo("hero-lobby-m"),
   },
   doctor: {
     en: "Doctor",
@@ -23,6 +26,7 @@ export const aboutHero = {
     description: "상담부터 시술, 경과 확인까지 대표원장이 직접 책임집니다.",
     // 원장 사진은 바로 아래 인사말에 있어, 첫 화면은 병원 입구 사진 (병원소개와 같은 모양)
     image: photo("hero-entrance"),
+    mobileImage: photo("hero-entrance-m"),
   },
 };
 

@@ -821,7 +821,11 @@ export function StoryCompare({
         ← 옆으로 밀어서 비교해 보세요
       </p>
       <Reveal className="no-scrollbar -mx-5 mt-3 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-12 md:px-0">
-        <table className="w-full min-w-[720px] table-fixed border-collapse text-left">
+        <table
+          className="w-full table-fixed border-collapse text-left"
+          // 열이 늘어나면 칸이 좁아져 글이 뭉치므로 열 수에 맞춰 최소 폭을 늘린다
+          style={{ minWidth: Math.max(720, 150 + c.columns.length * 190) }}
+        >
           <colgroup>
             <col className="w-[120px] md:w-[150px]" />
             {c.columns.map((col) => (

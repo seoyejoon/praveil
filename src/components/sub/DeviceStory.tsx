@@ -65,6 +65,8 @@ export function StoryAbout({
                   ? "relative flex items-center"
                   : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
               }
+              // 영상 비율이 칸과 달라 남는 자리는 영상 가장자리 색으로 채워 한 덩어리로 보이게
+              style={device.film?.edge ? { background: device.film.edge } : undefined}
             >
               {device.film ? (
                 <video

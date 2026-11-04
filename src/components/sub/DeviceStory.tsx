@@ -63,9 +63,12 @@ export function StoryAbout({
               className={
                 device.photoFullFrame && !device.film
                   ? "relative flex items-center"
-                  : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
+                  : device.film
+                    ? // 영상은 16:9 그대로. 오른쪽 글 높이에 맞춰 세로로 늘어나지 않게 가운데 정렬
+                      "relative aspect-video w-full self-center"
+                    : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
               }
-              // 영상 비율이 칸과 달라 남는 자리는 영상 가장자리 색으로 채워 한 덩어리로 보이게
+              // 둥근 모서리 안쪽이 영상과 같은 색이 되도록 (영상 가장자리 색)
               style={device.film?.edge ? { background: device.film.edge } : undefined}
             >
               {device.film ? (
@@ -78,7 +81,7 @@ export function StoryAbout({
                   playsInline
                   preload="metadata"
                   aria-label={`${device.name} 장비 영상`}
-                  className={`absolute inset-0 h-full w-full ${device.mediaContain ? "object-contain" : "object-cover"}`}
+                  className="absolute inset-0 h-full w-full object-contain object-center"
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element

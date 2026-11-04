@@ -2072,7 +2072,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "방식",
+          label: "에너지 방식",
           values: [
             "미세침 · 비침습 고주파",
             "미세침 고주파",
@@ -2085,7 +2085,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           values: ["모노폴라 · 바이폴라", "바이폴라", "모노폴라", "모노폴라"],
         },
         {
-          label: "주로 상담하는 고민",
+          label: "주요 고민",
           values: [
             "모공 · 피부결 · 흉터 · 탄력",
             "모공 · 흉터 · 피부결",
@@ -2094,12 +2094,12 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "회복",
+          label: "회복 및 다운타임",
           values: [
-            "팁에 따라 붉은기 · 바늘 자국",
-            "붉은기 · 바늘 자국",
-            "붉은기 · 열감",
-            "붉은기 · 열감",
+            "팁 종류에 따라 상이 (붉은기 · 미세 바늘 자국)",
+            "붉은기 · 미세 바늘 자국",
+            "일시적 붉은기 · 열감",
+            "일시적 붉은기 · 열감",
           ],
         },
       ],

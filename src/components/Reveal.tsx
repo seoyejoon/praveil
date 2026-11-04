@@ -9,11 +9,14 @@ export default function Reveal({
   className = "",
   as: Tag = "div",
   variant = "rise",
+  style,
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "li" | "section";
+  /** 박스 비율처럼 바깥에서 정해 주는 값 (등장 지연과 함께 적용됨) */
+  style?: React.CSSProperties;
   /** rise: 아래에서 떠오름 / zoom: 크게 있다가 줄어들며 / line: 글줄이 아래에서 올라옴(자식 span) / clip: 사진이 아래에서 위로 열림 */
   variant?: "rise" | "zoom" | "line" | "clip";
 }) {
@@ -39,7 +42,11 @@ export default function Reveal({
     <Tag
       ref={ref as React.RefObject<never>}
       className={`reveal-${variant === "rise" ? "base" : variant} ${variant === "rise" ? "reveal" : ""} ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={
+        delay || style
+          ? { ...style, ...(delay ? { transitionDelay: `${delay}ms` } : {}) }
+          : undefined
+      }
     >
       {children}
     </Tag>

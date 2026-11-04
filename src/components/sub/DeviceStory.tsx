@@ -343,24 +343,25 @@ export function StoryFeatures({
         />
         <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
           {story.features.map((f, i) => {
-            // 박스는 모두 4:3 으로 통일. 비율이 크게 다른 공식 도해 · 영상은 자르지 않고
-            // 전체를 보여 주며, 남는 자리는 사진 가장자리 색(mediaEdges)으로 채움
+            // 박스는 기본 4:3. 원본 크기(mediaSize)를 적어 둔 공식 도해 · 영상은
+            // 박스를 그 비율로 맞춰, 자르지도 여백을 남기지도 않고 칸을 꽉 채움
             const ratio = f.mediaSize
               ? f.mediaSize.width / f.mediaSize.height
               : f.paddedWidescreen
                 ? 4 / 3
                 : null;
-            const fit =
-              f.mediaFit ??
-              (ratio && (ratio < 1.2 || ratio > 1.8) ? "contain" : "cover");
-            const edges = fit === "contain" ? f.mediaEdges : undefined;
+            const boxRatio = f.mediaSize ? ratio : null;
+            const fit = f.mediaFit ?? (boxRatio ? "contain" : "cover");
+            // 박스를 원본 비율로 맞추면 남는 자리가 없어 가장자리 색이 필요 없음
+            const edges = fit === "contain" && !boxRatio ? f.mediaEdges : undefined;
             return (
               <li
                 key={f.title}
                 className="grid items-center gap-7 md:grid-cols-2 md:gap-16"
               >
                 <Reveal
-                  className={`relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${i % 2 ? "md:order-2" : ""}`}
+                  className={`relative overflow-hidden rounded-[24px] bg-[#1d2227] md:rounded-[32px] ${boxRatio ? "" : "aspect-[4/3]"} ${i % 2 ? "md:order-2" : ""}`}
+                  style={boxRatio ? { aspectRatio: String(boxRatio) } : undefined}
                 >
                   {edges && (
                     <div

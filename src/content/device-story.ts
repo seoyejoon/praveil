@@ -576,6 +576,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/coolphase/principle-feature.webp",
         video: "/videos/coolphase-cooling.mp4",
         alt: "쿨페이즈 팁의 직접 접촉 냉각과 피부 속 고주파 열 전달을 보여 주는 제조사 원리 영상",
+        mediaSize: { width: 1280, height: 960 },
       },
       {
         title: "진피 깊은 층까지, 6.78MHz 모노폴라 고주파",
@@ -583,6 +584,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/coolphase/device.webp",
         video: "/videos/coolphase-device.mp4",
         alt: "쿨페이즈 장비와 핸드피스를 보여 주는 제조사 영상",
+        mediaSize: { width: 1280, height: 720 },
       },
       {
         title: "피부 온도와 두께를 고려한 세심한 에너지 조절",
@@ -590,6 +592,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/coolphase/tip-loop.webp",
         video: "/videos/coolphase-tip-loop.mp4",
         alt: "쿨페이즈 얼굴용 팁(Face Tip)의 모양을 보여 주는 제조사 영상",
+        mediaSize: { width: 960, height: 720 },
       },
       {
         title: "마취 대기와 회복 부담을 덜어낸 편안한 시술",
@@ -1971,6 +1974,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/shrink/booster-depth.webp?v=20261104b",
         video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
+        mediaSize: { width: 1280, height: 720 },
       },
       {
         title: "카트리지 교체 없이 실시간 전환하는 듀얼 모드",
@@ -2134,6 +2138,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/potenza/pumping.webp?v=20261104",
         video: "/videos/potenza-pumping.mp4?v=20261104",
         alt: "포텐자 펌핑팁이 피부 속에 고주파와 함께 약물을 전달하는 모습을 보여 주는 제조사 영상",
+        mediaSize: { width: 1280, height: 720 },
       },
       {
         title: "0.5 ~ 4.0mm, 부위별 깊이 조절",
@@ -2141,6 +2146,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/potenza/depth.webp?v=20261104d",
         video: "/videos/potenza-depth.mp4?v=20261104d",
         alt: "포텐자 미세침 팁의 깊이 조절(0.5 ~ 4.0mm, 0.25mm 단위)을 보여 주는 제조사 영상",
+        mediaSize: { width: 1280, height: 720 },
       },
     ],
     process: [

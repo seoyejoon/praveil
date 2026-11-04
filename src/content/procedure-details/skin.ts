@@ -304,7 +304,7 @@ export const scarPore: Record<string, ProcedureDetail> = {
       pointConsult,
     ],
     cautions: [
-      "시술 후 2~5일 정도 붉어짐, 붓기, 오돌토돌한 각질이 생길 수 있습니다.",
+      "시술 후 2~5일 정도 붉어짐, 부기, 오돌토돌한 각질이 생길 수 있습니다.",
       "각질은 억지로 떼지 말고, 보습과 자외선 차단에 특히 신경 써 주세요.",
       "드물게 색소침착이 생길 수 있어 시술 기간 동안 자외선 노출을 피해 주세요.",
       cautionCommon,

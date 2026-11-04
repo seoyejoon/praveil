@@ -851,7 +851,7 @@ export default function TreatmentDetail({
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 얼마인가요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                병원 가격표 기준입니다. 부위 · 양 · 피부 상태에 따라 달라질 수
+                본원 가격표 기준이며, 시술 부위 · 양 · 피부 상태에 따라 달라질 수
                 있어, 상담 후 정확한 비용을 안내해 드립니다.
               </p>
             </div>

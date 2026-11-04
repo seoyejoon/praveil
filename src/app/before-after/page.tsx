@@ -44,7 +44,7 @@ export default async function BeforeAfterPage() {
         <p className="mt-16 border-t border-line pt-6 text-xs leading-relaxed text-muted">
           ※ 사진은 환자 본인의 동의를 받아 게시합니다. 시술 결과는 피부 상태 ·
           나이 · 생활 습관에 따라 사람마다 다르며, 같은 결과를 보장하지
-          않습니다. 시술 후 붓기 · 멍 · 붉어짐 등 부작용이 생길 수 있습니다.
+          않습니다. 시술 후 부기 · 멍 · 붉어짐 등 부작용이 생길 수 있습니다.
         </p>
       </section>
     </SubPage>

@@ -102,7 +102,7 @@ export default async function BeforeAfterDetail({ params }: Props) {
 
       <p className="mx-auto mt-12 max-w-5xl rounded-[20px] bg-ivory p-6 text-xs leading-relaxed text-muted">
         ※ 환자 본인의 동의를 받아 게시한 사진입니다. 시술 결과는 사람마다 다르며
-        같은 결과를 보장하지 않습니다. 시술 후 붓기 · 멍 · 붉어짐 등 부작용이
+        같은 결과를 보장하지 않습니다. 시술 후 부기 · 멍 · 붉어짐 등 부작용이
         생길 수 있습니다.
       </p>
 

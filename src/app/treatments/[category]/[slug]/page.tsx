@@ -103,7 +103,7 @@ export default async function ProcedurePage({ params }: Props) {
           ))}
 
           <p className="border-l-2 border-gold/60 bg-ivory px-5 py-4 text-xs leading-relaxed text-muted md:text-sm">
-            시술 결과는 개인에 따라 차이가 있을 수 있으며, 시술 후 붓기 · 멍 · 통증 등 부작용이 나타날 수 있습니다.
+            시술 결과는 개인에 따라 차이가 있을 수 있으며, 시술 후 부기 · 멍 · 통증 등 부작용이 나타날 수 있습니다.
             자세한 내용은 의료진과 상담하시기 바랍니다.
           </p>
         </div>

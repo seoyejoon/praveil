@@ -232,7 +232,7 @@ export function BaPreview({
             {title} 전후사진
           </h2>
           <p className="mt-3 text-[13px] text-muted md:text-sm">
-            의료법에 따라 시술 전 사진은 로그인 후 볼 수 있습니다. 결과는 개인에
+            의료법에 따라 시술 전후 사진은 로그인 후 확인하실 수 있으며, 시술 결과는 개인에
             따라 다를 수 있습니다.
           </p>
         </div>

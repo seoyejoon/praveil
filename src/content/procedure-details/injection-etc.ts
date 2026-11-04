@@ -123,7 +123,7 @@ export const injections: Record<string, ProcedureDetail> = {
       "여드름이 오래 가라앉지 않는 분",
     ],
     principle:
-      "염증이 심한 여드름 부위에 항염 작용을 하는 약물을 아주 소량 희석해 직접 주사합니다. 염증과 붓기가 빨리 가라앉도록 도와 흉터가 남을 가능성을 줄이는 데 도움이 됩니다.",
+      "염증이 심한 여드름 부위에 항염 작용을 하는 약물을 아주 소량 희석해 직접 주사합니다. 염증과 부기가 빨리 가라앉도록 도와 흉터가 남을 가능성을 줄이는 데 도움이 됩니다.",
     points: [
       pointDoctor,
       "여드름 크기와 깊이에 맞춰 약물 농도와 양을 최소한으로 조절합니다.",
@@ -138,7 +138,7 @@ export const injections: Record<string, ProcedureDetail> = {
     faq: [
       {
         q: "언제 효과가 나타나나요?",
-        a: "보통 하루 이틀 안에 염증과 붓기가 줄어드는 것을 느낍니다.",
+        a: "보통 하루 이틀 안에 염증과 부기가 줄어드는 것을 느낍니다.",
       },
       {
         q: "모든 여드름에 맞을 수 있나요?",
@@ -173,7 +173,7 @@ export const injections: Record<string, ProcedureDetail> = {
       pointConsult,
     ],
     cautions: [
-      "주사 부위 붓기, 붉어짐, 가려움이 생길 수 있습니다.",
+      "주사 부위 부기, 붉어짐, 가려움이 생길 수 있습니다.",
       "드물게 알레르기 반응이 있을 수 있어 필요 시 반응 검사를 먼저 진행합니다.",
       "필러와 함께 원래 있던 조직의 히알루론산도 일부 분해될 수 있어 부위가 일시적으로 꺼져 보일 수 있습니다.",
       cautionCommon,
@@ -189,13 +189,13 @@ export const injections: Record<string, ProcedureDetail> = {
       },
       {
         q: "녹인 뒤 바로 다시 필러를 넣어도 되나요?",
-        a: "붓기가 빠지고 상태를 확인한 뒤 다시 계획하는 것을 권합니다.",
+        a: "부기가 빠지고 상태를 확인한 뒤 다시 계획하는 것을 권합니다.",
       },
     ],
     info: {
       time: "약 10분",
       anesthesia: "불필요",
-      recovery: "붓기 1~3일",
+      recovery: "부기 1~3일",
       interval: "필요 시",
     },
   },
@@ -238,7 +238,7 @@ export const injections: Record<string, ProcedureDetail> = {
     info: {
       time: "약 10~20분",
       anesthesia: "필요 시 마취 크림",
-      recovery: "붓기 · 뻐근함 수일",
+      recovery: "부기 · 뻐근함 수일",
       interval: "1~2주 간격 반복",
     },
     check: "사용 제품 · 성분 확인",
@@ -273,12 +273,12 @@ export const injections: Record<string, ProcedureDetail> = {
         q: "턱 보톡스와 무엇이 다른가요?",
         a: "턱 보톡스는 근육 부피를, V핏 주사는 턱 주변 지방으로 인한 라인을 관리합니다. 원인에 따라 함께 계획하기도 합니다.",
       },
-      { q: "붓기가 오래가나요?", a: "보통 수일 안에 가라앉습니다." },
+      { q: "부기가 오래가나요?", a: "보통 수일 안에 가라앉습니다." },
     ],
     info: {
       time: "약 10~15분",
       anesthesia: "필요 시 마취 크림",
-      recovery: "붓기 수일",
+      recovery: "부기 수일",
       interval: "1~2주 간격 반복",
     },
   },
@@ -375,7 +375,7 @@ const tattooRemoval = (area: "눈썹" | "아이라인"): ProcedureDetail => ({
     pointConsult,
   ],
   cautions: [
-    "시술 후 붓기, 붉어짐, 작은 딱지가 생길 수 있으며 딱지는 억지로 떼지 말아 주세요.",
+    "시술 후 부기, 붉어짐, 작은 딱지가 생길 수 있으며 딱지는 억지로 떼지 말아 주세요.",
     "드물게 색소 변화, 흉터, 일시적인 눈썹 · 속눈썹 탈락이 생길 수 있습니다.",
     ...cautionLaser.slice(2, 3),
     cautionCommon,
@@ -397,7 +397,7 @@ const tattooRemoval = (area: "눈썹" | "아이라인"): ProcedureDetail => ({
   info: {
     time: "약 10~15분",
     anesthesia: "마취 크림",
-    recovery: "붓기 · 딱지 수일 ~ 1주",
+    recovery: "부기 · 딱지 수일 ~ 1주",
     interval: "4~8주 간격 반복",
   },
   check: "사용 장비(피코 · 큐스위치) 확인",

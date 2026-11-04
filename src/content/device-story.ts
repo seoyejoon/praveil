@@ -59,6 +59,8 @@ export type DeviceStory = {
     framed?: boolean;
     /** 자료 원본 비율 (예: "16 / 9"). 8:5 가 아니면 적어야 위아래 여백 없이 꽉 참 */
     figureAspect?: string;
+    /** 출처 글을 아래 띠 대신 그림 위에 얹음 (그림이 칸을 끝까지 채움) */
+    noteOverlay?: boolean;
     note?: string;
     /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
     marks: {
@@ -422,7 +424,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "과하지 않게, 필요한 만큼",
-        text: "한 번에 많이 넣기보다 자연스러운 선에서 멈춥니다. 붓기가 빠진 뒤 경과를 보고, 필요하면 조금 더 채우는 쪽을 권합니다.",
+        text: "한 번에 많이 넣기보다 자연스러운 선에서 멈춥니다. 부기가 빠진 뒤 경과를 보고, 필요하면 조금 더 채우는 쪽을 권합니다.",
         image: photo("cat-main-skin"),
         alt: "턱 라인에 필러를 소량씩 나누어 주입하는 모습",
       },
@@ -854,8 +856,8 @@ export const deviceStory: Record<string, DeviceStory> = {
           label: "경과 관찰",
           values: [
             "초기 반응과 이후 피부 변화",
-            "붓기 · 엠보와 서서히 나타나는 변화",
-            "붓기 · 엠보와 서서히 나타나는 변화",
+            "부기 · 엠보와 서서히 나타나는 변화",
+            "부기 · 엠보와 서서히 나타나는 변화",
           ],
         },
       ],
@@ -950,7 +952,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "경과",
-          value: "붓기 · 멍 · 주입 자국 등 개인차",
+          value: "부기 · 멍 · 주입 자국 등 개인차",
         },
       ],
       photoAlt: "파마리서치 공식 리쥬란 제품 이미지",
@@ -967,7 +969,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "변화와 반응 함께 확인",
-        text: "당일 붓기만으로 결과를 판단하지 않고 피부 상태와 불편한 증상을 함께 보며 경과를 확인합니다.",
+        text: "당일 부기만으로 결과를 판단하지 않고 피부 상태와 불편한 증상을 함께 보며 경과를 확인합니다.",
       },
     ],
     compare: {
@@ -1023,9 +1025,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "회복 확인",
           values: [
-            "주입 자국 · 붓기 · 멍 등",
-            "붓기 · 멍 · 혈관 관련 증상 등",
-            "붓기 · 결절 · 염증 등",
+            "주입 자국 · 부기 · 멍 등",
+            "부기 · 멍 · 혈관 관련 증상 등",
+            "부기 · 결절 · 염증 등",
             "자극 · 접촉 반응 등",
           ],
         },
@@ -1060,7 +1062,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "반응을 보며 다음 단계 결정",
-        text: "붓기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
+        text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
         image: "/images/photos/signature-4.webp",
         alt: "피부 경과 관리 설명용 기존 진료 사진",
       },
@@ -1157,7 +1159,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과를 보며 다음 계획",
-        text: "엠보와 붓기가 가라앉은 뒤 변화를 함께 보고, 추가 시술이 필요한지 다시 살펴 정합니다.",
+        text: "엠보와 부기가 가라앉은 뒤 변화를 함께 보고, 추가 시술이 필요한지 다시 살펴 정합니다.",
         image: "/images/photos/signature-4.webp",
         alt: "피부 경과 관리 설명용 기존 진료 사진",
       },
@@ -1186,7 +1188,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "시술 직후 엠보 · 붓기를 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
+        text: "시술 직후 엠보 · 부기를 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -1316,7 +1318,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "경과 확인",
-          value: "붓기 · 멍 · 결절 · 염증 등",
+          value: "부기 · 멍 · 결절 · 염증 등",
         },
       ],
       photoAlt: "쥬베룩 공식 제품 바이알",
@@ -1333,7 +1335,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "안정된 뒤 경과 평가",
-        text: "시술 직후 붓기와 시간이 지나며 보이는 변화를 구분하고, 결절감이나 염증 반응이 없는지 함께 확인합니다.",
+        text: "시술 직후 부기와 시간이 지나며 보이는 변화를 구분하고, 결절감이나 염증 반응이 없는지 함께 확인합니다.",
       },
     ],
     compare: {
@@ -1378,7 +1380,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           label: "경과 확인",
           values: [
             "초기 반응과 이후 피부 상태",
-            "붓기 · 덩어리감 · 피부 상태",
+            "부기 · 덩어리감 · 피부 상태",
             "주름과 주입 부위 반응",
           ],
         },
@@ -1415,7 +1417,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "덩어리감까지 살피는 경과 확인",
-        text: "붓기가 빠지는 과정과 오래가는 결절감을 구분합니다. 열감이나 통증이 동반되면 다음 시술보다 진찰을 먼저 진행합니다.",
+        text: "부기가 빠지는 과정과 오래가는 결절감을 구분합니다. 열감이나 통증이 동반되면 다음 시술보다 진찰을 먼저 진행합니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
       },
@@ -1444,7 +1446,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
+        text: "부기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -1525,7 +1527,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "덩어리감까지 살피는 경과",
-        text: "붓기가 빠지는 과정과 오래가는 덩어리감을 구분합니다. 통증 · 열감이 함께 있으면 바로 진찰합니다.",
+        text: "부기가 빠지는 과정과 오래가는 덩어리감을 구분합니다. 통증 · 열감이 함께 있으면 바로 진찰합니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
       },
@@ -1553,7 +1555,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기 · 엠보를 확인하고 마사지 등 관리 방법을 안내합니다.",
+        text: "부기 · 엠보를 확인하고 마사지 등 관리 방법을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -1625,7 +1627,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "덩어리감까지 살피는 경과",
-        text: "붓기가 빠지는 과정과 오래가는 덩어리감을 구분합니다. 통증 · 열감이 함께 있으면 바로 진찰합니다.",
+        text: "부기가 빠지는 과정과 오래가는 덩어리감을 구분합니다. 통증 · 열감이 함께 있으면 바로 진찰합니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
       },
@@ -1653,7 +1655,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기 · 엠보를 확인하고 관리 방법을 안내합니다.",
+        text: "부기 · 엠보를 확인하고 관리 방법을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -1707,7 +1709,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 반응과 경과 확인",
-        text: "열 자극 뒤 변화는 시간이 걸릴 수 있습니다. 직후의 붓기와 이후의 변화를 구분해 다음 계획을 정합니다.",
+        text: "열 자극 뒤 변화는 시간이 걸릴 수 있습니다. 직후의 부기와 이후의 변화를 구분해 다음 계획을 정합니다.",
       },
     ],
     compare: {
@@ -1751,8 +1753,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "시술 후 반응",
           values: [
-            "열감 · 압통 · 붓기 가능",
-            "붉어짐 · 붓기 · 바늘 자국 가능",
+            "열감 · 압통 · 부기 가능",
+            "붉어짐 · 부기 · 바늘 자국 가능",
             "붉어짐 · 열감 · 색 변화 가능",
           ],
         },
@@ -1800,7 +1802,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "회복 일정까지 포함한 계획",
-        text: "중요한 일정을 확인하고, 붉어짐이나 붓기가 생길 가능성을 설명합니다. 경과를 본 뒤 추가 시술 여부를 정합니다.",
+        text: "중요한 일정을 확인하고, 붉어짐이나 부기가 생길 가능성을 설명합니다. 경과를 본 뒤 추가 시술 여부를 정합니다.",
         image: "/images/photos/clinic-4.webp",
         alt: "세안과 회복 관리 안내에 사용하는 병원 파우더룸 사진",
       },
@@ -1860,7 +1862,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         src: "/videos/shrink-device.mp4?v=20261104",
         poster: "/images/shrink/device.webp?v=20261104",
       },
-      text: "슈링크 유니버스는 클래시스에서 만든 집속 초음파(HIFU) 리프팅 장비입니다. 피부 속 정한 깊이에 열응고점(TCP)을 만들어 탄력과 윤곽을 관리하며, 점을 찍듯 나누어 주는 일반(Dot) 모드와 점을 촘촘히 이어 주는 MP(Micro Pulsed) 모드를 피부 상태에 맞춰 고릅니다.",
+      text: "슈링크 유니버스는 클래시스(CLASSYS)사의 고강도 집속 초음파(HIFU) 리프팅 장비입니다. 피부 속 목표 층에 열응고점(TCP)을 형성하여 처진 윤곽과 탄력을 관리하며, 점 형태로 조사하는 일반(Dot) 모드와 에너지를 선 형태로 촘촘히 전달하는 MP(Micro Pulsed) 모드를 피부 상태에 맞춰 선택합니다.",
       specs: [
         { label: "방식", value: "집속 초음파 (HIFU)" },
         { label: "조사 모드", value: "일반(Dot) · MP 모드" },
@@ -1874,33 +1876,34 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "같은 4.5mm 깊이에서 일반 모드(점)와 MP 모드(이어진 선)로 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       framed: true,
       figureAspect: "16 / 9",
+      noteOverlay: true,
       marks: [],
       layers: [],
       note: "CLASSYS · 왼쪽 일반(Dot) 모드, 오른쪽 MP 모드. 실제 크기 · 깊이와는 다를 수 있습니다.",
     },
     principle: [
       {
-        title: "초음파를 한 점에 모음",
-        text: "곡면 발생기가 초음파를 정한 깊이에 모아, 그 자리에 작은 열응고점(TCP)을 만듭니다.",
+        title: "초음파 에너지 집속",
+        text: "고강도 초음파 에너지를 피부 속 목표 깊이(1.5~4.5mm)에 정교하게 집속시켜 미세한 열응고점(TCP)을 형성합니다.",
       },
       {
-        title: "일반 · MP, 두 가지 방식",
-        text: "점을 나누어 찍는 일반 모드와 점을 촘촘히 이어 주는 MP 모드 중 부위와 피부 상태에 맞춰 고릅니다.",
+        title: "일반(Dot) · MP 듀얼 모드",
+        text: "점 형태로 조사하는 일반 모드와 선 형태로 촘촘히 전달하는 MP 모드를 시술 부위와 피부 두께에 맞춰 적용합니다.",
       },
       {
-        title: "콜라겐 재생과 탄력",
-        text: "열 응고 뒤 조직이 회복되며 콜라겐이 재생되고, 탄력 변화가 서서히 나타납니다. 정도는 사람마다 다릅니다.",
+        title: "콜라겐 재생과 탄력 개선",
+        text: "열응고점이 형성된 조직이 회복되는 과정에서 콜라겐 재생이 유도되어, 처진 피부의 탄력이 서서히 차오릅니다. 개선 정도는 개인차가 있습니다.",
       },
     ],
     compare: {
       title: "슈링크 유니버스, 다른 초음파 리프팅과 차이점",
-      lead: "같은 집속 초음파(HIFU) 리프팅도 에너지를 주는 방식과 핸드피스가 다릅니다. 고민 부위와 피부 상태를 함께 살펴 선택합니다.",
+      lead: "같은 집속 초음파(HIFU) 리프팅이라도 에너지를 전달하는 방식과 핸드피스 구조에 차이가 있습니다. 고민 부위와 피부 상태를 면밀히 진단하여 적합한 장비를 선택합니다.",
       columns: [
         { name: "슈링크 유니버스", maker: "클래시스 · 국내", self: true },
         { name: "슈링크 (1세대)", maker: "클래시스 · 국내" },
         { name: "리니어지", maker: "제이시스메디칼 · 국내" },
         // 확인 필요: 리프테라 세부 사양 (기사 · 시술 기관 안내 기준으로 정리)
-        { name: "리프테라", maker: "대한과학 · 국내" },
+        { name: "리프테라", maker: "아스테라시스 · 국내" },
       ],
       rows: [
         {
@@ -1940,13 +1943,13 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 비교 장비의 본원 보유 여부를 뜻하지 않습니다.",
+      note: "※ 위 표는 각 장비의 일반적인 기술 특성을 정리한 자료로 특정 장비의 우위를 의미하지 않으며, 일부 비교 장비는 본원 보유 장비가 아닐 수 있습니다. 적합한 시술과 통증 · 효과 · 유지 기간은 개인의 피부 상태에 따라 다릅니다.",
     },
     featuresTitle: "슈링크 유니버스의 4가지 특징",
     features: [
       {
-        title: "촘촘하게 이어 주는 MP 모드",
-        text: "점을 찍듯 나누어 주는 일반 모드에 더해, 열응고점을 빈틈없이 이어 주는 MP(Micro Pulsed) 모드를 쓸 수 있습니다. 제조사는 MP 모드가 일반 모드보다 시술 시간이 짧다고 안내합니다.",
+        title: "촘촘하게 에너지를 전달하는 MP 모드",
+        text: "점 형태로 조사하는 일반(Dot) 모드와 더불어, 열응고점을 선 형태로 빈틈없이 이어 주는 MP(Micro Pulsed) 모드를 함께 활용합니다. 제조사는 양방향 연속 조사 방식으로 시술 시간을 줄이면서 에너지를 고르게 전달한다고 안내합니다.",
         image: "/images/shrink/ultraf-mode.webp",
         video: "/videos/shrink-ultraf-mode.mp4",
         alt: "울트라 F 핸드피스의 일반 모드와 MP 모드 조사 모양을 보여 주는 제조사 영상",
@@ -1954,8 +1957,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "굴곡진 부위에 밀착하는 펜형 울트라 부스터",
-        text: "둥근 펜 모양의 울트라 부스터는 눈가 · 입가 · 턱선처럼 굴곡진 곳에 밀착하기 좋습니다. 꺼짐이 걱정되는 부위는 피해 가며 필요한 곳에만 에너지를 줍니다.",
+        title: "굴곡진 부위에 밀착되는 펜 타입 울트라 부스터",
+        text: "원형 펜 타입의 울트라 부스터 핸드피스는 눈가 · 입가 · 팔자 · 턱선처럼 좁고 굴곡진 부위에도 빈틈없이 밀착됩니다. 볼패임이 우려되는 부위는 세심하게 피하고 필요한 부위에만 정교하게 에너지를 전달합니다.",
         image: "/images/shrink/booster-mode.webp",
         video: "/videos/shrink-booster-mode.mp4",
         alt: "둥근 펜형 울트라 부스터 핸드피스의 조사 모양을 보여 주는 제조사 영상",
@@ -1963,15 +1966,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "피부 깊이에 맞춘 카트리지",
-        text: "1.5 · 2.0 · 3.0 · 4.5mm 카트리지로 얕은 피부층부터 깊은 층까지 나누어 전달합니다. 피부 두께와 처짐 부위에 맞춰 깊이를 조합합니다.",
+        title: "피부 층별 맞춤 카트리지 설계",
+        text: "1.5 · 2.0 · 3.0 · 4.5mm의 세분화된 카트리지를 통해 얕은 진피층부터 깊은 근막층(SMAS)까지 에너지를 층별로 전달합니다. 개인의 피부 두께와 처짐 정도에 맞춰 카트리지를 입체적으로 조합합니다.",
         image: "/images/shrink/booster-depth.webp",
         video: "/videos/shrink-booster-depth.mp4",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       },
       {
-        title: "카트리지 교체 없이 바꾸는 두 가지 모드",
-        text: "하나의 카트리지로 일반(Dot) 모드와 MP 모드를 모두 씁니다. 부위에 따라 시술 중에 화면에서 바로 바꿀 수 있어, 카트리지를 갈아 끼우려고 멈추지 않습니다.",
+        title: "카트리지 교체 없는 원터치 모드 전환",
+        text: "하나의 카트리지에서 일반(Dot) 모드와 MP 모드를 모두 지원합니다. 시술 중 부위 특성에 따라 모드를 즉시 전환할 수 있어, 카트리지 교체로 인한 흐름 끊김 없이 매끄럽게 진행됩니다.",
         image: "/images/shrink/mode-switch.webp",
         video: "/videos/shrink-mode-switch.mp4",
         alt: "울트라 F 핸드피스 하나로 두 가지 모드를 교체 없이 쓴다고 설명하는 제조사 영상",
@@ -1982,28 +1985,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     process: [
       {
-        title: "상담 · 계획",
-        text: "처짐 부위와 피부 두께, 이전 시술 이력을 살피고 샷 수와 범위를 정합니다.",
+        title: "1:1 상담 및 설계",
+        text: "처진 부위와 피부 두께, 이전 시술 이력을 면밀히 파악하여 적합한 카트리지와 샷 수, 시술 범위를 설계합니다.",
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
         coverPosition: "50% 50%",
       },
       {
-        title: "마취 · 준비",
-        text: "마취 크림을 바르고 피부를 깨끗하게 준비합니다.",
+        title: "클렌징 및 마취 준비",
+        text: "시술 부위를 청결하게 정돈한 뒤 통증 부담을 줄이기 위해 마취 크림을 도포합니다.",
         image: "/images/photos/process-anesthesia.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "시술",
-        text: "부위마다 카트리지를 바꿔 가며 정한 깊이에 초음파를 전달합니다.",
+        title: "대표원장 맞춤 시술",
+        text: "부위별 피부 두께와 윤곽 구조에 맞춰 카트리지와 모드를 조절하며 목표 깊이에 초음파 에너지를 전달합니다.",
         image: "/images/photos/cat-lifting.webp",
         alt: "리프팅 시술 설명용 기존 진료 사진",
       },
       {
-        title: "경과 확인",
-        text: "열감 · 붓기를 확인하고 세안 · 운동 시점과 주의사항을 안내합니다.",
+        title: "진정 마무리 및 안내",
+        text: "시술 직후 열감과 부기를 확인하고, 세안 · 운동 가능 시점과 사후 관리 주의사항을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -2348,7 +2351,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "경과",
-          value: "붓기 · 멍 · 당김 · 비대칭 등",
+          value: "부기 · 멍 · 당김 · 비대칭 등",
         },
       ],
       photoAlt: "한스바이오메드 MINT 흡수성 실 제품군",
@@ -2365,7 +2368,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "모양과 불편감 함께 관찰",
-        text: "초기 당김과 붓기가 안정되는 과정을 살피고, 패임이나 비대칭, 실 노출이 없는지 경과를 확인합니다.",
+        text: "초기 당김과 부기가 안정되는 과정을 살피고, 패임이나 비대칭, 실 노출이 없는지 경과를 확인합니다.",
       },
     ],
     compare: {
@@ -2414,9 +2417,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "경과 확인",
           values: [
-            "당김 · 붓기 · 패임 · 비대칭",
-            "열감 · 붓기 · 감각 변화 등",
-            "붓기 · 멍 · 혈관 관련 증상 등",
+            "당김 · 부기 · 패임 · 비대칭",
+            "열감 · 부기 · 감각 변화 등",
+            "부기 · 멍 · 혈관 관련 증상 등",
           ],
         },
       ],
@@ -2447,7 +2450,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "초기 모양과 회복을 함께 확인",
-        text: "붓기와 당김, 피부 패임을 살피고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
+        text: "부기와 당김, 피부 패임을 살피고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
         image: "/images/photos/clinic-6.webp",
         alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
       },
@@ -2475,7 +2478,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
+        text: "부기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -2529,7 +2532,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "모양과 불편감 함께 관찰",
-        text: "당김과 붓기가 안정되는 과정을 살피고, 패임 · 비대칭이 없는지 확인합니다.",
+        text: "당김과 부기가 안정되는 과정을 살피고, 패임 · 비대칭이 없는지 확인합니다.",
       },
     ],
     compare: {
@@ -2573,10 +2576,10 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "공통 경과",
           values: [
-            "붓기 · 멍 · 당김 개인차",
-            "붓기 · 멍 · 당김 개인차",
-            "붓기 · 멍 · 당김 개인차",
-            "붓기 · 멍 · 당김 개인차",
+            "부기 · 멍 · 당김 개인차",
+            "부기 · 멍 · 당김 개인차",
+            "부기 · 멍 · 당김 개인차",
+            "부기 · 멍 · 당김 개인차",
           ],
         },
       ],
@@ -2635,7 +2638,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기 · 당김 · 패임을 확인하고 일상생활 주의사항을 안내합니다.",
+        text: "부기 · 당김 · 패임을 확인하고 일상생활 주의사항을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -2787,7 +2790,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "경과 확인",
-        text: "붓기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
+        text: "부기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
         image: "/images/photos/process-check.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
@@ -3341,8 +3344,8 @@ deviceStory["/petit/botox/body"] = {
     },
     {
       ...botoxStory.features[2],
-      title: "근육 · 지방 · 붓기 구분",
-      text: "라인이 굵어 보이는 원인이 근육인지, 지방이나 붓기인지 먼저 나누어 보고 기대할 수 있는 변화와 한계를 설명합니다.",
+      title: "근육 · 지방 · 부기 구분",
+      text: "라인이 굵어 보이는 원인이 근육인지, 지방이나 부기인지 먼저 나누어 보고 기대할 수 있는 변화와 한계를 설명합니다.",
     },
     {
       ...botoxStory.features[3],

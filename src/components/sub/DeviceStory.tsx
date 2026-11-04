@@ -68,6 +68,10 @@ export function StoryAbout({
                       "relative aspect-video w-full lg:aspect-auto lg:h-full lg:self-stretch"
                     : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
               }
+              // 좁은 화면에서 16:9 가 아닌 영상은 좌우가 남으므로 영상 배경색으로 칠한다
+              style={
+                device.film?.edge ? { background: device.film.edge } : undefined
+              }
             >
               {device.film ? (
                 <video

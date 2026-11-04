@@ -2032,9 +2032,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "JEISYS",
       image: "/images/photos/retouched/web/consult.jpg",
       film: {
-        src: "/videos/potenza-device-web-v2.mp4",
-        poster: "/images/potenza/potenza-device-web-v2.webp",
-        edge: "linear-gradient(#070707, #2d2d2d)",
+        src: "/videos/potenza-device-web-v3.mp4",
+        poster: "/images/potenza/potenza-device-web-v3.webp",
+        edge: "#000000",
       },
       mediaContain: true,
       text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하면서 부스터를 함께 넣는 펌핑팁으로 운영합니다. 바늘 깊이를 0.5 ~ 4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",

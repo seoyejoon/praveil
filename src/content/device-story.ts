@@ -38,6 +38,10 @@ export type DeviceStory = {
     photoFullFrame?: boolean;
     /** 공식 제품 자료는 기존 카드 안에서 전체 프레임을 유지 */
     mediaContain?: boolean;
+    /** 제품 사진 뒤에 깔 배경색 (흰 배경 제품 컷이 어두운 카드에서 떠 보이지 않게) */
+    mediaBg?: string;
+    /** 원본 크기. 작은 원본을 칸 크기에 맞춰 억지로 늘리지 않도록 상한으로 쓴다 */
+    mediaSize?: { width: number; height: number };
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     /** edge: 영상 비율이 칸과 달라 남는 자리를 채울 색 (영상 가장자리 색) */
     film?: { src: string; poster: string; edge?: string; fadeFrom?: string };
@@ -267,7 +271,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "얼굴 굴곡에 밀착하는 펜형 어플리케이터",
         text: "쿨소닉의 어플리케이터는 굴곡진 피부에도 밀착하기 쉬운 펜형 구조입니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
-        image: cs("handpiece"),
+        image: cs("handpiece-model-a"),
         alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
         mediaSize: { width: 1200, height: 788 },
       },
@@ -299,7 +303,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취",
         text: "시술 부위에 마취 크림을 도포해 시술 중 불편감을 줄입니다.",
-        image: photo("process-anesthesia"),
+        image: photo("process-anesthesia-model-a"),
         alt: "시술 부위에 마취 크림을 바르는 모습",
       },
       {
@@ -313,13 +317,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 주의사항과 다음 관리 시기를 안내합니다.",
-        image: photo("process-check"),
+        image: photo("process-check-model-a"),
         alt: "시술 후 경과를 확인하는 모습",
       },
     ],
     video: {
       src: "/videos/hero-coolsonic.mp4",
-      poster: photo("hero-coolsonic"),
+      poster: photo("hero-coolsonic-model-a"),
       title: ["상담한 원장이,", "한 샷 한 샷 직접."],
       text: "프라베일의 쿨소닉은 대표원장이 처음부터 끝까지 직접 시술합니다.",
     },
@@ -332,8 +336,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "필러",
       maker: "Hyaluronic Acid",
-      image: "/images/filler/photos/intro.webp",
-      photo: "/images/filler/photos/intro.webp",
+      image: "/images/photos/cat-filler-model-a.webp",
+      photo: "/images/photos/cat-filler-model-a.webp",
       photoAlt: "대표원장이 환자의 얼굴 부위에 필러를 주입하는 진료 장면",
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
       specs: [
@@ -421,7 +425,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 특성을 고려한 맞춤형 제품 선택",
         text: "이마 · 볼 · 입술 · 눈 밑은 피부의 두께와 표정 근육의 움직임이 모두 다릅니다. 각 부위의 해부학적 구조에 맞춰 필러가 안착할 피부 층을 구분하고, 입자의 크기와 단단함(점탄성)을 세밀하게 나누어 적용합니다.",
-        image: "/images/filler/photos/point-02.webp",
+        image: "/images/photos/cat-filler-model-a.webp",
         alt: "대표원장이 얼굴 부위에 필러를 주입하는 모습",
       },
       {
@@ -434,7 +438,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "과하지 않게, 필요한 만큼",
         text: "처음부터 무리하게 많은 양을 주입하기보다, 자연스럽고 조화로운 선에서 시술을 마무리합니다. 초기 부기가 빠지고 필러가 자리를 잡은 뒤 경과를 함께 살피며, 필요한 경우에만 미세하게 보완하는 방향을 권해 드립니다.",
-        image: "/images/filler/photos/point-04.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "대표원장이 얼굴 부위에 필러를 주입하는 모습",
       },
     ],
@@ -454,7 +458,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 분할 주입 및 몰딩",
         text: "사전 디자인한 부위와 피부 층에 맞춰 필요한 용량만 소량씩 나누어 주입하며, 시술 중간중간 정면과 측면의 입체감 및 좌우 대칭을 확인하며 매끄럽게 라인을 다듬습니다.",
-        image: "/images/filler/photos/process-03.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "대표원장이 얼굴 부위에 필러를 주입하는 모습",
       },
       {
@@ -622,7 +626,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "준비",
         text: "대부분 마취 없이 진행합니다. 피부를 깨끗이 하고, 통증에 예민하시면 미리 말씀해 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },
       {
@@ -636,7 +640,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 피부 상태를 확인하고 세안 · 보습 방법과 주의사항, 다음 관리 시기를 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "경과 확인을 설명하는 사진",
       },
     ],
@@ -649,8 +653,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "보톡스",
       maker: "Botulinum Toxin",
-      image: "/images/photos/cat-botox.webp",
-      photo: "/images/photos/cat-botox.webp",
+      image: "/images/photos/cat-botox-model-a.webp",
+      photo: "/images/photos/cat-botox-model-a.webp",
       text: "보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 이용하는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 살펴 계획합니다.",
       specs: [
         {
@@ -756,19 +760,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 통증 관리",
         text: "주사 부위를 확인하고 피부를 준비합니다. 통증 관리 방법은 부위에 맞춰 안내합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },
       {
         title: "부위별 주사",
         text: "설계한 부위에 제품별 기준에 맞춰 주사합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "부위에 맞춰 주사하는 대표원장",
       },
       {
         title: "주의사항 · 경과 안내",
         text: "당일 주의사항과 변화 관찰 시점, 추가 진료가 필요한 증상을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "경과 확인을 설명하는 사진",
       },
     ],
@@ -781,8 +785,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
-      image: "/images/photos/best-retuo.webp",
-      photo: "/images/photos/best-retuo.webp",
+      image: "/images/photos/best-retuo-model-a.webp",
+      photo: "/images/photos/best-retuo-model-a.webp",
       text: "리투오는 기증된 인체 피부 조직에서 세포 성분을 온전히 제거하고 세포외기질(ECM) 성분만 남긴 무세포 동종진피(hADM) 제품입니다. 피부 탄력을 지지하는 콜라겐 등 핵심 성분을 바탕으로, 거칠어진 피부결과 잔주름, 저하된 탄력 밀도 고민을 가진 피부에 원료의 특성을 고려하여 섬세하게 적용합니다.",
       specs: [
         {
@@ -920,19 +924,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "맞춤 마취 및 통증 관리",
         text: "시술 부위와 적용 방식(손주사 등)에 맞춰 적절하고 편안한 통증 관리(마취 크림 도포 등)를 진행하며, 시술 전 사용할 제품과 방식을 다시 한번 알기 쉽게 설명해 드립니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 준비와 통증 관리를 진행하는 장면",
       },
       {
         title: "정교한 성분 주입 및 피부 반응 관찰",
         text: "진찰을 통해 미리 계획된 부위와 방법대로 유효 성분을 진피층에 꼼꼼하게 주입하며, 시술 중 피부의 미세한 반응을 세심하게 살피며 진행합니다.",
-        image: "/images/photos/cat-skin-booster.webp",
+        image: "/images/photos/cat-skin-booster-model-a.webp",
         alt: "계획한 부위에 주입을 진행하는 대표원장",
       },
       {
         title: "직후 상태 확인 및 케어 안내",
         text: "시술 직후 피부 상태를 편안하게 정돈하고 확인한 뒤, 회복에 도움이 되는 홈케어 요령과 주의사항, 혹시 모를 이상 반응 대처법을 상세히 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "시술 후 상태를 확인하고 안내하는 장면",
       },
     ],
@@ -945,7 +949,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "스킨부스터",
       maker: "성분 · 사용목적별 계획",
-      image: "/images/photos/cat-skin-booster.webp",
+      image: "/images/photos/cat-skin-booster-model-a.webp",
       photo: "/images/official/rejuran-product.png",
       text: "스킨부스터는 피부결 · 잔주름 같은 고민을 관리하는 여러 제품과 방법을 묶어 부르는 말입니다. PN, 히알루론산 등 성분마다 역할과 사용목적이 달라, 제품명과 피부 상태를 함께 확인해 계획합니다. 바르는 제품과 주입용 제품은 사용방법을 구분합니다. 사진은 PN 성분 제품인 리쥬란이며, 다른 스킨부스터와 성분을 구분합니다.",
       specs: [
@@ -1068,13 +1072,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 두께와 부위 고려",
         text: "얼굴 전체를 같은 방식으로 접근하지 않고, 피부 두께와 민감한 부위를 살펴 범위를 정합니다.",
-        image: "/images/photos/cat-main-skin.webp",
+        image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "피부 부위별 계획 설명용 기존 시술 사진",
       },
       {
         title: "반응을 보며 다음 단계 결정",
         text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
-        image: "/images/photos/signature-4.webp",
+        image: "/images/photos/signature-4-model-a.webp",
         alt: "피부 경과 관리 설명용 기존 진료 사진",
       },
     ],
@@ -1090,20 +1094,20 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 준비",
         text: "제품과 부위에 따라 마취 방법을 정하고 피부를 깨끗하게 준비합니다. 마취제 알레르기가 있으면 미리 알려 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "시술",
         text: "제품의 사용방법에 맞춰 정한 부위를 시술합니다. 외용 제품은 주입용 제품과 구분해 사용합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 제품별 주의사항과 다시 진료를 받아야 할 증상을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1116,7 +1120,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "리쥬란힐러",
       maker: "PHARMA RESEARCH",
-      image: "/images/photos/cat-skin-booster.webp",
+      image: "/images/photos/cat-skin-booster-model-a.webp",
       photo: "/images/official/rejuran-product.png",
       photoAlt: "파마리서치 공식 리쥬란 제품 이미지",
       mediaContain: true,
@@ -1210,19 +1214,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "얇아진 진피층의 밀도와 탄력",
         text: "표면적인 보습에서 멈추지 않고 피부 속 진피층에 직접 유효 성분을 전달해, 거친 피부결을 정돈하고 탄력 밀도를 함께 채워 줍니다.",
-        image: "/images/photos/cat-main-skin.webp",
+        image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "피부 관리 설명용 기존 시술 사진",
       },
       {
         title: "부위별 맞춤 주입",
         text: "피부 두께와 표정 움직임, 잔주름의 깊이가 다른 부위별 특성을 고려하여 적정한 깊이와 간격으로 고르게 주입합니다.",
-        image: "/images/photos/signature-4.webp",
+        image: "/images/photos/signature-4-model-a.webp",
         alt: "부위별 주입 계획 설명용 기존 진료 사진",
       },
       {
         title: "일시적 완화가 아닌 피부 컨디션 관리",
         text: "피부 스스로의 환경을 되찾도록 돕는 것을 목표로 하며, 시간이 지나며 나타나는 컨디션 변화를 경과 진료에서 함께 확인합니다. 변화의 속도와 체감 정도는 사람마다 다릅니다.",
-        image: "/images/photos/cat-skin-booster.webp",
+        image: "/images/photos/cat-skin-booster-model-a.webp",
         alt: "스킨부스터 상담 설명용 기존 진료 사진",
       },
     ],
@@ -1238,20 +1242,20 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 크림 도포 및 준비",
         text: "시술 부위를 깨끗하게 정돈한 뒤 마취 크림을 도포하여 편안한 상태를 만듭니다. 평소 마취제 알레르기가 있으신 경우 사전에 미리 알려 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "정품 확인 및 정교한 주입",
         text: "시술 직전 정품 패키지를 확인시켜 드린 후, 계획된 부위에 미세한 양씩 균일하게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 엠보싱과 부기 상태를 함께 확인하고, 회복에 도움이 되는 세안 · 화장 시점과 주의사항을 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1263,7 +1267,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principleLayout: "figure-first",
     // 확인 필요: 엑소좀 원리 그림 (리쥬란 PN 그림을 쓰지 않도록 임시로 진료 사진)
     principleImage: {
-      src: "/images/photos/cat-skin-booster.webp",
+      src: "/images/photos/cat-skin-booster-model-a.webp",
       alt: "스킨부스터 시술 설명용 기존 진료 사진",
       marks: [],
       layers: [],
@@ -1272,8 +1276,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "엑소좀",
       maker: "ISCE EXOSOME",
-      image: "/images/photos/cat-skin-booster.webp",
-      photo: "/images/photos/cat-main-skin.webp",
+      image: "/images/photos/cat-skin-booster-model-a.webp",
+      photo: "/images/photos/cat-main-skin-model-a.webp",
       photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
       text: "엑소좀은 세포가 내보내는 아주 작은 주머니(엑소좀)에서 얻은 성분을 활용한 스킨부스터입니다. 프라베일은 ISCE 엑소좀을 사용하며, 피부가 예민해지고 컨디션이 떨어졌을 때 단독으로 또는 다른 시술과 함께 계획합니다.",
       specs: [
@@ -1352,19 +1356,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 코어인 기저막(DEJ)을 함께 살핌",
         text: "표피와 진피를 연결하는 기저막(DEJ, Dermal-Epidermal Junction) 구조를 함께 살핍니다. 제조사는 이 부위의 결합을 돕는 것을 제품의 목적으로 설명하며, 느슨해진 피부와 탄력 변화를 경과 진료에서 확인합니다.",
-        image: "/images/photos/cat-main-skin.webp",
+        image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "시술 계획 설명용 기존 시술 사진",
       },
       {
         title: "복합 엑소좀 성분 구성",
         text: "인체표피 유래 엑소좀뿐만 아니라, 피부 면역과 진정에 도움을 준다고 안내되는 유산균 유래 엑소좀과 성장인자(hGH · VEGF 등)가 함께 배합되어 있습니다.",
-        image: "/images/photos/cat-skin-booster.webp",
+        image: "/images/photos/cat-skin-booster-model-a.webp",
         alt: "부위별 시술 설명용 기존 시술 사진",
       },
       {
         title: "피부 장벽과 전반적인 노화 징후",
         text: "얇고 예민해진 피부의 장벽을 채우는 것을 목적으로 하는 4세대 스킨부스터입니다. 잔주름 · 거친 피부결 · 건조함처럼 함께 나타나는 노화 징후를 나누어 살피며, 변화의 정도와 시점은 사람마다 다릅니다.",
-        image: "/images/photos/signature-4.webp",
+        image: "/images/photos/signature-4-model-a.webp",
         alt: "피부 경과 관리 설명용 기존 진료 사진",
       },
     ],
@@ -1380,20 +1384,20 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 준비",
         text: "필요하면 마취 크림을 바르고 피부를 깨끗하게 준비합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "시술",
         text: "정한 범위에 엑소좀 성분을 고르게 전달합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
       {
         title: "경과 확인",
         text: "시술 직후 피부 반응을 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1540,20 +1544,20 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 준비",
         text: "제품과 부위에 맞는 마취 방법을 정하고, 제품의 사용방법에 따라 시술을 준비합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "시술",
         text: "제품별 사용목적과 주입 방법을 확인해 정한 부위를 시술합니다. 양과 분포는 피부 상태에 맞춰 조절합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
       {
         title: "경과 확인",
         text: "부기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1601,7 +1605,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "PDLLA와 히알루론산(HA)의 진피층 분할 주입",
-        text: "자가 콜라겐 생성을 유도하는 고분자 PDLLA 미세입자와 수분감을 주는 히알루론산(HA)이 함께 배합된 제품을 사용합니다. 대표원장이 숙련된 노하우를 바탕으로, 약물이 뭉치거나 손실되지 않도록 진피층의 계획한 깊이에 고르고 촘촘하게 나누어 주입합니다.",
+        text: "자가 콜라겐 생성을 유도하는 고분자 PDLLA 미세입자와 수분감을 주는 히알루론산(HA)이 함께 배합된 제품을 사용합니다. 한재웅 대표원장의 숙련된 노하우를 바탕으로, 약물이 뭉치거나 손실되지 않도록 진피층의 계획한 깊이에 고르고 촘촘하게 나누어 주입합니다.",
       },
       {
         title: "점진적인 콜라겐 생성 및 세심한 경과 관찰",
@@ -1671,13 +1675,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "자가 콜라겐 · 엘라스틴 생성 유도",
         text: "인위적인 성분을 채워 넣는 방식이 아니라, 고분자 PLA(PDLLA) 성분이 피부 속에서 서서히 분해되며 세포를 자극합니다. 피부 스스로 콜라겐과 탄력 섬유(엘라스틴)를 만들어내도록 유도하는 방식이며, 변화는 시간을 두고 서서히 나타납니다.",
-        image: "/images/photos/cat-main-skin.webp",
+        image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "주입 범위 설명용 기존 시술 사진",
       },
       {
         title: "나비존 모공과 패인 흉터, 잔주름",
         text: "입자가 작고 부드러워 피부 얕은 층(진피층)에 촘촘하게 시술할 수 있습니다. 노화로 늘어난 나비존 모공과 눈가 · 입가의 잔주름, 패인 여드름 흉터 부위가 차오르도록 돕는 것을 목적으로 합니다.",
-        image: "/images/photos/cat-skin-booster.webp",
+        image: "/images/photos/cat-skin-booster-model-a.webp",
         alt: "함께 하는 시술 설명용 기존 진료 사진",
       },
       {
@@ -1708,19 +1712,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 크림 도포 및 준비",
         text: "시술 부위를 깨끗하게 정돈한 뒤 마취 크림을 도포하여 편안한 상태를 만들고, 사용할 쥬베룩 제품의 상태를 사전에 확인시켜 드립니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "정교한 진피층 분할 주입",
         text: "숙련된 노하우를 바탕으로 계획된 부위의 진피층에 쥬베룩 성분을 고르고 촘촘하게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
       },
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 마사지 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1737,7 +1741,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/official/ultracol-product.png",
       photoAlt: "울트라콜 공식 제품 이미지",
       mediaContain: true,
-      text: "울트라콜은 PDO(폴리디옥사논)를 재료로 사용하는 콜라겐부스터입니다. 가격표에는 울트라콜100과 볼륨부스터 울트라콜200 두 가지로 안내하며, 피부 상태와 부위에 맞춰 규격과 양을 정합니다.",
+      text: `울트라콜은 오랜 기간 의료용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 구형 입자로 가공하여 사용하는 콜라겐부스터입니다.
+
+프라베일에서는 환자분의 피부 두께와 고민 부위에 맞춰 섬세한 관리가 가능한 울트라콜 100과 볼륨감을 함께 보완하는 울트라콜 200(볼륨부스터) 두 가지 라인업으로 안내해 드리고 있습니다. 일률적인 방식이 아니라, 시술 부위의 특성과 피부 상태에 맞춰 알맞은 규격과 용량을 1:1 맞춤으로 설계합니다.`,
       specs: [
         { label: "성분", value: "PDO (폴리디옥사논)" },
         { label: "분류", value: "의료기기" },
@@ -1755,72 +1761,130 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "피부 두께 · 고민 확인",
-        text: "피부결 · 탄력 · 볼륨 고민과 피부 두께를 살핍니다.",
+        title: "피부 두께 및 고민 부위 분석",
+        text: "푸석해진 피부결, 저하된 탄력, 눈가나 볼 등의 볼륨 꺼짐 고민을 꼼꼼히 살피고 환자분의 개인별 피부 두께와 상태를 정밀하게 분석합니다.",
       },
       {
-        title: "규격 · 양 선택",
-        text: "울트라콜100 · 200 중 고르고 부위별 양을 정합니다.",
+        title: "맞춤 규격(100 · 200) 선택 및 주입",
+        text: "피부 상태와 시술 부위에 맞는 규격(울트라콜 100 또는 볼륨부스터 울트라콜 200)을 선택하고, 적정 용량을 정밀하게 나누어 주입합니다. 울트라콜의 주성분인 PDO는 몸에서 서서히 분해되는 합성 고분자 입자로, 제조사는 진피층의 자가 콜라겐 생성을 유도한다고 안내합니다.",
       },
       {
-        title: "시간을 두고 변화 확인",
-        text: "변화는 서서히 나타나며 덩어리감이 없는지 함께 봅니다.",
+        title: "점진적인 콜라겐 생성 및 경과 관찰",
+        text: "주입된 PDO 입자를 바탕으로 시간이 지날수록 피부 속에서 자가 콜라겐 생성이 서서히 유도됩니다. 초기 안정화 과정을 거치며 덩어리감 없이 매끄럽게 탄력이 차오르는지 세심하게 관찰합니다. 변화의 속도와 체감 정도는 개인의 피부 컨디션에 따라 차이가 있을 수 있습니다.",
       },
     ],
-    featuresTitle: "울트라콜을 계획하는 4가지 기준",
+    compare: {
+      title: "울트라콜, 다른 콜라겐부스터와 어떻게 다른가요?",
+      lead: "상담에서 함께 비교하는 콜라겐부스터를 규격과 목적으로 정리했습니다.",
+      columns: [
+        { name: "울트라콜 100", maker: "미세 구형 PDO", self: true },
+        { name: "울트라콜 200", maker: "고농축 구형 PDO" },
+        { name: "쥬베룩 (스킨)", maker: "PDLLA · HA" },
+        { name: "레니스나", maker: "고농축 PDLLA · HA" },
+      ],
+      rows: [
+        {
+          label: "주성분",
+          values: [
+            "미세 구형 PDO (녹는 실)",
+            "고농축 구형 PDO",
+            "PDLLA · 히알루론산",
+            "고농축 PDLLA · 히알루론산",
+          ],
+        },
+        {
+          label: "주로 보는 고민",
+          values: [
+            "눈가 잔주름 · 피부 톤",
+            "미세한 볼륨 꺼짐",
+            "모공 · 흉터 · 거친 피부결",
+            "볼 꺼짐 · 깊은 주름 · 볼륨",
+          ],
+        },
+        {
+          label: "주로 보는 부위",
+          values: [
+            "눈밑 · 눈가 · 얇은 피부",
+            "옆볼 · 앞볼 · 팔자주름",
+            "얼굴 전체 (진피층)",
+            "얼굴 전체 (지방층 위쪽)",
+          ],
+        },
+        {
+          label: "결절 보고",
+          values: [
+            "보고가 드문 편",
+            "매우 낮은 편",
+            "낮은 편",
+            "보통 (주입 숙련도 영향)",
+          ],
+        },
+        {
+          label: "제품 특징",
+          values: [
+            "눈밑 틴달 현상(푸르게 비침) 부담이 적고, 피부 톤 변화를 함께 살핍니다.",
+            "녹는 실 성분으로 리프팅과 타이트닝을 함께 살핍니다.",
+            "다공성 입자로 결절 부담을 줄이고, 히알루론산으로 속건조를 함께 살핍니다.",
+            "자가 콜라겐으로 볼륨을 서서히 채웁니다.",
+          ],
+        },
+      ],
+      note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 변화가 보이는 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 용량은 피부 상태와 부위를 보고 상담에서 정합니다.",
+    },
+    featuresTitle: "울트라콜의 4가지 특징",
     features: [
       {
-        title: "PDO 성분",
-        text: "울트라콜은 PDO를 재료로 사용하는 제품입니다. 실제 사용할 규격과 목적은 상담에서 확인합니다.",
+        title: "미세 구형 PDO(녹는 실) 입자",
+        text: "수십 년간 외과 수술용 봉합사로 쓰여 온 PDO(폴리디옥사논) 성분을 미세한 구형(Sphere) 입자로 가공해 만든 4세대 콜라겐부스터입니다.",
         image: "/images/official/ultracol-product.png",
         alt: "울트라콜 · PDO 성분 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 419, height: 289 },
       },
       {
-        title: "100 · 200 규격 구분",
-        text: "가격표에는 울트라콜100과 볼륨부스터 울트라콜200을 나누어 안내합니다. 피부 상태와 원하는 변화에 맞춰 고릅니다.",
-        image: "/images/photos/cat-main-skin.webp",
+        title: "구형 입자로 결절 부담을 낮춘 구조",
+        text: "불규칙한 입자 모양 때문에 피부 속에서 뭉치는 결절이 보고되기도 합니다. 제조사는 표면이 매끄러운 구형 입자와 생분해 특성으로 뭉치는 부담을 낮췄다고 설명합니다. 빈도가 낮아도 결절은 생길 수 있어 경과를 함께 확인합니다.",
+        image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "제품 선택 설명용 기존 시술 사진",
       },
       {
-        title: "포텐자 펌핑팁과 함께",
-        text: "가격표의 포텐자 펌핑팁 울트라콜100 패키지처럼, 피부 상태에 따라 다른 시술과 함께 계획하기도 합니다.",
-        image: "/images/photos/cat-skin-booster.webp",
+        title: "피부가 얇은 눈가 · 눈밑 잔주름",
+        text: "입자가 미세하고 부드러워 피부가 얇고 예민해 시술이 까다로웠던 눈가와 눈밑 부위에도 상담할 수 있습니다. 히알루론산 필러에서 보이는 틴달 현상(피부가 푸르게 비치는 현상) 부담이 적은 편이며, 얇아진 진피층의 밀도를 촘촘하게 채워 눈가를 함께 살핍니다.",
+        image: "/images/photos/cat-skin-booster-model-a.webp",
         alt: "함께 하는 시술 설명용 기존 진료 사진",
       },
       {
-        title: "덩어리감까지 살피는 경과",
-        text: "부기가 빠지는 과정과 오래가는 덩어리감을 구분합니다. 통증 · 열감이 함께 있으면 바로 진찰합니다.",
+        title: "자가 콜라겐 생성과 피부 톤",
+        text: "진피층에 주입된 PDO 입자가 분해되면서 자가 콜라겐과 엘라스틴 생성을 유도합니다. 이 과정에서 피부 톤이 밝아진 느낌을 함께 말씀하시는 분도 있습니다. 변화의 정도와 체감 시점은 사람마다 다릅니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
       },
     ],
     process: [
       {
-        title: "상담 · 계획",
-        text: "고민과 피부 두께, 이전 주입 이력을 확인하고 규격 · 양 · 범위를 정합니다.",
+        title: "1:1 맞춤 상담 및 계획",
+        text: "피부결, 탄력, 볼륨 고민의 양상을 꼼꼼히 살피고 환자분의 피부 두께와 이전 주입 시술 이력을 확인하여, 울트라콜 규격(100 · 200), 용량, 시술 범위를 정밀하게 설계합니다.",
         image: doctorPhotos.consult,
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
         coverPosition: "50% 50%",
       },
       {
-        title: "마취 · 준비",
-        text: "마취 크림을 바르고 제품의 사용방법에 따라 준비합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        title: "마취 크림 도포 및 준비",
+        text: "시술 부위를 깨끗하게 정돈한 뒤 마취 크림을 도포하여 편안한 상태를 만들고, 사용할 울트라콜 제품의 정품 상태와 규격을 사전에 확인시켜 드립니다.",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "시술",
-        text: "정한 부위에 고르게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection.webp",
+        title: "정교한 맞춤 주입",
+        text: "숙련된 노하우를 바탕으로 계획된 부위에 울트라콜 성분을 고르고 촘촘하게 나누어 주입합니다.",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
       },
       {
-        title: "경과 확인",
-        text: "부기 · 엠보를 확인하고 관리 방법을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        title: "직후 경과 확인 및 홈케어 안내",
+        text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 관리 요령과 일상생활 주의사항을 안내해 드립니다.",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -1984,7 +2048,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 시술 준비",
         text: "장비에 맞는 통증 관리와 마취 여부를 안내하고 피부를 준비합니다. 레이저는 적합한 눈 보호 방법도 확인합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 부위에 마취 크림을 바르는 참고 사진",
       },
       {
@@ -1998,7 +2062,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 상태와 주의사항을 확인하고, 회복 뒤 변화에 따라 다음 계획을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],
@@ -2162,19 +2226,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "클렌징 및 마취 준비",
         text: "시술 부위를 청결하게 정돈한 뒤 통증 부담을 줄이기 위해 마취 크림을 도포합니다.",
-        image: "/images/photos/process-shrink-anesthesia.webp",
+        image: "/images/photos/process-shrink-anesthesia-model-a.webp",
         alt: "시술 전 얼굴에 마취 크림을 고르게 바른 모습",
       },
       {
         title: "대표원장 맞춤 시술",
         text: "부위별 피부 두께와 윤곽 구조에 맞춰 카트리지와 모드를 조절하며 목표 깊이에 초음파 에너지를 전달합니다.",
-        image: "/images/photos/process-shrink-treatment.webp",
+        image: "/images/photos/process-shrink-treatment-model-a.webp",
         alt: "대표원장이 슈링크 유니버스 핸드피스로 얼굴 시술을 진행하는 모습",
       },
       {
         title: "진정 마무리 및 안내",
         text: "시술 직후 열감과 부기를 확인하고, 세안 · 운동 가능 시점과 사후 관리 주의사항을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -2323,19 +2387,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "클렌징 및 마취 준비",
         text: "시술 부위를 청결하게 정돈한 뒤, 통증 부담을 줄이고 편안하게 받으실 수 있도록 마취 크림을 꼼꼼하게 도포합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "정교한 맞춤 고주파 시술",
         text: "진단한 바늘 깊이를 바탕으로 피부 층별 고민 부위에 고주파 에너지를 정밀하고 균일하게 전달하며, 계획한 부스터를 함께 넣습니다.",
-        image: "/images/photos/retouched/web/laser.jpg",
+        image: "/images/photos/retouched/web/laser-model-a.webp",
         alt: "대표원장의 얼굴 부위 장비 시술 장면",
       },
       {
         title: "진정 마무리 및 사후 안내",
         text: "시술 직후 붉은기와 미세 자국을 차분하게 진정시키고, 세안 및 메이크업 가능 시점과 일상 속 주의사항을 세심하게 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -2480,19 +2544,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "안전 보호 및 시술 준비",
         text: "레이저 조사 시 눈을 안전하게 보호하는 방법을 철저히 확인한 뒤 시술 부위를 깨끗하게 정돈합니다. ※ 따뜻한 열감이 걱정되시거나 민감하신 경우 사전에 편하게 말씀해 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "비접촉식 맞춤 레이저 조사",
         text: "피부 상태와 고민 부위에 맞게 설정된 파장과 에너지 세기를 바탕으로, 핸드피스를 이용해 얼굴 전체에 부드럽고 균일하게 레이저를 조사합니다.",
-        image: "/images/photos/retouched/web/laser.jpg",
+        image: "/images/photos/retouched/web/laser-model-a.webp",
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
       },
       {
         title: "진정 케어 및 홈케어 안내",
         text: "시술 직후 일시적인 붉은기와 열감을 차분하게 진정시키고, 일상 속에서 철저한 자외선 차단과 보습을 관리하실 수 있도록 세심하게 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -2640,19 +2704,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 준비",
         text: "시술 부위와 마취 방법을 확인한 뒤 피부를 소독하고 준비합니다. 마취제 알레르기는 미리 알려 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "시술",
         text: "제품별 사용방법에 맞춰 계획한 층과 방향에 실을 넣고, 조직의 지지와 좌우 균형을 확인합니다.",
-        image: "/images/photos/cat-main-petit.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "기존 피부 주입 시술 참고 사진",
       },
       {
         title: "경과 확인",
         text: "부기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -2673,11 +2737,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "QTL 실리프팅",
       maker: "QTL THREAD",
-      // 확인 필요: QTL실 제품 사진 (병원에서 받으면 photo 교체 · 지금은 상담 장면 사진)
-      image: "/images/photos/retouched/web/consult.jpg",
-      photo: "/images/photos/retouched/web/consult.jpg",
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-      photoFullFrame: true,
+      image: "/images/thread/products/qtl-package.jpg",
+      photo: "/images/thread/products/qtl-package.jpg",
+      photoAlt: "QTL 실 제품 패키지 이미지 (제조사 공식 자료)",
+      mediaContain: true,
+      mediaBg: "#ffffff",
+      mediaSize: { width: 600, height: 380 },
       text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여, 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
 
 환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 면밀히 살피어 실이 들어갈 정확한 층과 벡터(방향), 그리고 최적의 개수를 세심하게 설계합니다.`,
@@ -2809,19 +2874,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "안전한 마취 및 철저한 준비",
         text: "시술 부위를 깨끗하게 소독한 뒤 국소 마취를 진행합니다. ※ 마취제 알레르기나 특이 체질이 있으신 경우 사전에 반드시 의료진에게 알려 주시기 바랍니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "정교한 실 삽입 및 균형 확인",
         text: "사전 계획한 해부학적 층과 방향에 따라 실을 안전하게 삽입하고, 조직이 단단히 지지되는지와 좌우 대칭이 조화로운지 꼼꼼하게 살핍니다.",
-        image: "/images/photos/cat-main-petit.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "기존 피부 시술 참고 사진",
       },
       {
         title: "경과 확인 및 일상 케어 안내",
         text: "시술 직후 나타날 수 있는 부기, 당김, 미세한 패임 여부를 꼼꼼히 체크하고, 편안한 일상 복귀를 위한 주의사항을 친절하게 안내해 드립니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -2834,11 +2899,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "잼버실",
       maker: "JAMBER THREAD",
-      // 확인 필요: 잼버실 제품 사진 (병원에서 받으면 photo 교체 · 지금은 상담 장면 사진)
-      image: "/images/photos/retouched/web/consult.jpg",
-      photo: "/images/photos/retouched/web/consult.jpg",
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-      photoFullFrame: true,
+      image: "/images/thread/products/jamber-lineup.png",
+      photo: "/images/thread/products/jamber-lineup.png",
+      photoAlt: "잼버실 Ex · M · Classic 제품 이미지 (제조사 공식 자료)",
+      mediaContain: true,
+      mediaBg: "#ffffff",
+      mediaSize: { width: 1860, height: 830 },
       text: `잼버실은 피부를 강하게 당겨 올리는 일반적인 리프팅 실과 달리, 스프링처럼 촘촘하게 말려 있는 특수 녹는 실을 꺼진 부위의 피하층에 삽입하여 안쪽부터 탄탄한 지지대 역할을 하도록 만드는 볼륨 시술입니다.
 
 나이가 들면서 야위거나 꺼지기 쉬운 눈밑 · 팔자주름 · 앞볼 등의 부위를 인위적이지 않고 입체적으로 채워 매끄러운 윤곽을 완성해 줍니다.`,
@@ -2960,19 +3026,19 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 준비",
         text: "시술 부위를 소독하고 국소 마취를 합니다. 마취제 알레르기는 미리 알려 주세요.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
         title: "시술",
         text: "계획한 부위에 실을 넣고 모양과 좌우 균형을 확인합니다.",
-        image: "/images/photos/cat-main-petit.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "기존 피부 시술 참고 사진",
       },
       {
         title: "경과 확인",
         text: "부기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "기존 시술 후 경과 확인 사진",
       },
     ],
@@ -3125,7 +3191,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 시술 전 준비",
         text: "선택한 관리에 맞춰 세안과 소독을 진행합니다. 필요한 시술에만 마취를 적용합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 전 마취 크림을 바르는 참고 사진",
       },
       {
@@ -3139,7 +3205,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 자극과 새 여드름 여부를 확인하고, 홈케어와 다음 진료 계획을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "진료 후 피부 상태를 확인하는 모습",
       },
     ],
@@ -3249,40 +3315,41 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 각 제모 방법의 일반적인 특징을 정리한 것으로, 어느 방법이 모두에게 더 낫다는 뜻이 아닙니다. 맞는 방법과 시술 간격 · 반응은 피부와 털 상태에 따라 다릅니다.",
     },
-    featuresTitle: "레이저 제모에서 확인하는 4가지",
+    featuresTitle: "클라리티2 레이저 제모의 특별함",
     features: [
       {
-        title: "클라리티2 · 피부와 털에 맞춘 설정",
-        text: "클라리티2는 755nm와 1064nm 파장을 사용합니다. 털의 색 · 굵기와 피부 톤, 최근 태닝 여부를 함께 살펴 적용할 설정을 정합니다.",
+        title: "755nm · 1064nm 듀얼 파장으로 맞춤형 제모",
+        text: "멜라닌 흡수율이 높아 얇고 연한 털에 반응하는 755nm 알렉산드라이트 파장과, 피부 깊숙이 도달해 굵고 뿌리 깊은 털에 쓰는 1064nm Nd:YAG 파장을 모두 탑재했습니다. 남성의 굵은 수염부터 여성의 미세한 인중 털, 팔 · 다리까지 털의 굵기와 깊이에 따라 파장과 설정을 나누어 계획합니다.",
         image: "/images/official/clarity-poster.jpg",
-        alt: "클라리티2 · 피부와 털에 맞춘 설정 · 제조사 공식 자료",
+        alt: "클라리티2 · 듀얼 파장 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 1280, height: 768 },
         video: "/videos/official-clarity.mp4",
       },
       {
-        title: "IntelliTrak · 조사 범위를 확인",
-        text: "제조사의 핸드피스에는 움직임에 따른 조사 간격을 조절하는 IntelliTrak 기능이 적용되어 있습니다. 원하는 경계와 남길 부분을 먼저 확인하고 시술 범위를 정합니다.",
-        image: "/images/official/clarity-tracking.png",
-        alt: "IntelliTrak · 조사 범위를 확인 · 제조사 공식 자료",
-        fullFrame: false,
-        mediaSize: { width: 408, height: 464 },
-        mediaEdges: ["#ffffff", "#ffffff"],
+        // 확인 필요: ICD 냉각을 보여 주는 제조사 이미지 (지금은 병원 공간 사진)
+        title: "지능형 냉각 시스템(ICD)으로 통증 부담을 줄임",
+        text: "레이저 샷이 조사되기 직전, 영하의 가스를 순간적으로 분사해 피부 표면을 보호하는 지능형 냉각 시스템(ICD, Intelligent Cooling Device)이 작동합니다. 통증 부담과 화상 등 이상 반응의 부담을 줄여 주며, 느끼는 정도는 부위와 사람마다 다릅니다.",
+        image: "/images/photos/clinic-6.webp",
+        alt: "시술 안내에 사용하는 병원 공간 사진",
       },
       {
-        title: "온도 표시와 피부 반응을 함께",
-        text: "클라리티2는 시술 중 피부 표면 온도를 확인하는 기능을 제공합니다. 표시값만으로 판단하지 않고 열감과 피부 반응, 냉각 상태를 함께 살핍니다.",
+        title: "실시간 피부 온도 감지 시스템",
+        text: "장비에 실시간 피부 온도 센서가 탑재되어 있어 시술 중 피부 온도를 함께 확인합니다. 온도가 일정 수준 이상으로 올라가면 레이저 조사가 자동으로 제어되므로, 에너지를 일정하게 유지하면서 피부 자극이나 붉은기를 줄이는 데 도움이 됩니다. 표시값만으로 판단하지 않고 열감과 피부 반응도 함께 살핍니다.",
         image: "/images/official/clarity-temperature.png",
-        alt: "온도 표시와 피부 반응을 함께 · 제조사 공식 자료",
+        alt: "클라리티2 · 실시간 피부 온도 표시 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 841, height: 328 },
         mediaEdges: ["#f4f2ef", "#f4f2ef"],
       },
       {
-        title: "다음 예약은 자라는 상태에 맞춰",
-        text: "털이 얼마나 다시 자라는지, 자극이 남아 있는지 확인합니다. 미리 정한 횟수를 채우는 것보다 경과에 맞춰 계획을 조정합니다.",
-        image: "/images/photos/clinic-6.webp",
-        alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
+        title: "인텔리트랙(IntelliTrack)으로 빠짐없는 시술",
+        text: "시술자의 손 움직임 속도를 인식해 레이저 샷이 중첩 없이 조사되는 인텔리트랙 기술이 적용되었습니다. 등 · 허벅지 · 종아리처럼 넓은 부위도 누락 없이 균일하게 시술할 수 있고, 제조사는 기존 방식보다 시술 시간이 크게 단축된다고 안내합니다.",
+        image: "/images/official/clarity-tracking.png",
+        alt: "클라리티2 · 인텔리트랙 · 제조사 공식 자료",
+        fullFrame: false,
+        mediaSize: { width: 408, height: 464 },
+        mediaEdges: ["#ffffff", "#ffffff"],
       },
     ],
     process: [
@@ -3297,7 +3364,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 시술 전 준비",
         text: "면도 상태를 확인하고 피부를 정리합니다. 필요한 마취 · 냉각과 파장에 맞는 눈 보호구를 준비합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "필요한 시술 전 마취 크림을 바르는 참고 사진",
       },
       {
@@ -3311,7 +3378,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "붉어짐 등 피부 반응을 살피고, 면도와 보습 · 자외선 차단 방법을 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],
@@ -3334,7 +3401,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "SPECLIPSE · PICO-K",
       image: "/images/photos/cat-hair-removal.webp",
       photo: "/images/official/pico-picok_img_6.png",
-      text: "문신제거는 피부에 들어간 색소에 레이저를 조사해 입자를 잘게 나누고, 몸이 이를 처리하는 과정을 이용합니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다. 눈썹과 아이라인은 눈과 가까운 만큼 시술 가능 여부와 보호 방법부터 확인합니다.",
+      text: "문신제거는 피부에 들어간 색소에 레이저를 조사해 입자를 잘게 나누고, 몸이 이를 처리하는 과정을 이용합니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다. 프라베일에서는 눈썹 · 아이라인 · 언더라인 반영구 문신제거를 진행하며, 눈과 가까운 만큼 시술 가능 여부와 보호 방법부터 확인합니다.",
       specs: [
         {
           label: "대상 평가",
@@ -3421,7 +3488,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 일반적인 방법 비교이며 실제 제공 시술 목록을 뜻하지 않습니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
+      note: "※ 일반적인 방법 비교이며 실제 제공 시술 목록을 뜻하지 않습니다. 프라베일은 눈썹 · 아이라인 · 언더라인 반영구 문신제거만 진행하며, 수술적 제거는 하지 않습니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
     },
     featuresTitle: "문신제거에서 먼저 확인하는 4가지",
     features: [
@@ -3469,7 +3536,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "마취 · 눈 보호",
         text: "필요한 마취를 진행합니다. 눈꺼풀 부위는 적합한 각막 보호구를 포함해 보호 계획을 확인한 경우에만 진행합니다.",
-        image: "/images/photos/process-anesthesia.webp",
+        image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 전 마취 크림을 바르는 참고 사진",
       },
       {
@@ -3481,7 +3548,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부와 색 변화를 확인하고, 상처 관리와 다음 평가 시기를 안내합니다.",
-        image: "/images/photos/process-check.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "시술 후 피부 상태를 확인하는 모습",
       },
     ],

@@ -156,17 +156,17 @@ export const images = {
   hero: photo("hero"),
   // 진료 분야별 대표 사진 (분류 slug 기준)
   categoryBySlug: {
-    lifting: photo("cat-lifting"),
-    botox: photo("cat-botox"),
-    filler: photo("cat-filler"),
-    "skin-booster": photo("cat-skin-booster"),
+    lifting: photo("cat-lifting-model-a"),
+    botox: photo("cat-botox-model-a"),
+    filler: photo("cat-filler-model-a"),
+    "skin-booster": photo("cat-skin-booster-model-a"),
     toning: photo("cat-toning"),
     "skin-care": photo("cat-skin-care"),
     "scar-pore": photo("cat-scar-pore"),
     acne: photo("cat-acne"),
-    injection: photo("cat-injection"),
+    injection: photo("cat-injection-model-a"),
     "hair-removal": photo("cat-hair-removal"),
-    "tattoo-removal": photo("cat-tattoo-removal"),
+    "tattoo-removal": photo("cat-tattoo-removal-model-a"),
   } as Record<string, string>,
   // 시그니처 시술 (쿨소닉 · 쿨페이즈 · 볼륨필러 · 리투오 순)
   signature: [1, 2, 3, 4].map((n) => photo(`signature-${n}`)),

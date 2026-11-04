@@ -115,8 +115,8 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      image: photo("best-retuo"),
-      mobileImage: photo("best-retuo-m"),
+      image: photo("best-retuo-model-a"),
+      mobileImage: photo("best-retuo-m-model-a"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",
@@ -127,8 +127,8 @@ export const mainBest = {
       category: "피부관리",
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
-      image: photo("best-filler"),
-      mobileImage: photo("best-filler-m"),
+      image: photo("best-filler-model-a"),
+      mobileImage: photo("best-filler-m-model-a"),
       headline: ["얇아진 피부에 밀도를 채우는", "ECM 스킨부스터 리투오"],
       accent: "리투오",
       product: "/images/equipment/hero/retuo.webp",
@@ -145,7 +145,7 @@ export const mainWhy = {
       icon: "doctor",
       title: "대표원장 책임 진료",
       text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
-      image: photo("special-2"),
+      image: photo("special-2-model-a"),
     },
     {
       icon: "consult",
@@ -164,7 +164,7 @@ export const mainWhy = {
       icon: "device",
       title: "프리미엄 장비 보유",
       text: "프라베일 맑고고운의원은 쿨소닉, 쿨페이즈, 포텐자 등 프리미엄 장비를 갖추고 있습니다.",
-      image: photo("special-4"),
+      image: photo("special-4-model-a"),
     },
     {
       icon: "space",
@@ -186,11 +186,11 @@ export const mainDoctor = {
 
 // 진료 분야 (시술 대분류 5개) 대표 사진
 export const mainCategoryImage: Record<string, string> = {
-  lifting: photo("cat-main-lifting"),
-  petit: photo("cat-main-petit"),
-  skin: photo("cat-main-skin"),
+  lifting: photo("cat-main-lifting-model-a"),
+  petit: photo("cat-main-petit-model-a"),
+  skin: photo("cat-main-skin-model-a"),
   "acne-pore": doctorPhotos.consult,
-  removal: photo("cat-main-removal"),
+  removal: photo("cat-main-removal-model-a"),
 };
 
 export const mainCategoryPhotoFit: Record<string, "full-frame" | undefined> = {

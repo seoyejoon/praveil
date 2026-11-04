@@ -67,7 +67,7 @@ export const aboutPromise = {
     {
       title: "대표원장 책임 진료",
       text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
-      image: photo("special-2"),
+      image: photo("special-2-model-a"),
     },
     {
       title: "1:1 맞춤 설계",
@@ -83,7 +83,7 @@ export const aboutPromise = {
     {
       title: "프리미엄 장비 보유",
       text: "프라베일 맑고고운의원은 쿨소닉, 쿨페이즈, 포텐자 등 프리미엄 장비를 갖추고 있습니다.",
-      image: photo("special-4"),
+      image: photo("special-4-model-a"),
     },
     {
       title: "프라이빗한 공간",

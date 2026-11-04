@@ -519,7 +519,7 @@ export default function TreatmentDetail({
         <section className="bg-espresso px-5 py-24 text-white md:px-10 md:py-32">
           <div className="mx-auto max-w-[1400px]">
             <SectionHead
-              en={byArea || t.itemsTitle ? "By Area" : "Program"}
+              en={t.itemsEn ?? (byArea || t.itemsTitle ? "By Area" : "Program")}
               tone="dark"
               title={
                 byArea ? (

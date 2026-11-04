@@ -70,7 +70,11 @@ export function StoryAbout({
               }
               // 좁은 화면에서 16:9 가 아닌 영상은 좌우가 남으므로 영상 배경색으로 칠한다
               style={
-                device.film?.edge ? { background: device.film.edge } : undefined
+                device.film?.edge
+                  ? { background: device.film.edge }
+                  : device.mediaBg
+                    ? { background: device.mediaBg }
+                    : undefined
               }
             >
               {device.film ? (
@@ -97,7 +101,16 @@ export function StoryAbout({
                   className={
                     device.photoFullFrame
                       ? "block h-auto w-full"
-                      : `absolute inset-0 h-full w-full ${device.mediaContain ? "object-contain" : "object-cover"}`
+                      : `absolute inset-0 h-full w-full ${device.mediaContain ? "m-auto object-contain p-6 md:p-10" : "object-cover"}`
+                  }
+                  // 작은 원본은 칸에 맞춰 늘리지 않고 제 크기까지만 보여 준다
+                  style={
+                    device.mediaSize
+                      ? {
+                          maxWidth: device.mediaSize.width,
+                          maxHeight: device.mediaSize.height,
+                        }
+                      : undefined
                   }
                 />
               )}

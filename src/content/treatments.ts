@@ -54,6 +54,8 @@ export type Treatment = {
   points: { title: string; text: string }[];
   /** 세부 시술 섹션 제목 (없으면 "○○ 세부 시술") */
   itemsTitle?: string;
+  /** 위 제목 위의 영문 (없으면 부위 목록은 By Area, 그 외는 Program) */
+  itemsEn?: string;
   /** 통합 페이지의 세부 시술 */
   items?: TreatmentItem[];
   faq: { q: string; a: string }[];
@@ -74,10 +76,10 @@ export const treatments: Treatment[] = [
     en: "Coolsonic",
     title: "쿨소닉",
     description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
-    image: photo("signature-1"),
+    image: photo("signature-1-model-a"),
     scene: {
-      mobileSrc: photo("hero-coolsonic-m"),
-      src: photo("hero-coolsonic"),
+      mobileSrc: photo("hero-coolsonic-m-model-a"),
+      src: photo("hero-coolsonic-model-a"),
       alt: "대표원장이 쿨소닉 장비로 얼굴 부위를 시술하는 모습",
       pulse: [64.2, 88.4],
       chips: [
@@ -142,11 +144,11 @@ export const treatments: Treatment[] = [
     en: "Coolfase",
     title: "쿨페이즈",
     description: "표피는 차갑게 보호하고, 진피 속은 깊게 채우는 고주파 리프팅",
-    image: photo("signature-2"),
+    image: photo("signature-2-model-a"),
     // 확인한 3:1 히어로와 모바일 전용 사진으로 구도를 유지합니다.
     scene: {
-      src: photo("hero-coolphase"),
-      mobileSrc: photo("hero-coolphase-m"),
+      src: photo("hero-coolphase-model-a"),
+      mobileSrc: photo("hero-coolphase-m-model-a"),
       alt: "대표원장이 쿨페이즈 장비로 얼굴 부위를 시술하는 모습",
       chips: [
         { x: 55, y: 22, en: "RF", label: "모노폴라 고주파 에너지" },
@@ -209,13 +211,13 @@ export const treatments: Treatment[] = [
     en: "Laser Lifting",
     title: "레이저리프팅",
     description: "피부 고민에 맞춘 초음파 · 고주파 · 레이저 리프팅",
-    image: photo("cat-lifting"),
+    image: photo("cat-lifting-model-a"),
     device: device("shrink-universe", "Shurink Universe", "초음파 리프팅"),
     // 확인 필요: 레이저리프팅 전용 첫 화면 사진 (PC · 모바일).
     // 전용 시술 촬영본 확인 전까지 피부 상태를 살피는 진찰 장면을 사용합니다.
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
+      src: photo("hero-laser-20261027-model-a"),
+      mobileSrc: photo("hero-laser-20261027-m-model-a"),
       alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "HIFU", label: "슈링크 유니버스 · 초음파 리프팅" },
@@ -290,11 +292,11 @@ export const treatments: Treatment[] = [
     en: "Shurink Universe",
     title: "슈링크 유니버스",
     description: "집속 초음파로 처진 윤곽과 탄력을 관리하는 리프팅",
-    image: photo("cat-lifting"),
+    image: photo("cat-lifting-model-a"),
     // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
+      src: photo("hero-laser-20261027-model-a"),
+      mobileSrc: photo("hero-laser-20261027-m-model-a"),
       alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 일반 · MP 모드" },
@@ -339,11 +341,11 @@ export const treatments: Treatment[] = [
     en: "Potenza",
     title: "포텐자",
     description: "미세침 고주파로 모공 · 피부결 · 탄력을 관리하는 리프팅",
-    image: photo("cat-lifting"),
+    image: photo("cat-lifting-model-a"),
     // 확인 필요: 포텐자 전용 첫 화면 사진 (지금은 레이저리프팅 대표 사진 · 슈링크 · 클라리티와는 다르게 둠)
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
+      src: photo("hero-laser-20261027-model-a"),
+      mobileSrc: photo("hero-laser-20261027-m-model-a"),
       alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "RF", label: "미세침 고주파 · 팁별 방식" },
@@ -388,11 +390,11 @@ export const treatments: Treatment[] = [
     en: "Clarity II",
     title: "클라리티",
     description: "두 가지 파장의 레이저로 피부결 · 탄력을 관리하는 이너리프팅",
-    image: photo("cat-lifting"),
+    image: photo("cat-lifting-model-a"),
     // 확인 필요: 클라리티 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-laser-20261027"),
-      mobileSrc: photo("hero-laser-20261027-m"),
+      src: photo("hero-laser-20261027-model-a"),
+      mobileSrc: photo("hero-laser-20261027-m-model-a"),
       alt: "대표원장이 피부 상태를 살피며 시술 계획을 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "Laser", label: "755nm · 1064nm 레이저" },
@@ -441,8 +443,8 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5"),
     // 실 삽입 촬영본 확인 전까지 턱선과 피부 상태를 살피는 진찰 장면을 사용합니다.
     scene: {
-      src: photo("hero-thread-20261027"),
-      mobileSrc: photo("hero-thread-20261027-m"),
+      src: photo("hero-thread-20261027-model-a"),
+      mobileSrc: photo("hero-thread-20261027-m-model-a"),
       alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
       chips: [
         { x: 48, y: 18, en: "Design", label: "피부 두께 · 처짐 방향 확인" },
@@ -513,8 +515,8 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5"),
     // 확인 필요: QTL 실리프팅 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-thread-20261027"),
-      mobileSrc: photo("hero-thread-20261027-m"),
+      src: photo("hero-thread-20261027-model-a"),
+      mobileSrc: photo("hero-thread-20261027-m-model-a"),
       alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
       chips: [
         { x: 48, y: 18, en: "Design", label: "처짐 방향 · 피부 두께 확인" },
@@ -567,8 +569,8 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5"),
     // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-thread-20261027"),
-      mobileSrc: photo("hero-thread-20261027-m"),
+      src: photo("hero-thread-20261027-model-a"),
+      mobileSrc: photo("hero-thread-20261027-m-model-a"),
       alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
       chips: [
         { x: 48, y: 18, en: "Volume", label: "꺼진 부위 · 피부 두께 확인" },
@@ -620,8 +622,8 @@ export const treatments: Treatment[] = [
     description: "얼굴 비율에 맞춰 꺼진 곳만 채우는 볼륨 필러",
     image: photo("signature-3"),
     scene: {
-      src: photo("hero-filler-20261027"),
-      mobileSrc: photo("hero-filler-20261027-m"),
+      src: photo("hero-filler-20261027-model-a"),
+      mobileSrc: photo("hero-filler-20261027-m-model-a"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "정면 · 측면 얼굴 비율 분석" },
@@ -661,7 +663,7 @@ export const treatments: Treatment[] = [
       {
         name: "볼",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-filler"),
+        image: photo("cat-filler-model-a"),
         text: "앞볼 · 옆볼 꺼짐",
         detail:
           "앞볼과 옆볼의 볼륨이 빠지면 인상이 피곤해 보이고 광대가 도드라져 얼굴선이 거칠어 보이기 쉽습니다. 넓은 면적을 안정적으로 지지해야 하는 부위인 만큼, 탄성이 탄탄한 제품을 깊은 층에 세밀하게 나누어 주입하여 광대에서 볼로 이어지는 윤곽을 부드럽고 입체적으로 다듬습니다.",
@@ -712,7 +714,7 @@ export const treatments: Treatment[] = [
       {
         name: "팔자",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-petit"),
+        image: photo("cat-main-petit-model-a"),
         text: "코 옆 깊은 주름",
         detail:
           "팔자주름은 피부 자체의 주름이 깊은 경우도 있지만, 위쪽 앞볼이 꺼지거나 처지면서 골이 깊어 보이는 경우도 많습니다. 주름이 생긴 원인을 먼저 명확히 구분하고, 필요시 주름 위쪽의 앞볼 지지대를 함께 보완해 입가가 어색하지 않도록 교정합니다.",
@@ -729,7 +731,7 @@ export const treatments: Treatment[] = [
       {
         name: "입술",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-2"),
+        image: photo("special-2-model-a"),
         text: "입술 볼륨 · 라인",
         detail:
           "입술은 표정과 말할 때의 움직임이 많고 피부가 매우 얇아, 입자가 곱고 부드러운 전용 제품을 얕은 층에 소량씩 주입합니다. 윗입술과 아랫입술의 볼륨 비율, 입꼬리 각도를 세밀하게 분석해 본연의 입술 모양을 살려 다듬습니다. ※ 조직 특성상 다른 부위보다 초기 부기가 조금 더 지속될 수 있습니다.",
@@ -746,7 +748,7 @@ export const treatments: Treatment[] = [
       {
         name: "애교",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("best-filler"),
+        image: photo("best-filler-model-a"),
         text: "눈 밑 애교살",
         detail:
           "애교살은 웃을 때 눈 밑이 살짝 도톰해지며 눈매를 한결 입체적이고 부드러워 보이게 하는 부위입니다. 피부가 얇고 비쳐 보이기 쉬운 위치인 만큼, 부드러운 제품을 아주 소량만 사용하여 실제 웃는 표정에 맞춘 자연스러운 높이를 완성합니다.",
@@ -763,7 +765,7 @@ export const treatments: Treatment[] = [
       {
         name: "눈밑",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-injection"),
+        image: photo("cat-injection-model-a"),
         text: "꺼진 눈 밑 · 눈물고랑",
         detail:
           "눈 밑이 푹 꺼지거나 눈물고랑이 깊어지면 어두운 그늘이 져 늘 피곤하고 나이 들어 보이기 쉽습니다. 피부가 얇고 예민한 눈 밑 특성을 고려해 부드러운 물성의 제품을 소량씩 정교하게 나누어 넣으며, 앞볼까지 단절 없이 매끄럽게 이어지도록 다듬습니다.",
@@ -780,7 +782,7 @@ export const treatments: Treatment[] = [
       {
         name: "상안검",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-4"),
+        image: photo("signature-4-model-a"),
         text: "꺼진 윗눈꺼풀",
         detail:
           "윗눈꺼풀(아이홀)이 꺼지면 눈매가 퀭하고 피곤해 보일 뿐만 아니라, 기존 쌍꺼풀 라인이 겹치거나 흐트러져 보이기도 합니다. 눈 주변은 피부가 극도로 얇고 미세 혈관이 많아, 눈을 뜨고 감을 때의 움직임과 꺼진 깊이를 확인하며 소량씩 섬세하게 채웁니다.",
@@ -797,7 +799,7 @@ export const treatments: Treatment[] = [
       {
         name: "깊은 주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-skin-booster"),
+        image: photo("cat-skin-booster-model-a"),
         text: "깊게 팬 주름",
         detail:
           "미간 · 이마 · 입가 등의 표정 주름이 오랫동안 반복되면 가만히 있어도 지워지지 않는 깊은 선으로 남게 됩니다. 이미 피부 진피층이 꺾여 자리 잡은 주름은 근육의 움직임을 줄이는 것만으로는 개선이 어려워, 주름 골을 따라 부드러운 필러를 얕고 세밀하게 채워 표면을 평평하게 다듬습니다.",
@@ -814,7 +816,7 @@ export const treatments: Treatment[] = [
       {
         name: "목주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-skin"),
+        image: photo("cat-main-skin-model-a"),
         text: "목의 가로 주름",
         detail:
           "목은 얼굴보다 피부가 얇고 피지선이 적으며 움직임이 잦아 깊은 가로 주름이 자리 잡기 쉽습니다. 입자가 매우 고운 제품을 주름 선을 따라 얕은 층에 촘촘히 채워 패인 골을 완화하며, 전반적인 피부 탄력도에 따라 스킨부스터 등의 관리를 함께 계획합니다.",
@@ -849,10 +851,10 @@ export const treatments: Treatment[] = [
     en: "Botox",
     title: "보톡스",
     description: "근육의 움직임과 표정을 살펴 계획하는 보툴리눔 톡신 시술",
-    image: photo("cat-botox"),
+    image: photo("cat-botox-model-a"),
     scene: {
-      src: photo("hero-botox-20261027"),
-      mobileSrc: photo("hero-botox-20261027-m"),
+      src: photo("hero-botox-20261027-model-a"),
+      mobileSrc: photo("hero-botox-20261027-m-model-a"),
       alt: "대표원장이 눈가 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "표정 · 근육 움직임 확인" },
@@ -892,7 +894,7 @@ export const treatments: Treatment[] = [
       {
         name: "표정주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-botox"),
+        image: photo("cat-botox-model-a"),
         text: "이마 · 미간 · 눈가",
         detail:
           "웃거나 찡그릴 때 생기는 이마 · 미간 · 눈가 주름은 그 자리의 근육이 반복해서 움직여 생깁니다. 근육의 힘과 표정 습관을 보고 필요한 곳에만 나누어 넣어, 표정은 살리고 주름은 부드럽게 합니다.",
@@ -909,7 +911,7 @@ export const treatments: Treatment[] = [
       {
         name: "턱",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-injection"),
+        image: photo("cat-injection-model-a"),
         text: "발달한 턱 근육",
         detail:
           "음식을 씹을 때 쓰는 턱 근육(교근)이 발달하면 얼굴 아래가 넓고 각져 보입니다. 근육의 두께와 범위를 만져 보고 주사 위치를 정하며, 근육 부피는 시간을 두고 서서히 줄어듭니다.",
@@ -927,7 +929,7 @@ export const treatments: Treatment[] = [
         // 확인 필요: 슈퍼턱에 포함하는 범위 (침샘 · 측두근 등)
         name: "슈퍼턱",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-2"),
+        image: photo("special-2-model-a"),
         text: "턱 · 옆 라인 함께",
         detail:
           "얼굴 아래가 넓어 보이는 원인이 턱 근육 하나만이 아닐 때, 턱과 함께 옆얼굴 라인까지 범위를 넓혀 계획합니다. 얼굴 전체 윤곽을 보고 어디까지 넣을지 정합니다.",
@@ -944,7 +946,7 @@ export const treatments: Treatment[] = [
       {
         name: "특수부위",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-skin-booster"),
+        image: photo("cat-skin-booster-model-a"),
         text: "측두근 · 입꼬리 · 팔자 등",
         detail:
           "처진 입꼬리, 웃을 때 깊어지는 팔자 주변, 관자놀이 쪽 측두근처럼 부위마다 다른 근육이 만드는 고민도 있습니다. 주변 표정에 영향을 주기 쉬운 부위라 근육의 위치와 움직임을 보고 필요한 양만 넣습니다.",
@@ -961,7 +963,7 @@ export const treatments: Treatment[] = [
       {
         name: "스킨",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-skin"),
+        image: photo("cat-main-skin-model-a"),
         text: "피부결 · 모공 · 유분",
         detail:
           "스킨보톡스는 근육이 아니라 피부의 얕은 층에 묽게 여러 번 나누어 넣는 방법입니다. 피부결 · 잔주름 · 유분 고민에 맞춰 범위를 정하며, 시술 직후 작은 엠보가 잠시 보일 수 있습니다.",
@@ -978,7 +980,7 @@ export const treatments: Treatment[] = [
       {
         name: "승모근",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-4"),
+        image: photo("signature-4-model-a"),
         text: "어깨 · 목 라인",
         detail:
           "목에서 어깨로 이어지는 승모근이 발달하면 목이 짧아 보이고 어깨가 솟아 보입니다. 근육이 솟은 범위와 두께를 확인해 주사 위치를 정하고, 목선과 어깨선이 자연스럽게 이어지도록 합니다.",
@@ -1012,7 +1014,7 @@ export const treatments: Treatment[] = [
       {
         name: "다한증",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-petit"),
+        image: photo("cat-main-petit-model-a"),
         text: "겨드랑이 등 땀",
         detail:
           "땀샘을 움직이는 신경 신호를 줄여 땀이 나는 양을 줄이는 방법입니다. 겨드랑이처럼 땀이 많이 나는 범위를 먼저 확인하고, 그 범위에 고르게 나누어 넣습니다.",
@@ -1049,10 +1051,10 @@ export const treatments: Treatment[] = [
     en: "Retuo",
     title: "리투오",
     description: "얇아지고 거칠어진 피부결 · 탄력을 위한 리투오 시술",
-    image: photo("signature-4"),
+    image: photo("signature-4-model-a"),
     scene: {
-      src: photo("hero-retuo-20261027"),
-      mobileSrc: photo("hero-retuo-20261027-m"),
+      src: photo("hero-retuo-20261027-model-a"),
+      mobileSrc: photo("hero-retuo-20261027-m-model-a"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 상태 · 목표 확인" },
@@ -1131,10 +1133,10 @@ export const treatments: Treatment[] = [
     en: "Skin Booster",
     title: "스킨부스터",
     description: "피부 고민과 성분 · 사용목적을 살펴 계획하는 스킨부스터",
-    image: photo("cat-skin-booster"),
+    image: photo("cat-skin-booster-model-a"),
     scene: {
-      src: photo("hero-booster-20261027"),
-      mobileSrc: photo("hero-booster-20261027-m"),
+      src: photo("hero-booster-20261027-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 고민 · 상태 확인" },
@@ -1198,11 +1200,11 @@ export const treatments: Treatment[] = [
     en: "Rejuran Healer",
     title: "리쥬란힐러",
     description: "PN 성분으로 피부결 · 탄력을 관리하는 스킨부스터",
-    image: photo("cat-skin-booster"),
+    image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 리쥬란힐러 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {
-      src: photo("hero-booster-20261027"),
-      mobileSrc: photo("hero-booster-20261027-m"),
+      src: photo("hero-booster-20261027-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PN", label: "PN 성분 · 정품 확인" },
@@ -1252,11 +1254,11 @@ export const treatments: Treatment[] = [
     en: "Exosome",
     title: "엑소좀",
     description: "예민하고 지친 피부 컨디션을 관리하는 스킨부스터",
-    image: photo("cat-skin-booster"),
+    image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 엑소좀 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {
-      src: photo("hero-booster-20261027"),
-      mobileSrc: photo("hero-booster-20261027-m"),
+      src: photo("hero-booster-20261027-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Care", label: "피부 컨디션 · 예민도 확인" },
@@ -1311,8 +1313,8 @@ export const treatments: Treatment[] = [
       "재료의 차이를 살펴 주름과 피부 상태에 맞춰 계획하는 콜라겐부스터",
     image: photo("cat-skin-care"),
     scene: {
-      src: photo("hero-collagen-20261027"),
-      mobileSrc: photo("hero-collagen-20261027-m"),
+      src: photo("hero-collagen-20261027-model-a"),
+      mobileSrc: photo("hero-collagen-20261027-m-model-a"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Material", label: "제품별 재료 · 사용목적 확인" },
@@ -1374,8 +1376,8 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     // 확인 필요: 쥬베룩 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-collagen-20261027"),
-      mobileSrc: photo("hero-collagen-20261027-m"),
+      src: photo("hero-collagen-20261027-model-a"),
+      mobileSrc: photo("hero-collagen-20261027-m-model-a"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PDLLA", label: "PDLLA · 히알루론산 성분" },
@@ -1423,8 +1425,8 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     // 확인 필요: 울트라콜 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-collagen-20261027"),
-      mobileSrc: photo("hero-collagen-20261027-m"),
+      src: photo("hero-collagen-20261027-model-a"),
+      mobileSrc: photo("hero-collagen-20261027-m-model-a"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PDO", label: "PDO 성분 · 제품 규격 확인" },
@@ -1433,7 +1435,7 @@ export const treatments: Treatment[] = [
     },
     headline: ["얇아진 피부에 탄탄함을,", "울트라콜"],
     intro:
-      "울트라콜은 PDO(폴리디옥사논)를 재료로 한 콜라겐부스터입니다. 피부결 · 탄력 · 볼륨 고민을 보고 제품 규격과 양을 정합니다.",
+      "울트라콜은 오랜 기간 수술용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 입자화하여 진피층의 자가 콜라겐 생성을 유도하는 콜라겐부스터입니다. 푸석해진 피부결, 저하된 탄력, 눈가나 볼 등의 꺼짐 고민을 면밀히 분석하여, 환자분의 피부 상태에 알맞은 제품 규격(100 · 200)과 용량을 1:1 맞춤으로 설계합니다.",
     photo: stock("collagen"),
     facts: [
       // 확인 필요: 시술 시간 (병원 실제 소요 시간)
@@ -1460,8 +1462,8 @@ export const treatments: Treatment[] = [
     ],
     faq: [],
     cautions: [
-      "시술 후 부기 · 작은 엠보 · 멍이 생길 수 있으며 가라앉는 속도는 사람마다 다릅니다.",
-      "드물게 덩어리감(결절)이 생길 수 있어, 오래가거나 커지면 바로 알려 주세요.",
+      "주입 직후 부기, 작은 엠보싱, 미세한 멍이 생길 수 있으며 시간이 지나면서 자연스럽게 소실됩니다. 다만 불편한 증세가 예상보다 길어질 경우 병원으로 연락 주시면 신속하게 안내해 드립니다.",
+      "울트라콜 시술 특성상 드물게 덩어리감(결절)이 만져질 수 있습니다. 덩어리감이 오래 지속되거나 크기가 커지는 듯한 느낌이 있다면 병원으로 바로 연락 주시기 바랍니다.",
     ],
   },
 
@@ -1512,22 +1514,29 @@ export const treatments: Treatment[] = [
         text: "새 병변과 피부 자극, 회복 상태를 확인하며 다음 계획을 상의합니다.",
       },
     ],
+    itemsTitle: "여드름 · 모공 치료 프로그램",
+    itemsEn: "Program",
     items: [
-      { name: "프락셀", text: "흉터 · 모공 · 피부결" },
       {
-        name: "피코프락셀",
-        text: "여드름 자국 · 모공 · 피부결",
+        name: "프락셀",
+        text: "패인 흉터 · 모공 · 피부결 (전체 · 부분)",
       },
-      { name: "블랙필", text: "피지 · 모공 · 톤" },
+      {
+        name: "피코 프락셀",
+        text: "여드름 자국 · 모공 · 피부결 (1회 · 3회 진정관리 포함)",
+      },
+      { name: "블랙필", text: "피지 · 모공 · 칙칙한 톤" },
       {
         name: "아크네 프로그램",
-        text: "여드름 단계별 관리",
+        text: "여드름 단계별 관리 (베이직 · 프리미엄)",
       },
-      { name: "압출관리", text: "염증 여드름 · 좁쌀" },
       {
-        name: "GA 스케일링",
-        text: "각질 · 피지 정리",
+        // 확인 필요: IBPS 부스터필의 사용 성분과 적용 방법 (지금은 가격표 이름 기준)
+        name: "아크네 IBPS 부스터필",
+        text: "여드름 피부에 맞춘 필링 · 부스터 관리",
       },
+      { name: "여드름 압출관리", text: "염증 여드름 · 좁쌀 압출" },
+      { name: "GA 스케일링", text: "각질 · 피지 정리" },
     ],
     faq: [
       {
@@ -1554,8 +1563,8 @@ export const treatments: Treatment[] = [
     image: photo("cat-hair-removal"),
     device: device("clarity", "Clarity II", "레이저 제모"),
     scene: {
-      src: photo("hero-hair-20261027"),
-      mobileSrc: photo("hero-hair-20261027-m"),
+      src: photo("hero-hair-20261027-model-a"),
+      mobileSrc: photo("hero-hair-20261027-m-model-a"),
       alt: "대표원장이 보호안경을 착용하고 레이저 장비를 사용하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 톤 · 털의 굵기 확인" },
@@ -1592,12 +1601,16 @@ export const treatments: Treatment[] = [
         text: "필요한 냉각과 통증 관리 방법을 안내하고 시술 중 불편감을 확인합니다.",
       },
     ],
+    itemsTitle: "프라베일 부위별 맞춤 제모 솔루션",
     items: [
       {
-        name: "여성",
-        text: "얼굴 · 겨드랑이 · 팔 · 다리 등",
+        name: "남성 레이저 제모 (수염 · 털 억제)",
+        text: "남성의 수염은 모근이 깊고 밀도가 높아 통증과 모낭염이 생기기 쉽습니다. 클라리티2의 1064nm 깊은 파장과 ICD 냉각을 함께 사용해 통증 부담을 줄이고, 모낭 주위만 정교하게 조사해 푸르스름하게 비치는 자국까지 함께 살핍니다.",
       },
-      { name: "남성", text: "수염 등 얼굴 · 바디" },
+      {
+        name: "여성 바디 · 미세 제모 (라인 · 피부결)",
+        text: "인중, 겨드랑이, 팔 · 다리는 물론 헤어라인이나 뒷목처럼 섬세한 디자인이 필요한 부위입니다. 755nm 파장으로 얇은 털까지 촘촘하게 다루고, 인텔리트랙 기술로 누락되는 부위 없이 고르게 시술합니다.",
+      },
     ],
     faq: [
       {
@@ -1618,12 +1631,12 @@ export const treatments: Treatment[] = [
     href: "/removal/tattoo",
     en: "Tattoo Removal",
     title: "문신제거",
-    description: "색소와 피부 상태를 살피고 눈 보호를 고려하는 문신제거",
-    image: photo("cat-tattoo-removal"),
+    description: "눈썹 · 아이라인 · 언더라인 반영구 색소를 살펴보는 문신제거",
+    image: photo("cat-tattoo-removal-model-a"),
     device: device("pico-k", "PICO-K", "피코 레이저"),
     scene: {
-      src: photo("hero-tattoo-20261027"),
-      mobileSrc: photo("hero-tattoo-20261027-m"),
+      src: photo("hero-tattoo-20261027-model-a"),
+      mobileSrc: photo("hero-tattoo-20261027-m-model-a"),
       alt: "대표원장이 피부 상태와 시술 가능 여부를 상담하는 모습",
       chips: [
         { x: 48, y: 18, en: "Design", label: "색소 · 피부 상태 확인" },
@@ -1632,7 +1645,7 @@ export const treatments: Treatment[] = [
     },
     headline: ["번지고 바랜 반영구 색소,", "레이저 문신제거"],
     intro:
-      "레이저로 반영구 색소를 잘게 나누고 몸이 이를 처리하며 옅어지도록 돕는 시술입니다. 색과 덧입힌 이력, 피부 상태를 살피고 눈 가까운 부위는 눈 상태와 보호 조건부터 확인합니다.",
+      "프라베일은 눈썹 · 아이라인 · 언더라인 반영구 문신제거를 진행합니다. 레이저로 반영구 색소를 잘게 나누고 몸이 이를 처리하며 옅어지도록 돕는 시술로, 색과 덧입힌 이력, 피부 상태를 살피고 눈 가까운 부위는 눈 상태와 보호 조건부터 확인합니다.",
     photo: stock("tattoo"),
     facts: [
       // 확인 필요: 시술 시간 (병원 실제 소요 시간)
@@ -1660,15 +1673,19 @@ export const treatments: Treatment[] = [
         text: "피부 회복과 남은 색을 보고 추가 시술의 필요성을 상의합니다.",
       },
     ],
+    itemsTitle: "프라베일 반영구 문신제거 부위",
     items: [
-      { name: "눈썹", text: "번지거나 바랜 반영구 눈썹" },
       {
-        name: "아이라인",
-        text: "번지거나 퍼진 아이라인",
+        name: "눈썹 문신제거",
+        text: "번지거나 바랜 반영구 눈썹, 붉거나 푸르게 변한 색을 살피고 남은 색과 피부 회복을 보며 횟수를 정합니다.",
       },
       {
-        name: "언더라인",
-        text: "진하게 남은 언더라인",
+        name: "아이라인 문신제거",
+        text: "번지거나 퍼진 아이라인입니다. 눈과 가까운 만큼 각막 보호구를 포함한 보호 조건을 먼저 확인한 뒤 진행합니다.",
+      },
+      {
+        name: "언더라인 문신제거",
+        text: "진하게 남은 언더라인입니다. 눈 아래 피부가 얇아 조사 범위와 회복 상태를 특히 나누어 살핍니다.",
       },
     ],
     faq: [

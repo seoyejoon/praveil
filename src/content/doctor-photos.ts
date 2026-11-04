@@ -5,7 +5,7 @@ export const doctorPhotos = {
   banner: "/images/photos/retouched/web/doctor-banner.jpg", // A7402790
   portrait: "/images/photos/retouched/web/doctor-portrait.jpg", // A7402803
   consult: "/images/photos/retouched/web/consult.jpg", // A7402654
-  laser: "/images/photos/retouched/web/laser.jpg", // A7402692
-  coolsonic: "/images/photos/retouched/web/coolsonic.jpg", // A7402722
-  coolphase: "/images/photos/retouched/web/coolphase.jpg", // A7402707
+  laser: "/images/photos/retouched/web/laser-model-a.webp", // A7402692
+  coolsonic: "/images/photos/retouched/web/coolsonic-model-a.webp", // A7402722
+  coolphase: "/images/photos/retouched/web/coolphase-model-a.webp", // A7402707
 } as const;

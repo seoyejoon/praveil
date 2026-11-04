@@ -355,7 +355,14 @@ export default function Header({ member, signup }: Props) {
                       </div>
                     ))}
                   </div>
-                  <div className="relative aspect-[4/3] self-start overflow-hidden rounded-[20px] bg-ivory">
+                  {/* 원본 전체를 보여 주는 사진(3:2)은 칸도 3:2 로 맞춰 위아래 여백이 생기지 않게 한다 */}
+                  <div
+                    className={`relative self-start overflow-hidden rounded-[20px] bg-ivory ${
+                      intro?.photoFit === "full-frame"
+                        ? "aspect-[3/2]"
+                        : "aspect-[4/3]"
+                    }`}
+                  >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={intro?.image}

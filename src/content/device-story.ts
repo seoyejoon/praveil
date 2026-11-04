@@ -2119,16 +2119,17 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "다이아몬드 팁으로 표면을 쫀쫀하게",
         text: "다이아몬드 팁은 피부를 뚫지 않고 표면에 고르게 에너지를 전달합니다. 잔주름 · 거친 피부결 · 겉탄력을 관리하며, 바늘 팁보다 회복 부담이 적습니다.",
-        image: "/images/potenza/tips-noninvasive.webp",
-        alt: "포텐자 비침습 팁 세 가지(SFA · DDR · 다이아몬드)를 보여 주는 제조사 영상 장면",
-        mediaSize: { width: 1280, height: 654 },
+        image: "/images/potenza/tips-ddr.webp",
+        video: "/videos/potenza-tips.mp4",
+        alt: "포텐자 비침습 프로그램의 DDR 팁을 보여 주는 제조사 영상",
+        mediaSize: { width: 1280, height: 720 },
         mediaEdges: ["#ffffff", "#ffffff"],
       },
       {
         title: "펌핑팁으로 부스터를 함께",
         text: "펌핑팁은 미세침으로 고주파를 주면서 쥬베룩 · 엑소좀 같은 부스터를 피부 속에 함께 넣을 수 있는 팁입니다. 피부 상태에 맞춰 함께 할 부스터를 고릅니다.",
-        image: "/images/potenza/pumping.webp",
-        video: "/videos/potenza-pumping.mp4",
+        image: "/images/potenza/pumping.webp?v=20261104",
+        video: "/videos/potenza-pumping.mp4?v=20261104",
         alt: "포텐자 펌핑팁이 피부 속에 고주파와 함께 약물을 전달하는 모습을 보여 주는 제조사 영상",
       },
       {

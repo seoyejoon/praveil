@@ -1948,8 +1948,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "슈링크 유니버스의 4가지 특징",
     features: [
       {
-        title: "촘촘하게 에너지를 전달하는 MP 모드",
-        text: "점 형태로 조사하는 일반(Dot) 모드와 더불어, 열응고점을 선 형태로 빈틈없이 이어 주는 MP(Micro Pulsed) 모드를 함께 활용합니다. 제조사는 양방향 연속 조사 방식으로 시술 시간을 줄이면서 에너지를 고르게 전달한다고 안내합니다.",
+        title: "빈틈없이 에너지를 전달하는 MP 모드",
+        text: "일정한 간격으로 열응고점을 만드는 일반(Dot) 모드에 더해, 미세한 열응고점을 선처럼 촘촘하게 이어 주는 MP(Micro Pulsed) 모드를 탑재했습니다. 에너지가 끊김 없이 빠르게 조사되어 전체적인 시술 시간과 통증 부담을 줄여 줍니다.",
         image: "/images/shrink/ultraf-mode.webp",
         video: "/videos/shrink-ultraf-mode.mp4",
         alt: "울트라 F 핸드피스의 일반 모드와 MP 모드 조사 모양을 보여 주는 제조사 영상",
@@ -1957,8 +1957,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "굴곡진 부위에 밀착되는 펜 타입 울트라 부스터",
-        text: "원형 펜 타입의 울트라 부스터 핸드피스는 눈가 · 입가 · 팔자 · 턱선처럼 좁고 굴곡진 부위에도 빈틈없이 밀착됩니다. 볼패임이 우려되는 부위는 세심하게 피하고 필요한 부위에만 정교하게 에너지를 전달합니다.",
+        title: "굴곡진 부위까지 세밀하게 밀착하는 울트라 부스터",
+        text: "둥근 펜 타입의 울트라 부스터 핸드피스는 눈가 · 입가 · 턱선처럼 평면 카트리지가 닿기 어려운 굴곡진 부위에 빈틈없이 밀착합니다. 볼꺼짐 등이 우려되는 부위는 정교하게 피하고, 탄력이 필요한 부위에만 에너지를 집중해 시술합니다.",
         image: "/images/shrink/booster-mode.webp",
         video: "/videos/shrink-booster-mode.mp4",
         alt: "둥근 펜형 울트라 부스터 핸드피스의 조사 모양을 보여 주는 제조사 영상",
@@ -1966,15 +1966,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "피부 층별 맞춤 카트리지 설계",
-        text: "1.5 · 2.0 · 3.0 · 4.5mm의 세분화된 카트리지를 통해 얕은 진피층부터 깊은 근막층(SMAS)까지 에너지를 층별로 전달합니다. 개인의 피부 두께와 처짐 정도에 맞춰 카트리지를 입체적으로 조합합니다.",
+        title: "피부 층별로 세분화된 4가지 깊이 카트리지",
+        text: "1.5mm · 2.0mm · 3.0mm · 4.5mm로 세분화된 4가지 카트리지를 활용해, 얕은 표피층의 잔주름부터 깊은 근막층(SMAS)까지 에너지를 단계별로 전달합니다. 개인별 피부 두께와 부위별 노화 상태를 면밀히 진단하여 적절한 깊이를 조합합니다.",
         image: "/images/shrink/booster-depth.webp?v=20261104b",
         video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       },
       {
-        title: "카트리지 교체 없는 원터치 모드 전환",
-        text: "하나의 카트리지에서 일반(Dot) 모드와 MP 모드를 모두 지원합니다. 시술 중 부위 특성에 따라 모드를 즉시 전환할 수 있어, 카트리지 교체로 인한 흐름 끊김 없이 매끄럽게 진행됩니다.",
+        title: "카트리지 교체 없이 실시간 전환하는 듀얼 모드",
+        text: "카트리지를 번거롭게 교체할 필요 없이, 시술 도중 화면을 통해 일반 모드와 MP 모드를 실시간으로 변경할 수 있습니다. 불필요한 대기 시간을 줄이고 부위별 특성에 맞는 에너지를 끊김 없이 전달합니다.",
         image: "/images/shrink/mode-switch.webp",
         video: "/videos/shrink-mode-switch.mp4",
         alt: "울트라 F 핸드피스 하나로 두 가지 모드를 교체 없이 쓴다고 설명하는 제조사 영상",

@@ -519,7 +519,7 @@ export const treatments: Treatment[] = [
         { x: 60, y: 66, en: "Lift", label: "부위별 실 개수 · 배치 계획" },
       ],
     },
-    headline: ["처진 라인을 받쳐 올리는,", "QTL 실리프팅"],
+    headline: ["강력한 4세대 PDO실,", "QTL 실리프팅"],
     intro:
       "QTL 실리프팅은 돌기가 촘촘히 배열된 몰딩형 녹는 실로 처진 조직을 끌어올려 고정하는 시술입니다. 처짐 방향과 피부 두께, 탄력 저하 양상을 보고 실의 개수와 삽입 방향을 정합니다.",
     photo: stock("thread"),

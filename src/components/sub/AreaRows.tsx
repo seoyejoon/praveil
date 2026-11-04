@@ -87,23 +87,25 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
 
               {/* 글 */}
               <Reveal delay={120} className={flip ? "md:order-1" : ""}>
-                <p className="flex items-baseline gap-4">
-                  <span className="font-display text-[40px] leading-none text-gold md:text-[52px]">
-                    {no}
-                  </span>
-                  {it.en && (
-                    <span className="font-display text-xs tracking-[0.35em] text-taupe uppercase">
-                      {it.en}
+                {/* 번호 · 영문 · 부위 이름 · 짧은 설명을 한 줄에 (좁으면 자동 줄바꿈) */}
+                <h3 className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                  <span className="flex items-baseline gap-3">
+                    <span className="font-display text-[40px] leading-none text-gold md:text-[52px]">
+                      {no}
                     </span>
-                  )}
-                </p>
-                {/* 부위 이름 옆에 짧은 설명 */}
-                <h3 className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="text-[26px] font-semibold tracking-[-0.03em] md:text-[32px]">
-                    {it.name}
+                    {it.en && (
+                      <span className="font-display text-xs tracking-[0.35em] text-taupe uppercase">
+                        {it.en}
+                      </span>
+                    )}
                   </span>
-                  <span className="text-[15px] font-normal text-white/60 md:text-[17px]">
-                    {it.text}
+                  <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="text-[26px] font-semibold tracking-[-0.03em] md:text-[32px]">
+                      {it.name}
+                    </span>
+                    <span className="text-[15px] font-normal text-white/60 md:text-[17px]">
+                      {it.text}
+                    </span>
                   </span>
                 </h3>
                 {it.detail && (

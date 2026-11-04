@@ -2054,6 +2054,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "미세침이 피부에 들어가 피부층별로 RF 에너지를 전달하는 과정을 보여 주는 자료 영상",
       framed: true,
       figureAspect: "16 / 9",
+      noteOverlay: true,
       marks: [],
       layers: [],
       note: "JEISYS MEDICAL · 층별 고주파 전달과 바이폴라 · 모노폴라 방식. 실제 크기 · 깊이와는 다를 수 있습니다.",

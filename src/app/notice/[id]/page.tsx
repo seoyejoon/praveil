@@ -36,7 +36,12 @@ export default async function NoticeDetailPage({ params }: Props) {
   if (!notice) notFound();
 
   const event = notice.type === "event";
-  const board = event ? "이벤트" : "공지사항";
+  const board =
+    notice.type === "event"
+      ? "이벤트"
+      : notice.type === "column"
+        ? "원장칼럼"
+        : "공지사항";
   const listHref = `/notice?type=${notice.type}`;
   const same = all.filter((n) => n.type === notice.type);
   const idx = same.findIndex((n) => n.id === notice.id);

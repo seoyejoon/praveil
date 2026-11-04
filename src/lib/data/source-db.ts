@@ -251,20 +251,24 @@ const loadNotices = cached("notices", async (): Promise<Notice[]> => {
     `SELECT id, site_builder_config->'websiteAdmin'->'boards' AS boards FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1`,
   );
   if (!hospitalRow) return [];
-  // 게시판 종류(공지/이벤트)이면서 전체 공개인 게시판만 홈페이지에 싣는다.
+  // 게시판 종류(공지 · 이벤트 · 원장칼럼)이면서 전체 공개인 게시판만 홈페이지에 싣는다.
+  // 원장칼럼은 관리자에서 쓰는 boardType 이 column · doctor-column 둘 다 있을 수 있어
+  // 이름에 '칼럼'이 들어간 게시판까지 같은 종류로 본다.
+  const kindOf = (b: Record<string, unknown>): Notice["type"] | null => {
+    const kind = str(b.boardType);
+    if (kind === "notice" || kind === "event") return kind;
+    if (kind === "column" || kind === "doctor-column") return "column";
+    return str(b.name).includes("칼럼") ? "column" : null;
+  };
   const boards = arr(hospitalRow.boards)
     .map(obj)
-    .filter(
-      (b) =>
-        (b.boardType === "notice" || b.boardType === "event") &&
-        b.readPermission !== "member",
-    );
+    .filter((b) => kindOf(b) && b.readPermission !== "member");
   if (!boards.length) return [];
   const typeOf = (post: PostRow) => {
     const board = boards.find((b) =>
       post.boardId ? b.id === post.boardId : b.name === post.category,
     );
-    return board ? (board.boardType as Notice["type"]) : null;
+    return board ? kindOf(board) : null;
   };
   const rows = await sql<PostRow>(
     `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,

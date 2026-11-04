@@ -8,8 +8,14 @@ import { formatDate } from "@/lib/notice";
 
 const PER_PAGE = 10;
 
-// 공지사항 목록: 검색 + 10개씩 넘겨 보기
-export default function NoticeList({ notices }: { notices: Notice[] }) {
+// 공지사항 · 원장칼럼 목록: 검색 + 10개씩 넘겨 보기
+export default function NoticeList({
+  notices,
+  board = "공지사항",
+}: {
+  notices: Notice[];
+  board?: string;
+}) {
   const [q, setQ] = useState("");
   const [page, setPage] = useState(1);
   const list = useMemo(
@@ -34,7 +40,7 @@ export default function NoticeList({ notices }: { notices: Notice[] }) {
               setPage(1);
             }}
             placeholder="제목으로 찾기"
-            aria-label="공지사항 검색"
+            aria-label={`${board} 검색`}
             className="w-full bg-transparent text-sm outline-none placeholder:text-muted/70"
           />
         </label>
@@ -42,7 +48,7 @@ export default function NoticeList({ notices }: { notices: Notice[] }) {
 
       {shown.length === 0 ? (
         <p className="mt-8 border-y border-line py-24 text-center text-sm text-muted">
-          {q ? "찾는 글이 없습니다." : "등록된 공지가 없습니다."}
+          {q ? "찾는 글이 없습니다." : `등록된 ${board} 글이 없습니다.`}
         </p>
       ) : (
         <ul className="mt-8 border-t border-ink/80">

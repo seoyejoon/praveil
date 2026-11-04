@@ -67,7 +67,7 @@ export type PostBody =
 
 export type Notice = {
   id: number;
-  type: "notice" | "event";
+  type: "notice" | "event" | "column";
   title: string;
   summary: string;
   coverImageUrl: string;

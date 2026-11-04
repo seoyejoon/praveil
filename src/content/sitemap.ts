@@ -162,6 +162,7 @@ export const sitemap: SiteSection[] = [
     pages: [
       { href: "/notice?type=notice", label: "공지사항" },
       { href: "/notice?type=event", label: "이벤트" },
+      { href: "/notice?type=column", label: "원장칼럼" },
       { href: "/before-after", label: "전후사진" },
     ],
   },

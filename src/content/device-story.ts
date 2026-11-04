@@ -785,8 +785,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
-      image: "/images/photos/best-retuo-model-a.webp",
-      photo: "/images/photos/best-retuo-model-a.webp",
+      image: "/images/retuo/product-intro.webp",
+      photo: "/images/retuo/product-intro.webp",
+      photoAlt: "리투오 제품 상자와 본품 (제조사 공식 자료)",
+      mediaContain: true,
+      mediaBg: "#f6f1ec",
+      mediaSize: { width: 2520, height: 980 },
       text: "리투오는 기증된 인체 피부 조직에서 세포 성분을 온전히 제거하고 세포외기질(ECM) 성분만 남긴 무세포 동종진피(hADM) 제품입니다. 피부 탄력을 지지하는 콜라겐 등 핵심 성분을 바탕으로, 거칠어진 피부결과 잔주름, 저하된 탄력 밀도 고민을 가진 피부에 원료의 특성을 고려하여 섬세하게 적용합니다.",
       specs: [
         {
@@ -806,7 +810,6 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 두께 · 고민 부위 확인 후 1:1 결정",
         },
       ],
-      photoAlt: "대표원장이 리투오를 시술하는 장면",
     },
     principle: [
       {
@@ -883,43 +886,42 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "사람의 실제 피부 성분 그대로, 인체 조직 유래 hADM",
         text: "리투오는 인체 피부 조직에서 세포를 제거하고 얻은 무세포 동종진피(hADM)를 미세하게 가공한 성분입니다. 콜라겐, 엘라스틴, 히알루론산 등 실제 사람의 피부를 이루는 세포외기질(ECM) 성분을 담고 있어 생체 적합성이 높은 편입니다.",
-        image: "/images/official/retuo-product.jpg",
-        alt: "리투오 제품 자료 (제조사 공식 자료)",
+        image: "/images/retuo/box-front.webp",
+        alt: "리투오 제품 정면 (제조사 공식 자료)",
         fullFrame: false,
-        mediaSize: { width: 479, height: 479 },
-        mediaEdges: ["#fffeff", "#fffeff"],
+        mediaSize: { width: 1800, height: 878 },
+        mediaEdges: ["#f6f1ec", "#f6f1ec"],
       },
       {
         title: "얇아진 피부 속 지지대를 바로 세우는 구조적 보강",
         text: "노화나 외부 자극으로 진피층의 밀도가 떨어지고 얇아진 피부는 일반적인 수분 관리만으로는 유지 기간이 아쉽기 쉽습니다. 리투오는 무너진 피부 속 지지대 환경을 구조적으로 보완하여 속부터 탄탄한 힘을 길러 줍니다.",
-        image: "/images/official/retuo-official.jpg",
-        alt: "리투오 원료와 사용 목적을 안내하는 제조사 공식 자료",
+        image: "/images/retuo/ecm-diagram.png",
+        alt: "리투오 세포외기질(ECM) 구성을 설명하는 제조사 공식 도식",
         fullFrame: false,
-        mediaSize: { width: 479, height: 479 },
-        mediaEdges: ["#fffeff", "#fffeff"],
+        mediaSize: { width: 1401, height: 692 },
+        mediaEdges: ["#ffe8e4", "#ffe8e4"],
       },
       {
         title: "인공 합성물 부담을 줄인 생체 적합성",
         text: "인공적으로 합성된 물질에 민감하거나 쉽게 부담을 느끼는 피부에도 편안하게 작용합니다. 본래 내 피부 조직과 유사한 성분 기반이기 때문에 이물감에 대한 우려를 덜고 자연스러운 융화를 돕습니다.",
-        image: "/images/photos/retouched/web/consult.jpg",
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        image: "/images/retuo/skin-analysis.webp",
+        alt: "대표원장이 피부 분석 화면을 보며 상담하는 장면",
         fullFrame: true,
       },
       {
         title: "진피 밀도 강화로 완성하는 잔주름 · 결 · 탄력 케어",
         text: "단순히 표면만 일시적으로 채우는 것이 아니라, 피부 속 진피 밀도를 촘촘히 채워 줍니다. 잔주름이 신경 쓰이는 부위나 거칠어진 피부결, 저하된 탄력 전반을 함께 살핍니다.",
-        image: "/images/photos/hero-about.webp",
-        alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
+        image: "/images/photos/process-check-model-a.webp",
+        alt: "시술 후 경과를 확인하는 장면",
       },
     ],
     process: [
       {
         title: "1:1 맞춤 상담 및 피부 진단",
         text: "현재 피부결, 잔주름, 탄력 저하 등 고민 부위를 면밀히 살피고, 기대하시는 변화를 확인합니다. 또한 과거 시술 이력, 알레르기 및 특이 질환 여부를 꼼꼼히 체크하여 시술 계획을 세웁니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        image: "/images/retuo/process-01-consult.webp",
+        alt: "대표원장이 피부 상태를 확인하며 상담하는 장면",
         fullFrame: true,
-        coverPosition: "50% 50%",
       },
       {
         title: "맞춤 마취 및 통증 관리",
@@ -930,8 +932,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 성분 주입 및 피부 반응 관찰",
         text: "진찰을 통해 미리 계획된 부위와 방법대로 유효 성분을 진피층에 꼼꼼하게 주입하며, 시술 중 피부의 미세한 반응을 세심하게 살피며 진행합니다.",
-        image: "/images/photos/cat-skin-booster-model-a.webp",
+        image: "/images/retuo/process-03-injection.webp",
         alt: "계획한 부위에 주입을 진행하는 대표원장",
+        // 정사각 원본이라 4:5 카드에서 잘리지 않도록 전체를 보여 준다
+        fullFrame: true,
       },
       {
         title: "직후 상태 확인 및 케어 안내",
@@ -1276,9 +1280,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "엑소좀",
       maker: "ISCE EXOSOME",
-      image: "/images/photos/cat-skin-booster-model-a.webp",
-      photo: "/images/photos/cat-main-skin-model-a.webp",
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
+      image: "/images/official/isce-set-product.jpg",
+      photo: "/images/official/isce-set-product.jpg",
+      photoAlt: "ISCE 엑소좀 제품 구성 (제조사 공식 자료)",
+      mediaContain: true,
+      mediaBg: "#ffffff",
+      mediaSize: { width: 400, height: 400 },
       text: "엑소좀은 세포가 내보내는 아주 작은 주머니(엑소좀)에서 얻은 성분을 활용한 스킨부스터입니다. 프라베일은 ISCE 엑소좀을 사용하며, 피부가 예민해지고 컨디션이 떨어졌을 때 단독으로 또는 다른 시술과 함께 계획합니다.",
       specs: [
         { label: "제품", value: "ISCE 엑소좀" },
@@ -1578,8 +1585,10 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "쥬베룩",
       maker: "JUVELOOK",
-      image: "/images/official/juvelook-product.png",
-      photo: "/images/official/juvelook-product.png",
+      image: "/images/official/juvelook-skin-30mg.png",
+      photo: "/images/official/juvelook-skin-30mg.png",
+      mediaBg: "#ffffff",
+      mediaSize: { width: 298, height: 681 },
       photoAlt: "쥬베룩 공식 제품 바이알",
       mediaContain: true,
       text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일시적으로 외부 물질을 채워 넣는 일반 필러와 달리, 피부 속 세포를 자극해 스스로 콜라겐을 만들도록 돕는 방식이라 시간이 흐를수록 서서히 차오르는 탄력을 확인하게 됩니다. 변화의 정도와 시점은 사람마다 다릅니다.",
@@ -1737,10 +1746,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "울트라콜",
       maker: "ULTRACOL",
-      image: "/images/official/ultracol-product.png",
-      photo: "/images/official/ultracol-product.png",
-      photoAlt: "울트라콜 공식 제품 이미지",
+      image: "/images/official/ultracol-100-200-vials.webp",
+      photo: "/images/official/ultracol-100-200-vials.webp",
+      photoAlt: "울트라콜 100 · 200 제품 (제조사 공식 자료)",
       mediaContain: true,
+      mediaBg: "#f6f1ec",
+      mediaSize: { width: 1254, height: 1400 },
       text: `울트라콜은 오랜 기간 의료용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 구형 입자로 가공하여 사용하는 콜라겐부스터입니다.
 
 프라베일에서는 환자분의 피부 두께와 고민 부위에 맞춰 섬세한 관리가 가능한 울트라콜 100과 볼륨감을 함께 보완하는 울트라콜 200(볼륨부스터) 두 가지 라인업으로 안내해 드리고 있습니다. 일률적인 방식이 아니라, 시술 부위의 특성과 피부 상태에 맞춰 알맞은 규격과 용량을 1:1 맞춤으로 설계합니다.`,
@@ -1780,7 +1791,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         { name: "울트라콜 100", maker: "미세 구형 PDO", self: true },
         { name: "울트라콜 200", maker: "고농축 구형 PDO" },
         { name: "쥬베룩 (스킨)", maker: "PDLLA · HA" },
-        { name: "레니스나", maker: "고농축 PDLLA · HA" },
+        { name: "쥬베룩 볼륨", maker: "고농축 PDLLA · HA" },
       ],
       rows: [
         {
@@ -1836,10 +1847,11 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "미세 구형 PDO(녹는 실) 입자",
         text: "수십 년간 외과 수술용 봉합사로 쓰여 온 PDO(폴리디옥사논) 성분을 미세한 구형(Sphere) 입자로 가공해 만든 4세대 콜라겐부스터입니다.",
-        image: "/images/official/ultracol-product.png",
-        alt: "울트라콜 · PDO 성분 · 제조사 공식 자료",
+        image: "/images/official/ultracol-100-200-box-vials.png",
+        alt: "울트라콜 100 · 200 제품 상자와 바이알 (제조사 공식 자료)",
         fullFrame: false,
         mediaSize: { width: 419, height: 289 },
+        mediaEdges: ["#ffffff", "#ffffff"],
       },
       {
         title: "구형 입자로 결절 부담을 낮춘 구조",

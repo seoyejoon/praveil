@@ -2122,8 +2122,10 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/potenza/tips-ddr.webp",
         video: "/videos/potenza-tips.mp4",
         alt: "포텐자 비침습 프로그램의 DDR 팁을 보여 주는 제조사 영상",
+        // 16:9 는 기본값이 '잘라서 채우기'라 글자가 잘림 → 전체를 보여 주고 위아래는 영상 가장자리 색으로
         mediaSize: { width: 1280, height: 720 },
-        mediaEdges: ["#ffffff", "#ffffff"],
+        mediaFit: "contain",
+        mediaEdges: ["#b5c3cc", "#7b8c9d"],
       },
       {
         title: "펌핑팁으로 부스터를 함께",

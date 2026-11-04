@@ -1871,8 +1871,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     principleImage: {
-      src: "/images/shrink/principle.webp",
-      video: "/videos/shrink-principle.mp4",
+      src: "/images/shrink/principle.webp?v=20261104b",
+      video: "/videos/shrink-principle.mp4?v=20261104b",
       alt: "같은 4.5mm 깊이에서 일반 모드(점)와 MP 모드(이어진 선)로 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       framed: true,
       figureAspect: "16 / 9",
@@ -1968,8 +1968,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 층별 맞춤 카트리지 설계",
         text: "1.5 · 2.0 · 3.0 · 4.5mm의 세분화된 카트리지를 통해 얕은 진피층부터 깊은 근막층(SMAS)까지 에너지를 층별로 전달합니다. 개인의 피부 두께와 처짐 정도에 맞춰 카트리지를 입체적으로 조합합니다.",
-        image: "/images/shrink/booster-depth.webp",
-        video: "/videos/shrink-booster-depth.mp4",
+        image: "/images/shrink/booster-depth.webp?v=20261104b",
+        video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
       },
       {

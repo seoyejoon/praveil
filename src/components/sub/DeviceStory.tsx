@@ -64,12 +64,10 @@ export function StoryAbout({
                 device.photoFullFrame && !device.film
                   ? "relative flex items-center"
                   : device.film
-                    ? // 영상은 16:9 그대로. 오른쪽 글 높이에 맞춰 세로로 늘어나지 않게 가운데 정렬
-                      "relative aspect-video w-full self-center"
+                    ? // 좁은 화면은 16:9, 넓은 화면은 칸을 끝까지 채운다 (빈 띠가 남지 않게)
+                      "relative aspect-video w-full lg:aspect-auto lg:h-full lg:self-stretch"
                     : "relative aspect-[16/9] lg:aspect-auto lg:min-h-[560px]"
               }
-              // 둥근 모서리 안쪽이 영상과 같은 색이 되도록 (영상 가장자리 색)
-              style={device.film?.edge ? { background: device.film.edge } : undefined}
             >
               {device.film ? (
                 <video
@@ -81,7 +79,8 @@ export function StoryAbout({
                   playsInline
                   preload="metadata"
                   aria-label={`${device.name} 장비 영상`}
-                  className="absolute inset-0 h-full w-full object-contain object-center"
+                  // 좁은 화면(16:9 칸)은 전체를 보여 주고, 넓은 화면은 칸을 꽉 채움
+                  className="absolute inset-0 h-full w-full object-contain object-center lg:object-cover"
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -98,12 +97,15 @@ export function StoryAbout({
                   }
                 />
               )}
-              {/* 영상 · 사진이 잘리지 않게 넣은 경우(mediaContain)는 오른쪽 그림자를 씌우지 않음 (글자가 가려짐) */}
+              {/* 넓은 화면에서 칸을 꽉 채우는 경우 오른쪽 끝을 어둡게 해 옆 글자와 이어지게 */}
               {(!device.photoFullFrame || device.film) &&
-                !device.mediaContain && (
+                (device.film || !device.mediaContain) && (
                   <>
                     <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,transparent_60%,#2b2b2b)] lg:block" />
-                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+                    {/* 좁은 화면에서 영상은 글과 따로 놓이므로 아래 그림자를 씌우지 않음 */}
+                    {!device.film && (
+                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(180deg,transparent,#2b2b2b)] lg:hidden" />
+                    )}
                   </>
                 )}
             </div>

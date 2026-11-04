@@ -156,7 +156,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/coolsonic-brand.mp4",
         poster: cs("coolsonic-brand"),
-        edge: "#161e20",
+        edge: "linear-gradient(#3e4748, #273132)",
       },
       text: "쿨소닉은 고강도 집속 초음파(HIFU)에 ACC 냉각 기술을 적용한 리프팅 장비입니다. 피부 표면을 냉각해 보호하면서 1.5 · 3.0 · 4.5mm 깊이에 에너지를 나누어 전달해, 근막층(SMAS)까지 단계적으로 리프팅합니다.",
       specs: [
@@ -475,7 +475,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/coolphase-device.mp4",
         poster: "/images/coolphase/device.webp",
-        edge: "#131517",
+        edge: "linear-gradient(#494d4e, #8e9393)",
       },
       text: "쿨페이즈는 아스테라시스(ASTERASYS)의 6.78MHz 모노폴라(단극성) 고주파 리프팅 장비입니다. 직접 접촉식 냉각 기술(DCC™)로 표피를 보호하면서 고주파 심부열을 진피층에 고르게 전달합니다. 개인별 피부 두께와 굴곡, 고민 부위에 맞춰 에너지와 샷 수를 정교하게 설계해 탄력 · 잔주름 · 모공 · 피부결을 함께 관리합니다.",
       specs: [
@@ -1701,7 +1701,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/official-potenza-intro.mp4",
         poster: "/images/official/potenza-intro-poster.jpg",
-        edge: "#e1e5e8",
+        edge: "linear-gradient(#cfdfe0, #cdd9de)",
       },
       mediaContain: true,
     },
@@ -1868,7 +1868,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/shrink-device.mp4?v=20261104",
         poster: "/images/shrink/device.webp?v=20261104",
-        edge: "#010304",
+        edge: "linear-gradient(#020707, #080d17)",
       },
       text: "슈링크 유니버스는 클래시스(CLASSYS)사의 고강도 집속 초음파(HIFU) 리프팅 장비입니다. 피부 속 목표 층에 열응고점(TCP)을 형성하여 처진 윤곽과 탄력을 관리하며, 점 형태로 조사하는 일반(Dot) 모드와 에너지를 선 형태로 촘촘히 전달하는 MP(Micro Pulsed) 모드를 피부 상태에 맞춰 선택합니다.",
       specs: [
@@ -2034,7 +2034,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/potenza-device-web-v2.mp4",
         poster: "/images/potenza/potenza-device-web-v2.webp",
-        edge: "#000000",
+        edge: "linear-gradient(#070707, #2d2d2d)",
       },
       mediaContain: true,
       text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하면서 부스터를 함께 넣는 펌핑팁으로 운영합니다. 바늘 깊이를 0.5 ~ 4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
@@ -3007,7 +3007,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/official-clarity.mp4",
         poster: "/images/official/clarity-poster.jpg",
-        edge: "#ffffff",
+        edge: "linear-gradient(#f2efee, #d4d3d2)",
       },
       mediaContain: true,
     },

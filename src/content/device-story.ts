@@ -2207,6 +2207,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       src: "/images/official/clarity-tracking-detail.jpg",
       alt: "피부 위에서 레이저 조사 자리가 고르게 이어지는 모습을 보여 주는 제조사 이미지",
       framed: false,
+      noteOverlay: true,
       marks: [],
       layers: [],
       note: "LUTRONIC · 조사 자리가 겹치거나 빠지지 않게 고르게 이어지는 모습입니다.",

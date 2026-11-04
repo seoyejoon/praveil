@@ -3340,7 +3340,13 @@ export const deviceStory: Record<string, DeviceStory> = {
 
 // 보톡스: 얼굴 · 바디 (기본 원고에서 다른 점만 바꿈)
 const botoxStory = deviceStory["/petit/botox"];
-deviceStory["/petit/botox/face"] = botoxStory;
+deviceStory["/petit/botox/face"] = {
+  ...botoxStory,
+  device: {
+    ...botoxStory.device,
+    text: "얼굴 보톡스는 근육의 움직임을 완화하는 보툴리눔 톡신을 주입해 표정 주름과 윤곽 라인을 정돈하는 시술입니다. 움직일 때 생기는 주름과 이미 자리 잡은 주름의 상태를 구분하고, 부위별 근육의 강도와 표정 습관에 맞춰 디자인합니다.",
+  },
+};
 deviceStory["/petit/botox/body"] = {
   ...botoxStory,
   device: {

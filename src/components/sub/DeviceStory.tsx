@@ -330,7 +330,12 @@ export function StoryFeatures({
                     src={f.image}
                     alt={f.alt}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
+                    className={`absolute inset-0 h-full w-full ${
+                      f.mediaFit === "contain"
+                        ? // 제품 사진처럼 잘리면 안 되는 그림
+                          "bg-ivory object-contain p-5"
+                        : "object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
+                    }`}
                   />
                 </div>
                 <div className="flex flex-col justify-center p-7 md:p-9">

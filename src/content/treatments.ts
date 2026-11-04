@@ -299,7 +299,7 @@ export const treatments: Treatment[] = [
         { x: 60, y: 66, en: "Design", label: "처짐 부위 · 피부 두께 계획" },
       ],
     },
-    headline: ["정밀한 Dot + MP Mode HIFU,", "슈링크 유니버스 리프팅"],
+    headline: ["더 강력해진 듀얼 모드 HIFU,", "슈링크 유니버스 리프팅"],
     intro:
       "슈링크 유니버스는 고강도 집속 초음파(HIFU) 에너지를 피부 속 목표 깊이에 전달해 열응고점을 형성하는 리프팅 장비입니다. 처진 부위와 피부 두께에 맞춰 카트리지 깊이 · 조사 모드 · 샷 수를 세밀하게 설계합니다.",
     photo: stock("laser"),

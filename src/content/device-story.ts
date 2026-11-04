@@ -1975,11 +1975,11 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "카트리지 교체 없이 실시간 전환하는 듀얼 모드",
         text: "카트리지를 번거롭게 교체할 필요 없이, 시술 도중 화면을 통해 일반 모드와 MP 모드를 실시간으로 변경할 수 있습니다. 불필요한 대기 시간을 줄이고 부위별 특성에 맞는 에너지를 끊김 없이 전달합니다.",
-        image: "/images/shrink/mode-switch.webp",
-        video: "/videos/shrink-mode-switch.mp4",
+        image: "/images/shrink/mode-switch.webp?v=20261104c",
+        video: "/videos/shrink-mode-switch.mp4?v=20261104c",
         alt: "울트라 F 핸드피스 하나로 두 가지 모드를 교체 없이 쓴다고 설명하는 제조사 영상",
-        // 영상 위쪽에 제조사 문구가 있어 자르지 않고 전체를 보여 줌
-        mediaSize: { width: 1280, height: 720 },
+        // 제조사 워터마크가 있던 위쪽 띠를 잘라 냄 (1280×664). 자르지 않고 전체를 보여 줌
+        mediaSize: { width: 1280, height: 664 },
         mediaEdges: ["#000000", "#000000"],
       },
     ],
@@ -1995,14 +1995,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "클렌징 및 마취 준비",
         text: "시술 부위를 청결하게 정돈한 뒤 통증 부담을 줄이기 위해 마취 크림을 도포합니다.",
-        image: "/images/photos/process-anesthesia.webp",
-        alt: "기존 마취 준비 사진",
+        image: "/images/photos/process-shrink-anesthesia.webp",
+        alt: "시술 전 얼굴에 마취 크림을 고르게 바른 모습",
       },
       {
         title: "대표원장 맞춤 시술",
         text: "부위별 피부 두께와 윤곽 구조에 맞춰 카트리지와 모드를 조절하며 목표 깊이에 초음파 에너지를 전달합니다.",
-        image: "/images/photos/cat-lifting.webp",
-        alt: "리프팅 시술 설명용 기존 진료 사진",
+        image: "/images/photos/process-shrink-treatment.webp",
+        alt: "대표원장이 슈링크 유니버스 핸드피스로 얼굴 시술을 진행하는 모습",
       },
       {
         title: "진정 마무리 및 안내",

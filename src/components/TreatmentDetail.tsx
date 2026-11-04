@@ -519,7 +519,7 @@ export default function TreatmentDetail({
         <section className="bg-espresso px-5 py-24 text-white md:px-10 md:py-32">
           <div className="mx-auto max-w-[1400px]">
             <SectionHead
-              en={byArea ? "By Area" : "Program"}
+              en={byArea || t.itemsTitle ? "By Area" : "Program"}
               tone="dark"
               title={
                 byArea ? (
@@ -528,7 +528,7 @@ export default function TreatmentDetail({
                     <br className="md:hidden" /> 어떻게 다른가요?
                   </>
                 ) : (
-                  `${t.title} 세부 시술`
+                  (t.itemsTitle ?? `${t.title} 세부 시술`)
                 )
               }
             />
@@ -536,7 +536,7 @@ export default function TreatmentDetail({
               <AreaRows items={t.items} />
             ) : (
               <ul
-                className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
+                className={`mt-12 grid gap-3 md:mt-16 ${t.items.length > 4 ? "grid-cols-2 lg:grid-cols-4" : t.items.length === 4 ? "md:grid-cols-2 lg:grid-cols-4" : t.items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}
               >
                 {t.items.map((it, i) => (
                   <Reveal

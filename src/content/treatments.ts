@@ -687,13 +687,10 @@ export const treatments: Treatment[] = [
       "환자분의 고민 부위별 상태를 고려한 커스텀 필러 시술",
     image: photo("signature-3"),
     scene: {
-      src: photo("hero-filler-20261027-model-a"),
-      mobileSrc: photo("hero-filler-20261027-m-model-a"),
-      alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "Design", label: "정면 · 측면 얼굴 비율 분석" },
-        { x: 50, y: 64, en: "Genuine", label: "정품 · 정량, 시술 전 확인" },
-      ],
+      src: photo("hero-filler-products-3brands-20261105-v2"),
+      mobileSrc: photo("hero-filler-products-3brands-20261105-m-v2"),
+      alt: "뉴라미스 · 레나 · 레스틸렌 제품군을 배치한 필러 제품 연출 이미지",
+      // 제품이 오른쪽 절반, 글자가 왼쪽 절반을 쓰므로 유리 카드를 놓을 자리가 없다
     },
     headline: ["프라베일 시그니처 시술,", "커스텀 볼륨 필러"],
     intro:
@@ -1856,6 +1853,20 @@ export const treatments: Treatment[] = [
       {
         q: "시술 전 면도해야 하나요?",
         a: "면도하는 시점과 남길 길이는 부위에 맞춰 안내합니다. 왁싱 · 뽑기나 면도 중 생긴 상처가 있다면 예약 전에 알려 주세요.",
+      },
+    ],
+    doctorReasons: [
+      {
+        title: "피부 톤 및 모발 특성 확인",
+        text: "부위마다 다른 털의 굵기와 밀도, 모근의 깊이뿐 아니라 피부 톤(멜라닌 색소량)을 살펴 적정 에너지 기준을 잡습니다.",
+      },
+      {
+        title: "1:1 맞춤 파라미터 조율",
+        text: "얇은 잔털부터 굵은 모발까지 털의 굵기에 맞춰 펄스 폭(Pulse Duration)과 쿨링 세기를 조절하여 화상 부담을 덜고 제모 효율을 높입니다.",
+      },
+      {
+        title: "굴곡 부위 꼼꼼한 직접 조사",
+        text: "턱선, 인중, 바디 관절 등 굴곡진 부위까지 누락되거나 중복 조사로 인한 자극이 생기지 않도록 일정한 간격으로 세심하게 시술합니다.",
       },
     ],
     cautions: [

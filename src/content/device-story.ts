@@ -1240,18 +1240,18 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 맞춤 주입",
         text: "피부 두께와 표정 움직임, 잔주름의 깊이가 다른 부위별 특성을 고려하여 적정한 깊이와 간격으로 고르게 주입합니다.",
-        image: "/images/skin-features/rejuran/rejuran-point-03-area-plan-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-area-plan-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-area-plan-20261105-v2.webp 1200w",
-        alt: "부위별 맞춤 계획 — AI 안내 사진",
-        caption: "공통 모델을 활용한 AI 안내 이미지입니다. 실제 시술 전후 또는 치료 결과 사진이 아닙니다.",
+        image: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp",
+        mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp 1200w",
+        alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",
+        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기 · 깊이 · 간격은 단순화했습니다.",
       },
       {
         title: "일시적 완화가 아닌 피부 컨디션 관리",
         text: "피부 스스로의 환경을 되찾도록 돕는 것을 목표로 하며, 시간이 지나며 나타나는 컨디션 변화를 경과 진료에서 함께 확인합니다. 변화의 속도와 체감 정도는 사람마다 다릅니다.",
-        image: "/images/skin-features/rejuran/rejuran-point-04-follow-up-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-04-follow-up-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-04-follow-up-20261105-v2.webp 1200w",
-        alt: "피부 컨디션 경과 확인 — AI 안내 사진",
-        caption: "공통 모델을 활용한 AI 안내 이미지입니다. 실제 시술 전후 또는 치료 결과 사진이 아닙니다.",
+        image: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp",
+        mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp 1200w",
+        alt: "원장님이 환자와 마주 앉아 대화하는 프라베일 상담 장면",
+        caption: "프라베일 원내 상담 장면입니다.",
       },
     ],
     process: [
@@ -1635,16 +1635,16 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "개인별 피부 두께 및 고민 부위 분석",
-        text: "거친 피부결, 나이 들어 보이는 탄력 저하, 눈에 띄는 나비존 모공이나 얕은 꺼짐 등 환자분의 주된 피부 고민을 면밀히 파악합니다. 사람마다 얼굴 부위별 피부 두께와 탄성도가 모두 다르므로, 시술 전 이를 정밀하게 진단하는 것이 쥬베룩 시술의 첫걸음입니다.",
+        title: "부위별 피부 두께 및 고민 부위 진단",
+        text: "부위별 피부 두께와 탄력 상태, 모공 · 꺼짐의 정도를 살펴 적합한 주입 깊이와 양을 결정합니다.",
       },
       {
-        title: "PDLLA와 히알루론산(HA)의 진피층 분할 주입",
-        text: "자가 콜라겐 생성을 유도하는 고분자 PDLLA 미세입자와 수분감을 주는 히알루론산(HA)이 함께 배합된 제품을 사용합니다. 한재웅 대표원장의 숙련된 노하우를 바탕으로, 약물이 뭉치거나 손실되지 않도록 진피층의 계획한 깊이에 고르고 촘촘하게 나누어 주입합니다.",
+        title: "PDLLA + HA 정밀 분할 주입",
+        text: "자가 콜라겐 생성을 돕는 PDLLA와 히알루론산(HA)을 뭉침 없이 진피층에 고르게 나누어 주입합니다.",
       },
       {
-        title: "점진적인 콜라겐 생성 및 세심한 경과 관찰",
-        text: "진피층에 안착한 쥬베룩 입자가 시간이 지날수록 세포를 자극하여 자가 콜라겐과 탄력 섬유를 서서히 만들어냅니다. 초기 안정화 과정을 거치며 단단한 덩어리감(결절)이 생기지 않는지, 피부 밀도가 부드럽게 차오르는지 세심하게 관찰하고 안내해 드립니다. 변화의 속도와 정도는 사람마다 다릅니다.",
+        title: "자가 콜라겐 재생 및 밀도 개선",
+        text: "미세 입자가 피부 속 세포를 자극하여 콜라겐과 엘라스틴을 점진적으로 형성해 탄력과 결을 채웁니다.",
       },
     ],
     compare: {
@@ -3376,7 +3376,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "클라리티2 · 실시간 피부 온도 표시 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 841, height: 328 },
-        mediaEdges: ["#f6f2ec", "#f6f2ec"],
+        // 배경이 비치는 자료라 아이보리 위에서는 흰 글자가 보이지 않는다
+        mediaEdges: ["#000000", "#000000"],
       },
       {
         title: "인텔리트랙(IntelliTrack)으로 빠짐없는 시술",
@@ -3385,7 +3386,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "클라리티2 · 인텔리트랙 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 408, height: 464 },
-        mediaEdges: ["#f6f2ec", "#f6f2ec"],
+        // 배경이 비치는 자료라 아이보리 위에서는 핸드피스와 설명 글자가 보이지 않는다
+        mediaEdges: ["#000000", "#000000"],
       },
     ],
     process: [

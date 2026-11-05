@@ -613,7 +613,8 @@ export const treatments: Treatment[] = [
     variantOf: "/lifting/thread",
     en: "Jamber Thread",
     title: "잼버실",
-    description: "꺼진 부위를 실로 받쳐 볼륨을 채우는 볼륨 실리프팅",
+    description:
+      "피부 속부터 촘촘하게 차오르는 자연스러운 입체감",
     image: photo("clinic-5"),
     // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
@@ -630,11 +631,10 @@ export const treatments: Treatment[] = [
       "잼버실은 스프링처럼 촘촘히 말린 녹는 실을 꺼진 부위 아래에 넣어, 안에서부터 받쳐 볼륨을 채우는 시술입니다. 눈밑 · 팔자 · 앞볼처럼 꺼진 위치와 피부 두께를 보고 범위를 정합니다.",
     photo: stock("thread"),
     facts: [
-      // 확인 필요: 시술 시간 (병원 실제 소요 시간)
-      { label: "시술 시간", value: "범위별 상담 시 안내" },
-      { label: "마취", value: "국소 마취 등 범위별 안내" },
-      { label: "회복", value: "부기 · 멍 개인차" },
-      { label: "권장 주기", value: "경과 확인 후 결정" },
+      { label: "시술 시간", value: "시술 부위에 따라 상이" },
+      { label: "마취 방식", value: "국소 마취" },
+      { label: "회복 기간", value: "2~5일 내외" },
+      { label: "유지 기간", value: "약 1년 ~ 1년 6개월" },
     ],
     recommend: [
       "팔자 주변 · 앞볼이 꺼져 보이는 분",

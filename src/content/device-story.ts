@@ -2975,19 +2975,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "잼버실",
       maker: "JAMBER THREAD",
-      image: "/images/thread/products/jamber-lineup.png",
-      photo: "/images/thread/products/jamber-lineup-cutout.png",
-      photoAlt: "잼버실 Ex · M · Classic 제품 이미지 (제조사 공식 자료)",
+      image: "/images/thread/products/jamber-package-v2.png",
+      photo: "/images/thread/products/jamber-package-v2-cutout.png",
+      photoAlt: "잼버실 제품 패키지 (제조사 공식 자료)",
       mediaContain: true,
-      mediaSize: { width: 1860, height: 830 },
+      mediaSize: { width: 730, height: 548 },
       text: `잼버실은 피부를 강하게 당겨 올리는 일반적인 리프팅 실과 달리, 스프링처럼 촘촘하게 말려 있는 특수 녹는 실을 꺼진 부위의 피하층에 삽입하여 안쪽부터 탄탄한 지지대 역할을 하도록 만드는 볼륨 시술입니다.
 
 나이가 들면서 야위거나 꺼지기 쉬운 눈밑 · 팔자주름 · 앞볼 등의 부위를 인위적이지 않고 입체적으로 채워 매끄러운 윤곽을 완성해 줍니다.`,
       specs: [
-        { label: "실 모양", value: "스프링(코일)형 녹는 실" },
-        { label: "목적", value: "꺼진 부위 볼륨 (당기는 실이 아님)" },
-        { label: "주로 살피는 부위", value: "눈밑 · 팔자 · 앞볼" },
-        { label: "가격 안내", value: "1줄 기준" },
+        { label: "실 형태", value: "체내 흡수성 스프링(코일)형 녹는 실" },
+        {
+          label: "시술 목적",
+          value: "함몰 부위 물리적 지지 및 자가 콜라겐 생성을 통한 볼륨 복원",
+        },
+        {
+          label: "주요 부위",
+          value: "눈 밑 꺼짐(눈물고랑) · 팔자주름 · 옆볼 및 앞볼",
+        },
+        {
+          label: "시술 단위",
+          value: "부위별 함몰 깊이와 범위에 맞춘 1줄 단위 맞춤 구성",
+        },
       ],
     },
     principleImage: {

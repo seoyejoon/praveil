@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const h = await getHospital();
   return {
     title: "병원소개",
-    description: `${h.name}은 ${areaOf(h.address)}에 있는 피부 · 미용 의원입니다. ${aboutIntro.body.split(".")[0]}.`,
+    description: `${h.name}은 ${areaOf(h.address)}에 위치한 피부 · 미용 의원입니다. ${aboutIntro.body.split(".")[0]}.`,
     alternates: { canonical: "/about/philosophy" },
   };
 }
@@ -36,7 +36,7 @@ export default async function AboutIntroPage() {
   const area = areaOf(hospital.address);
   const fields = sitemap.filter((s) => s.treatment);
   const parking = hospital.directions.find((d) => d.title.includes("주차"));
-  const answer = `${hospital.name}${josa(hospital.name, "은", "는")} ${area}에 있는 피부 · 미용 의원입니다. ${aboutIntro.body}`;
+  const answer = `${hospital.name}${josa(hospital.name, "은", "는")} ${area}에 위치한 피부 · 미용 의원입니다. ${aboutIntro.body}`;
 
   const facts = [
     { label: "대표원장", value: `${doctor.name} 원장` },

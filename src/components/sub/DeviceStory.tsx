@@ -723,18 +723,12 @@ function PrincipleFigure({
 }) {
   // 표시(marks)가 없는 공식 자료는 다른 페이지 원리 그림과 같은 8:5 박스를 채움
   const fill = !image.framed && image.marks.length === 0;
-  // 출처 글을 아래 띠 대신 그림 위에 얹으면, 그림이 칸을 끝까지 채움
+  // 출처 글: 그림 위에 얹거나(noteOverlay), 그림 아래에 작은 글씨로만 적는다
   const barNote = image.note && !image.noteOverlay;
   return (
-    <figure
-      className={
-        barNote
-          ? "overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"
-          : undefined
-      }
-    >
+    <figure>
       <div
-        className={`relative overflow-hidden ${barNote ? "" : "rounded-[24px] bg-[#1d2a30] md:rounded-[32px]"} ${!image.figureAspect && (image.framed || fill) ? "aspect-[8/5]" : ""}`}
+        className={`relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px] ${!image.figureAspect && (image.framed || fill) ? "aspect-[8/5]" : ""}`}
         style={
           image.figureAspect ? { aspectRatio: image.figureAspect } : undefined
         }
@@ -812,7 +806,7 @@ function PrincipleFigure({
         )}
       </div>
       {barNote && (
-        <figcaption className="border-t border-white/10 px-5 py-5 text-xs leading-relaxed text-white/70 md:px-6 md:py-6">
+        <figcaption className="mt-4 text-xs leading-relaxed text-muted">
           {image.note}
         </figcaption>
       )}

@@ -85,7 +85,7 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                 </p>
                 {/* AI 설명용 이미지는 사진 위에 그 사실을 적어 둔다 */}
                 {it.caption && (
-                  <p className="absolute inset-x-0 bottom-0 bg-black/45 px-4 py-2 text-center text-[11px] leading-snug text-white/80 backdrop-blur-sm md:text-xs">
+                  <p className="absolute right-3 bottom-3 max-w-[80%] text-right text-[10px] leading-snug text-white/90 [text-shadow:0_1px_4px_rgba(0,0,0,0.85)] md:right-4 md:bottom-4 md:text-[11px]">
                     {it.caption}
                   </p>
                 )}

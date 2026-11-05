@@ -546,7 +546,7 @@ export default function TreatmentDetail({
                     className="group rounded-[20px] border border-white/12 p-6 transition duration-500 hover:border-gold/60 hover:bg-white/[0.04] md:p-8"
                   >
                     {it.image && (
-                      <div className="-mx-2 -mt-2 mb-6 overflow-hidden rounded-[14px] md:-mx-4 md:-mt-4">
+                      <div className="relative -mx-2 -mt-2 mb-6 overflow-hidden rounded-[14px] md:-mx-4 md:-mt-4">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={it.image}
@@ -556,7 +556,7 @@ export default function TreatmentDetail({
                         />
                         {/* AI 설명용 이미지는 사진 바로 아래에 그 사실을 적어 둔다 */}
                         {it.caption && (
-                          <p className="bg-black/40 px-3 py-2 text-center text-[11px] leading-snug text-white/75">
+                          <p className="absolute right-3 bottom-3 max-w-[80%] text-right text-[10px] leading-snug text-white/90 [text-shadow:0_1px_4px_rgba(0,0,0,0.85)]">
                             {it.caption}
                           </p>
                         )}
@@ -866,7 +866,10 @@ export default function TreatmentDetail({
               <div className="grid min-w-0 gap-6">
                 <PriceMatrix procedures={priceSplit.matrix} />
                 {priceSplit.rest.length > 0 && (
-                  <div className="grid gap-3 md:grid-cols-2">
+                  // 한 장만 남으면 표 아래에서 반쪽만 차지해 허전하므로 가로를 꽉 채운다
+                  <div
+                    className={`grid gap-3 ${priceSplit.rest.length > 1 ? "md:grid-cols-2" : ""}`}
+                  >
                     {priceSplit.rest.map((p) => (
                       <PriceCard key={p.slug} p={p} />
                     ))}

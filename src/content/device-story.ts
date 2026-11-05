@@ -646,8 +646,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 관리 및 주의사항 안내",
         text: "시술 직후 피부 상태를 꼼꼼히 확인하고 진정 케어를 진행합니다. 당일 세안과 보습 방법, 주의사항 및 권장 관리 주기를 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -778,8 +778,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "주의사항 · 경과 안내",
         text: "당일 주의사항과 변화 관찰 시점, 추가 진료가 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -917,8 +917,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진피 밀도 강화로 완성하는 잔주름 · 결 · 탄력 케어",
         text: "단순히 표면만 일시적으로 채우는 것이 아니라, 피부 속 진피 밀도를 촘촘히 채워 줍니다. 잔주름이 신경 쓰이는 부위나 거칠어진 피부결, 저하된 탄력 전반을 함께 살핍니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     process: [
@@ -946,8 +946,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 상태 확인 및 케어 안내",
         text: "시술 직후 피부 상태를 편안하게 정돈하고 확인한 뒤, 회복에 도움이 되는 홈케어 요령과 주의사항, 혹시 모를 이상 반응 대처법을 상세히 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -1115,8 +1115,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 제품별 주의사항과 다시 진료를 받아야 할 증상을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -1264,8 +1264,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 엠보싱과 부기 상태를 함께 확인하고, 회복에 도움이 되는 세안 · 화장 시점과 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -1413,8 +1413,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 피부 반응을 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -1571,8 +1571,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     principleImage: {
@@ -1738,8 +1738,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 마사지 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -1899,8 +1899,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 관리 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -2075,8 +2075,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 상태와 주의사항을 확인하고, 회복 뒤 변화에 따라 다음 계획을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     principleImage: {
@@ -2249,8 +2249,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 안내",
         text: "시술 직후 열감과 부기를 확인하고, 세안 · 운동 가능 시점과 사후 관리 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -2407,8 +2407,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 사후 안내",
         text: "시술 직후 붉은기와 미세 자국을 차분하게 진정시키고, 세안 및 메이크업 가능 시점과 일상 속 주의사항을 세심하게 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -2579,8 +2579,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 케어 및 홈케어 안내",
         text: "시술 직후 일시적인 붉은기와 열감을 차분하게 진정시키고, 일상 속에서 철저한 자외선 차단과 보습을 관리하실 수 있도록 세심하게 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -2737,8 +2737,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     principleImage: {
@@ -2905,8 +2905,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인 및 일상 케어 안내",
         text: "시술 직후 나타날 수 있는 부기, 당김, 미세한 패임 여부를 꼼꼼히 체크하고, 편안한 일상 복귀를 위한 주의사항을 친절하게 안내해 드립니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -3055,8 +3055,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -3223,8 +3223,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 자극과 새 여드름 여부를 확인하고, 홈케어와 다음 진료 계획을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
   },
@@ -3395,8 +3395,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "붉어짐 등 피부 반응을 살피고, 면도와 보습 · 자외선 차단 방법을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     principleImage: {
@@ -3537,8 +3537,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     process: [
@@ -3563,8 +3563,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부와 색 변화를 확인하고, 상처 관리와 다음 평가 시기를 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     principleImage: {

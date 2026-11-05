@@ -439,16 +439,13 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "부위별 특성을 고려한 맞춤형 제품 선택",
         text: "이마 · 볼 · 입술 · 눈 밑은 피부의 두께와 표정 근육의 움직임이 모두 다릅니다. 각 부위의 해부학적 구조에 맞춰 필러가 안착할 피부 층을 구분하고, 입자의 크기와 단단함(점탄성)을 세밀하게 나누어 적용합니다.",
         image: "/images/filler/products/neuramis-lineup.webp",
-        mediaFit: "contain" as const,
-        mediaEdges: ["#f6f1ec", "#f6f1ec"],
         alt: "부위별로 나누어 쓰는 필러 제품 라인업",
       },
       {
         title: "필러 정품 · 정량 원칙",
-        text: "안전성이 입증된 정품 필러만을 사용하며, 시술 전 환자분이 제품의 개봉 여부를 직접 확인하실 수 있도록 안내합니다. 상담 때 계획한 용량을 정확하게 지킵니다.",
+        text: "허가받은 정품 필러만을 사용하며, 시술 전 환자분이 제품의 개봉 여부를 직접 확인하실 수 있도록 안내합니다. 상담 때 계획한 용량을 정확하게 지킵니다.",
         image: "/images/photos/special-3.webp",
         alt: "프라베일에 비치된 브랜드 공식 인증 상패",
-        mediaFit: "contain",
       },
       {
         title: "과하지 않게, 필요한 만큼",
@@ -748,7 +745,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "개인별 이력과 부위 맞춤 제제 설계",
         text: "부위별 근육의 크기와 깊이, 이전 보톡스 시술 이력 및 내성 가능성을 꼼꼼히 고려합니다. 환자분의 상태에 알맞은 정품 제제와 용량을 1:1로 맞춤 설계합니다.",
-        image: "/images/photos/signature-3.webp",
+        image: "/images/photos/cat-botox-model-a-v3.webp",
         alt: "주입 시술의 계획을 설명하기 위한 기존 사진",
       },
       {
@@ -782,7 +779,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 주사",
         text: "설계한 부위에 제품별 기준에 맞춰 주사합니다.",
-        image: "/images/photos/cat-skin-care.webp",
+        image: "/images/photos/cat-main-petit-model-a.webp",
         alt: "부위에 맞춰 주사하는 대표원장",
       },
       {

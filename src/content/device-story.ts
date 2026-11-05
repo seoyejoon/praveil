@@ -2464,6 +2464,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoSrcSet: "/images/clarity-video/clarity-device-brand-from-video-v1-cutout-800.webp 800w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout-1200.webp 1200w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout.webp 1920w",
       photoAlt: "루트로닉 클라리티2 장비와 브랜드 화면 · 제조사 영상 장면",
       photoCaption: "LUTRONIC 제공 클라리티2 장비 소개 영상의 한 장면.",
+      // 레이저 제모 쪽과 같은 제조사 소개 영상
+      film: {
+        src: "/videos/official-clarity.mp4",
+        poster: "/images/official/clarity-poster.jpg",
+        edge: "linear-gradient(#f2efee, #d4d3d2)",
+      },
       mediaContain: true,
       mediaSize: { width: 1920, height: 1080 },
       text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 함께 살핍니다.",
@@ -3347,6 +3353,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         fullFrame: false,
         mediaSize: { width: 1280, height: 768 },
         video: "/videos/official-clarity.mp4",
+        mediaEdges: ["#f6f2ec", "#f6f2ec"],
       },
       {
         // 확인 필요: ICD 냉각을 보여 주는 제조사 이미지 (지금은 병원 공간 사진)
@@ -3363,7 +3370,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "클라리티2 · 실시간 피부 온도 표시 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 841, height: 328 },
-        mediaEdges: ["#f4f2ef", "#f4f2ef"],
+        mediaEdges: ["#f6f2ec", "#f6f2ec"],
       },
       {
         title: "인텔리트랙(IntelliTrack)으로 빠짐없는 시술",
@@ -3372,7 +3379,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "클라리티2 · 인텔리트랙 · 제조사 공식 자료",
         fullFrame: false,
         mediaSize: { width: 408, height: 464 },
-        mediaEdges: ["#ffffff", "#ffffff"],
+        mediaEdges: ["#f6f2ec", "#f6f2ec"],
       },
     ],
     process: [

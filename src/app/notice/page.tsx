@@ -77,6 +77,7 @@ export default async function NoticePage({ searchParams }: Props) {
       ]}
       tabs={community.pages}
       current={`/notice?type=${type}`}
+      boldTitle
     >
       <section className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28">
         {type === "event" ? (

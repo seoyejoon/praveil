@@ -115,8 +115,9 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      image: photo("best-filler-model-a"),
-      mobileImage: photo("best-filler-m-model-a"),
+      // 리투오 카드와 같은 사진이어서 다른 부위를 시술하는 사진으로
+      image: photo("cat-main-petit-model-a"),
+      mobileImage: photo("cat-main-petit-model-a"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",

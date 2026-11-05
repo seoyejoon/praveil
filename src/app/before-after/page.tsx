@@ -34,6 +34,7 @@ export default async function BeforeAfterPage() {
       ]}
       tabs={community.pages}
       current="/before-after"
+      boldTitle
     >
       <section className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28">
         <BeforeAfterBoard

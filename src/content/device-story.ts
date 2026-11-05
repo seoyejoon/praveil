@@ -2798,19 +2798,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "QTL 실리프팅",
       maker: "QTL THREAD",
-      image: "/images/thread/products/qtl-package.jpg",
-      photo: "/images/thread/products/qtl-package-cutout.png",
+      image: "/images/thread/products/qtl-package-v2.png",
+      photo: "/images/thread/products/qtl-package-v2-cutout.png",
       photoAlt: "QTL 실 제품 패키지 이미지 (제조사 공식 자료)",
       mediaContain: true,
-      mediaSize: { width: 600, height: 380 },
+      mediaSize: { width: 730, height: 548 },
       text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여, 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
 
 환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 면밀히 살피어 실이 들어갈 정확한 층과 벡터(방향), 그리고 최적의 개수를 세심하게 설계합니다.`,
       specs: [
-        { label: "실 종류", value: "몰딩형 녹는 실 (촘촘한 돌기)" },
-        { label: "마취", value: "국소 마취" },
-        { label: "설계 기준", value: "처짐 방향 · 피부 두께 · 조직 무게" },
-        { label: "가격 안내", value: "1줄 기준" },
+        {
+          label: "실 종류",
+          value: "체내 흡수성 4세대 몰딩 코그실 (인장력 · 고정력 보강)",
+        },
+        { label: "마취 방식", value: "국소 마취 (시술 부위 통증 완화)" },
+        {
+          label: "디자인 기준",
+          value: "처짐 방향(벡터) · 연부조직 무게 · 피부 두께 맞춤 설계",
+        },
+        {
+          label: "시술 단위",
+          value: "부위별 필요 줄 수에 맞춘 1줄 단위 맞춤 구성",
+        },
       ],
     },
     principleImage: {

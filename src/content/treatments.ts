@@ -577,11 +577,10 @@ export const treatments: Treatment[] = [
       "QTL 실리프팅은 돌기가 촘촘히 배열된 몰딩형 녹는 실로 처진 조직을 끌어올려 고정하는 시술입니다. 처짐 방향과 피부 두께, 탄력 저하 양상을 보고 실의 개수와 삽입 방향을 정합니다.",
     photo: stock("thread"),
     facts: [
-      // 확인 필요: 시술 시간 (병원 실제 소요 시간)
-      { label: "시술 시간", value: "범위별 상담 시 안내" },
-      { label: "마취", value: "국소 마취 등 범위별 안내" },
-      { label: "회복", value: "부기 · 멍 · 당김 개인차" },
-      { label: "권장 주기", value: "경과 확인 후 결정" },
+      { label: "시술 시간", value: "시술 부위에 따라 상이" },
+      { label: "마취 여부", value: "국소 마취" },
+      { label: "회복 기간", value: "3~7일 내외" },
+      { label: "권장 주기", value: "약 1년 ~ 1년 6개월" },
     ],
     recommend: [
       "볼 · 턱선 처짐이 신경 쓰이는 분",

@@ -1285,10 +1285,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "엑소좀",
       maker: "ISCE EXOSOME",
       image: "/images/official/isce-set-product.jpg",
-      photo: "/images/official/isce-set-product.jpg",
+      // 흰 배경을 잘라내 리쥬란처럼 어두운 카드 위에 바로 올린다
+      photo: "/images/official/isce-set-product-cutout.png",
       photoAlt: "ISCE 엑소좀 제품 구성 (제조사 공식 자료)",
       mediaContain: true,
-      mediaBg: "#ffffff",
       mediaSize: { width: 400, height: 400 },
       text: "엑소좀은 세포가 내보내는 아주 작은 주머니(엑소좀)에서 얻은 성분을 활용한 스킨부스터입니다. 프라베일은 ISCE 엑소좀을 사용하며, 피부가 예민해지고 컨디션이 떨어졌을 때 단독으로 또는 다른 시술과 함께 계획합니다.",
       specs: [
@@ -1593,7 +1593,6 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "JUVELOOK",
       image: "/images/official/juvelook-skin-30mg.png",
       photo: "/images/official/juvelook-skin-30mg.png",
-      mediaBg: "#ffffff",
       mediaSize: { width: 298, height: 681 },
       photoAlt: "쥬베룩 공식 제품 바이알",
       mediaContain: true,

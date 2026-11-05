@@ -75,7 +75,7 @@ export const special = {
     },
     {
       title: "대표원장 직접 시술",
-      body: "상담한 원장이 시술까지 직접 진행하고, 결과까지 책임집니다.",
+      body: "대표원장이 모든 시술을 직접 진행하고, 결과까지 책임집니다.",
     },
     {
       title: "정품 · 정량 사용",
@@ -102,7 +102,7 @@ export const doctorGreeting = {
 
 // 병원소개 페이지의 원장 소개 인용문
 export const doctorQuote =
-  "피부마다 맞는 방법은 다릅니다.\n상담부터 시술까지\n직접 책임지겠습니다.";
+  "피부마다 맞는 방법은 다릅니다.\n모든 시술은\n제가 직접 책임지겠습니다.";
 
 // ⑨ 진료 분야 (분류 slug별 소개. 없는 분류는 관리자의 분류 설명을 쓴다)
 export const treatmentIntro = {

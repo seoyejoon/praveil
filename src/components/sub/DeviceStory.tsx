@@ -94,6 +94,8 @@ export function StoryAbout({
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={device.photo}
+                  srcSet={device.photoSrcSet}
+                  sizes="(min-width: 1024px) 56vw, 100vw"
                   alt={device.photoAlt ?? `${device.name} 시술 장면`}
                   loading="lazy"
                   width={device.photoFullFrame ? 7008 : undefined}
@@ -156,6 +158,12 @@ export function StoryAbout({
                   ))}
                 </dl>
               </Reveal>
+              {/* 제조사 자료의 출처 · 성격을 사진 설명으로 적어 둔다 */}
+              {device.photoCaption && (
+                <p className="mt-6 text-[12px] leading-snug text-white/45">
+                  {device.photoCaption}
+                </p>
+              )}
             </div>
           </div>
         ) : (
@@ -427,6 +435,8 @@ export function StoryFeatures({
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={f.image}
+                      srcSet={f.mediaSrcSet}
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       alt={f.alt}
                       loading="lazy"
                       className={`absolute inset-0 h-full w-full ${fit === "contain" ? "m-auto object-contain" : "object-cover"}`}

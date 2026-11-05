@@ -54,7 +54,7 @@ export default async function AboutIntroPage() {
         .join("\n"),
       wide: true,
     },
-    { label: "진료 방식", value: "대표원장 1:1 상담 · 직접 시술" },
+    { label: "진료 방식", value: "대표원장 1인 진료 · 직접 시술" },
     // 카카오톡 채널 주소가 있을 때만 안내
     {
       label: "예약",

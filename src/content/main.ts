@@ -151,7 +151,7 @@ export const mainWhy = {
       icon: "consult",
       title: "1:1 맞춤 설계",
       text: "같은 고민이라도 원인을 먼저 살펴, 한 분 한 분에게 맞는 시술을 제안합니다.",
-      image: doctorPhotos.consult,
+      image: "/images/photos/clinic-3.webp",
       photoFit: "full-frame" as const,
     },
     {
@@ -189,7 +189,7 @@ export const mainCategoryImage: Record<string, string> = {
   lifting: photo("cat-main-lifting-model-a"),
   petit: photo("cat-main-petit-model-a"),
   skin: photo("cat-main-skin-model-a"),
-  "acne-pore": doctorPhotos.consult,
+  "acne-pore": photo("cat-skin-care"),
   removal: photo("cat-main-removal-model-a"),
 };
 

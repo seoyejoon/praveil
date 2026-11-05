@@ -27,7 +27,7 @@ const baseMetadata: Metadata = {
     template: "%s | 프라베일 맑고고운의원",
   },
   description:
-    "인천 남동구 프라베일 맑고고운의원. 대표원장이 상담부터 시술까지 직접 합니다. 리프팅 · 필러 · 보톡스 · 스킨부스터 · 레이저.",
+    "인천 남동구 프라베일 맑고고운의원. 페이닥터 없이 대표원장이 모든 시술을 직접 집도합니다. 리프팅 · 필러 · 보톡스 · 스킨부스터 · 레이저.",
   openGraph: {
     type: "website",
     locale: "ko_KR",

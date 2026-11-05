@@ -1208,7 +1208,7 @@ treatmentGuide["/petit/botox/body"] = {
 export const chooseCriteria = (title: string, pain: string) => [
   {
     q: "상담한 의사가 직접 시술하나요?",
-    a: "상담부터 시술, 경과 확인까지 대표원장이 직접 진행합니다.",
+    a: "페이닥터 없이 대표원장이 모든 시술을 직접 집도합니다.",
   },
   {
     q: "얼굴 · 피부 상태를 먼저 진단하나요?",
@@ -1265,7 +1265,7 @@ export function commonFaq(
   return [
     {
       q: `${title}${josa(title, "은", "는")} 누가 시술하나요?`,
-      a: `${hospital.name}에서는 대표원장 ${director} 원장이 상담부터 ${title} 시술, 경과 확인까지 직접 진행합니다.`,
+      a: `${hospital.name}에서는 대표원장 ${director} 원장이 ${title} 시술을 직접 집도합니다. 페이닥터 없이 한 분 한 분 맞춤으로 진행합니다.`,
     },
     {
       q: `${title} 비용은 얼마인가요?`,

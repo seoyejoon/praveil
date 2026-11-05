@@ -60,7 +60,7 @@ export const features: Feature[] = [
   },
   {
     title: "원장 직접 시술",
-    description: "상담부터 시술까지 원장이 직접 진행합니다.",
+    description: "모든 시술을 대표원장이 직접 집도합니다.",
   },
   {
     title: "1:1 맞춤 상담",

@@ -40,6 +40,10 @@ export type DeviceStory = {
     mediaContain?: boolean;
     /** 제품 사진 뒤에 깔 배경색 (흰 배경 제품 컷이 어두운 카드에서 떠 보이지 않게) */
     mediaBg?: string;
+    /** 같은 사진의 여러 크기 (srcset). 화면 폭에 맞는 파일을 받도록 */
+    photoSrcSet?: string;
+    /** 사진 아래 출처 · 설명 한 줄 */
+    photoCaption?: string;
     /** 원본 크기. 작은 원본을 칸 크기에 맞춰 억지로 늘리지 않도록 상한으로 쓴다 */
     mediaSize?: { width: number; height: number };
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
@@ -131,6 +135,8 @@ export type DeviceStory = {
     mediaFit?: "contain" | "cover";
     /** 사진 아래에 보이는 설명 (AI 설명용 모식도 표시 등) */
     caption?: string;
+    /** 같은 사진의 여러 크기 (srcset) */
+    mediaSrcSet?: string;
     /** 1280×960(4:3) 파일 안에 16:9 본문과 상하 여백이 함께 있는 영상 · 도해 */
     paddedWidescreen?: boolean;
   }[];
@@ -294,9 +300,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도해 탄력과 리프팅 효과를 기대할 수 있습니다.",
         image: cs("principle"),
         alt: "피부 속 목표 조직에 열응고점을 만드는 쿨소닉 집속 초음파 원리",
-        // 원리 그림은 잘리면 안 되므로 칸 안에 전체를 넣고 남는 자리는 그림 색으로 채운다
-        mediaFit: "contain",
-        mediaEdges: ["#0d282f", "#0d282f"],
+        // 16:9 원본이라 좌우만 조금 잘린다 (위아래 여백 없이 다른 칸과 같은 크기)
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -304,7 +309,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "1:1 상담",
         text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
         image: "/images/photos/retouched/web/coolsonic-consult.jpg",
-        alt: "대표원장이 환자와 마주 앉아 상담하는 장면",
+        alt: "프라베일 상담실",
         fullFrame: true,
       },
       {
@@ -324,14 +329,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 주의사항과 다음 관리 시기를 안내합니다.",
-        image: photo("process-check-model-a"),
+        image: "/images/photos/clinic-1.webp",
         alt: "시술 후 경과를 확인하는 모습",
       },
     ],
     video: {
       src: "/videos/hero-coolsonic.mp4",
       poster: photo("hero-coolsonic-model-a"),
-      title: ["상담한 원장이,", "한 샷 한 샷 직접."],
+      title: ["대표원장이,", "한 샷 한 샷 직접."],
       text: "프라베일의 쿨소닉은 대표원장이 처음부터 끝까지 직접 시술합니다.",
     },
   },
@@ -454,7 +459,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "1:1 맞춤 상담 및 디자인",
         text: "고민 부위와 선호하시는 이미지를 면밀히 파악하고, 전체적인 얼굴 비율과 피부 두께를 분석하여 볼륨을 채울 정확한 위치와 적합한 물성의 제품, 적정 용량을 설계합니다.",
         image: "/images/filler/photos/process-01.webp",
-        alt: "대표원장이 환자와 상담하는 진료 장면",
+        alt: "프라베일 상담실",
       },
       {
         title: "부위별 맞춤 마취",
@@ -621,10 +626,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "맞춤 플랜 상담",
         text: "피부 탄력 고민과 개선을 원하시는 부위, 이전 시술 이력을 꼼꼼히 확인하여 개인별 맞춤 시술 계획을 세웁니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "클렌징 및 시술 준비",
@@ -643,8 +646,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 관리 및 주의사항 안내",
         text: "시술 직후 피부 상태를 꼼꼼히 확인하고 진정 케어를 진행합니다. 당일 세안과 보습 방법, 주의사항 및 권장 관리 주기를 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "경과 확인을 설명하는 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -730,9 +733,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "표정을 보며 주사 위치 설정",
         text: "정면 사진만으로 판단하지 않고 표정을 지을 때의 움직임과 좌우 차이를 함께 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "부위와 제품에 맞춘 계획",
@@ -744,7 +746,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "원하는 표정 변화 함께 확인",
         text: "주름을 줄이고 싶은 정도와 유지하고 싶은 표정을 함께 듣고, 기대할 수 있는 변화와 한계를 설명합니다.",
         image: "/images/photos/hero-consult.webp",
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        alt: "프라베일 상담실",
         fullFrame: true,
       },
       {
@@ -758,10 +760,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민 부위, 표정, 복용 약과 이전 보툴리눔 톡신 시술 이력을 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 통증 관리",
@@ -778,8 +778,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "주의사항 · 경과 안내",
         text: "당일 주의사항과 변화 관찰 시점, 추가 진료가 필요한 증상을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "경과 확인을 설명하는 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -911,14 +911,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "인공 합성물 부담을 줄인 생체 적합성",
         text: "인공적으로 합성된 물질에 민감하거나 쉽게 부담을 느끼는 피부에도 편안하게 작용합니다. 본래 내 피부 조직과 유사한 성분 기반이기 때문에 이물감에 대한 우려를 덜고 자연스러운 융화를 돕습니다.",
         image: "/images/retuo/skin-analysis.webp",
-        alt: "대표원장이 피부 분석 화면을 보며 상담하는 장면",
+        alt: "프라베일 상담실",
         fullFrame: true,
       },
       {
         title: "진피 밀도 강화로 완성하는 잔주름 · 결 · 탄력 케어",
         text: "단순히 표면만 일시적으로 채우는 것이 아니라, 피부 속 진피 밀도를 촘촘히 채워 줍니다. 잔주름이 신경 쓰이는 부위나 거칠어진 피부결, 저하된 탄력 전반을 함께 살핍니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "시술 후 경과를 확인하는 장면",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     process: [
@@ -926,7 +926,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         title: "1:1 맞춤 상담 및 피부 진단",
         text: "현재 피부결, 잔주름, 탄력 저하 등 고민 부위를 면밀히 살피고, 기대하시는 변화를 확인합니다. 또한 과거 시술 이력, 알레르기 및 특이 질환 여부를 꼼꼼히 체크하여 시술 계획을 세웁니다.",
         image: "/images/retuo/process-01-consult.webp",
-        alt: "대표원장이 피부 상태를 확인하며 상담하는 장면",
+        alt: "프라베일 상담실",
         fullFrame: true,
       },
       {
@@ -946,8 +946,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 상태 확인 및 케어 안내",
         text: "시술 직후 피부 상태를 편안하게 정돈하고 확인한 뒤, 회복에 도움이 되는 홈케어 요령과 주의사항, 혹시 모를 이상 반응 대처법을 상세히 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "시술 후 상태를 확인하고 안내하는 장면",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1096,10 +1096,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 계획",
         text: "피부 상태와 이전 시술 이력을 살피고, 스킨부스터의 범위와 기대할 수 있는 변화를 함께 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 준비",
@@ -1117,8 +1115,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 제품별 주의사항과 다시 진료를 받아야 할 증상을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1247,10 +1245,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 맞춤 상담 및 계획",
         text: "현재 피부 컨디션, 이전 시술 이력, 최근 필러 시술 여부 등을 꼼꼼히 확인하고 리쥬란힐러의 적용 범위와 용량을 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 크림 도포 및 준비",
@@ -1268,8 +1264,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 엠보싱과 부기 상태를 함께 확인하고, 회복에 도움이 되는 세안 · 화장 시점과 주의사항을 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1398,10 +1394,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 계획",
         text: "피부 상태와 최근 받은 시술을 살피고, 엑소좀을 단독으로 할지 함께 할지 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 준비",
@@ -1419,8 +1413,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 피부 반응을 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1558,10 +1552,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 제품 확인",
         text: "고민과 피부 두께, 이전 주입 이력을 확인하고 사용할 재료와 범위를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 준비",
@@ -1579,8 +1571,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     principleImage: {
@@ -1728,10 +1720,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 맞춤 상담 및 계획",
         text: "피부 고민의 양상, 환자분의 피부 두께, 이전 주입 시술 이력 등을 꼼꼼히 살피고, 이에 맞는 적정 용량(cc)과 시술 범위를 세밀하게 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 크림 도포 및 준비",
@@ -1748,8 +1738,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 마사지 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1891,10 +1881,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 맞춤 상담 및 계획",
         text: "피부결, 탄력, 볼륨 고민의 양상을 꼼꼼히 살피고 환자분의 피부 두께와 이전 주입 시술 이력을 확인하여, 울트라콜 규격(100 · 200), 용량, 시술 범위를 정밀하게 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 크림 도포 및 준비",
@@ -1911,8 +1899,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 관리 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -1946,7 +1934,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "피부 두께 · 고민 부위 · 회복 여유",
         },
       ],
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      photoAlt: "보호 안경을 착용한 대표원장의 레이저 시술 장면",
       film: {
         src: "/videos/official-potenza-intro.mp4",
         poster: "/images/official/potenza-intro-poster.jpg",
@@ -2067,10 +2055,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "처짐 · 피부결 · 모공을 나누어 살피고 기존 시술과 복용약을 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 시술 준비",
@@ -2089,8 +2075,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 상태와 주의사항을 확인하고, 회복 뒤 변화에 따라 다음 계획을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "시술 후 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     principleImage: {
@@ -2245,10 +2231,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담 및 설계",
         text: "처진 부위와 피부 두께, 이전 시술 이력을 면밀히 파악하여 적합한 카트리지와 샷 수, 시술 범위를 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "클렌징 및 마취 준비",
@@ -2265,8 +2249,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 안내",
         text: "시술 직후 열감과 부기를 확인하고, 세안 · 운동 가능 시점과 사후 관리 주의사항을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -2405,10 +2389,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 및 맞춤 플랜 설계",
         text: "모공 · 피부결 · 탄력 · 흉터 등 주요 피부 고민과 개인별 피부 두께를 면밀히 진단하여 알맞은 바늘 깊이와 시술 범위를 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "클렌징 및 마취 준비",
@@ -2425,8 +2407,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 사후 안내",
         text: "시술 직후 붉은기와 미세 자국을 차분하게 진정시키고, 세안 및 메이크업 가능 시점과 일상 속 주의사항을 세심하게 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -2440,10 +2422,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "클라리티2",
       maker: "LUTRONIC",
       // 장비가 크게 보이는 기존 제조사 사진 유지 (08 패키지의 장비 컷은 작게 보여 되돌림)
-      image: "/images/official/clarity-device.png",
-      photo: "/images/official/clarity-device.png",
-      photoAlt: "루트로닉 클라리티2 장비 · 제조사 공식 이미지",
+      image: "/images/clarity-video/clarity-device-brand-from-video-v1.webp",
+      photo: "/images/clarity-video/clarity-device-brand-from-video-v1.webp",
+      photoSrcSet: "/images/clarity-video/clarity-device-brand-from-video-v1-800.webp 800w, /images/clarity-video/clarity-device-brand-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-device-brand-from-video-v1.webp 1920w",
+      photoAlt: "루트로닉 클라리티2 장비와 브랜드 화면 · 제조사 영상 장면",
+      photoCaption: "LUTRONIC 제공 클라리티2 장비 소개 영상의 한 장면.",
       mediaContain: true,
+      mediaBg: "#f7f7f7",
+      mediaSize: { width: 1920, height: 1080 },
       text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 함께 살핍니다.",
       specs: [
         { label: "에너지 방식", value: "비접촉 롱펄스 레이저 (Long-pulsed Laser)" },
@@ -2453,13 +2439,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     principleImage: {
-      src: "/images/official/clarity-tracking-detail.jpg",
-      alt: "피부 위에서 레이저 조사 자리가 고르게 이어지는 모습을 보여 주는 제조사 이미지",
-      framed: false,
-      noteOverlay: true,
+      src: "/images/clarity-video/clarity-face-demo-from-video-v1.webp",
+      alt: "얼굴 부위에 레이저를 조사하며 피부 온도를 표시하는 제조사 3D 설명 장면",
+      framed: true,
+      figureAspect: "16 / 9",
       marks: [],
       layers: [],
-      note: "LUTRONIC · 조사 자리가 겹치거나 빠지지 않게 고르게 이어지는 모습입니다.",
+      note: "LUTRONIC 제공 얼굴 부위 레이저 조사 · 온도 표시 3D 설명 장면입니다. 실제 환자 촬영본이 아닙니다.",
     },
     principle: [
       {
@@ -2529,44 +2515,54 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부에 닿지 않는 위생적인 비접촉 조사",
         text: "피부 표면에 직접 팁을 대지 않고 살짝 띄운 상태에서 1064nm 롱펄스 에너지를 빠르게 공중 조사합니다. 피부 마찰이나 압박 없이 위생적이며, 팁 접촉으로 인한 표면 자극을 줄입니다.",
-        image: "/images/official/clarity-poster.jpg",
-        video: "/videos/official-clarity.mp4",
-        alt: "클라리티2 장비와 핸드피스를 보여 주는 제조사 영상",
-        mediaSize: { width: 1280, height: 768 },
+        image: "/images/clarity-video/clarity-handpiece-from-video-v1.webp",
+        mediaSrcSet: "/images/clarity-video/clarity-handpiece-from-video-v1-800.webp 800w, /images/clarity-video/clarity-handpiece-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-handpiece-from-video-v1.webp 1920w",
+        alt: "클라리티2 핸드피스 구조를 설명하는 제조사 영상 장면",
+        caption: "LUTRONIC 제공 클라리티2 핸드피스 구조 설명 장면.",
+        mediaFit: "contain",
+        mediaSize: { width: 1920, height: 1080 },
+        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "진피 깊은 층까지 균일하게 축적되는 심부열",
         text: "넓고 안정적인 스팟 사이즈를 활용해 피부 속 진피층까지 열에너지를 촘촘하게 쌓아 올립니다. 축적된 열감이 진피 내 섬유아세포를 자극하여 콜라겐과 엘라스틴의 자연스러운 재생을 유도합니다.",
-        image: "/images/official/clarity-cartridges.jpg",
-        alt: "클라리티2 카트리지별 조사 크기 · 제조사 공식 이미지",
+        image: "/images/clarity-video/clarity-wavelengths-from-video-v1.webp",
+        mediaSrcSet: "/images/clarity-video/clarity-wavelengths-from-video-v1-800.webp 800w, /images/clarity-video/clarity-wavelengths-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-wavelengths-from-video-v1.webp 1920w",
+        alt: "755nm · 1064nm 파장 지원을 설명하는 제조사 영상 장면",
+        caption: "LUTRONIC 제공 755nm · 1064nm 파장 지원 설명 장면. 이 페이지는 1064nm를 활용한 시술을 안내합니다.",
         mediaFit: "contain",
-        mediaEdges: ["#ffffff", "#ffffff"],
+        mediaSize: { width: 1920, height: 1080 },
+        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "탄력 · 모공 · 피부결 · 안색의 올인원 케어",
         text: "처진 피부 밀도를 속부터 채워 늘어진 모공과 잔주름을 함께 살피고, 미세 혈관 안정화를 통해 붉은기와 칙칙한 피부 톤을 맑고 매끄럽게 정돈합니다.",
-        image: "/images/official/clarity-tracking.png",
-        alt: "클라리티2 핸드피스 · 제조사 공식 이미지",
+        image: "/images/clarity-video/clarity-intellitrak-from-video-v1.webp",
+        mediaSrcSet: "/images/clarity-video/clarity-intellitrak-from-video-v1-800.webp 800w, /images/clarity-video/clarity-intellitrak-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-intellitrak-from-video-v1.webp 1920w",
+        alt: "IntelliTrak 기술을 설명하는 제조사 영상 장면 (다리 부위 제모 시연)",
+        caption: "LUTRONIC 제공 IntelliTrak 기술 설명 장면 — 다리 부위 제모 시연 예시입니다.",
         mediaFit: "contain",
-        mediaEdges: ["#ffffff", "#ffffff"],
+        mediaSize: { width: 1920, height: 1080 },
+        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "실시간 온도 모니터링 시스템",
         text: "시술 중 피부 표면의 온도를 실시간으로 체크할 수 있어, 열이 과도하게 쌓이지 않도록 안전하게 살피며 에너지 세기를 세심하게 조절합니다.",
-        image: "/images/official/clarity-temperature.png",
-        alt: "클라리티2 실시간 피부 온도 표시 화면 · 제조사 공식 이미지",
+        image: "/images/clarity-video/clarity-temperature-from-video-v1.webp",
+        mediaSrcSet: "/images/clarity-video/clarity-temperature-from-video-v1-800.webp 800w, /images/clarity-video/clarity-temperature-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-temperature-from-video-v1.webp 1920w",
+        alt: "피부 온도 감지 표시 화면을 보여 주는 제조사 영상 장면",
+        caption: "LUTRONIC 제공 피부 온도 감지 표시 화면. 실제 환자 측정 기록이 아닙니다.",
         mediaFit: "contain",
-        mediaEdges: ["#ffffff", "#ffffff"],
+        mediaSize: { width: 1920, height: 1080 },
+        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
     ],
     process: [
       {
         title: "상담 및 맞춤 플랜 설계",
         text: "현재의 피부 톤, 탄력 고민의 양상과 함께 최근 햇빛 노출 여부, 복용 중인 약물 등을 면밀히 확인하여 가장 알맞은 시술 범위를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "안전 보호 및 시술 준비",
@@ -2583,8 +2579,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 케어 및 홈케어 안내",
         text: "시술 직후 일시적인 붉은기와 열감을 차분하게 진정시키고, 일상 속에서 철저한 자외선 차단과 보습을 관리하실 수 있도록 세심하게 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -2723,10 +2719,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 디자인",
         text: "처짐과 피부 두께, 이전 시술 이력을 보고 지지 방향과 실의 종류 · 범위를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 준비",
@@ -2743,8 +2737,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     principleImage: {
@@ -2893,10 +2887,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "맞춤 상담 및 정밀 계획 수립",
         text: "개개인의 처진 양상, 피부 두께, 그리고 이전 시술 이력 등을 면밀히 확인하여 가장 안정적인 지지 방향과 최적의 실 개수 및 범위를 정교하게 설계합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "안전한 마취 및 철저한 준비",
@@ -2913,8 +2905,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인 및 일상 케어 안내",
         text: "시술 직후 나타날 수 있는 부기, 당김, 미세한 패임 여부를 꼼꼼히 체크하고, 편안한 일상 복귀를 위한 주의사항을 친절하게 안내해 드립니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -3045,10 +3037,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "상담 · 계획",
         text: "꺼진 부위와 피부 두께, 이전 시술 이력을 보고 실의 개수와 범위를 정합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 준비",
@@ -3065,8 +3055,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "기존 시술 후 경과 확인 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -3078,8 +3068,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "여드름 · 모공 치료",
       maker: "ACNE · MARKS · SCARS · PORES",
-      image: doctorPhotos.consult,
-      photo: doctorPhotos.consult,
+      image: doctorPhotos.laser,
+      photo: doctorPhotos.laser,
       photoFullFrame: true,
       text: "올라오는 여드름, 붉거나 갈색인 자국, 패인 흉터는 서로 다른 고민입니다. 염증을 먼저 살피고 필요한 약물 치료와 압출 · 각질 관리, 흉터 · 모공 시술을 나누어 계획합니다. 피부가 회복되는 속도를 보며 다음 단계를 정합니다.",
       specs: [
@@ -3100,7 +3090,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "현재 염증 · 피부 민감도 · 회복 여유",
         },
       ],
-      photoAlt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+      photoAlt: "보호 안경을 착용한 대표원장의 레이저 시술 장면",
     },
     principle: [
       {
@@ -3185,14 +3175,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
         image: "/images/principles/acne.webp",
         caption: "여드름 · 모공을 설명하는 모식도",
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
+        alt: "프라베일 상담실",
         fullFrame: true,
       },
       {
         title: "상태에 맞는 순서를 정합니다",
         text: "통증이 있는 염증을 먼저 살피고, 피부가 안정되면 흉터와 모공 치료를 논의합니다. 사용 중인 여드름 약도 함께 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "진료 계획을 설명하는 병원 상담실 사진",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "피부의 회복 여유를 남깁니다",
@@ -3213,10 +3203,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "여드름 단계와 자국 · 흉터를 살피고, 복용약과 사용 중인 화장품을 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 시술 전 준비",
@@ -3235,8 +3223,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 자극과 새 여드름 여부를 확인하고, 홈케어와 다음 진료 계획을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "진료 후 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
   },
@@ -3387,10 +3375,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "부위와 원하는 범위를 정하고, 피부 톤 · 털 굵기 · 복용약 · 태닝 여부를 확인합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 시술 전 준비",
@@ -3409,8 +3395,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "붉어짐 등 피부 반응을 살피고, 면도와 보습 · 자외선 차단 방법을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "시술 후 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     principleImage: {
@@ -3545,24 +3531,22 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "눈가에는 별도의 안전 판단",
         text: "아이라인은 눈을 감는 것만으로 보호되지 않습니다. 눈에 맞는 보호구를 쓰고 진행하며, 눈 상태상 안전하게 진행하기 어렵다면 시술을 미룹니다.",
-        image: doctorPhotos.consult,
-        alt: "병원 대기 공간의 기존 사진",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "경과 진료 방문 안내에 사용하는 병원 접수 공간 사진",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     process: [
       {
         title: "1:1 상담",
         text: "반영구 이력과 피부 상태를 확인합니다. 눈가는 보호 방법과 시행 가능 여부부터 평가합니다.",
-        image: doctorPhotos.consult,
-        alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
-        fullFrame: true,
-        coverPosition: "50% 50%",
+        image: "/images/photos/clinic-3.webp",
+        alt: "프라베일 상담실",
       },
       {
         title: "마취 · 눈 보호",
@@ -3579,8 +3563,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부와 색 변화를 확인하고, 상처 관리와 다음 평가 시기를 안내합니다.",
-        image: "/images/photos/process-check-model-a.webp",
-        alt: "시술 후 피부 상태를 확인하는 모습",
+        image: "/images/photos/clinic-1.webp",
+        alt: "경과 확인 안내에 사용하는 병원 공간 사진",
       },
     ],
     principleImage: {
@@ -3607,11 +3591,10 @@ deviceStory["/petit/botox/body"] = {
   ...botoxStory,
   device: {
     ...botoxStory.device,
-    // 얼굴 주사 사진 대신 상담 사진 (바디 시술 촬영본이 아님)
-    image: doctorPhotos.consult,
-    photo: doctorPhotos.consult,
-    photoAlt: "대표원장이 상담하는 장면",
-    photoFullFrame: true,
+    // 확인 필요: 바디 시술 촬영본 (상담 사진을 쓰지 않아 병원 공간 사진)
+    image: "/images/photos/clinic-3.webp",
+    photo: "/images/photos/clinic-3.webp",
+    photoAlt: "프라베일 상담실",
     text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
     specs: [
       { label: "방식", value: "보툴리눔 톡신 제제 주사" },

@@ -148,8 +148,8 @@ export default function TreatmentDetail({
   const priceSplit = splitForMatrix(prices);
   const doctorReasons = t.doctorReasons ?? [
     {
-      title: "대표원장 직접 진단",
-      text: `개개인의 피부 두께, 탄력 저하 양상, 볼륨 상태를 대표원장이 직접 면밀히 살피고, ${t.title} 시술이 가장 알맞은지 진단부터 철저하게 시작합니다.`,
+      title: "대표원장 직접 시술 설계",
+      text: `개개인의 피부 두께, 탄력 저하 양상, 볼륨 상태를 대표원장이 직접 살피고, ${t.title} 시술의 범위와 방법을 직접 설계합니다.`,
     },
     {
       title: "1:1 맞춤 설계",
@@ -157,7 +157,7 @@ export default function TreatmentDetail({
     },
     {
       title: "책임 집도 및 세심한 경과 확인",
-      text: "풍부한 임상 경험과 노하우를 갖춘 대표원장이 모든 시술 과정을 직접 책임 집도하며, 시술 후 경과까지 꼼꼼하게 직접 확인하여 안심을 더해 드립니다.",
+      text: "풍부한 임상 경험과 노하우를 갖춘 대표원장이 모든 시술 과정을 직접 책임 집도하며, 시술 후 경과도 꼼꼼하게 확인해 안심을 더해 드립니다.",
     },
   ];
   const doctorSection = (
@@ -174,8 +174,8 @@ export default function TreatmentDetail({
           />
           <p className="mt-4 text-[15px] leading-[1.8] text-white/65 md:text-[16px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 시술 전
-            정밀 진단부터 시술, 경과 확인까지 직접 진행합니다.
+            {josa(hospital.name, "은", "는")} 페이닥터 없이 {doctor.name}{" "}
+            대표원장이 시술 설계부터 시술까지 직접 진행합니다.
           </p>
           <ol className="mt-7 border-t border-white/15">
             {doctorReasons.map((r, i) => (
@@ -209,7 +209,7 @@ export default function TreatmentDetail({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/photos/retouched/web/coolsonic-consult.jpg"
-            alt={`상담실의 대표원장 ${doctor.name}`}
+            alt={`대표원장 ${doctor.name}`}
             loading="lazy"
             className="aspect-[4/3] w-full object-cover object-[62%_40%] lg:aspect-[5/4]"
           />

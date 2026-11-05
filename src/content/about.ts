@@ -23,7 +23,7 @@ export const aboutHero = {
   doctor: {
     en: "Doctor",
     title: "의료진소개",
-    description: "상담부터 시술, 경과 확인까지 대표원장이 직접 책임집니다.",
+    description: "페이닥터 없이 대표원장이 모든 시술을 직접 책임집니다.",
     // 원장 사진은 바로 아래 인사말에 있어, 첫 화면은 병원 입구 사진 (병원소개와 같은 모양)
     image: photo("hero-entrance"),
     mobileImage: photo("hero-entrance-m"),
@@ -33,7 +33,7 @@ export const aboutHero = {
 export const aboutIntro = {
   headline: ["과한 변화보다", "나다운 아름다움을 지키는 곳."],
   /** 첫 문단의 뒷부분 (앞부분 '○○은 ○○에 있는 피부 · 미용 의원입니다'는 병원 정보로 자동 생성) */
-  body: "대표원장이 직접 시술부터 경과 확인까지 책임 진료를 진행하며, 리프팅 · 쁘띠시술 · 피부관리 · 여드름 · 모공 · 제모 · 문신제거를 중점 진료합니다. 같은 고민이라도 피부마다 답이 다르기에, 피부 상태를 면밀히 분석하여 꼭 필요한 시술만 권해 드립니다.",
+  body: "페이닥터 없이 대표원장이 모든 시술을 직접 집도하며, 리프팅 · 쁘띠시술 · 피부관리 · 여드름 · 모공 · 제모 · 문신제거를 중점 진료합니다. 같은 고민이라도 피부마다 답이 다르기에, 피부 상태를 면밀히 분석하여 꼭 필요한 시술만 권해 드립니다.",
 };
 
 // 진료 철학 (세 가지)
@@ -54,7 +54,7 @@ export const aboutPhilosophy = {
     {
       en: "Responsible",
       title: "대표원장의 1:1 책임 진료",
-      text: "시술 시작부터 마무리, 시술 후 경과 체크까지 대표원장의 손길로 단 한 분만을 위한 맞춤 진료를 진행합니다.",
+      text: "시술 시작부터 마무리까지 대표원장의 손길로 단 한 분만을 위한 맞춤 진료를 진행합니다.",
     },
   ],
 };
@@ -67,13 +67,13 @@ export const aboutPromise = {
   items: [
     {
       title: "대표원장 책임 진료",
-      text: "숙련된 대표원장의 전 시술 직접 집도 및 세심한 경과 확인",
+      text: "페이닥터 없이 숙련된 대표원장이 전 시술 직접 집도",
       image: photo("special-2-model-a"),
     },
     {
       title: "1:1 맞춤 시술 설계",
       text: "개인별 피부 특성과 고민 부위에 맞춘 단계별 맞춤 플랜 수립",
-      image: doctorPhotos.consult,
+      image: "/images/photos/clinic-3.webp",
       photoFit: "full-frame" as const,
     },
     {
@@ -103,7 +103,7 @@ export const aboutSpace = {
   items: [
     { name: "인포메이션", text: "예약 확인과 접수", image: photo("clinic-1") },
     { name: "대기실", text: "조용히 기다리는 공간", image: photo("clinic-2") },
-    { name: "상담실", text: "대표원장 1:1 상담", image: photo("clinic-3") },
+    { name: "상담실", text: "한 분 한 분 1:1 맞춤 상담", image: photo("clinic-3") },
     { name: "파우더룸", text: "시술 후 정돈", image: photo("clinic-4") },
     { name: "시술실", text: "독립된 시술 공간", image: photo("clinic-5") },
     { name: "복도", text: "프라이빗한 동선", image: photo("clinic-6") },
@@ -170,7 +170,7 @@ export const doctorProfile = {
   quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
   greeting: [
     "현재 피부 상태를 기준으로 치료의 우선순위를 정하고, 불필요한 과정보다는 필요한 진료에 집중합니다.",
-    "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도하며, 환자를 위한 맞춤 시술과 함께 꼼꼼한 경과 확인까지 끝까지 함께하겠습니다.",
+    "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다. 한 분 한 분에게 맞는 시술로 끝까지 함께하겠습니다.",
   ],
   // 약력: 자료를 받으면 채움 (비어 있으면 화면에 나오지 않음)
   education: [] as string[],
@@ -187,7 +187,7 @@ export const doctorProfile = {
     },
     {
       title: "직접 시술",
-      text: "상담한 원장이 직접 시술합니다. 다른 의사에게 넘기지 않습니다.",
+      text: "대표원장이 직접 시술합니다. 다른 의사에게 넘기지 않습니다.",
     },
     {
       title: "경과 확인",

@@ -19,7 +19,7 @@ export async function GET() {
   const lines = [
     `# ${h.name}`,
     "",
-    `> 인천 남동구 ${h.address.split(" ").slice(2, 4).join(" ")}의 피부과 의원. 대표원장 ${doctor.name}이 상담부터 시술까지 직접 책임 진료합니다.`,
+    `> 인천 남동구 ${h.address.split(" ").slice(2, 4).join(" ")}의 피부과 의원. 대표원장 ${doctor.name}이 모든 시술을 직접 집도하는 1인 진료 의원입니다.`,
     "",
     "## 병원 정보",
     `- 주소: ${h.address} ${h.addressDetail}`,

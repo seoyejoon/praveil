@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const [h, d] = await Promise.all([getHospital(), getDoctor()]);
   return {
     title: "의료진소개",
-    description: `${h.name} ${d.title} ${d.name}. 상담부터 시술, 경과 확인까지 대표원장이 직접 진행합니다.`,
+    description: `${h.name} ${d.title} ${d.name}. 페이닥터 없이 대표원장이 모든 시술을 직접 집도합니다.`,
     alternates: { canonical: "/about/doctor" },
   };
 }
@@ -202,7 +202,7 @@ export default async function DoctorPage() {
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
         <SectionHead
           en="How I Care"
-          title="상담부터 경과까지, 한 사람이 끝까지"
+          title="시술 설계부터 시술까지, 한 사람이 끝까지"
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:mt-16 md:grid-cols-4">
           {p.steps.map((s, i) => (

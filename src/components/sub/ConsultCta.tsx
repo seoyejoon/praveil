@@ -6,7 +6,7 @@ import type { Hospital } from "@/lib/data";
 export default function ConsultCta({
   hospital,
   title,
-  strong = "대표원장과 먼저 상담하세요.",
+  strong = "먼저 상담받아 보세요.",
   id,
 }: {
   hospital: Hospital;

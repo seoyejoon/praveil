@@ -118,7 +118,7 @@ export default async function NoticeDetailPage({ params }: Props) {
           <p className="text-lg font-semibold tracking-[-0.02em]">
             이벤트 상담 · 예약하기
             <span className="mt-1 block text-sm font-normal text-muted">
-              이벤트 내용은 상담 때 대표원장이 직접 안내해 드립니다.
+              이벤트 내용은 상담 때 안내해 드립니다.
             </span>
           </p>
           <a

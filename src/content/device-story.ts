@@ -2551,6 +2551,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "피부 표면에 직접 팁을 대지 않고 살짝 띄운 상태에서 1064nm 롱펄스 에너지를 빠르게 공중 조사합니다. 피부 마찰이나 압박 없이 위생적이며, 팁 접촉으로 인한 표면 자극을 줄입니다.",
         image: "/images/clarity-video/clarity-handpiece-from-video-v1.webp",
         mediaSrcSet: "/images/clarity-video/clarity-handpiece-from-video-v1-800.webp 800w, /images/clarity-video/clarity-handpiece-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-handpiece-from-video-v1.webp 1920w",
+        // 레이저 제모 쪽에서 쓰던 제조사 소개 영상 (정지 이미지는 재생 전 포스터)
+        video: "/videos/official-clarity.mp4",
         alt: "클라리티2 핸드피스 구조를 설명하는 제조사 영상 장면",
         caption: "LUTRONIC 제공 클라리티2 핸드피스 구조 설명 장면.",
         mediaFit: "contain",

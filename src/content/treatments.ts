@@ -941,8 +941,8 @@ export const treatments: Treatment[] = [
     description: "근육의 움직임과 표정을 살펴 계획하는 보툴리눔 톡신 시술",
     image: photo("cat-botox-model-a"),
     scene: {
-      src: photo("hero-botox-20261027-model-a"),
-      mobileSrc: photo("hero-botox-20261027-m-model-a"),
+      src: photo("hero-botox-20261027-model-a-face-v3-20261105"),
+      mobileSrc: photo("hero-botox-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 눈가 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "표정 · 근육 움직임 확인" },

@@ -104,7 +104,7 @@ export function StoryAbout({
                   className={
                     device.photoFullFrame
                       ? "block h-auto w-full"
-                      : `absolute inset-0 h-full w-full ${device.mediaContain ? "m-auto object-contain p-6 md:p-10" : "object-cover"}`
+                      : `absolute inset-0 h-full w-full ${device.mediaFill ? "object-cover" : device.mediaContain ? "m-auto object-contain p-6 md:p-10" : "object-cover"}`
                   }
                   // 작은 원본은 칸에 맞춰 늘리지 않고 제 크기까지만 보여 준다
                   style={
@@ -119,7 +119,7 @@ export function StoryAbout({
               )}
               {/* 넓은 화면에서 칸을 꽉 채우는 경우 오른쪽 끝을 어둡게 해 옆 글자와 이어지게 */}
               {(!device.photoFullFrame || device.film) &&
-                (device.film || !device.mediaContain) && (
+                (device.film || (!device.mediaContain && !device.mediaFill)) && (
                   <>
                     <div
                       className="absolute inset-0 hidden lg:block"

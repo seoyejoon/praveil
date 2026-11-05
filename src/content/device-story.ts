@@ -38,6 +38,8 @@ export type DeviceStory = {
     photoFullFrame?: boolean;
     /** 공식 제품 자료는 기존 카드 안에서 전체 프레임을 유지 */
     mediaContain?: boolean;
+    /** 인물용 덮개 없이, 칸을 꽉 채워 보여 줌 (제품 연출 사진) */
+    mediaFill?: boolean;
     /** 제품 사진 뒤에 깔 배경색 (흰 배경 제품 컷이 어두운 카드에서 떠 보이지 않게) */
     mediaBg?: string;
     /** 같은 사진의 여러 크기 (srcset). 화면 폭에 맞는 파일을 받도록 */
@@ -365,9 +367,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       image: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
       photo: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
       photoAlt: "뉴라미스 · 레나 · 레스틸렌 제품군을 모은 연출 사진",
-      // 제품 사진은 자르지 않고 전체를 보여 준다 (인물용 덮개 · 확대 없이)
-      mediaContain: true,
-      mediaSize: { width: 1800, height: 1200 },
+      // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
+      mediaFill: true,
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
       specs: [
         { label: "성분", value: "히알루론산 (HA)" },
@@ -3602,9 +3603,8 @@ deviceStory["/petit/botox/body"] = {
     image: "/images/photos/intro-body-botox-products-20261105-v1.webp",
     photo: "/images/photos/intro-body-botox-products-20261105-v1.webp",
     photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
-    // 제품 사진은 자르지 않고 전체를 보여 준다 (인물용 덮개 · 확대 없이)
-    mediaContain: true,
-    mediaSize: { width: 1800, height: 1200 },
+    // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
+    mediaFill: true,
     text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
     specs: [
       { label: "방식", value: "보툴리눔 톡신 제제 주사" },

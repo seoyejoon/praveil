@@ -159,7 +159,7 @@ export const treatments: Treatment[] = [
         { x: 64, y: 70, en: "Cooling", label: "DCC 직접 접촉 냉각" },
       ],
     },
-    headline: ["강력한 Cooling + Monopolar RF,", "쿨페이즈 고주파 리프팅"],
+    headline: ["강력한 Cooling + Monopolar RF", "쿨페이즈 고주파 리프팅"],
     doctorReasons: [
       {
         title: "대표원장 직접 체크",

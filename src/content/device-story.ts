@@ -349,8 +349,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "필러",
       maker: "Hyaluronic Acid",
-      image: "/images/photos/cat-filler-model-a.webp",
-      photo: "/images/photos/cat-filler-model-a.webp",
+      image: "/images/photos/clinic-5.webp",
+      photo: "/images/photos/clinic-5.webp",
       photoAlt: "대표원장이 환자의 얼굴 부위에 필러를 주입하는 진료 장면",
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
       specs: [
@@ -438,8 +438,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 특성을 고려한 맞춤형 제품 선택",
         text: "이마 · 볼 · 입술 · 눈 밑은 피부의 두께와 표정 근육의 움직임이 모두 다릅니다. 각 부위의 해부학적 구조에 맞춰 필러가 안착할 피부 층을 구분하고, 입자의 크기와 단단함(점탄성)을 세밀하게 나누어 적용합니다.",
-        image: "/images/photos/cat-filler-model-a.webp",
-        alt: "대표원장이 얼굴 부위에 필러를 주입하는 모습",
+        image: "/images/filler/products/neuramis-lineup.webp",
+        mediaFit: "contain" as const,
+        alt: "부위별로 나누어 쓰는 필러 제품 라인업",
       },
       {
         title: "필러 정품 · 정량 원칙",
@@ -777,7 +778,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 주사",
         text: "설계한 부위에 제품별 기준에 맞춰 주사합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "부위에 맞춰 주사하는 대표원장",
       },
       {
@@ -1089,8 +1090,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "반응을 보며 다음 단계 결정",
         text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
-        image: "/images/photos/signature-4-model-a.webp",
-        alt: "피부 경과 관리 설명용 기존 진료 사진",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     process: [
@@ -1109,7 +1110,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "제품의 사용방법에 맞춰 정한 부위를 시술합니다. 외용 제품은 주입용 제품과 구분해 사용합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
@@ -1263,7 +1264,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정품 확인 및 정교한 주입",
         text: "시술 직전 정품 패키지를 확인시켜 드린 후, 계획된 부위에 미세한 양씩 균일하게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
@@ -1415,7 +1416,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "정한 범위에 엑소좀 성분을 고르게 전달합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
@@ -1573,7 +1574,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "제품별 사용목적과 주입 방법을 확인해 정한 부위를 시술합니다. 양과 분포는 피부 상태에 맞춰 조절합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
@@ -1746,7 +1747,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 진피층 분할 주입",
         text: "숙련된 노하우를 바탕으로 계획된 부위의 진피층에 쥬베룩 성분을 고르고 촘촘하게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
       },
       {
@@ -1914,7 +1915,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 맞춤 주입",
         text: "숙련된 노하우를 바탕으로 계획된 부위에 울트라콜 성분을 고르고 촘촘하게 나누어 주입합니다.",
-        image: "/images/photos/cat-injection-model-a.webp",
+        image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
       },
       {
@@ -3609,7 +3610,7 @@ deviceStory["/petit/botox/body"] = {
     {
       title: "대표원장 1:1 맞춤 정밀 주입",
       text: "정품 · 정량 원칙을 바탕으로, 설정된 타깃 부위에 적정 깊이와 알맞은 압력으로 약물을 균일하게 분산 주입합니다.",
-      image: "/images/photos/cat-injection-model-a.webp",
+      image: "/images/photos/cat-skin-care.webp",
       alt: "주입 시술을 진행하는 대표원장",
     },
     {

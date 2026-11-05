@@ -2439,16 +2439,17 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "클라리티2",
       maker: "LUTRONIC",
-      image: "/images/page-assets/clarity2-device.png",
-      photo: "/images/page-assets/clarity2-device.png",
+      // 장비가 크게 보이는 기존 제조사 사진 유지 (08 패키지의 장비 컷은 작게 보여 되돌림)
+      image: "/images/official/clarity-device.png",
+      photo: "/images/official/clarity-device.png",
       photoAlt: "루트로닉 클라리티2 장비 · 제조사 공식 이미지",
       mediaContain: true,
-      text: "클라리티2는 루트로닉에서 만든 레이저 장비로, 755nm 알렉산드라이트와 1064nm 롱펄스 엔디야그(Nd:YAG) 두 가지 파장을 씁니다. 클라리티 이너리프팅은 1064nm 레이저를 피부에 닿지 않게 빠르게 고루 조사해 진피층에 열을 쌓는 방식으로, 피부 탄력 · 모공 · 피부결과 톤을 함께 관리합니다.",
+      text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 함께 살핍니다.",
       specs: [
-        { label: "방식", value: "롱펄스 레이저 (비접촉 조사)" },
-        { label: "파장", value: "755nm · 1064nm" },
-        { label: "통증 관리", value: "대부분 마취 없이 진행" },
-        { label: "가격 안내", value: "LDM 재생관리 · PDRN 포함 3회" },
+        { label: "에너지 방식", value: "비접촉 롱펄스 레이저 (Long-pulsed Laser)" },
+        { label: "타깃 파장", value: "1064nm (진피층 리프팅 · 모공 타이트닝)" },
+        { label: "통증 관리", value: "지능형 냉각 가스 시스템 (무마취 진행)" },
+        { label: "연계 관리", value: "LDM 진정 · 재생 케어 · PDRN 복합 설계" },
       ],
     },
     principleImage: {

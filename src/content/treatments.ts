@@ -317,7 +317,8 @@ export const treatments: Treatment[] = [
     variantOf: "/lifting/laser",
     en: "Shurink Universe",
     title: "슈링크 유니버스",
-    description: "집속 초음파로 처진 윤곽과 탄력을 관리하는 리프팅",
+    description:
+      "2가지 모드와 펜타입 카트리지로 완성하는 빈틈없는 초음파 리프팅",
     image: photo("cat-lifting-model-a"),
     // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {

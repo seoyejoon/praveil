@@ -589,6 +589,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 각 장비의 일반적인 방식을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 프라베일이 모든 장비를 보유한다는 뜻은 아니며, 맞는 방법은 피부 상태와 고민에 따라 다릅니다. 통증 · 효과 · 유지 기간에는 개인차가 있습니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "쿨페이즈 리프팅의 4가지 특징",
     // 특징: 장면이 겹치지 않게 (원리 영상 · 장비 영상 · 팁 영상 · 시술 사진)
     features: [
@@ -622,6 +623,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: doctorPhotos.coolphase,
         alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
         fullFrame: true,
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -1061,6 +1063,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "스킨부스터를 계획하는 4가지 기준",
     features: [
       {
@@ -1086,12 +1089,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "얼굴 전체를 같은 방식으로 접근하지 않고, 피부 두께와 민감한 부위를 살펴 범위를 정합니다.",
         image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "피부 부위별 계획 설명용 기존 시술 사진",
+        mediaFit: "cover",
       },
       {
         title: "반응을 보며 다음 단계 결정",
         text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
         image: "/images/photos/clinic-5.webp",
         alt: "프라베일 관리실",
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -1523,6 +1528,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 제품명은 재료의 차이를 설명하는 예시이며 실제 사용 제품은 상담 때 확인합니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "콜라겐부스터를 계획하는 4가지 기준",
     features: [
       {
@@ -1556,6 +1562,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "부기가 빠지는 과정과 오래가는 결절감을 구분합니다. 열감이나 통증이 동반되면 다음 시술보다 진찰을 먼저 진행합니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -2035,6 +2042,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 장비의 일반적인 방식 비교이며 실제 보유 모델 · 팁과 시행 범위는 상담에서 확인합니다. 맞는 방법은 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간에는 개인차가 있습니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "레이저리프팅의 4가지 특징",
     features: [
       {
@@ -2071,6 +2079,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "중요한 일정을 확인하고, 붉어짐이나 부기가 생길 가능성을 설명합니다. 경과를 본 뒤 추가 시술 여부를 정합니다.",
         image: "/images/photos/clinic-4.webp",
         alt: "세안과 회복 관리 안내에 사용하는 병원 파우더룸 사진",
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -2210,6 +2219,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 위 표는 각 장비의 일반적인 기술 특성을 정리한 자료로 특정 장비의 우위를 의미하지 않으며, 일부 비교 장비는 본원 보유 장비가 아닐 수 있습니다. 적합한 시술과 통증 · 효과 · 유지 기간은 개인의 피부 상태에 따라 다릅니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "슈링크 유니버스의 4가지 특징",
     features: [
       {
@@ -2707,6 +2717,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 각 시술의 일반적인 특징을 정리한 것으로, 어느 시술이 더 낫다는 뜻이 아닙니다. 맞는 시술은 피부 상태와 고민에 따라 다르며, 효과 · 유지 기간은 사람마다 다릅니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "실리프팅을 계획하는 4가지 기준",
     features: [
       {
@@ -2714,6 +2725,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "당기고 싶은 부위뿐 아니라 조직의 무게와 움직임을 함께 봅니다. 얼굴 전체의 균형 안에서 방향을 정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "실리프팅 상담 안내에 사용하는 병원 상담실 사진",
+        mediaFit: "cover",
       },
       {
         title: "민트실 · 재질과 돌기 구조 확인",
@@ -2729,12 +2741,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "실 개수 하나로 결과를 정하지 않습니다. 필요한 범위와 지지 방향을 정하고 피부에 가해질 부담을 함께 고려합니다.",
         image: "/images/photos/clinic-4.webp",
         alt: "병원 세안 · 파우더룸의 기존 사진",
+        mediaFit: "cover",
       },
       {
         title: "초기 모양과 회복을 함께 확인",
         text: "부기와 당김, 피부 패임을 살피고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
         image: "/images/photos/clinic-6.webp",
         alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
+        mediaFit: "cover",
       },
     ],
     process: [
@@ -3474,6 +3488,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       note: "※ 일반적인 방법 비교이며 실제 제공 시술 목록을 뜻하지 않습니다. 프라베일은 눈썹 · 아이라인 · 언더라인 반영구 문신제거를 피코초 레이저로 진행하며, 수술적 제거는 하지 않습니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
     },
+    featuresRatio: 4 / 3,
     featuresTitle: "문신제거에서 먼저 확인하는 4가지",
     features: [
       {
@@ -3500,12 +3515,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "아이라인은 눈을 감는 것만으로 보호되지 않습니다. 눈에 맞는 보호구를 쓰고 진행하며, 눈 상태상 안전하게 진행하기 어렵다면 시술을 미룹니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
+        mediaFit: "cover",
       },
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
         image: "/images/photos/clinic-5.webp",
         alt: "프라베일 관리실",
+        mediaFit: "cover",
       },
     ],
     process: [

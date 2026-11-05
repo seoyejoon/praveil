@@ -135,6 +135,8 @@ export type DeviceStory = {
     mediaEdges?: [string, string];
     /** 박스 채우기 방식을 직접 지정 (기본: 비율로 자동) */
     mediaFit?: "contain" | "cover";
+    /** 자르고 채울 때 어느 쪽을 남길지 (object-position) */
+    mediaPosition?: string;
     /** 사진 아래에 보이는 설명 (AI 설명용 모식도 표시 등) */
     caption?: string;
     /** 같은 사진의 여러 크기 (srcset) */
@@ -799,10 +801,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
       image: "/images/retuo/product-intro.webp",
-      photo: "/images/retuo/product-intro-cutout.png",
+      photo: "/images/retuo/product-intro-cutout-v2.png",
       photoAlt: "리투오 제품 상자와 본품 (제조사 공식 자료)",
       mediaContain: true,
-      mediaSize: { width: 2520, height: 980 },
+      mediaSize: { width: 730, height: 548 },
       text: "리투오는 면역 거부 반응을 유발하는 세포 성분을 제거하고, 피부 지지 구조인 세포외기질(ECM) 성분만을 정제한 무세포 동종진피(hADM) 스킨부스터입니다. 인체 진피 성분과 유사한 콜라겐과 엘라스틴 등 본연의 구성 물질을 직접 전달하여, 얇아지고 힘을 잃은 피부 속 진피 환경을 다시 채우는 데 집중합니다. 거친 피부결과 미세 잔주름, 꺼진 탄력 밀도를 채우기 위해 개인의 피부 두께와 노화 양상을 면밀히 살펴 1:1 맞춤으로 주입합니다.",
       specs: [
         { label: "제품 분류", value: "무세포 동종진피(hADM) 스킨부스터" },
@@ -2560,48 +2562,45 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부에 닿지 않는 위생적인 비접촉 조사",
         text: "피부 표면에 직접 팁을 대지 않고 살짝 띄운 상태에서 1064nm 롱펄스 에너지를 빠르게 공중 조사합니다. 피부 마찰이나 압박 없이 위생적이며, 팁 접촉으로 인한 표면 자극을 줄입니다.",
-        image: "/images/clarity-video/clarity-handpiece-from-video-v1.webp",
-        mediaSrcSet: "/images/clarity-video/clarity-handpiece-from-video-v1-800.webp 800w, /images/clarity-video/clarity-handpiece-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-handpiece-from-video-v1.webp 1920w",
-        // 레이저 제모 쪽에서 쓰던 제조사 소개 영상 (정지 이미지는 재생 전 포스터)
-        video: "/videos/official-clarity.mp4",
-        alt: "클라리티2 핸드피스 구조를 설명하는 제조사 영상 장면",
-        caption: "LUTRONIC 제공 클라리티2 핸드피스 구조 설명 장면.",
-        mediaFit: "contain",
+        image: "/images/clarity-features-v2/clarity-point-01-face-laser-20261105-v2.webp",
+        alt: "얼굴 레이저 시술 장면",
+        caption: "원내 촬영 장면을 바탕으로 공통 모델을 적용한 이미지입니다.",
+        // 3:1 원본을 16:9 칸에 오른쪽 기준으로 담는다 (왼쪽 빈자리는 화면 밖으로)
+        mediaFit: "cover",
+        mediaPosition: "right center",
         mediaSize: { width: 1920, height: 1080 },
-        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "진피 깊은 층까지 균일하게 축적되는 심부열",
         text: "넓고 안정적인 스팟 사이즈를 활용해 피부 속 진피층까지 열에너지를 촘촘하게 쌓아 올립니다. 축적된 열감이 진피 내 섬유아세포를 자극하여 콜라겐과 엘라스틴의 자연스러운 재생을 유도합니다.",
-        image: "/images/clarity-video/clarity-wavelengths-from-video-v1.webp",
-        mediaSrcSet: "/images/clarity-video/clarity-wavelengths-from-video-v1-800.webp 800w, /images/clarity-video/clarity-wavelengths-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-wavelengths-from-video-v1.webp 1920w",
-        alt: "755nm · 1064nm 파장 지원을 설명하는 제조사 영상 장면",
-        caption: "LUTRONIC 제공 755nm · 1064nm 파장 지원 설명 장면. 이 페이지는 1064nm를 활용한 시술을 안내합니다.",
+        image: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp",
+        mediaSrcSet: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp 1920w",
+        alt: "피부 속 열 전달을 표현한 설명용 단면",
+        caption: "열 전달을 설명하기 위한 AI 모식도입니다. 실제 온도 · 깊이 · 시술 결과를 나타내지 않습니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
-        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "탄력 · 모공 · 피부결 · 안색의 올인원 케어",
         text: "처진 피부 밀도를 속부터 채워 늘어진 모공과 잔주름을 함께 살피고, 미세 혈관 안정화를 통해 붉은기와 칙칙한 피부 톤을 맑고 매끄럽게 정돈합니다.",
-        image: "/images/clarity-video/clarity-intellitrak-from-video-v1.webp",
-        mediaSrcSet: "/images/clarity-video/clarity-intellitrak-from-video-v1-800.webp 800w, /images/clarity-video/clarity-intellitrak-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-intellitrak-from-video-v1.webp 1920w",
-        alt: "IntelliTrak 기술을 설명하는 제조사 영상 장면 (다리 부위 제모 시연)",
-        caption: "LUTRONIC 제공 IntelliTrak 기술 설명 장면 — 다리 부위 제모 시연 예시입니다.",
+        image: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp",
+        mediaSrcSet: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp 1920w",
+        alt: "얼굴 피부결 · 모공 설명용 공통 모델 이미지",
+        caption: "피부결 · 모공 · 안색을 설명하기 위한 AI 모델 이미지이며, 실제 시술 결과가 아닙니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
-        mediaEdges: ["#f7f7f7", "#f7f7f7"],
       },
       {
         title: "실시간 온도 모니터링 시스템",
         text: "시술 중 피부 표면의 온도를 실시간으로 체크할 수 있어, 열이 과도하게 쌓이지 않도록 안전하게 살피며 에너지 세기를 세심하게 조절합니다.",
-        image: "/images/clarity-video/clarity-temperature-from-video-v1.webp",
-        mediaSrcSet: "/images/clarity-video/clarity-temperature-from-video-v1-800.webp 800w, /images/clarity-video/clarity-temperature-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-temperature-from-video-v1.webp 1920w",
-        alt: "피부 온도 감지 표시 화면을 보여 주는 제조사 영상 장면",
-        caption: "LUTRONIC 제공 피부 온도 감지 표시 화면. 실제 환자 측정 기록이 아닙니다.",
+        image: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp",
+        mediaSrcSet: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp 1920w",
+        video: "/videos/clarity-features-v2/clarity-point-04-temperature-20261105-v2.mp4",
+        alt: "피부 온도 표시를 보여 주는 제조사 설명 영상",
+        caption: "LUTRONIC 제조사 영상의 온도 감지 기능 설명 장면입니다. 실제 환자 측정 기록이 아닙니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
-        mediaEdges: ["#f7f7f7", "#f7f7f7"],
+        mediaEdges: ["#000000", "#000000"],
       },
     ],
     process: [

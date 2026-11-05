@@ -1,6 +1,7 @@
 import { CalendarDays, Clock, Droplets, Sparkles } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/sub/SectionHead";
+import FeatureVideo from "@/components/sub/FeatureVideo";
 import ProductSlider from "@/components/sub/ProductSlider";
 import TreatmentPrinciple from "@/components/sub/TreatmentPrinciple";
 import type { DeviceStory } from "@/content/device-story";
@@ -422,15 +423,10 @@ export function StoryFeatures({
                     />
                   )}
                   {f.video ? (
-                    <video
+                    <FeatureVideo
                       src={f.video}
                       poster={f.image}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      aria-label={f.alt}
+                      label={f.alt}
                       className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
                     />
                   ) : (
@@ -449,7 +445,9 @@ export function StoryFeatures({
                               maxWidth: f.mediaSize.width,
                               maxHeight: f.mediaSize.height,
                             }
-                          : undefined
+                          : f.mediaPosition
+                            ? { objectPosition: f.mediaPosition }
+                            : undefined
                       }
                     />
                   )}

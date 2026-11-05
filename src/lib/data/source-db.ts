@@ -286,6 +286,7 @@ const loadNotices = cached("notices", async (): Promise<Notice[]> => {
           {
             id: row.id,
             type,
+            category: row.category,
             title: row.title,
             summary: row.summary,
             coverImageUrl: row.coverImageUrl,

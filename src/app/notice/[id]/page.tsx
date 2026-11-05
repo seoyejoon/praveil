@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, CalendarCheck, List } from "lucide-react";
+import ColumnArticle from "@/components/ColumnArticle";
 import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/sub/JsonLd";
-import { getHospital, getNotice, getNotices } from "@/lib/data";
+import { getDoctor, getHospital, getNotice, getNotices } from "@/lib/data";
 import { coverOf, eventStatus, formatDate } from "@/lib/notice";
 import { SITE_URL } from "@/lib/site-url";
 
@@ -28,10 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 공지 · 이벤트 글 보기: 분류 · 제목 · 날짜 → 본문 → 이전 · 다음 글 → 목록
 export default async function NoticeDetailPage({ params }: Props) {
   const id = Number((await params).id);
-  const [notice, all, hospital] = await Promise.all([
+  const [notice, all, hospital, doctor] = await Promise.all([
     getNotice(id),
     getNotices(),
     getHospital(),
+    getDoctor(),
   ]);
   if (!notice) notFound();
 
@@ -48,6 +50,20 @@ export default async function NoticeDetailPage({ params }: Props) {
   const newer = idx > 0 ? same[idx - 1] : null;
   const older = idx >= 0 && idx < same.length - 1 ? same[idx + 1] : null;
   const status = event ? eventStatus(notice.summary) : null;
+
+  // 원장칼럼은 관리자 칼럼 편집기와 같은 구성으로 따로 그린다
+  if (notice.type === "column")
+    return (
+      <ColumnArticle
+        notice={notice}
+        newer={newer}
+        older={older}
+        related={same.filter((n) => n.id !== notice.id).slice(0, 3)}
+        hospital={hospital}
+        doctor={doctor}
+        listHref={listHref}
+      />
+    );
 
   return (
     <article className="px-5 pt-32 pb-24 md:px-10 md:pt-44 md:pb-32">

@@ -68,6 +68,8 @@ export type PostBody =
 export type Notice = {
   id: number;
   type: "notice" | "event" | "column";
+  /** 관리자 게시판의 상위 분류 (원장칼럼 뱃지에 씀) */
+  category?: string;
   title: string;
   summary: string;
   coverImageUrl: string;

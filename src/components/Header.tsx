@@ -148,6 +148,9 @@ export default function Header({ member, signup }: Props) {
   // 공지사항 · 이벤트 · 원장칼럼은 주소가 같고 ?type 만 다르므로 ?type 까지 맞아야 현재 메뉴로 본다.
   // (useSearchParams 를 쓰면 모든 페이지가 동적 렌더가 되어, 주소창에서 직접 읽는다)
   const [search, setSearch] = useState("");
+  // 주소가 바뀔 때마다(쿼리만 바뀌어도) 다시 읽어야 해서 의존성 목록을 두지 않는다.
+  // 값이 같으면 상태를 그대로 두므로 다시 그려지지 않는다.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const s = window.location.search;
     setSearch((prev) => (prev === s ? prev : s));

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ColumnList from "@/components/ColumnList";
 import EventGallery from "@/components/EventGallery";
 import NoticeList from "@/components/NoticeList";
 import SubPage from "@/components/SubPage";
@@ -82,6 +83,8 @@ export default async function NoticePage({ searchParams }: Props) {
       <section className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28">
         {type === "event" ? (
           <EventGallery events={posts} />
+        ) : type === "column" ? (
+          <ColumnList notices={posts} />
         ) : (
           <NoticeList notices={posts} board={b.title} />
         )}

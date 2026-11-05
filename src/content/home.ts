@@ -164,7 +164,7 @@ export const images = {
     "skin-care": photo("cat-skin-care"),
     "scar-pore": photo("cat-scar-pore"),
     acne: photo("cat-acne"),
-    injection: photo("clinic-5"),
+    injection: photo("clinic-5-no-brown-wrap-20261105"),
     "hair-removal": photo("cat-hair-removal"),
     "tattoo-removal": photo("cat-tattoo-removal-model-a"),
   } as Record<string, string>,

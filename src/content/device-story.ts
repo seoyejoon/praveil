@@ -339,7 +339,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 주의사항과 다음 관리 시기를 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -410,7 +410,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           en: "Restylane",
           maker: "갈더마 · 스웨덴",
           text: "스웨덴에서 개발된 히알루론산 필러로, 오랫동안 여러 나라에서 쓰여 온 제품입니다. 종류가 다양해 부위에 맞춰 고릅니다.",
-          image: "/images/product-cards/restylane-card-v2.svg",
+          image: "/images/product-cards/restylane-card-v3-20261105.svg",
           tags: ["히알루론산", "수입"],
         },
         {
@@ -485,7 +485,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "결과 확인 및 안내",
         text: "시술 직후 거울로 볼륨과 대칭을 함께 확인하고, 형태 안정을 위한 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -658,7 +658,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 관리 및 주의사항 안내",
         text: "시술 직후 피부 상태를 꼼꼼히 확인하고 진정 케어를 진행합니다. 당일 세안과 보습 방법, 주의사항 및 권장 관리 주기를 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -767,7 +767,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "안정적인 정착을 돕는 경과 케어",
         text: "시술 직후 무리하게 추가 주입하지 않고, 약물이 근육에 안정적으로 작용하는 1~2주간의 변화 과정을 살피며 불편감이나 비대칭 여부를 세심하게 확인합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -794,7 +794,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "주의사항 · 경과 안내",
         text: "당일 주의사항과 변화 관찰 시점, 추가 진료가 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -958,7 +958,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 상태 확인 및 케어 안내",
         text: "시술 직후 피부 상태를 편안하게 정돈하고 확인한 뒤, 회복에 도움이 되는 홈케어 요령과 주의사항, 혹시 모를 이상 반응 대처법을 상세히 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1102,7 +1102,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "반응을 보며 다음 단계 결정",
         text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
         mediaFit: "cover",
       },
@@ -1130,7 +1130,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 제품별 주의사항과 다시 진료를 받아야 할 증상을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1284,7 +1284,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 엠보싱과 부기 상태를 함께 확인하고, 회복에 도움이 되는 세안 · 화장 시점과 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1436,7 +1436,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 피부 반응을 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1596,7 +1596,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 멍, 덩어리감이나 염증 증상을 확인합니다. 마사지를 포함한 관리는 제품별로 따로 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1770,7 +1770,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 마사지 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -1939,7 +1939,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "직후 경과 확인 및 홈케어 안내",
         text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 관리 요령과 일상생활 주의사항을 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -2117,7 +2117,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 상태와 주의사항을 확인하고, 회복 뒤 변화에 따라 다음 계획을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -2454,7 +2454,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 사후 안내",
         text: "시술 직후 붉은기와 미세 자국을 차분하게 진정시키고, 세안 및 메이크업 가능 시점과 일상 속 주의사항을 세심하게 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -2633,7 +2633,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 케어 및 홈케어 안내",
         text: "시술 직후 일시적인 붉은기와 열감을 차분하게 진정시키고, 일상 속에서 철저한 자외선 차단과 보습을 관리하실 수 있도록 세심하게 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -2795,7 +2795,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기와 통증, 당김이나 패임을 확인하고, 압박 · 마사지 · 일상생활 주의사항을 따로 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -3151,7 +3151,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "부기 · 멍을 확인하고 일상생활 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -3245,7 +3245,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부 자극과 새 여드름 여부를 확인하고, 홈케어와 다음 진료 계획을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -3423,7 +3423,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 진정 케어 및 주의사항 안내",
         text: "시술 직후 발생할 수 있는 일시적인 열감과 붉은 기를 가라앉히는 진정 보습을 진행하고, 이후 자가 관리 수칙을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -3569,7 +3569,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
         mediaFit: "cover",
       },
@@ -3596,7 +3596,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "피부와 색 변화를 확인하고, 상처 관리와 다음 평가 시기를 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
     ],
@@ -3683,7 +3683,7 @@ deviceStory["/petit/botox/body"] = {
     {
       title: "사후 관리 및 주의사항 안내",
       text: "시술 직후 안정적인 회복을 돕는 주의사항을 안내하고, 근육 축소 및 땀샘 억제 경과 시점에 맞춘 사후 관리 계획을 전해 드립니다.",
-      image: "/images/photos/clinic-5.webp",
+      image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
       alt: "프라베일 관리실",
     },
   ],

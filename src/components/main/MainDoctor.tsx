@@ -73,8 +73,9 @@ export default function MainDoctor({
         {nameEn}
       </p>
 
-      <div className="relative mx-auto grid max-w-[1600px] items-center gap-10 px-5 py-28 md:px-10 lg:min-h-svh lg:grid-cols-2 lg:py-20">
-        <div className="order-2 flex justify-center lg:order-1">
+      {/* 아래쪽 여백을 두지 않아, 배경 없는 원장 사진의 수평 끝선이 칸 바닥에 그대로 이어진다 */}
+      <div className="relative mx-auto grid max-w-[1600px] gap-10 px-5 pt-28 md:px-10 lg:min-h-svh lg:grid-cols-2 lg:pt-20">
+        <div className="order-2 flex justify-center self-end lg:order-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image}
@@ -82,11 +83,11 @@ export default function MainDoctor({
             loading="lazy"
             width={770}
             height={1355}
-            className="block h-auto w-full max-w-[360px] rounded-[28px] object-contain md:rounded-[40px] lg:max-w-[400px]"
+            className="block h-auto w-full max-w-[360px] object-contain lg:max-w-[400px]"
           />
         </div>
 
-        <div className="order-1 lg:order-2">
+        <div className="order-1 self-center pb-4 lg:order-2 lg:pb-20">
           <Reveal
             variant="line"
             className="text-[26px] leading-[1.4] font-semibold tracking-[-0.04em] md:text-[42px]"

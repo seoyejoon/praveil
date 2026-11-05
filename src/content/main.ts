@@ -116,8 +116,8 @@ export const mainBest = {
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
       // 환자 얼굴이 깨져 보여 시술실 사진으로 임시 교체 (새 사진 준비 중)
-      image: photo("clinic-5"),
-      mobileImage: photo("clinic-5-m"),
+      image: photo("clinic-5-no-brown-wrap-20261105"),
+      mobileImage: photo("clinic-5-no-brown-wrap-20261105-m"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",
@@ -206,7 +206,7 @@ export const mainSpace = {
     "clinic-2",
     "clinic-3",
     "clinic-4",
-    "clinic-5",
+    "clinic-5-no-brown-wrap-20261105",
     "clinic-6",
   ].map(photo),
 };

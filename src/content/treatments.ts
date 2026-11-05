@@ -505,7 +505,7 @@ export const treatments: Treatment[] = [
     en: "Thread Lifting",
     title: "실리프팅",
     description: "피부 두께와 처짐 방향을 살펴 계획하는 흡수성 실리프팅",
-    image: photo("clinic-5"),
+    image: photo("clinic-5-no-brown-wrap-20261105"),
     // 실 삽입 촬영본 확인 전까지 턱선과 피부 상태를 살피는 진찰 장면을 사용합니다.
     scene: {
       src: photo("hero-thread-20261027-model-a"),
@@ -577,7 +577,7 @@ export const treatments: Treatment[] = [
     en: "QTL Thread",
     title: "QTL 실리프팅",
     description: "처진 조직을 받쳐 라인을 정리하는 리프팅 실",
-    image: photo("clinic-5"),
+    image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: QTL 실리프팅 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
       src: photo("hero-thread-20261027-model-a"),
@@ -631,7 +631,7 @@ export const treatments: Treatment[] = [
     title: "잼버실",
     description:
       "피부 속부터 촘촘하게 차오르는 자연스러운 입체감",
-    image: photo("clinic-5"),
+    image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
       src: photo("hero-thread-20261027-model-a"),

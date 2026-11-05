@@ -2508,7 +2508,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       mediaContain: true,
       mediaSize: { width: 1920, height: 1080 },
-      text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 함께 살핍니다.",
+      text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 복합적으로 개선하는 리프팅 시술입니다.",
       specs: [
         { label: "에너지 방식", value: "비접촉 롱펄스 레이저 (Long-pulsed Laser)" },
         { label: "타깃 파장", value: "1064nm (진피층 리프팅 · 모공 타이트닝)" },
@@ -2528,16 +2528,16 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "피부에 닿지 않게 조사",
-        text: "핸드피스를 피부에서 살짝 띄운 채 1064nm 레이저를 빠르게 여러 번 지나가듯 조사합니다.",
+        title: "비접촉 공중사(Quasi-Long Pulse) 연속 조사",
+        text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여, 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 최소화합니다.",
       },
       {
-        title: "진피층에 열을 고르게 쌓음",
-        text: "넓은 조사 크기로 얼굴 전체에 열을 고르게 전달해, 진피층의 콜라겐 재생을 돕습니다.",
+        title: "진피층 타깃 40~42℃ 균일 심부열 축적",
+        text: "피부 표면 온도를 실시간 감지하며 진피층에 안전한 치료 유효 온도(40~42℃)의 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다.",
       },
       {
-        title: "탄력 · 피부결 · 톤 관리",
-        text: "탄력과 모공 · 피부결, 붉은 톤을 함께 살피며 경과를 봅니다. 변화의 정도는 사람마다 다릅니다.",
+        title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
+        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부 결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다. 개선 정도는 개인차가 있습니다.",
       },
     ],
     compare: {
@@ -2592,8 +2592,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "클라리티 리프팅의 4가지 특징",
     features: [
       {
-        title: "피부에 닿지 않는 위생적인 비접촉 조사",
-        text: "피부 표면에 직접 팁을 대지 않고 살짝 띄운 상태에서 1064nm 롱펄스 에너지를 빠르게 공중 조사합니다. 피부 마찰이나 압박 없이 위생적이며, 팁 접촉으로 인한 표면 자극을 줄입니다.",
+        title: "표면 마찰과 자극을 줄인 위생적인 비접촉 조사 방식",
+        text: "피부 표면에 핸드피스를 직접 대지 않고 일정한 거리를 유지한 채 1064nm 롱펄스 레이저를 조사합니다. 물리적 마찰과 압박이 없어 위생적이며, 팁 접촉으로 인한 2차 자극과 붉은기 발생 부담을 덜어냅니다.",
         image: "/images/clarity-features-v2/clarity-point-01-face-laser-20261105-v2.webp",
         alt: "얼굴 레이저 시술 장면",
         caption: "원내 촬영 장면을 바탕으로 공통 모델을 적용한 이미지입니다.",
@@ -2604,7 +2604,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "진피 깊은 층까지 균일하게 축적되는 심부열",
-        text: "넓고 안정적인 스팟 사이즈를 활용해 피부 속 진피층까지 열에너지를 촘촘하게 쌓아 올립니다. 축적된 열감이 진피 내 섬유아세포를 자극하여 콜라겐과 엘라스틴의 자연스러운 재생을 유도합니다.",
+        text: "넓고 균일한 빔 프로파일(Spot Size)을 바탕으로 진피 기저층에 안전한 열에너지를 점진적으로 축적합니다. 축적된 심부열이 섬유아세포를 활성화하여 콜라겐과 엘라스틴의 자가 재생 및 리모델링을 촉진합니다.",
         image: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp 1920w",
         alt: "피부 속 열 전달을 표현한 설명용 단면",
@@ -2613,8 +2613,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaSize: { width: 1920, height: 1080 },
       },
       {
-        title: "탄력 · 모공 · 피부결 · 안색의 올인원 케어",
-        text: "처진 피부 밀도를 속부터 채워 늘어진 모공과 잔주름을 함께 살피고, 미세 혈관 안정화를 통해 붉은기와 칙칙한 피부 톤을 맑고 매끄럽게 정돈합니다.",
+        title: "탄력 · 모공 · 피부결 등 올인원 케어",
+        text: "느슨해진 진피 지지 구조를 복원해 처진 윤곽 탄력과 늘어진 모공, 잔주름을 타이트닝하며, 1064nm 파장이 진피 미세 혈관(헤모글로빈)에 작용해 만성 홍조와 칙칙한 피부 톤을 맑게 가꿔줍니다.",
         image: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp 1920w",
         alt: "얼굴 피부결 · 모공 설명용 공통 모델 이미지",
@@ -2624,7 +2624,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실시간 온도 모니터링 시스템",
-        text: "시술 중 피부 표면의 온도를 실시간으로 체크할 수 있어, 열이 과도하게 쌓이지 않도록 안전하게 살피며 에너지 세기를 세심하게 조절합니다.",
+        text: "시술 중 핸드피스 센서가 피부 표면 온도를 실시간으로 측정하여 과도한 열 축적을 사전에 방지합니다. 안전한 치료 유효 온도 범위 내에서 환자별 반응에 맞춰 에너지 전달 속도와 강도를 정교하게 조율합니다.",
         image: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp 1920w",
         video: "/videos/clarity-features-v2/clarity-point-04-temperature-20261105-v2.mp4",
@@ -2637,26 +2637,26 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     process: [
       {
-        title: "상담 및 맞춤 플랜 설계",
-        text: "현재의 피부 톤, 탄력 고민의 양상과 함께 최근 햇빛 노출 여부, 복용 중인 약물 등을 면밀히 확인하여 가장 알맞은 시술 범위를 정합니다.",
+        title: "맞춤 진단 및 플랜 수립",
+        text: "피부 톤과 탄력 상태, 광과민성 요소를 확인해 1:1 시술 범위를 설계합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
       {
-        title: "안전 보호 및 시술 준비",
-        text: "레이저 조사 시 눈을 안전하게 보호하는 방법을 철저히 확인한 뒤 시술 부위를 깨끗하게 정돈합니다. ※ 따뜻한 열감이 걱정되시거나 민감하신 경우 사전에 편하게 말씀해 주세요.",
+        title: "클렌징 및 안구 보호 준비",
+        text: "시술 부위를 클렌징하고 눈 보호를 위한 전용 보안경을 착용합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "비접촉식 맞춤 레이저 조사",
-        text: "피부 상태와 고민 부위에 맞게 설정된 파장과 에너지 세기를 바탕으로, 핸드피스를 이용해 얼굴 전체에 부드럽고 균일하게 레이저를 조사합니다.",
+        title: "비접촉 1064nm 맞춤 조사",
+        text: "실시간 피부 온도 모니터링을 바탕으로 1064nm 심부열을 균일하게 조사합니다.",
         image: "/images/photos/retouched/web/laser-model-a.webp",
         alt: "보호 안경을 착용한 대표원장의 얼굴 부위 레이저 시술 장면",
       },
       {
-        title: "진정 케어 및 홈케어 안내",
-        text: "시술 직후 일시적인 붉은기와 열감을 차분하게 진정시키고, 일상 속에서 철저한 자외선 차단과 보습을 관리하실 수 있도록 세심하게 안내해 드립니다.",
+        title: "진정 관리 및 사후 안내",
+        text: "즉각적인 열감 진정 케어를 진행하고 일상 보습 · 자외선 차단 수칙을 안내해 드립니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },

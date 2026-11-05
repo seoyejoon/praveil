@@ -118,7 +118,7 @@ export default async function AboutIntroPage() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
           <Reveal
             variant="line"
-            className="text-[30px] leading-[1.35] font-light tracking-[-0.03em] md:text-[48px]"
+            className="text-[30px] leading-[1.35] font-bold tracking-[-0.03em] md:text-[48px]"
           >
             {aboutIntro.headline.map((h) => (
               <span key={h}>
@@ -136,11 +136,12 @@ export default async function AboutIntroPage() {
           </Reveal>
         </div>
         <Reveal delay={200}>
-          <dl className="mt-14 grid grid-cols-2 border-t border-ink/80 md:mt-20 lg:grid-cols-3">
+          {/* 좁은 화면에서는 두 칸에 넣으면 글이 눌려, 한 줄에 하나씩 */}
+          <dl className="mt-14 grid border-t border-ink/80 sm:grid-cols-2 md:mt-20 lg:grid-cols-3">
             {facts.map((f) => (
               <div
                 key={f.label}
-                className={`border-b border-line py-6 pr-4 md:py-8 ${"wide" in f ? "col-span-2 lg:col-span-1" : ""}`}
+                className={`border-b border-line py-6 pr-4 md:py-8 ${"wide" in f ? "sm:col-span-2 lg:col-span-1" : ""}`}
               >
                 <dt className="text-[13px] text-gold">{f.label}</dt>
                 <dd className="mt-2 text-[15px] leading-snug font-medium tracking-[-0.02em] whitespace-pre-line md:text-lg">

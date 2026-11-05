@@ -48,7 +48,14 @@ export type DeviceStory = {
     mediaSize?: { width: number; height: number };
     /** 제조사 브랜드 영상 (있으면 사진 대신) */
     /** edge: 영상 비율이 칸과 달라 남는 자리를 채울 색 (영상 가장자리 색) */
-    film?: { src: string; poster: string; edge?: string; fadeFrom?: string };
+    film?: {
+      src: string;
+      poster: string;
+      edge?: string;
+      fadeFrom?: string;
+      /** 16:9 에 가까운 영상은 좁은 화면에서도 칸을 꽉 채운다 (좌우 띠 없이) */
+      fit?: "cover";
+    };
     text: string;
     specs: { label: string; value: string }[];
   };
@@ -2472,6 +2479,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/official-clarity.mp4",
         poster: "/images/official/clarity-poster.jpg",
+        fit: "cover",
         edge: "linear-gradient(#f2efee, #d4d3d2)",
       },
       mediaContain: true,
@@ -3275,6 +3283,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       film: {
         src: "/videos/official-clarity.mp4",
         poster: "/images/official/clarity-poster.jpg",
+        fit: "cover",
         edge: "linear-gradient(#f2efee, #d4d3d2)",
       },
       mediaContain: true,

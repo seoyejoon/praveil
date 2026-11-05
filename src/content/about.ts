@@ -104,7 +104,7 @@ export const aboutSpace = {
   text: "상담부터 시술, 회복까지 한 층에서 이어집니다. 조용하고 편안한 경험을 위해 공간을 세심하게 나누었습니다.",
   items: [
     { name: "인포메이션", text: "예약 확인과 접수", image: photo("clinic-1") },
-    { name: "대기실", text: "조용히 기다리는 공간", image: photo("clinic-2") },
+    { name: "대기실", text: "조용히 기다리는 공간", image: photo("clinic-2-v2") },
     { name: "상담실", text: "한 분 한 분 1:1 맞춤 상담", image: photo("clinic-3") },
     { name: "파우더룸", text: "시술 후 정돈", image: photo("clinic-4") },
     { name: "시술실", text: "독립된 시술 공간", image: photo("clinic-5") },

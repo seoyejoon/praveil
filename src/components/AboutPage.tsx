@@ -26,6 +26,7 @@ export default function AboutPage({
       crumbs={[]}
       tabs={about.pages}
       current={current}
+      boldTitle
     >
       {children}
     </SubPage>

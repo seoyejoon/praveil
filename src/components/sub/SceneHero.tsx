@@ -20,6 +20,8 @@ export type HeroScene = {
   pulse?: [number, number];
   /** PC 사진 위치 (object-position, 기본 "92% center") */
   position?: string;
+  /** 사진 위 · 아래가 흐려지는 자리에 보이는 배경색 (기본: 회색 벽 사진에 맞춘 색) */
+  bg?: string;
   /** 3:1보다 세로가 긴 원본은 태블릿부터 높이에 맞춰 오른쪽에 배치해 얼굴 · 시술 부위를 보존 */
   desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
@@ -102,6 +104,7 @@ export default function SceneHero({
       data-dark-hero
       data-light-hero
       className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#dcd7d3] text-ink lg:h-[calc(33.34vw+132px)] lg:min-h-0"
+      style={scene.bg ? { background: scene.bg } : undefined}
     >
       <div
         ref={stageRef}

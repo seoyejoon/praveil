@@ -690,6 +690,8 @@ export const treatments: Treatment[] = [
       src: photo("hero-filler-products-3brands-20261105-v2"),
       mobileSrc: photo("hero-filler-products-3brands-20261105-m-v2"),
       alt: "뉴라미스 · 레나 · 레스틸렌 제품군을 배치한 필러 제품 연출 이미지",
+      // 사진 위쪽이 흐려지는 자리에 회색 벽 대신 사진과 같은 색이 보이도록
+      bg: "#dbc4b7",
       // 제품이 오른쪽 절반, 글자가 왼쪽 절반을 쓰므로 유리 카드를 놓을 자리가 없다
     },
     headline: ["프라베일 시그니처 시술,", "커스텀 볼륨 필러"],

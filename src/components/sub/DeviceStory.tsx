@@ -89,7 +89,7 @@ export function StoryAbout({
                   preload="metadata"
                   aria-label={`${device.name} 장비 영상`}
                   // 좁은 화면(16:9 칸)은 전체를 보여 주고, 넓은 화면은 칸을 꽉 채움
-                  className="absolute inset-0 h-full w-full object-contain object-center lg:object-cover"
+                  className={`absolute inset-0 h-full w-full object-center lg:object-cover ${device.film.fit === "cover" ? "object-cover" : "object-contain"}`}
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -384,7 +384,10 @@ export function StoryFeatures({
       </section>
     );
   return (
-    <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
+    // 원리 단계가 없는 페이지는 장비 카드가 바로 위에 오므로 사이를 띄운다
+    <section
+      className={`bg-ivory px-5 py-24 md:px-10 md:py-32 ${story.principle.length === 0 ? "mt-20 md:mt-28" : ""}`}
+    >
       <div className="mx-auto max-w-[1300px]">
         <SectionHead
           en="Point"

@@ -35,6 +35,7 @@ export default async function LocationPage() {
       // 병원소개 · 의료진소개와 같은 모양 (상단 경로 없이 아래 탭으로 이동)
       tabs={about.pages}
       current="/location"
+      boldTitle
     >
       <section className="mx-auto grid max-w-[1400px] gap-12 px-5 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
         {/* 주소 · 지도 앱 바로가기 · 구글 지도 (오른쪽 진료시간 칸과 높이를 맞춤) */}

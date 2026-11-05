@@ -202,7 +202,7 @@ export default async function DoctorPage() {
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
         <SectionHead
           en="How I Care"
-          title="시술 설계부터 시술까지, 한 사람이 끝까지"
+          title="상담부터 시술까지, 단 한 분만을 위한 플랜"
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:mt-16 md:grid-cols-4">
           {p.steps.map((s, i) => (

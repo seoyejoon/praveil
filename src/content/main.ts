@@ -152,7 +152,6 @@ export const mainWhy = {
       title: "1:1 맞춤 설계",
       text: "같은 고민이라도 원인을 먼저 살펴, 한 분 한 분에게 맞는 시술을 제안합니다.",
       image: "/images/photos/clinic-3.webp",
-      photoFit: "full-frame" as const,
     },
     {
       icon: "genuine",

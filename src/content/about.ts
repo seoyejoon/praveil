@@ -68,8 +68,9 @@ export const aboutPromise = {
   items: [
     {
       title: "대표원장 책임 진료",
-      text: "페이닥터 없이 숙련된 대표원장이 전 시술 직접 집도",
-      image: photo("special-2-model-a"),
+      text: "경험과 실력을 갖춘 대표원장의 1:1 맞춤 시술",
+      // 환자 얼굴이 깨져 보여 대표원장 사진으로 임시 교체 (새 사진 준비 중)
+      image: photo("doctor-wide"),
     },
     {
       title: "1:1 맞춤 시술 설계",

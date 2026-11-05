@@ -310,9 +310,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "1:1 상담",
         text: "고민과 원하는 변화를 확인하고, 피부 두께와 처짐 방향을 진단해 부위별 깊이와 샷 수를 정합니다.",
-        image: "/images/photos/retouched/web/coolsonic-consult.jpg",
+        image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
-        fullFrame: true,
       },
       {
         title: "마취",

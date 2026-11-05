@@ -115,8 +115,9 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      image: photo("best-retuo-model-a"),
-      mobileImage: photo("best-retuo-m-model-a"),
+      // 환자 얼굴이 깨져 보여 시술실 사진으로 임시 교체 (새 사진 준비 중)
+      image: photo("clinic-5"),
+      mobileImage: photo("clinic-5-m"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",
@@ -145,7 +146,8 @@ export const mainWhy = {
       icon: "doctor",
       title: "대표원장 책임 진료",
       text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
-      image: photo("special-2-model-a"),
+      // 환자 얼굴이 깨져 보여 대표원장 사진으로 임시 교체 (새 사진 준비 중)
+      image: photo("doctor-wide"),
     },
     {
       icon: "consult",

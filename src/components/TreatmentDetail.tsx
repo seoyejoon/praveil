@@ -29,7 +29,6 @@ import {
 } from "@/components/sub/DeviceStory";
 import type { DeviceStory } from "@/content/device-story";
 import TreatmentMedia from "@/components/sub/TreatmentMedia";
-import { aiComparison } from "@/content/ai-comparison";
 import { treatmentMedia } from "@/content/treatment-media";
 import Reveal from "@/components/Reveal";
 import {
@@ -918,44 +917,6 @@ export default function TreatmentDetail({
               </div>
             )}
           </div>
-        </section>
-      )}
-
-      {/* AI로 보는 변화 예시: 실제 환자 · 시술 결과가 아닌 설명용 가상 이미지 */}
-      {aiComparison[t.href] && (
-        <section className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-28">
-          <SectionHead en="AI Illustration" title="AI로 보는 변화 예시" />
-          <p className="mt-4 text-[15px] leading-relaxed text-muted">
-            {aiComparison[t.href].focus}
-            {josa(aiComparison[t.href].focus, "을", "를")} 설명하기 위해 만든 가상
-            이미지입니다. 왼쪽이 시술 전, 오른쪽이 시술 후를 나타냅니다.
-          </p>
-          <Reveal className="mt-8 md:mt-10">
-            <a
-              href={aiComparison[t.href].image}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block overflow-hidden rounded-[24px] bg-ivory"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={aiComparison[t.href].image}
-                srcSet={aiComparison[t.href].srcSet}
-                sizes="(min-width: 1024px) 1100px, 100vw"
-                alt={aiComparison[t.href].alt}
-                loading="lazy"
-                width={1536}
-                height={1024}
-                className="block h-auto w-full object-contain"
-              />
-            </a>
-            <p className="mt-4 text-[14px] leading-relaxed text-muted md:text-[15px]">
-              {aiComparison[t.href].caption}
-            </p>
-            <p className="mt-1 text-[13px] leading-relaxed text-muted/75">
-              이미지를 누르면 원본 크기로 확인하실 수 있습니다.
-            </p>
-          </Reveal>
         </section>
       )}
 

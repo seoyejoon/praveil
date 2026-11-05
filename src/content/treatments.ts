@@ -1535,11 +1535,16 @@ export const treatments: Treatment[] = [
       "울트라콜은 오랜 기간 수술용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 입자화하여 진피층의 자가 콜라겐 생성을 유도하는 콜라겐부스터입니다. 푸석해진 피부결, 저하된 탄력, 눈가나 볼 등의 꺼짐 고민을 면밀히 분석하여, 환자분의 피부 상태에 알맞은 제품 규격(100 · 200)과 용량을 1:1 맞춤으로 설계합니다.",
     photo: stock("collagen"),
     facts: [
-      // 확인 필요: 시술 시간 (병원 실제 소요 시간)
-      { label: "시술 시간", value: "범위별 상담 시 안내" },
-      { label: "마취", value: "마취 크림 등 부위별 안내" },
-      { label: "회복", value: "부기 · 엠보 개인차" },
-      { label: "권장 주기", value: "경과 확인 후 안내" },
+      { label: "시술 시간", value: "약 20~30분 (마취 시간 제외)" },
+      { label: "마취 방법", value: "마취 크림" },
+      {
+        label: "회복 기간",
+        value: "엠보싱 · 붉은 기 1~2일 내 자연 완화, 당일 가벼운 일상생활 가능",
+      },
+      {
+        label: "권장 주기",
+        value: "4주 간격 3회 집중 시술 권장 (이후 6~12개월 단위 유지)",
+      },
     ],
     recommend: [
       "피부가 얇아지고 탄력이 떨어진 분",
@@ -1578,8 +1583,8 @@ export const treatments: Treatment[] = [
       mobileSrc: photo("hero-acne-pore-treatment-20261105-m-v6"),
       alt: "대표원장이 공통 모델의 볼 부위를 레이저 시술하는 AI 연출 이미지",
       chips: [
-        { x: 55, y: 5, en: "Target", label: "병변 · 흉터 부위 구분" },
-        { x: 55, y: 21, en: "Laser", label: "피부 상태에 맞춘 조사 깊이" },
+        { x: 42, y: 6, en: "Target", label: "병변 · 흉터 부위 구분" },
+        { x: 42, y: 24, en: "Laser", label: "피부 상태에 맞춘 조사 깊이" },
       ],
     },
     headline: ["원인 분석부터 치료까지", "여드름 · 모공 맞춤 케어"],
@@ -1889,12 +1894,12 @@ export const treatments: Treatment[] = [
     device: device("pico-k", "PICO-K", "피코 레이저"),
     // 원장 시술 장면 v6 (20261105). 눈썹 반영구 부위 시술 장면
     scene: {
-      src: photo("hero-tattoo-treatment-20261105-v6"),
-      mobileSrc: photo("hero-tattoo-treatment-20261105-m-v6"),
-      alt: "대표원장이 공통 모델의 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
+      src: photo("hero-eyebrow-removal-20261105-v7"),
+      mobileSrc: photo("hero-eyebrow-removal-20261105-m-v7"),
+      alt: "대표원장이 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
       chips: [
-        { x: 48, y: 18, en: "Target", label: "색소 깊이 · 범위 확인" },
-        { x: 48, y: 64, en: "Safety", label: "눈 보호구 착용 후 조사" },
+        { x: 48, y: 18, en: "Target", label: "색소 범위 · 깊이 확인" },
+        { x: 48, y: 64, en: "Safety", label: "눈 보호대 착용 후 조사" },
       ],
     },
     headline: ["눈썹 · 아이라인 · 언더라인", "프라베일 레이저 문신제거"],

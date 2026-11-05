@@ -61,6 +61,8 @@ export type DeviceStory = {
   };
   /** "○○, 어떤 시술인가요?" 대신 쓸 제목 */
   aboutTitle?: string;
+  /** "○○, 어떻게 진행되나요?" 대신 쓸 제목 */
+  processTitle?: string;
   /** 원리 (그림 옆 세 단계) */
   principle: { title: string; text: string }[];
   /** 원리 그림의 깊이 표시 (얕게 · 중간 · 깊게 순) — 그림 사진이 없을 때 */
@@ -122,6 +124,8 @@ export type DeviceStory = {
   };
   /** 특징 파트 제목 (없으면 "○○만의 특별함") */
   featuresTitle?: string;
+  /** 특별함 머리글 아래 한 줄 */
+  featuresLead?: string;
   /** 특징 사진 칸의 가로세로 비율을 하나로 맞출 때 (예: 4 / 3). 없으면 사진마다 원본 비율 */
   featuresRatio?: number;
   /** 특징 위치 · 모양: "after-ba" 는 전후사진 아래에 아치 사진 카드로 (부위별 지그재그와 겹치지 않게) */
@@ -1804,15 +1808,28 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "울트라콜 100 · 200 제품 (제조사 공식 자료)",
       mediaContain: true,
       mediaSize: { width: 1254, height: 1400 },
-      text: `울트라콜은 오랜 기간 의료용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 구형 입자로 가공하여 사용하는 콜라겐부스터입니다.
-
-프라베일에서는 환자분의 피부 두께와 고민 부위에 맞춰 섬세한 관리가 가능한 울트라콜 100과 볼륨감을 함께 보완하는 울트라콜 200(볼륨부스터) 두 가지 라인업으로 안내해 드리고 있습니다. 일률적인 방식이 아니라, 시술 부위의 특성과 피부 상태에 맞춰 알맞은 규격과 용량을 1:1 맞춤으로 설계합니다.`,
+      text: "울트라콜은 오랜 기간 체내 안정성이 입증된 PDO 미세 입자가 피부 속 섬유아세포를 활성화하여 스스로 차오르는 탄력을 만듭니다. 잔주름 · 피부 결 정돈부터 꺼진 부위의 은은한 볼륨감까지, 피부 층과 고민에 맞추어 알맞은 규격(100 · 200)으로 정밀하게 진행합니다.",
       specs: [
-        { label: "성분", value: "PDO (폴리디옥사논)" },
-        { label: "분류", value: "의료기기" },
-        { label: "제품", value: "울트라콜100 · 울트라콜200" },
-        { label: "용량", value: "2cc ~ 6cc (제품별)" },
+        {
+          label: "주요 성분",
+          value: "고순도 생분해성 PDO (Polydioxanone 미세 구형 입자)",
+        },
+        { label: "제품 분류", value: "KFDA(식약처) 승인 의료기기" },
+        {
+          label: "라인업 구분",
+          value: `울트라콜 100: 진피층 타깃 (모공, 잔주름, 피부결 탄력 개선)
+울트라콜 200: 피하층 타깃 (눈밑 꺼짐, 팔자, 자연스러운 볼륨 형성)`,
+        },
+        {
+          label: "시술 용량",
+          value: "부위 및 고민 깊이에 따른 맞춤 용량 설계 (1~2바이알 단위)",
+        },
+        {
+          label: "생체 반응",
+          value: "자가 콜라겐 생성 유도 후 체내에서 물과 이산화탄소로 100% 완전 분해",
+        },
       ],
+
     },
     // 원리 그림: PDO 전용 설명 모식도 (20261105 자료)
     principleImage: {
@@ -1899,38 +1916,41 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     featuresRatio: 4 / 3,
     featuresTitle: "울트라콜의 4가지 특징",
+    featuresLead:
+      "단순한 일시적 채움이 아닌, 안전한 자가 조직 형성을 기준으로 시술합니다.",
     features: [
       {
-        title: "미세 구형 PDO(녹는 실) 입자",
-        text: "수십 년간 외과 수술용 봉합사로 쓰여 온 PDO(폴리디옥사논) 성분을 미세한 구형(Sphere) 입자로 가공해 만든 4세대 콜라겐부스터입니다.",
+        title: "검증된 수술용 녹는 실(PDO) 성분의 안전성",
+        text: "수십 년간 외과 수술용 봉합사로 널리 사용되며 생체 적합성과 안전성이 입증된 PDO(폴리디옥사논) 성분을 사용합니다. 체내에 이물질로 영구히 남지 않고, 일정 기간 후 물과 이산화탄소로 안전하게 완전 생분해되어 배출됩니다.",
         image: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp 1200w",
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
         caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
-        title: "구형 입자로 결절 부담을 낮춘 구조",
-        text: "불규칙한 입자 모양 때문에 피부 속에서 뭉치는 결절이 보고되기도 합니다. 제조사는 표면이 매끄러운 구형 입자와 생분해 특성으로 뭉치는 부담을 낮췄다고 설명합니다. 빈도가 낮아도 결절은 생길 수 있어 경과를 함께 확인합니다.",
+        title: "결절 우려를 낮춘 독자적 미세 구형 입자",
+        text: "입자 형태가 불규칙한 기존 콜라겐 촉진제와 달리, 표면이 매끄럽고 균일한 '미세 구(Sphere)' 형태로 가공되었습니다. 조직 내 주입 시 뭉침 현상(결절) 발생 가능성을 최소화하여 얇은 피부층에도 안심하고 적용할 수 있습니다.",
         image: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp 1200w",
         alt: "구형 PDO 입자와 주변 조직 — AI 설명용 모식도",
         caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
-        title: "피부가 얇은 눈가 · 눈밑 잔주름",
-        text: "입자가 미세하고 부드러워 피부가 얇고 예민해 시술이 까다로웠던 눈가와 눈밑 부위에도 상담할 수 있습니다. 히알루론산 필러에서 보이는 틴달 현상(피부가 푸르게 비치는 현상) 부담이 적은 편이며, 얇아진 진피층의 밀도를 촘촘하게 채워 눈가를 함께 살핍니다.",
-        image: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp 1200w",
-        alt: "얇은 눈가·눈밑 부위 — AI 안내 사진",
-      },
-      {
-        title: "자가 콜라겐 생성과 피부 톤",
-        text: "진피층에 주입된 PDO 입자가 분해되면서 자가 콜라겐과 엘라스틴 생성을 유도합니다. 이 과정에서 피부 톤이 밝아진 느낌을 함께 말씀하시는 분도 있습니다. 변화의 정도와 체감 시점은 사람마다 다릅니다.",
+        title: "인위적이지 않은 자가 콜라겐 재생 유도",
+        text: "외부 물질로 부피를 억지로 늘리는 필러와 달리, 주입된 미세 입자가 진피층 섬유아세포를 활성화하여 내 몸 스스로 콜라겐을 생성하도록 유도합니다. 표정 변화에 어색함이 없으며 자연스러운 탄력과 볼륨을 형성합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp 1200w",
         alt: "피부결과 피부 톤 부위 — AI 안내 사진",
       },
+      {
+        title: "피부 층과 고민에 맞춘 100 · 200 듀얼 라인업",
+        text: "진피 얕은 층에 적용해 잔주름 · 모공 · 피부 결을 매끄럽게 정돈하는 울트라콜 100과, 지지층에 주입해 눈 밑 꺼짐 · 팔자주름의 볼륨을 채우는 울트라콜 200으로 세분화되어 있어 부위별 맞춤 시술이 가능합니다.",
+        image: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp",
+        mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp 1200w",
+        alt: "얇은 눈가 · 눈밑 부위 — AI 안내 사진",
+      },
     ],
+
     process: [
       {
         title: "1:1 맞춤 상담 및 계획",
@@ -3174,6 +3194,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     kind: "procedure",
     diagram: "acne",
     aboutTitle: "여드름 · 모공, 어떻게 치료하나요?",
+    processTitle: "여드름 · 모공 치료, 어떻게 진행되나요?",
     showPrices: true,
     device: {
       name: "여드름 · 모공 치료",
@@ -3204,37 +3225,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     // 요청에 따라 원리 · 비교표 섹션은 쓰지 않는다
     principle: [],
-    featuresTitle: "여드름 · 모공 치료에서 살피는 4가지",
-    features: [
-      {
-        title: "염증과 흔적을 나누어 봅니다",
-        text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
-        image: "/images/principles/acne.webp",
-        caption: "여드름 · 모공을 설명하는 모식도",
-        alt: "프라베일 상담실",
-        fullFrame: true,
-      },
-      {
-        title: "상태에 맞는 순서를 정합니다",
-        text: "통증이 있는 염증을 먼저 살피고, 피부가 안정되면 흉터와 모공 치료를 논의합니다. 사용 중인 여드름 약도 함께 확인합니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "프라베일 상담실",
-      },
-      {
-        title: "피부의 회복 여유를 남깁니다",
-        text: "관리 강도와 시술 범위를 정할 때 붉어짐 · 건조함 등 현재 상태를 고려합니다. 자극을 반복하기보다 회복 경과를 봅니다.",
-        image: "/images/page-assets/praveil-acne-barrier-v1.webp",
-        caption: "피부 구조를 단순화한 AI 설명용 모식도",
-        alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
-      },
-      {
-        title: "일상 관리까지 이어갑니다",
-        text: "세안과 보습, 자외선 차단, 손으로 짜는 습관을 함께 점검합니다. 다음 진료에서는 새 병변과 자극 여부를 확인합니다.",
-        image: "/images/page-assets/praveil-acne-daily-care-v1.webp",
-        caption: "AI로 제작한 일상 피부 관리 설명용 이미지",
-        alt: "다음 진료 방문을 설명하는 병원 접수 공간 사진",
-      },
-    ],
+    // 요청에 따라 특별함 섹션은 쓰지 않는다
+    features: [],
     process: [
       {
         title: "1:1 상담",
@@ -3552,42 +3544,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 일반적인 방법 비교이며 실제 제공 시술 목록을 뜻하지 않습니다. 프라베일은 눈썹 · 아이라인 · 언더라인 반영구 문신제거를 피코초 레이저로 진행하며, 수술적 제거는 하지 않습니다. 맞는 방법은 색소와 피부 상태에 따라 다르며, 효과 · 회복 기간에는 개인차가 있습니다.",
     },
     featuresRatio: 4 / 3,
-    featuresTitle: "문신제거에서 먼저 확인하는 4가지",
-    features: [
-      {
-        title: "피코케이 · 짧은 펄스로 색소에 작용",
-        text: "피코케이는 1064nm · 532nm 파장을 사용하는 피코초 레이저입니다. 제조사 모식도는 색소에 에너지가 작용하는 원리를 설명하며, 색과 덧입힌 이력에 따라 반응은 달라집니다.",
-        image: "/images/official/pico-picok_img_1_2.png",
-        alt: "피코케이 · 짧은 펄스로 색소에 작용 · 제조사 공식 자료",
-        fullFrame: false,
-        mediaSize: { width: 549, height: 549 },
-        mediaFit: "cover",
-      },
-      {
-        title: "핸드피스와 조사 범위 선택",
-        text: "제조사 핸드피스 자료를 참고해 조사 범위를 확인합니다. 장비 이름만으로 결과를 정하지 않고 현재 색과 피부 상태에 맞는 설정과 예상되는 한계를 설명합니다.",
-        image: "/images/official/pico-picok_img_5.png",
-        alt: "핸드피스와 조사 범위 선택 · 제조사 공식 자료",
-        fullFrame: false,
-        mediaSize: { width: 604, height: 355 },
-        mediaFit: "contain",
-        mediaEdges: ["#f4f2ef", "#f4f2ef"],
-      },
-      {
-        title: "눈가에는 별도의 안전 판단",
-        text: "아이라인은 눈을 감는 것만으로 보호되지 않습니다. 눈에 맞는 보호구를 쓰고 진행하며, 눈 상태상 안전하게 진행하기 어렵다면 시술을 미룹니다.",
-        image: "/images/photos/clinic-3.webp",
-        alt: "프라베일 상담실",
-        mediaFit: "cover",
-      },
-      {
-        title: "피부 회복을 기다리는 계획",
-        text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
-        alt: "프라베일 관리실",
-        mediaFit: "cover",
-      },
-    ],
+    // 요청에 따라 특별함 섹션은 쓰지 않는다
+    features: [],
+
     process: [
       {
         title: "1:1 상담",

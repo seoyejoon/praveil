@@ -154,7 +154,9 @@ export function StoryAbout({
                       className="grid grid-cols-[80px_1fr] gap-4 border-b border-white/10 py-3.5 md:grid-cols-[96px_1fr]"
                     >
                       <dt className="text-[13px] text-taupe">{s.label}</dt>
-                      <dd className="text-[15px]">{s.value}</dd>
+                      <dd className="text-[15px] whitespace-pre-line">
+                        {s.value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -330,6 +332,8 @@ export function StoryFeatures({
   /** rows: 사진 · 글 좌우 번갈아 / cards: 아치 사진 카드 한 줄 (모바일은 옆으로 넘김) */
   layout?: "rows" | "cards";
 }) {
+  // 특별함 칸이 없는 페이지는 섹션 자체를 그리지 않는다
+  if (story.features.length === 0) return null;
   if (layout === "cards")
     return (
       <section className="mt-20 bg-ivory px-5 py-24 md:mt-28 md:px-10 md:py-32">
@@ -338,6 +342,11 @@ export function StoryFeatures({
             en="Point"
             title={story.featuresTitle ?? `${title}만의 특별함`}
           />
+          {story.featuresLead && (
+            <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted md:text-base">
+              {story.featuresLead}
+            </p>
+          )}
           {/* 2 × 2 가로 카드: 왼쪽 사진 · 오른쪽 번호와 글 (모바일은 한 줄씩) */}
           <ol className="mt-12 grid gap-4 md:mt-16 md:gap-5 lg:grid-cols-2">
             {story.features.map((f, i) => (
@@ -347,7 +356,10 @@ export function StoryFeatures({
                 delay={(i % 2) * 120}
                 className="group grid overflow-hidden rounded-[24px] bg-white sm:grid-cols-[0.85fr_1fr]"
               >
-                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-auto sm:min-h-[260px]">
+                {/* 제품 사진(자르지 않는 칸)은 세로로 길어, 칸을 키워야 작아 보이지 않는다 */}
+                <div
+                  className={`relative aspect-[4/3] overflow-hidden sm:aspect-auto ${f.mediaFit === "contain" ? "sm:min-h-[340px]" : "sm:min-h-[260px]"}`}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={f.image}
@@ -393,6 +405,11 @@ export function StoryFeatures({
           en="Point"
           title={story.featuresTitle ?? `${title}만의 특별함`}
         />
+        {story.featuresLead && (
+          <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted md:text-base">
+            {story.featuresLead}
+          </p>
+        )}
         <ol className="mt-12 grid gap-14 md:mt-16 md:gap-24">
           {story.features.map((f, i) => {
             // 박스는 기본 4:3. 원본 크기(mediaSize)를 적어 둔 공식 도해 · 영상은
@@ -491,7 +508,10 @@ export function StoryProcess({
 }) {
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
-      <SectionHead en="Process" title={`${title}, 어떻게 진행되나요?`} />
+      <SectionHead
+        en="Process"
+        title={story.processTitle ?? `${title}, 어떻게 진행되나요?`}
+      />
       <ol className="no-scrollbar -mx-5 mt-12 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
         {story.process.map((s, i) => (
           <Reveal

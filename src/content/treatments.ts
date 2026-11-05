@@ -1324,8 +1324,8 @@ export const treatments: Treatment[] = [
     description: "피부 고민과 성분 · 사용목적을 살펴 계획하는 스킨부스터",
     image: photo("cat-skin-booster-model-a"),
     scene: {
-      src: photo("hero-booster-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      src: photo("hero-booster-20261027-model-a-face-v3-20261105"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 고민 · 상태 확인" },
@@ -1392,8 +1392,8 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 리쥬란힐러 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {
-      src: photo("hero-booster-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      src: photo("hero-booster-20261027-model-a-face-v3-20261105"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PN", label: "PN 성분 · 정품 확인" },

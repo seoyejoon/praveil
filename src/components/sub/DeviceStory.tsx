@@ -852,9 +852,11 @@ export function StoryProducts({ story }: { story: DeviceStory }) {
       className="mx-auto max-w-[1400px] scroll-mt-36 px-5 pb-24 md:scroll-mt-44 md:px-10 md:pb-36"
     >
       <SectionHead en="Product" title={p.title} />
-      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
-        {p.lead}
-      </p>
+      {p.lead && (
+        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">
+          {p.lead}
+        </p>
+      )}
       <ProductSlider products={p} />
       <p className="mt-6 text-xs leading-relaxed text-muted">{p.note}</p>
     </section>

@@ -22,6 +22,10 @@ export type HeroScene = {
   position?: string;
   /** 사진 위 · 아래가 흐려지는 자리에 보이는 배경색 (기본: 회색 벽 사진에 맞춘 색) */
   bg?: string;
+  /** 배경색을 넓은 화면(768px~)에만 적용 */
+  bgFrom?: "md";
+  /** 사진 위 · 아래 흐려지는 폭을 좁게 (사진 경계만 부드럽게) */
+  fade?: "narrow";
   /** 3:1보다 세로가 긴 원본은 태블릿부터 높이에 맞춰 오른쪽에 배치해 얼굴 · 시술 부위를 보존 */
   desktopFit?: "contain";
   /** 사진 위 유리 카드 (x: 카드 오른쪽 끝, y: 카드 위 · 사진 속 %, 1280px~) */
@@ -104,11 +108,18 @@ export default function SceneHero({
       data-dark-hero
       data-light-hero
       className="relative h-[82svh] min-h-[620px] overflow-hidden bg-[#dcd7d3] text-ink lg:h-[calc(33.34vw+132px)] lg:min-h-0"
-      style={scene.bg ? { background: scene.bg } : undefined}
+      data-hero-bg={scene.bg && scene.bgFrom === "md" ? "" : undefined}
+      style={
+        scene.bg
+          ? scene.bgFrom === "md"
+            ? ({ "--hero-bg": scene.bg } as React.CSSProperties)
+            : { background: scene.bg }
+          : undefined
+      }
     >
       <div
         ref={stageRef}
-        className={`absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] will-change-transform lg:top-[84px] lg:aspect-[3/1] ${scene.imageLayout === "device" ? "" : "[mask-image:linear-gradient(180deg,#000_70%,transparent)] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"}`}
+        className={`absolute inset-x-0 top-0 aspect-[9/10] origin-[64%_80%] md:top-16 md:aspect-[2/1] will-change-transform lg:top-[84px] lg:aspect-[3/1] ${scene.imageLayout === "device" ? "" : scene.fade === "narrow" ? "[mask-image:linear-gradient(180deg,#000_70%,transparent)] md:[mask-image:linear-gradient(180deg,transparent_0%,#000_6%,#000_94%,transparent_100%)]" : "[mask-image:linear-gradient(180deg,#000_70%,transparent)] lg:[mask-image:linear-gradient(180deg,transparent,#000_12%,#000_78%,transparent)]"}`}
       >
         {/* 모바일: 세로형 사진 한 장 (가로 영상은 휴대폰에서 원장 · 장비가 잘림) */}
         {scene.mobileSrc && (

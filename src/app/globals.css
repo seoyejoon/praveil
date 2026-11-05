@@ -794,3 +794,10 @@ html[data-cur="image"] .cursor-dot-shape {
   0% { transform: scale(1); opacity: 0.9; }
   70%, 100% { transform: scale(1.45); opacity: 0; }
 }
+
+/* 첫 화면 배경색을 넓은 화면에서만 적용 (좁은 화면은 세로 사진이 칸을 채움) */
+@media (min-width: 768px) {
+  [data-hero-bg] {
+    background: var(--hero-bg);
+  }
+}

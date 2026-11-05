@@ -1796,8 +1796,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-hair-removal"),
     device: device("clarity", "Clarity II", "레이저 제모"),
     scene: {
-      src: photo("hero-hair-20261027-model-a"),
+      src: photo("hero-hair-background-clean-20261105-v1"),
       mobileSrc: photo("hero-hair-20261027-m-model-a"),
+      // 사진 경계만 부드럽게, 넓은 화면에서는 사진 바탕색을 이어 준다
+      fade: "narrow" as const,
+      bg: "#ece6e0",
+      bgFrom: "md" as const,
       alt: "대표원장이 보호안경을 착용하고 레이저 장비를 사용하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 톤 · 털의 굵기 확인" },

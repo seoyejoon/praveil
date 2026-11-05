@@ -665,7 +665,8 @@ export const treatments: Treatment[] = [
     href: "/petit/filler",
     en: "Filler",
     title: "필러",
-    description: "얼굴 비율에 맞춰 꺼진 곳만 채우는 볼륨 필러",
+    description:
+      "환자분의 고민 부위별 상태를 고려한 커스텀 필러 시술",
     image: photo("signature-3"),
     scene: {
       src: photo("hero-filler-20261027-model-a"),

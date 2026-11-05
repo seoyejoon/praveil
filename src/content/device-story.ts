@@ -1284,23 +1284,24 @@ export const deviceStory: Record<string, DeviceStory> = {
     kind: "procedure",
     diagram: "booster",
     principleLayout: "figure-first",
-    // 확인 필요: 엑소좀 원리 그림 (리쥬란 PN 그림을 쓰지 않도록 임시로 진료 사진)
     principleImage: {
-      src: "/images/photos/cat-skin-booster-model-a.webp",
-      alt: "스킨부스터 시술 설명용 기존 진료 사진",
+      src: "/images/page-assets/isce-mechanism-skin-microchannels-20261105-v1.webp",
+      alt: "피부층과 미세 통로, 표면 도포 성분을 표현한 개념 모식도",
       marks: [],
       layers: [],
+      framed: true,
+      noteOverlay: true,
+      note: "원리 이해를 위한 모식도입니다. 실제 입자 크기 · 도달 깊이나 효과를 나타내지 않습니다.",
     },
     showPrices: true,
     device: {
       name: "엑소좀",
       maker: "ISCE EXOSOME",
-      image: "/images/official/isce-set-product.jpg",
-      // 흰 배경을 잘라내 리쥬란처럼 어두운 카드 위에 바로 올린다
-      photo: "/images/official/isce-set-product-cutout.png",
-      photoAlt: "ISCE 엑소좀 제품 구성 (제조사 공식 자료)",
+      image: "/images/page-assets/isce-product-presentation-20261105-v2.webp",
+      // 어두운 섹션에 맞춘 배경형 이미지 (투명 누끼가 아님)
+      photo: "/images/page-assets/isce-product-presentation-20261105-v2.webp",
+      photoAlt: "ISCE 1 · 2 패키지와 바이알 구성 — 제품 자료를 참고한 AI 이미지",
       mediaContain: true,
-      mediaSize: { width: 400, height: 400 },
       text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은 기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 재건합니다.",
       specs: [
         {
@@ -1431,9 +1432,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "맞춤 시술 진행",
         text: "고순도 엑소좀 유효 성분을 진피층까지 균일하게 전달합니다.",
-        image: "/images/photos/cat-skin-care.webp",
-        alt: "시술 과정 설명용 기존 주입 시술 사진",
-        coverPosition: "43% 50%",
+        image: "/images/page-assets/isce-process-03-topical-ampoule-model-a-20261105-v1.webp",
+        alt: "피부에 ISCE 앰플을 도포하는 과정을 표현한 AI 이미지",
       },
       {
         title: "진정 및 사후 케어",

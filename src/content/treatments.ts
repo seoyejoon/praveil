@@ -23,6 +23,8 @@ export type TreatmentItem = {
   en?: string;
   /** 부위 설명 */
   detail?: string;
+  /** 사진 아래에 보이는 설명 (AI 설명용 이미지 표시 등) */
+  caption?: string;
   /** 시술 포인트 */
   points?: string[];
   /** 이런 분께 권합니다 */
@@ -893,8 +895,8 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "표정주름",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-botox-model-a"),
+        image: "/images/page-assets/praveil-face-expression-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "이마 · 미간 · 눈가",
         detail:
           "웃거나 찡그릴 때 생기는 이마 · 미간 · 눈가 주름은 그 자리의 근육이 반복해서 움직여 생깁니다. 근육의 힘과 표정 습관을 보고 필요한 곳에만 나누어 넣어, 표정은 살리고 주름은 부드럽게 합니다.",
@@ -910,8 +912,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "턱",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-injection-model-a"),
+        image: "/images/page-assets/praveil-face-jaw-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "발달한 턱 근육",
         detail:
           "음식을 씹을 때 쓰는 턱 근육(교근)이 발달하면 얼굴 아래가 넓고 각져 보입니다. 근육의 두께와 범위를 만져 보고 주사 위치를 정하며, 근육 부피는 시간을 두고 서서히 줄어듭니다.",
@@ -928,8 +930,8 @@ export const treatments: Treatment[] = [
       {
         // 확인 필요: 슈퍼턱에 포함하는 범위 (침샘 · 측두근 등)
         name: "슈퍼턱",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-2-model-a"),
+        image: "/images/page-assets/praveil-face-profile-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "턱 · 옆 라인 함께",
         detail:
           "얼굴 아래가 넓어 보이는 원인이 턱 근육 하나만이 아닐 때, 턱과 함께 옆얼굴 라인까지 범위를 넓혀 계획합니다. 얼굴 전체 윤곽을 보고 어디까지 넣을지 정합니다.",
@@ -945,8 +947,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "특수부위",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-skin-booster-model-a"),
+        image: "/images/page-assets/praveil-face-special-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "측두근 · 입꼬리 · 팔자 등",
         detail:
           "처진 입꼬리, 웃을 때 깊어지는 팔자 주변, 관자놀이 쪽 측두근처럼 부위마다 다른 근육이 만드는 고민도 있습니다. 주변 표정에 영향을 주기 쉬운 부위라 근육의 위치와 움직임을 보고 필요한 양만 넣습니다.",
@@ -962,8 +964,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "스킨",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-skin-model-a"),
+        image: "/images/page-assets/praveil-face-skin-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "피부결 · 모공 · 유분",
         detail:
           "스킨보톡스는 근육이 아니라 피부의 얕은 층에 묽게 여러 번 나누어 넣는 방법입니다. 피부결 · 잔주름 · 유분 고민에 맞춰 범위를 정하며, 시술 직후 작은 엠보가 잠시 보일 수 있습니다.",
@@ -979,8 +981,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "승모근",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-4-model-a"),
+        image: "/images/page-assets/praveil-body-trapezius-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "어깨 · 목 라인",
         detail:
           "목에서 어깨로 이어지는 승모근이 발달하면 목이 짧아 보이고 어깨가 솟아 보입니다. 근육이 솟은 범위와 두께를 확인해 주사 위치를 정하고, 목선과 어깨선이 자연스럽게 이어지도록 합니다.",
@@ -996,8 +998,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "종아리",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-3"),
+        image: "/images/page-assets/praveil-body-calves-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "종아리 라인",
         detail:
           "종아리 뒤쪽 근육이 발달하면 다리가 굵고 울퉁불퉁해 보입니다. 서 있을 때와 까치발을 들 때 근육 모양을 보고 주사 위치를 정합니다. 지방이나 부기가 원인이면 변화가 적을 수 있어 상담 때 함께 확인합니다.",
@@ -1013,8 +1015,8 @@ export const treatments: Treatment[] = [
       },
       {
         name: "다한증",
-        // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-petit-model-a"),
+        image: "/images/page-assets/praveil-body-axilla-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "겨드랑이 등 땀",
         detail:
           "땀샘을 움직이는 신경 신호를 줄여 땀이 나는 양을 줄이는 방법입니다. 겨드랑이처럼 땀이 많이 나는 범위를 먼저 확인하고, 그 범위에 고르게 나누어 넣습니다.",
@@ -1605,10 +1607,14 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "남성 레이저 제모 (수염 · 털 억제)",
+        image: "/images/page-assets/praveil-hair-male-region-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "남성의 수염은 모근이 깊고 밀도가 높아 통증과 모낭염이 생기기 쉽습니다. 클라리티2의 1064nm 깊은 파장과 ICD 냉각을 함께 사용해 통증 부담을 줄이고, 모낭 주위만 정교하게 조사해 푸르스름하게 비치는 자국까지 함께 살핍니다.",
       },
       {
         name: "여성 바디 · 미세 제모 (라인 · 피부결)",
+        image: "/images/page-assets/praveil-body-calves-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "인중, 겨드랑이, 팔 · 다리는 물론 헤어라인이나 뒷목처럼 섬세한 디자인이 필요한 부위입니다. 755nm 파장으로 얇은 털까지 촘촘하게 다루고, 인텔리트랙 기술로 누락되는 부위 없이 고르게 시술합니다.",
       },
     ],
@@ -1677,14 +1683,20 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "눈썹 문신제거",
+        image: "/images/page-assets/praveil-tattoo-brow-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "번지거나 바랜 반영구 눈썹, 붉거나 푸르게 변한 색을 살피고 남은 색과 피부 회복을 보며 횟수를 정합니다.",
       },
       {
         name: "아이라인 문신제거",
+        image: "/images/page-assets/praveil-tattoo-eyeliner-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "번지거나 퍼진 아이라인입니다. 눈과 가까운 만큼 각막 보호구를 포함한 보호 조건을 먼저 확인한 뒤 진행합니다.",
       },
       {
         name: "언더라인 문신제거",
+        image: "/images/page-assets/praveil-tattoo-lower-liner-v1.webp",
+        caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "진하게 남은 언더라인입니다. 눈 아래 피부가 얇아 조사 범위와 회복 상태를 특히 나누어 살핍니다.",
       },
     ],
@@ -1737,6 +1749,10 @@ treatments.push(
     description: "승모근 · 종아리 라인과 땀 고민을 관리하는 보톡스",
     scene: botox.scene && {
       ...botox.scene,
+      // 바디 탭 히어로는 얼굴 주사 사진 대신 상담 사진 (타이틀 왼쪽 · 원장님 오른쪽 유지)
+      src: "/images/page-assets/body-consult-hero.webp",
+      mobileSrc: "/images/page-assets/body-consult-hero-mobile.webp",
+      alt: "대표원장이 환자와 상담하는 모습",
       chips: [
         { x: 55, y: 22, en: "Muscle", label: "근육 두께 · 범위 확인" },
         { x: 50, y: 64, en: "Plan", label: "부위별 주사 위치 · 용량 계획" },

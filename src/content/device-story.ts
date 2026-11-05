@@ -127,6 +127,8 @@ export type DeviceStory = {
     mediaEdges?: [string, string];
     /** 박스 채우기 방식을 직접 지정 (기본: 비율로 자동) */
     mediaFit?: "contain" | "cover";
+    /** 사진 아래에 보이는 설명 (AI 설명용 모식도 표시 등) */
+    caption?: string;
     /** 1280×960(4:3) 파일 안에 16:9 본문과 상하 여백이 함께 있는 영상 · 도해 */
     paddedWidescreen?: boolean;
   }[];
@@ -696,6 +698,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       items: [
         {
           name: "뉴럭스",
+          image: "/images/page-assets/nulux-product.png",
           en: "Newlux",
           maker: "뉴메코(메디톡스 계열) · 국내",
           text: "국내에서 만든 보툴리눔 톡신 제제입니다. 제조 과정에서 동물 유래 성분을 쓰지 않는 공정으로 만든 제품으로 소개됩니다.",
@@ -703,6 +706,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           name: "코어톡스",
+          image: "/images/page-assets/coretox-product.png",
           en: "Coretox",
           maker: "메디톡스 · 국내",
           text: "국내에서 만든 보툴리눔 톡신 제제입니다. 신경독소 외의 복합단백질을 줄인 제품으로 소개됩니다.",
@@ -710,6 +714,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           name: "제오민",
+          image: "/images/page-assets/xeomin-product.webp",
           en: "Xeomin",
           maker: "멀츠 · 독일",
           text: "독일에서 만든 보툴리눔 톡신 제제입니다. 복합단백질을 제거한 제품으로 소개되며, 여러 나라에서 쓰이고 있습니다.",
@@ -1128,6 +1133,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/official/rejuran-product.png",
       photoAlt: "파마리서치 공식 리쥬란 제품 이미지",
       mediaContain: true,
+      // 원본 327×570. 칸에 맞춰 늘리지 않는다
+      mediaSize: { width: 327, height: 570 },
       text: "리쥬란힐러는 연어 유래 PN(폴리뉴클레오티드)을 주성분으로 하는 주입용 스킨부스터 제품입니다. 피부 진피층에 유효 성분을 미세하게 나누어 주입하여 흐트러진 피부결과 탄력을 정돈합니다. 시중에 판매되는 바르는 화장품(리쥬란 코스메틱)과는 구분되는 의료기기이므로, 시술 전 정품 여부와 패키지를 투명하게 확인시켜 드립니다.",
       specs: [
         { label: "주성분", value: "PN (폴리뉴클레오티드)" },
@@ -1218,7 +1225,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "얇아진 진피층의 밀도와 탄력",
         text: "표면적인 보습에서 멈추지 않고 피부 속 진피층에 직접 유효 성분을 전달해, 거친 피부결을 정돈하고 탄력 밀도를 함께 채워 줍니다.",
-        image: "/images/photos/cat-main-skin-model-a.webp",
+        image: "/images/page-assets/praveil-pn-dermis-v1.webp",
+        caption: "진피 구조를 단순화한 AI 설명용 모식도",
         alt: "피부 관리 설명용 기존 시술 사진",
       },
       {
@@ -1357,25 +1365,31 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "인체표피줄기세포 배양액 기반",
         text: "지방이나 골수 등 다른 부위 유래 줄기세포와 달리, 피부 표면과 가장 유사한 인체표피줄기세포 배양액(EPC-CM)을 기반으로 합니다. 제조사는 이 구성이 피부 세포의 자생력과 성분 흡수를 돕는다고 안내합니다.",
-        image: "/images/photos/cat-skin-care.webp",
+        image: "/images/page-assets/isce-1-product.png",
+        mediaFit: "contain",
+        mediaSize: { width: 400, height: 400 },
         alt: "피부 상태 확인 설명용 기존 진료실 사진",
       },
       {
         title: "피부 코어인 기저막(DEJ)을 함께 살핌",
         text: "표피와 진피를 연결하는 기저막(DEJ, Dermal-Epidermal Junction) 구조를 함께 살핍니다. 제조사는 이 부위의 결합을 돕는 것을 제품의 목적으로 설명하며, 느슨해진 피부와 탄력 변화를 경과 진료에서 확인합니다.",
-        image: "/images/photos/cat-main-skin-model-a.webp",
+        image: "/images/page-assets/praveil-isce-dej-v1.webp",
+        caption: "표피 · 진피 경계를 단순화한 AI 설명용 모식도",
         alt: "시술 계획 설명용 기존 시술 사진",
       },
       {
         title: "복합 엑소좀 성분 구성",
         text: "인체표피 유래 엑소좀뿐만 아니라, 피부 면역과 진정에 도움을 준다고 안내되는 유산균 유래 엑소좀과 성장인자(hGH · VEGF 등)가 함께 배합되어 있습니다.",
-        image: "/images/photos/cat-skin-booster-model-a.webp",
-        alt: "부위별 시술 설명용 기존 시술 사진",
+        image: "/images/official/isce-set-product.jpg",
+        alt: "ISCE 엑소좀 제품 구성 (제조사 공식 자료)",
+        mediaFit: "contain",
+        mediaSize: { width: 400, height: 400 },
       },
       {
         title: "피부 장벽과 전반적인 노화 징후",
         text: "얇고 예민해진 피부의 장벽을 채우는 것을 목적으로 하는 4세대 스킨부스터입니다. 잔주름 · 거친 피부결 · 건조함처럼 함께 나타나는 노화 징후를 나누어 살피며, 변화의 정도와 시점은 사람마다 다릅니다.",
-        image: "/images/photos/signature-4-model-a.webp",
+        image: "/images/page-assets/praveil-acne-barrier-v1.webp",
+        caption: "피부 구조를 단순화한 AI 설명용 모식도",
         alt: "피부 경과 관리 설명용 기존 진료 사진",
       },
     ],
@@ -2425,8 +2439,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "클라리티2",
       maker: "LUTRONIC",
-      image: "/images/official/clarity-device.png",
-      photo: "/images/official/clarity-device.png",
+      image: "/images/page-assets/clarity2-device.png",
+      photo: "/images/page-assets/clarity2-device.png",
       photoAlt: "루트로닉 클라리티2 장비 · 제조사 공식 이미지",
       mediaContain: true,
       text: "클라리티2는 루트로닉에서 만든 레이저 장비로, 755nm 알렉산드라이트와 1064nm 롱펄스 엔디야그(Nd:YAG) 두 가지 파장을 씁니다. 클라리티 이너리프팅은 1064nm 레이저를 피부에 닿지 않게 빠르게 고루 조사해 진피층에 열을 쌓는 방식으로, 피부 탄력 · 모공 · 피부결과 톤을 함께 관리합니다.",
@@ -3168,26 +3182,29 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "염증과 흔적을 나누어 봅니다",
         text: "지금 올라오는 여드름과 남은 자국 · 흉터를 구분합니다. 한 가지 장비로 모두 해결한다고 설명하지 않습니다.",
-        image: "/images/photos/hero-consult.webp",
+        image: "/images/principles/acne.webp",
+        caption: "여드름 · 모공을 설명하는 모식도",
         alt: "대표원장이 피부 분석 화면을 설명하는 상담 장면",
         fullFrame: true,
       },
       {
         title: "상태에 맞는 순서를 정합니다",
         text: "통증이 있는 염증을 먼저 살피고, 피부가 안정되면 흉터와 모공 치료를 논의합니다. 사용 중인 여드름 약도 함께 확인합니다.",
-        image: "/images/photos/clinic-3.webp",
+        image: doctorPhotos.consult,
         alt: "진료 계획을 설명하는 병원 상담실 사진",
       },
       {
         title: "피부의 회복 여유를 남깁니다",
         text: "관리 강도와 시술 범위를 정할 때 붉어짐 · 건조함 등 현재 상태를 고려합니다. 자극을 반복하기보다 회복 경과를 봅니다.",
-        image: "/images/photos/hero-about.webp",
+        image: "/images/page-assets/praveil-acne-barrier-v1.webp",
+        caption: "피부 구조를 단순화한 AI 설명용 모식도",
         alt: "경과 진료 방문을 설명하는 병원 대기 공간 사진",
       },
       {
         title: "일상 관리까지 이어갑니다",
         text: "세안과 보습, 자외선 차단, 손으로 짜는 습관을 함께 점검합니다. 다음 진료에서는 새 병변과 자극 여부를 확인합니다.",
-        image: "/images/photos/clinic-1.webp",
+        image: "/images/page-assets/praveil-acne-daily-care-v1.webp",
+        caption: "AI로 제작한 일상 피부 관리 설명용 이미지",
         alt: "다음 진료 방문을 설명하는 병원 접수 공간 사진",
       },
     ],
@@ -3342,7 +3359,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         // 확인 필요: ICD 냉각을 보여 주는 제조사 이미지 (지금은 병원 공간 사진)
         title: "지능형 냉각 시스템(ICD)으로 통증 부담을 줄임",
         text: "레이저 샷이 조사되기 직전, 영하의 가스를 순간적으로 분사해 피부 표면을 보호하는 지능형 냉각 시스템(ICD, Intelligent Cooling Device)이 작동합니다. 통증 부담과 화상 등 이상 반응의 부담을 줄여 주며, 느끼는 정도는 부위와 사람마다 다릅니다.",
-        image: "/images/photos/clinic-6.webp",
+        image: "/images/page-assets/praveil-hair-cooling-v1.webp",
+        caption: "냉각 방식을 단순화한 AI 설명용 모식도",
         alt: "시술 안내에 사용하는 병원 공간 사진",
       },
       {
@@ -3526,13 +3544,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "눈가에는 별도의 안전 판단",
         text: "아이라인은 눈을 감는 것만으로 보호되지 않습니다. 눈에 맞는 보호구를 쓰고 진행하며, 눈 상태상 안전하게 진행하기 어렵다면 시술을 미룹니다.",
-        image: "/images/photos/clinic-2.webp",
+        image: doctorPhotos.consult,
         alt: "병원 대기 공간의 기존 사진",
       },
       {
         title: "피부 회복을 기다리는 계획",
         text: "빠르게 반복하기보다 상처와 남은 색을 확인합니다. 딱지 관리 · 보습 · 자외선 차단과 연락이 필요한 증상을 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
+        image: "/images/photos/process-check-model-a.webp",
         alt: "경과 진료 방문 안내에 사용하는 병원 접수 공간 사진",
       },
     ],
@@ -3588,6 +3606,11 @@ deviceStory["/petit/botox/body"] = {
   ...botoxStory,
   device: {
     ...botoxStory.device,
+    // 얼굴 주사 사진 대신 상담 사진 (바디 시술 촬영본이 아님)
+    image: doctorPhotos.consult,
+    photo: doctorPhotos.consult,
+    photoAlt: "대표원장이 상담하는 장면",
+    photoFullFrame: true,
     text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
     specs: [
       { label: "방식", value: "보툴리눔 톡신 제제 주사" },

@@ -355,6 +355,11 @@ export function StoryFeatures({
                   <span className="font-display text-[34px] leading-none font-extralight text-gold md:text-[40px]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
+                  {f.caption && (
+                    <p className="mt-4 text-[11px] leading-snug text-muted">
+                      {f.caption}
+                    </p>
+                  )}
                   <h3 className="mt-5 text-[19px] leading-snug font-semibold tracking-[-0.03em] break-keep md:text-[21px]">
                     {f.title}
                   </h3>
@@ -424,7 +429,16 @@ export function StoryFeatures({
                       src={f.image}
                       alt={f.alt}
                       loading="lazy"
-                      className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
+                      className={`absolute inset-0 h-full w-full ${fit === "contain" ? "m-auto object-contain" : "object-cover"}`}
+                      // 작은 원본을 칸에 맞춰 늘리지 않고 제 크기까지만 보여 준다
+                      style={
+                        fit === "contain" && f.mediaSize
+                          ? {
+                              maxWidth: f.mediaSize.width,
+                              maxHeight: f.mediaSize.height,
+                            }
+                          : undefined
+                      }
                     />
                   )}
                 </Reveal>
@@ -438,6 +452,12 @@ export function StoryFeatures({
                   <p className="mt-4 text-[15px] leading-[1.85] text-muted md:text-[17px]">
                     {f.text}
                   </p>
+                  {/* AI 설명용 모식도는 그 사실을 글 아래에 적어 둔다 */}
+                  {f.caption && (
+                    <p className="mt-3 text-[12px] leading-snug text-muted/80">
+                      {f.caption}
+                    </p>
+                  )}
                 </Reveal>
               </li>
             );

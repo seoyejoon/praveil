@@ -83,6 +83,12 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                     {no} / {total}
                   </span>
                 </p>
+                {/* AI 설명용 이미지는 사진 위에 그 사실을 적어 둔다 */}
+                {it.caption && (
+                  <p className="absolute inset-x-0 bottom-0 bg-black/45 px-4 py-2 text-center text-[11px] leading-snug text-white/80 backdrop-blur-sm md:text-xs">
+                    {it.caption}
+                  </p>
+                )}
               </div>
 
               {/* 글 */}

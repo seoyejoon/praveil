@@ -554,6 +554,12 @@ export default function TreatmentDetail({
                           loading="lazy"
                           className="aspect-[4/3] w-full bg-[#f3f0eb] object-contain transition-[scale] duration-[1.2s] group-hover:scale-105"
                         />
+                        {/* AI 설명용 이미지는 사진 바로 아래에 그 사실을 적어 둔다 */}
+                        {it.caption && (
+                          <p className="bg-black/40 px-3 py-2 text-center text-[11px] leading-snug text-white/75">
+                            {it.caption}
+                          </p>
+                        )}
                       </div>
                     )}
                     <div className="flex items-start justify-between gap-3">

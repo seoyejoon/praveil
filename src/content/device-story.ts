@@ -2789,8 +2789,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "제품별 사용방법에 맞춰 계획한 층과 방향에 실을 넣고, 조직의 지지와 좌우 균형을 확인합니다.",
-        image: "/images/photos/cat-main-petit-model-a.webp",
-        alt: "기존 피부 주입 시술 참고 사진",
+        image: "/images/photos/thread-insertion-20261105.webp",
+        alt: "실을 삽입하는 시술 장면",
       },
       {
         title: "경과 확인",
@@ -2976,7 +2976,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 실 삽입 및 균형 확인",
         text: "사전 계획한 해부학적 층과 방향에 따라 실을 안전하게 삽입하고, 조직이 단단히 지지되는지와 좌우 대칭이 조화로운지 꼼꼼하게 살핍니다.",
-        image: "/images/photos/cat-main-petit-model-a.webp",
+        image: "/images/photos/thread-insertion-20261105.webp",
         alt: "기존 피부 시술 참고 사진",
       },
       {
@@ -3145,8 +3145,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "시술",
         text: "계획한 부위에 실을 넣고 모양과 좌우 균형을 확인합니다.",
-        image: "/images/photos/cat-main-petit-model-a.webp",
-        alt: "기존 피부 시술 참고 사진",
+        image: "/images/photos/thread-insertion-20261105.webp",
+        alt: "실을 삽입하는 시술 장면",
       },
       {
         title: "경과 확인",

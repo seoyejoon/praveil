@@ -2003,8 +2003,8 @@ treatments.push(
     scene: botox.scene && {
       ...botox.scene,
       // 바디 전용 히어로 (승모근 · 어깨를 살피는 장면, 얼굴 탭과 분리)
-      src: photo("hero-body-botox-20261105"),
-      mobileSrc: photo("hero-body-botox-20261105-m"),
+      src: photo("hero-body-botox-20261105-v2"),
+      mobileSrc: photo("hero-body-botox-20261105-m-v2"),
       alt: "승모근과 어깨 라인을 살피는 장면",
       chips: [
         { x: 55, y: 22, en: "Muscle", label: "근육 두께 · 범위 확인" },

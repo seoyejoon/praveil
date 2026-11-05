@@ -358,9 +358,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "필러",
       maker: "Hyaluronic Acid",
-      image: "/images/photos/best-filler-model-a.webp",
-      photo: "/images/photos/best-filler-model-a.webp",
-      photoAlt: "대표원장이 환자의 얼굴 부위에 필러를 주입하는 진료 장면",
+      image: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
+      photo: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
+      photoAlt: "뉴라미스 · 레나 · 레스틸렌 제품군을 모은 연출 사진",
+      // 제품 사진은 자르지 않고 전체를 보여 준다 (인물용 덮개 · 확대 없이)
+      mediaContain: true,
+      mediaSize: { width: 1800, height: 1200 },
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
       specs: [
         { label: "성분", value: "히알루론산 (HA)" },
@@ -447,8 +450,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 맞춤 제품 선택",
         text: "이마 · 볼 · 입술 등 부위별 피부 두께와 움직임에 맞춰 적합한 입자 크기와 점탄성의 제품을 구분해 적용합니다.",
-        image: "/images/filler/products/neuramis-lineup.webp",
-        alt: "부위별로 나누어 쓰는 필러 제품 라인업",
+        image: "/images/photos/feature-filler-products-3brands-20261105-v1.webp",
+        alt: "뉴라미스 · 레나 · 레스틸렌의 필러 제품군",
+        // 사진 자체에 여백이 있어 자르거나 확대하지 않고 그대로 보여 준다
+        mediaFit: "contain",
       },
       {
         title: "정품 · 정량 확인 원칙",
@@ -1311,26 +1316,42 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "ISCE 엑소좀 제품 구성 (제조사 공식 자료)",
       mediaContain: true,
       mediaSize: { width: 400, height: 400 },
-      text: "엑소좀은 세포가 내보내는 아주 작은 주머니(엑소좀)에서 얻은 성분을 활용한 스킨부스터입니다. 프라베일은 ISCE 엑소좀을 사용하며, 피부가 예민해지고 컨디션이 떨어졌을 때 단독으로 또는 다른 시술과 함께 계획합니다.",
+      text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은 기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 재건합니다.",
       specs: [
-        { label: "제품", value: "ISCE 엑소좀" },
-        { label: "주로 살피는 고민", value: "예민함 · 지친 피부 컨디션" },
-        { label: "함께 받는 시술", value: "피부 상태에 따라 상담" },
-        { label: "횟수", value: "1회 · 3회 (가격표 기준)" },
+        {
+          label: "적용 제품",
+          value: "ISCE 엑소좀 (고순도 줄기세포 유래 세포외소포체)",
+        },
+        {
+          label: "주요 대상",
+          value: "무너진 피부 장벽, 만성 홍조 · 예민 피부, 유수분 불균형, 피부 결 개선",
+        },
+        {
+          label: "침투 방식",
+          value: "고주파 미세침(포텐자 펌핑팁), MTS 또는 피부 흡수 유도 장비",
+        },
+        {
+          label: "권장 주기",
+          value: "2~3주 간격 3~5회 집중 시술 권장 (이후 1~2개월 주기 유지 관리)",
+        },
+        {
+          label: "회복 기간",
+          value: "당일 가벼운 일상생활 가능 (붉은 기는 24시간 내외 자연 진정)",
+        },
       ],
     },
     principle: [
       {
-        title: "피부 컨디션 확인",
-        text: "예민도와 붉은기, 최근 받은 레이저 · 시술을 먼저 확인합니다.",
+        title: "피부 장벽 상태 및 손상도 진단",
+        text: "붉은 기, 민감도, 유수분 밸런스 붕괴 등 피부 장벽의 손상 정도를 살펴 적합한 침투 깊이와 적용 범위를 설정합니다.",
       },
       {
-        title: "엑소좀 성분 전달",
-        text: "정한 범위에 엑소좀 성분을 고르게 전달합니다.",
+        title: "고순도 엑소좀 유효 성분 침투",
+        text: "미세 채널을 통해 줄기세포 유래 핵심 재생 신호 물질(엑소좀)을 진피층 깊숙이 고르게 침투시킵니다.",
       },
       {
-        title: "피부 컨디션 관리",
-        text: "지친 피부 컨디션 관리를 돕는 것을 목표로 하며, 변화의 정도는 사람마다 다릅니다.",
+        title: "세포 신호 전달 및 자생력 재건",
+        text: "엑소좀이 손상된 세포에 재생 신호를 전달하여 염증 반응을 가라앉히고, 피부 장벽 강화와 건강한 환경 회복을 유도합니다.",
       },
     ],
     compare: {
@@ -1386,7 +1407,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2.webp 1200w",
         alt: "표피 유래 세포 배양액 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "피부 코어인 기저막(DEJ)을 함께 살핌",
@@ -1394,7 +1414,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/isce/isce-point-02-dej-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-02-dej-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-02-dej-20261105-v2.webp 1200w",
         alt: "표피·진피 사이 DEJ — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "복합 엑소좀 성분 구성",
@@ -1402,7 +1421,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/isce/isce-point-03-vesicle-complex-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-03-vesicle-complex-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-03-vesicle-complex-20261105-v2.webp 1200w",
         alt: "소포와 복합 성분 구성 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "피부 장벽과 전반적인 노화 징후",
@@ -1410,32 +1428,31 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/isce/isce-point-04-skin-barrier-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-04-skin-barrier-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-04-skin-barrier-20261105-v2.webp 1200w",
         alt: "피부 장벽의 표면 구조 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
     ],
     process: [
       {
-        title: "상담 · 계획",
-        text: "피부 상태와 최근 받은 시술을 살피고, 엑소좀을 단독으로 할지 함께 할지 정합니다.",
+        title: "피부 진단 및 침투 방식 설계",
+        text: "현재 피부의 민감도와 장벽 손상 정도를 확인하고, 단독 침투 장비 또는 포텐자 · MTS 등 적합한 병행 방식을 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
       {
-        title: "마취 · 준비",
-        text: "필요하면 마취 크림을 바르고 피부를 깨끗하게 준비합니다.",
+        title: "딥클렌징 및 통증 완화 준비",
+        text: "시술 부위를 청결하게 정돈한 뒤 마취 크림을 도포하여, 미세 채널 형성 시 발생할 수 있는 따끔거림을 덜어드립니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "시술",
-        text: "정한 범위에 엑소좀 성분을 고르게 전달합니다.",
+        title: "엑소좀 유효 성분 정밀 침투",
+        text: "피부 표면에 미세 채널을 열어 고순도 ISCE 엑소좀 앰플이 표피를 넘어 진피층까지 균일하게 흡수되도록 유도합니다.",
         image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
         coverPosition: "43% 50%",
       },
       {
-        title: "경과 확인",
-        text: "시술 직후 피부 반응을 확인하고, 세안 · 화장 시점과 주의사항을 안내합니다.",
+        title: "진정 관리 및 주의사항 안내",
+        text: "자극받은 피부를 진정시키고 열감을 가라앉힌 뒤, 붉은 기 완화와 장벽 재생을 돕는 일상 케어 수칙을 안내해 드립니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
@@ -1713,63 +1730,62 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 변화가 보이는 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 양은 피부 상태와 부위를 보고 상담에서 정합니다.",
     },
     featuresRatio: 4 / 3,
-    featuresTitle: "쥬베룩 스킨부스터의 특징 4가지",
+    featuresTitle: "쥬베룩 콜라겐부스터의 특징 4가지",
     features: [
       {
-        title: "자가 콜라겐 · 엘라스틴 생성 유도",
-        text: "인위적인 성분을 채워 넣는 방식이 아니라, 고분자 PLA(PDLLA) 성분이 피부 속에서 서서히 분해되며 세포를 자극합니다. 피부 스스로 콜라겐과 탄력 섬유(엘라스틴)를 만들어내도록 유도하는 방식이며, 변화는 시간을 두고 서서히 나타납니다.",
+        title: "자가 콜라겐 및 엘라스틴 재생 유도",
+        text: "인위적인 물질을 채우는 방식이 아닌 생분해성 고분자 PDLLA 성분이 섬유아세포를 활성화하여, 피부 스스로 탄력 섬유와 콜라겐을 생성하도록 돕습니다.",
         image: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp 1200w",
         alt: "PDLLA와 콜라겐 지지 구조 — AI 설명용 모식도",
         caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
-        title: "나비존 모공과 패인 흉터, 잔주름",
-        text: "입자가 작고 부드러워 피부 얕은 층(진피층)에 촘촘하게 시술할 수 있습니다. 노화로 늘어난 나비존 모공과 눈가 · 입가의 잔주름, 패인 여드름 흉터 부위가 차오르도록 돕는 것을 목적으로 합니다.",
-        image: "/images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2.webp 1200w",
-        alt: "나비존·모공·잔주름 부위 — AI 안내 사진",
-        caption: "공통 모델을 활용한 AI 안내 이미지입니다. 실제 시술 전후 또는 치료 결과 사진이 아닙니다.",
-      },
-      {
-        title: "망상(다공성) 구조로 결절 위험을 낮춤",
-        text: "PLLA 제품과 달리 쥬베룩은 입자 내부가 둥글고 구멍이 뚫린 망상 구조로 이루어져 있습니다. 제조사는 이 구조가 피부 속에서 뭉치는 결절(단단한 알갱이)이 생길 확률을 낮춘다고 설명합니다. 빈도가 낮아도 생길 수 있어 경과를 함께 확인합니다.",
+        title: "다공성 망상 구조로 안전성 향상",
+        text: "내부가 그물망(망상) 구조로 이루어진 미세 구형 입자로 조직 내 뭉침(결절) 우려를 덜어내었으며, 체내에서 일정 기간 후 물과 이산화탄소로 안전하게 완전 분해됩니다.",
         image: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp 1200w",
         alt: "PDLLA 다공성 망상 구조 — AI 설명용 모식도",
         caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
-        title: "히알루론산(HA) 배합으로 속건조까지",
-        text: "콜라겐 생성 성분 외에 물광 주사의 주성분인 히알루론산이 함께 배합되어 있습니다. 콜라겐이 만들어지기까지 걸리는 시간(약 3~4주) 동안 히알루론산이 수분을 끌어당겨, 시술 초기부터 속건조와 피부결의 변화를 먼저 느끼는 경우가 많습니다. 체감 정도는 사람마다 다릅니다.",
+        title: "PDLLA + 히알루론산(HA) 복합 시너지",
+        text: "자가 콜라겐 생성을 유도하는 PDLLA에 수분을 끌어당기는 히알루론산을 배합하여, 콜라겐이 차오르는 기간 동안 속건조를 완화하고 부드러운 피부 결을 먼저 형성합니다.",
         image: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp 1200w",
         alt: "HA와 수분 환경 — AI 설명용 모식도",
         caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
-    ],
+      {
+        title: "얕은 진피층 타깃의 미세 결 · 탄력 개선",
+        text: "입자가 곱고 부드러워 진피 얕은 층에 촘촘하게 침투할 수 있어 늘어진 나비존 모공, 얕은 패인 흉터, 눈가 · 입가의 미세 잔주름을 탄탄하게 메워줍니다.",
+        image: "/images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2.webp",
+        mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-02-cheek-area-20261105-v2.webp 1200w",
+        alt: "나비존 · 모공 · 잔주름 부위 — AI 안내 사진",
+      },
+        ],
     process: [
       {
-        title: "1:1 맞춤 상담 및 계획",
-        text: "피부 고민의 양상, 환자분의 피부 두께, 이전 주입 시술 이력 등을 꼼꼼히 살피고, 이에 맞는 적정 용량(cc)과 시술 범위를 세밀하게 설계합니다.",
+        title: "맞춤 진단 및 주입 설계",
+        text: "모공 · 흉터 · 탄력 저하 등 피부 고민 부위와 진피층 두께를 분석하여 적정 주입 용량과 타깃 범위를 정밀하게 설계합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
       {
-        title: "마취 크림 도포 및 준비",
-        text: "시술 부위를 깨끗하게 정돈한 뒤 마취 크림을 도포하여 편안한 상태를 만들고, 사용할 쥬베룩 제품의 상태를 사전에 확인시켜 드립니다.",
+        title: "표면 정돈 및 통증 완화",
+        text: "시술 부위를 청결하게 클렌징한 뒤 마취 크림을 충분히 도포하여 통증 부담을 덜고, 균일하게 수화(Hydration)된 정품 약물을 확인합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
       {
-        title: "정교한 진피층 분할 주입",
-        text: "숙련된 노하우를 바탕으로 계획된 부위의 진피층에 쥬베룩 성분을 고르고 촘촘하게 나누어 주입합니다.",
+        title: "진피층 균일 분할 주입",
+        text: "약물이 뭉치지 않도록 일정한 간격과 깊이를 유지하며, 계획된 진피층에 쥬베룩 성분을 미세하게 나누어 촘촘하게 주입합니다.",
         image: "/images/photos/cat-skin-care.webp",
         alt: "시술 과정 설명용 기존 주입 시술 사진",
       },
       {
-        title: "직후 경과 확인 및 홈케어 안내",
-        text: "시술 직후 부기나 엠보싱 상태를 편안하게 정돈하고 확인한 뒤, 콜라겐 생성을 돕기 위한 마사지 요령과 일상생활 주의사항을 안내해 드립니다.",
+        title: "진정 및 사후 케어 안내",
+        text: "시술 직후 피부 표면의 엠보싱과 붉은 기를 진정시키고 상태를 확인한 뒤, 콜라겐의 안정적인 형성을 돕는 일상 주의사항을 안내합니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
@@ -1906,7 +1922,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp 1200w",
         alt: "얇은 눈가·눈밑 부위 — AI 안내 사진",
-        caption: "공통 모델을 활용한 AI 안내 이미지입니다. 실제 시술 전후 또는 치료 결과 사진이 아닙니다.",
       },
       {
         title: "자가 콜라겐 생성과 피부 톤",
@@ -1914,7 +1929,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp 1200w",
         alt: "피부결과 피부 톤 부위 — AI 안내 사진",
-        caption: "공통 모델을 활용한 AI 안내 이미지입니다. 실제 시술 전후 또는 치료 결과 사진이 아닙니다.",
       },
     ],
     process: [
@@ -3626,9 +3640,12 @@ deviceStory["/petit/botox/body"] = {
   device: {
     ...botoxStory.device,
     // 확인 필요: 바디 시술 촬영본 (상담 사진을 쓰지 않아 병원 공간 사진)
-    image: "/images/photos/clinic-3.webp",
-    photo: "/images/photos/clinic-3.webp",
-    photoAlt: "프라베일 상담실",
+    image: "/images/photos/intro-body-botox-products-20261105-v1.webp",
+    photo: "/images/photos/intro-body-botox-products-20261105-v1.webp",
+    photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
+    // 제품 사진은 자르지 않고 전체를 보여 준다 (인물용 덮개 · 확대 없이)
+    mediaContain: true,
+    mediaSize: { width: 1800, height: 1200 },
     text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
     specs: [
       { label: "방식", value: "보툴리눔 톡신 제제 주사" },

@@ -355,8 +355,8 @@ export function StoryFeatures({
                     loading="lazy"
                     className={`absolute inset-0 h-full w-full ${
                       f.mediaFit === "contain"
-                        ? // 제품 사진처럼 잘리면 안 되는 그림
-                          "bg-ivory object-contain p-5"
+                        ? // 제품 사진처럼 잘리면 안 되는 그림 (사진의 자체 여백을 그대로 씀)
+                          "bg-ivory object-contain"
                         : "object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
                     }`}
                   />

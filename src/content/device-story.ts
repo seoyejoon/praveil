@@ -452,7 +452,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "정품 · 정량 확인 원칙",
-        text: "공인된 정품 필러만을 사용하며, 시술 전 개봉 상태를 안내하고 계획된 용량을 정확히 준수합니다.",
+        text: "허가받은 정품 필러만을 사용하며, 시술 전 개봉 상태를 안내하고 계획된 용량을 정확히 준수합니다.",
         image: "/images/photos/special-3.webp",
         alt: "프라베일에 비치된 브랜드 공식 인증 상패",
       },

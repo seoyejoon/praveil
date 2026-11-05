@@ -708,7 +708,8 @@ export const treatments: Treatment[] = [
       {
         name: "볼",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-filler-model-a"),
+        image: "/images/filler/areas/area-01-cheek-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "앞볼 · 옆볼 꺼짐",
         detail:
           "앞볼과 옆볼의 볼륨이 빠지면 인상이 피곤해 보이고 광대가 도드라져 얼굴선이 거칠어 보이기 쉽습니다. 넓은 면적을 안정적으로 지지해야 하는 부위인 만큼, 탄성이 탄탄한 제품을 깊은 층에 세밀하게 나누어 주입하여 광대에서 볼로 이어지는 윤곽을 부드럽고 입체적으로 다듬습니다.",
@@ -725,7 +726,8 @@ export const treatments: Treatment[] = [
       {
         name: "관자",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-3"),
+        image: "/images/filler/areas/area-02-temple-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "꺼진 관자놀이",
         detail:
           "관자놀이가 꺼지면 이마에서 옆볼로 내려오는 외곽선이 끊겨 얼굴이 마르고 각진 인상을 주게 됩니다. 주요 혈관이 지나는 부위이므로 해부학적 층과 위치를 면밀히 살피며, 이마와 옆볼로 이어지는 옆얼굴 곡선을 매끄럽게 연결합니다.",
@@ -742,7 +744,8 @@ export const treatments: Treatment[] = [
       {
         name: "이마",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-3"),
+        image: "/images/filler/areas/area-03-forehead-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "둥글고 매끈한 이마 라인",
         detail:
           "이마는 얼굴 상단부의 넓은 면적을 차지해 미세한 곡선 차이만으로도 옆모습의 인상이 크게 달라집니다. 골막 위 깊은 층에 필러를 넓고 고르게 펴서 안착시키며, 눈썹 뼈 위쪽부터 관자놀이까지 자연스럽게 이어지는 선을 함께 디자인합니다.",
@@ -759,7 +762,8 @@ export const treatments: Treatment[] = [
       {
         name: "팔자",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-petit-model-a"),
+        image: "/images/filler/areas/area-04-nasolabial-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "코 옆 깊은 주름",
         detail:
           "팔자주름은 피부 자체의 주름이 깊은 경우도 있지만, 위쪽 앞볼이 꺼지거나 처지면서 골이 깊어 보이는 경우도 많습니다. 주름이 생긴 원인을 먼저 명확히 구분하고, 필요시 주름 위쪽의 앞볼 지지대를 함께 보완해 입가가 어색하지 않도록 교정합니다.",
@@ -776,7 +780,8 @@ export const treatments: Treatment[] = [
       {
         name: "입술",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("special-2-model-a"),
+        image: "/images/filler/areas/area-05-lips-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "입술 볼륨 · 라인",
         detail:
           "입술은 표정과 말할 때의 움직임이 많고 피부가 매우 얇아, 입자가 곱고 부드러운 전용 제품을 얕은 층에 소량씩 주입합니다. 윗입술과 아랫입술의 볼륨 비율, 입꼬리 각도를 세밀하게 분석해 본연의 입술 모양을 살려 다듬습니다. ※ 조직 특성상 다른 부위보다 초기 부기가 조금 더 지속될 수 있습니다.",
@@ -793,7 +798,8 @@ export const treatments: Treatment[] = [
       {
         name: "애교",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("best-filler-model-a"),
+        image: "/images/filler/areas/area-06-aegyo-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "눈 밑 애교살",
         detail:
           "애교살은 웃을 때 눈 밑이 살짝 도톰해지며 눈매를 한결 입체적이고 부드러워 보이게 하는 부위입니다. 피부가 얇고 비쳐 보이기 쉬운 위치인 만큼, 부드러운 제품을 아주 소량만 사용하여 실제 웃는 표정에 맞춘 자연스러운 높이를 완성합니다.",
@@ -810,7 +816,8 @@ export const treatments: Treatment[] = [
       {
         name: "눈밑",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-injection-model-a"),
+        image: "/images/filler/areas/area-07-undereye-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "꺼진 눈 밑 · 눈물고랑",
         detail:
           "눈 밑이 푹 꺼지거나 눈물고랑이 깊어지면 어두운 그늘이 져 늘 피곤하고 나이 들어 보이기 쉽습니다. 피부가 얇고 예민한 눈 밑 특성을 고려해 부드러운 물성의 제품을 소량씩 정교하게 나누어 넣으며, 앞볼까지 단절 없이 매끄럽게 이어지도록 다듬습니다.",
@@ -827,7 +834,8 @@ export const treatments: Treatment[] = [
       {
         name: "상안검",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("signature-4-model-a"),
+        image: "/images/filler/areas/area-08-upper-eyelid-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "꺼진 윗눈꺼풀",
         detail:
           "윗눈꺼풀(아이홀)이 꺼지면 눈매가 퀭하고 피곤해 보일 뿐만 아니라, 기존 쌍꺼풀 라인이 겹치거나 흐트러져 보이기도 합니다. 눈 주변은 피부가 극도로 얇고 미세 혈관이 많아, 눈을 뜨고 감을 때의 움직임과 꺼진 깊이를 확인하며 소량씩 섬세하게 채웁니다.",
@@ -844,7 +852,8 @@ export const treatments: Treatment[] = [
       {
         name: "깊은 주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-skin-booster-model-a"),
+        image: "/images/filler/areas/area-09-mouth-lines-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "깊게 팬 주름",
         detail:
           "미간 · 이마 · 입가 등의 표정 주름이 오랫동안 반복되면 가만히 있어도 지워지지 않는 깊은 선으로 남게 됩니다. 이미 피부 진피층이 꺾여 자리 잡은 주름은 근육의 움직임을 줄이는 것만으로는 개선이 어려워, 주름 골을 따라 부드러운 필러를 얕고 세밀하게 채워 표면을 평평하게 다듬습니다.",
@@ -861,7 +870,8 @@ export const treatments: Treatment[] = [
       {
         name: "목주름",
         // 확인 필요: 임시 사진 (부위 사진 받으면 교체)
-        image: photo("cat-main-skin-model-a"),
+        image: "/images/filler/areas/area-10-neck-lines-model-a-v3.webp",
+        caption: "공통 모델을 활용한 시술 부위 안내 이미지",
         text: "목의 가로 주름",
         detail:
           "목은 얼굴보다 피부가 얇고 피지선이 적으며 움직임이 잦아 깊은 가로 주름이 자리 잡기 쉽습니다. 입자가 매우 고운 제품을 주름 선을 따라 얕은 층에 촘촘히 채워 패인 골을 완화하며, 전반적인 피부 탄력도에 따라 스킨부스터 등의 관리를 함께 계획합니다.",
@@ -1481,10 +1491,10 @@ export const treatments: Treatment[] = [
     title: "울트라콜",
     description: "PDO 성분으로 피부결 · 볼륨을 관리하는 콜라겐부스터",
     image: photo("cat-skin-care"),
-    // 확인 필요: 울트라콜 전용 첫 화면 사진 (지금은 상위 페이지 사진)
+    // 울트라콜 전용 히어로 (20261105 얼굴 수정본, 쥬베룩 공용 파일과 분리)
     scene: {
-      src: photo("hero-collagen-20261027-model-a"),
-      mobileSrc: photo("hero-collagen-20261027-m-model-a"),
+      src: photo("hero-ultracol-20261105-v3"),
+      mobileSrc: photo("hero-ultracol-20261105-m-v3"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PDO", label: "PDO 성분 · 제품 규격 확인" },
@@ -1827,7 +1837,8 @@ export const treatments: Treatment[] = [
     href: "/removal/tattoo",
     en: "Tattoo Removal",
     title: "문신제거",
-    description: "눈썹 · 아이라인 · 언더라인 반영구 색소를 살펴보는 문신제거",
+    description:
+      "눈가 피부와 모근을 살피며 정교하게 진행하는 반영구 문신제거",
     image: photo("cat-tattoo-removal-model-a"),
     device: device("pico-k", "PICO-K", "피코 레이저"),
     scene: {
@@ -1839,16 +1850,18 @@ export const treatments: Treatment[] = [
         { x: 48, y: 64, en: "Safety", label: "눈 보호 · 시술 가능 여부 확인" },
       ],
     },
-    headline: ["번지고 바랜 반영구 색소,", "레이저 문신제거"],
+    headline: ["눈썹 · 아이라인 · 언더라인", "프라베일 레이저 문신제거"],
     intro:
-      "프라베일은 눈썹 · 아이라인 · 언더라인 반영구 문신제거를 진행합니다. 레이저로 반영구 색소를 잘게 나누고 몸이 이를 처리하며 옅어지도록 돕는 시술로, 색과 덧입힌 이력, 피부 상태를 살피고 눈 가까운 부위는 눈 상태와 보호 조건부터 확인합니다.",
+      "눈썹과 아이라인, 언더라인은 피부가 얇고 안구와 가까워 무엇보다 섬세한 접근이 필요한 부위입니다. 레이저 에너지로 피부 속에 자리 잡은 반영구 색소 입자를 미세하게 파쇄하여 체외 배출을 돕습니다. 색소의 깊이와 변색 정도(붉은색 · 푸른색), 덧입힌 이력과 피부 두께를 살피며, 눈가 조직을 보호하는 환경에서 시술을 진행합니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다.",
     photo: stock("tattoo"),
     facts: [
-      // 확인 필요: 시술 시간 (병원 실제 소요 시간)
-      { label: "시술 시간", value: "범위별 상담 시 안내" },
-      { label: "마취", value: "부위별 마취 · 눈 보호" },
-      { label: "회복", value: "붉어짐 · 딱지 등 개인차" },
-      { label: "권장 주기", value: "회복 · 색 변화 보고 조정" },
+      { label: "시술 시간", value: "약 10~20분 소요 (부위별 상이)" },
+      { label: "마취 안내", value: "눈썹 크림 마취" },
+      {
+        label: "회복 기간",
+        value: "일상 복귀 가능 (붓기 · 붉은 기 1~3일, 미세 딱지 3~5일)",
+      },
+      { label: "권장 주기", value: "4~6주 간격 시술" },
     ],
     recommend: [
       "반영구 눈썹 모양 · 색이 마음에 들지 않는 분",
@@ -1942,8 +1955,10 @@ treatments.push(
     description: "승모근 · 종아리 라인과 겨드랑이 다한증을 함께 보는 보톡스",
     scene: botox.scene && {
       ...botox.scene,
-      // 확인 필요: 바디 보톡스 전용 첫 화면 사진
-      // (상담 사진은 쓰지 않기로 해 얼굴 보톡스와 같은 시술 사진을 쓰는 중)
+      // 바디 전용 히어로 (승모근 · 어깨를 살피는 장면, 얼굴 탭과 분리)
+      src: photo("hero-body-botox-20261105"),
+      mobileSrc: photo("hero-body-botox-20261105-m"),
+      alt: "승모근과 어깨 라인을 살피는 장면",
       chips: [
         { x: 55, y: 22, en: "Muscle", label: "근육 두께 · 범위 확인" },
         { x: 50, y: 64, en: "Plan", label: "부위별 주사 위치 · 용량 계획" },

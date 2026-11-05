@@ -53,7 +53,7 @@ export default function AreaRows({ items }: { items: TreatmentItem[] }) {
                     src={it.image}
                     alt={`${it.name} 시술 부위`}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-[scale] duration-[1.2s] group-hover:scale-105"
+                    className="h-full w-full object-cover"
                   />
                 ) : (
                   <>

@@ -263,13 +263,14 @@ export default async function AboutIntroPage() {
                 draggable={false}
                 className="group flex w-full flex-col overflow-hidden rounded-[24px] bg-ivory"
               >
-                <div className="aspect-square overflow-hidden">
+                {/* 장비 전체가 잘리지 않게: 확대 · 페이드 없이 바닥선만 맞춘다 */}
+                <div className="aspect-square overflow-hidden bg-[#f6f2ec]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={it.image}
                     alt={`${it.name} 장비`}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-[scale] duration-[1.2s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
+                    className="h-full w-full object-contain object-bottom p-8 pb-[9%] md:p-10 md:pb-[9%]"
                   />
                 </div>
                 <div className="p-7 md:p-8">

@@ -8,8 +8,9 @@ import { doctorPhotos } from "@/content/doctor-photos";
 const photo = (name: string) =>
   `/images/photos/${name}.webp${name.startsWith("hero-") ? "?v=20261104" : ""}`;
 // 제조사 공식 제품 사진 (장비 구매 병원 사용 허가 범위)
-// 장비 카드 사진: 원본(equipment/)에서 여백만 정리해 장비 높이를 같게 맞춘 사본 (equipment/card/)
-const device = (name: string) => `/images/equipment/card/${name}.webp`;
+// 장비 카드 사진: 제조사 공식 전체 PNG에서 투명 여백만 잘라낸 파일 (equipment/official/)
+const device = (name: string) =>
+  `/images/equipment/official/${name}-full-official.png`;
 
 // 병원소개 · 의료진소개 상단 (탭은 사이트맵 '병원소개' 분류를 따름)
 export const aboutHero = {

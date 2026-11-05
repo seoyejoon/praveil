@@ -1545,13 +1545,14 @@ export const treatments: Treatment[] = [
     description:
       "여드름과 남은 자국 · 흉터 · 모공을 나눠 보는 단계별 피부 치료",
     image: photo("cat-skin-care"),
+    // 원장 시술 장면 v6 (20261105). 상담 · 모니터 설명 장면은 쓰지 않는다
     scene: {
-      src: photo("hero-acne-pore-20261027"),
-      mobileSrc: photo("hero-acne-pore-20261027-m"),
-      alt: "대표원장이 피부 분석 화면을 설명하는 모습",
+      src: photo("hero-acne-pore-treatment-20261105-v6"),
+      mobileSrc: photo("hero-acne-pore-treatment-20261105-m-v6"),
+      alt: "대표원장이 공통 모델의 볼 부위를 레이저 시술하는 AI 연출 이미지",
       chips: [
-        { x: 55, y: 5, en: "Diagnosis", label: "여드름 · 자국 · 흉터 구분" },
-        { x: 55, y: 21, en: "Plan", label: "피부 상태별 단계적 치료 계획" },
+        { x: 55, y: 5, en: "Target", label: "병변 · 흉터 부위 구분" },
+        { x: 55, y: 21, en: "Laser", label: "피부 상태에 맞춘 조사 깊이" },
       ],
     },
     headline: ["원인 분석부터 치료까지", "여드름 · 모공 맞춤 케어"],
@@ -1843,13 +1844,14 @@ export const treatments: Treatment[] = [
       "눈가 피부와 모근을 살피며 정교하게 진행하는 반영구 문신제거",
     image: photo("cat-tattoo-removal-model-a"),
     device: device("pico-k", "PICO-K", "피코 레이저"),
+    // 원장 시술 장면 v6 (20261105). 눈썹 반영구 부위 시술 장면
     scene: {
-      src: photo("hero-tattoo-20261027-model-a"),
-      mobileSrc: photo("hero-tattoo-20261027-m-model-a"),
-      alt: "대표원장이 레이저 장비로 시술하는 모습",
+      src: photo("hero-tattoo-treatment-20261105-v6"),
+      mobileSrc: photo("hero-tattoo-treatment-20261105-m-v6"),
+      alt: "대표원장이 공통 모델의 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
       chips: [
-        { x: 48, y: 18, en: "Design", label: "색소 · 피부 상태 확인" },
-        { x: 48, y: 64, en: "Safety", label: "눈 보호 · 시술 가능 여부 확인" },
+        { x: 48, y: 18, en: "Target", label: "색소 깊이 · 범위 확인" },
+        { x: 48, y: 64, en: "Safety", label: "눈 보호구 착용 후 조사" },
       ],
     },
     headline: ["눈썹 · 아이라인 · 언더라인", "프라베일 레이저 문신제거"],

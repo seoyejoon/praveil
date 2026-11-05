@@ -44,10 +44,21 @@ export default function MainBest({
   const [active, setActive] = useState(0);
   const [local, setLocal] = useState(0); // 지금 시술 안에서의 진행 (0~1)
   const n = items.length;
+  // 좁은 화면에서는 고정하지 않는다: 세로 스크롤은 다음 섹션으로 넘어가고,
+  // 시술은 좌우로 넘겨서 바꾼다
+  const [pinned, setPinned] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setPinned(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || reducedMotion()) return;
+    if (!root || reducedMotion() || !pinned) return;
     // 시술 맞춤: 스크롤이 멈추면 가장 가까운 시술 자리로 (GSAP 기본 맞춤은 Lenis · 터치와 부딪혀 맨 위로 튀는 일이 있음)
     let timer = 0;
     const snapLater = (self: ScrollTrigger) => {
@@ -82,7 +93,25 @@ export default function MainBest({
       st.kill();
       stRef.current = null;
     };
-  }, [n]);
+  }, [n, pinned]);
+
+  // 좁은 화면: 좌우로 넘겨 시술 바꾸기 (세로 움직임이 크면 그냥 스크롤)
+  const swipe = useRef<{ x: number; y: number } | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t0 = e.touches[0];
+    swipe.current = { x: t0.clientX, y: t0.clientY };
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const s = swipe.current;
+    swipe.current = null;
+    if (!s || pinned) return;
+    const t1 = e.changedTouches[0];
+    const dx = t1.clientX - s.x;
+    const dy = t1.clientY - s.y;
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+    setActive((i) => Math.min(n - 1, Math.max(0, i + (dx < 0 ? 1 : -1))));
+    setLocal(0.5);
+  };
 
   // 탭: 그 시술 자리로 스크롤 (고정이 없으면 바로 바꿈)
   const go = (i: number) => {
@@ -100,6 +129,8 @@ export default function MainBest({
       <section
         ref={rootRef}
         aria-label={title}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         className="relative h-[max(100svh,var(--app-h,100svh))] min-h-[640px] lg:h-svh overflow-hidden bg-[#ecebe8] text-ink"
       >
         {/* 배경 사진: 옆으로 넘김 — 다음 사진은 오른쪽에서 밀려 들어오며 나타나고, 지난 사진은 왼쪽으로 밀려나며 사라짐 */}

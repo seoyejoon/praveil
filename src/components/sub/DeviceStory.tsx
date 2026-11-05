@@ -400,8 +400,9 @@ export function StoryFeatures({
                 : null;
             const boxRatio = story.featuresRatio ?? (f.mediaSize ? ratio : null);
             const fit = f.mediaFit ?? (boxRatio ? "contain" : "cover");
-            // 박스를 원본 비율로 맞추면 남는 자리가 없어 가장자리 색이 필요 없음
-            const edges = fit === "contain" && !boxRatio ? f.mediaEdges : undefined;
+            // 칸 비율을 통일하면 위아래 · 좌우에 자리가 남는다. 자료 가장자리 색으로 채워
+            // 영상 · 도해가 칸에 꼭 맞아 보이게 한다
+            const edges = fit === "contain" ? f.mediaEdges : undefined;
             return (
               <li
                 key={f.title}

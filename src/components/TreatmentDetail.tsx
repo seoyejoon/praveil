@@ -174,8 +174,8 @@ export default function TreatmentDetail({
           />
           <p className="mt-4 text-[15px] leading-[1.8] text-white/65 md:text-[16px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} 페이닥터 없이 대표원장님이 직접
-            시술합니다.
+            {josa(hospital.name, "은", "는")} 대표원장님이 1:1로 직접 시술을
+            진행하고 있습니다.
           </p>
           <ol className="mt-7 border-t border-white/15">
             {doctorReasons.map((r, i) => (

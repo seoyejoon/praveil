@@ -608,6 +608,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         video: "/videos/coolphase-device.mp4",
         alt: "쿨페이즈 장비와 핸드피스를 보여 주는 제조사 영상",
         mediaSize: { width: 1280, height: 720 },
+        mediaFit: "cover",
       },
       {
         title: "피부 두께와 부위별 반응을 고려한 정밀 조절",
@@ -2247,6 +2248,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
         mediaSize: { width: 1280, height: 720 },
+        mediaEdges: ["#000000", "#000000"],
       },
       {
         title: "카트리지 교체 없이 실시간 전환하는 듀얼 모드",

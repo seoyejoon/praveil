@@ -145,7 +145,17 @@ export default function Header({ member, signup }: Props) {
   const light = hasHero && !lightHero && !scrolled && !mega && !open; // 어두운 첫 화면 위: 흰 글자
   const clear = lightHero && !scrolled && !mega && !open; // 밝은 첫 화면 위: 투명 + 검정 글자
   // 하위 메뉴 항목: 지금 보고 있는 페이지와 정확히 같을 때만
-  const isHere = (href: string) => pathname === href.split("?")[0];
+  // 공지사항 · 이벤트 · 원장칼럼은 주소가 같고 ?type 만 다르므로 ?type 까지 맞아야 현재 메뉴로 본다.
+  // (useSearchParams 를 쓰면 모든 페이지가 동적 렌더가 되어, 주소창에서 직접 읽는다)
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    const s = window.location.search;
+    setSearch((prev) => (prev === s ? prev : s));
+  });
+  const here =
+    pathname + (search || (pathname === "/notice" ? "?type=notice" : ""));
+  const isHere = (href: string) =>
+    here === href || (!href.includes("?") && pathname === href);
   const isCurrent = (href: string) => {
     const base = href.split("?")[0].split("/").slice(0, 2).join("/");
     return (

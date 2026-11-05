@@ -160,6 +160,37 @@ export default function TreatmentDetail({
       text: "풍부한 임상 경험과 노하우를 갖춘 대표원장이 모든 시술 과정을 직접 책임 집도하며, 시술 후 경과도 꼼꼼하게 확인해 안심을 더해 드립니다.",
     },
   ];
+  // 의료진이 중요한 이유 우측 사진: 시술군별 원내 자료 사진 (없으면 상담실 사진)
+  const doctorPhoto = [
+    {
+      at: ["/lifting/coolsonic", "/lifting/coolphase", "/lifting/laser"],
+      src: "/images/photos/doctor-room-lifting-20261105.webp",
+      alt: "쿨소닉 · 쿨페이즈 등 리프팅 장비를 갖춘 프라베일 시술실",
+      pos: "object-[50%_72%]",
+    },
+    {
+      at: ["/removal/tattoo", "/acne-pore"],
+      src: "/images/photos/doctor-room-laser-20261105.webp",
+      alt: "피코케이와 클라리티 레이저를 갖춘 프라베일 레이저 시술실",
+      pos: "object-[50%_88%]",
+    },
+    {
+      at: ["/skin/booster", "/skin/collagen", "/skin/retuo"],
+      src: "/images/photos/doctor-cert-booster-20261105.webp",
+      alt: "엘라비에 리투오 공식 인증 병원 등 프라베일에 비치된 인증 자료",
+      pos: "object-[47%_60%]",
+    },
+    {
+      at: ["/petit/filler", "/petit/botox"],
+      src: "/images/photos/doctor-cert-petit-20261105.webp",
+      alt: "포텐자 · 쿨페이즈 · 레스틸렌 등 프라베일에 비치된 제품 자료",
+      pos: "object-[66%_58%]",
+    },
+  ].find((d) => d.at.some((a) => t.href === a || t.href.startsWith(a + "/"))) ?? {
+    src: "/images/photos/retouched/web/coolsonic-consult.jpg",
+    alt: `대표원장 ${doctor.name}`,
+    pos: "object-[62%_40%]",
+  };
   const doctorSection = (
     <section
       id="doctor"
@@ -208,10 +239,10 @@ export default function TreatmentDetail({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/photos/retouched/web/coolsonic-consult.jpg"
-            alt={`대표원장 ${doctor.name}`}
+            src={doctorPhoto.src}
+            alt={doctorPhoto.alt}
             loading="lazy"
-            className="aspect-[4/3] w-full object-cover object-[62%_40%] lg:aspect-[5/4]"
+            className={`aspect-[4/3] w-full object-cover lg:aspect-[5/4] ${doctorPhoto.pos}`}
           />
         </Reveal>
       </div>

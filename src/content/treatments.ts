@@ -1229,7 +1229,7 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     scene: {
       src: photo("hero-retuo-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Design", label: "피부 상태 · 목표 확인" },
@@ -1462,8 +1462,8 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 엑소좀 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {
-      src: photo("hero-booster-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      src: photo("hero-booster-20261027-model-a-face-v3-20261105"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Care", label: "피부 컨디션 · 예민도 확인" },
@@ -1532,7 +1532,7 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     scene: {
       src: photo("hero-collagen-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "Material", label: "제품별 재료 · 사용목적 확인" },
@@ -1595,7 +1595,7 @@ export const treatments: Treatment[] = [
     // 확인 필요: 쥬베룩 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
       src: photo("hero-collagen-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a"),
+      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
       alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
       chips: [
         { x: 55, y: 22, en: "PDLLA", label: "PDLLA · 히알루론산 성분" },

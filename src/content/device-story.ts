@@ -796,10 +796,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "리투오 (Re2O)",
       maker: "L&C BIO",
       image: "/images/retuo/product-intro.webp",
-      photo: "/images/retuo/product-intro.webp",
+      photo: "/images/retuo/product-intro-cutout.png",
       photoAlt: "리투오 제품 상자와 본품 (제조사 공식 자료)",
       mediaContain: true,
-      mediaBg: "#f6f1ec",
       mediaSize: { width: 2520, height: 980 },
       text: "리투오는 면역 거부 반응을 유발하는 세포 성분을 제거하고, 피부 지지 구조인 세포외기질(ECM) 성분만을 정제한 무세포 동종진피(hADM) 스킨부스터입니다. 인체 진피 성분과 유사한 콜라겐과 엘라스틴 등 본연의 구성 물질을 직접 전달하여, 얇아지고 힘을 잃은 피부 속 진피 환경을 다시 채우는 데 집중합니다. 거친 피부결과 미세 잔주름, 꺼진 탄력 밀도를 채우기 위해 개인의 피부 두께와 노화 양상을 면밀히 살펴 1:1 맞춤으로 주입합니다.",
       specs: [
@@ -1753,7 +1752,6 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/official/ultracol-100-200-vials.webp",
       photoAlt: "울트라콜 100 · 200 제품 (제조사 공식 자료)",
       mediaContain: true,
-      mediaBg: "#f6f1ec",
       mediaSize: { width: 1254, height: 1400 },
       text: `울트라콜은 오랜 기간 의료용 봉합사(녹는 실)로 쓰여 온 PDO(폴리디옥사논) 성분을 미세 구형 입자로 가공하여 사용하는 콜라겐부스터입니다.
 
@@ -1775,16 +1773,16 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "피부 두께 및 고민 부위 분석",
-        text: "푸석해진 피부결, 저하된 탄력, 눈가나 볼 등의 볼륨 꺼짐 고민을 꼼꼼히 살피고 환자분의 개인별 피부 두께와 상태를 정밀하게 분석합니다.",
+        title: "고민 부위별 맞춤 타깃 설정",
+        text: "거친 피부결과 눈가 잔주름, 꺼진 볼륨 부위를 나누어 살피고 시술 부위의 특성에 맞는 주입 위치를 설정합니다.",
       },
       {
-        title: "맞춤 규격(100 · 200) 선택 및 주입",
-        text: "피부 상태와 시술 부위에 맞는 규격(울트라콜 100 또는 볼륨부스터 울트라콜 200)을 선택하고, 적정 용량을 정밀하게 나누어 주입합니다. 울트라콜의 주성분인 PDO는 몸에서 서서히 분해되는 합성 고분자 입자로, 제조사는 진피층의 자가 콜라겐 생성을 유도한다고 안내합니다.",
+        title: "맞춤 규격(100 · 200) 정밀 주입",
+        text: "피부결과 얕은 잔주름에는 울트라콜 100, 자연스러운 볼륨 탄력에는 울트라콜 200을 선택하여 적정 용량을 고르게 주입합니다.",
       },
       {
-        title: "점진적인 콜라겐 생성 및 경과 관찰",
-        text: "주입된 PDO 입자를 바탕으로 시간이 지날수록 피부 속에서 자가 콜라겐 생성이 서서히 유도됩니다. 초기 안정화 과정을 거치며 덩어리감 없이 매끄럽게 탄력이 차오르는지 세심하게 관찰합니다. 변화의 속도와 체감 정도는 개인의 피부 컨디션에 따라 차이가 있을 수 있습니다.",
+        title: "이물감 부담을 줄인 자가 콜라겐 재생",
+        text: "체내에서 서서히 분해되는 PDO 미세입자가 피부 속 자가 콜라겐 생성을 유도하여 뭉침 없이 자연스러운 탄력을 채워 갑니다. 변화의 속도와 체감 정도는 개인의 피부 컨디션에 따라 차이가 있을 수 있습니다.",
       },
     ],
     compare: {
@@ -2757,10 +2755,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "QTL 실리프팅",
       maker: "QTL THREAD",
       image: "/images/thread/products/qtl-package.jpg",
-      photo: "/images/thread/products/qtl-package.jpg",
+      photo: "/images/thread/products/qtl-package-cutout.png",
       photoAlt: "QTL 실 제품 패키지 이미지 (제조사 공식 자료)",
       mediaContain: true,
-      mediaBg: "#ffffff",
       mediaSize: { width: 600, height: 380 },
       text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여, 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
 
@@ -2917,10 +2914,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "잼버실",
       maker: "JAMBER THREAD",
       image: "/images/thread/products/jamber-lineup.png",
-      photo: "/images/thread/products/jamber-lineup.png",
+      photo: "/images/thread/products/jamber-lineup-cutout.png",
       photoAlt: "잼버실 Ex · M · Classic 제품 이미지 (제조사 공식 자료)",
       mediaContain: true,
-      mediaBg: "#ffffff",
       mediaSize: { width: 1860, height: 830 },
       text: `잼버실은 피부를 강하게 당겨 올리는 일반적인 리프팅 실과 달리, 스프링처럼 촘촘하게 말려 있는 특수 녹는 실을 꺼진 부위의 피하층에 삽입하여 안쪽부터 탄탄한 지지대 역할을 하도록 만드는 볼륨 시술입니다.
 

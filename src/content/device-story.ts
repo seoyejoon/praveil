@@ -329,8 +329,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인",
         text: "시술 직후 상태를 확인하고, 주의사항과 다음 관리 시기를 안내합니다.",
-        image: "/images/photos/clinic-1.webp",
-        alt: "시술 후 경과를 확인하는 모습",
+        image: "/images/photos/clinic-5.webp",
+        alt: "프라베일 관리실",
       },
     ],
     video: {

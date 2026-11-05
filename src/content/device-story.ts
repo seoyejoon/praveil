@@ -109,6 +109,8 @@ export type DeviceStory = {
   };
   /** 특징 파트 제목 (없으면 "○○만의 특별함") */
   featuresTitle?: string;
+  /** 특징 사진 칸의 가로세로 비율을 하나로 맞출 때 (예: 4 / 3). 없으면 사진마다 원본 비율 */
+  featuresRatio?: number;
   /** 특징 위치 · 모양: "after-ba" 는 전후사진 아래에 아치 사진 카드로 (부위별 지그재그와 겹치지 않게) */
   featuresPlacement?: "after-ba";
   /** 특징: 사진 또는 영상 + 설명 */
@@ -204,6 +206,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     compare: {
+      title: "쿨소닉, 다른 리프팅 장비와의 차이점?",
       columns: [
         { name: "쿨소닉", maker: "아스테라시스", owned: true, self: true },
         { name: "울쎄라", maker: "멀츠" },
@@ -260,6 +263,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다.",
     },
     featuresTitle: "쿨소닉 리프팅의 4가지 특징",
+    // 네 칸의 크기를 4:3 으로 통일한다
+    featuresRatio: 4 / 3,
     features: [
       {
         title: "1.5 · 3.0 · 4.5mm 깊이별 에너지 전달",
@@ -267,7 +272,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: cs("coolsonic-applicator"),
         video: "/videos/coolsonic-applicator.mp4",
         alt: "쿨소닉 1.5mm · 3.0mm · 4.5mm 어플리케이터",
-        mediaSize: { width: 792, height: 864 },
         mediaFit: "cover",
       },
       {
@@ -275,7 +279,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "쿨소닉의 어플리케이터는 굴곡진 피부에도 밀착하기 쉬운 펜형 구조입니다. 얼굴의 곡면을 따라 접촉하면서 초음파 에너지를 전달합니다.",
         image: cs("handpiece-model-a"),
         alt: "얼굴 곡면을 따라 쿨소닉 펜형 어플리케이터로 시술하는 모습",
-        mediaSize: { width: 1200, height: 788 },
+        mediaFit: "cover",
       },
       {
         title: "쿨링으로 통증 부담을 줄이는 초음파 리프팅",
@@ -283,15 +287,16 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: cs("coolsonic-cooling"),
         video: "/videos/coolsonic-cooling.mp4",
         alt: "쿨소닉 ACC 냉각 어플리케이터",
-        mediaSize: { width: 792, height: 864 },
-        mediaEdges: ["#06141a", "#06141a"],
+        mediaFit: "cover",
       },
       {
         title: "콜라겐과 탄성섬유의 재생 유도",
         text: "쿨소닉의 집속 초음파는 피부 속 목표 조직에 열응고점을 형성합니다. 이를 통해 콜라겐과 탄성섬유의 재생을 유도해 탄력과 리프팅 효과를 기대할 수 있습니다.",
         image: cs("principle"),
         alt: "피부 속 목표 조직에 열응고점을 만드는 쿨소닉 집속 초음파 원리",
-        mediaSize: { width: 1600, height: 901 },
+        // 원리 그림은 잘리면 안 되므로 칸 안에 전체를 넣고 남는 자리는 그림 색으로 채운다
+        mediaFit: "contain",
+        mediaEdges: ["#0d282f", "#0d282f"],
       },
     ],
     process: [

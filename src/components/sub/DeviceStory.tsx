@@ -389,7 +389,7 @@ export function StoryFeatures({
               : f.paddedWidescreen
                 ? 4 / 3
                 : null;
-            const boxRatio = f.mediaSize ? ratio : null;
+            const boxRatio = story.featuresRatio ?? (f.mediaSize ? ratio : null);
             const fit = f.mediaFit ?? (boxRatio ? "contain" : "cover");
             // 박스를 원본 비율로 맞추면 남는 자리가 없어 가장자리 색이 필요 없음
             const edges = fit === "contain" && !boxRatio ? f.mediaEdges : undefined;

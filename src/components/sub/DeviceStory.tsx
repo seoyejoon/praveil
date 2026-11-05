@@ -57,7 +57,11 @@ export function StoryAbout({
   return (
     <>
       {/* 어떤 장비인가요? (제조사 브랜드 영상이 있으면 어두운 카드에 영상) */}
-      <section id="what" className="scroll-mt-36 px-3 md:scroll-mt-44 md:px-6">
+      {/* 원리 · 특별함 칸이 모두 없으면 다음 섹션과 맞닿으므로 아래를 띄운다 */}
+      <section
+        id="what"
+        className={`scroll-mt-36 px-3 md:scroll-mt-44 md:px-6 ${principle.length === 0 && story.features.length === 0 ? "mb-20 md:mb-28" : ""}`}
+      >
         {device.film || device.photo ? (
           <div className="mx-auto grid max-w-[1560px] overflow-hidden rounded-[28px] bg-[#2b2b2b] text-white md:rounded-[40px] lg:grid-cols-[1.35fr_1fr]">
             <div
@@ -113,7 +117,9 @@ export function StoryAbout({
                           maxWidth: device.mediaSize.width,
                           maxHeight: device.mediaSize.height,
                         }
-                      : undefined
+                      : device.mediaPosition
+                        ? { objectPosition: device.mediaPosition }
+                        : undefined
                   }
                 />
               )}

@@ -115,9 +115,8 @@ export const mainBest = {
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
-      // 환자 얼굴이 깨져 보여 시술실 사진으로 임시 교체 (새 사진 준비 중)
-      image: photo("clinic-5-no-brown-wrap-20261105"),
-      mobileImage: photo("clinic-5-no-brown-wrap-20261105-m"),
+      image: photo("best-filler-model-a"),
+      mobileImage: photo("best-filler-m-model-a"),
       headline: ["얼굴의 입체감을 디자인하는", "커스텀 볼륨 필러"],
       accent: "볼륨 필러",
       product: "/images/equipment/hero/filler.webp",
@@ -190,7 +189,7 @@ export const mainCategoryImage: Record<string, string> = {
   lifting: photo("cat-main-lifting-model-a"),
   petit: photo("cat-main-petit-model-a"),
   skin: photo("cat-main-skin-model-a"),
-  "acne-pore": photo("cat-skin-care"),
+  "acne-pore": photo("cat-main-acne-pore"),
   removal: photo("cat-main-removal-model-a"),
 };
 

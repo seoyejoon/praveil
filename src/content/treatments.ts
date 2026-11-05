@@ -1033,7 +1033,7 @@ export const treatments: Treatment[] = [
       },
       {
         name: "특수부위",
-        image: "/images/page-assets/praveil-face-special-v1.webp",
+        image: "/images/page-assets/praveil-face-special-20261105-v2.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "측두근 · 입꼬리 · 팔자 등",
         detail:
@@ -1067,7 +1067,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "승모근",
-        en: "Trapezius",
         image: "/images/page-assets/praveil-body-trapezius-v1.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "슬림한 어깨 · 긴 목선",
@@ -1086,7 +1085,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "종아리",
-        en: "Calf",
         image: "/images/page-assets/praveil-body-calves-v1.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "매끄럽고 정돈된 각선미",
@@ -1105,7 +1103,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "다한증",
-        en: "Hyperhidrosis",
         image: "/images/page-assets/praveil-body-axilla-v1.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "땀 분비 억제 · 보송한 일상",
@@ -1583,8 +1580,8 @@ export const treatments: Treatment[] = [
       mobileSrc: photo("hero-acne-pore-treatment-20261105-m-v6"),
       alt: "대표원장이 공통 모델의 볼 부위를 레이저 시술하는 AI 연출 이미지",
       chips: [
-        { x: 42, y: 6, en: "Target", label: "병변 · 흉터 부위 구분" },
-        { x: 42, y: 24, en: "Laser", label: "피부 상태에 맞춘 조사 깊이" },
+        { x: 50, y: 12, en: "Target", label: "병변 · 흉터 부위 구분" },
+        { x: 50, y: 32, en: "Laser", label: "피부 상태에 맞춘 조사 깊이" },
       ],
     },
     headline: ["원인 분석부터 치료까지", "여드름 · 모공 맞춤 케어"],
@@ -1631,6 +1628,8 @@ export const treatments: Treatment[] = [
       {
         name: "프락셀",
         en: "Fraxel",
+        image: "/images/photos/acne-program-01-fraxel-20261105-v2.webp",
+        alt: "서로 간격을 둔 미세한 레이저 조사 영역을 보여주는 피부 단면 모식도",
         text: "패인 흉터 · 모공 · 피부결 (전체 · 부분)",
         detail:
           "미세한 레이저 빔을 점 단위로 나누어 조사해, 정상 조직 사이사이에 재생 반응을 유도하는 프락셔널 레이저입니다. 패인 여드름 흉터와 넓어진 모공, 거칠어진 피부결을 함께 살피며 얼굴 전체 또는 고민 부위만 나누어 진행합니다.",
@@ -1648,6 +1647,8 @@ export const treatments: Treatment[] = [
       {
         name: "피코 프락셀",
         en: "Pico Fraxel",
+        image: "/images/photos/acne-program-02-pico-fraxel-20261105-v2.webp",
+        alt: "피부 내부의 작은 국소 반응 영역을 표현한 피코 프락셔널 개념도",
         text: "여드름 자국 · 모공 · 피부결 (1회 · 3회 진정관리 포함)",
         detail:
           "피코초 단위의 짧은 펄스를 미세한 점 형태로 조사하는 방식입니다. 열 자극을 비교적 짧게 가져가 여드름 자국과 모공, 피부결을 함께 살피며, 프라베일에서는 1회 · 3회 프로그램에 시술 후 진정관리를 포함해 안내합니다.",
@@ -1666,6 +1667,8 @@ export const treatments: Treatment[] = [
         // 확인 필요: 블랙필에 쓰는 성분 · 적용 방식 (지금은 가격표 이름과 기존 설명 기준)
         name: "블랙필",
         en: "Black Peel",
+        image: "/images/photos/acne-program-03-black-peel-20261105-v2.webp",
+        alt: "모공 입구의 각질과 피지 및 표면 필링을 표현한 피부 단면 모식도",
         text: "피지 · 모공 · 칙칙한 톤",
         detail:
           "피지 분비가 많아 모공이 막히고 톤이 칙칙해 보이는 피부를 정돈하는 필링 관리입니다. 표면에 쌓인 각질과 모공 속 노폐물을 정리해 피부결과 톤을 함께 살핍니다.",
@@ -1683,6 +1686,8 @@ export const treatments: Treatment[] = [
       {
         name: "아크네 프로그램",
         en: "Acne Program",
+        image: "/images/photos/acne-program-04-acne-care-20261105-v2.webp",
+        alt: "면포와 염증성 병변의 모낭 상태를 함께 표현한 피부 단면 모식도",
         text: "여드름 단계별 관리 (베이직 · 프리미엄)",
         detail:
           "지금 올라오는 여드름을 단계에 맞춰 관리하는 프로그램입니다. 면포와 염증성 병변을 구분해 필요한 압출과 진정 관리를 구성하며, 피부 상태와 관리 범위에 따라 베이직 · 프리미엄으로 나누어 안내합니다.",
@@ -1701,6 +1706,8 @@ export const treatments: Treatment[] = [
         // 확인 필요: IBPS 부스터필의 사용 성분과 적용 방법 (지금은 가격표 이름 기준)
         name: "아크네 IBPS 부스터필",
         en: "IBPS Booster Peel",
+        image: "/images/photos/acne-program-05-ibps-booster-peel-20261105-v2.webp",
+        alt: "트레이 위 브러시와 거즈, 피펫 및 용기로 필링 관리를 준비하는 연출 이미지",
         text: "여드름 피부에 맞춘 필링 · 부스터 관리",
         detail:
           "여드름으로 예민해진 피부에 맞춰 필링과 부스터 관리를 함께 구성한 프로그램입니다. 각질과 피지를 정리하는 단계와 피부를 진정시키는 단계를 나누어 진행합니다.",
@@ -1718,6 +1725,8 @@ export const treatments: Treatment[] = [
       {
         name: "여드름 압출관리",
         en: "Extraction",
+        image: "/images/photos/acne-program-06-extraction-20261105-v2.webp",
+        alt: "흰 거즈와 스테인리스 트레이 위에 놓인 면포 압출 기구 연출 이미지",
         text: "염증 여드름 · 좁쌀 압출",
         detail:
           "소독된 의료 기구로 필요한 면포를 선택해 제거하는 관리입니다. 모든 병변을 짜는 관리가 아니며, 깊고 아픈 병변은 압출 대신 다른 진료가 필요할 수 있어 상태를 먼저 확인합니다.",
@@ -1735,6 +1744,8 @@ export const treatments: Treatment[] = [
       {
         name: "GA 스케일링",
         en: "GA Scaling",
+        image: "/images/photos/acne-program-07-ga-scaling-20261105-v2.webp",
+        alt: "표면 각질층의 얇은 세포가 분리되는 모습을 표현한 피부 확대 모식도",
         text: "각질 · 피지 정리",
         detail:
           "글리콜산(GA) 성분을 활용해 표면에 쌓인 각질과 모공 속 피지를 정리하는 스케일링 관리입니다. 자극을 크게 주지 않는 선에서 주기적으로 피부결을 정돈하는 데 목적을 둡니다.",

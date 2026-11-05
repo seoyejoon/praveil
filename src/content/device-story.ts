@@ -40,6 +40,8 @@ export type DeviceStory = {
     mediaContain?: boolean;
     /** 인물용 덮개 없이, 칸을 꽉 채워 보여 줌 (제품 연출 사진) */
     mediaFill?: boolean;
+    /** 칸을 채울 때 어느 쪽을 남길지 (object-position) */
+    mediaPosition?: string;
     /** 제품 사진 뒤에 깔 배경색 (흰 배경 제품 컷이 어두운 카드에서 떠 보이지 않게) */
     mediaBg?: string;
     /** 같은 사진의 여러 크기 (srcset). 화면 폭에 맞는 파일을 받도록 */
@@ -681,8 +683,11 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "보톡스",
       maker: "Botulinum Toxin",
-      image: "/images/photos/cat-botox-model-a-v3.webp",
-      photo: "/images/photos/cat-botox-model-a-v3.webp",
+      image: "/images/photos/intro-botox-products-20261105.webp",
+      photo: "/images/photos/intro-botox-products-20261105.webp",
+      photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
+      // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
+      mediaFill: true,
       text: "보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 이용하는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 살펴 계획합니다.",
       specs: [
         {
@@ -702,7 +707,6 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "국산 · 수입 제품 중 상담 후 선택",
         },
       ],
-      photoAlt: "시술 안내에 사용하는 기존 진료 현장 사진",
     },
     principle: [
       {
@@ -919,7 +923,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/retuo/retuo-point-01-hadm-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-01-hadm-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-01-hadm-20261105-v2.webp 1200w",
         alt: "인체 조직 유래 hADM — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "얇아진 피부 속 지지대를 바로 세우는 구조적 보강",
@@ -927,7 +930,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/retuo/retuo-point-02-dermal-support-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-02-dermal-support-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-02-dermal-support-20261105-v2.webp 1200w",
         alt: "진피의 구조적 지지 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "인공 합성물 부담을 줄인 생체 적합성",
@@ -935,7 +937,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp 1200w",
         alt: "무세포 기질과 주변 조직 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "진피 밀도 강화로 완성하는 잔주름 · 결 · 탄력 케어",
@@ -943,7 +944,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2.webp 1200w",
         alt: "피부결과 진피 구조 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
     ],
     process: [
@@ -962,7 +962,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 성분 주입 및 피부 반응 관찰",
         text: "진찰을 통해 미리 계획된 부위와 방법대로 유효 성분을 진피층에 꼼꼼하게 주입하며, 시술 중 피부의 미세한 반응을 세심하게 살피며 진행합니다.",
-        image: "/images/retuo/process-03-injection-4x5.webp",
+        image: "/images/photos/cat-injection-model-a.webp",
         alt: "계획한 부위에 주입을 진행하는 대표원장",
       },
       {
@@ -1244,7 +1244,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2.webp 1200w",
         alt: "PN 성분 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "얇아진 진피층의 밀도와 탄력",
@@ -1252,7 +1251,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2.webp 1200w",
         alt: "진피층의 지지 구조 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "부위별 맞춤 주입",
@@ -1260,7 +1258,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp 1200w",
         alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기 · 깊이 · 간격은 단순화했습니다.",
       },
       {
         title: "일시적 완화가 아닌 피부 컨디션 관리",
@@ -1654,13 +1651,13 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     principleImage: {
-      src: "/images/official/juvelook-structure.png",
-      alt: "쥬베룩 공식 PDLLA 미세입자 구조 이미지",
+      src: "/images/skin-features/juvelook/juvelook-principle-pdlla-ha-20261105.webp",
+      alt: "PDLLA와 히알루론산이 함께 담긴 모습을 표현한 설명용 이미지",
       marks: [],
       layers: [],
-      framed: false,
+      framed: true,
       noteOverlay: true,
-      note: "JUVELOOK · PDLLA 미세입자를 나타낸 제조사 이미지입니다. 실제 입자의 크기와는 다릅니다.",
+      note: "PDLLA와 히알루론산의 구성을 설명하기 위한 AI 이미지입니다. 실제 입자의 크기 · 비율과는 다릅니다.",
     },
     principle: [
       {
@@ -1743,7 +1740,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp 1200w",
         alt: "PDLLA와 콜라겐 지지 구조 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "다공성 망상 구조로 안전성 향상",
@@ -1751,7 +1747,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp 1200w",
         alt: "PDLLA 다공성 망상 구조 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "PDLLA + 히알루론산(HA) 복합 시너지",
@@ -1759,7 +1754,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp 1200w",
         alt: "HA와 수분 환경 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "얕은 진피층 타깃의 미세 결 · 탄력 개선",
@@ -1785,8 +1779,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진피층 균일 분할 주입",
         text: "약물이 뭉치지 않도록 일정한 간격과 깊이를 유지하며, 계획된 진피층에 쥬베룩 성분을 미세하게 나누어 촘촘하게 주입합니다.",
-        image: "/images/photos/cat-skin-care.webp",
-        alt: "시술 과정 설명용 기존 주입 시술 사진",
+        image: "/images/skin-features/juvelook/juvelook-process-03-product-20261105.webp",
+        alt: "시술 직전 준비한 쥬베룩 제품과 주사기",
       },
       {
         title: "진정 및 사후 케어 안내",
@@ -1926,7 +1920,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp 1200w",
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "결절 우려를 낮춘 독자적 미세 구형 입자",
@@ -1934,21 +1927,18 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp 1200w",
         alt: "구형 PDO 입자와 주변 조직 — AI 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아니며 크기·비율은 단순화했습니다.",
       },
       {
         title: "인위적이지 않은 자가 콜라겐 재생 유도",
         text: "외부 물질로 부피를 억지로 늘리는 필러와 달리, 주입된 미세 입자가 진피층 섬유아세포를 활성화하여 내 몸 스스로 콜라겐을 생성하도록 유도합니다. 표정 변화에 어색함이 없으며 자연스러운 탄력과 볼륨을 형성합니다.",
-        image: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-04-skin-texture-20261105-v2.webp 1200w",
-        alt: "피부결과 피부 톤 부위 — AI 안내 사진",
+        image: "/images/skin-features/ultracol/ultracol-point-03-collagen-network-20261105-v3.webp",
+        alt: "PDO 미세입자 주변의 콜라겐 섬유와 섬유아세포를 표현한 AI 설명용 모식도",
       },
       {
         title: "피부 층과 고민에 맞춘 100 · 200 듀얼 라인업",
         text: "진피 얕은 층에 적용해 잔주름 · 모공 · 피부 결을 매끄럽게 정돈하는 울트라콜 100과, 지지층에 주입해 눈 밑 꺼짐 · 팔자주름의 볼륨을 채우는 울트라콜 200으로 세분화되어 있어 부위별 맞춤 시술이 가능합니다.",
-        image: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp",
-        mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-03-undereye-20261105-v2.webp 1200w",
-        alt: "얇은 눈가 · 눈밑 부위 — AI 안내 사진",
+        image: "/images/skin-features/ultracol/ultracol-point-04-dual-lineup-20261105-v3.webp",
+        alt: "울트라콜 Boost 100mg과 울트라콜 200mg 두 바이알을 나란히 배치한 제품 설명 이미지",
       },
     ],
 
@@ -1968,8 +1958,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 맞춤 주입",
         text: "숙련된 노하우를 바탕으로 계획된 부위에 울트라콜 성분을 고르고 촘촘하게 나누어 주입합니다.",
-        image: "/images/photos/cat-skin-care.webp",
-        alt: "시술 과정 설명용 기존 주입 시술 사진",
+        image: "/images/photos/ultracol-process-03-preparation-20261105-v2.webp",
+        alt: "울트라콜 100 · 200 바이알과 보호캡을 씌운 주사기를 준비한 AI 제작 설명 이미지",
       },
       {
         title: "직후 경과 확인 및 홈케어 안내",
@@ -2968,7 +2958,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/qtl-point-01-vector-design-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-01-vector-design-v2-800.webp 800w, /images/thread/features/qtl-point-01-vector-design-v2.webp 1200w",
         alt: "피부 조직 안에서 여러 지지 방향을 표현한 설명용 단면도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "촘촘한 코그(돌기)로 분산되는 고정력",
@@ -2976,7 +2965,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/qtl-point-02-cog-support-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-02-cog-support-v2-800.webp 800w, /images/thread/features/qtl-point-02-cog-support-v2.webp 1200w",
         alt: "실의 돌기와 주변 조직의 관계를 확대한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "탄탄한 유지력과 콜라겐 재생 시너지",
@@ -2984,7 +2972,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/qtl-point-03-collagen-support-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-03-collagen-support-v2-800.webp 800w, /images/thread/features/qtl-point-03-collagen-support-v2.webp 1200w",
         alt: "피부 속 실과 주변 콜라겐 섬유를 표현한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "이물감을 줄인 편안한 마무리와 일상 복귀",
@@ -2992,7 +2979,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/qtl-point-04-gentle-finish-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-04-gentle-finish-v2-800.webp 800w, /images/thread/features/qtl-point-04-gentle-finish-v2.webp 1200w",
         alt: "피부 표면과 내부 실의 위치 관계를 표현한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
     ],
     process: [
@@ -3137,7 +3123,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/jamber-point-01-volume-support-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-01-volume-support-v2-800.webp 800w, /images/thread/features/jamber-point-01-volume-support-v2.webp 1200w",
         alt: "피부 안에서 공간을 받치는 코일형 실의 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "당기지 않고 채우는 맞춤형 타깃 케어",
@@ -3145,7 +3130,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/jamber-point-02-elasticity-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-02-elasticity-v2-800.webp 800w, /images/thread/features/jamber-point-02-elasticity-v2.webp 1200w",
         alt: "유연하게 굽은 코일형 실의 탄성을 표현한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "콜라겐 재생을 통한 탄력 밀도 강화",
@@ -3153,7 +3137,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/jamber-point-03-blunt-cannula-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-03-blunt-cannula-v2-800.webp 800w, /images/thread/features/jamber-point-03-blunt-cannula-v2.webp 1200w",
         alt: "피부 조직과 둥근 캐뉼라 끝부분을 표현한 설명용 단면도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
       {
         title: "이물감을 낮춘 부드러운 안착과 자연스러운 표정",
@@ -3161,7 +3144,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/thread/features/jamber-point-04-collagen-matrix-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-04-collagen-matrix-v2-800.webp 800w, /images/thread/features/jamber-point-04-collagen-matrix-v2.webp 1200w",
         alt: "코일형 실과 주변 콜라겐 섬유의 관계를 표현한 설명용 모식도",
-        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 제품 사진이나 시술 결과가 아닙니다.",
       },
     ],
     process: [
@@ -3453,7 +3435,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "피코케이 레이저 문신제거",
       maker: "SPECLIPSE · PICO-K",
       image: "/images/photos/cat-hair-removal.webp",
-      photo: "/images/official/pico-picok_img_6.png",
+      photo: "/images/official/pico-k-front-body-20261105-v1.png",
       text: "피부 진피층에 주입된 문신 색소에 특정 파장의 레이저 빛을 조사하여 색소 입자를 미세하게 파쇄하고, 체내 대사 과정을 통해 서서히 배출되도록 돕는 시술입니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다. 프라베일에서는 눈썹, 아이라인, 언더라인 등 섬세한 페이스 반영구 색소 제거를 중심으로 진행합니다.",
       specs: [
         {
@@ -3474,7 +3456,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
       ],
       photoAlt: "스페클립스 PICO-K 제조사 공식 장비 이미지",
-      mediaContain: true,
+      // 장비가 세로로 길어, 전체를 다 보여 주기보다 칸을 채워 크게 보여 준다
+      mediaFill: true,
+      mediaPosition: "center top",
     },
     principle: [
       {
@@ -3564,8 +3548,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "레이저 시술",
         text: "색소와 피부에 맞춰 범위를 정하고 반응을 확인합니다. 눈가의 안전 조건을 충족하지 못하면 시술하지 않습니다.",
-        image: "/images/photos/special-5.webp",
-        alt: "문신제거 상담에 사용하는 레이저 진료실 참고 사진",
+        image: "/images/photos/hero-eyebrow-removal-20261105-v7.webp",
+        alt: "대표원장이 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
       },
       {
         title: "경과 확인",
@@ -3600,8 +3584,8 @@ deviceStory["/petit/botox/body"] = {
   device: {
     ...botoxStory.device,
     // 확인 필요: 바디 시술 촬영본 (상담 사진을 쓰지 않아 병원 공간 사진)
-    image: "/images/photos/intro-body-botox-products-20261105-v1.webp",
-    photo: "/images/photos/intro-body-botox-products-20261105-v1.webp",
+    image: "/images/photos/intro-botox-products-20261105.webp",
+    photo: "/images/photos/intro-botox-products-20261105.webp",
     photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
     // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
     mediaFill: true,
@@ -3613,30 +3597,6 @@ deviceStory["/petit/botox/body"] = {
       { label: "제품 선택", value: "국산 · 수입 제품 중 상담 후 선택" },
     ],
   },
-  // 살피는 4가지 · 과정: 얼굴(표정) 대신 근육 · 땀 기준으로 (사진은 얼굴 보톡스와 같은 것)
-  featuresTitle: "바디 보톡스에서 살피는 4가지",
-  features: [
-    {
-      ...botoxStory.features[0],
-      title: "근육 범위 · 두께 확인",
-      text: "어깨를 올리거나 까치발을 들 때 근육이 솟는 범위와 두께, 좌우 차이를 함께 확인합니다.",
-    },
-    {
-      ...botoxStory.features[1],
-      title: "부위와 제품에 맞춘 계획",
-      text: "같은 바디 보톡스도 부위와 제제가 다르면 계획이 달라집니다. 제품 정보와 시술 이력을 확인합니다.",
-    },
-    {
-      ...botoxStory.features[2],
-      title: "근육 · 지방 · 부기 구분",
-      text: "라인이 굵어 보이는 원인이 근육인지, 지방이나 부기인지 먼저 나누어 보고 기대할 수 있는 변화와 한계를 설명합니다.",
-    },
-    {
-      ...botoxStory.features[3],
-      title: "변화가 나타난 뒤 경과 확인",
-      text: "근육 부피는 서서히 줄어들어, 시술 직후 추가하기보다 경과를 보고 좌우 라인과 불편감을 확인합니다.",
-    },
-  ],
   process: [
     {
       title: "맞춤 상담 및 시술 전 상태 확인",
@@ -3653,8 +3613,8 @@ deviceStory["/petit/botox/body"] = {
     {
       title: "대표원장 1:1 맞춤 정밀 주입",
       text: "정품 · 정량 원칙을 바탕으로, 설정된 타깃 부위에 적정 깊이와 알맞은 압력으로 약물을 균일하게 분산 주입합니다.",
-      image: "/images/photos/cat-skin-care.webp",
-      alt: "주입 시술을 진행하는 대표원장",
+      image: "/images/photos/process-body-botox-injection-20261105.webp",
+      alt: "승모근 부위에 주입하는 바디 보톡스 시술 설명 이미지",
     },
     {
       title: "사후 관리 및 주의사항 안내",

@@ -1284,9 +1284,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정품 확인 및 정교한 주입",
         text: "시술 직전 정품 패키지를 확인시켜 드린 후, 계획된 부위에 미세한 양씩 균일하게 나누어 주입합니다.",
-        image: "/images/photos/cat-skin-care.webp",
-        alt: "시술 과정 설명용 기존 주입 시술 사진",
-        coverPosition: "43% 50%",
+        image: "/images/skin-features/rejuran/rejuran-process-03-product-20261105.webp",
+        alt: "시술 직전 확인하는 리쥬란 정품 패키지와 주사기",
       },
       {
         title: "직후 경과 확인 및 홈케어 안내",
@@ -3355,9 +3354,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/official/clarity-poster.jpg",
         alt: "클라리티2 · 듀얼 파장 · 제조사 공식 자료",
         fullFrame: false,
-        mediaSize: { width: 1280, height: 768 },
         video: "/videos/official-clarity.mp4",
-        mediaEdges: ["#f6f2ec", "#f6f2ec"],
+        // 5:3 영상이라 4:3 칸에 담으면 위아래가 남는다. 좌우를 조금 잘라 칸을 채움
+        mediaFit: "cover",
       },
       {
         // 확인 필요: ICD 냉각을 보여 주는 제조사 이미지 (지금은 병원 공간 사진)
@@ -3435,7 +3434,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "피코케이 레이저 문신제거",
       maker: "SPECLIPSE · PICO-K",
       image: "/images/photos/cat-hair-removal.webp",
-      photo: "/images/official/pico-k-front-body-20261105-v1.png",
+      photo: "/images/official/pico-k-card-20261105.png",
       text: "피부 진피층에 주입된 문신 색소에 특정 파장의 레이저 빛을 조사하여 색소 입자를 미세하게 파쇄하고, 체내 대사 과정을 통해 서서히 배출되도록 돕는 시술입니다. 색소의 색 · 양과 피부 상태에 따라 반응이 달라 완전한 제거를 보장하지는 않습니다. 프라베일에서는 눈썹, 아이라인, 언더라인 등 섬세한 페이스 반영구 색소 제거를 중심으로 진행합니다.",
       specs: [
         {
@@ -3456,9 +3455,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
       ],
       photoAlt: "스페클립스 PICO-K 제조사 공식 장비 이미지",
-      // 장비가 세로로 길어, 전체를 다 보여 주기보다 칸을 채워 크게 보여 준다
+      // 클라리티처럼 장비 전체가 크게 보이도록 배경을 깐 이미지
       mediaFill: true,
-      mediaPosition: "center top",
     },
     principle: [
       {

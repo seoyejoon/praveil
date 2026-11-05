@@ -1627,7 +1627,6 @@ export const treatments: Treatment[] = [
     items: [
       {
         name: "프락셀",
-        en: "Fraxel",
         image: "/images/photos/acne-program-01-fraxel-20261105-v2.webp",
         alt: "서로 간격을 둔 미세한 레이저 조사 영역을 보여주는 피부 단면 모식도",
         text: "패인 흉터 · 모공 · 피부결 (전체 · 부분)",
@@ -1646,7 +1645,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "피코 프락셀",
-        en: "Pico Fraxel",
         image: "/images/photos/acne-program-02-pico-fraxel-20261105-v2.webp",
         alt: "피부 내부의 작은 국소 반응 영역을 표현한 피코 프락셔널 개념도",
         text: "여드름 자국 · 모공 · 피부결 (1회 · 3회 진정관리 포함)",
@@ -1666,7 +1664,6 @@ export const treatments: Treatment[] = [
       {
         // 확인 필요: 블랙필에 쓰는 성분 · 적용 방식 (지금은 가격표 이름과 기존 설명 기준)
         name: "블랙필",
-        en: "Black Peel",
         image: "/images/photos/acne-program-03-black-peel-20261105-v2.webp",
         alt: "모공 입구의 각질과 피지 및 표면 필링을 표현한 피부 단면 모식도",
         text: "피지 · 모공 · 칙칙한 톤",
@@ -1685,7 +1682,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "아크네 프로그램",
-        en: "Acne Program",
         image: "/images/photos/acne-program-04-acne-care-20261105-v2.webp",
         alt: "면포와 염증성 병변의 모낭 상태를 함께 표현한 피부 단면 모식도",
         text: "여드름 단계별 관리 (베이직 · 프리미엄)",
@@ -1705,7 +1701,6 @@ export const treatments: Treatment[] = [
       {
         // 확인 필요: IBPS 부스터필의 사용 성분과 적용 방법 (지금은 가격표 이름 기준)
         name: "아크네 IBPS 부스터필",
-        en: "IBPS Booster Peel",
         image: "/images/photos/acne-program-05-ibps-booster-peel-20261105-v2.webp",
         alt: "트레이 위 브러시와 거즈, 피펫 및 용기로 필링 관리를 준비하는 연출 이미지",
         text: "여드름 피부에 맞춘 필링 · 부스터 관리",
@@ -1724,7 +1719,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "여드름 압출관리",
-        en: "Extraction",
         image: "/images/photos/acne-program-06-extraction-20261105-v2.webp",
         alt: "흰 거즈와 스테인리스 트레이 위에 놓인 면포 압출 기구 연출 이미지",
         text: "염증 여드름 · 좁쌀 압출",
@@ -1743,7 +1737,6 @@ export const treatments: Treatment[] = [
       },
       {
         name: "GA 스케일링",
-        en: "GA Scaling",
         image: "/images/photos/acne-program-07-ga-scaling-20261105-v2.webp",
         alt: "표면 각질층의 얇은 세포가 분리되는 모습을 표현한 피부 확대 모식도",
         text: "각질 · 피지 정리",
@@ -1908,6 +1901,8 @@ export const treatments: Treatment[] = [
       src: photo("hero-eyebrow-removal-20261105-v7"),
       mobileSrc: photo("hero-eyebrow-removal-20261105-m-v7"),
       alt: "대표원장이 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
+      // 사진 위 · 아래가 흐려지는 자리에 사진과 같은 색이 보이도록
+      bg: "linear-gradient(#e0dae1, #c1babe)",
       chips: [
         { x: 48, y: 18, en: "Target", label: "색소 범위 · 깊이 확인" },
         { x: 48, y: 64, en: "Safety", label: "눈 보호대 착용 후 조사" },

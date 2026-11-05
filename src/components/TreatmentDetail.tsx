@@ -522,14 +522,16 @@ export default function TreatmentDetail({
               en={t.itemsEn ?? (byArea || t.itemsTitle ? "By Area" : "Program")}
               tone="dark"
               title={
-                byArea ? (
+                // 제목을 따로 적어 두었으면 그것을 쓴다 (부위가 아닌 프로그램 목록 등)
+                t.itemsTitle ??
+                (byArea ? (
                   <>
                     {t.title}, 부위별로
                     <br className="md:hidden" /> 어떻게 다른가요?
                   </>
                 ) : (
-                  (t.itemsTitle ?? `${t.title} 세부 시술`)
-                )
+                  `${t.title} 세부 시술`
+                ))
               }
             />
             {byArea ? (

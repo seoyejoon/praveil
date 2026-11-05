@@ -21,6 +21,11 @@ export function splitForMatrix(procedures: Procedure[]) {
     p.prices.every((r) => !r.note && parts(r.label).every((x) => known.has(x)));
   const matrix = procedures.filter(fits);
   if (matrix.length < 3) return { matrix: [], rest: procedures };
+  // 칸이 하나뿐이면 표가 아니라 그냥 목록이므로 카드로 보여 준다
+  const cols = new Set(
+    matrix.flatMap((p) => p.prices.flatMap((r) => parts(r.label))),
+  );
+  if (cols.size < 2) return { matrix: [], rest: procedures };
   return { matrix, rest: procedures.filter((p) => !fits(p)) };
 }
 

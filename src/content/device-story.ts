@@ -52,6 +52,8 @@ export type DeviceStory = {
     text: string;
     specs: { label: string; value: string }[];
   };
+  /** "○○, 어떤 시술인가요?" 대신 쓸 제목 */
+  aboutTitle?: string;
   /** 원리 (그림 옆 세 단계) */
   principle: { title: string; text: string }[];
   /** 원리 그림의 깊이 표시 (얕게 · 중간 · 깊게 순) — 그림 사진이 없을 때 */
@@ -2419,12 +2421,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "LUTRONIC",
       // 장비가 크게 보이는 기존 제조사 사진 유지 (08 패키지의 장비 컷은 작게 보여 되돌림)
       image: "/images/clarity-video/clarity-device-brand-from-video-v1.webp",
-      photo: "/images/clarity-video/clarity-device-brand-from-video-v1.webp",
-      photoSrcSet: "/images/clarity-video/clarity-device-brand-from-video-v1-800.webp 800w, /images/clarity-video/clarity-device-brand-from-video-v1-1200.webp 1200w, /images/clarity-video/clarity-device-brand-from-video-v1.webp 1920w",
+      // 제조사 저작권 문구를 지우고 흰 배경을 잘라내 어두운 카드에 맞춘 버전
+      photo: "/images/clarity-video/clarity-device-brand-from-video-v1-cutout.webp",
+      photoSrcSet: "/images/clarity-video/clarity-device-brand-from-video-v1-cutout-800.webp 800w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout-1200.webp 1200w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout.webp 1920w",
       photoAlt: "루트로닉 클라리티2 장비와 브랜드 화면 · 제조사 영상 장면",
       photoCaption: "LUTRONIC 제공 클라리티2 장비 소개 영상의 한 장면.",
       mediaContain: true,
-      mediaBg: "#f7f7f7",
       mediaSize: { width: 1920, height: 1080 },
       text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 함께 살핍니다.",
       specs: [
@@ -3057,7 +3059,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/acne-pore": {
     kind: "procedure",
     diagram: "acne",
-    principleLayout: "figure-first",
+    aboutTitle: "여드름 · 모공, 어떻게 치료하나요?",
     showPrices: true,
     device: {
       name: "여드름 · 모공 치료",
@@ -3065,103 +3067,29 @@ export const deviceStory: Record<string, DeviceStory> = {
       image: doctorPhotos.laser,
       photo: doctorPhotos.laser,
       photoFullFrame: true,
-      text: "올라오는 여드름, 붉거나 갈색인 자국, 패인 흉터는 서로 다른 고민입니다. 염증을 먼저 살피고 필요한 약물 치료와 압출 · 각질 관리, 흉터 · 모공 시술을 나누어 계획합니다. 피부가 회복되는 속도를 보며 다음 단계를 정합니다.",
+      text: "진행 중인 붉은 염증과 울긋불긋한 색소 자국, 패인 흉터와 늘어진 모공은 발생하는 원인과 치료 접근법이 다릅니다. 현재 피부 장벽 상태와 염증도를 우선 진단하여 피지선 안정화와 맞춤 압출 · 스케일링을 선행하며, 이후 붉은 자국과 모공 · 흉터 재생 시술을 단계별로 나누어 진행합니다. 피부 본연의 회복 속도에 맞춰 무리 없는 치료 플랜을 세웁니다.",
       specs: [
         {
-          label: "살피는 고민",
-          value: "여드름 · 자국 · 흉터 · 모공",
+          label: "병변 세분화",
+          value: "염증성 여드름 · 색소 침착 · 패인 흉터 · 모공 이완 개별 타깃팅",
         },
         {
-          label: "치료 선택",
-          value: "진료 후 약물 · 관리 · 장비 시술 구분",
+          label: "치료법 구분",
+          value: "피지선 조절, 맞춤 메디컬 스케일링, 모공 · 흉터 타깃 레이저 병행",
         },
         {
-          label: "흉터 평가",
-          value: "패인 모양 · 깊이 · 피부 상태",
+          label: "흉터 정밀 분석",
+          value: "패인 흉터의 깊이 및 모공 탄력도에 맞춘 정교한 시술 설계",
         },
         {
-          label: "계획 기준",
-          value: "현재 염증 · 피부 민감도 · 회복 여유",
+          label: "진행 기준",
+          value: "피부 민감도, 회복 속도, 일상 다운타임을 고려한 시술 간격",
         },
       ],
       photoAlt: "보호 안경을 착용한 대표원장의 레이저 시술 장면",
     },
-    principle: [
-      {
-        title: "지금 생기는 염증부터 확인",
-        text: "면포와 염증성 여드름을 구분하고, 생활 습관과 사용 중인 약을 함께 봅니다. 새 흉터를 줄이려면 현재 여드름을 조절하는 과정이 중요합니다.",
-      },
-      {
-        title: "남은 자국과 패인 흉터를 구분",
-        text: "색이 남은 자국과 피부가 패인 흉터는 같은 방법으로 치료하지 않습니다. 흉터의 모양과 깊이, 모공이 도드라지는 원인을 나누어 봅니다.",
-      },
-      {
-        title: "회복에 맞춰 순서를 조절",
-        text: "피부에 필요한 자극과 회복 시간을 함께 고려합니다. 시술 뒤에는 보습과 자외선 차단을 안내하고, 반응을 보며 치료를 조정합니다.",
-      },
-    ],
-    compare: {
-      title: "여드름 관리와 흉터 시술, 어떻게 다른가요?",
-      lead: "현재 여드름을 다루는 진료 · 관리와 이미 남은 흉터를 다루는 시술은 어떤 차이가 있을까요?",
-      columns: [
-        {
-          name: "여드름 진료",
-          maker: "현재 병변 · 약물 검토",
-          self: true,
-        },
-        {
-          name: "압출관리",
-          maker: "필요한 면포 선택",
-        },
-        {
-          name: "필링 · 각질 관리",
-          maker: "성분 · 피부 상태 확인",
-        },
-        {
-          name: "프락셔널 레이저",
-          maker: "흉터 · 피부결 평가",
-        },
-      ],
-      rows: [
-        {
-          label: "주요 역할",
-          values: [
-            "여드름 종류에 맞는 치료 계획",
-            "필요한 면포의 제거 여부 확인",
-            "피부 표면 각질 · 모공 막힘 관리",
-            "흉터 · 피부결 평가 후 시술",
-          ],
-        },
-        {
-          label: "선택 기준",
-          values: [
-            "여드름 종류 · 범위 · 병력",
-            "면포 · 염증 · 민감도",
-            "사용 성분 · 강도 · 피부 민감도",
-            "흉터 모양 · 깊이 · 피부 톤",
-          ],
-        },
-        {
-          label: "알아둘 점",
-          values: [
-            "약물 치료가 필요할 수 있음",
-            "모든 병변을 압출하지 않음",
-            "성분 · 농도 · 피부 자극 확인",
-            "붉어짐 · 딱지 · 색 변화 가능",
-          ],
-        },
-        {
-          label: "계획 조정",
-          values: [
-            "새 병변이 생기는지 확인",
-            "자극과 회복 상태 확인",
-            "피부 반응과 회복 상태 확인",
-            "회복과 흉터 변화 확인",
-          ],
-        },
-      ],
-      note: "※ 각 치료의 일반적인 특징을 정리한 것으로, 어느 치료가 더 낫다는 뜻이 아닙니다. 맞는 치료는 피부 상태와 고민에 따라 다르며, 효과 · 회복 기간은 사람마다 다릅니다.",
-    },
+    // 요청에 따라 원리 · 비교표 섹션은 쓰지 않는다
+    principle: [],
     featuresTitle: "여드름 · 모공 치료에서 살피는 4가지",
     features: [
       {

@@ -138,7 +138,7 @@ export function StoryAbout({
                 {device.maker} · {device.name}
               </p>
               <h2 className="mt-4 text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[36px]">
-                {title}, 어떤 {what}인가요?
+                {story.aboutTitle ?? `${title}, 어떤 ${what}인가요?`}
               </h2>
               <Reveal>
                 <p className="mt-6 text-[15px] leading-[1.9] whitespace-pre-line text-white/65 md:text-[16px]">
@@ -188,7 +188,7 @@ export function StoryAbout({
             <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
               <SectionHead
                 en="What is"
-                title={`${title}, 어떤 ${what}인가요?`}
+                title={story.aboutTitle ?? `${title}, 어떤 ${what}인가요?`}
               />
               <Reveal>
                 <p className="mt-6 text-[15px] leading-[1.9] whitespace-pre-line text-muted md:text-[17px]">
@@ -214,7 +214,8 @@ export function StoryAbout({
       </section>
 
       {/* 원리 */}
-      {story.principleImage || story.principleLayout === "figure-first" ? (
+      {principle.length === 0 ? null : story.principleImage ||
+        story.principleLayout === "figure-first" ? (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
           <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
           {/* 그림과 설명 높이를 같게: 설명 3개가 그림 높이를 나눠 채움 */}

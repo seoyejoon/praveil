@@ -146,7 +146,7 @@ export default function TreatmentDetail({
 
   // 의료진이 중요한 이유: 어두운 판 위에 이유 3가지 + 오른쪽 원장 카드 (모든 시술 페이지 공통)
   const priceSplit = splitForMatrix(prices);
-  const doctorReasons = [
+  const doctorReasons = t.doctorReasons ?? [
     {
       title: "대표원장 직접 진단",
       text: `개개인의 피부 두께, 탄력 저하 양상, 볼륨 상태를 대표원장이 직접 면밀히 살피고, ${t.title} 시술이 가장 알맞은지 진단부터 철저하게 시작합니다.`,
@@ -174,8 +174,8 @@ export default function TreatmentDetail({
           />
           <p className="mt-4 text-[15px] leading-[1.8] text-white/65 md:text-[16px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 상담부터
-            시술, 경과 확인까지 직접 진행합니다.
+            {josa(hospital.name, "은", "는")} {doctor.name} 대표원장이 시술 전
+            정밀 진단부터 시술, 경과 확인까지 직접 진행합니다.
           </p>
           <ol className="mt-7 border-t border-white/15">
             {doctorReasons.map((r, i) => (

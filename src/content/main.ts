@@ -127,9 +127,9 @@ export const mainBest = {
       category: "피부관리",
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐 부스터. 얇아진 피부에 밀도와 결을 더합니다.",
-      // 기존 리투오 사진은 환자 얼굴이 깨져 있어, 얼굴을 고친 사진에서 같은 구도로 잘라 씀
-      image: photo("best-retuo-model-a-v2-20261105"),
-      mobileImage: photo("best-retuo-m-model-a-v2-20261105"),
+      // 기존 리투오 사진은 환자 얼굴이 깨져 있어, 얼굴을 고친 v3 수정본으로
+      image: photo("best-retuo-model-a-face-v3-20261105"),
+      mobileImage: photo("best-retuo-m-model-a-face-v3-20261105"),
       headline: ["얇아진 피부에 밀도를 채우는", "ECM 스킨부스터 리투오"],
       accent: "리투오",
       product: "/images/equipment/hero/retuo.webp",

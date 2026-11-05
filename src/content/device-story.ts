@@ -3595,26 +3595,32 @@ deviceStory["/petit/botox/body"] = {
       { label: "제품 선택", value: "국산 · 수입 제품 중 상담 후 선택" },
     ],
   },
-  // 얼굴 보톡스와 사진은 같고, 바디 기준으로 글만 바꾼다
+  // 바디 전용 사진 · 글 (얼굴 보톡스와 나눠서 씀)
   featuresTitle: "프라베일 바디 보톡스의 특별함",
   features: [
     {
-      ...botoxStory.features[0],
+      title: "정품 · 정량 확인 및 투명한 원칙",
+      text: "국내외 승인을 거친 안전한 정품만을 사용하며, 정해진 희석 비율과 적정 용량을 엄격히 준수합니다.",
+      image: "/images/photos/body-botox-special-01-authentic-preparation-20261105.webp",
+      alt: "보톡스 제품 패키지와 바이알, 포장된 준비물을 배치한 AI 제작 설명 이미지",
     },
     {
-      ...botoxStory.features[1],
       title: "체형 밸런스를 고려한 자연스러운 라인",
       text: "골격 구조와 전체적인 신체 비율을 정밀하게 분석하여, 무리한 축소가 아닌 매끄럽고 균형 잡힌 바디 라인을 설계합니다.",
+      image: "/images/photos/body-botox-special-02-body-balance-20261105.webp",
+      alt: "여성 모델의 어깨와 등 라인을 보여주는 AI 제작 설명 이미지",
     },
     {
-      ...botoxStory.features[2],
       title: "고용량 시술을 대비한 내성 예방 솔루션",
       text: "바디 부위는 안면부보다 투여 용량이 큰 만큼, 복합 단백질을 배제한 고순도 순수 톡신을 우선적으로 고려하고 과도한 반복 시술을 피해 내성 위험을 철저히 관리합니다.",
+      image: "/images/photos/body-botox-special-03-product-history-review-20261105.webp",
+      alt: "보톡스 제품과 기록 서류를 함께 배치한 AI 제작 설명 이미지",
     },
     {
-      ...botoxStory.features[3],
       title: "근육 기능 손실을 방지하는 분할 주입",
       text: "목, 어깨의 지지력이나 보행 등 일상적인 움직임에 불편이 없도록, 특정 부위에 약물이 과도하게 쏠리지 않게 근육층 깊이와 포인트를 정교하게 나누어 분산 주입합니다.",
+      image: "/images/photos/body-botox-special-04-trapezius-injection-20261105.webp",
+      alt: "승모근과 어깨 부위의 주입 장면을 표현한 AI 제작 설명 이미지",
     },
   ],
   process: [

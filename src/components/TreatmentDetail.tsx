@@ -552,7 +552,7 @@ export default function TreatmentDetail({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={it.image}
-                          alt={`${it.name} 장비`}
+                          alt={it.alt ?? `${it.name} 장비`}
                           loading="lazy"
                           className="aspect-[4/3] w-full bg-[#f3f0eb] object-contain transition-[scale] duration-[1.2s] group-hover:scale-105"
                         />

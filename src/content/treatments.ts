@@ -25,6 +25,8 @@ export type TreatmentItem = {
   detail?: string;
   /** 사진 아래에 보이는 설명 (AI 설명용 이미지 표시 등) */
   caption?: string;
+  /** 사진 설명 (없으면 "○○ 장비") */
+  alt?: string;
   /** 시술 포인트 */
   points?: string[];
   /** 이런 분께 권합니다 */
@@ -1839,7 +1841,9 @@ export const treatments: Treatment[] = [
       },
       {
         name: "여성 바디 · 미세 제모 (라인 · 피부결)",
-        image: "/images/page-assets/praveil-body-calves-v1.webp",
+        image:
+          "/images/page-assets/praveil-hair-female-underarm-model-a-20261105-v2.webp",
+        alt: "겨드랑이와 팔 부위를 보여주는 여성 제모 설명용 모델 이미지",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
         text: "인중, 겨드랑이, 팔 · 다리는 물론 헤어라인이나 뒷목처럼 섬세한 디자인이 필요한 부위입니다. 755nm 파장으로 얇은 털까지 촘촘하게 다루고, 인텔리트랙 기술로 누락되는 부위 없이 고르게 시술합니다.",
       },

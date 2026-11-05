@@ -2289,7 +2289,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "진정 마무리 및 안내",
         text: "시술 직후 열감과 부기를 확인하고, 세안 · 운동 가능 시점과 사후 관리 주의사항을 안내합니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
+        coverPosition: "70% center",
         alt: "프라베일 관리실",
       },
     ],
@@ -2977,7 +2978,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "경과 확인 및 일상 케어 안내",
         text: "시술 직후 나타날 수 있는 부기, 당김, 미세한 패임 여부를 꼼꼼히 체크하고, 편안한 일상 복귀를 위한 주의사항을 친절하게 안내해 드립니다.",
-        image: "/images/photos/clinic-5.webp",
+        image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
+        coverPosition: "70% center",
         alt: "프라베일 관리실",
       },
     ],

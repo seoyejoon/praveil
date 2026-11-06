@@ -13,9 +13,10 @@ import {
 
 // 한 페이지 안에서 하위 시술을 바꿔 보기 (예: 스킨부스터 → 리쥬란힐러 · 엑소좀)
 // - 서버는 모든 시술을 그려 둠 (검색엔진이 다 읽게). 화면에 붙은 뒤에는 고른 것만 남김 (같은 id 가 겹치지 않게)
-// - 주소: ?type=exosome (첫 번째 시술은 주소 그대로)
-// - 첫 화면 제목 아래 버튼: 맨 위에서 바꿈
-// - 화면 아래 떠 있는 버튼: 지금 읽던 섹션 그대로 다른 시술로 바꿈
+// - 첫 번째는 언제나 부모 시술(여러 시술을 한눈에 비교하는 원고). 주소는 그대로
+// - 둘째부터가 하위 시술. 주소: ?type=exosome
+// - 첫 화면 제목 아래 버튼: 맨 위에서 바꿈 (부모 포함 전부)
+// - 화면 아래 떠 있는 버튼: 지금 읽던 섹션 그대로 다른 시술로 바꿈 (하위 시술만)
 type Variant = { key: string; label: string; title: string };
 type Ctx = {
   variants: Variant[];
@@ -225,7 +226,11 @@ function FloatingSwitch() {
           className="mr-1 h-4 w-4 shrink-0 text-taupe"
           strokeWidth={1.6}
         />
+        {/* 부모 시술(i === 0)은 빼고 하위 시술만. 이 버튼은 '읽던 섹션 그대로
+            다른 시술 보기'인데 부모 원고는 섹션 구성이 달라 맞춰 갈 자리가 없고,
+            넷이 되면 폭이 넘쳐 화면 양쪽 둥근 버튼에 가린다 (휴대폰 375px) */}
         {ctx.variants.map((v, i) => {
+          if (i === 0) return null;
           const on = i === ctx.active;
           return (
             <button

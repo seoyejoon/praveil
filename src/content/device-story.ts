@@ -776,7 +776,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "장기 시술을 고려한 내성 관리 솔루션",
-        text: "반복 시술에도 반응 저하가 없도록 복합 단백질을 정제한 순수 톡신 라인업을 갖추고 적정 시술 주기를 엄수합니다.",
+        text: "반복 시술에서 반응이 떨어지는 부담을 줄이기 위해 복합 단백질을 정제한 톡신 라인업을 갖추고, 권장 주기보다 짧은 간격의 재시술은 권하지 않습니다.",
         image: "/images/photos/hero-consult.webp",
         alt: "프라베일 상담실",
         fullFrame: true,
@@ -936,8 +936,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "진피의 구조적 지지 — AI 설명용 모식도",
       },
       {
-        title: "인공 합성물 부담을 줄인 생체 적합성",
-        text: "인공적으로 합성된 물질에 민감하거나 쉽게 부담을 느끼는 피부에도 편안하게 작용합니다. 본래 내 피부 조직과 유사한 성분 기반이기 때문에 이물감에 대한 우려를 덜고 자연스러운 융화를 돕습니다.",
+        title: "인체 조직 유래 성분 기반의 생체 적합성",
+        text: "합성 고분자 재료와 달리 인체 피부 조직에서 얻은 성분을 기반으로 해, 이물감에 대한 부담이 적은 편입니다. 다만 주입 시술인 만큼 붓기 · 멍 등 이상 반응은 생길 수 있어, 피부 상태와 기왕력을 먼저 확인하고 진행합니다.",
         image: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp 1200w",
         alt: "무세포 기질과 주변 조직 — AI 설명용 모식도",
@@ -1747,8 +1747,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "PDLLA와 콜라겐 지지 구조 — AI 설명용 모식도",
       },
       {
-        title: "다공성 망상 구조로 안전성 향상",
-        text: "내부가 그물망(망상) 구조로 이루어진 미세 구형 입자로 조직 내 뭉침(결절) 우려를 덜어내었으며, 체내에서 일정 기간 후 물과 이산화탄소로 안전하게 완전 분해됩니다.",
+        title: "다공성 망상 구조로 뭉침 우려 완화",
+        text: "내부가 그물망(망상) 구조로 이루어진 미세 구형 입자로 조직 내 뭉침(결절) 우려를 덜어내었으며, 체내에서 일정 기간에 걸쳐 물과 이산화탄소로 분해됩니다. 분해 속도는 사람마다 다릅니다.",
         image: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp 1200w",
         alt: "PDLLA 다공성 망상 구조 — AI 설명용 모식도",
@@ -1808,7 +1808,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "울트라콜 100 · 200 제품 (제조사 공식 자료)",
       mediaContain: true,
       mediaSize: { width: 1254, height: 1400 },
-      text: "울트라콜은 오랜 기간 체내 안정성이 입증된 PDO 미세 입자가 피부 속 섬유아세포를 활성화하여 스스로 차오르는 탄력을 만듭니다. 잔주름 · 피부 결 정돈부터 꺼진 부위의 은은한 볼륨감까지, 피부 층과 고민에 맞추어 알맞은 규격(100 · 200)으로 정밀하게 진행합니다.",
+      text: "울트라콜은 수술용 봉합사로 오래 쓰여 온 PDO 미세 입자가 피부 속 섬유아세포를 활성화하여 스스로 차오르는 탄력을 만듭니다. 잔주름 · 피부 결 정돈부터 꺼진 부위의 은은한 볼륨감까지, 피부 층과 고민에 맞추어 알맞은 규격(100 · 200)으로 정밀하게 진행합니다.",
       specs: [
         {
           label: "주요 성분",
@@ -1826,7 +1826,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "생체 반응",
-          value: "자가 콜라겐 생성 유도 후 체내에서 물과 이산화탄소로 100% 완전 분해",
+          value: "자가 콜라겐 생성 유도 후 체내에서 물과 이산화탄소로 분해 (속도는 개인차)",
         },
       ],
 
@@ -1917,18 +1917,18 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresRatio: 4 / 3,
     featuresTitle: "울트라콜의 4가지 특징",
     featuresLead:
-      "단순한 일시적 채움이 아닌, 안전한 자가 조직 형성을 기준으로 시술합니다.",
+      "단순한 일시적 채움이 아닌, 자가 조직이 차오르는 과정을 기준으로 시술합니다.",
     features: [
       {
-        title: "검증된 수술용 녹는 실(PDO) 성분의 안전성",
-        text: "수십 년간 외과 수술용 봉합사로 널리 사용되며 생체 적합성과 안전성이 입증된 PDO(폴리디옥사논) 성분을 사용합니다. 체내에 이물질로 영구히 남지 않고, 일정 기간 후 물과 이산화탄소로 안전하게 완전 생분해되어 배출됩니다.",
+        title: "수술용 봉합사에 쓰이는 녹는 실(PDO) 성분",
+        text: "수십 년간 외과 수술용 봉합사로 쓰여 온 PDO(폴리디옥사논) 성분을 사용합니다. 체내에서 일정 기간에 걸쳐 물과 이산화탄소로 분해되어 배출되며, 분해 속도는 사람마다 다릅니다.",
         image: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp 1200w",
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
       },
       {
         title: "결절 우려를 낮춘 독자적 미세 구형 입자",
-        text: "입자 형태가 불규칙한 기존 콜라겐 촉진제와 달리, 표면이 매끄럽고 균일한 '미세 구(Sphere)' 형태로 가공되었습니다. 조직 내 주입 시 뭉침 현상(결절) 발생 가능성을 최소화하여 얇은 피부층에도 안심하고 적용할 수 있습니다.",
+        text: "입자 형태가 불규칙한 기존 콜라겐 촉진제와 달리, 표면이 매끄럽고 균일한 '미세 구(Sphere)' 형태로 가공되었습니다. 조직 내 주입 시 뭉침 현상(결절) 발생 가능성을 낮추도록 가공되었습니다. 얇은 피부층에는 주입 깊이와 양을 나누어 진행합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp 1200w",
         alt: "구형 PDO 입자와 주변 조직 — AI 설명용 모식도",

@@ -270,7 +270,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
     onset: "회복 뒤 경과 확인",
     profile: {
       method: "고주파 (RF) · 미세침",
-      depth: "바늘 0.5 ~ 4.0mm",
+      depth: "바늘 0.5~4.0mm",
       concern: "모공 · 피부결 · 흉터 · 탄력",
       pain: "따끔함 · 마취 크림 사용",
       recovery: "붉은기 · 바늘 자국 개인차",

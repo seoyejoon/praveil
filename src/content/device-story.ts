@@ -233,7 +233,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     compare: {
-      title: "쿨소닉, 다른 리프팅 장비와의 차이점?",
+      title: "쿨소닉, 다른 리프팅 장비와 어떻게 다른가요?",
       columns: [
         { name: "쿨소닉", maker: "아스테라시스", owned: true, self: true },
         { name: "울쎄라", maker: "멀츠" },
@@ -1421,7 +1421,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "노화로 느슨해지기 쉬운 표피와 진피의 결합 구조인 기저막(DEJ, Dermal-Epidermal Junction)을 타깃하여, 영양 전달 통로를 복원하고 탄탄한 피부 지지 코어를 재건합니다.",
         image: "/images/skin-features/isce/isce-point-02-dej-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-02-dej-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-02-dej-20261105-v2.webp 1200w",
-        alt: "표피·진피 사이 DEJ — AI 설명용 모식도",
+        alt: "표피 · 진피 사이 DEJ — AI 설명용 모식도",
       },
       {
         title: "표피 · 유산균 유래 엑소좀 및 다중 성장인자 복합 처방",
@@ -2213,7 +2213,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "슈링크 유니버스, 다른 초음파 리프팅과 차이점",
+      title: "슈링크 유니버스, 다른 초음파 리프팅과 어떻게 다른가요?",
       lead: "같은 집속 초음파(HIFU) 리프팅이라도 에너지를 전달하는 방식과 핸드피스 구조에 차이가 있습니다. 고민 부위와 피부 상태를 면밀히 진단하여 적합한 장비를 선택합니다.",
       columns: [
         { name: "슈링크 유니버스", maker: "클래시스 · 국내", self: true },
@@ -2255,7 +2255,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           values: [
             "1.5 · 2.0 · 3.0 · 4.5mm",
             "카트리지별",
-            "1.5 ~ 4.5mm, 0.5mm 단위",
+            "1.5~4.5mm, 0.5mm 단위",
             "카트리지별",
           ],
         },
@@ -2349,11 +2349,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         fadeFrom: "84%",
       },
       mediaContain: true,
-      text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하는 RF팁과, 고주파와 함께 부스터를 넣는 펌핑팁을 피부 상태와 고민에 맞춰 나누어 사용합니다. 바늘 깊이를 0.5 ~ 4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
+      text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하는 RF팁과, 고주파와 함께 부스터를 넣는 펌핑팁을 피부 상태와 고민에 맞춰 나누어 사용합니다. 바늘 깊이를 0.5~4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
       specs: [
         { label: "방식", value: "고주파 (RF) · 미세침" },
         { label: "팁", value: "RF팁 · 펌핑팁 (미세침 + 부스터 주입)" },
-        { label: "바늘 깊이", value: "0.5 ~ 4.0mm (0.25mm 단위)" },
+        { label: "바늘 깊이", value: "0.5~4.0mm (0.25mm 단위)" },
         { label: "함께 하는 관리", value: "PDRN · 엑소좀 · 쥬베룩 등 패키지" },
       ],
     },
@@ -2383,7 +2383,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "포텐자, 다른 고주파 시술과 차이점",
+      title: "포텐자, 다른 고주파 시술과 어떻게 다른가요?",
       lead: "같은 고주파 시술도 바늘을 쓰는지, 에너지를 어디에 주는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
       columns: [
         { name: "포텐자", maker: "제이시스메디칼 · 국내", self: true },
@@ -2454,11 +2454,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaSize: { width: 1280, height: 720 },
       },
       {
-        title: "0.5 ~ 4.0mm, 0.25mm 단위의 세밀한 깊이 조절",
+        title: "0.5~4.0mm, 0.25mm 단위의 세밀한 깊이 조절",
         text: "바늘의 침투 깊이를 0.5mm에서 최대 4.0mm까지 0.25mm 단위로 아주 정밀하게 조절할 수 있습니다. 피부 두께와 굴곡이 저마다 다른 이마, 볼, 코 주변 등 부위별 특성에 맞춘 맞춤형 시술이 가능합니다.",
         image: "/images/potenza/potenza-depth-web-v2.webp",
         video: "/videos/potenza-depth-web-v2.mp4",
-        alt: "포텐자 미세침 팁의 깊이 조절(0.5 ~ 4.0mm, 0.25mm 단위)을 보여 주는 자료 영상",
+        alt: "포텐자 미세침 팁의 깊이 조절(0.5~4.0mm, 0.25mm 단위)을 보여 주는 자료 영상",
         mediaSize: { width: 1280, height: 720 },
       },
     ],
@@ -2552,7 +2552,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "클라리티 리프팅, 다른 리프팅과 차이점",
+      title: "클라리티 리프팅, 다른 리프팅과 어떻게 다른가요?",
       lead: "같은 리프팅도 레이저인지 고주파인지, 어느 고민을 중심으로 보는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
       columns: [
         { name: "클라리티 이너리프팅", maker: "루트로닉 · 국내", self: true },
@@ -2884,7 +2884,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       layers: [],
       framed: true,
       noteOverlay: true,
-      note: "실과 주변 조직의 관계를 표현한 설명용 모식도입니다. 특정 제품의 실제 구조 · 크기 · 삽입 깊이와는 다를 수 있습니다.",
+      note: "돌기가 있는 실과 주변 조직의 관계를 표현한 설명용 모식도입니다. 특정 제품의 실제 구조 · 크기 · 삽입 깊이와는 다를 수 있습니다.",
     },
     principle: [
       {
@@ -2901,7 +2901,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "QTL 실리프팅, 다른 실리프팅과 차이점",
+      title: "QTL 실리프팅, 다른 실리프팅과 어떻게 다른가요?",
       lead: "같은 몰딩실도 돌기 모양과 배열, 조직을 붙잡는 방식이 다릅니다. 처짐 정도와 피부 두께를 함께 보고 고릅니다.",
       columns: [
         // 소재는 표 첫 행("실 종류 및 소재")에 있어 머리글에는 적지 않음
@@ -3078,7 +3078,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
     ],
     compare: {
-      title: "잼버실, 다른 실과의 차이점",
+      title: "잼버실, 다른 실과 어떻게 다른가요?",
       lead: "실리프팅도 살을 당기는 실과 꺼진 곳을 채우는 실로 나뉩니다. 고민이 처짐인지 꺼짐인지 먼저 보고 고릅니다.",
       // 확인 필요: 캐번실 · 테스실 · 실루엣소프트 세부 사양 (제조사 자료로 재확인)
       columns: [

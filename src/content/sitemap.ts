@@ -29,7 +29,7 @@ export const sitemap: SiteSection[] = [
     pages: [
       { href: "/about/philosophy", label: "병원소개" },
       { href: "/about/doctor", label: "의료진소개" },
-      { href: "/location", label: "진료안내 · 오시는길" },
+      { href: "/location", label: "진료안내 · 오시는 길" },
     ],
   },
   {

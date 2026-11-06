@@ -5,6 +5,10 @@ import type { Procedure } from "@/lib/data";
 // - 표에 맞지 않는 시술(다른 이름이 섞인 줄)은 rest 로 돌려줘 기존 카드로 보여 줌
 const clean = (label: string) => label.replace(/\s*\d+\s*cc\s*$/i, "").trim();
 const parts = (label: string) => clean(label).split(/\s*·\s*/);
+// 용량 · 횟수는 제품 이름이 아니다. "100U · 뉴럭스"는 '100U 짜리 뉴럭스' 한 줄이지,
+// 같은 가격의 두 제품(예: "벨로테로 · 레스틸렌")이 아니므로 표로 묶으면 값이 섞인다.
+const isUnit = (name: string) =>
+  /^\d+(\.\d+)?\s*(U|cc|ml|mg|샷|회|줄|부위)$/i.test(name);
 
 export function splitForMatrix(procedures: Procedure[]) {
   // 두 개 이상의 시술에 나오는 이름만 '제품'으로 봄
@@ -18,7 +22,11 @@ export function splitForMatrix(procedures: Procedure[]) {
   );
   const fits = (p: Procedure) =>
     p.prices.length > 0 &&
-    p.prices.every((r) => !r.note && parts(r.label).every((x) => known.has(x)));
+    p.prices.every(
+      (r) =>
+        !r.note &&
+        parts(r.label).every((x) => known.has(x) && !isUnit(x)),
+    );
   const matrix = procedures.filter(fits);
   if (matrix.length < 3) return { matrix: [], rest: procedures };
   // 칸이 하나뿐이면 표가 아니라 그냥 목록이므로 카드로 보여 준다

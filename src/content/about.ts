@@ -121,7 +121,7 @@ export const aboutEquipment = {
   items: [
     {
       name: "쿨소닉",
-      en: "CoolSonic",
+      en: "CoolSoniq",
       type: "초음파 리프팅",
       href: "/lifting/coolsonic",
       image: device("coolsonic"),

@@ -78,7 +78,7 @@ export const treatments: Treatment[] = [
   // ───────── 리프팅 ─────────
   {
     href: "/lifting/coolsonic",
-    en: "Coolsonic",
+    en: "CoolSoniq",
     title: "쿨소닉",
     description: "깊이별로 나누어 시술하는 쿨링 초음파 리프팅",
     image: photo("signature-1-model-a"),
@@ -97,7 +97,7 @@ export const treatments: Treatment[] = [
         { x: 50, y: 50, en: "Cooling", label: "ACC 피부 표면 냉각" },
       ],
     },
-    device: device("coolsonic", "CoolSonic", "초음파 리프팅"),
+    device: device("coolsonic", "CoolSoniq", "초음파 리프팅"),
     headline: ["강력한 Cooling + HIFU", "쿨소닉 초음파 리프팅"],
     intro:
       "쿨소닉은 집속 초음파 에너지를 피부 속 원하는 깊이에 전달해 처진 윤곽과 탄력을 개선하는 리프팅입니다. 얼굴 부위마다 두께가 달라, 대표원장이 직접 깊이와 에너지를 나누어 설계합니다.",
@@ -471,7 +471,7 @@ export const treatments: Treatment[] = [
       mobileSrc: photo("hero-laser-20261027-m-model-a"),
       alt: "대표원장이 레이저 장비로 시술하는 모습",
       chips: [
-        { x: 48, y: 18, en: "Laser", label: "755nm · 1064nm 레이저" },
+        { x: 48, y: 18, en: "Laser", label: "1064nm 롱펄스 레이저" },
         { x: 60, y: 66, en: "Design", label: "피부 톤 · 고민별 계획" },
       ],
     },
@@ -504,12 +504,12 @@ export const treatments: Treatment[] = [
     faq: [],
     doctorReasons: [
       {
-        title: "병변 특성 및 피부 톤 정밀 진단",
-        text: "기미 · 잡티 등 색소의 깊이와 분포, 홍조 · 모세혈관 확장 정도, 피부 본연의 멜라닌 반응도를 면밀히 분석하여 가장 안전하고 유효한 타깃을 설정합니다.",
+        title: "탄력 저하 양상과 피부 톤 정밀 진단",
+        text: "늘어진 모공과 잔주름의 분포, 탄력이 떨어진 부위, 홍조 · 모세혈관 확장 정도와 피부 본연의 멜라닌 반응도를 함께 살펴 안전하고 유효한 타깃을 설정합니다.",
       },
       {
-        title: "듀얼 파장 및 펄스폭 맞춤 설계",
-        text: "표재성 색소와 제모에 효과적인 755nm 알렉산드라이트와 깊은 혈관 · 탄력 · 붉은 기를 개선하는 1064nm 롱펄스 엔디야그 파장 중 병변에 최적화된 파장, 스팟 사이즈, 펄스 폭을 1:1로 정밀하게 설계합니다.",
+        title: "펄스폭 · 스팟 사이즈 맞춤 설계",
+        text: "깊은 혈관과 탄력 · 붉은 기에 작용하는 1064nm 롱펄스 엔디야그 파장을 기준으로, 피부 상태에 맞는 스팟 사이즈와 펄스 폭, 조사 횟수를 1:1로 정밀하게 설계합니다.",
       },
       {
         title: "지능형 쿨링 조율 및 모니터링",
@@ -575,8 +575,8 @@ export const treatments: Treatment[] = [
     ],
     items: [
       {
-        name: "민트실",
-        text: "처진 볼 · 턱선을 받쳐 주는 흡수성 실",
+        name: "QTL실",
+        text: "처진 볼 · 턱선을 끌어올려 고정하는 흡수성 실",
       },
       {
         name: "잼버실",

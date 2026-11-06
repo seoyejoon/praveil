@@ -183,7 +183,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   "/lifting/coolsonic": {
     showPrices: true,
     device: {
-      name: "CoolSonic",
+      name: "CoolSoniq",
       maker: "ASTERASYS",
       image: "/images/equipment/hero/coolsonic.webp",
       film: {
@@ -1314,7 +1314,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "침투 방식",
-          value: "고주파 미세침(포텐자 펌핑팁), MTS 또는 피부 흡수 유도 장비",
+          value:
+            "MTS 또는 피부 흡수 유도 장비 (포텐자 펌핑팁을 함께 쓰는 구성은 별도 패키지)",
         },
         {
           label: "권장 주기",
@@ -2425,7 +2426,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "고주파와 부스터의 시너지, 펌핑 팁(Pumping Tip)",
-        text: "본원의 포텐자는 유효 성분 침투에 특화된 펌핑 팁을 중심으로 운영됩니다. 미세침이 진피층에 고주파 열 자극을 주는 동시에, 쥬베룩이나 엑소좀 같은 프리미엄 부스터를 동일한 경로로 함께 주입하여 시너지 효과를 높입니다. ※ 환자분의 피부 타입과 고민 유형에 가장 적합한 부스터를 1:1로 매칭해 드립니다.",
+        text: "본원의 포텐자는 고주파만 전달하는 RF팁과, 유효 성분을 함께 넣는 펌핑팁을 모두 갖추고 있습니다. 펌핑팁은 미세침이 진피층에 고주파 열 자극을 주는 동시에 쥬베룩 · 울트라콜 · 엑소좀 같은 부스터를 같은 경로로 함께 주입하는 방식입니다. ※ 피부 타입과 고민에 맞춰 팁과 부스터를 상담에서 함께 정합니다. 부스터를 함께 넣는 구성은 별도 패키지로 안내해 드립니다.",
         image: "/images/potenza/potenza-pumping-web-v2.webp",
         video: "/videos/potenza-pumping-web-v2.mp4",
         alt: "포텐자 펌핑팁이 피부 속에 고주파와 함께 부스터를 전달하는 모습을 보여 주는 자료 영상",
@@ -2655,9 +2656,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "실리프팅",
       maker: "흡수성 의료용 실",
       image: "/images/photos/retouched/web/consult.jpg",
-      photo: "/images/official/mint-product.png",
+      photo: "/images/thread/products/qtl-package-v2-cutout.png",
       photoFullFrame: false,
-      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다. 제품 이미지는 민트실의 제조사 제품군이며, 사용할 규격은 진찰 후 선택합니다.",
+      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다. 본원은 QTL실과 잼버실을 갖추고 있으며, 사용할 실과 규격은 진찰 후 선택합니다.",
       specs: [
         {
           label: "방법",
@@ -2676,7 +2677,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "부기 · 멍 · 당김 · 비대칭 등",
         },
       ],
-      photoAlt: "한스바이오메드 MINT 흡수성 실 제품군",
+      photoAlt: "QTL실 제품 패키지 이미지 (제조사 공식 자료)",
       mediaContain: true,
     },
     principle: [
@@ -2685,7 +2686,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "처진 부위와 지방량, 피부 두께를 확인하고 실이 조직을 지지할 방향과 범위를 정합니다.",
       },
       {
-        title: "민트실의 돌기가 조직을 지지",
+        title: "돌기(코그)가 조직을 지지",
         text: "그림은 돌기가 있는 실과 주변 조직의 관계를 설명합니다. 실의 구조와 사용목적을 확인하고 조직을 지지할 층과 방향을 정합니다.",
       },
       {
@@ -2758,10 +2759,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaFit: "cover",
       },
       {
-        title: "민트실 · 재질과 돌기 구조 확인",
-        text: "민트실은 PDO 재질의 흡수성 실입니다. 제조사의 360° 나선형 돌기 구조를 참고해 피부 두께와 조직의 무게에 맞는 규격과 배치를 정합니다.",
+        title: "실의 재질과 돌기 구조 확인",
+        text: "본원이 쓰는 QTL실과 잼버실은 모두 PDO 계열의 흡수성 실입니다. 돌기(코그)의 모양과 배열, 허가된 사용목적을 확인해 피부 두께와 조직의 무게에 맞는 규격과 배치를 정합니다.",
+        // 확인 필요: 돌기 구조 그림 (지금 그림은 일반적인 코그실 구조 설명용)
         image: "/images/official/mint-structure.png",
-        alt: "민트실 · 재질과 돌기 구조 확인 · 제조사 공식 자료",
+        alt: "돌기가 있는 흡수성 실의 구조를 설명하는 그림",
         fullFrame: false,
         mediaSize: { width: 550, height: 550 },
         mediaEdges: ["#fcfaff", "#fdfbff"],
@@ -3229,7 +3231,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     showPrices: true,
     device: {
       name: "클라리티2 레이저 제모",
-      maker: "CYNOSURE LUTRONIC",
+      maker: "LUTRONIC",
       image: "/images/photos/cat-hair-removal.webp",
       photo: "/images/photos/cat-hair-removal.webp",
       text: "레이저 제모는 털의 검은 멜라닌 색소에 선택적으로 흡수되는 레이저 빛을 조사하여, 모근과 모낭을 목표로 하는 시술입니다. 피부 표면의 부담을 줄이면서 털의 성장 주기(성장기)에 맞춰 단계적으로 모낭의 활동을 낮춰 반영구적인 감모 효과를 기대합니다. 개인의 피부 톤, 털의 굵기와 밀도, 부위별 특성에 맞춰 레이저 에너지를 정밀하게 조절해 자극을 줄이며 진행합니다.",

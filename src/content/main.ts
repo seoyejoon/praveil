@@ -82,7 +82,7 @@ export const mainBest = {
   title: "프라베일 시그니처",
   items: [
     {
-      en: "Coolsonic",
+      en: "CoolSoniq",
       name: "쿨소닉",
       category: "리프팅",
       href: "/lifting/coolsonic",

@@ -67,6 +67,6 @@ export const procedureSections = [
 export const procedureInfo = [
   { key: "time", label: "시술 시간", en: "Time" },
   { key: "anesthesia", label: "마취", en: "Anesthesia" },
-  { key: "recovery", label: "회복 기간", en: "Recovery" },
-  { key: "interval", label: "내원 주기", en: "Interval" },
+  { key: "recovery", label: "회복", en: "Recovery" },
+  { key: "interval", label: "권장 주기", en: "Interval" },
 ] as const;

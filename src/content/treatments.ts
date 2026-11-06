@@ -1648,7 +1648,7 @@ export const treatments: Treatment[] = [
       { label: "시술 시간", value: "약 20~30분 (마취 시간 제외)" },
       { label: "마취", value: "마취 크림" },
       {
-        label: "회복 기간",
+        label: "회복",
         value: "엠보싱 · 붉은 기 1~2일 내 자연 완화, 당일 가벼운 일상생활 가능",
       },
       {
@@ -1718,11 +1718,11 @@ export const treatments: Treatment[] = [
     facts: [
       { label: "시술 시간", value: "약 40분 ~ 1시간 소요" },
       {
-        label: "마취 안내",
+        label: "마취",
         value: "기본 케어 무마취 · 레이저 시술 크림 마취",
       },
       {
-        label: "회복 기간",
+        label: "회복",
         value: "즉시 일상 복귀 (미세 붉은 기 · 압출 자국 1~3일)",
       },
       {
@@ -1942,11 +1942,11 @@ export const treatments: Treatment[] = [
     facts: [
       { label: "시술 시간", value: "약 5~30분 소요 (부위별 상이)" },
       {
-        label: "마취 안내",
+        label: "마취",
         value: "자체 쿨링 케어 · 연고 마취 (필요 부위)",
       },
       {
-        label: "회복 기간",
+        label: "회복",
         value: "즉시 일상 복귀 (미세 붉은 기 당일 진정)",
       },
       { label: "권장 주기", value: "4~6주 간격 (5~10회 권장)" },
@@ -2044,7 +2044,7 @@ export const treatments: Treatment[] = [
       { label: "시술 시간", value: "약 10~20분 소요 (부위별 상이)" },
       { label: "마취", value: "눈썹 크림 마취" },
       {
-        label: "회복 기간",
+        label: "회복",
         value: "일상 복귀 가능 (붓기 · 붉은 기 1~3일, 미세 딱지 3~5일)",
       },
       { label: "권장 주기", value: "4~6주 간격 시술" },

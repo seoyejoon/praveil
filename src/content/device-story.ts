@@ -1511,7 +1511,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "리투오 · 쥬베룩 · 울트라콜, 무엇이 다른가요?",
-      lead: "인체조직에서 얻은 성분과 서로 다른 합성 고분자 재료는 어떤 차이가 있을까요?",
+      lead: "인체조직에서 얻은 성분과 서로 다른 합성 고분자 재료는 어떤 차이가 있을까요? 세 가지 모두 프라베일에서 시술합니다.",
       columns: [
         {
           name: "리투오",
@@ -2026,7 +2026,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "슈링크 · 포텐자 · 클라리티, 무엇이 다른가요?",
-      lead: "초음파 · 고주파 · 레이저는 어떻게 에너지를 전달하고, 어떤 피부 고민을 살펴볼까요?",
+      lead: "초음파 · 고주파 · 레이저는 어떻게 에너지를 전달하고, 어떤 피부 고민을 살펴볼까요? 세 장비 모두 프라베일에서 사용합니다.",
       columns: [
         {
           name: "슈링크 유니버스",

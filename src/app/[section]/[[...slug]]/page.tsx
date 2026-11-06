@@ -227,23 +227,15 @@ export default async function SectionPage({ params }: Props) {
     };
 
     if (t.variants) {
-      // 부모 시술(예: 실리프팅)을 첫 탭으로 둔다. 하위 탭만 그리면 여러 시술을
-      // 한눈에 비교하는 부모 원고가 어느 주소에서도 보이지 않는다
-      const tabs = [{ href: t.href, label: t.title }, ...t.variants];
-      const variants = tabs.map((v) => ({
+      const variants = t.variants.map((v) => ({
         key: v.href.split("/").pop()!,
         label: v.label,
         title: findTreatment(v.href)!.title,
       }));
       return (
         <TreatmentSwitch variants={variants}>
-          {tabs.map((v, i) =>
-            build(
-              findTreatment(v.href)!,
-              // 첫 탭은 부모 주소 그대로 (?type= 없음)
-              i === 0 ? "" : variants[i].key,
-              <HeroSwitch />,
-            ),
+          {t.variants.map((v, i) =>
+            build(findTreatment(v.href)!, variants[i].key, <HeroSwitch />),
           )}
         </TreatmentSwitch>
       );

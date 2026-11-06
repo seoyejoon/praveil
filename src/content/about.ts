@@ -152,8 +152,7 @@ export const aboutEquipment = {
       name: "슈링크 유니버스",
       en: "Shurink Universe",
       type: "초음파 리프팅",
-      // 레이저리프팅의 첫 탭은 비교 원고라서 슈링크 탭을 바로 가리킨다
-      href: "/lifting/laser?type=shrink",
+      href: "/lifting/laser",
       image: device("shrink-universe"),
     },
     {

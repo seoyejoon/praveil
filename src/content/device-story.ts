@@ -422,6 +422,23 @@ export const deviceStory: Record<string, DeviceStory> = {
           image: "/images/product-cards/restylane-card-v3-20261105.svg",
           tags: ["히알루론산", "수입"],
         },
+        {
+          name: "벨로테로",
+          en: "Belotero",
+          maker: "멀츠 · 독일",
+          text: "독일에서 만든 히알루론산 필러입니다. 제조사는 겔의 밀도를 층층이 다르게 만드는 CPM™ 공법을 적용해 피부 속에서 고르게 퍼지도록 설계했다고 안내합니다. 소프트 · 밸런스 · 인텐스 · 볼륨으로 제형이 나뉘어 얕은 잔주름부터 볼륨 형성까지 부위별로 나누어 씁니다.",
+          image: "/images/product-cards/belotero-card-v2.svg",
+          tags: ["히알루론산", "수입"],
+        },
+        {
+          // 확인 필요: 큐티필 제조사 표기 (에스테팜 · QTFILL PLUS 기준으로 정리)
+          name: "큐티필",
+          en: "QTFill",
+          maker: "에스테팜 · 국내",
+          text: "국내에서 만든 히알루론산 필러입니다. 제조사는 UHD 가교 공법으로 가교제 사용량을 줄였다고 안내하며, 파인 · 딥 · 서브큐로 점탄성이 나뉘어 얕은 주름부터 깊은 볼륨까지 부위에 맞춰 고릅니다.",
+          image: "/images/product-cards/qtfill-card-v2.svg",
+          tags: ["히알루론산", "국산"],
+        },
       ],
       guide: {
         title: "어떤 제품이 맞을까요?",

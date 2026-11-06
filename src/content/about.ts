@@ -12,22 +12,37 @@ const photo = (name: string) =>
 const device = (name: string) =>
   `/images/equipment/official/${name}-full-official.png`;
 
+type AboutHero = {
+  en: string;
+  title: string;
+  description: string;
+  image: string;
+  mobileImage: string;
+  /** 태블릿 세로(768~1023) 전용. 가로 사진이 거의 정사각 칸에서 잘릴 때 */
+  tabletImage?: string;
+};
+
 // 병원소개 · 의료진소개 상단 (탭은 사이트맵 '병원소개' 분류를 따름)
-export const aboutHero = {
+// 첫 화면 사진: 2026.11 병원 인테리어 촬영본 (public/images/photos/about-community-20261106)
+const interior = (name: string) =>
+  `/images/photos/about-community-20261106/${name}.webp`;
+
+export const aboutHero: Record<"intro" | "doctor", AboutHero> = {
   intro: {
     en: "About Praveil",
     title: "병원소개",
     description: "피부를 먼저 읽고, 꼭 필요한 만큼 정확하게.",
-    image: photo("hero-lobby"),
-    mobileImage: photo("hero-lobby-m"),
+    image: interior("hero-about-philosophy-pc-20261106"),
+    mobileImage: interior("hero-about-philosophy-mobile-20261106"),
   },
   doctor: {
     en: "Doctor",
     title: "의료진소개",
     description: "페이닥터 없이 대표원장이 모든 시술을 직접 책임집니다.",
-    // 원장 사진은 바로 아래 인사말에 있어, 첫 화면은 병원 입구 사진 (병원소개와 같은 모양)
-    image: photo("hero-entrance"),
-    mobileImage: photo("hero-entrance-m"),
+    image: interior("hero-about-doctor-pc-20261106"),
+    mobileImage: interior("hero-about-doctor-mobile-20261106"),
+    // 태블릿 세로에서는 가로 사진이 좌우로 잘려 공간이 안 보여, 세로 사진을 쓴다
+    tabletImage: interior("hero-about-doctor-mobile-20261106"),
   },
 };
 

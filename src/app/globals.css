@@ -136,6 +136,15 @@
     transform: none;
   }
 }
+/* 인테리어 사진 첫 화면: 접수대 · 아치 · 거울이 잘리지 않게 확대를 약하게 */
+@keyframes hero-settle-soft {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: none;
+  }
+}
 /* 옆에서 밀려 들어오며 드러나는 글자 */
 @keyframes slide-in {
   from {

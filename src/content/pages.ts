@@ -46,8 +46,9 @@ export const locationPage = {
     en: "Location",
     title: "진료안내 · 오시는 길",
     description: "진료시간과 찾아오시는 방법을 안내합니다.",
-    image: images.pageHero.location,
-    mobileImage: images.pageHero.locationMobile,
+    // 2026.11 병원 인테리어 촬영본 (접수대 측면과 동선)
+    image: "/images/photos/about-community-20261106/hero-about-location-pc-20261106.webp",
+    mobileImage: "/images/photos/about-community-20261106/hero-about-location-mobile-20261106.webp",
   },
 };
 

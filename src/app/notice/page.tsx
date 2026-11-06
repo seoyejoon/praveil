@@ -13,24 +13,23 @@ const boards = {
     en: "Notice",
     title: "공지사항",
     description: "진료 일정과 병원 소식을 알려 드립니다.",
-    image: "/images/photos/hero-notice.webp?v=20261104",
-    mobileImage: "/images/photos/hero-notice-m.webp",
+    image: "/images/photos/about-community-20261106/hero-community-notice-pc-20261106.webp",
+    mobileImage: "/images/photos/about-community-20261106/hero-community-notice-mobile-20261106.webp",
   },
   event: {
     en: "Event",
     title: "이벤트",
     description: "프라베일에서 진행하는 이벤트를 확인해 보세요.",
-    image: "/images/photos/hero-event.webp",
-    // 확인 필요: 이벤트 세로 전용 사진 (없어서 PC 사진을 잘라 씀)
-    mobileImage: undefined,
+    image: "/images/photos/about-community-20261106/hero-community-event-pc-20261106.webp",
+    mobileImage: "/images/photos/about-community-20261106/hero-community-event-mobile-20261106.webp",
   },
   column: {
     en: "Column",
     title: "원장칼럼",
     description: "대표원장이 진료하며 정리한 이야기를 전해 드립니다.",
-    // 확인 필요: 원장칼럼 전용 첫 화면 사진 (지금은 기존 상담 사진)
-    image: "/images/photos/hero-consult.webp",
-    mobileImage: undefined,
+    // 상패 · 인증패가 보이는 빈 상담실 (사람 사진을 쓰지 않음)
+    image: "/images/photos/about-community-20261106/hero-community-column-pc-20261106-awards-v2.webp",
+    mobileImage: "/images/photos/about-community-20261106/hero-community-column-mobile-20261106-awards-v2.webp",
   },
 };
 
@@ -72,6 +71,7 @@ export default async function NoticePage({ searchParams }: Props) {
       description={b.description}
       image={b.image}
       mobileImage={b.mobileImage}
+      heroTone="interior"
       crumbs={[
         { label: community.label, href: community.href },
         { label: b.title },

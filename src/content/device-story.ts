@@ -169,6 +169,8 @@ export type DeviceStory = {
     fullFrame?: boolean;
     /** 지정한 사진만 원본 비율로 카드를 채우며 얼굴 · 시술 부위 중심을 유지 */
     coverPosition?: string;
+    /** 장비 사진: 케이블 · 바퀴까지 다 보이도록 여백을 두고 전체를 담는다 */
+    fit?: "device";
   }[];
   /** 시술 장면 영상 */
   video?: { src: string; poster: string; title: string[]; text: string };
@@ -1155,11 +1157,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       name: "리쥬란힐러",
       maker: "PHARMA RESEARCH",
       image: "/images/photos/cat-skin-booster-model-a.webp",
-      photo: "/images/official/rejuran-product.png",
-      photoAlt: "파마리서치 공식 리쥬란 제품 이미지",
+      photo:
+        "/images/products/rejuran-healer-confirmed-silver-top-2syringes-20261105.webp",
+      photoAlt: "은색 상단과 검정 하단의 리쥬란힐러 박스와 주사기 2개",
       mediaContain: true,
-      // 원본 327×570. 칸에 맞춰 늘리지 않는다
-      mediaSize: { width: 327, height: 570 },
+      // 원본 475×512. 박스와 주사기가 잘리지 않게 칸 안에 전체를 담는다
+      mediaSize: { width: 475, height: 512 },
       text: "리쥬란힐러는 연어 유래 생체 적합 물질 PN(폴리뉴클레오티드)을 진피층에 직접 주입해 손상된 기저 환경을 복원하고, 탄력 · 피부결 · 유수분 밸런스를 개선하는 스킨부스터입니다.",
       specs: [
         { label: "주성분", value: "PN (폴리뉴클레오티드)" },
@@ -2474,8 +2477,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "정교한 맞춤 고주파 시술",
         text: "설정된 깊이에 맞춰 고주파 열을 균일하게 조사하며 부스터를 정밀 침투시킵니다.",
-        image: "/images/photos/retouched/web/laser-model-a.webp",
-        alt: "대표원장의 얼굴 부위 장비 시술 장면",
+        image: "/images/equipment/potenza-process-03-device-20261106-v1.webp",
+        alt: "포텐자 장비 정면 전체 사진",
+        fit: "device",
       },
       {
         title: "진정 및 사후 관리",
@@ -3013,7 +3017,7 @@ export const deviceStory: Record<string, DeviceStory> = {
   },
   "/lifting/thread/jamber": {
     kind: "procedure",
-    diagram: "thread",
+    // QTL 과 달리 잼버실은 코일형이라 돌기형 공용 그림(diagram: "thread") 대신 전용 모식도를 쓴다
     principleLayout: "figure-first",
     showPrices: true,
     device: {
@@ -3044,13 +3048,15 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
     },
     principleImage: {
-      src: "/images/principles/thread.webp?v=20261026b",
-      alt: "실과 주변 결합조직의 지지 구조를 확대한 입체 개념도",
-      marks: [],
+      src: "/images/principles/jamber-principle-coil-cutaway-20261106-v3.webp",
+      alt: "잼버실의 코일형 구조와 주변 조직을 단순화한 AI 제작 설명 모식도",
+      marks: [
+        { x: 50, y: 53, label: "코일형 실", side: "right", above: true },
+        { x: 20, y: 74, label: "주변 조직", side: "right" },
+      ],
       layers: [],
       framed: true,
-      noteOverlay: true,
-      note: "돌기가 있는 실을 예로 든 설명용 모식도입니다. 잼버실은 스프링 모양으로 꺼진 부위를 받치는 볼륨형 실로, 실제 구조 · 크기 · 삽입 깊이와는 다릅니다.",
+      note: "잼버실의 코일 구조를 단순화한 AI 설명 모식도입니다. 실제 크기 · 삽입 위치 · 효과를 나타내지 않습니다.",
     },
     principle: [
       {
@@ -3635,9 +3641,10 @@ deviceStory["/petit/botox/body"] = {
     },
     {
       title: "쿨링 및 통증 제어",
-      text: "시술 부위를 소독하고 정돈한 뒤, 통증 민감도와 시술 부위에 맞춰 마취 크림을 적용해 불편감을 줄입니다.",
-      image: "/images/photos/process-anesthesia-model-a.webp",
-      alt: "시술 준비와 통증 관리를 진행하는 장면",
+      text: "시술 부위를 소독하고 정돈한 뒤, 통증 민감도에 맞춰 쿨링 패드나 마취 크림으로 불편감을 줄입니다.",
+      image:
+        "/images/photos/body-botox-process-02-shoulder-cooling-20261106-v1.webp",
+      alt: "어깨 · 승모근 부위에 보호천으로 감싼 쿨링 패드를 대는 AI 제작 시술 준비 설명 이미지",
     },
     {
       title: "대표원장 1:1 맞춤 정밀 주입",

@@ -16,6 +16,8 @@ export default function SubPage({
   description,
   image,
   mobileImage,
+  tabletImage,
+  heroTone,
   imagePosition,
   device,
   scene,
@@ -33,6 +35,10 @@ export default function SubPage({
   image: string;
   /** 세로 화면 전용 사진 (없으면 PC 사진을 잘라서 씀) */
   mobileImage?: string;
+  /** 태블릿 세로(768~1023) 전용 사진. 가로 사진을 거의 정사각 칸에 넣으면 인물이 잘려서 씀 */
+  tabletImage?: string;
+  /** 인테리어 사진 첫 화면: 어두운 덮개를 옅게 하고 확대를 약하게 (공간이 잘리지 않게) */
+  heroTone?: "interior";
   /** 사진에서 보여 줄 위치 (예: "75% 30%" — 인물이 오른쪽에 있을 때) */
   imagePosition?: string;
   /** 장비 시술: 사진 대신 아치 배경 + 장비 (배경 없는 제품 사진) */
@@ -82,6 +88,12 @@ export default function SubPage({
               {mobileImage && (
                 <source media="(max-width: 767px)" srcSet={mobileImage} />
               )}
+              {tabletImage && (
+                <source
+                  media="(min-width: 768px) and (max-width: 1023px)"
+                  srcSet={tabletImage}
+                />
+              )}
               <img
                 src={image}
                 alt=""
@@ -89,10 +101,21 @@ export default function SubPage({
                 style={
                   imagePosition ? { objectPosition: imagePosition } : undefined
                 }
-                className="absolute inset-0 h-full w-full animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both] object-cover"
+                className={`absolute inset-0 h-full w-full object-cover ${heroTone === "interior" ? "animate-[hero-settle-soft_2.4s_cubic-bezier(.22,1,.36,1)_both]" : "animate-[hero-settle_2.4s_cubic-bezier(.22,1,.36,1)_both]"}`}
               />
             </picture>
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />
+            {heroTone === "interior" ? (
+              // 따뜻한 톤으로 보정된 인테리어 사진: 왼쪽 글자 자리만 살짝 덮고 아래쪽만 정돈
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, rgba(24,19,15,.20) 0%, rgba(24,19,15,.08) 50%, rgba(24,19,15,0) 75%), linear-gradient(180deg, rgba(24,19,15,.18) 0%, rgba(24,19,15,.02) 32%, rgba(24,19,15,.52) 100%)",
+                }}
+              />
+            ) : (
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,19,15,0.45),rgba(24,19,15,0.15)_35%,rgba(24,19,15,0.75))]" />
+            )}
             <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24">
               {crumbs.length > 0 && (
                 <nav

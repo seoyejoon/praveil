@@ -1439,15 +1439,15 @@ export const treatments: Treatment[] = [
     title: "엑소좀",
     description: "예민하고 지친 피부 컨디션을 관리하는 스킨부스터",
     image: photo("cat-skin-booster-model-a"),
-    // 확인 필요: 엑소좀 전용 첫 화면 사진 (지금은 스킨부스터 사진)
+    // 엑소좀 전용 첫 화면: ISCE 제품 연출 (PC 3:1 · 모바일 9:10 파일 분리)
+    // 제품이 오른쪽(PC) · 아래쪽(모바일)에 있어 글자가 들어갈 빈 자리를 그대로 둔다.
+    // 떠 있는 카드(chips)는 제품을 가려 쓰지 않는다.
     scene: {
-      src: photo("hero-booster-20261027-model-a-face-v3-20261105"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
-      alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "Care", label: "피부 컨디션 · 예민도 확인" },
-        { x: 50, y: 64, en: "Plan", label: "단독 · 함께 받는 시술 계획" },
-      ],
+      src: photo("hero-isce-products-20261105-v1"),
+      mobileSrc: photo("hero-isce-products-20261105-m-v1"),
+      alt: "ISCE 1과 ISCE 2 제품 박스와 바이알을 배치한 제품 연출 이미지",
+      bg: "#efdbc9",
+      fade: "narrow",
     },
     headline: ["차세대 세포외소포 기반", "스킨부스터 ISCE 엑소좀"],
     intro:

@@ -526,7 +526,9 @@ export function StoryProcess({
             delay={i * 100}
             className="min-w-[72%] snap-start md:min-w-0"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-[#efeae3]">
+            <div
+              className={`relative aspect-[4/5] overflow-hidden rounded-[22px] ${s.fit === "device" ? "bg-[#f3f0eb]" : "bg-[#efeae3]"}`}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.image}
@@ -539,7 +541,9 @@ export function StoryProcess({
                   s.image ===
                     "/images/photos/retouched/web/coolsonic-consult.jpg"
                     ? "absolute inset-0 h-full w-full object-cover"
-                    : `h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`
+                    : s.fit === "device"
+                      ? "h-full w-full object-contain p-[18px]"
+                      : `h-full w-full ${s.fullFrame ? "object-contain" : "object-cover object-[70%_center]"}`
                 }
                 style={
                   s.image ===

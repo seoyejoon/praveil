@@ -32,6 +32,7 @@ export default async function LocationPage() {
       description={hero.description}
       image={hero.image}
       mobileImage={hero.mobileImage}
+      heroTone="interior"
       // 병원소개 · 의료진소개와 같은 모양 (상단 경로 없이 아래 탭으로 이동)
       tabs={about.pages}
       current="/location"

@@ -613,7 +613,7 @@ export const treatments: Treatment[] = [
       bg: "#efdacb",
       fade: "narrow",
     },
-    headline: ["강력한 4세대 PDO실,", "QTL 실리프팅"],
+    headline: ["촘촘한 돌기의 PDO 몰딩실,", "QTL 실리프팅"],
     intro:
       "QTL 실리프팅은 돌기가 촘촘히 배열된 몰딩형 녹는 실로 처진 조직을 끌어올려 고정하는 시술입니다. 처짐 방향과 피부 두께, 탄력 저하 양상을 보고 실의 개수와 삽입 방향을 정합니다.",
     photo: stock("thread"),
@@ -1212,7 +1212,7 @@ export const treatments: Treatment[] = [
       bg: "#f6e5d3",
       fade: "narrow",
     },
-    headline: ["hADM를 활용한 ECM 기반", "5세대 스킨부스터 리투오"],
+    headline: ["hADM을 활용한 ECM 기반", "스킨부스터 리투오"],
     intro:
       "리투오는 인체 피부 조직에서 세포 성분을 제거한 무세포 동종진피(hADM) 제품을 이용합니다. 피부결 · 잔주름 · 탄력 고민을 나누어 보고 원료의 특성과 주의사항을 설명한 뒤 시술 여부를 정합니다.",
     photo: stock("retuo"),

@@ -337,13 +337,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-lifting-model-a"),
     // 확인 필요: 슈링크 유니버스 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-laser-20261027-model-a"),
-      mobileSrc: photo("hero-laser-20261027-m-model-a"),
-      alt: "대표원장이 레이저 장비로 시술하는 모습",
-      chips: [
-        { x: 48, y: 18, en: "HIFU", label: "집속 초음파 · 일반 · MP 모드" },
-        { x: 60, y: 66, en: "Design", label: "처짐 부위 · 피부 두께 계획" },
-      ],
+      src: photo("hero-shrink-products-20261106-v1"),
+      mobileSrc: photo("hero-shrink-products-20261106-m-v1"),
+      alt: "슈링크 유니버스 장비를 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#efdbce",
+      fade: "narrow",
     },
     headline: ["더 강력해진 듀얼 모드 HIFU,", "슈링크 유니버스 리프팅"],
     intro:
@@ -400,13 +399,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-lifting-model-a"),
     // 확인 필요: 포텐자 전용 첫 화면 사진 (지금은 레이저리프팅 대표 사진 · 슈링크 · 클라리티와는 다르게 둠)
     scene: {
-      src: photo("hero-laser-20261027-model-a"),
-      mobileSrc: photo("hero-laser-20261027-m-model-a"),
-      alt: "대표원장이 레이저 장비로 시술하는 모습",
-      chips: [
-        { x: 48, y: 18, en: "RF", label: "미세침 고주파 · 팁별 방식" },
-        { x: 60, y: 66, en: "Design", label: "모공 · 피부결 · 탄력 계획" },
-      ],
+      src: photo("hero-potenza-products-20261106-v1"),
+      mobileSrc: photo("hero-potenza-products-20261106-m-v1"),
+      alt: "포텐자 장비를 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#ecd9cc",
+      fade: "narrow",
     },
     headline: ["정교한 Needle + RF", "포텐자 고주파 리프팅"],
     doctorReasons: [
@@ -467,13 +465,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-lifting-model-a"),
     // 확인 필요: 클라리티 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-laser-20261027-model-a"),
-      mobileSrc: photo("hero-laser-20261027-m-model-a"),
-      alt: "대표원장이 레이저 장비로 시술하는 모습",
-      chips: [
-        { x: 48, y: 18, en: "Laser", label: "1064nm 롱펄스 레이저" },
-        { x: 60, y: 66, en: "Design", label: "피부 톤 · 고민별 계획" },
-      ],
+      src: photo("hero-clarity-products-20261106-v1"),
+      mobileSrc: photo("hero-clarity-products-20261106-m-v1"),
+      alt: "클라리티 장비를 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#efdacd",
+      fade: "narrow",
     },
     headline: ["Nd:YAG + Long Pulse,", "클라리티 이너리프팅"],
     intro:
@@ -607,13 +604,12 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: QTL 실리프팅 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-thread-20261027-model-a"),
-      mobileSrc: photo("hero-thread-20261027-m-model-a"),
-      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
-      chips: [
-        { x: 48, y: 18, en: "Design", label: "처짐 방향 · 피부 두께 확인" },
-        { x: 60, y: 66, en: "Lift", label: "부위별 실 개수 · 배치 계획" },
-      ],
+      src: photo("hero-qtl-products-20261106-v1"),
+      mobileSrc: photo("hero-qtl-products-20261106-m-v1"),
+      alt: "QTL 실리프팅 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#efdacb",
+      fade: "narrow",
     },
     headline: ["강력한 4세대 PDO실,", "QTL 실리프팅"],
     intro:
@@ -675,13 +671,12 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-thread-20261027-model-a"),
-      mobileSrc: photo("hero-thread-20261027-m-model-a"),
-      alt: "대표원장이 턱선과 피부 상태를 살피는 진찰 모습",
-      chips: [
-        { x: 48, y: 18, en: "Volume", label: "꺼진 부위 · 피부 두께 확인" },
-        { x: 60, y: 66, en: "Thread", label: "볼륨형 실 · 부위별 계획" },
-      ],
+      src: photo("hero-jamber-products-20261106-v1"),
+      mobileSrc: photo("hero-jamber-products-20261106-m-v1"),
+      alt: "잼버실 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#ebd9cc",
+      fade: "narrow",
     },
     headline: ["스프링 형태의 PDO실,", "잼버실 리프팅"],
     intro:
@@ -1208,13 +1203,12 @@ export const treatments: Treatment[] = [
     description: "얇아지고 거칠어진 피부결 · 탄력을 위한 리투오 시술",
     image: photo("cat-skin-care"),
     scene: {
-      src: photo("hero-retuo-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
-      alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "Design", label: "피부 상태 · 목표 확인" },
-        { x: 50, y: 64, en: "Plan", label: "부위별 깊이 · 양 설계" },
-      ],
+      src: photo("hero-retuo-products-20261106-v1"),
+      mobileSrc: photo("hero-retuo-products-20261106-m-v1"),
+      alt: "리투오 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#f6e5d3",
+      fade: "narrow",
     },
     headline: ["hADM를 활용한 ECM 기반", "5세대 스킨부스터 리투오"],
     intro:
@@ -1372,13 +1366,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 리쥬란힐러 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {
-      src: photo("hero-booster-20261027-model-a-face-v3-20261105"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
-      alt: "대표원장이 이마 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "PN", label: "PN 성분 · 정품 확인" },
-        { x: 50, y: 64, en: "Plan", label: "피부 두께 · 부위별 계획" },
-      ],
+      src: photo("hero-rejuran-products-20261106-v3"),
+      mobileSrc: photo("hero-rejuran-products-20261106-m-v3"),
+      alt: "리쥬란힐러 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#f4dccd",
+      fade: "narrow",
     },
     headline: ["무너진 피부 장벽 리모델링", "리쥬란힐러 스킨부스터"],
     intro:
@@ -1443,10 +1436,11 @@ export const treatments: Treatment[] = [
     // 제품이 오른쪽(PC) · 아래쪽(모바일)에 있어 글자가 들어갈 빈 자리를 그대로 둔다.
     // 떠 있는 카드(chips)는 제품을 가려 쓰지 않는다.
     scene: {
-      src: photo("hero-isce-products-20261105-v1"),
-      mobileSrc: photo("hero-isce-products-20261105-m-v1"),
-      alt: "ISCE 1과 ISCE 2 제품 박스와 바이알을 배치한 제품 연출 이미지",
-      bg: "#efdbc9",
+      src: photo("hero-isce-products-20261106-v1"),
+      mobileSrc: photo("hero-isce-products-20261106-m-v1"),
+      alt: "ISCE 엑소좀 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#f8e3d2",
       fade: "narrow",
     },
     headline: ["차세대 세포외소포 기반", "스킨부스터 ISCE 엑소좀"],
@@ -1573,13 +1567,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     // 확인 필요: 쥬베룩 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-collagen-20261027-model-a"),
-      mobileSrc: photo("hero-booster-20261027-m-model-a-face-v3-20261105"),
-      alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "PDLLA", label: "PDLLA · 히알루론산 성분" },
-        { x: 50, y: 64, en: "Plan", label: "피부 두께 · 주입 범위 계획" },
-      ],
+      src: photo("hero-juvelook-products-20261106-v1"),
+      mobileSrc: photo("hero-juvelook-products-20261106-m-v1"),
+      alt: "쥬베룩 스킨 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#f4dfce",
+      fade: "narrow",
     },
     headline: ["서서히 차오르는 피부결,", "쥬베룩"],
     intro:
@@ -1638,13 +1631,12 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     // 울트라콜 전용 히어로 (20261105 얼굴 수정본, 쥬베룩 공용 파일과 분리)
     scene: {
-      src: photo("hero-ultracol-20261105-v3"),
-      mobileSrc: photo("hero-ultracol-20261105-m-v3"),
-      alt: "대표원장이 얼굴 부위에 주입 시술을 진행하는 모습",
-      chips: [
-        { x: 55, y: 22, en: "PDO", label: "PDO 성분 · 제품 규격 확인" },
-        { x: 50, y: 64, en: "Plan", label: "부위 · 양 계획" },
-      ],
+      src: photo("hero-ultracol-products-20261106-v1"),
+      mobileSrc: photo("hero-ultracol-products-20261106-m-v1"),
+      alt: "울트라콜 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#f4e1d0",
+      fade: "narrow",
     },
     headline: ["PDO 기반의 콜라겐 부스터", "울트라콜 100 · 200"],
     intro:
@@ -2035,15 +2027,12 @@ export const treatments: Treatment[] = [
     device: device("pico-k", "PICO-K", "피코 레이저"),
     // 원장 시술 장면 v6 (20261105). 눈썹 반영구 부위 시술 장면
     scene: {
-      src: photo("hero-eyebrow-removal-20261105-v7"),
-      mobileSrc: photo("hero-eyebrow-removal-20261105-m-v7"),
-      alt: "대표원장이 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
-      // 사진 위 · 아래가 흐려지는 자리에 사진과 같은 색이 보이도록
-      bg: "linear-gradient(#e0dae1, #c1babe)",
-      chips: [
-        { x: 48, y: 18, en: "Target", label: "색소 범위 · 깊이 확인" },
-        { x: 48, y: 64, en: "Safety", label: "눈 보호대 착용 후 조사" },
-      ],
+      src: photo("hero-tattoo-products-20261106-v1"),
+      mobileSrc: photo("hero-tattoo-products-20261106-m-v1"),
+      alt: "문신제거 장비를 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#edd9c9",
+      fade: "narrow",
     },
     headline: ["눈썹 · 아이라인 · 언더라인", "프라베일 레이저 문신제거"],
     intro:
@@ -2142,6 +2131,14 @@ treatments.push(
     href: "/petit/botox/face",
     variantOf: "/petit/botox",
     en: "Face Botox",
+    scene: {
+      src: photo("hero-face-botox-products-20261106-v1"),
+      mobileSrc: photo("hero-face-botox-products-20261106-m-v1"),
+      alt: "얼굴 보톡스 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#ebd6c9",
+      fade: "narrow",
+    },
     title: "얼굴 보톡스",
     description: "표정 주름부터 턱 라인, 피부결까지 부위별 맞춤 보톡스",
     headline: ["프라베일 시그니처 시술,", "커스텀 얼굴 보톡스"],
@@ -2176,16 +2173,13 @@ treatments.push(
     en: "Body Botox",
     title: "바디 보톡스",
     description: "승모근 · 종아리 라인과 겨드랑이 다한증을 함께 보는 보톡스",
-    scene: botox.scene && {
-      ...botox.scene,
-      // 바디 전용 히어로 (승모근 · 어깨를 살피는 장면, 얼굴 탭과 분리)
-      src: photo("hero-body-botox-20261105-v2"),
-      mobileSrc: photo("hero-body-botox-20261105-m-v2"),
-      alt: "승모근과 어깨 라인을 살피는 장면",
-      chips: [
-        { x: 55, y: 22, en: "Muscle", label: "근육 두께 · 범위 확인" },
-        { x: 50, y: 64, en: "Plan", label: "부위별 주사 위치 · 용량 계획" },
-      ],
+    scene: {
+      src: photo("hero-body-botox-products-20261106-v1"),
+      mobileSrc: photo("hero-body-botox-products-20261106-m-v1"),
+      alt: "바디 보톡스 제품을 배치한 히어로 연출 이미지",
+      // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
+      bg: "#ebd6c9",
+      fade: "narrow",
     },
     headline: ["매끄러운 실루엣, 쾌적한 일상", "바디 · 다한증 보톡스"],
     intro:

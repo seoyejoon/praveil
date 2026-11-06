@@ -1453,8 +1453,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "맞춤 시술 진행",
         text: "고순도 엑소좀 유효 성분을 진피층까지 균일하게 전달합니다.",
-        image: "/images/page-assets/isce-process-03-topical-ampoule-model-a-20261105-v1.webp",
-        alt: "피부에 ISCE 앰플을 도포하는 과정을 표현한 AI 이미지",
+        image: "/images/photos/process-isce-03-products-only-20261106-v1.webp",
+        alt: "ISCE 1과 ISCE 2 상자 및 바이얼을 배치한 제품 단독 연출 이미지",
       },
       {
         title: "진정 및 사후 케어",

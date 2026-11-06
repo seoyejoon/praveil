@@ -923,6 +923,14 @@ export function StoryCompare({
                   <span className="mt-1 block text-lg font-semibold tracking-[-0.02em] md:text-xl">
                     {col.name}
                   </span>
+                  {/* 본원이 쓰는 장비는 표시해 둔다 (비교표가 '남의 장비'처럼 읽히지 않게) */}
+                  {col.owned && (
+                    <span
+                      className={`mt-2 inline-block rounded-full px-2 py-[3px] text-[10px] leading-none tracking-[0.02em] ${col.self ? "bg-white/15 text-white" : "bg-gold/12 text-gold"}`}
+                    >
+                      본원 보유
+                    </span>
+                  )}
                 </th>
               ))}
             </tr>

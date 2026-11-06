@@ -3,13 +3,13 @@
 // ※ 게시 전 담당 원장이 장비 사용설명서 · 병원 진료 기준에 맞춰 검수
 export const faqDetail: Record<string, { q: string; a: string }[]> = {
   "/lifting/coolsonic": [
-    {
-      q: "쿨소닉은 어떤 부위에 시술할 수 있나요?",
-      a: `쿨소닉은 주로 얼굴과 목에 시술합니다. 펜형 어플리케이터라 볼, 턱선처럼 굴곡진 부위에도 잘 밀착되지만, 부위마다 피부 두께와 뼈 · 신경 위치가 달라 **진찰 후 시술 부위와 깊이를 정합니다.** [쿨소닉 국내 공식 제품 안내](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
-
-눈가는 특히 조심해야 하는 부위입니다. 눈썹 위쪽을 당겨 올리는 시술은 가능하지만, 눈꺼풀에 직접 에너지를 주지는 않습니다. 초음파가 눈에 닿지 않도록 위치를 정확히 잡아 시술합니다. [FDA 집속 초음파 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)
-
-턱선이나 팔자주름이 고민이시라면, 피부가 처진 것인지 지방 · 볼륨이 빠진 것인지 먼저 진단합니다. 원인에 따라 맞는 치료가 달라지기 때문입니다.`,
+    {
+      q: "쿨소닉은 어떤 부위에 시술할 수 있나요?",
+      a: `쿨소닉은 주로 얼굴과 목에 시술합니다. 펜형 어플리케이터라 볼, 턱선처럼 굴곡진 부위에도 잘 밀착되지만, 부위마다 피부 두께와 뼈 · 신경 위치가 달라 **진찰 후 시술 부위와 깊이를 정합니다.** [쿨소닉 국내 공식 제품 안내](https://coolsoniq.co.kr/), [공식 어플리케이터 설명](https://coolsoniq.com/)
+
+눈가는 특히 조심해야 하는 부위입니다. 눈썹 위쪽을 당겨 올리는 시술은 가능하지만, 눈꺼풀에 직접 에너지를 주지는 않습니다. 초음파가 눈에 닿지 않도록 위치를 정확히 잡아 시술합니다. [FDA 집속 초음파 안전 지침](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/focused-ultrasound-stimulator-system-aesthetic-use-class-ii-special-controls-guidance-industry-and)
+
+턱선이나 팔자주름이 고민이시라면, 피부가 처진 것인지 지방 · 볼륨이 빠진 것인지 먼저 진단합니다. 원인에 따라 맞는 치료가 달라지기 때문입니다.`,
     },
     {
       q: "쿨소닉은 어떤 분들에게 추천하나요?",
@@ -25,11 +25,11 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
 
 특히 볼륨이 꺼진 부위는 에너지가 닿지 않도록 세심하게 제외하고, 리프팅이 꼭 필요한 부위에만 집중 조사하여 볼패임을 피하면서 윤곽을 정돈합니다.`,
     },
-    {
-      q: "쿨소닉 효과는 얼마나 유지되나요?",
-      a: `유지 기간은 처짐 정도와 피부 상태, 나이, 생활 습관에 따라 사람마다 다릅니다.
-
-그래서 기간을 약속드리기보다, 경과를 보며 다음 관리 시기를 함께 정합니다.`,
+    {
+      q: "쿨소닉 효과는 얼마나 유지되나요?",
+      a: `유지 기간은 처짐 정도와 피부 상태, 나이, 생활 습관에 따라 사람마다 다릅니다.
+
+그래서 기간을 약속드리기보다, 경과를 보며 다음 관리 시기를 함께 정합니다.`,
     },
     {
       q: "쿨소닉 재시술 주기는 어떻게 되나요?",
@@ -786,7 +786,7 @@ export const faqDetail: Record<string, { q: string; a: string }[]> = {
       q: "한 번 늘어난 모공도 치료받으면 다시 좁아질 수 있나요?",
       a: `이미 탄력을 잃고 넓어진 모공은 홈케어나 화장품만으로는 되돌리기 어렵습니다.
 
-모공 주변 진피층의 콜라겐과 탄력 섬유를 자극하는 고주파(RF) 레이저나 스킨부스터 시술로 모공을 지지하는 피부 벽의 밀도를 채워 주면, 모공 입구가 조여지고 피부결이 정돈되는 변화를 기대할 수 있습니다. 변화의 정도는 피부 상태에 따라 다릅니다. [모공 관리](https://www.aad.org/public/everyday-care/skin-care-secrets/face/treat-large-pores)`,
+모공 주변 진피층의 콜라겐과 탄력 섬유를 자극해 모공을 지지하는 피부 벽의 밀도를 채워 주면, 모공 입구가 조여지고 피부결이 정돈되는 변화를 기대할 수 있습니다. 이 페이지의 프락셀 · 피코 프락셀이 그런 목적으로 쓰이며, 피부 상태에 따라 고주파 레이저(포텐자)나 스킨부스터를 함께 상담하기도 합니다. 변화의 정도는 피부 상태에 따라 다릅니다. [모공 관리](https://www.aad.org/public/everyday-care/skin-care-secrets/face/treat-large-pores)`,
     },
     {
       q: "시술 후 붉은 자국과 미세 딱지는 일상생활에 얼마나 지장을 주나요?",

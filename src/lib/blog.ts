@@ -19,11 +19,17 @@ const pick = (xml: string, tag: string) =>
   cdata(xml.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`))?.[1]);
 
 // "구월동 피부과 | 실제 제목" 같은 검색용 머리말을 떼고 가장 긴 조각을 제목으로
-const cleanTitle = (t: string) =>
-  t
-    .split("|")
-    .map((s) => s.trim())
-    .sort((a, b) => b.length - a.length)[0] ?? t;
+// 블로그 계정이 아직 옛 이름(뉴리즈)이라 글 제목에 옛 상호가 붙어 온다. 홈페이지에서는 떼고 보여 준다.
+const OLD_NAME = /\s*[-–·|]?\s*뉴리즈(의원)?(\s*인천(점)?)?\s*$/;
+
+export const cleanTitle = (t: string) => {
+  const main =
+    t
+      .split("|")
+      .map((s) => s.trim())
+      .sort((a, b) => b.length - a.length)[0] ?? t;
+  return main.replace(OLD_NAME, "").trim() || main;
+};
 
 /** 인천점 · 공통 글만 (잠실점 글 제외) */
 export async function getBlogPosts(limit = 8): Promise<BlogPost[]> {

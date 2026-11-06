@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, ArrowUpRight, Gift, Megaphone } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Gift, Megaphone, PenLine } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Notice } from "@/lib/data";
@@ -11,7 +11,16 @@ const tabs = [
   { key: "all", label: "전체" },
   { key: "notice", label: "공지사항" },
   { key: "event", label: "이벤트" },
+  { key: "column", label: "원장칼럼" },
 ] as const;
+
+// 글머리 아이콘 · 이름 ('전체'에 칼럼이 섞여도 공지사항으로 보이지 않게)
+const kind = {
+  event: { label: "이벤트", Icon: Gift },
+  column: { label: "원장칼럼", Icon: PenLine },
+  notice: { label: "공지사항", Icon: Megaphone },
+} as const;
+const kindOf = (t: string) => kind[t as keyof typeof kind] ?? kind.notice;
 
 // 소식: 탭으로 전체 / 공지 / 이벤트를 골라 보는 목록 (이벤트는 섬네일 가로 슬라이드)
 export default function MainNews({ items }: { items: Item[] }) {
@@ -109,17 +118,19 @@ export default function MainNews({ items }: { items: Item[] }) {
         ) : (
           <ul className="border-t border-gold">
             {list.length ? (
-              list.map((n) => (
+              list.map((n) => {
+                const { label, Icon } = kindOf(n.type);
+                return (
                 <li key={n.id} className="border-b border-black/10">
                   <Link href={`/notice/${n.id}`} className="group grid grid-cols-[1fr_auto] items-center gap-4 py-5 md:grid-cols-[auto_1fr_auto] md:gap-10 md:py-8">
                     <span className="hidden font-display text-base font-light tracking-[0.1em] text-black/45 md:block">{n.createdAt.replace(/-/g, ".")}</span>
                     <span className="min-w-0">
                       <span className="flex min-w-0 items-center">
                       <span
-                        title={n.type === "event" ? "이벤트" : "공지사항"}
+                        title={label}
                         className={`mr-2 inline-grid h-6 w-6 shrink-0 place-items-center rounded-full align-middle md:mr-3 md:h-7 md:w-7 ${n.type === "event" ? "bg-gold text-white" : "bg-ivory text-gold"}`}
                       >
-                        {n.type === "event" ? <Gift className="h-3.5 w-3.5" strokeWidth={1.6} /> : <Megaphone className="h-3.5 w-3.5" strokeWidth={1.6} />}
+                        <Icon className="h-3.5 w-3.5" strokeWidth={1.6} />
                       </span>
                       <span className="truncate text-[15px] font-medium transition group-hover:underline group-hover:underline-offset-4 md:text-xl">{n.title}</span>
                       </span>
@@ -127,7 +138,8 @@ export default function MainNews({ items }: { items: Item[] }) {
                     <ArrowRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-2" strokeWidth={1.5} />
                   </Link>
                 </li>
-              ))
+                );
+              })
             ) : (
               <li className="py-16 text-center text-sm text-black/45">등록된 소식이 없습니다.</li>
             )}

@@ -235,9 +235,9 @@ export const deviceStory: Record<string, DeviceStory> = {
     compare: {
       title: "쿨소닉, 다른 리프팅 장비와 어떻게 다른가요?",
       columns: [
-        { name: "쿨소닉", maker: "아스테라시스", owned: true, self: true },
+        { name: "쿨소닉", maker: "아스테라시스", self: true },
         { name: "울쎄라", maker: "멀츠" },
-        { name: "슈링크 유니버스", maker: "클래시스", owned: true },
+        { name: "슈링크 유니버스", maker: "클래시스" },
         { name: "써마지 FLX", maker: "솔타메디칼" },
       ],
       rows: [
@@ -287,7 +287,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. '본원 보유' 표시가 없는 장비는 프라베일에서 시술하지 않습니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다.",
+      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 비교 장비의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresTitle: "쿨소닉 리프팅의 4가지 특징",
     // 네 칸의 크기를 4:3 으로 통일한다
@@ -874,12 +874,10 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           name: "쥬베룩",
           maker: "PDLLA · HA",
-          owned: true,
         },
         {
           name: "울트라콜",
           maker: "PDO",
-          owned: true,
         },
       ],
       rows: [
@@ -2260,7 +2258,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 위 표는 각 장비의 일반적인 기술 특성을 정리한 자료로 특정 장비의 우위를 의미하지 않으며, 일부 비교 장비는 본원 보유 장비가 아닐 수 있습니다. 적합한 시술과 통증 · 효과 · 유지 기간은 개인의 피부 상태에 따라 다릅니다.",
+      note: "※ 각 장비의 일반적인 특징을 정리한 것으로, 어느 장비가 더 낫다는 뜻이 아닙니다. 맞는 장비는 피부 상태와 고민에 따라 다르며, 통증 · 효과 · 유지 기간은 사람마다 다릅니다. 비교 장비의 본원 보유 여부를 뜻하지 않습니다.",
     },
     featuresRatio: 4 / 3,
     featuresTitle: "슈링크 유니버스의 4가지 특징",

@@ -2518,7 +2518,11 @@ export const deviceStory: Record<string, DeviceStory> = {
       specs: [
         { label: "에너지 방식", value: "비접촉 롱펄스 레이저 (Long-pulsed Laser)" },
         { label: "타깃 파장", value: "1064nm (진피층 리프팅 · 모공 타이트닝)" },
-        { label: "통증 관리", value: "지능형 냉각 가스 시스템 (무마취 진행)" },
+        // 상단 요약칸('연고 마취 또는 무마취')과 같은 기준으로 적는다
+        {
+          label: "통증 관리",
+          value: "지능형 냉각 가스 시스템 (대부분 무마취, 필요 시 연고 마취)",
+        },
         { label: "연계 관리", value: "LDM 진정 · 재생 케어 · PDRN 복합 설계" },
       ],
     },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { faqDetail, faqPlain } from "@/content/faq-detail";
 import { getBlogPosts } from "@/lib/blog";
+import { narrowGroupName } from "@/lib/price-table";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -101,6 +102,11 @@ export default async function SectionPage({ params }: Props) {
         ? (findTreatment(tt.variantOf)?.variants ?? [])
         : [];
       const mine = siblings.find((v) => v.href === tt.href)?.label;
+      // 이 탭 가격만 남길 때 묶음 이름도 같이 좁힌다
+      // "실리프팅 (QTL실 · 잼버실)" → QTL 탭에서는 "실리프팅 (QTL실)"
+      const otherLabels = siblings
+        .filter((v) => v.label !== mine)
+        .map((v) => v.label);
       const onlyMine = (p: (typeof procedures)[number]) => {
         if (!mine) return p;
         const rows = p.prices.filter((r) => r.label.includes(mine));
@@ -108,7 +114,7 @@ export default async function SectionPage({ params }: Props) {
           siblings.some((v) => v.label !== mine && r.label.includes(v.label)),
         );
         return rows.length && rows.length + others.length === p.prices.length
-          ? { ...p, prices: rows }
+          ? { ...p, name: narrowGroupName(p.name, otherLabels), prices: rows }
           : p;
       };
       const prices = g.prices

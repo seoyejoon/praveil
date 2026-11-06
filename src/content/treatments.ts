@@ -106,7 +106,8 @@ export const treatments: Treatment[] = [
       { label: "시술 시간", value: "약 30~40분" },
       { label: "마취", value: "마취 크림" },
       { label: "회복", value: "일상생활 바로 가능" },
-      { label: "권장 주기", value: "경과 확인 후 결정" },
+      // 본문 Result 와 같은 값으로 맞춤
+      { label: "권장 주기", value: "3~6개월 간격 권장" },
     ],
     recommend: [
       "턱선 · 볼살이 처져 보이는 분",
@@ -200,7 +201,8 @@ export const treatments: Treatment[] = [
     photo: stock("coolphase"),
     facts: [
       { label: "시술 시간", value: "약 30분 내외" },
-      { label: "마취", value: "마취 크림" },
+      // FAQ · 시술 과정과 같은 값으로 맞춤 (냉각으로 진행하고, 필요할 때만 마취 크림)
+      { label: "마취", value: "대부분 무마취 (필요 시 마취 크림)" },
       { label: "회복", value: "당일 즉시 일상 복귀" },
       { label: "권장 주기", value: "3~6개월 주기 권장" },
     ],

@@ -352,8 +352,8 @@ export const treatments: Treatment[] = [
     photo: stock("laser"),
     facts: [
       { label: "시술 시간", value: "약 20~30분 소요" },
-      { label: "마취 방법", value: "마취 크림" },
-      { label: "회복 과정", value: "즉시 일상 복귀 가능" },
+      { label: "마취", value: "마취 크림" },
+      { label: "회복", value: "즉시 일상 복귀 가능" },
       { label: "권장 주기", value: "3~6개월 간격 권장" },
     ],
     recommend: [
@@ -428,8 +428,8 @@ export const treatments: Treatment[] = [
     photo: stock("laser"),
     facts: [
       { label: "시술 시간", value: "약 30~40분 소요" },
-      { label: "마취 안내", value: "크림 마취 (약 20~30분 소요)" },
-      { label: "회복 과정", value: "붉은기 · 미세 자국 2~3일 내 진정" },
+      { label: "마취", value: "크림 마취 (약 20~30분 소요)" },
+      { label: "회복", value: "붉은기 · 미세 자국 2~3일 내 진정" },
       { label: "권장 주기", value: "3~4주 간격 (3회 이상 권장)" },
     ],
     recommend: [
@@ -480,8 +480,8 @@ export const treatments: Treatment[] = [
     photo: stock("laser"),
     facts: [
       { label: "시술 시간", value: "약 20분 내외 (얼굴 전체 기준)" },
-      { label: "마취 여부", value: "연고 마취 또는 무마취" },
-      { label: "회복 기간", value: "즉시 일상 복귀 가능" },
+      { label: "마취", value: "연고 마취 또는 무마취" },
+      { label: "회복", value: "즉시 일상 복귀 가능" },
       {
         label: "권장 주기",
         value: "2~3주 간격 · 3~5회 집중 시술 권장",
@@ -619,8 +619,8 @@ export const treatments: Treatment[] = [
     photo: stock("thread"),
     facts: [
       { label: "시술 시간", value: "시술 부위에 따라 상이" },
-      { label: "마취 여부", value: "국소 마취" },
-      { label: "회복 기간", value: "3~7일 내외" },
+      { label: "마취", value: "국소 마취" },
+      { label: "회복", value: "3~7일 내외" },
       { label: "권장 주기", value: "약 1년 ~ 1년 6개월" },
     ],
     recommend: [
@@ -686,8 +686,8 @@ export const treatments: Treatment[] = [
     photo: stock("thread"),
     facts: [
       { label: "시술 시간", value: "시술 부위에 따라 상이" },
-      { label: "마취 방식", value: "국소 마취" },
-      { label: "회복 기간", value: "2~5일 내외" },
+      { label: "마취", value: "국소 마취" },
+      { label: "회복", value: "2~5일 내외" },
       { label: "유지 기간", value: "약 1년 ~ 1년 6개월" },
     ],
     recommend: [
@@ -1218,9 +1218,9 @@ export const treatments: Treatment[] = [
     photo: stock("retuo"),
     facts: [
       { label: "시술 시간", value: "약 20~30분 소요" },
-      { label: "마취 안내", value: "마취 크림 (약 20~30분)" },
-      { label: "회복 기간", value: "일상생활 즉시 가능 (엠보싱 · 자국 2~3일)" },
-      { label: "시술 주기", value: "3~4주 간격 (3회 이상 권장)" },
+      { label: "마취", value: "마취 크림 (약 20~30분)" },
+      { label: "회복", value: "일상생활 즉시 가능 (엠보싱 · 자국 2~3일)" },
+      { label: "권장 주기", value: "3~4주 간격 (3회 이상 권장)" },
     ],
     recommend: [
       "피부가 얇고 푸석한 분",
@@ -1381,8 +1381,8 @@ export const treatments: Treatment[] = [
     photo: stock("booster"),
     facts: [
       { label: "시술 시간", value: "약 10~15분" },
-      { label: "마취 방법", value: "마취 크림" },
-      { label: "회복 기간", value: "시술 직후 즉시 일상생활 가능" },
+      { label: "마취", value: "마취 크림" },
+      { label: "회복", value: "시술 직후 즉시 일상생활 가능" },
       { label: "권장 주기", value: "3~4주 간격 3회 집중 시술" },
     ],
     recommend: [
@@ -1451,8 +1451,8 @@ export const treatments: Treatment[] = [
     photo: stock("booster"),
     facts: [
       { label: "시술 시간", value: "약 20~30분 소요" },
-      { label: "마취 안내", value: "크림 마취 또는 무마취 (진행 방식별 상이)" },
-      { label: "회복 기간", value: "즉시 일상 복귀 가능 (미세 붉은 기 반나절~1일)" },
+      { label: "마취", value: "크림 마취 또는 무마취 (진행 방식별 상이)" },
+      { label: "회복", value: "즉시 일상 복귀 가능 (미세 붉은 기 반나절~1일)" },
       { label: "권장 주기", value: "2~3주 간격 (3~5회 권장)" },
     ],
     recommend: [
@@ -1646,7 +1646,7 @@ export const treatments: Treatment[] = [
     photo: stock("collagen"),
     facts: [
       { label: "시술 시간", value: "약 20~30분 (마취 시간 제외)" },
-      { label: "마취 방법", value: "마취 크림" },
+      { label: "마취", value: "마취 크림" },
       {
         label: "회복 기간",
         value: "엠보싱 · 붉은 기 1~2일 내 자연 완화, 당일 가벼운 일상생활 가능",
@@ -2042,7 +2042,7 @@ export const treatments: Treatment[] = [
     photo: stock("tattoo"),
     facts: [
       { label: "시술 시간", value: "약 10~20분 소요 (부위별 상이)" },
-      { label: "마취 안내", value: "눈썹 크림 마취" },
+      { label: "마취", value: "눈썹 크림 마취" },
       {
         label: "회복 기간",
         value: "일상 복귀 가능 (붓기 · 붉은 기 1~3일, 미세 딱지 3~5일)",
@@ -2188,8 +2188,8 @@ treatments.push(
       "바디 보톡스는 과도하게 발달한 승모근 · 종아리 근육의 부피를 줄여 슬림한 라인을 정돈하고, 겨드랑이 다한증을 관리하는 시술입니다. 근육의 발달도와 전체적인 체형 밸런스를 면밀히 분석하여 무리 없는 일상 움직임 속에서 자연스러운 변화를 이끌어냅니다.",
     facts: [
       { label: "시술 시간", value: "약 10~20분 소요" },
-      { label: "마취 안내", value: "마취 크림" },
-      { label: "회복 기간", value: "즉시 일상 복귀 (미세 뻐근함 2~3일)" },
+      { label: "마취", value: "마취 크림" },
+      { label: "회복", value: "즉시 일상 복귀 (미세 뻐근함 2~3일)" },
       { label: "권장 주기", value: "4~6개월 간격 권장" },
     ],
     recommend: [

@@ -747,7 +747,7 @@ export default function TreatmentDetail({
             <SectionHead
               en="Result"
               tone="dark"
-              title={`${t.title} 효과 발현 기간 및 유지기간`}
+              title={g.timelineTitle ?? `${t.title} 효과 발현 기간 및 유지기간`}
             />
             {g.timelineLead && (
               <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-white/60 md:text-base">
@@ -895,8 +895,8 @@ export default function TreatmentDetail({
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 어떻게 되나요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                저희 병원의 시술 비용이며, 보다 자세한 비용은 내원 시 1:1 상담을
-                통해 안내 받아보실 수 있습니다.
+                아래는 본원 시술 비용입니다. 시술 범위와 구성에 따른 자세한
+                비용은 상담 시 안내해 드립니다.
               </p>
             </div>
             {/* 부위 × 제품이 반복되는 가격(필러 · 보톡스)은 한 표로, 나머지는 카드 */}

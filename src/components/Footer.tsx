@@ -11,7 +11,11 @@ export default function Footer({ hospital }: { hospital: Hospital }) {
   const info: [string, string][] = [
     ["상호", hospital.name],
     ["대표원장", hospital.director],
-    ["사업자등록번호", hospital.businessNumber],
+    // 사업자등록번호는 실제 번호가 관리자에 들어온 뒤에만 보여 줌
+    // (0으로만 채운 임시 값이면 줄 자체를 숨김)
+    ...(/[1-9]/.test(hospital.businessNumber)
+      ? ([["사업자등록번호", hospital.businessNumber]] as [string, string][])
+      : []),
     ["주소", `${hospital.address} ${hospital.addressDetail}`.trim()],
   ];
 

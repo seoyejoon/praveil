@@ -752,7 +752,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           image: "/images/product-cards/xeomin-card-v2.svg",
           en: "Xeomin",
           maker: "멀츠 · 독일",
-          text: "미국 FDA와 유럽 CE 승인을 받은 순수 톡신입니다. 복합단백질을 정제해 항체 형성 부담을 줄여, 잦은 주기나 고용량 주입에도 비교적 안정적으로 쓰이는 제제입니다.",
+          text: "복합단백질을 제거한 보툴리눔 톡신 제제입니다. 항체 형성 가능성이 완전히 없어지는 것은 아니므로, 이전 시술 이력과 반응을 확인하고 용량과 간격을 정합니다.",
 
           tags: ["수입"],
         },
@@ -920,7 +920,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "리투오의 특별함 4가지",
     features: [
       {
-        title: "사람의 실제 피부 성분 그대로, 인체 조직 유래 hADM",
+        title: "세포 성분을 제거해 가공한 인체 조직 유래 hADM",
         text: "리투오는 인체 피부 조직에서 세포를 제거하고 얻은 무세포 동종진피(hADM)를 미세하게 가공한 성분입니다. 콜라겐, 엘라스틴, 히알루론산 등 실제 사람의 피부를 이루는 세포외기질(ECM) 성분을 담고 있어 생체 적합성이 높은 편입니다.",
         image: "/images/skin-features/retuo/retuo-point-01-hadm-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-01-hadm-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-01-hadm-20261105-v2.webp 1200w",
@@ -1415,8 +1415,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "표피 유래 세포 배양액 — AI 설명용 모식도",
       },
       {
-        title: "표피-진피 경계부(DEJ) 결합력 및 코어 지지 강화",
-        text: "노화로 느슨해지기 쉬운 표피와 진피의 결합 구조인 기저막(DEJ, Dermal-Epidermal Junction)을 타깃하여, 영양 전달 통로를 복원하고 탄탄한 피부 지지 코어를 재건합니다.",
+        title: "피부 상태에 맞춘 관리 계획",
+        text: "표피와 진피가 맞닿는 결합 구조(기저막, DEJ)는 나이가 들며 느슨해지기 쉬운 부위입니다. 피부결과 보습, 지금의 피부 상태를 함께 보며 시술 계획을 세우고, 변화의 정도와 유지 기간은 사람마다 다릅니다.",
         image: "/images/skin-features/isce/isce-point-02-dej-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-02-dej-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-02-dej-20261105-v2.webp 1200w",
         alt: "표피 · 진피 사이 DEJ — AI 설명용 모식도",
@@ -1714,15 +1714,6 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "결절 보고",
-          values: [
-            "매우 낮은 편",
-            "보통 ~ 높은 편",
-            "거의 보고되지 않는 편",
-            "보고된 바가 드묾",
-          ],
-        },
-        {
           label: "변화가 보이는 시기",
           values: [
             "3~4주 후부터 서서히",
@@ -1739,14 +1730,14 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "자가 콜라겐 및 엘라스틴 재생 유도",
-        text: "인위적인 물질을 채우는 방식이 아닌 생분해성 고분자 PDLLA 성분이 섬유아세포를 활성화하여, 피부 스스로 탄력 섬유와 콜라겐을 생성하도록 돕습니다.",
+        text: "생분해성 고분자 PDLLA 성분을 주입해 섬유아세포를 자극하고, 피부가 스스로 탄력 섬유와 콜라겐을 생성하도록 돕습니다. 변화는 서서히 나타나며, 주입 시술에 따른 부작용 가능성도 있습니다.",
         image: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp 1200w",
         alt: "PDLLA와 콜라겐 지지 구조 — AI 설명용 모식도",
       },
       {
         title: "다공성 망상 구조로 뭉침 우려 완화",
-        text: "내부가 그물망(망상) 구조로 이루어진 미세 구형 입자로 조직 내 뭉침(결절) 우려를 덜어내었으며, 체내에서 일정 기간에 걸쳐 물과 이산화탄소로 분해됩니다. 분해 속도는 사람마다 다릅니다.",
+        text: "내부가 그물망(망상) 구조인 미세 구형 입자를 사용하며, 시간이 지나면서 체내에서 분해됩니다. 입자 구조만으로 결절 위험이 없거나 다른 제품보다 낮다고 단정할 수는 없습니다.",
         image: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp 1200w",
         alt: "PDLLA 다공성 망상 구조 — AI 설명용 모식도",
@@ -1781,7 +1772,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "맞춤 시술 진행",
-        text: "결절 예방을 위해 일정한 깊이와 간격으로 진피층에 촘촘히 균일하게 주사합니다.",
+        text: "결절 위험을 줄이도록 피부 상태에 맞춘 깊이와 간격으로 고르게 나누어 주사합니다.",
         image: "/images/skin-features/juvelook/juvelook-process-03-product-20261105.webp",
         alt: "시술 직전 준비한 쥬베룩 제품과 주사기",
       },
@@ -1892,20 +1883,11 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "결절 보고",
-          values: [
-            "보고가 드문 편",
-            "매우 낮은 편",
-            "낮은 편",
-            "보통 (주입 숙련도 영향)",
-          ],
-        },
-        {
           label: "제품 특징",
           values: [
             "눈밑 틴달 현상(푸르게 비침) 부담이 적고, 피부 톤 변화를 함께 살핍니다.",
             "녹는 실 성분으로 리프팅과 타이트닝을 함께 살핍니다.",
-            "다공성 입자로 결절 부담을 줄이고, 히알루론산으로 속건조를 함께 살핍니다.",
+            "다공성 PDLLA 입자와 히알루론산을 함께 사용합니다.",
             "자가 콜라겐으로 볼륨을 서서히 채웁니다.",
           ],
         },
@@ -1925,15 +1907,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
       },
       {
-        title: "결절 우려를 낮춘 독자적 미세 구형 입자",
-        text: "입자 형태가 불규칙한 기존 콜라겐 촉진제와 달리, 표면이 매끄럽고 균일한 '미세 구(Sphere)' 형태로 가공되었습니다. 조직 내 주입 시 뭉침 현상(결절) 발생 가능성을 낮추도록 가공되었습니다. 얇은 피부층에는 주입 깊이와 양을 나누어 진행합니다.",
+        title: "미세 구형 입자로 가공한 PDO 성분",
+        text: "PDO 성분을 미세한 구형 입자로 가공한 제품입니다. 입자 모양만으로 결절 위험이 낮다고 단정하지 않으며, 얇은 피부층에는 주입 깊이와 양을 세심하게 조절합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp 1200w",
         alt: "구형 PDO 입자와 주변 조직 — AI 설명용 모식도",
       },
       {
-        title: "인위적이지 않은 자가 콜라겐 재생 유도",
-        text: "외부 물질로 부피를 억지로 늘리는 필러와 달리, 주입된 미세 입자가 진피층 섬유아세포를 활성화하여 내 몸 스스로 콜라겐을 생성하도록 유도합니다. 표정 변화에 어색함이 없으며 자연스러운 탄력과 볼륨을 형성합니다.",
+        title: "자가 콜라겐 재생을 유도하는 방식",
+        text: "주입된 미세 입자가 진피층 섬유아세포를 자극해 피부가 스스로 콜라겐을 생성하도록 유도합니다. 즉시 부피를 채우는 필러와는 쓰임이 다르며 변화는 서서히 나타납니다. 주입 시술이므로 부작용 가능성도 함께 설명해 드립니다.",
         image: "/images/skin-features/ultracol/ultracol-point-03-collagen-network-20261105-v3.webp",
         alt: "PDO 미세입자 주변의 콜라겐 섬유와 섬유아세포를 표현한 AI 설명용 모식도",
       },
@@ -2199,7 +2181,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부 속 목표 층(1.5~4.5mm) 집속 조사",
-        text: "표피 손상 없이 초음파 에너지를 진피 상 · 하부 및 피하 근막(SMAS)층까지 침투시켜, 65~70℃의 미세 열응고점(TCP)을 형성해 늘어진 지지 조직을 수축시킵니다.",
+        text: "초음파 에너지를 피부 속 목표 깊이에 모아 미세 열응고점(TCP)을 형성하고 지지 조직의 수축을 유도합니다. 피부 두께와 부위에 맞춰 조사 깊이와 에너지를 정하며, 열 손상 등 부작용 가능성도 함께 살핍니다.",
       },
       {
         title: "Dot(점) · MP(선) 듀얼 조사 모드 교차 적용",
@@ -2283,7 +2265,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 층별로 세분화된 4가지 깊이 카트리지",
-        text: "1.5mm · 2.0mm · 3.0mm · 4.5mm로 세분화된 4가지 카트리지를 활용해, 얕은 표피층의 잔주름부터 깊은 근막층(SMAS)까지 에너지를 단계별로 전달합니다. 개인별 피부 두께와 부위별 노화 상태를 면밀히 진단하여 적절한 깊이를 조합합니다.",
+        text: "1.5mm · 2.0mm · 3.0mm · 4.5mm로 세분화된 4가지 카트리지를 활용해, 얕은 층의 잔주름부터 깊은 근막층(SMAS)까지 목표 조직에 에너지를 단계별로 전달합니다. 같은 깊이라도 닿는 조직은 사람마다 달라, 개인별 피부 두께와 부위별 노화 상태를 진단하여 카트리지를 조합합니다.",
         image: "/images/shrink/booster-depth.webp?v=20261104b",
         video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
@@ -2368,7 +2350,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "타깃 층위별 정밀 미세침(Micro-needle) 침투",
+        title: "피부층에 맞춘 정밀 미세침(Micro-needle) 침투",
         text: "0.5mm부터 최대 4.0mm까지 조절 가능한 절연 · 비절연 미세 바늘이 목표 진피층에 정교하게 침투하여, 표피 열 손상 부담을 덜고 물리적인 미세 통로를 형성합니다.",
       },
       {
@@ -2385,8 +2367,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       lead: "같은 고주파 시술도 바늘을 쓰는지, 에너지를 어디에 주는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
       columns: [
         { name: "포텐자", maker: "제이시스메디칼 · 국내", self: true },
-        // 확인 필요: 버츄RF 고주파 종류 (제조사 자료로 재확인)
-        { name: "버츄RF", maker: "큐테라 · 미국" },
+        // 확인 필요: 버츄RF 핸드피스별 고주파 방식 (제조사 자료로 재확인)
+        { name: "버츄RF", maker: "쉔비(SHENB) · 국내" },
         { name: "올리지오", maker: "원텍 · 국내" },
         { name: "볼뉴머", maker: "클래시스 · 국내" },
       ],
@@ -2402,7 +2384,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "고주파 종류",
-          values: ["모노폴라 · 바이폴라", "바이폴라", "모노폴라", "모노폴라"],
+          values: ["모노폴라 · 바이폴라", "핸드피스에 따라 다름", "모노폴라", "모노폴라"],
         },
         {
           label: "주요 고민",
@@ -2537,12 +2519,12 @@ export const deviceStory: Record<string, DeviceStory> = {
     },
     principle: [
       {
-        title: "비접촉 공중사(Quasi-Long Pulse) 연속 조사",
+        title: "비접촉 방식의 준장펄스(Quasi-Long Pulse) 연속 조사",
         text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여, 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 최소화합니다.",
       },
       {
-        title: "진피층 타깃 40~42℃ 균일 심부열 축적",
-        text: "피부 표면 온도를 실시간 감지하며 진피층에 안전한 치료 유효 온도(40~42℃)의 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다.",
+        title: "표면 온도를 살피며 쌓는 균일 심부열",
+        text: "피부 표면 온도와 피부 반응을 실시간으로 참고하며 진피층에 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다. 목표 온도와 조사 조건은 적용 프로토콜과 피부 상태에 따라 달라집니다.",
       },
       {
         title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
@@ -2613,7 +2595,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "진피 깊은 층까지 균일하게 축적되는 심부열",
-        text: "넓고 균일한 빔 프로파일(Spot Size)을 바탕으로 진피 기저층에 안전한 열에너지를 점진적으로 축적합니다. 축적된 심부열이 섬유아세포를 활성화하여 콜라겐과 엘라스틴의 자가 재생 및 리모델링을 촉진합니다.",
+        text: "넓고 균일한 스폿 크기(조사 직경)를 바탕으로 진피층에 열에너지를 점진적으로 축적합니다. 축적된 심부열이 섬유아세포를 활성화하여 콜라겐과 엘라스틴의 자가 재생 및 리모델링을 촉진합니다.",
         image: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp 1920w",
         alt: "피부 속 열 전달을 표현한 설명용 단면",
@@ -2633,7 +2615,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실시간 온도 모니터링 시스템",
-        text: "시술 중 핸드피스 센서가 피부 표면 온도를 실시간으로 측정하여 과도한 열 축적을 사전에 방지합니다. 안전한 치료 유효 온도 범위 내에서 환자별 반응에 맞춰 에너지 전달 속도와 강도를 정교하게 조율합니다.",
+        text: "시술 중 핸드피스 센서가 피부 표면 온도를 실시간으로 측정하여 과도한 열 축적을 줄입니다. 안전한 치료 유효 온도 범위 내에서 환자별 반응에 맞춰 에너지 전달 속도와 강도를 정교하게 조율합니다.",
         image: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp 1920w",
         video: "/videos/clarity-features-v2/clarity-point-04-temperature-20261105-v2.mp4",
@@ -3144,14 +3126,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 재생을 통한 탄력 밀도 강화",
-        text: "삽입된 실이 체내에서 서서히 흡수되는 과정 주변으로 자가 콜라겐 생성이 유도되어, 단순한 물리적 채움에 그치지 않고 피부 속 탄력 밀도와 결이 함께 건강해집니다.",
+        text: "삽입된 실이 체내에서 서서히 흡수되는 동안 실 주변에서 자가 콜라겐 생성이 유도되어, 단순한 물리적 채움에 그치지 않고 피부 속 탄력 밀도와 피부결을 함께 관리합니다. 변화의 정도와 유지 기간에는 개인차가 있습니다.",
         image: "/images/thread/features/jamber-point-03-blunt-cannula-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-03-blunt-cannula-v2-800.webp 800w, /images/thread/features/jamber-point-03-blunt-cannula-v2.webp 1200w",
         alt: "피부 조직과 둥근 캐뉼라 끝부분을 표현한 설명용 단면도",
       },
       {
         title: "이물감을 낮춘 부드러운 안착과 자연스러운 표정",
-        text: "피부 조직의 특성을 고려한 섬세한 자입(Insertion)으로 시술 후 과도한 당김이나 딱딱한 이물감을 줄여 주어, 표정을 지을 때도 어색함 없이 편안하게 안착됩니다.",
+        text: "피부 조직의 특성을 고려한 섬세한 자입(Insertion)으로 시술 후 과도한 당김이나 딱딱한 이물감을 줄이도록 시술하며, 느껴지는 정도는 사람마다 다릅니다.",
         image: "/images/thread/features/jamber-point-04-collagen-matrix-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-04-collagen-matrix-v2-800.webp 800w, /images/thread/features/jamber-point-04-collagen-matrix-v2.webp 1200w",
         alt: "코일형 실과 주변 콜라겐 섬유의 관계를 표현한 설명용 모식도",
@@ -3362,7 +3344,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "755nm · 1064nm 듀얼 파장으로 맞춤형 제모",
-        text: "멜라닌 흡수율이 높아 얇고 연한 털에 반응하는 755nm 알렉산드라이트 파장과, 피부 깊숙이 도달해 굵고 뿌리 깊은 털에 쓰는 1064nm Nd:YAG 파장을 모두 탑재했습니다. 남성의 굵은 수염부터 여성의 미세한 인중 털, 팔 · 다리까지 털의 굵기와 깊이에 따라 파장과 설정을 나누어 계획합니다.",
+        text: "멜라닌 흡수율이 높아 가늘지만 색이 남아 있는 털에 쓰는 755nm 알렉산드라이트 파장과, 피부 깊숙이 도달해 굵고 뿌리 깊은 털에 쓰는 1064nm Nd:YAG 파장을 모두 탑재했습니다. 털의 굵기와 깊이, 피부 톤에 따라 파장과 설정을 나누어 계획하며, 색소가 거의 없는 흰색 · 회색 털은 어느 파장으로도 반응이 제한적입니다.",
         image: "/images/official/clarity-poster.jpg",
         alt: "클라리티2 · 듀얼 파장 · 제조사 공식 자료",
         fullFrame: false,
@@ -3380,7 +3362,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실시간 피부 온도 감지 시스템",
-        text: "장비에 실시간 피부 온도 센서가 탑재되어 있어 시술 중 피부 온도를 함께 확인합니다. 온도가 일정 수준 이상으로 올라가면 레이저 조사가 자동으로 제어되므로, 에너지를 일정하게 유지하면서 피부 자극이나 붉은기를 줄이는 데 도움이 됩니다. 표시값만으로 판단하지 않고 열감과 피부 반응도 함께 살핍니다.",
+        text: "장비에 실시간 피부 온도 센서가 탑재되어 있어 시술 중 피부 온도를 함께 확인합니다. 표시되는 온도 정보를 참고하면서 의료진이 피부 반응과 열감을 함께 살펴 조사 조건을 조절하므로, 에너지를 일정하게 유지하면서 피부 자극이나 붉은기를 줄이는 데 도움이 됩니다.",
         image: "/images/official/clarity-temperature.png",
         alt: "클라리티2 · 실시간 피부 온도 표시 · 제조사 공식 자료",
         fullFrame: false,
@@ -3389,8 +3371,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "인텔리트랙(IntelliTrack)으로 빠짐없는 시술",
-        text: "시술자의 손 움직임 속도를 인식해 레이저 샷이 중첩 없이 조사되는 인텔리트랙 기술이 적용되었습니다. 등 · 허벅지 · 종아리처럼 넓은 부위도 누락 없이 균일하게 시술할 수 있고, 제조사는 기존 방식보다 시술 시간이 크게 단축된다고 안내합니다.",
+        title: "인텔리트랙(IntelliTrak)으로 고르게 조사",
+        text: "시술자의 손 움직임에 맞춰 설정한 조사 밀도를 일정하게 유지하도록 돕는 인텔리트랙(IntelliTrak) 기술이 적용되었습니다. 등 · 허벅지 · 종아리처럼 넓은 부위도 고르게 시술하는 데 도움이 되고, 제조사는 기존 방식보다 시술 시간이 크게 단축된다고 안내합니다.",
         image: "/images/official/clarity-tracking.png",
         alt: "클라리티2 · 인텔리트랙 · 제조사 공식 자료",
         fullFrame: false,
@@ -3629,7 +3611,7 @@ deviceStory["/petit/botox/body"] = {
       alt: "보톡스 제품과 기록 서류를 함께 배치한 AI 제작 설명 이미지",
     },
     {
-      title: "근육 기능 손실을 방지하는 분할 주입",
+      title: "근육 기능 저하 위험을 줄이는 분할 주입",
       text: "목, 어깨의 지지력이나 보행 등 일상적인 움직임에 불편이 없도록, 특정 부위에 약물이 과도하게 쏠리지 않게 근육층 깊이와 포인트를 정교하게 나누어 분산 주입합니다.",
       image: "/images/photos/body-botox-special-04-trapezius-injection-20261105.webp",
       alt: "승모근과 어깨 부위의 주입 장면을 표현한 AI 제작 설명 이미지",

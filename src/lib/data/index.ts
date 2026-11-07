@@ -75,10 +75,16 @@ export async function getSignatureProcedures() {
   return (await getProcedures()).filter((p) => p.isSignature);
 }
 
+// 게시판 연결을 확인하려고 올린 샘플 글은 홈페이지에 싣지 않는다
+// (관리자에서 제목을 바꾸면 필터에 걸리지 않아 다시 올라온다)
+const isCheckSample = (title: string) => title.startsWith("[확인용 샘플]");
+
 export async function getNotices() {
-  const list = hasDatabase
-    ? await db.getNotices()
-    : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  const list = (
+    hasDatabase
+      ? await db.getNotices()
+      : [...notices].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+  ).filter((n) => !isCheckSample(n.title));
   // 미리보기: 보여주기용 공지 · 이벤트 예시를 함께 (DB의 [테스트] 글은 겹치므로 숨김)
   if (showDemo)
     return [
@@ -106,7 +112,9 @@ export async function getProcedureDetail(slug: string) {
 
 // 전후사례: 회원이 아니면 시술 전 사진 주소를 지워서 내려준다 (화면에서 흐리게 가리는 것만으로는 사진이 새어 나갈 수 있음)
 export async function getBeforeAfterCases(member: boolean) {
-  const real = hasDatabase ? await db.getBeforeAfter() : [];
+  const real = (hasDatabase ? await db.getBeforeAfter() : []).filter(
+    (c) => !isCheckSample(c.title),
+  );
   const list = showDemo ? [...demoBeforeAfter, ...real] : real;
   return member
     ? list

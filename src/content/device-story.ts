@@ -1813,10 +1813,6 @@ export const deviceStory: Record<string, DeviceStory> = {
           label: "시술 용량",
           value: "부위 및 고민 깊이에 따른 맞춤 용량 설계 (1~2바이알 단위)",
         },
-        {
-          label: "생체 반응",
-          value: "자가 콜라겐 생성 유도 후 체내에서 물과 이산화탄소로 분해 (속도는 개인차)",
-        },
       ],
 
     },
@@ -1842,7 +1838,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "이물감 부담을 줄인 자가 콜라겐 재생",
-        text: "체내에서 서서히 분해되는 PDO 미세입자가 피부 속 자가 콜라겐 생성을 유도하여 뭉침 없이 자연스러운 탄력을 채워 갑니다. 변화의 속도와 체감 정도는 개인의 피부 컨디션에 따라 차이가 있을 수 있습니다.",
+        text: "체내에서 서서히 분해되는 PDO 미세입자가 피부 속 자가 콜라겐 생성을 유도하여 뭉침 없이 자연스러운 탄력을 채워 갑니다.",
       },
     ],
     compare: {

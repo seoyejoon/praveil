@@ -1650,11 +1650,11 @@ export const treatments: Treatment[] = [
       { label: "마취", value: "마취 크림" },
       {
         label: "회복",
-        value: "엠보싱 · 붉은 기 1~2일 내 자연 완화, 당일 가벼운 일상생활 가능",
+        value: "당일 가벼운 일상생활 가능",
       },
       {
         label: "권장 주기",
-        value: "4주 간격 3회 집중 시술 권장 (이후 6~12개월 단위 유지)",
+        value: "4주 간격 3회 집중 시술 권장",
       },
     ],
     recommend: [

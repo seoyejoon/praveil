@@ -792,7 +792,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 맞춤 상담 및 진단",
-        text: "가만히 있을 때와 표정을 지을 때의 근육 움직임을 고려하고, 이전 시술 주기와 만족도를 확인하여 알맞은 주사 부위와 유닛(용량)을 결정합니다.",
+        text: "가만히 있을 때와 표정을 지을 때의 근육 움직임을 고려하고, 이전 시술 주기와 만족도를 확인하여 적합한 주사 부위와 유닛(용량)을 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -1645,7 +1645,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaSize: { width: 298, height: 681 },
       photoAlt: "쥬베룩 공식 제품 바이알",
       mediaContain: true,
-      text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일시적으로 외부 물질을 채워 넣는 일반 필러와 달리, 피부 속 세포를 자극해 스스로 콜라겐을 만들도록 돕는 방식이라 시간이 흐를수록 서서히 차오르는 탄력을 확인하게 됩니다.",
+      text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일반 필러와 달리, 피부 속 세포를 자극해 콜라겐 생성을 유도하여 피부의 볼륨감, 탄력 등을 개선해줍니다.",
       specs: [
         { label: "성분", value: "PDLLA · 히알루론산" },
         { label: "분류", value: "조직수복용재료 · 의료기기" },
@@ -3398,7 +3398,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "부위별 레이저 조사",
-        text: "털의 굵기와 피부 톤에 맞춰 알맞은 강도로 조절한 뒤, 놓치는 부위 없이 꼼꼼하게 레이저를 조사합니다.",
+        text: "털의 굵기와 피부 톤에 맞춰 적합한 강도로 조절한 뒤, 놓치는 부위 없이 꼼꼼하게 레이저를 조사합니다.",
         image: doctorPhotos.laser,
         alt: "보호 안경을 착용한 대표원장의 레이저 시술 장면",
         fullFrame: true,
@@ -3643,7 +3643,7 @@ deviceStory["/petit/botox/body"] = {
     },
     {
       title: "대표원장 1:1 맞춤 정밀 주입",
-      text: "정품 · 정량 원칙을 바탕으로, 설정된 타깃 부위에 적정 깊이와 알맞은 압력으로 약물을 균일하게 분산 주입합니다.",
+      text: "정품 · 정량 원칙을 바탕으로, 설정된 타깃 부위에 적정 깊이와 적합한 압력으로 약물을 균일하게 분산 주입합니다.",
       image: "/images/photos/process-body-botox-injection-20261105.webp",
       alt: "승모근 부위에 주입하는 바디 보톡스 시술 설명 이미지",
     },

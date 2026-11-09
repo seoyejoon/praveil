@@ -3522,26 +3522,26 @@ export const deviceStory: Record<string, DeviceStory> = {
 
     process: [
       {
-        title: "1:1 상담",
-        text: "반영구 이력과 피부 상태를 확인합니다. 눈가는 보호 방법과 시행 가능 여부부터 평가합니다.",
+        title: "1:1 맞춤 진단 및 색소 분석",
+        text: "잔여 색소의 색상(검정, 푸른기, 붉은기, 갈색 등)과 피부 속 침착 깊이, 이전 문신 시술 이력을 정밀하게 확인합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
       {
-        title: "마취 · 눈 보호",
-        text: "필요한 마취를 진행합니다. 눈꺼풀 부위는 적합한 각막 보호구를 포함해 보호 계획을 확인한 경우에만 진행합니다.",
+        title: "클렌징 및 마취 준비",
+        text: "시술 부위의 메이크업과 유분기를 정리하고 통증 부담을 덜기 위해 시술 부위에 연고 마취를 진행합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 전 마취 크림을 바르는 참고 사진",
       },
       {
-        title: "레이저 시술",
-        text: "색소와 피부에 맞춰 범위를 정하고 반응을 확인합니다. 눈가의 안전 조건을 충족하지 못하면 시술하지 않습니다.",
+        title: "대표원장 1:1 맞춤 시술 진행",
+        text: "정상 피부와 모근 손상을 줄이면서 일시적으로 표면이 하얗게 변하는 프로스팅(Frosting) 현상을 확인하며 꼼꼼하게 에너지를 조사합니다.",
         image: "/images/photos/hero-eyebrow-removal-20261105-v7.webp",
         alt: "대표원장이 눈썹 반영구 문신 부위를 시술하는 AI 연출 이미지",
       },
       {
-        title: "경과 확인",
-        text: "피부와 색 변화를 확인하고, 상처 관리와 다음 평가 시기를 안내합니다.",
+        title: "쿨링 진정 및 사후 케어 안내",
+        text: "열감과 붓기를 빠르게 가라앉히기 위해 냉찜질(쿨링 케어)을 진행하고 주의사항을 안내드립니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },

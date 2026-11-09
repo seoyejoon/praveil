@@ -1861,7 +1861,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주요 효과",
+          label: "시술 효과",
           values: [
             "눈가 잔주름 · 피부 톤",
             "미세한 볼륨 꺼짐",
@@ -1870,7 +1870,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 부위",
+          label: "시술 부위",
           values: [
             "눈밑 · 눈가 · 얇은 피부",
             "옆볼 · 앞볼 · 팔자주름",
@@ -1896,28 +1896,28 @@ export const deviceStory: Record<string, DeviceStory> = {
       "단순한 일시적 채움이 아닌, 자가 조직이 차오르는 과정을 기준으로 시술합니다.",
     features: [
       {
-        title: "수술용 봉합사에 쓰이는 녹는 실(PDO) 성분",
-        text: "수십 년간 외과 수술용 봉합사로 쓰여 온 PDO(폴리디옥사논) 성분을 사용합니다. 체내에서 일정 기간에 걸쳐 물과 이산화탄소로 분해되어 배출되며, 분해 속도는 사람마다 다릅니다.",
+        title: "안정성 높은 생분해성 PDO 성분",
+        text: "수십 년간 외과 수술용 녹는 실로 사용되어 인체 안전성이 검증된 PDO(Polydioxanone) 성분을 사용합니다. 체내에 주입된 후 콜라겐 생성을 유도하고, 수개월에 걸쳐 물과 이산화탄소로 분해 · 배출되어 몸속 잔류 이물질에 대한 부담이 적습니다.",
         image: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp 1200w",
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
       },
       {
-        title: "미세 구형 입자로 가공한 PDO 성분",
-        text: "PDO 성분을 미세한 구형 입자로 가공한 제품입니다. 입자 모양만으로 결절 위험이 낮다고 단정하지 않으며, 얇은 피부층에는 주입 깊이와 양을 세심하게 조절합니다.",
+        title: "매끄러운 구형 입자로 결절(뭉침) 위험 적음",
+        text: "기존의 불규칙한 다각 형태 입자와 달리, 특허받은 기술을 적용한 매끄러운 미세 구형(Microsphere) 형태로 제작되었습니다. 입자 표면이 둥글고 균일해 주변 조직의 과도한 면역 반응을 줄이고, 시술 후 단단하게 뭉치는 결절이나 육아종 형성 가능성을 크게 낮췄습니다.",
         image: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-02-particle-distribution-20261105-v2.webp 1200w",
         alt: "구형 PDO 입자와 주변 조직 — AI 설명용 모식도",
       },
       {
-        title: "자가 콜라겐 재생을 유도하는 방식",
-        text: "주입된 미세 입자가 진피층 섬유아세포를 자극해 피부가 스스로 콜라겐을 생성하도록 유도합니다. 즉시 부피를 채우는 필러와는 쓰임이 다르며 변화는 서서히 나타납니다. 주입 시술이므로 부작용 가능성도 함께 설명해 드립니다.",
+        title: "피부 스스로 재생하는 자가 콜라겐 재생 효과",
+        text: "일반 필러와 달리, 미세 입자 표면에 섬유아세포가 달라붙어 피부 스스로 콜라겐(Type I, Type III)을 생성하도록 유도합니다. 피부 자체의 진피층 밀도를 높여주어 자연스러운 변화를 유도합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-03-collagen-network-20261105-v3.webp",
         alt: "PDO 미세입자 주변의 콜라겐 섬유와 섬유아세포를 표현한 AI 설명용 모식도",
       },
       {
-        title: "피부 층과 고민에 맞춘 100 · 200 듀얼 라인업",
-        text: "진피 얕은 층에 적용해 잔주름 · 모공 · 피부결을 매끄럽게 정돈하는 울트라콜 100과, 지지층에 주입해 눈 밑 꺼짐 · 팔자주름의 볼륨을 채우는 울트라콜 200으로 세분화되어 있어 부위별 맞춤 시술이 가능합니다.",
+        title: "고민 부위와 깊이에 맞춘 2가지 라인업 (100 · 200)",
+        text: "입자 크기와 타깃 피부층에 따라 제품 라인업이 두 가지로 구분되어 있어 환자분의 상태와 시술 목적에 따라 맞춤 시술이 가능합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-04-dual-lineup-20261105-v3.webp",
         alt: "울트라콜 Boost 100mg과 울트라콜 200mg 두 바이알을 나란히 배치한 제품 설명 이미지",
       },

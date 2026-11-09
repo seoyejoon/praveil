@@ -131,7 +131,7 @@ export const aboutSpace = {
 // 사진: 제조사 공식 제품 사진 또는 병원 촬영본 배경 정리 (public/images/equipment)
 export const aboutEquipment = {
   en: "Equipment",
-  title: "프라베일의 프리미엄 장비 소개",
+  title: "프라베일 장비 소개",
   text: "같은 리프팅이라도 작용하는 깊이와 방식이 다릅니다. 고민에 맞는 장비를 골라 필요한 만큼만 사용합니다.",
   items: [
     {

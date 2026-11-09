@@ -28,8 +28,14 @@ export default function CardSlider({
     const el = track.current;
     if (!el) return;
     let drag: { x: number; left: number; moved: boolean } | null = null;
+    // 끄는 동안 위치는 화면 새로 그릴 때 한 번만 반영 (마우스 이벤트마다 바꾸면 버벅임)
+    let frame = 0;
+    let target = 0;
+    let settle = 0;
     const down = (e: PointerEvent) => {
       if (e.pointerType !== "mouse" || e.button !== 0) return;
+      cancelAnimationFrame(frame);
+      clearTimeout(settle);
       drag = { x: e.clientX, left: el.scrollLeft, moved: false };
       el.style.scrollSnapType = "none";
       el.style.cursor = "grabbing";
@@ -38,15 +44,29 @@ export default function CardSlider({
       if (!drag) return;
       const dx = e.clientX - drag.x;
       if (Math.abs(dx) > 4) drag.moved = true;
-      el.scrollLeft = drag.left - dx;
+      target = drag.left - dx;
+      if (!frame)
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          el.scrollLeft = target;
+        });
     };
     const up = () => {
       if (!drag) return;
       const moved = drag.moved;
       drag = null;
       el.style.cursor = "";
-      // 손을 뗀 자리에서 가까운 카드에 맞춤
-      el.style.scrollSnapType = "";
+      // 손을 뗀 자리에서 가까운 카드로 부드럽게 미끄러진 뒤에 칸 맞춤을 다시 켠다
+      // (바로 켜면 카드가 순간이동하듯 튐)
+      const cards = el.querySelectorAll("li");
+      const step =
+        cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 0;
+      if (step > 0) {
+        const max = el.scrollWidth - el.clientWidth;
+        const left = Math.min(max, Math.round(el.scrollLeft / step) * step);
+        el.scrollTo({ left, behavior: "smooth" });
+      }
+      settle = window.setTimeout(() => (el.style.scrollSnapType = ""), 450);
       if (moved) {
         const stop = (ev: MouseEvent) => {
           ev.preventDefault();
@@ -67,6 +87,8 @@ export default function CardSlider({
       window.removeEventListener("pointermove", moveDrag);
       window.removeEventListener("pointerup", up);
       el.removeEventListener("dragstart", noDrag);
+      cancelAnimationFrame(frame);
+      clearTimeout(settle);
     };
   }, []);
 

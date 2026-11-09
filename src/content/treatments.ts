@@ -1433,7 +1433,7 @@ export const treatments: Treatment[] = [
     variantOf: "/skin/booster",
     en: "Exosome",
     title: "엑소좀",
-    description: "예민하고 지친 피부 컨디션을 관리하는 스킨부스터",
+    description: "무너진 장벽과 피부 컨디션을 개선하는 엑소좀 스킨부스터",
     image: photo("cat-skin-booster-model-a"),
     // 엑소좀 전용 첫 화면: ISCE 제품 연출 (PC 3:1 · 모바일 9:10 파일 분리)
     // 제품이 오른쪽(PC) · 아래쪽(모바일)에 있어 글자가 들어갈 빈 자리를 그대로 둔다.

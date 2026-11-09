@@ -3302,7 +3302,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "작용",
+          label: "시술 원리",
           values: [
             "털의 색소를 통해 모낭에 열 전달",
             "피부 밖으로 나온 털을 자름",
@@ -3310,7 +3310,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "관리 방향",
+          label: "시술 효과",
           values: [
             "자라는 털의 양을 줄임",
             "그때 자란 털을 정리",
@@ -3318,7 +3318,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "알아둘 점",
+          label: "주의사항",
           values: [
             "털 색 · 피부 톤에 따라 반응 다름",
             "베임 · 면도 자극 가능",
@@ -3326,7 +3326,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "레이저 전 관리",
+          label: "시술 안내",
           values: [
             "피부 상태 확인 후 진행",
             "안내받은 시점에 짧게 정리",
@@ -3353,9 +3353,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         // 확인 필요: ICD 냉각을 보여 주는 제조사 이미지 (지금은 병원 공간 사진)
         title: "지능형 냉각 시스템(ICD)으로 통증 부담을 줄임",
-        text: "레이저 샷이 조사되기 직전, 영하의 가스를 순간적으로 분사해 피부 표면을 보호하는 지능형 냉각 시스템(ICD, Intelligent Cooling Device)이 작동합니다. 통증 부담과 화상 등 이상 반응의 부담을 줄여 주며, 느끼는 정도는 부위와 사람마다 다릅니다.",
+        text: "레이저 샷이 조사되기 직전, 영하의 가스를 순간적으로 분사해 피부 표면을 보호하는 지능형 냉각 시스템(ICD, Intelligent Cooling Device)이 작동하여 통증 부담과 화상 등 이상 반응의 부담을 줄여줍니다.",
         image: "/images/page-assets/praveil-hair-cooling-v1.webp",
-        caption: "냉각 방식을 단순화한 AI 설명용 모식도",
         alt: "시술 안내에 사용하는 병원 공간 사진",
       },
       {

@@ -3371,8 +3371,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaEdges: ["#000000", "#000000"],
       },
       {
-        title: "인텔리트랙(IntelliTrak)으로 고르게 조사",
-        text: "시술자의 손 움직임에 맞춰 설정한 조사 밀도를 일정하게 유지하도록 돕는 인텔리트랙(IntelliTrak) 기술이 적용되었습니다. 등 · 허벅지 · 종아리처럼 넓은 부위도 고르게 시술하는 데 도움이 되고, 제조사는 기존 방식보다 시술 시간이 크게 단축된다고 안내합니다.",
+        title: "인텔리트랙(IntelliTrak) 기술",
+        text: "인텔리트랙(IntelliTrak) 센서가 시술 속도를 감지해 에너지 밀도를 일정하게 유지합니다. 샷 중복이나 빈틈없이 균일하게 조사되어 등이나 다리처럼 넓은 부위도 빠르고 정밀하게 시술할 수 있습니다.",
         image: "/images/official/clarity-tracking.png",
         alt: "클라리티2 · 인텔리트랙 · 제조사 공식 자료",
         fullFrame: false,

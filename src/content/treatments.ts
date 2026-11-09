@@ -1920,7 +1920,7 @@ export const treatments: Treatment[] = [
     href: "/removal/hair",
     en: "Laser Hair Removal",
     title: "레이저제모",
-    description: "털의 굵기 · 색과 피부 톤에 맞춰 계획하는 레이저 제모",
+    description: "털의 굵기 · 밀도를 정밀 분석해 설계하는 맞춤 레이저 제모",
     image: photo("cat-hair-removal"),
     device: device("clarity", "Clarity II", "레이저 제모"),
     scene: {

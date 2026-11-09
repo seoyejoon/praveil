@@ -1365,7 +1365,7 @@ export const treatments: Treatment[] = [
     variantOf: "/skin/booster",
     en: "Rejuran Healer",
     title: "리쥬란힐러",
-    description: "PN 성분으로 피부결 · 탄력을 관리하는 스킨부스터",
+    description: "손상된 피부 속부터 채우는 고순도 PN 스킨부스터",
     image: photo("cat-skin-booster-model-a"),
     // 확인 필요: 리쥬란힐러 전용 첫 화면 사진 (지금은 스킨부스터 사진)
     scene: {

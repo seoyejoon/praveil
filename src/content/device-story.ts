@@ -1256,8 +1256,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "진피층의 지지 구조 — AI 설명용 모식도",
       },
       {
-        title: "피부 층위와 부위별 특성을 고려한 미세 분할 주입",
-        text: "눈가, 볼, 입가 등 부위마다 다른 피부 두께와 표정 움직임, 혈관 주행을 정밀하게 분석하여 정확한 진피 타깃 깊이에 일정한 간격으로 촘촘히 나누어 주입합니다.",
+        title: "부위별 피부 두께를 고려한 정교한 시술",
+        text: "얇은 눈가부터 볼, 움직임이 많은 입가까지 부위마다 피부 두께와 구조는 모두 다릅니다. 피부 속 혈관과 표정 변화까지 섬세하게 계산해, 필요한 깊이에 일정한 간격으로 촘촘하게 나누어 주입합니다.",
         image: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp 1200w",
         alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",

@@ -1577,7 +1577,7 @@ export const treatments: Treatment[] = [
       bg: "#f4dfce",
       fade: "narrow",
     },
-    headline: ["서서히 차오르는 피부결,", "쥬베룩"],
+    headline: ["PDLLA + HA를 활용한", "콜라겐 부스터 쥬베룩"],
     intro:
       "쥬베룩은 PDLLA 미세입자와 히알루론산 성분으로 피부 자체의 자생력을 돕는 4세대 콜라겐부스터입니다. 환자분의 피부결, 탄력 저하, 얕은 꺼짐 등 복합적인 피부 고민을 정밀하게 분석하여, 가장 알맞은 방향으로 시술을 계획해 드립니다.",
     photo: stock("collagen"),

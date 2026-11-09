@@ -2551,7 +2551,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "조사 방식",
+          label: "시술 방식",
           values: [
             "피부에 닿지 않게 빠르게 조사",
             "파장 · 핸드피스별",
@@ -2560,7 +2560,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 상담하는 고민",
+          label: "시술 효과",
           values: [
             "탄력 · 모공 · 피부결 · 붉은 톤",
             "홍조 · 혈관 · 색소",

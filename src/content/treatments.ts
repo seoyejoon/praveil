@@ -1002,10 +1002,10 @@ export const treatments: Treatment[] = [
       "보톡스는 근육의 과한 움직임을 줄여 주름을 부드럽게 하거나, 발달한 근육의 부피를 줄이는 시술입니다. 부위와 근육의 힘을 보고 용량을 정합니다.",
     photo: stock("botox"),
     facts: [
-      { label: "시술 시간", value: "부위 · 범위별 맞춤 안내" },
-      { label: "마취", value: "시술 부위별 맞춤 마취" },
-      { label: "회복", value: "부기 · 멍 개인차" },
-      { label: "권장 주기", value: "경과 확인 후 결정" },
+      { label: "시술 시간", value: "약 5~15분 내외" },
+      { label: "마취 방법", value: "마취 크림" },
+      { label: "회복 과정", value: "당일 일상생활 즉시 가능" },
+      { label: "권장 주기", value: "3~4개월 간격 권장" },
     ],
     recommend: [
       "이마 · 미간 · 눈가 주름이 신경 쓰이는 분",

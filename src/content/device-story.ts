@@ -734,7 +734,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           image: "/images/product-cards/newlux-card-v2.svg",
           en: "Newlux",
           maker: "뉴메코(메디톡스 계열) · 국내",
-          text: "최신 공정을 적용해 제조 과정에서 동물 유래 성분을 배제한 톡신입니다. 불순물을 줄여 효과 발현과 유지력을 기대할 수 있는 국산 제제입니다.",
+          text: "뉴럭스는 제조 공정에서 동물 유래 성분을 배제하고 불순물을 크게 줄인 차세대 국산 톡신입니다. 빠른 효과 발현과 안정적인 유지력을 기대할 수 있습니다.",
 
           tags: ["국산"],
         },
@@ -743,7 +743,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           image: "/images/product-cards/coretox-card-v2.svg",
           en: "Coretox",
           maker: "메디톡스 · 국내",
-          text: "항체 형성(내성)을 유발하는 복합단백질을 분리 · 제거한 순수 독소 기반의 국산 톡신입니다. 주기적인 시술이나 바디 부위처럼 대용량 시술 시 내성 발생 부담을 낮춘 제품입니다.",
+          text: "코어톡스는 내성(항체 형성)을 유발하는 원인인 불필요한 복합단백질을 정제 · 제거한 순수 톡신입니다. 주기적인 반복 시술을 계획 중이거나, 바디 라인처럼 대용량 시술 시 내성 부담을 크게 덜 수 있습니다.",
 
           tags: ["국산"],
         },
@@ -752,7 +752,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           image: "/images/product-cards/xeomin-card-v2.svg",
           en: "Xeomin",
           maker: "멀츠 · 독일",
-          text: "복합단백질을 제거한 보툴리눔 톡신 제제입니다. 항체 형성 가능성이 완전히 없어지는 것은 아니므로, 이전 시술 이력과 반응을 확인하고 용량과 간격을 정합니다.",
+          text: "제오민은 세계 최초로 복합단백질을 완전히 분리한 프리미엄 수입 순수 톡신입니다. 코어톡스와 마찬가지로 반복 시술에 따른 내성 반응 가능성을 크게 줄여줍니다.",
 
           tags: ["수입"],
         },
@@ -3570,7 +3570,15 @@ deviceStory["/petit/botox/face"] = {
   ...botoxStory,
   device: {
     ...botoxStory.device,
-    text: "얼굴 보톡스는 근육의 움직임을 완화하는 보툴리눔 톡신을 주입해 표정 주름과 윤곽 라인을 정돈하는 시술입니다. 움직일 때 생기는 주름과 이미 자리 잡은 주름의 상태를 구분하고, 부위별 근육의 강도와 표정 습관에 맞춰 디자인합니다.",
+    text: `얼굴 보톡스는 근육층이나 피부 진피층에 보톡스를 소량 주입하여, 신경전달물질(아세틸콜린)의 분비를 일시적으로 차단하여 근육의 성장을 억제하는 시술입니다.
+
+주입된 부위의 근육 수축을 억제하거나 피지선 · 땀샘 분비를 조절함으로써 주름 개선, 안면 윤곽 교정, 피부결 개선 등의 효과를 기대할 수 있습니다.`,
+    specs: [
+      { label: "제품 성분", value: "보툴리눔 독소 A형(Botulinum Toxin Type A)" },
+      { label: "시술 원리", value: "목표 근육의 움직임을 일시적으로 조절 및 축소" },
+      { label: "시술 계획", value: "개인별 부위 · 표정 습관 · 근육 강도 정밀 진단 후 디자인" },
+      { label: "제품 선택", value: "국산 · 수입 정품 제품 중 1:1 상담 후 맞춤 선택" },
+    ],
   },
 };
 deviceStory["/petit/botox/body"] = {

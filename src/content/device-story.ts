@@ -1257,7 +1257,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 층위와 부위별 특성을 고려한 미세 분할 주입",
-        text: "눈가, 볼, 입가 등 부위마다 다른 피부 두께와 표정 움직임, 혈관 주행을 면밀히 분석하여 정확한 진피 타깃 깊이에 일정한 간격으로 촘촘히 나누어 주입합니다.",
+        text: "눈가, 볼, 입가 등 부위마다 다른 피부 두께와 표정 움직임, 혈관 주행을 정밀하게 분석하여 정확한 진피 타깃 깊이에 일정한 간격으로 촘촘히 나누어 주입합니다.",
         image: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp 1200w",
         alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",
@@ -2194,7 +2194,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "슈링크 유니버스, 다른 초음파 리프팅과 어떻게 다른가요?",
-      lead: "같은 집속 초음파(HIFU) 리프팅이라도 에너지를 전달하는 방식과 핸드피스 구조에 차이가 있습니다. 고민 부위와 피부 상태를 면밀히 진단하여 적합한 장비를 선택합니다.",
+      lead: "같은 집속 초음파(HIFU) 리프팅이라도 에너지를 전달하는 방식과 핸드피스 구조에 차이가 있습니다. 고민 부위와 피부 상태를 정밀하게 진단하여 적합한 장비를 선택합니다.",
       columns: [
         { name: "슈링크 유니버스", maker: "클래시스 · 국내", self: true },
         { name: "슈링크 (1세대)", maker: "클래시스 · 국내" },
@@ -2286,7 +2286,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 상담 및 설계",
-        text: "처진 부위와 피부 두께, 이전 시술 이력을 면밀히 파악하여 적합한 카트리지와 샷 수, 시술 범위를 설계합니다.",
+        text: "처진 부위와 피부 두께, 이전 시술 이력을 정밀하게 파악하여 적합한 카트리지와 샷 수, 시술 범위를 설계합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -2840,7 +2840,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaSize: { width: 730, height: 548 },
       text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
 
-환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 면밀히 고려하여 실이 들어갈 정확한 층과 벡터(방향), 줄 수 등을 세밀하게 설계합니다.`,
+환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 세밀하게 고려하여 실이 들어갈 정확한 층과 벡터(방향), 줄 수 등을 세밀하게 설계합니다.`,
       specs: [
         {
           label: "실 종류",
@@ -2869,7 +2869,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "처짐 상태 및 조직 정밀 진단",
-        text: "처진 부위의 양상과 지방량, 피부 두께를 면밀히 고려하여 탄탄하게 지지해 줄 최적의 벡터(방향)와 범위를 설계합니다.",
+        text: "처진 부위의 양상과 지방량, 피부 두께를 세밀하게 고려하여 탄탄하게 지지해 줄 최적의 벡터(방향)와 범위를 설계합니다.",
       },
       {
         title: "몰딩실을 통한 정교한 지지 및 리프팅",
@@ -2945,7 +2945,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "처진 방향에 맞춘 입체적 벡터 디자인",
-        text: "단순히 실을 일자로 넣는 것이 아니라, 개개인의 얼굴형과 처짐의 방향, 피부 두께를 면밀히 분석하여 가장 자연스럽고 탄탄하게 지지할 수 있는 방향을 정교하게 설계합니다.",
+        text: "단순히 실을 일자로 넣는 것이 아니라, 개개인의 얼굴형과 처짐의 방향, 피부 두께를 정밀하게 분석하여 가장 자연스럽고 탄탄하게 지지할 수 있는 방향을 정교하게 설계합니다.",
         image: "/images/thread/features/qtl-point-01-vector-design-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-01-vector-design-v2-800.webp 800w, /images/thread/features/qtl-point-01-vector-design-v2.webp 1200w",
         alt: "피부 조직 안에서 여러 지지 방향을 표현한 설명용 단면도",
@@ -3048,7 +3048,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "꺼진 위치 및 피부 깊이 정밀 진단",
-        text: "볼륨이 필요한 부위의 정확한 위치와 꺼진 깊이, 그리고 개개인의 피부 두께를 면밀히 고려하여 맞춤형 시술 범위를 디자인합니다.",
+        text: "볼륨이 필요한 부위의 정확한 위치와 꺼진 깊이, 그리고 개개인의 피부 두께를 세밀하게 고려하여 맞춤형 시술 범위를 디자인합니다.",
       },
       {
         title: "캐뉼라를 통한 스프링 실 지지대 형성",
@@ -3457,7 +3457,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "색소 성상 및 피부 상태 정밀 진단",
-        text: "눈에 보이는 표면의 색상뿐 아니라 시술 시기, 덧입힌 횟수, 피부 깊숙이 주입된 잔여 색소의 깊이를 면밀히 파악합니다. 피부 얇기와 이전의 알레르기 · 민감 반응을 함께 점검해 무리 없는 시술 범위를 설정합니다.",
+        text: "눈에 보이는 표면의 색상뿐 아니라 시술 시기, 덧입힌 횟수, 피부 깊숙이 주입된 잔여 색소의 깊이를 정밀하게 파악합니다. 피부 얇기와 이전의 알레르기 · 민감 반응을 함께 점검해 무리 없는 시술 범위를 설정합니다.",
       },
       {
         title: "색소 맞춤 파장 및 에너지 설정",
@@ -3630,7 +3630,7 @@ deviceStory["/petit/botox/body"] = {
   process: [
     {
       title: "맞춤 상담 및 시술 전 상태 확인",
-      text: "고민 부위와 시술 이력, 복용 약물을 확인하고, 대표원장이 동적 움직임에 따른 근육 두께와 땀샘 분포 범위를 면밀히 고려하여 시술 범위를 설계합니다.",
+      text: "고민 부위와 시술 이력, 복용 약물을 확인하고, 대표원장이 동적 움직임에 따른 근육 두께와 땀샘 분포 범위를 세밀하게 고려하여 시술 범위를 설계합니다.",
       image: "/images/photos/clinic-3.webp",
       alt: "프라베일 상담실",
     },
@@ -3657,7 +3657,7 @@ deviceStory["/petit/botox/body"] = {
   principle: [
     {
       title: "근육 발달도 및 땀샘 범위 정밀 체크",
-      text: "어깨를 올리거나 까치발을 들 때 두드러지는 근육의 두께와 비대칭, 땀 분비 부위의 범위를 시술 전 면밀히 파악합니다.",
+      text: "어깨를 올리거나 까치발을 들 때 두드러지는 근육의 두께와 비대칭, 땀 분비 부위의 범위를 시술 전 정밀하게 파악합니다.",
     },
     {
       title: "부위별 정교한 다포인트 분산 주입",

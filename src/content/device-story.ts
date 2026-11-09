@@ -2374,7 +2374,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "에너지 방식",
+          label: "시술 방식",
           values: [
             "미세침 고주파",
             "미세침 고주파",
@@ -2383,11 +2383,11 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "고주파 종류",
+          label: "에너지 유형",
           values: ["모노폴라 · 바이폴라", "핸드피스에 따라 다름", "모노폴라", "모노폴라"],
         },
         {
-          label: "주요 고민",
+          label: "시술 효과",
           values: [
             "모공 · 피부결 · 흉터 · 탄력",
             "모공 · 흉터 · 피부결",
@@ -2396,7 +2396,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "회복 및 다운타임",
+          label: "회복 기간",
           values: [
             "깊이에 따라 상이 (붉은기 · 미세 바늘 자국)",
             "붉은기 · 미세 바늘 자국",

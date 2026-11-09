@@ -229,7 +229,7 @@ export function StoryAbout({
           <SectionHead en="How it works" title={`${title}, 어떤 원리인가요?`} />
           {/* 그림과 설명 높이를 같게: 설명 3개가 그림 높이를 나눠 채움 */}
           <div className="mt-10 grid gap-6 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-stretch lg:gap-8">
-            <Reveal>
+            <Reveal className="lg:h-full">
               {story.principleImage ? (
                 story.diagram &&
                 story.diagram !== "hifu" &&
@@ -757,9 +757,9 @@ function PrincipleFigure({
   // 출처 글: 그림 위에 얹거나(noteOverlay), 그림 아래에 작은 글씨로만 적는다
   const barNote = image.note && !image.noteOverlay;
   return (
-    <figure>
+    <figure className={image.fillColumn ? "lg:h-full" : undefined}>
       <div
-        className={`relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px] ${!image.figureAspect && (image.framed || fill) ? "aspect-[8/5]" : ""}`}
+        className={`relative overflow-hidden rounded-[24px] bg-[#1d2a30] md:rounded-[32px] ${!image.figureAspect && (image.framed || fill) ? "aspect-[8/5]" : ""} ${image.fillColumn ? "lg:h-full lg:aspect-auto!" : ""}`}
         style={
           image.figureAspect ? { aspectRatio: image.figureAspect } : undefined
         }
@@ -775,7 +775,9 @@ function PrincipleFigure({
             preload="metadata"
             aria-label={image.alt}
             className={
-              image.framed
+              image.fillColumn
+                ? "absolute inset-0 h-full w-full object-cover"
+                : image.framed
                 ? "h-full w-full object-contain"
                 : fill
                   ? "absolute inset-0 h-full w-full object-contain"
@@ -789,7 +791,9 @@ function PrincipleFigure({
             alt={image.alt}
             loading="lazy"
             className={
-              image.framed
+              image.fillColumn
+                ? "absolute inset-0 h-full w-full object-cover"
+                : image.framed
                 ? "h-full w-full object-contain"
                 : fill || image.figureAspect
                   ? "absolute inset-0 h-full w-full object-cover"

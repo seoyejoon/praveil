@@ -85,6 +85,8 @@ export type DeviceStory = {
     figureAspect?: string;
     /** 출처 글을 아래 띠 대신 그림 위에 얹음 (그림이 칸을 끝까지 채움) */
     noteOverlay?: boolean;
+    /** PC에서 오른쪽 설명 칸 높이에 맞춰 그림 칸을 늘리고 영상 · 그림을 꽉 채움 (좌우는 조금 잘림) */
+    fillColumn?: boolean;
     note?: string;
     /** 가리키는 표시: 점 + 이름표 (side: 이름표가 점의 어느 쪽에) */
     marks: {
@@ -2327,10 +2329,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaContain: true,
       text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하는 RF팁과, 고주파와 함께 부스터를 넣는 펌핑팁을 피부 상태와 고민에 맞춰 나누어 사용합니다. 바늘 깊이를 0.5~4.0mm 사이에서 조절해 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
       specs: [
-        { label: "방식", value: "고주파 (RF) · 미세침" },
-        { label: "팁", value: "RF팁 · 펌핑팁 (미세침 + 부스터 주입)" },
-        { label: "바늘 깊이", value: "0.5~4.0mm (0.25mm 단위)" },
-        { label: "함께 하는 관리", value: "PDRN · 엑소좀 · 쥬베룩 등 패키지" },
+        { label: "시술 방식", value: "고주파 (RF) · 미세침" },
+        { label: "팁 종류", value: "RF팁 · 펌핑팁 (미세침 + 부스터 주입)" },
+        { label: "시술 깊이", value: "0.5~4.0mm (0.25mm 단위)" },
+        { label: "시너지 시술", value: "PDRN · 엑소좀 · 쥬베룩 등 패키지" },
       ],
     },
     principleImage: {
@@ -2340,6 +2342,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       framed: true,
       figureAspect: "16 / 9",
       noteOverlay: true,
+      fillColumn: true,
       marks: [],
       layers: [],
       note: "JEISYS MEDICAL · 층별 고주파 전달과 바이폴라 · 모노폴라 방식. 실제 크기 · 깊이와는 다를 수 있습니다.",
@@ -2355,7 +2358,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "조직 응고 및 자가 콜라겐 리모델링",
-        text: "진피층에 유도된 열응고 구역(Thermal Coagulation Zone)을 중심으로 피부 본연의 상처 치유 반응이 활성화되며, 새로운 콜라겐과 엘라스틴이 차올라 모공 · 흉터 · 탄력 저하를 개선합니다. 개선 정도는 개인차가 있습니다.",
+        text: "진피층에 유도된 열응고 구역(Thermal Coagulation Zone)을 중심으로 피부 본연의 상처 치유 반응이 활성화되며, 새로운 콜라겐과 엘라스틴이 차올라 모공 · 흉터 · 탄력 저하를 개선합니다.",
       },
     ],
     compare: {
@@ -2511,6 +2514,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       marks: [],
       layers: [],
       noteOverlay: true,
+      fillColumn: true,
       note: "LUTRONIC 제공 얼굴 부위 레이저 조사 · 온도 표시 3D 설명 장면입니다. 실제 환자 촬영본이 아닙니다.",
     },
     principle: [

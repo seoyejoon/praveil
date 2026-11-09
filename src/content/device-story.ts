@@ -2884,7 +2884,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       title: "QTL 실리프팅, 다른 실리프팅과 어떻게 다른가요?",
       lead: "같은 몰딩실도 돌기 모양과 배열, 조직을 붙잡는 방식이 다릅니다. 처짐 정도와 피부 두께를 함께 보고 고릅니다.",
       columns: [
-        // 소재는 표 첫 행("실 종류 및 소재")에 있어 머리글에는 적지 않음
+        // 소재는 표 첫 행("실의 소재")에 있어 머리글에는 적지 않음
         { name: "QTL실", self: true },
         { name: "민트실" },
         // 확인 필요: 에피티콘 · 블루로즈 세부 사양 (제조사 자료 · 시술 기관 안내 기준으로 정리)
@@ -2893,7 +2893,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "실 종류 및 소재",
+          label: "실의 소재",
           values: [
             "몰딩형 녹는 실",
             "몰딩실 · PDO",
@@ -2902,7 +2902,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "돌기 모양",
+          label: "실의 형태",
           values: [
             "촘촘하게 배열된 돌기",
             "360° 나선형 돌기",
@@ -2911,7 +2911,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "조직을 잡는 방식",
+          label: "고정 방식",
           values: [
             "촘촘한 돌기로 넓게 고정",
             "큰 돌기로 강하게 끌어당김",
@@ -2920,7 +2920,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "상담 시 확인 포인트",
+          label: "중요 포인트",
           values: [
             "처짐 방향 · 피부 두께",
             "처짐 정도 · 피부 두께",
@@ -2929,7 +2929,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "공통 회복 과정",
+          label: "회복 과정",
           values: [
             "부기 · 멍 · 당김 (개인차 있음)",
             "부기 · 멍 · 당김 (개인차 있음)",

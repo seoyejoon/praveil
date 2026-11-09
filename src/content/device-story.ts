@@ -1196,7 +1196,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "주성분 · 구성",
+          label: "주 성분",
           values: [
             "PN 단독 (오리지널)",
             "PN 단독 (점도 조절)",
@@ -1206,7 +1206,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 부위 · 목적",
+          label: "시술 부위",
           values: [
             "얼굴 전체 · 피부 장벽과 속건조",
             "눈가 · 눈밑 등 얇은 피부",

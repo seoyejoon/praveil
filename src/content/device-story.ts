@@ -2484,7 +2484,6 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/clarity-video/clarity-device-brand-from-video-v1-cutout.webp",
       photoSrcSet: "/images/clarity-video/clarity-device-brand-from-video-v1-cutout-800.webp 800w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout-1200.webp 1200w, /images/clarity-video/clarity-device-brand-from-video-v1-cutout.webp 1920w",
       photoAlt: "루트로닉 클라리티2 장비와 브랜드 화면 · 제조사 영상 장면",
-      photoCaption: "LUTRONIC 제공 클라리티2 장비 소개 영상의 한 장면.",
       // 레이저 제모 쪽과 같은 제조사 소개 영상
       film: {
         src: "/videos/official-clarity.mp4",
@@ -2497,7 +2496,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       text: "클라리티2의 1064nm 롱펄스 엔디야그 파장을 활용한 비접촉 레이저 리프팅입니다. 피부에 닿지 않고 진피층에 심부열을 균일하게 쌓아 올려 표면 손상 없이 탄력 · 모공 · 피부결 · 피부 톤을 복합적으로 개선하는 리프팅 시술입니다.",
       specs: [
         { label: "에너지 방식", value: "비접촉 롱펄스 레이저 (Long-pulsed Laser)" },
-        { label: "타깃 파장", value: "1064nm (진피층 리프팅 · 모공 타이트닝)" },
+        { label: "시술 파장", value: "1064nm (진피층 리프팅 · 모공 타이트닝)" },
         // 상단 요약칸('연고 마취 또는 무마취')과 같은 기준으로 적는다
         {
           label: "통증 관리",
@@ -2520,15 +2519,15 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "비접촉 방식의 준장펄스(Quasi-Long Pulse) 연속 조사",
-        text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 최소화합니다.",
+        text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 줄여줍니다.",
       },
       {
         title: "표면 온도를 확인하며 쌓는 균일 심부열",
-        text: "피부 표면 온도와 피부 반응을 실시간으로 참고하며 진피층에 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다. 목표 온도와 조사 조건은 적용 프로토콜과 피부 상태에 따라 달라집니다.",
+        text: "피부 표면 온도와 피부 반응을 실시간으로 참고하며 진피층에 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다.",
       },
       {
         title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
-        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다. 개선 정도는 개인차가 있습니다.",
+        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다.",
       },
     ],
     compare: {
@@ -2587,7 +2586,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "피부 표면에 팁을 직접 대지 않고 일정한 거리를 두고 1064nm 롱펄스 레이저를 조사합니다. 물리적 마찰과 압박이 없어 위생적이며, 접촉으로 인한 2차 피부 자극과 붉은기 부담이 적습니다.",
         image: "/images/clarity-features-v2/clarity-point-01-face-laser-20261105-v2.webp",
         alt: "얼굴 레이저 시술 장면",
-        caption: "원내 촬영 장면을 바탕으로 공통 모델을 적용한 이미지입니다.",
         // 3:1 원본을 16:9 칸에 오른쪽 기준으로 담는다 (왼쪽 빈자리는 화면 밖으로)
         mediaFit: "cover",
         mediaPosition: "right center",
@@ -2599,17 +2597,15 @@ export const deviceStory: Record<string, DeviceStory> = {
         image: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp 1920w",
         alt: "피부 속 열 전달을 표현한 설명용 단면",
-        caption: "열 전달을 설명하기 위한 AI 모식도입니다. 실제 온도 · 깊이 · 시술 결과를 나타내지 않습니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
       },
       {
         title: "탄력 · 모공 · 피부결 등 올인원 케어",
-        text: "느슨해진 진피 지지층을 강화해 처진 탄력, 늘어진 모공, 잔주름을 탄탄하게 잡아줍니다. 동시에 1064nm 파장이 진피 미세 혈관에 작용하여 붉은 기와 칙칙한 안색을 맑고 깨끗하게 가꿔줍니다.",
+        text: "손상된 진피층을 강화해 처진 탄력, 늘어진 모공, 잔주름 등을 개선하며 동시에 1064nm 파장이 미세 혈관에 작용하여 붉은 기와 칙칙한 안색을 개선해줍니다.",
         image: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp 1920w",
         alt: "얼굴 피부결 · 모공 설명용 공통 모델 이미지",
-        caption: "피부결 · 모공 · 안색을 설명하기 위한 AI 모델 이미지이며, 실제 시술 결과가 아닙니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
       },
@@ -2620,7 +2616,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp 1920w",
         video: "/videos/clarity-features-v2/clarity-point-04-temperature-20261105-v2.mp4",
         alt: "피부 온도 표시를 보여 주는 제조사 설명 영상",
-        caption: "LUTRONIC 제조사 영상의 온도 감지 기능 설명 장면입니다. 실제 환자 측정 기록이 아닙니다.",
         mediaFit: "contain",
         mediaSize: { width: 1920, height: 1080 },
         mediaEdges: ["#000000", "#000000"],

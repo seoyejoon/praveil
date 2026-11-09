@@ -2583,8 +2583,8 @@ export const deviceStory: Record<string, DeviceStory> = {
     featuresTitle: "클라리티 리프팅의 4가지 특징",
     features: [
       {
-        title: "표면 마찰과 자극을 줄인 위생적인 비접촉 조사 방식",
-        text: "피부 표면에 핸드피스를 직접 대지 않고 일정한 거리를 유지한 채 1064nm 롱펄스 레이저를 조사합니다. 물리적 마찰과 압박이 없어 위생적이며, 팁 접촉으로 인한 2차 자극과 붉은기 발생 부담을 덜어냅니다.",
+        title: "비접촉 조사로 자극을 줄인 위생적 시술",
+        text: "피부 표면에 팁을 직접 대지 않고 일정한 거리를 두고 1064nm 롱펄스 레이저를 조사합니다. 물리적 마찰과 압박이 없어 위생적이며, 접촉으로 인한 2차 피부 자극과 붉은기 부담이 적습니다.",
         image: "/images/clarity-features-v2/clarity-point-01-face-laser-20261105-v2.webp",
         alt: "얼굴 레이저 시술 장면",
         caption: "원내 촬영 장면을 바탕으로 공통 모델을 적용한 이미지입니다.",
@@ -2594,8 +2594,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaSize: { width: 1920, height: 1080 },
       },
       {
-        title: "진피 깊은 층까지 균일하게 축적되는 심부열",
-        text: "넓고 균일한 스폿 크기(조사 직경)를 바탕으로 진피층에 열에너지를 점진적으로 축적합니다. 축적된 심부열이 섬유아세포를 활성화하여 콜라겐과 엘라스틴의 자가 재생 및 리모델링을 촉진합니다.",
+        title: "깊은 진피층까지 빈틈없이 전달되는 에너지",
+        text: "균일한 조사 반경을 통해 진피 깊은 층까지 열에너지를 단계적으로 쌓아 올립니다. 차곡차곡 축적된 심부열이 섬유아세포를 자극해 콜라겐과 엘라스틴의 재생 및 탄력 구조 리모델링을 유도합니다.",
         image: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-02-dermal-heat-20261105-v2.webp 1920w",
         alt: "피부 속 열 전달을 표현한 설명용 단면",
@@ -2605,7 +2605,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "탄력 · 모공 · 피부결 등 올인원 케어",
-        text: "느슨해진 진피 지지 구조를 복원해 처진 윤곽 탄력과 늘어진 모공, 잔주름을 타이트닝하며, 1064nm 파장이 진피 미세 혈관(헤모글로빈)에 작용해 만성 홍조와 칙칙한 피부 톤을 맑게 가꿔줍니다.",
+        text: "느슨해진 진피 지지층을 강화해 처진 탄력, 늘어진 모공, 잔주름을 탄탄하게 잡아줍니다. 동시에 1064nm 파장이 진피 미세 혈관에 작용하여 붉은 기와 칙칙한 안색을 맑고 깨끗하게 가꿔줍니다.",
         image: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp 1920w",
         alt: "얼굴 피부결 · 모공 설명용 공통 모델 이미지",
@@ -2615,7 +2615,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실시간 온도 모니터링 시스템",
-        text: "시술 중 핸드피스 센서가 피부 표면 온도를 실시간으로 측정하여 과도한 열 축적을 줄입니다. 안전한 치료 유효 온도 범위 내에서 환자별 반응에 맞춰 에너지 전달 속도와 강도를 정교하게 조율합니다.",
+        text: "핸드피스에 탑재된 스마트 센서가 피부 표면 온도를 실시간으로 측정하여 과열 위험을 예방합니다. 유효 열전달 범위 내에서 피부 반응에 맞춰 조사 속도와 강도를 정밀하게 제어해 안정적인 리프팅을 돕습니다.",
         image: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-04-temperature-20261105-v2.webp 1920w",
         video: "/videos/clarity-features-v2/clarity-point-04-temperature-20261105-v2.mp4",

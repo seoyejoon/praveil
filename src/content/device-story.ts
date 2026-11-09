@@ -1166,10 +1166,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaSize: { width: 475, height: 512 },
       text: "리쥬란힐러는 연어 DNA에서 추출한 고순도 생체 적합 물질인 PN(Polynucleotide)을 진피층에 정밀 주입하는 피부 재생 스킨부스터입니다. 인위적인 볼륨 형성이 아닌 손상된 세포외기질(ECM)과 진피 환경 회복을 유도하여 얇아진 피부의 치밀도를 높이고 무너진 유수분 밸런스를 개선해줍니다.",
       specs: [
-        { label: "주성분", value: "PN (폴리뉴클레오티드)" },
-        { label: "제조사", value: "파마리서치 · 국내" },
-        { label: "주입 층", value: "진피층" },
-        { label: "용량", value: "2cc (가격표 기준)" },
+        { label: "제조사", value: "파마리서치 (PharmaResearch) · 한국" },
+        { label: "주성분", value: "고순도 PN (폴리뉴클레오티드)" },
+        { label: "주요 효과", value: "피부 장벽 강화 · 유수분 밸런스 정상화 · 진피 두께 및 탄력 개선 · 잔주름 완화" },
+        { label: "시술 용량", value: "1회 2cc (전체 풀페이스 기준 부위별 조절)" },
       ],
     },
     principle: [

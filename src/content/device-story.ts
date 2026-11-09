@@ -1190,7 +1190,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       title: "리쥬란힐러, 다른 PN 제품과 어떻게 다른가요?",
       lead: "국내에서 쓰이는 PN(폴리뉴클레오티드) 계열 스킨부스터를 제품별로 정리했습니다.",
       columns: [
-        { name: "리쥬란 힐러", self: true },
+        { name: "리쥬란힐러", self: true },
         { name: "리쥬란 아이" },
         { name: "비타란" },
         { name: "리즈네" },
@@ -1294,7 +1294,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "진정 및 애프터케어",
-        text: "시술 직후 피부 진정 팩과 LDM 또는 크라이오 등 진정 관리 기기를 적용해 붉은 기와 열감을 빠르게 가라앉히고 시술을 마무리합니다.",
+        text: "시술 직후 피부 진정 팩과 LDM 또는 크라이오 등 진정 관리 기기를 적용해 붉은기와 열감을 빠르게 가라앉히고 시술을 마무리합니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },
@@ -1323,7 +1323,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/page-assets/isce-product-presentation-20261105-v2.webp",
       photoAlt: "ISCE 1 · 2 패키지와 바이알 구성 — 제품 자료를 참고한 AI 이미지",
       mediaContain: true,
-      text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은 기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 개선합니다.",
+      text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 개선합니다.",
       specs: [
         {
           label: "적용 제품",
@@ -1344,14 +1344,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "회복 기간",
-          value: "당일 가벼운 일상생활 가능 (붉은 기는 24시간 내외 자연 진정)",
+          value: "당일 가벼운 일상생활 가능 (붉은기는 24시간 내외 자연 진정)",
         },
       ],
     },
     principle: [
       {
         title: "피부 장벽 상태 및 손상도 진단",
-        text: "붉은 기, 민감도, 유수분 밸런스 붕괴 등 피부 장벽의 손상 정도를 고려하여 적합한 침투 깊이와 적용 범위를 설정합니다.",
+        text: "붉은기, 민감도, 유수분 밸런스 붕괴 등 피부 장벽의 손상 정도를 고려하여 적합한 침투 깊이와 적용 범위를 설정합니다.",
       },
       {
         title: "고순도 엑소좀 유효 성분 침투",
@@ -2159,9 +2159,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       text: "고강도 집속 초음파(HIFU) 에너지를 피하근막(SMAS)층과 진피층에 집중 전달해 미세 열응고점(TCP)을 형성하는 리프팅 장비입니다. 응고된 조직의 수축과 콜라겐 재생을 통해 늘어진 안면 윤곽을 정돈하며, 기존 점(Dot) 모드 외에 선 형태로 에너지를 촘촘하게 연속 전달하는 MP(Micro-Pulsed) 모드를 병행해 시술 정밀도와 속도를 높였습니다.",
       specs: [
-        { label: "방식", value: "집속 초음파 (HIFU)" },
+        { label: "시술 방식", value: "집속 초음파 (HIFU)" },
         { label: "조사 모드", value: "일반(Dot) · MP 모드" },
-        { label: "깊이", value: "1.5 · 2.0 · 3.0 · 4.5mm" },
+        { label: "작용 깊이", value: "1.5 · 2.0 · 3.0 · 4.5mm" },
         { label: "핸드피스", value: "울트라 F · 울트라 부스터" },
       ],
     },
@@ -2211,7 +2211,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "조사 방식",
+          label: "시술 방식",
           values: [
             "일반(Dot) · MP 모드",
             "일반(Dot) 모드",
@@ -2527,7 +2527,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
-        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다.",
+        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은기와 피부 톤을 맑게 개선합니다.",
       },
     ],
     compare: {
@@ -2602,7 +2602,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "탄력 · 모공 · 피부결 등 올인원 케어",
-        text: "손상된 진피층을 강화해 처진 탄력, 늘어진 모공, 잔주름 등을 개선하며 동시에 1064nm 파장이 미세 혈관에 작용하여 붉은 기와 칙칙한 안색을 개선해줍니다.",
+        text: "손상된 진피층을 강화해 처진 탄력, 늘어진 모공, 잔주름 등을 개선하며 동시에 1064nm 파장이 미세 혈관에 작용하여 붉은기와 칙칙한 안색을 개선해줍니다.",
         image: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp",
         mediaSrcSet: "/images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-800.webp 800w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2-1200.webp 1200w, /images/clarity-features-v2/clarity-point-03-skin-texture-model-a-20261105-v2.webp 1920w",
         alt: "얼굴 피부결 · 모공 설명용 공통 모델 이미지",
@@ -3541,7 +3541,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "쿨링 진정 및 사후 케어 안내",
-        text: "열감과 붓기를 빠르게 가라앉히기 위해 냉찜질(쿨링 케어)을 진행하고 주의사항을 안내드립니다.",
+        text: "열감과 부기를 빠르게 가라앉히기 위해 냉찜질(쿨링 케어)을 진행하고 주의사항을 안내드립니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
       },

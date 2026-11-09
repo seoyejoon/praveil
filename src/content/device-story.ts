@@ -368,9 +368,9 @@ export const deviceStory: Record<string, DeviceStory> = {
     device: {
       name: "필러",
       maker: "Hyaluronic Acid",
-      image: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
-      photo: "/images/photos/intro-filler-products-3brands-20261105-v1.webp",
-      photoAlt: "뉴라미스 · 레나 · 레스틸렌 제품군을 모은 연출 사진",
+      image: "/images/photos/intro-filler-products-5brands-20261107-v2.webp",
+      photo: "/images/photos/intro-filler-products-5brands-20261107-v2.webp",
+      photoAlt: "뉴라미스 · 레나 · 레스틸렌 · 벨로테로 · 큐티필 제품군을 모은 연출 사진",
       // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
       mediaFill: true,
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
@@ -460,8 +460,8 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "부위별 맞춤 제품 선택",
         text: "이마 · 볼 · 입술 등 부위별 피부 두께와 움직임에 맞춰 적합한 입자 크기와 점탄성의 제품을 구분해 적용합니다.",
-        image: "/images/photos/feature-filler-products-3brands-20261105-v1.webp",
-        alt: "뉴라미스 · 레나 · 레스틸렌의 필러 제품군",
+        image: "/images/photos/feature-filler-products-5brands-20261107-v2.webp",
+        alt: "뉴라미스 · 레나 · 레스틸렌 · 벨로테로 · 큐티필의 필러 제품군",
         // 사진 자체에 여백이 있어 자르거나 확대하지 않고 그대로 보여 준다
         mediaFit: "contain",
       },

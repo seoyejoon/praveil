@@ -39,10 +39,10 @@ export const aboutHero: Record<"intro" | "doctor", AboutHero> = {
     en: "Doctor",
     title: "의료진소개",
     description: "페이닥터 없이 대표원장이 모든 시술을 직접 책임집니다.",
-    image: interior("hero-about-doctor-pc-20261106"),
-    mobileImage: interior("hero-about-doctor-mobile-20261106"),
+    image: "/images/photos/hero-about-doctor-20261107-pc-v3.webp",
+    mobileImage: "/images/photos/hero-about-doctor-20261107-mobile-v3.webp",
     // 태블릿 세로에서는 가로 사진이 좌우로 잘려 공간이 안 보여, 세로 사진을 쓴다
-    tabletImage: interior("hero-about-doctor-mobile-20261106"),
+    tabletImage: "/images/photos/hero-about-doctor-20261107-mobile-v3.webp",
   },
 };
 

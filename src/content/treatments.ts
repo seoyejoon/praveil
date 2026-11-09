@@ -606,9 +606,9 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: QTL 실리프팅 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-qtl-products-20261106-v1"),
-      mobileSrc: photo("hero-qtl-products-20261106-m-v1"),
-      alt: "QTL 실리프팅 제품을 배치한 히어로 연출 이미지",
+      src: photo("hero-qtl-products-20261107-pc-v2"),
+      mobileSrc: photo("hero-qtl-products-20261107-mobile-v2"),
+      alt: "QTL 실리프팅 제품 상자 3개를 배치한 히어로 연출 이미지",
       // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
       bg: "#efdacb",
       fade: "narrow",
@@ -673,9 +673,9 @@ export const treatments: Treatment[] = [
     image: photo("clinic-5-no-brown-wrap-20261105"),
     // 확인 필요: 잼버실 전용 첫 화면 사진 (같은 구도의 사진을 받으면 교체)
     scene: {
-      src: photo("hero-jamber-products-20261106-v1"),
-      mobileSrc: photo("hero-jamber-products-20261106-m-v1"),
-      alt: "잼버실 제품을 배치한 히어로 연출 이미지",
+      src: photo("hero-jamber-epiticon-boxes-20261107-pc-v3"),
+      mobileSrc: photo("hero-jamber-epiticon-boxes-20261107-mobile-v3"),
+      alt: "잼버실(epiticon JAMBER) 제품 상자 4개를 배치한 히어로 연출 이미지",
       // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
       bg: "#ebd9cc",
       fade: "narrow",
@@ -739,9 +739,9 @@ export const treatments: Treatment[] = [
       "환자분의 고민 부위별 상태를 고려한 커스텀 필러 시술",
     image: photo("signature-3"),
     scene: {
-      src: photo("hero-filler-products-3brands-20261105-v2"),
-      mobileSrc: photo("hero-filler-products-3brands-20261105-m-v2"),
-      alt: "뉴라미스 · 레나 · 레스틸렌 제품군을 배치한 필러 제품 연출 이미지",
+      src: photo("hero-filler-products-5brands-20261107-pc-v3"),
+      mobileSrc: photo("hero-filler-products-5brands-20261107-mobile-v3"),
+      alt: "뉴라미스 · 레나 · 레스틸렌 · 벨로테로 · 큐티필 제품군을 배치한 필러 제품 연출 이미지",
       // 사진 위쪽이 흐려지는 자리에 회색 벽 대신 사진과 같은 색이 보이도록
       bg: "#dbc4b7",
       // 제품이 오른쪽 절반, 글자가 왼쪽 절반을 쓰므로 유리 카드를 놓을 자리가 없다
@@ -1570,9 +1570,9 @@ export const treatments: Treatment[] = [
     image: photo("cat-skin-care"),
     // 확인 필요: 쥬베룩 전용 첫 화면 사진 (지금은 상위 페이지 사진)
     scene: {
-      src: photo("hero-juvelook-products-20261106-v1"),
-      mobileSrc: photo("hero-juvelook-products-20261106-m-v1"),
-      alt: "쥬베룩 스킨 제품을 배치한 히어로 연출 이미지",
+      src: photo("hero-juvelook-skin-box-vial-20261107-pc-v2"),
+      mobileSrc: photo("hero-juvelook-skin-box-vial-20261107-mobile-v2"),
+      alt: "쥬베룩 스킨 30mg 상자와 바이알을 배치한 히어로 연출 이미지",
       // 제품 · 장비가 오른쪽(PC) · 아래쪽(모바일)에 있어 글자 자리를 비워 둔다
       bg: "#f4dfce",
       fade: "narrow",

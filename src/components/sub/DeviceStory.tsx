@@ -791,7 +791,7 @@ function PrincipleFigure({
             className={
               image.framed
                 ? "h-full w-full object-contain"
-                : fill
+                : fill || image.figureAspect
                   ? "absolute inset-0 h-full w-full object-cover"
                   : "block h-auto w-full"
             }

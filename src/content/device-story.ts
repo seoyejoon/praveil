@@ -3037,10 +3037,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       alt: "잼버실의 코일형 구조와 주변 조직을 단순화한 AI 제작 설명 모식도",
       marks: [
         { x: 50, y: 53, label: "코일형 실", side: "right", above: true },
-        { x: 20, y: 74, label: "주변 조직", side: "right" },
+        { x: 17, y: 74, label: "주변 조직", side: "right" },
       ],
       layers: [],
-      framed: true,
+      // 안내 문구는 그림 안에. PC에서 오른쪽 설명 칸 높이에 맞춘 비율(꽉 채움)
+      figureAspect: "740 / 507",
+      noteOverlay: true,
       note: "잼버실의 코일 구조를 단순화한 AI 설명 모식도입니다. 실제 크기 · 삽입 위치 · 효과를 나타내지 않습니다.",
     },
     principle: [
@@ -3054,7 +3056,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 재생을 통한 볼륨 안착",
-        text: "삽입된 스프링 실 사이로 자가 콜라겐이 서서히 차오르면서, 인위적이지 않고 자연스러운 입체 볼륨과 탄력이 부드럽게 자리 잡습니다. ※ 볼륨이 형성되고 유지되는 정도는 개인의 피부 상태와 체질에 따라 차이가 있을 수 있습니다.",
+        text: "삽입된 스프링 실 사이로 자가 콜라겐이 서서히 차오르면서, 인위적이지 않고 자연스러운 입체 볼륨과 탄력이 부드럽게 자리 잡습니다.",
       },
     ],
     compare: {
@@ -3069,7 +3071,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "주된 목적",
+          label: "시술 목적",
           values: [
             "꺼진 부위 볼륨",
             "꺼진 부위 볼륨",
@@ -3087,7 +3089,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "삽입 방식",
+          label: "시술 방식",
           values: [
             "뭉툭한 캐뉼라 사용",
             "제품별 전용 바늘 / 캐뉼라",
@@ -3096,7 +3098,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "상담 시 확인 포인트",
+          label: "시술 포인트",
           values: [
             "꺼진 위치 · 깊이",
             "꺼진 위치 · 피부 두께",

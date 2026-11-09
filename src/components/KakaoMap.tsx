@@ -104,7 +104,8 @@ export default function KakaoMap({ className = "" }: Props) {
   useEffect(() => {
     const box = boxRef.current;
     if (!box) return;
-    let lastWidth = 0;
+    // 너비뿐 아니라 높이가 바뀌어도 다시 그린다 (푸터 칸이 나중에 늘어나면 지도 아래가 비던 문제)
+    let lastSize = "";
     let timer: ReturnType<typeof setTimeout> | undefined;
     let cancelled = false;
 
@@ -117,8 +118,9 @@ export default function KakaoMap({ className = "" }: Props) {
       if (cancelled || !box.isConnected) return;
       const width = Math.round(box.clientWidth);
       const height = Math.round(box.clientHeight);
-      if (!width || !height || width === lastWidth) return;
-      lastWidth = width;
+      const size = `${width}x${height}`;
+      if (!width || !height || size === lastSize) return;
+      lastSize = size;
       const holder = box.querySelector<HTMLDivElement>(
         `#daumRoughmapContainer${timestamp}`,
       );

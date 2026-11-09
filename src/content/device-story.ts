@@ -2411,7 +2411,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "미세침 팁의 정교한 진입 시스템",
-        text: "미세침 팁이 피부에 순간적으로 접촉하여 진입한 뒤 신속하게 회수되는 방식으로 설계되어 있습니다. ※ 실제 시술 시 적용되는 팁의 종류와 세부 설정은 개개인의 피부 상태와 고민 부위에 맞춰 정교하게 결정됩니다.",
+        text: "미세침 팁이 피부에 순간적으로 접촉하여 진입한 뒤 신속하게 회수되는 방식으로 설계되어 있습니다.",
         image: "/images/potenza/potenza-modes-web-v2.webp",
         video: "/videos/potenza-modes-web-v2.mp4",
         alt: "포텐자 미세침 팁의 접촉, 진입, 회수 과정을 보여주는 자료 영상",
@@ -2419,7 +2419,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "타깃층별 맞춤 고주파(RF) 에너지 전달",
-        text: "미세침을 통해 피부 표면의 손상 부담을 덜고, 진피층 등 필요한 특정 층에 직접적으로 고주파 에너지를 전달합니다. ※ 도식화된 이미지는 이해를 돕기 위한 참고용이며, 실제 침투 깊이는 피부 두께에 따라 다르게 적용됩니다.",
+        text: "미세침을 통해 피부 표면의 손상 부담을 덜고, 진피층 등 필요한 특정 층에 직접적으로 고주파 에너지를 전달합니다.",
         image: "/images/potenza/potenza-tips-web-v2.webp",
         video: "/videos/potenza-tips-web-v2.mp4",
         alt: "미세침을 통한 피부층별 RF 에너지 전달을 보여주는 자료 영상",

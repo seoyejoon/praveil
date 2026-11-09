@@ -376,7 +376,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       text: "필러는 히알루론산(HA) 성분을 피부 아래에 넣어 꺼진 부위의 볼륨을 채우고, 얼굴의 비율과 라인을 다듬는 시술입니다. 부위마다 필요한 단단함과 퍼짐이 달라, 넣는 층과 제품을 나누어 사용합니다.",
       specs: [
         { label: "성분", value: "히알루론산 (HA)" },
-        { label: "넣는 층", value: "진피층 ~ 골막 위 (부위별)" },
+        { label: "주입 층", value: "진피층 ~ 골막 위 (부위별)" },
         {
           label: "시술 부위",
           value: "이마 · 볼 · 팔자 · 입술 · 애교 · 목주름 등",

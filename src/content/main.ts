@@ -99,7 +99,7 @@ export const mainBest = {
       name: "쿨페이즈",
       category: "리프팅",
       href: "/lifting/coolphase",
-      text: "고주파로 피부 속 콜라겐을 자극해, 피부결 · 탄력을 함께 끌어올립니다.",
+      text: "고주파로 피부 속 콜라겐을 자극해 피부결 · 탄력을 함께 끌어올립니다.",
       image: doctorPhotos.coolphase,
       photoFit: "full-frame" as const,
       headline: [
@@ -152,7 +152,7 @@ export const mainWhy = {
     {
       icon: "consult",
       title: "1:1 맞춤 설계",
-      text: "같은 고민이라도 원인을 먼저 살펴, 한 분 한 분에게 맞는 시술을 제안합니다.",
+      text: "같은 고민이라도 원인을 먼저 고려하여 한 분 한 분에게 맞는 시술을 제안합니다.",
       image: "/images/photos/clinic-3.webp",
     },
     {

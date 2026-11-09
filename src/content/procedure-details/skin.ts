@@ -487,7 +487,7 @@ export const acne: Record<string, ProcedureDetail> = {
   },
   "acne-extraction": {
     summary:
-      "소독된 기구로 염증과 피지를 안전하게 빼내 여드름이 빨리 가라앉도록 돕습니다.",
+      "소독된 기구로 염증과 피지를 안정적으로 빼내 여드름이 빨리 가라앉도록 돕습니다.",
     tags: ["압출", "여드름", "화농"],
     recommend: [
       "곪은 여드름이나 좁쌀 여드름이 많은 분",

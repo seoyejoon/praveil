@@ -535,7 +535,16 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   word-break: keep-all;
+  /* keep-all 로 단어를 못 끊는 좁은 칸(표 · 카드)에서 글자가 넘치지 않게 */
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
+}
+/* 문단 마지막 줄에 한 단어만 덩그러니 남지 않게 */
+p,
+li,
+dd,
+td {
+  text-wrap: pretty;
 }
 
 /* 카카오 약도: 등록된 장소 이름표(현재 '뉴리즈의원 인천')는 숨기고 핀만 보인다. 병원 이름으로 약도를 다시 만들면 삭제 */

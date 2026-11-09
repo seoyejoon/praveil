@@ -20,7 +20,7 @@ export const philosophy = [
   {
     en: "READ : SKIN",
     title: "피부를 먼저 읽습니다.",
-    body: "피부 두께와 탄력, 생활 습관까지 살핍니다.",
+    body: "피부 두께와 탄력, 생활 습관까지 고려합니다.",
     icon: "read",
   },
   {
@@ -47,7 +47,7 @@ export const programs: Record<string, { description: string; tags: string[] }> =
     },
     coolphase: {
       description:
-        "피부 상태에 맞춰 에너지를 설계하는 리프팅으로, 탄력과 피부결을 함께 살핍니다.",
+        "피부 상태에 맞춰 에너지를 설계하는 리프팅으로, 탄력과 피부결을 함께 고려합니다.",
       tags: ["탄력", "피부결", "리프팅"],
     },
     "volume-filler": {

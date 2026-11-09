@@ -193,7 +193,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         poster: cs("coolsonic-brand"),
         edge: "linear-gradient(#3e4748, #273132)",
       },
-      text: "쿨소닉은 고강도 집속 초음파(HIFU)에 ACC 냉각 기술을 적용한 리프팅 장비입니다. 피부 표면을 냉각해 보호하면서 1.5 · 3.0 · 4.5mm 깊이에 에너지를 나누어 전달해, 근막층(SMAS)까지 단계적으로 리프팅합니다.",
+      text: "쿨소닉은 고강도 집속 초음파(HIFU)에 ACC 냉각 기술을 적용한 리프팅 장비입니다. 피부 표면을 냉각해 보호하면서 1.5 · 3.0 · 4.5mm 깊이에 에너지를 나누어 전달해 근막층(SMAS)까지 단계적으로 리프팅합니다.",
       specs: [
         { label: "방식", value: "고강도 집속 초음파 (HIFU)" },
         { label: "작용 층", value: "진피층 ~ 근막층 (SMAS)" },
@@ -208,7 +208,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "목표 깊이에 열응고점 형성",
-        text: "진피층부터 근막층(SMAS)까지 부위별로 깊이를 선택해, 미세한 열응고점을 촘촘하게 형성합니다.",
+        text: "진피층부터 근막층(SMAS)까지 부위별로 깊이를 선택해 미세한 열응고점을 촘촘하게 형성합니다.",
       },
       {
         title: "조직 수축과 콜라겐 재생",
@@ -340,7 +340,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "시술",
-        text: "피부 표면을 냉각하면서, 상담 때 정한 깊이에 맞춰 층별로 나누어 시술합니다.",
+        text: "피부 표면을 냉각하면서 상담 때 정한 깊이에 맞춰 층별로 나누어 시술합니다.",
         image: doctorPhotos.coolsonic,
         alt: "대표원장이 쿨소닉으로 얼굴 부위를 시술하는 장면",
         fullFrame: true,
@@ -481,7 +481,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 맞춤 상담 및 디자인",
-        text: "개인의 얼굴형과 이목구비 비율, 주름 상태를 살피고 원하는 개선 방향을 파악하여 알맞은 필러 종류와 적정 용량을 결정합니다.",
+        text: "개인의 얼굴형과 이목구비 비율, 주름 상태를 고려하고 원하는 개선 방향을 파악하여 알맞은 필러 종류와 적정 용량을 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -522,7 +522,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         poster: "/images/coolphase/device.webp",
         edge: "linear-gradient(#494d4e, #8e9393)",
       },
-      text: "쿨페이즈는 6.78MHz 모노폴라 고주파 에너지를 진피층 깊숙이 전달하는 탄력 리프팅 시술입니다. 독자적인 직접 접촉식 냉각 기술(DCC™)로 피부 표면을 보호하며 심부열을 균일하게 전달합니다. 개인마다 다른 피부 두께와 굴곡에 맞춰 샷 수와 에너지 레벨을 정교하게 설계하여 탄력부터 잔주름, 모공, 피부결까지 함께 살핍니다.",
+      text: "쿨페이즈는 6.78MHz 모노폴라 고주파 에너지를 진피층 깊숙이 전달하는 탄력 리프팅 시술입니다. 독자적인 직접 접촉식 냉각 기술(DCC™)로 피부 표면을 보호하며 심부열을 균일하게 전달합니다. 개인마다 다른 피부 두께와 굴곡에 맞춰 샷 수와 에너지 레벨을 정교하게 설계하여 탄력부터 잔주름, 모공, 피부결까지 함께 고려합니다.",
       specs: [
         { label: "방식", value: "모노폴라 고주파 (6.78MHz RF)" },
         { label: "냉각 시스템", value: "DCC™ 직접 접촉식 연속 냉각" },
@@ -541,7 +541,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 리모델링",
-        text: "전달된 고주파 열이 콜라겐 섬유를 수축시키고 새로운 콜라겐 · 엘라스틴 재생을 도와, 시간을 두고 점차 탄탄한 피부 변화로 이어집니다. 변화의 정도와 시점은 사람마다 다릅니다.",
+        text: "전달된 고주파 열이 콜라겐 섬유를 수축시키고 새로운 콜라겐 · 엘라스틴 재생을 도와, 시간을 두고 점차 탄탄한 피부 변화로 이어집니다.",
       },
     ],
     principleImage: {
@@ -591,7 +591,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 고민",
+          label: "주요 효과",
           values: [
             "탄력 · 잔주름 · 모공 · 피부결",
             "깊은 탄력 · 잔주름 · 피부 밀도",
@@ -617,7 +617,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "표면은 차갑게, 피부 속은 뜨겁게 (DCC™ 기술)",
-        text: "접촉면 전체를 지속적으로 급속 냉각하는 DCC™ 기술이 표피를 보호하고 열 자극과 통증 부담을 낮춥니다. 표면 냉각을 이어 가며 시술해, 시술 중 부담을 덜고 한층 편안하게 받아보실 수 있습니다.",
+        text: "접촉면 전체를 지속적으로 급속 냉각하는 DCC™ 기술이 표피를 보호하고 열 자극과 통증 부담을 낮춥니다. 표면 냉각을 이어 가며 시술해 시술 중 부담을 덜고 한층 편안하게 받아보실 수 있습니다.",
         image: "/images/coolphase/principle-feature.webp",
         video: "/videos/coolphase-cooling.mp4",
         alt: "쿨페이즈 팁의 직접 접촉 냉각과 피부 속 고주파 열 전달을 보여 주는 제조사 원리 영상",
@@ -625,7 +625,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "진피 깊은 층까지 도달하는 6.78MHz 모노폴라 RF",
-        text: "피부 표면에 머무르지 않고 진피층 깊숙이 심부열을 균일하게 전달하여 콜라겐 수축과 재생을 유도합니다. 처진 윤곽의 타이트닝부터 잔주름, 모공, 거친 피부결까지 함께 살핍니다.",
+        text: "피부 표면에 머무르지 않고 진피층 깊숙이 심부열을 균일하게 전달하여 콜라겐 수축과 재생을 유도합니다. 처진 윤곽의 타이트닝부터 잔주름, 모공, 거친 피부결까지 함께 고려합니다.",
         image: "/images/coolphase/device.webp",
         video: "/videos/coolphase-device.mp4",
         alt: "쿨페이즈 장비와 핸드피스를 보여 주는 제조사 영상",
@@ -634,7 +634,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 두께와 부위별 반응을 고려한 정밀 조절",
-        text: "이마, 눈가, 볼, 턱선은 피부 두께와 굴곡, 열 민감도가 모두 다릅니다. 시술 중 피부 반응과 팁 밀착 상태를 면밀히 살피며, 대표원장이 부위별 특성에 맞춰 에너지 강도와 샷 수를 1:1로 섬세하게 설계 · 조절합니다.",
+        text: "이마, 눈가, 볼, 턱선은 피부 두께와 굴곡, 열 민감도가 모두 다릅니다. 시술 중 피부 반응과 팁 밀착 상태를 면밀히 확인하며, 대표원장이 부위별 특성에 맞춰 에너지 강도와 샷 수를 1:1로 섬세하게 설계 · 조절합니다.",
         image: "/images/coolphase/tip-loop.webp",
         video: "/videos/coolphase-tip-loop.mp4",
         alt: "쿨페이즈 얼굴용 팁(Face Tip)의 모양을 보여 주는 제조사 영상",
@@ -664,7 +664,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "대표원장 1:1 맞춤 시술",
-        text: "피부 표면을 냉각하면서 계획된 부위에 정밀하게 고주파 에너지를 전달합니다. 시술 중 실시간 피부 반응과 열감을 살피며 에너지와 샷 수를 조절합니다.",
+        text: "피부 표면을 냉각하면서 계획된 부위에 정밀하게 고주파 에너지를 전달합니다. 시술 중 실시간 피부 반응과 열감을 확인하며 에너지와 샷 수를 조절합니다.",
         image: doctorPhotos.coolphase,
         alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
         fullFrame: true,
@@ -691,7 +691,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
       // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
       mediaFill: true,
-      text: "보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 이용하는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 살펴 계획합니다.",
+      text: "보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 이용하는 시술입니다. 움직일 때 생기는 표정주름과 가만히 있어도 남는 주름을 구분하고, 근육의 힘과 표정 습관을 고려하여 계획합니다.",
       specs: [
         {
           label: "방식",
@@ -714,7 +714,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "표정과 근육 움직임 확인",
-        text: "표정을 지을 때 주름이 생기는 위치와 근육의 움직임, 좌우 차이를 살핍니다.",
+        text: "표정을 지을 때 주름이 생기는 위치와 근육의 움직임, 좌우 차이를 고려합니다.",
       },
       {
         title: "필요한 부위에 제제 주사",
@@ -770,7 +770,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "표정 근육을 고려한 자연스러운 움직임",
-        text: "근육의 움직임과 힘의 방향을 정밀하게 분석하여, 표정이 어색하게 굳지 않고 자연스럽게 정돈되도록 설계합니다.",
+        text: "근육의 움직임과 힘의 방향을 정밀하게 분석하여 표정이 어색하게 굳지 않고 자연스럽게 정돈되도록 설계합니다.",
         image: "/images/photos/cat-botox-model-a-v3.webp",
         alt: "주입 시술의 계획을 설명하기 위한 기존 사진",
       },
@@ -792,7 +792,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 맞춤 상담 및 진단",
-        text: "가만히 있을 때와 표정을 지을 때의 근육 움직임을 살피고, 이전 시술 주기와 만족도를 확인하여 알맞은 주사 부위와 유닛(용량)을 결정합니다.",
+        text: "가만히 있을 때와 표정을 지을 때의 근육 움직임을 고려하고, 이전 시술 주기와 만족도를 확인하여 알맞은 주사 부위와 유닛(용량)을 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -829,7 +829,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "리투오 제품 상자와 본품 (제조사 공식 자료)",
       mediaContain: true,
       mediaSize: { width: 730, height: 548 },
-      text: "리투오(Re2O)는 면역 거부 세포를 제거하고 세포외기질(ECM)만을 정제한 무세포 동종진피(hADM) 스킨부스터입니다. 인체 진피와 동일한 콜라겐과 엘라스틴 등 필수 기저 물질을 직접 보충하여, 얇아진 피부의 진피 환경을 재건해주는 시술입니다.",
+      text: "리투오(Re2O)는 면역 거부 세포를 제거하고 세포외기질(ECM)만을 정제한 무세포 동종진피(hADM) 스킨부스터입니다. 인체 진피와 동일한 콜라겐과 엘라스틴 등 필수 기저 물질을 직접 보충하여 얇아진 피부의 진피 환경을 개선해주는 시술입니다.",
       specs: [
         { label: "제품 분류", value: "무세포 동종진피(hADM) 스킨부스터" },
         { label: "핵심 원료", value: "정제된 인체 피부 유래 세포외기질(ECM)" },
@@ -838,7 +838,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           value: "콜라겐 · 엘라스틴 · 단백질 복합체 등 진피 지지 구조",
         },
         {
-          label: "주로 보는 부분",
+          label: "주요 효과",
           value: "얇아진 진피층 · 미세 잔주름 · 탄력 밀도",
         },
         {
@@ -850,7 +850,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "부위별 맞춤 시술 디자인",
-        text: "환자분의 고민 부위와 얼굴 굴곡에 맞춰 약물이 들어갈 위치와 용량을 1:1로 정교하게 디자인합니다.",
+        text: "환자분의 고민 부위와 얼굴 굴곡에 맞춰 주입 위치와 용량을 1:1로 정교하게 디자인합니다.",
       },
       {
         title: "타깃 진피층에 맞춘 주입 깊이 설정",
@@ -890,7 +890,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 살피는 고민",
+          label: "주요 효과",
           values: [
             "피부결 · 잔주름 · 피부 밀도 · 탄력",
             "피부결 · 탄력 · 얕은 부위 꺼짐",
@@ -935,14 +935,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "인체 조직 유래 성분 기반의 생체 적합성",
-        text: "합성 고분자 재료와 달리 인체 피부 조직에서 얻은 성분을 기반으로 해, 이물감에 대한 부담이 적은 편입니다. 다만 주입 시술인 만큼 붓기 · 멍 등 이상 반응은 생길 수 있어, 피부 상태와 기왕력을 먼저 확인하고 진행합니다.",
+        text: "합성 고분자 재료와 달리 인체 피부 조직에서 얻은 성분을 기반으로 해 이물감에 대한 부담이 적은 편입니다.",
         image: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-03-acellular-matrix-20261105-v2.webp 1200w",
         alt: "무세포 기질과 주변 조직 — AI 설명용 모식도",
       },
       {
         title: "진피 밀도 강화로 완성하는 잔주름 · 결 · 탄력 케어",
-        text: "단순히 표면만 일시적으로 채우는 것이 아니라, 피부 속 진피 밀도를 촘촘히 채워 줍니다. 잔주름이 신경 쓰이는 부위나 거칠어진 피부결, 저하된 탄력 전반을 함께 살핍니다.",
+        text: "단순히 표면만 일시적으로 채우는 것이 아니라, 피부 속 진피 밀도를 촘촘히 채워 줍니다. 잔주름이 신경 쓰이는 부위나 거칠어진 피부결, 저하된 탄력 전반을 함께 고려합니다.",
         image: "/images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2-800.webp 800w, /images/skin-features/retuo/retuo-point-04-skin-texture-20261105-v2.webp 1200w",
         alt: "피부결과 진피 구조 — AI 설명용 모식도",
@@ -951,7 +951,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "맞춤 피부 진단",
-        text: "피부결과 탄력 저하도를 살펴 주입 부위와 적정 용량을 설계합니다.",
+        text: "피부결과 탄력 저하도를 고려하여 주입 부위와 적정 용량을 설계합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -1010,7 +1010,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "고민과 피부 상태 확인",
-        text: "건조함, 잔주름, 거친 결 중 무엇이 먼저인지 살피고, 염증이나 상처가 있는지도 확인합니다.",
+        text: "건조함, 잔주름, 거친 결 중 무엇이 먼저인지 고려하고, 염증이나 상처가 있는지도 확인합니다.",
       },
       {
         title: "성분 · 용도별 선택",
@@ -1054,7 +1054,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 살피는 고민",
+          label: "주요 효과",
           values: [
             "피부결 · 잔주름 등 제품별",
             "국소 꺼짐 · 윤곽 · 주름",
@@ -1088,7 +1088,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "리쥬란 · PN 성분을 확인",
-        text: "리쥬란은 연어에서 유래한 PN을 주성분으로 하는 제품입니다. 제조사 원료 이미지와 제품 정보를 함께 살펴 피부 상태와 사용목적에 맞는지 확인합니다.",
+        text: "리쥬란은 연어에서 유래한 PN을 주성분으로 하는 제품입니다. 제조사 원료 이미지와 제품 정보를 함께 고려하여 피부 상태와 사용목적에 맞는지 확인합니다.",
         image: "/images/official/rejuran-section2_img02.jpg",
         alt: "리쥬란 · PN 성분을 확인 · 제조사 공식 자료",
         fullFrame: false,
@@ -1106,14 +1106,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 두께와 부위 고려",
-        text: "얼굴 전체를 같은 방식으로 접근하지 않고, 피부 두께와 민감한 부위를 살펴 범위를 정합니다.",
+        text: "얼굴 전체를 같은 방식으로 접근하지 않고, 피부 두께와 민감한 부위를 고려하여 범위를 정합니다.",
         image: "/images/photos/cat-main-skin-model-a.webp",
         alt: "피부 부위별 계획 설명용 기존 시술 사진",
         mediaFit: "cover",
       },
       {
         title: "반응을 보며 다음 단계 결정",
-        text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 살펴 결정합니다.",
+        text: "부기와 멍, 주입 자국을 확인하고 경과에 따라 다음 계획을 정합니다. 추가 시술은 필요성을 다시 확인하여 결정합니다.",
         image: "/images/photos/clinic-5-no-brown-wrap-20261105.webp",
         alt: "프라베일 관리실",
         mediaFit: "cover",
@@ -1122,7 +1122,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "상담 · 계획",
-        text: "피부 상태와 이전 시술 이력을 살피고, 스킨부스터의 범위와 기대할 수 있는 변화를 함께 정합니다.",
+        text: "피부 상태와 이전 시술 이력을 확인하고, 스킨부스터의 범위와 기대할 수 있는 변화를 함께 정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -1173,7 +1173,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부 두께 및 부위별 상태 확인",
-        text: "거친 피부결과 피부 두께, 눈가처럼 피부가 얇고 예민한 부위의 특성을 세심하게 살피고 주입 범위를 정밀하게 계획합니다.",
+        text: "거친 피부결과 피부 두께, 눈가처럼 피부가 얇고 예민한 부위의 특성을 고려하고 주입 범위를 정밀하게 계획합니다.",
       },
       {
         title: "PN 성분의 미세 분할 주입",
@@ -1181,7 +1181,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 환경 관리 및 컨디션 확인",
-        text: "제조사는 주입된 PN 성분이 피부 고유의 환경을 다스리는 데 도움을 준다고 안내합니다. 개인의 피부 컨디션에 따라 변화의 속도와 체감 정도는 차이가 날 수 있습니다.",
+        text: "주입된 PN 성분이 피부 고유의 환경을 다스리는 데 도움을 줍니다.",
       },
     ],
     compare: {
@@ -1218,11 +1218,11 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "통증 정도",
           values: [
-            "따끔함이 큰 편",
-            "따끔함이 있는 편",
-            "따끔함이 있는 편",
-            "따끔함이 있는 편",
-            "따끔함이 있는 편",
+            "●●●●○",
+            "●●●○○",
+            "●●●○○",
+            "●●●○○",
+            "●●●○○",
           ],
         },
         {
@@ -1243,28 +1243,28 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "인체 적합성이 뛰어난 고순도 생체 고분자 PN 성분",
-        text: "연어 DNA에서 추출 · 정제한 폴리뉴클레오티드(PN)는 열에 안정적이며 체내 이물 반응이 극히 적은 물질로, 손상된 피부 기저 환경과 조직 재생 반응을 안전하게 활성화합니다.",
+        text: "연어 DNA에서 추출 · 정제한 폴리뉴클레오티드(PN)는 열에 안정적이며 체내 이물 반응이 극히 적은 물질로, 손상된 피부 기저 환경과 조직 재생 반응을 안정적으로 활성화합니다.",
         image: "/images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-01-pn-20261105-v2.webp 1200w",
         alt: "PN 성분 — AI 설명용 모식도",
       },
       {
         title: "얇아진 진피층의 치밀도 및 탄력 구조 복원",
-        text: "일시적인 표피 수분 공급에 그치지 않고 진피 유두층에 유효 성분을 직접 전달하여, 세포외기질(ECM)을 재건하고 무너진 유수분 밸런스와 피부 밀도를 탄탄하게 채워줍니다.",
+        text: "일시적인 표피 수분 공급에 그치지 않고 진피층에 유효 성분을 직접 전달하여 세포외기질(ECM)을 개선하고 무너진 유수분 밸런스와 피부 밀도를 탄탄하게 채워줍니다.",
         image: "/images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2-800.webp 800w, /images/skin-features/rejuran/rejuran-point-02-dermis-20261105-v2.webp 1200w",
         alt: "진피층의 지지 구조 — AI 설명용 모식도",
       },
       {
         title: "피부 층위와 부위별 특성을 고려한 미세 분할 주입",
-        text: "눈가, 볼, 입가 등 부위마다 다른 피부 두께와 표정 움직임, 혈관 주행을 면밀히 분석하여 정확한 진피 타깃 깊이에 일정한 간격의 미세 엠보싱으로 촘촘히 주입합니다.",
+        text: "눈가, 볼, 입가 등 부위마다 다른 피부 두께와 표정 움직임, 혈관 주행을 면밀히 분석하여 정확한 진피 타깃 깊이에 일정한 간격으로 촘촘히 나누어 주입합니다.",
         image: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-03-injection-diagram-20261105-v3.webp 1200w",
         alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",
       },
       {
         title: "인위적 볼륨이 아닌 자가 재생 환경 개선",
-        text: "단순 채움이나 일시적 완화가 아닌, 섬유아세포를 자극해 피부 고유의 자생력을 정상화함으로써 피부 장벽 강화, 잔주름 완화, 맑은 피부결을 점진적으로 이끌어냅니다.",
+        text: "단순 채움이나 일시적 완화가 아닌, 섬유아세포를 자극해 피부 고유의 자생력을 정상화함으로써 피부 장벽 강화, 잔주름 완화, 맑은 피부결을 점진적으로 유도합니다.",
         image: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp 1200w",
         alt: "원장님이 환자와 마주 앉아 대화하는 프라베일 상담 장면",
@@ -1274,7 +1274,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 맞춤 상담 및 디자인",
-        text: "현재 피부의 건조함, 탄력 저하, 잔주름 부위를 살피고 피부 두께에 맞춰 알맞은 주사 부위와 적정 용량을 결정합니다.",
+        text: "현재 피부의 건조함, 탄력 저하, 잔주름 부위를 고려하고 피부 두께에 맞춰 알맞은 주사 부위와 적정 용량을 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -1321,7 +1321,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       photo: "/images/page-assets/isce-product-presentation-20261105-v2.webp",
       photoAlt: "ISCE 1 · 2 패키지와 바이알 구성 — 제품 자료를 참고한 AI 이미지",
       mediaContain: true,
-      text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은 기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 재건합니다.",
+      text: "줄기세포 배양액에서 고순도로 분리한 핵심 신호 전달 물질(Exosome)을 진피층에 직접 침투시킵니다. 만성적인 트러블과 붉은 기, 무너진 유수분 밸런스로 지친 피부의 염증 반응을 완화하고 세포 활성화를 유도하여 건강한 피부 환경으로 개선합니다.",
       specs: [
         {
           label: "적용 제품",
@@ -1329,7 +1329,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         },
         {
           label: "주요 대상",
-          value: "무너진 피부 장벽, 만성 홍조 · 예민 피부, 유수분 불균형, 피부 결 개선",
+          value: "무너진 피부 장벽, 만성 홍조 · 예민 피부, 유수분 불균형, 피부결 개선",
         },
         {
           label: "침투 방식",
@@ -1349,14 +1349,14 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부 장벽 상태 및 손상도 진단",
-        text: "붉은 기, 민감도, 유수분 밸런스 붕괴 등 피부 장벽의 손상 정도를 살펴 적합한 침투 깊이와 적용 범위를 설정합니다.",
+        text: "붉은 기, 민감도, 유수분 밸런스 붕괴 등 피부 장벽의 손상 정도를 고려하여 적합한 침투 깊이와 적용 범위를 설정합니다.",
       },
       {
         title: "고순도 엑소좀 유효 성분 침투",
         text: "미세 채널을 통해 줄기세포 유래 핵심 재생 신호 물질(엑소좀)을 진피층 깊숙이 고르게 침투시킵니다.",
       },
       {
-        title: "세포 신호 전달 및 자생력 재건",
+        title: "세포 신호 전달 및 자생력 개선",
         text: "엑소좀이 손상된 세포에 재생 신호를 전달하여 염증 반응을 가라앉히고, 피부 장벽 강화와 건강한 환경 회복을 유도합니다.",
       },
     ],
@@ -1396,9 +1396,9 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "제품 특징",
           values: [
-            "피부줄기세포 배양액 기술을 적용한 제품으로, 피부 결합력과 탄력을 함께 살핍니다.",
-            "임상 자료가 비교적 많이 쌓인 4세대 엑소좀으로, 콜라겐 · 엘라스틴을 함께 살핍니다.",
-            "PDRN(연어 성분)이 함께 배합되어 있고, 식물성 엑소좀의 항산화 특성을 함께 살핍니다.",
+            "피부줄기세포 배양액 기술을 적용한 제품으로, 피부 결합력과 탄력을 함께 관리합니다.",
+            "임상 자료가 비교적 많이 쌓인 4세대 엑소좀으로, 콜라겐 · 엘라스틴을 함께 관리합니다.",
+            "PDRN(연어 성분)이 함께 배합되어 있고, 식물성 엑소좀의 항산화 특성을 함께 관리합니다.",
           ],
         },
       ],
@@ -1409,14 +1409,14 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "인체표피줄기세포 배양액(EPC-CM) 기반 설계",
-        text: "지방이나 골수 등 타 조직 유래 성분과 달리, 피부 본연의 조직 환경과 일치하는 인체표피줄기세포 배양액을 적용하여 피부 세포와의 친화력과 자생 신호 흡수율을 극대화합니다.",
+        text: "지방이나 골수 등 타 조직 유래 성분과 달리, 피부 본연의 조직 환경과 일치하는 인체표피줄기세포 배양액을 적용하여 피부 세포와의 친화력과 자생 신호 흡수율을 높입니다.",
         image: "/images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-01-conditioned-medium-20261105-v2.webp 1200w",
         alt: "표피 유래 세포 배양액 — AI 설명용 모식도",
       },
       {
         title: "피부 상태에 맞춘 관리 계획",
-        text: "표피와 진피가 맞닿는 결합 구조(기저막, DEJ)는 나이가 들며 느슨해지기 쉬운 부위입니다. 피부결과 보습, 지금의 피부 상태를 함께 보며 시술 계획을 세우고, 변화의 정도와 유지 기간은 사람마다 다릅니다.",
+        text: "표피와 진피가 맞닿는 결합 구조(기저막, DEJ)는 나이가 들며 느슨해지기 쉬운 부위입니다. 피부결과 보습, 지금의 피부 상태를 함께 보며 시술 계획을 세웁니다.",
         image: "/images/skin-features/isce/isce-point-02-dej-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/isce/isce-point-02-dej-20261105-v2-800.webp 800w, /images/skin-features/isce/isce-point-02-dej-20261105-v2.webp 1200w",
         alt: "표피 · 진피 사이 DEJ — AI 설명용 모식도",
@@ -1498,7 +1498,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "부위와 고민부터 확인",
-        text: "주름, 꺼짐, 피부 두께를 살피고 필요한 변화와 시술로 기대할 수 있는 범위를 정합니다.",
+        text: "주름, 꺼짐, 피부 두께를 고려하고 필요한 변화와 시술로 기대할 수 있는 범위를 정합니다.",
       },
       {
         title: "쥬베룩의 PDLLA 미세입자",
@@ -1588,7 +1588,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaSize: { width: 419, height: 289 },
       },
       {
-        title: "덩어리감까지 살피는 경과 확인",
+        title: "덩어리감까지 점검하는 경과 확인",
         text: "부기가 빠지는 과정과 오래가는 결절감을 구분합니다. 열감이나 통증이 동반되면 다음 시술보다 진찰을 먼저 진행합니다.",
         image: "/images/photos/signature-3.webp",
         alt: "경과 확인 설명용 기존 피부 시술 사진",
@@ -1645,7 +1645,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaSize: { width: 298, height: 681 },
       photoAlt: "쥬베룩 공식 제품 바이알",
       mediaContain: true,
-      text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일시적으로 외부 물질을 채워 넣는 일반 필러와 달리, 피부 속 세포를 자극해 스스로 콜라겐을 만들도록 돕는 방식이라 시간이 흐를수록 서서히 차오르는 탄력을 확인하게 됩니다. 변화의 정도와 시점은 사람마다 다릅니다.",
+      text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일시적으로 외부 물질을 채워 넣는 일반 필러와 달리, 피부 속 세포를 자극해 스스로 콜라겐을 만들도록 돕는 방식이라 시간이 흐를수록 서서히 차오르는 탄력을 확인하게 됩니다.",
       specs: [
         { label: "성분", value: "PDLLA · 히알루론산" },
         { label: "분류", value: "조직수복용재료 · 의료기기" },
@@ -1665,7 +1665,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "부위별 피부 두께 및 고민 부위 진단",
-        text: "부위별 피부 두께와 탄력 상태, 모공 · 꺼짐의 정도를 살펴 적합한 주입 깊이와 양을 결정합니다.",
+        text: "부위별 피부 두께와 탄력 상태, 모공 · 꺼짐의 정도를 고려하여 적합한 주입 깊이와 양을 결정합니다.",
       },
       {
         title: "PDLLA + HA 정밀 분할 주입",
@@ -1705,7 +1705,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 고민",
+          label: "주요 효과",
           values: [
             "모공 · 흉터 · 피부결",
             "깊게 꺼진 볼륨",
@@ -1714,7 +1714,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "변화가 보이는 시기",
+          label: "효과 시기",
           values: [
             "3~4주 후부터 서서히",
             "4~6주 후부터 서서히",
@@ -1723,7 +1723,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
       ],
-      note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 변화가 보이는 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 양은 피부 상태와 부위를 보고 상담에서 정합니다.",
+      note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 효과 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 양은 피부 상태와 부위를 보고 상담에서 정합니다.",
     },
     featuresRatio: 4 / 3,
     featuresTitle: "쥬베룩 콜라겐부스터의 특징 4가지",
@@ -1737,14 +1737,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "다공성 망상 구조로 뭉침 우려 완화",
-        text: "내부가 그물망(망상) 구조인 미세 구형 입자를 사용하며, 시간이 지나면서 체내에서 분해됩니다. 입자 구조만으로 결절 위험이 없거나 다른 제품보다 낮다고 단정할 수는 없습니다.",
+        text: "내부가 그물망(망상) 구조인 미세 구형 입자를 사용하며, 시간이 지나면서 체내에서 분해됩니다.",
         image: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-03-porous-particle-20261105-v2.webp 1200w",
         alt: "PDLLA 다공성 망상 구조 — AI 설명용 모식도",
       },
       {
         title: "PDLLA + 히알루론산(HA) 복합 시너지",
-        text: "자가 콜라겐 생성을 유도하는 PDLLA에 수분을 끌어당기는 히알루론산을 배합하여, 콜라겐이 차오르는 기간 동안 속건조를 완화하고 부드러운 피부 결을 먼저 형성합니다.",
+        text: "자가 콜라겐 생성을 유도하는 PDLLA에 수분을 끌어당기는 히알루론산을 배합하여 콜라겐이 차오르는 기간 동안 속건조를 완화하고 부드러운 피부결을 먼저 형성합니다.",
         image: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-04-ha-hydration-20261105-v2.webp 1200w",
         alt: "HA와 수분 환경 — AI 설명용 모식도",
@@ -1834,7 +1834,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "고민 부위별 맞춤 타깃 설정",
-        text: "거친 피부결과 눈가 잔주름, 꺼진 볼륨 부위를 나누어 살피고 시술 부위의 특성에 맞는 주입 위치를 설정합니다.",
+        text: "거친 피부결과 눈가 잔주름, 꺼진 볼륨 부위를 나누어 고려하고 시술 부위의 특성에 맞는 주입 위치를 설정합니다.",
       },
       {
         title: "맞춤 규격(100 · 200) 정밀 주입",
@@ -1865,7 +1865,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 고민",
+          label: "주요 효과",
           values: [
             "눈가 잔주름 · 피부 톤",
             "미세한 볼륨 꺼짐",
@@ -1885,14 +1885,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           label: "제품 특징",
           values: [
-            "눈밑 틴달 현상(푸르게 비침) 부담이 적고, 피부 톤 변화를 함께 살핍니다.",
-            "녹는 실 성분으로 리프팅과 타이트닝을 함께 살핍니다.",
+            "눈밑 틴달 현상(푸르게 비침) 부담이 적고, 피부 톤 변화를 함께 관리합니다.",
+            "녹는 실 성분으로 리프팅과 타이트닝을 함께 관리합니다.",
             "다공성 PDLLA 입자와 히알루론산을 함께 사용합니다.",
             "자가 콜라겐으로 볼륨을 서서히 채웁니다.",
           ],
         },
       ],
-      note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 변화가 보이는 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 용량은 피부 상태와 부위를 보고 상담에서 정합니다.",
+      note: "※ 각 제품의 일반적인 특징을 정리한 것으로, 어느 제품이 더 낫다는 뜻이 아닙니다. 결절 등 이상 반응은 빈도가 낮아도 생길 수 있고, 효과 시기와 유지 기간은 사람마다 다릅니다. 실제 사용할 제품과 용량은 피부 상태와 부위를 보고 상담에서 정합니다.",
     },
     featuresRatio: 4 / 3,
     featuresTitle: "울트라콜의 4가지 특징",
@@ -1921,7 +1921,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 층과 고민에 맞춘 100 · 200 듀얼 라인업",
-        text: "진피 얕은 층에 적용해 잔주름 · 모공 · 피부 결을 매끄럽게 정돈하는 울트라콜 100과, 지지층에 주입해 눈 밑 꺼짐 · 팔자주름의 볼륨을 채우는 울트라콜 200으로 세분화되어 있어 부위별 맞춤 시술이 가능합니다.",
+        text: "진피 얕은 층에 적용해 잔주름 · 모공 · 피부결을 매끄럽게 정돈하는 울트라콜 100과, 지지층에 주입해 눈 밑 꺼짐 · 팔자주름의 볼륨을 채우는 울트라콜 200으로 세분화되어 있어 부위별 맞춤 시술이 가능합니다.",
         image: "/images/skin-features/ultracol/ultracol-point-04-dual-lineup-20261105-v3.webp",
         alt: "울트라콜 Boost 100mg과 울트라콜 200mg 두 바이알을 나란히 배치한 제품 설명 이미지",
       },
@@ -1995,7 +1995,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부 고민 구분",
-        text: "꺼짐 · 처짐 · 거친 피부결을 나누어 살핍니다. 비슷해 보이는 고민도 필요한 시술은 다를 수 있습니다.",
+        text: "꺼짐 · 처짐 · 거친 피부결을 나누어 고려합니다. 비슷해 보이는 고민도 필요한 시술은 다를 수 있습니다.",
       },
       {
         title: "고민에 맞는 에너지 전달",
@@ -2037,7 +2037,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "상담 시 살피는 고민",
+          label: "상담 시 고려하는 고민",
           values: [
             "피부 탄력 · 주름",
             "모공 · 흉터 · 피부결 · 탄력",
@@ -2106,7 +2106,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 상담",
-        text: "처짐 · 피부결 · 모공을 나누어 살피고 기존 시술과 복용약을 확인합니다.",
+        text: "처짐 · 피부결 · 모공을 나누어 고려하고 기존 시술과 복용약을 확인합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -2181,7 +2181,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부 속 목표 층(1.5~4.5mm) 집속 조사",
-        text: "초음파 에너지를 피부 속 목표 깊이에 모아 미세 열응고점(TCP)을 형성하고 지지 조직의 수축을 유도합니다. 피부 두께와 부위에 맞춰 조사 깊이와 에너지를 정하며, 열 손상 등 부작용 가능성도 함께 살핍니다.",
+        text: "초음파 에너지를 피부 속 목표 깊이에 모아 미세 열응고점(TCP)을 형성하고 지지 조직의 수축을 유도합니다. 피부 두께와 부위에 맞춰 조사 깊이와 에너지를 정하며, 열 손상 등 부작용 가능성도 함께 고려합니다.",
       },
       {
         title: "Dot(점) · MP(선) 듀얼 조사 모드 교차 적용",
@@ -2247,7 +2247,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "빈틈없이 에너지를 전달하는 MP 모드",
-        text: "일정한 간격으로 열응고점을 만드는 일반(Dot) 모드에 더해, 미세한 열응고점을 선처럼 촘촘하게 이어 주는 MP(Micro Pulsed) 모드를 탑재했습니다. 에너지가 끊김 없이 빠르게 조사되어 전체적인 시술 시간과 통증 부담을 줄여 줍니다.",
+        text: "일정한 간격으로 열응고점을 만드는 일반(Dot) 모드에 더해 미세한 열응고점을 선처럼 촘촘하게 이어 주는 MP(Micro Pulsed) 모드를 탑재했습니다. 에너지가 끊김 없이 빠르게 조사되어 전체적인 시술 시간과 통증 부담을 줄여 줍니다.",
         image: "/images/shrink/ultraf-mode.webp",
         video: "/videos/shrink-ultraf-mode.mp4",
         alt: "울트라 F 핸드피스의 일반 모드와 MP 모드 조사 모양을 보여 주는 제조사 영상",
@@ -2265,7 +2265,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부 층별로 세분화된 4가지 깊이 카트리지",
-        text: "1.5mm · 2.0mm · 3.0mm · 4.5mm로 세분화된 4가지 카트리지를 활용해, 얕은 층의 잔주름부터 깊은 근막층(SMAS)까지 목표 조직에 에너지를 단계별로 전달합니다. 같은 깊이라도 닿는 조직은 사람마다 달라, 개인별 피부 두께와 부위별 노화 상태를 진단하여 카트리지를 조합합니다.",
+        text: "1.5mm · 2.0mm · 3.0mm · 4.5mm로 세분화된 4가지 카트리지를 활용해 얕은 층의 잔주름부터 깊은 근막층(SMAS)까지 목표 조직에 에너지를 단계별로 전달합니다. 같은 깊이라도 닿는 조직은 사람마다 달라, 개인별 피부 두께와 부위별 노화 상태를 진단하여 카트리지를 조합합니다.",
         image: "/images/shrink/booster-depth.webp?v=20261104b",
         video: "/videos/shrink-booster-depth.mp4?v=20261104b",
         alt: "울트라 부스터 카트리지로 일반 모드(점)와 MP 모드(이어진 고리)의 열응고점이 생기는 모습을 나란히 보여 주는 제조사 영상",
@@ -2329,7 +2329,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         fadeFrom: "84%",
       },
       mediaContain: true,
-      text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하는 RF팁과, 고주파와 함께 부스터를 넣는 펌핑팁을 피부 상태와 고민에 맞춰 나누어 사용합니다. 바늘 깊이를 0.5~4.0mm 사이에서 조절해, 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
+      text: "포텐자는 제이시스메디칼에서 개발한 고주파(RF) 리프팅 장비입니다. 본원은 미세한 바늘로 진피층에 직접 고주파를 전달하는 RF팁과, 고주파와 함께 부스터를 넣는 펌핑팁을 피부 상태와 고민에 맞춰 나누어 사용합니다. 바늘 깊이를 0.5~4.0mm 사이에서 조절해 부위별 피부 두께에 맞춰 진피층에 나누어 전달합니다.",
       specs: [
         { label: "방식", value: "고주파 (RF) · 미세침" },
         { label: "팁", value: "RF팁 · 펌핑팁 (미세침 + 부스터 주입)" },
@@ -2351,7 +2351,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "피부층에 맞춘 정밀 미세침(Micro-needle) 침투",
-        text: "0.5mm부터 최대 4.0mm까지 조절 가능한 절연 · 비절연 미세 바늘이 목표 진피층에 정교하게 침투하여, 표피 열 손상 부담을 덜고 물리적인 미세 통로를 형성합니다.",
+        text: "0.5mm부터 최대 4.0mm까지 조절 가능한 절연 · 비절연 미세 바늘이 목표 진피층에 정교하게 침투하여 표피 열 손상 부담을 덜고 물리적인 미세 통로를 형성합니다.",
       },
       {
         title: "모노폴라 · 바이폴라 듀얼 고주파(RF) 에너지 조사",
@@ -2364,7 +2364,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     compare: {
       title: "포텐자, 다른 고주파 시술과 어떻게 다른가요?",
-      lead: "같은 고주파 시술도 바늘을 쓰는지, 에너지를 어디에 주는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
+      lead: "같은 고주파 시술도 바늘을 쓰는지, 에너지를 어디에 주는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 고려하여 선택합니다.",
       columns: [
         { name: "포텐자", maker: "제이시스메디칼 · 국내", self: true },
         // 확인 필요: 버츄RF 핸드피스별 고주파 방식 (제조사 자료로 재확인)
@@ -2520,20 +2520,20 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "비접촉 방식의 준장펄스(Quasi-Long Pulse) 연속 조사",
-        text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여, 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 최소화합니다.",
+        text: "핸드피스를 피부 표면에서 일정 거리 띄운 상태로 1064nm 롱펄스 레이저를 빠르게 중첩 조사하여 표피에 가해지는 직접적인 물리적 자극과 열 손상 부담을 최소화합니다.",
       },
       {
-        title: "표면 온도를 살피며 쌓는 균일 심부열",
+        title: "표면 온도를 확인하며 쌓는 균일 심부열",
         text: "피부 표면 온도와 피부 반응을 실시간으로 참고하며 진피층에 열에너지를 점진적으로 쌓아 올려, 섬유아세포를 자극하고 진피 환경 리모델링을 활성화합니다. 목표 온도와 조사 조건은 적용 프로토콜과 피부 상태에 따라 달라집니다.",
       },
       {
         title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
-        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부 결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다. 개선 정도는 개인차가 있습니다.",
+        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은 기와 피부 톤을 맑게 개선합니다. 개선 정도는 개인차가 있습니다.",
       },
     ],
     compare: {
       title: "클라리티 리프팅, 다른 리프팅과 어떻게 다른가요?",
-      lead: "같은 리프팅도 레이저인지 고주파인지, 어느 고민을 중심으로 보는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 살펴 선택합니다.",
+      lead: "같은 리프팅도 레이저인지 고주파인지, 어느 고민을 중심으로 보는지에 따라 쓰임이 다릅니다. 고민과 피부 상태를 함께 고려하여 선택합니다.",
       columns: [
         { name: "클라리티 이너리프팅", maker: "루트로닉 · 국내", self: true },
         { name: "엑셀V", maker: "큐테라 · 미국" },
@@ -2664,7 +2664,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       image: "/images/photos/retouched/web/consult.jpg",
       photo: "/images/thread/products/qtl-package-v2-cutout.png",
       photoFullFrame: false,
-      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 살펴 시술 범위를 정합니다. 본원은 QTL실과 잼버실을 갖추고 있으며, 사용할 실과 규격은 진찰 후 선택합니다.",
+      text: "실리프팅은 흡수성 의료용 실을 피부 아래에 넣어 처진 조직을 받치고 위치를 조절하는 시술입니다. 돌기가 있는 실은 조직을 물리적으로 지지하며, 재질과 구조에 따라 계획이 달라집니다. 피부 두께와 조직의 무게, 당길 방향을 함께 고려하여 시술 범위를 정합니다. 본원은 QTL실과 잼버실을 갖추고 있으며, 사용할 실과 규격은 진찰 후 선택합니다.",
       specs: [
         {
           label: "방법",
@@ -2697,7 +2697,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "모양과 불편감 함께 관찰",
-        text: "초기 당김과 부기가 안정되는 과정을 살피고, 패임이나 비대칭, 실 노출이 없는지 경과를 확인합니다.",
+        text: "초기 당김과 부기가 안정되는 과정을 확인하고, 패임이나 비대칭, 실 노출이 없는지 경과를 확인합니다.",
       },
     ],
     compare: {
@@ -2783,7 +2783,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "초기 모양과 회복을 함께 확인",
-        text: "부기와 당김, 피부 패임을 살피고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
+        text: "부기와 당김, 피부 패임을 확인하고 비대칭이나 실 노출 같은 불편이 있으면 진료로 확인합니다.",
         image: "/images/photos/clinic-6.webp",
         alt: "경과 진료 방문 안내에 사용하는 병원 복도 사진",
         mediaFit: "cover",
@@ -2838,9 +2838,9 @@ export const deviceStory: Record<string, DeviceStory> = {
       photoAlt: "QTL 실 제품 패키지 이미지 (제조사 공식 자료)",
       mediaContain: true,
       mediaSize: { width: 730, height: 548 },
-      text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여, 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
+      text: `QTL 실리프팅은 정교한 돌기(코그)가 촘촘하게 배열된 몰딩형 녹는 실을 피하층에 삽입하여 중력에 의해 처진 조직을 직접적으로 끌어올려 탄탄하게 고정해 주는 리프팅 시술입니다.
 
-환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 면밀히 살피어 실이 들어갈 정확한 층과 벡터(방향), 줄 수 등을 세밀하게 설계합니다.`,
+환자분마다 다른 처짐의 방향, 조직의 무게, 피부 두께를 면밀히 고려하여 실이 들어갈 정확한 층과 벡터(방향), 줄 수 등을 세밀하게 설계합니다.`,
       specs: [
         {
           label: "실 종류",
@@ -2869,15 +2869,15 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "처짐 상태 및 조직 정밀 진단",
-        text: "처진 부위의 양상과 지방량, 피부 두께를 면밀히 살피어 탄탄하게 지지해 줄 최적의 벡터(방향)와 범위를 설계합니다.",
+        text: "처진 부위의 양상과 지방량, 피부 두께를 면밀히 고려하여 탄탄하게 지지해 줄 최적의 벡터(방향)와 범위를 설계합니다.",
       },
       {
         title: "몰딩실을 통한 정교한 지지 및 리프팅",
-        text: "정해진 층과 방향을 따라 촘촘한 돌기를 가진 몰딩형 녹는 실을 안전하게 삽입하여, 처진 조직을 위로 단단히 받쳐 올립니다.",
+        text: "정해진 층과 방향을 따라 촘촘한 돌기를 가진 몰딩형 녹는 실을 안정적으로 삽입하여 처진 조직을 위로 단단히 받쳐 올립니다.",
       },
       {
         title: "안정화 및 형태 모니터링",
-        text: "시술 후 당김과 부기가 서서히 안정되는 과정을 살피고, 피부 패임이나 비대칭 등 불편한 증세 없이 자연스럽게 자리를 잡는지 꼼꼼하게 확인합니다.",
+        text: "시술 후 당김과 부기가 서서히 안정되는 과정을 확인하고, 피부 패임이나 비대칭 등 불편한 증세 없이 자연스럽게 자리를 잡는지 꼼꼼하게 확인합니다.",
       },
     ],
     compare: {
@@ -2952,7 +2952,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "촘촘한 코그(돌기)로 분산되는 고정력",
-        text: "정교하게 밀집된 몰딩형 돌기들이 피하 조직을 넓고 균일하게 붙잡아 주어, 한쪽으로 힘이 쏠리지 않고 부드러우면서도 안정적인 리프팅 효과를 이끌어냅니다.",
+        text: "정교하게 밀집된 몰딩형 돌기들이 피하 조직을 넓고 균일하게 붙잡아 주어, 한쪽으로 힘이 쏠리지 않고 부드러우면서도 안정적인 리프팅 효과를 유도합니다.",
         image: "/images/thread/features/qtl-point-02-cog-support-v2.webp",
         mediaSrcSet: "/images/thread/features/qtl-point-02-cog-support-v2-800.webp 800w, /images/thread/features/qtl-point-02-cog-support-v2.webp 1200w",
         alt: "실의 돌기와 주변 조직의 관계를 확대한 설명용 모식도",
@@ -2987,7 +2987,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "정교한 실 삽입 및 균형 확인",
-        text: "설계된 층과 방향에 맞춰 실을 안전하게 삽입하고 좌우 대칭과 지지력을 맞춥니다.",
+        text: "설계된 층과 방향에 맞춰 실을 안정적으로 삽입하고 좌우 대칭과 지지력을 맞춥니다.",
         image: "/images/photos/thread-insertion-20261105.webp",
         alt: "기존 피부 시술 참고 사진",
       },
@@ -3046,11 +3046,11 @@ export const deviceStory: Record<string, DeviceStory> = {
     principle: [
       {
         title: "꺼진 위치 및 피부 깊이 정밀 진단",
-        text: "볼륨이 필요한 부위의 정확한 위치와 꺼진 깊이, 그리고 개개인의 피부 두께를 면밀히 살피어 맞춤형 시술 범위를 디자인합니다.",
+        text: "볼륨이 필요한 부위의 정확한 위치와 꺼진 깊이, 그리고 개개인의 피부 두께를 면밀히 고려하여 맞춤형 시술 범위를 디자인합니다.",
       },
       {
         title: "캐뉼라를 통한 스프링 실 지지대 형성",
-        text: "조직 손상을 줄이는 뭉툭한 캐뉼라를 사용하여, 스프링처럼 촘촘하게 말린 녹는 실을 꺼진 부위 아래에 안전하게 삽입해 탄탄한 지지대를 만듭니다.",
+        text: "조직 손상을 줄이는 뭉툭한 캐뉼라를 사용하여 스프링처럼 촘촘하게 말린 녹는 실을 꺼진 부위 아래에 안정적으로 삽입해 탄탄한 지지대를 만듭니다.",
       },
       {
         title: "콜라겐 재생을 통한 볼륨 안착",
@@ -3206,7 +3206,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "1:1 상담",
-        text: "여드름 단계와 자국 · 흉터를 살피고, 복용약과 사용 중인 화장품을 확인합니다.",
+        text: "여드름 단계와 자국 · 흉터를 고려하고, 복용약과 사용 중인 화장품을 확인합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -3242,7 +3242,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       maker: "LUTRONIC",
       image: "/images/photos/cat-hair-removal.webp",
       photo: "/images/photos/cat-hair-removal.webp",
-      text: "레이저 제모는 털의 검은 멜라닌 색소에 선택적으로 흡수되는 레이저 빛을 조사하여, 모근과 모낭을 목표로 하는 시술입니다. 피부 표면의 부담을 줄이면서 털의 성장 주기(성장기)에 맞춰 단계적으로 모낭의 활동을 낮춰 반영구적인 감모 효과를 기대합니다. 개인의 피부 톤, 털의 굵기와 밀도, 부위별 특성에 맞춰 레이저 에너지를 정밀하게 조절해 자극을 줄이며 진행합니다.",
+      text: "레이저 제모는 털의 검은 멜라닌 색소에 선택적으로 흡수되는 레이저 빛을 조사하여 모근과 모낭을 목표로 하는 시술입니다. 피부 표면의 부담을 줄이면서 털의 성장 주기(성장기)에 맞춰 단계적으로 모낭의 활동을 낮춰 반영구적인 감모 효과를 기대합니다. 개인의 피부 톤, 털의 굵기와 밀도, 부위별 특성에 맞춰 레이저 에너지를 정밀하게 조절해 자극을 줄이며 진행합니다.",
       specs: [
         {
           label: "시술 방식",
@@ -3362,7 +3362,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "실시간 피부 온도 감지 시스템",
-        text: "장비에 실시간 피부 온도 센서가 탑재되어 있어 시술 중 피부 온도를 함께 확인합니다. 표시되는 온도 정보를 참고하면서 의료진이 피부 반응과 열감을 함께 살펴 조사 조건을 조절하므로, 에너지를 일정하게 유지하면서 피부 자극이나 붉은기를 줄이는 데 도움이 됩니다.",
+        text: "장비에 실시간 피부 온도 센서가 탑재되어 있어 시술 중 피부 온도를 함께 확인합니다. 표시되는 온도 정보를 참고하면서 의료진이 피부 반응과 열감을 함께 확인하여 조사 조건을 조절하므로, 에너지를 일정하게 유지하면서 피부 자극이나 붉은기를 줄이는 데 도움이 됩니다.",
         image: "/images/official/clarity-temperature.png",
         alt: "클라리티2 · 실시간 피부 온도 표시 · 제조사 공식 자료",
         fullFrame: false,
@@ -3581,7 +3581,7 @@ deviceStory["/petit/botox/body"] = {
     photoAlt: "뉴럭스 · 코어톡스 · 제오민 제품 상자와 바이알",
     // 인물용 덮개 · 확대 없이 칸을 꽉 채운다
     mediaFill: true,
-    text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 살펴 용량과 주사 위치를 정합니다.",
+    text: "바디 보톡스는 보툴리눔 톡신(근육의 움직임을 줄이는 주사)을 승모근 · 종아리처럼 큰 근육이나 땀이 많은 부위에 쓰는 시술입니다. 근육의 두께와 범위, 땀이 나는 범위를 고려하여 용량과 주사 위치를 정합니다.",
     specs: [
       { label: "시술 방식", value: "보툴리눔 톡신 제제를 타깃 근육층 및 진피층에 정밀 주입" },
       { label: "작용 원리", value: "발달된 근육 부피 축소, 표정 주름 완화 및 국소 땀 분비 억제" },
@@ -3600,7 +3600,7 @@ deviceStory["/petit/botox/body"] = {
     },
     {
       title: "체형 밸런스를 고려한 자연스러운 라인",
-      text: "골격 구조와 전체적인 신체 비율을 정밀하게 분석하여, 무리한 축소가 아닌 매끄럽고 균형 잡힌 바디 라인을 설계합니다.",
+      text: "골격 구조와 전체적인 신체 비율을 정밀하게 분석하여 무리한 축소가 아닌 매끄럽고 균형 잡힌 바디 라인을 설계합니다.",
       image: "/images/photos/body-botox-special-02-body-balance-20261105.webp",
       alt: "여성 모델의 어깨와 등 라인을 보여주는 AI 제작 설명 이미지",
     },
@@ -3620,7 +3620,7 @@ deviceStory["/petit/botox/body"] = {
   process: [
     {
       title: "맞춤 상담 및 시술 전 상태 확인",
-      text: "고민 부위와 시술 이력, 복용 약물을 확인하고, 대표원장이 동적 움직임에 따른 근육 두께와 땀샘 분포 범위를 면밀히 살펴 시술 범위를 설계합니다.",
+      text: "고민 부위와 시술 이력, 복용 약물을 확인하고, 대표원장이 동적 움직임에 따른 근육 두께와 땀샘 분포 범위를 면밀히 고려하여 시술 범위를 설계합니다.",
       image: "/images/photos/clinic-3.webp",
       alt: "프라베일 상담실",
     },

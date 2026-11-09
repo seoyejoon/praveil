@@ -149,7 +149,7 @@ export default function TreatmentDetail({
   const doctorReasons = t.doctorReasons ?? [
     {
       title: "대표원장 직접 시술 설계",
-      text: `개개인의 피부 두께, 탄력 저하 양상, 볼륨 상태를 대표원장이 직접 살피고, ${t.title} 시술의 범위와 방법을 직접 설계합니다.`,
+      text: `개개인의 피부 두께, 탄력 저하 양상, 볼륨 상태를 대표원장이 직접 확인하고, ${t.title} 시술의 범위와 방법을 직접 설계합니다.`,
     },
     {
       title: "1:1 맞춤 설계",

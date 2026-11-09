@@ -1263,8 +1263,8 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "피부 단면에 주입 위치와 분포를 표현한 설명용 모식도",
       },
       {
-        title: "인위적 볼륨이 아닌 자가 재생 환경 개선",
-        text: "단순 채움이나 일시적 완화가 아닌, 섬유아세포를 자극해 피부 고유의 자생력을 정상화함으로써 피부 장벽 강화, 잔주름 완화, 맑은 피부결을 점진적으로 유도합니다.",
+        title: "피부 본연의 자가 재생력 강화",
+        text: "겉만 채우는 방식이 아닌 피부 속 세포 환경부터 바로잡습니다. 피부 장벽 강화부터 얇아진 잔주름, 거친 피부결까지 시간이 지날수록 전반적인 피부 컨디션이 개선됩니다.",
         image: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp",
         mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp 1200w",
         alt: "원장님이 환자와 마주 앉아 대화하는 프라베일 상담 장면",

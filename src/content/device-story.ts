@@ -242,7 +242,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "에너지",
+          label: "시술 방식",
           values: [
             "집속 초음파 (HIFU)",
             "집속 초음파 (MFU-V)",
@@ -260,7 +260,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "특징",
+          label: "장비 특징",
           values: [
             "표면 냉각 · 굴곡 부위 밀착",
             "초음파 영상으로 층 확인",
@@ -269,7 +269,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 찾는 고민",
+          label: "시술 효과",
           values: [
             "턱선 · 볼 처짐, 윤곽",
             "깊은 처짐, 윤곽",
@@ -278,7 +278,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "회복",
+          label: "회복 기간",
           values: [
             "일상생활 바로 가능",
             "일상생활 바로 가능",

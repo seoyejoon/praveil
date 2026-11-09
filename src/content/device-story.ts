@@ -882,7 +882,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "주요 재료",
+          label: "주 성분",
           values: [
             "무세포 동종진피 기질 성분",
             "PDLLA 미세입자 · 히알루론산",
@@ -890,7 +890,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주요 효과",
+          label: "기대 효과",
           values: [
             "피부결 · 잔주름 · 피부 밀도 · 탄력",
             "피부결 · 탄력 · 얕은 부위 꺼짐",
@@ -898,7 +898,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "상담 시 확인",
+          label: "주요 포인트",
           values: [
             "피부 상태와 원료 · 제품 특성",
             "피부 두께 · 용량(cc) · 시술 범위",

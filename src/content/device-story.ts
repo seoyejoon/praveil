@@ -522,7 +522,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         poster: "/images/coolphase/device.webp",
         edge: "linear-gradient(#494d4e, #8e9393)",
       },
-      text: "쿨페이즈는 6.78MHz 모노폴라 고주파 에너지를 진피층 깊숙이 전달하는 탄력 리프팅 시술입니다. 독자적인 직접 접촉식 냉각 기술(DCC™)로 피부 표면을 보호하며 심부열을 균일하게 전달합니다. 개인마다 다른 피부 두께와 굴곡에 맞춰 샷 수와 에너지 레벨을 정교하게 설계하여 탄력부터 잔주름, 모공, 피부결까지 함께 고려합니다.",
+      text: "쿨페이즈는 6.78MHz 모노폴라 고주파 에너지를 진피층 깊숙이 전달하는 탄력 리프팅 시술입니다. 독자적인 직접 접촉식 냉각 기술(DCC™)로 피부 표면을 보호하며 심부열을 균일하게 전달하고 개인마다 다른 피부 두께와 굴곡에 맞춰 샷 수와 에너지 레벨을 정교하게 설계하여 탄력부터 잔주름, 모공, 피부결까지 함께 개선합니다.",
       specs: [
         { label: "방식", value: "모노폴라 고주파 (6.78MHz RF)" },
         { label: "냉각 시스템", value: "DCC™ 직접 접촉식 연속 냉각" },
@@ -564,7 +564,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "제조사 · 국적",
+          label: "제조사",
           values: [
             "아스테라시스 · 한국",
             "솔타메디칼 · 미국",
@@ -573,7 +573,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "고주파 방식",
+          label: "시술 방식",
           values: [
             "모노폴라 RF (단극성)",
             "모노폴라 RF (단극성)",
@@ -582,7 +582,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "표면 보호 · 통증 제어",
+          label: "장비 특징",
           values: [
             "직접 접촉식 냉각 (DCC™)",
             "펄스형 냉각 스프레이 (Cryogen)",
@@ -591,7 +591,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주요 효과",
+          label: "시술 효과",
           values: [
             "탄력 · 잔주름 · 모공 · 피부결",
             "깊은 탄력 · 잔주름 · 피부 밀도",
@@ -633,16 +633,16 @@ export const deviceStory: Record<string, DeviceStory> = {
         mediaFit: "cover",
       },
       {
-        title: "피부 두께와 부위별 반응을 고려한 정밀 조절",
-        text: "이마, 눈가, 볼, 턱선은 피부 두께와 굴곡, 열 민감도가 모두 다릅니다. 시술 중 피부 반응과 팁 밀착 상태를 면밀히 확인하며, 대표원장이 부위별 특성에 맞춰 에너지 강도와 샷 수를 1:1로 섬세하게 설계 · 조절합니다.",
+        title: "환자별 · 부위별 상태를 고려한 맞춤 팁",
+        text: "개인마다 다른 피부 두께와 굴곡에 맞춘 다양한 전용 팁이 준비되어 있습니다. 볼과 턱선 등 넓은 부위부터 눈가 · 입가처럼 굴곡진 부위까지 빈틈없이 밀착하여 시술 사각지대 없이 균일한 타이트닝을 유도합니다.",
         image: "/images/coolphase/tip-loop.webp",
         video: "/videos/coolphase-tip-loop.mp4",
         alt: "쿨페이즈 얼굴용 팁(Face Tip)의 모양을 보여 주는 제조사 영상",
         mediaSize: { width: 960, height: 720 },
       },
       {
-        title: "다운타임 부담을 덜어낸 빠른 일상 복귀",
-        text: "시술 내내 이어지는 연속 냉각이 열감을 바로 가라앉혀 시술 후 붉은기나 붓기 부담이 적은 편입니다. 시술 직후 당일 세안과 메이크업이 가능해 바쁜 일상 중에도 부담 없이 받아보실 수 있습니다.",
+        title: "10단계 고주파 에너지 전달",
+        text: "피부 탄력도와 통증 민감도에 맞춰 고주파 출력을 1단계부터 10단계까지 정밀하게 조절합니다. 피부 반응에 맞춘 미세 제어로 불필요한 자극은 줄이고, 타깃층에 필요한 열에너지를 안정적으로 전달해 리프팅 효율을 높입니다.",
         image: doctorPhotos.coolphase,
         alt: "대표원장이 쿨페이즈로 얼굴 부위를 시술하는 장면",
         fullFrame: true,

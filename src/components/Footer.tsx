@@ -169,7 +169,7 @@ function Row({
 }) {
   return (
     <div
-      className={`grid gap-3 py-6 sm:grid-cols-[132px_1fr] sm:gap-6 lg:py-7 ${first ? "pt-0 lg:pt-0" : "border-t border-white/12"}`}
+      className={`grid gap-3 py-6 sm:grid-cols-[132px_1fr] sm:gap-6 lg:grid-cols-[96px_1fr] xl:grid-cols-[132px_1fr] lg:py-7 ${first ? "pt-0 lg:pt-0" : "border-t border-white/12"}`}
     >
       <dt className="flex items-center gap-2.5 self-start text-sm text-white/60 sm:pt-1">
         <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold/20 text-taupe">

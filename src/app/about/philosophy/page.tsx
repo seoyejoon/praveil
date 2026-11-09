@@ -175,7 +175,7 @@ export default async function AboutIntroPage() {
                 as="li"
                 key={it.title}
                 delay={i * 120}
-                className="bg-espresso/90 p-8 backdrop-blur md:p-10"
+                className="bg-espresso/90 p-8 backdrop-blur md:p-7 lg:p-10"
               >
                 <p className="flex items-baseline justify-between">
                   <span className="font-display text-[44px] leading-none font-extralight text-[#f1e2c6] md:text-[56px]">

@@ -1370,7 +1370,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "주요 성분 · 출처",
+          label: "주 성분",
           values: [
             "인체표피줄기세포 배양액(EPC-CM) · 유산균 유래 엑소좀 · 성장인자(hGH · VEGF)",
             "인체지방줄기세포 배양액 · 동결건조 엑소좀 · 히알루론산 · 아미노산 · 레티놀",
@@ -1378,7 +1378,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주로 보는 목적",
+          label: "시술 효과",
           values: [
             "기저막(DEJ)과 표피 층 · 항노화와 피부 장벽",
             "트러블 · 여드름 · 모공과 항노화",

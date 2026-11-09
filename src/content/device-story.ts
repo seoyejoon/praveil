@@ -1647,10 +1647,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       mediaContain: true,
       text: "쥬베룩은 자가 콜라겐 생성을 유도하는 고분자 PDLLA(폴리-D,L-락트산) 미세입자와 수분감을 주는 히알루론산(HA) 성분이 결합된 4세대 콜라겐부스터입니다. 일반 필러와 달리, 피부 속 세포를 자극해 콜라겐 생성을 유도하여 피부의 볼륨감, 탄력 등을 개선해줍니다.",
       specs: [
-        { label: "성분", value: "PDLLA · 히알루론산" },
-        { label: "분류", value: "조직수복용재료 · 의료기기" },
-        { label: "주입 층", value: "진피층" },
-        { label: "용량", value: "2cc · 3cc · 4cc" },
+        { label: "주 성분", value: "PDLLA(Poly-D,L-Lactic Acid) + HA(Hyaluronic Acid)" },
+        { label: "시술 원리", value: "다공성 미세입자가 진피층에 안착하여 서서히 분해되며 콜라겐 형성 유도" },
+        { label: "기대 효과", value: "자가 콜라겐 생성 유도, 미세 잔주름 및 모공 개선, 피부결 · 탄력 개선" },
+        { label: "권장 용량", value: "2cc / 3cc / 4cc (피부 부위 및 고민 강도별 맞춤 처방)" },
       ],
     },
     principleImage: {
@@ -1673,12 +1673,12 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "자가 콜라겐 재생 및 밀도 개선",
-        text: "미세 입자가 피부 속 세포를 자극하여 콜라겐과 엘라스틴을 점진적으로 형성해 탄력과 결을 채웁니다.",
+        text: "미세 입자가 피부 속 세포를 자극하여 콜라겐과 엘라스틴을 점진적으로 형성해 피부의 복합적인 문제를 개선해줍니다.",
       },
     ],
     compare: {
       title: "쥬베룩, 다른 콜라겐부스터와 어떻게 다른가요?",
-      lead: "상담에서 함께 비교하는 콜라겐부스터를 재료와 작용 방식으로 정리했습니다.",
+      lead: "상담 시 환자분들이 가장 많이 비교하시는 4가지 대표 콜라겐부스터를 성분과 작용 방식에 따라 정리했습니다.",
       columns: [
         { name: "쥬베룩 (스킨)", maker: "PDLLA · HA", self: true },
         { name: "스컬트라", maker: "PLLA" },
@@ -1705,7 +1705,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "주요 효과",
+          label: "시술 효과",
           values: [
             "모공 · 흉터 · 피부결",
             "깊게 꺼진 볼륨",
@@ -1714,7 +1714,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "효과 시기",
+          label: "효과 체감 시기",
           values: [
             "3~4주 후부터 서서히",
             "4~6주 후부터 서서히",
@@ -1730,7 +1730,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "자가 콜라겐 및 엘라스틴 재생 유도",
-        text: "생분해성 고분자 PDLLA 성분을 주입해 섬유아세포를 자극하고, 피부가 스스로 탄력 섬유와 콜라겐을 생성하도록 돕습니다. 변화는 서서히 나타나며, 주입 시술에 따른 부작용 가능성도 있습니다.",
+        text: "생분해성 고분자 PDLLA 성분을 주입해 섬유아세포를 자극하고, 피부가 스스로 탄력 섬유와 콜라겐을 생성하도록 돕습니다.",
         image: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2-800.webp 800w, /images/skin-features/juvelook/juvelook-point-01-collagen-20261105-v2.webp 1200w",
         alt: "PDLLA와 콜라겐 지지 구조 — AI 설명용 모식도",

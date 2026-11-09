@@ -1265,10 +1265,10 @@ export const deviceStory: Record<string, DeviceStory> = {
       {
         title: "피부 본연의 자가 재생력 강화",
         text: "겉만 채우는 방식이 아닌 피부 속 세포 환경부터 바로잡습니다. 피부 장벽 강화부터 얇아진 잔주름, 거친 피부결까지 시간이 지날수록 전반적인 피부 컨디션이 개선됩니다.",
-        image: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp",
-        mediaSrcSet: "/images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3-800.webp 800w, /images/skin-features/rejuran/rejuran-point-04-doctor-consult-20261105-v3.webp 1200w",
-        alt: "원장님이 환자와 마주 앉아 대화하는 프라베일 상담 장면",
-        caption: "프라베일 원내 상담 장면입니다.",
+        image: "/images/photos/rejuran-point-04-fibroblast-matrix-20261109-v4.webp",
+        mediaSrcSet: "/images/photos/rejuran-point-04-fibroblast-matrix-20261109-v4-800.webp 800w, /images/photos/rejuran-point-04-fibroblast-matrix-20261109-v4.webp 1600w",
+        alt: "피부 속 섬유아세포와 콜라겐 섬유를 표현한 AI 설명용 모식도",
+        caption: "이해를 돕기 위한 AI 설명용 모식도입니다. 실제 조직 사진이나 시술 결과가 아닙니다.",
       },
     ],
     process: [

@@ -256,11 +256,9 @@ export function BaPreview({
           <li className="min-w-full snap-start md:col-span-3 md:min-w-0">
             <div className="rounded-[20px] border border-line bg-ivory px-6 py-14 text-center md:py-20">
               <p className="text-lg font-semibold tracking-[-0.02em] text-ink/70">
-                아직 공개된 전후사진이 없습니다.
+                새로운 전후 사례가 등록되는 대로 이곳에 업데이트됩니다.
               </p>
               <p className="mt-3 text-[14px] leading-relaxed text-muted md:text-[15px]">
-                새로운 전후 사례가 등록되는 대로 이곳에 업데이트됩니다.
-                <br />
                 시술 부위별 상세한 진단과 적용 가능 여부는 1:1 상담을 통해 안내해
                 드립니다.
               </p>

@@ -895,8 +895,8 @@ export default function TreatmentDetail({
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 어떻게 되나요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                아래는 본원 시술 비용입니다. 시술 범위와 구성에 따른 자세한
-                비용은 상담 시 안내해 드립니다.
+                안내드린 비용은 본원의 시술 비용이며, 시술 범위와 구성에 따른
+                자세한 비용은 상담 시 안내해 드립니다.
               </p>
             </div>
             {/* 부위 × 제품이 반복되는 가격(필러 · 보톡스)은 한 표로, 나머지는 카드 */}

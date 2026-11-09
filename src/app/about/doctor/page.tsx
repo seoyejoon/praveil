@@ -44,7 +44,7 @@ export default async function DoctorPage() {
     },
     {
       q: "원장님 진료는 언제 받을 수 있나요?",
-      a: `${hospital.hours.filter((h) => !h.closed).map((h) => `${h.label} ${h.time}${h.note ? `(${h.note})` : ""}`).join(", ")}에 진료합니다.${hospital.hours.filter((h) => h.closed).map((h) => ` ${h.label} ${h.time}입니다.`).join("")} 예약하시면 상담을 준비하고 대기 시간을 줄이는 데 도움이 됩니다. 당일 진료 상황에 따라 대기하실 수 있습니다.`,
+      a: "월 · 화 · 수 · 금요일은 10:00~19:00, 목요일은 10:00~20:30, 토요일은 10:00~15:00에 진료합니다. 일요일과 공휴일은 휴진입니다.\n\n예약하시면 상담을 준비하고 대기 시간을 줄이는 데 도움이 됩니다. 당일 진료 상황에 따라 대기하실 수 있습니다.",
     },
   ];
 

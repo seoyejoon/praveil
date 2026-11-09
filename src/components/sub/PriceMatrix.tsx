@@ -1,5 +1,4 @@
 import type { Procedure } from "@/lib/data";
-import { hasGap } from "@/lib/price-table";
 
 // 부위 × 제품 가격표 (필러 · 보톡스처럼 부위마다 같은 제품 가격이 반복될 때 한 표로)
 // - 줄 이름에서 '1cc' 같은 단위를 빼고, '벨로테로 · 레스틸렌'처럼 묶인 줄은 두 칸에 같은 가격
@@ -48,14 +47,6 @@ export default function PriceMatrix({
   for (const p of procedures)
     for (const r of p.prices)
       for (const x of parts(r.label)) if (!columns.includes(x)) columns.push(x);
-  const unit = procedures.some((p) =>
-    p.prices.some((r) => /cc\s*$/i.test(r.label)),
-  );
-  // 빈칸이 하나도 없으면 '–' 설명을 띄우지 않는다 (보톡스처럼 값이 다 찬 표)
-  const gap = hasGap(
-    columns,
-    procedures.map((p) => p.prices.flatMap((r) => parts(r.label))),
-  );
 
   return (
     <div className="min-w-0">
@@ -85,14 +76,14 @@ export default function PriceMatrix({
                 <tr key={p.slug} className="group">
                   <th
                     scope="row"
-                    className="sticky left-0 z-10 border-t border-line bg-white px-5 py-4 text-[15px] font-semibold whitespace-nowrap group-hover:bg-ivory md:px-7"
+                    className="sticky left-0 z-10 border-t border-line bg-white px-5 py-4 text-[15px] font-semibold whitespace-nowrap group-hover:bg-sand md:px-7"
                   >
                     {p.name}
                   </th>
                   {columns.map((c) => (
                     <td
                       key={c}
-                      className={`border-t border-line px-4 py-4 text-center text-[15px] tracking-[-0.02em] whitespace-nowrap group-hover:bg-ivory ${cell.has(c) ? "font-medium text-ink" : "text-ink/25"}`}
+                      className={`border-t border-line px-4 py-4 text-center text-[15px] tracking-[-0.02em] whitespace-nowrap group-hover:bg-sand ${cell.has(c) ? "font-medium text-ink" : "text-ink/25"}`}
                     >
                       {cell.get(c) ?? "–"}
                     </td>
@@ -103,11 +94,6 @@ export default function PriceMatrix({
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-xs text-muted">
-        {unit ? "부위에 따라 1cc 기준 · " : ""}
-        {gap ? "– 표시는 가격표에 없는 구성입니다. " : ""}
-        모바일에서는 옆으로 밀어 볼 수 있습니다.
-      </p>
     </div>
   );
 }

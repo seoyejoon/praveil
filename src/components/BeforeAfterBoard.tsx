@@ -259,8 +259,10 @@ export function BaPreview({
                 아직 공개된 전후사진이 없습니다.
               </p>
               <p className="mt-3 text-[14px] leading-relaxed text-muted md:text-[15px]">
-                새 사례가 등록되면 이 자리에 보여 드립니다. 궁금한 점은 상담에서
-                편하게 말씀해 주세요.
+                새로운 전후 사례가 등록되는 대로 이곳에 업데이트됩니다.
+                <br />
+                시술 부위별 상세한 진단과 적용 가능 여부는 1:1 상담을 통해 안내해
+                드립니다.
               </p>
             </div>
           </li>

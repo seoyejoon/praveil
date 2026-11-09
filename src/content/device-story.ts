@@ -3483,7 +3483,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       ],
       rows: [
         {
-          label: "기본 방식",
+          label: "시술 방식",
           values: [
             "빛으로 색소 입자 분해",
             "빛으로 색소 입자 분해",
@@ -3499,7 +3499,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "한계",
+          label: "시술 한계",
           values: [
             "색소 잔여 · 색 변화 가능",
             "색소 잔여 · 색 변화 가능",
@@ -3507,7 +3507,7 @@ export const deviceStory: Record<string, DeviceStory> = {
           ],
         },
         {
-          label: "회복 계획",
+          label: "회복",
           values: [
             "피부 회복과 색 변화 확인",
             "피부 회복과 색 변화 확인",

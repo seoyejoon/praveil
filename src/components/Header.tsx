@@ -24,7 +24,7 @@ const megaIntro: Record<
 > = {
   about: {
     title: "프라베일 소개",
-    text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도하는 프라베일 맑고고운의원입니다.",
+    text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 직접 진행하는 프라베일 맑고고운의원입니다.",
     image: "/images/menu/about.webp",
   },
   praveil: {

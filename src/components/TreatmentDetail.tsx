@@ -206,8 +206,8 @@ export default function TreatmentDetail({
           />
           <p className="mt-4 text-[15px] leading-[1.8] text-white/65 md:text-[16px]">
             {hospital.name}
-            {josa(hospital.name, "은", "는")} 대표원장님이 1:1로 직접 시술을
-            진행하고 있습니다.
+            {josa(hospital.name, "은", "는")} 대표원장이 1:1로 직접
+            시술합니다.
           </p>
           <ol className="mt-7 border-t border-white/15">
             {doctorReasons.map((r, i) => (
@@ -784,7 +784,7 @@ export default function TreatmentDetail({
             </ol>
             <p className="mt-8 text-xs text-white/45">
               ※ 효과가 나타나는 시기와 유지 기간은 피부 상태 · 나이 · 생활
-              습관에 따라 사람마다 다릅니다.
+              습관에 따라 개인차가 있습니다.
             </p>
           </div>
         </div>
@@ -901,8 +901,8 @@ export default function TreatmentDetail({
             <div>
               <SectionHead en="Price" title={`${t.title} 비용은 어떻게 되나요?`} />
               <p className="mt-5 text-[15px] leading-relaxed text-muted">
-                안내드린 비용은 본원의 시술 비용이며, 시술 범위와 구성에 따른
-                자세한 비용은 상담 시 안내해 드립니다.
+                표시된 비용은 본원의 시술 비용이며, 시술 범위와 구성에 따른
+                정확한 비용은 상담 시 안내해 드립니다.
               </p>
             </div>
             {/* 부위 × 제품이 반복되는 가격(필러 · 보톡스)은 한 표로, 나머지는 카드 */}

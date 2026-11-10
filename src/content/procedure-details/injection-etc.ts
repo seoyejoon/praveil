@@ -195,7 +195,7 @@ export const injections: Record<string, ProcedureDetail> = {
     info: {
       time: "약 10분",
       anesthesia: "불필요",
-      recovery: "부기 1~3일",
+      recovery: "부기 2~3일",
       interval: "필요 시",
     },
   },

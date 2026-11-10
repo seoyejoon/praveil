@@ -67,7 +67,7 @@ export const principleIllustrations: Record<
   booster: {
     assetVersion: "20261026",
     alt: "피부의 진피 안에 리쥬란의 PN 성분을 주입하는 개념과 주변 콜라겐 구조를 구분한 입체 모식도",
-    note: "리쥬란(PN)의 주입 개념도입니다. 다른 스킨부스터와 성분 · 사용방법을 구분합니다.",
+    note: "리쥬란(PN)의 주입 개념을 설명하기 위한 모식도입니다.",
     marks: [
       { x: 38, y: 45, label: "PN 성분 주입", labelX: 20, labelY: 29 },
       { x: 52, y: 53, label: "폴리뉴클레오티드(PN)", labelX: 43, labelY: 64 },

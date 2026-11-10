@@ -140,7 +140,7 @@ export default function BeforeAfterBoard({
             </span>
             <div>
               <p className="text-base font-semibold tracking-[-0.02em] md:text-lg">
-                시술 전 사진은 회원에게만 공개합니다
+                시술 전후 사진은 회원에게만 공개합니다
               </p>
               <p className="mt-0.5 text-sm text-muted">
                 의료법에 따라 로그인 후 확인하실 수 있습니다.

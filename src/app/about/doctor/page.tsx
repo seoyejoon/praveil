@@ -9,7 +9,7 @@ import JsonLd from "@/components/sub/JsonLd";
 import SectionHead from "@/components/sub/SectionHead";
 import { doctorProfile } from "@/content/about";
 import { mainBest } from "@/content/main";
-import { areaOf } from "@/content/treatment-guide";
+import { areaOf, josa } from "@/content/treatment-guide";
 import { getDoctor, getHospital } from "@/lib/data";
 import { SITE_URL, og } from "@/lib/site-url";
 
@@ -37,7 +37,7 @@ export default async function DoctorPage() {
   const faq = [
     {
       q: "대표원장님이 직접 시술하나요?",
-      a: `네. ${hospital.name}에서는 ${doctor.title} ${doctor.name} 원장님이 모든 시술을 책임 집도하고 있습니다.`,
+      a: `${hospital.name}${josa(hospital.name, "은", "는")} ${doctor.name} ${doctor.title}이 모든 시술을 직접 진행합니다.`,
     },
     {
       q: "상담만 받아 봐도 되나요?",
@@ -203,7 +203,7 @@ export default async function DoctorPage() {
       <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
         <SectionHead
           en="How I Care"
-          title="상담부터 시술까지, 단 한 분만을 위한 플랜"
+          title="단 한 분만을 위한 맞춤 시술 플랜"
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:mt-16 md:grid-cols-4">
           {p.steps.map((s, i) => (

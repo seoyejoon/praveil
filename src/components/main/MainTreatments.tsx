@@ -50,7 +50,7 @@ export default function MainTreatments({
             </Reveal>
           </div>
           <p className="text-[15px] text-black/55 md:text-lg">
-            피부 고민에 맞는 분야를 먼저 골라 보세요.
+            피부 고민에 맞는 분야를 먼저 선택해 보세요.
           </p>
         </div>
 

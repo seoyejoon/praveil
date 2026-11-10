@@ -90,7 +90,7 @@ export const mainBest = {
       image: doctorPhotos.coolsonic,
       mobileImage: doctorPhotos.coolsonic,
       photoFit: "background" as const,
-      headline: ["무너진 얼굴선을 다시 세우는", "쿨링 초음파 리프팅 쿨소닉"],
+      headline: ["처진 얼굴선을 관리하는", "쿨링 초음파 리프팅 쿨소닉"],
       accent: "쿨소닉",
       product: "/images/equipment/hero/coolsonic.webp",
     },
@@ -99,7 +99,7 @@ export const mainBest = {
       name: "쿨페이즈",
       category: "리프팅",
       href: "/lifting/coolphase",
-      text: "고주파로 피부 속 콜라겐을 자극해 피부결 · 탄력을 함께 끌어올립니다.",
+      text: "고주파로 콜라겐 생성을 유도해 피부결과 탄력 개선을 돕습니다.",
       image: doctorPhotos.coolphase,
       photoFit: "full-frame" as const,
       headline: [
@@ -126,7 +126,7 @@ export const mainBest = {
       name: "리투오",
       category: "피부 관리",
       href: "/skin/retuo",
-      text: "피부 속부터 채우는 콜라겐부스터. 얇아진 피부에 밀도와 결을 더합니다.",
+      text: "피부 속부터 관리하는 콜라겐부스터. 얇아진 피부의 밀도와 피부결 개선에 도움을 줍니다.",
       // 기존 리투오 사진은 환자 얼굴이 깨져 있어, 얼굴을 고친 v3 수정본으로
       image: photo("best-retuo-model-a-face-v3-20261105"),
       mobileImage: photo("best-retuo-m-model-a-face-v3-20261105"),
@@ -145,7 +145,7 @@ export const mainWhy = {
     {
       icon: "doctor",
       title: "대표원장 책임 진료",
-      text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 책임 집도합니다.",
+      text: "오랜 경험과 실력을 갖춘 대표원장이 모든 시술을 직접 진행합니다.",
       // 환자 얼굴이 깨져 보여 대표원장 사진으로 임시 교체 (새 사진 준비 중)
       image: photo("doctor-wide"),
     },
@@ -180,7 +180,7 @@ export const mainDoctor = {
   label: "Doctor",
   nameEn: "Han Jae Woong",
   quote: ["더 많이 하는 것보다,", "필요한 것을 제대로."],
-  text: "현재 피부 상태를 기준으로 치료의 우선순위를 정하고,\n불필요한 과정보다는 필요한 진료에 집중합니다.",
+  text: "현재 피부 상태를 기준으로 치료의 우선순위를 결정하고,\n불필요한 과정보다는 필요한 진료에 집중합니다.",
   image: doctorPhotos.portrait,
   homeImage: photo("doctor-cutout"),
 };

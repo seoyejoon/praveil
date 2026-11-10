@@ -52,14 +52,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = found && findTreatment(found.path);
   if (!t) return { title: found?.page.label ?? "페이지 준비 중" };
   const g = treatmentGuide[t.href];
-  const area = areaOf((await getHospital()).address);
-  const title = `${area} ${t.title}`;
+  const hospital = await getHospital();
+  const area = areaOf(hospital.address);
+  // 검색 제목: "쿨소닉 | 인천 남동구 쿨소닉, 깊이별로 나누어 … - 병원 이름"
+  // 하위 시술을 묶은 페이지는 묶인 시술 이름을 모두 적는다
+  const sub = t.variants
+    ? t.variants.map((v) => findTreatment(v.href)!.title).join(" · ")
+    : t.description;
+  const title = `${t.title} | ${area} ${t.title}${sub ? `, ${sub}` : ""} - ${hospital.name}`;
+  const description = clip(g.answer, 155);
+  const image = { url: t.image, alt: `${t.title} - ${hospital.name}` };
   return {
-    title,
-    description: g.answer,
+    title: { absolute: title },
+    description,
     alternates: { canonical: t.href },
-    openGraph: { title, description: g.answer, images: [t.image] },
+    openGraph: {
+      type: "website",
+      locale: "ko_KR",
+      siteName: hospital.name,
+      url: t.href,
+      title,
+      description,
+      images: [image],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
+}
+
+// 검색 설명은 155자 안쪽에서 문장이 끝나는 곳까지 (넘치면 잘린 채로 보임)
+function clip(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const end = Math.max(cut.lastIndexOf("다. "), cut.lastIndexOf("요. "));
+  return end > 40 ? cut.slice(0, end + 2) : `${cut.slice(0, max - 1)}…`;
 }
 
 export default async function SectionPage({ params }: Props) {
@@ -152,6 +177,11 @@ export default async function SectionPage({ params }: Props) {
             description: g.answer,
             inLanguage: "ko-KR",
             dateModified: guideUpdated,
+            lastReviewed: guideUpdated,
+            // 내용을 검수한 의료진 (의료진소개 페이지의 대표원장)
+            reviewedBy: { "@id": `${SITE_URL}/about/doctor#physician` },
+            primaryImageOfPage: `${SITE_URL}${tt.image}`,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
             about: { "@id": `${url}#procedure` },
             mainEntity: { "@id": `${url}#faq` },
             breadcrumb: { "@id": `${url}#breadcrumb` },
@@ -163,6 +193,7 @@ export default async function SectionPage({ params }: Props) {
             name: tt.title,
             alternateName: tt.en,
             description: g.answer,
+            image: `${SITE_URL}${tt.image}`,
             howPerformed: g.principle,
             bodyLocation: g.area,
             followup: g.recovery,
@@ -200,6 +231,8 @@ export default async function SectionPage({ params }: Props) {
           tabs={s.pages}
           current={path}
           switcher={switcher}
+          // 하위 시술을 묶은 페이지는 페이지 대표 제목(h1)을 따로 두고 시술 이름은 h2
+          headingAs={variantKey ? "h2" : "h1"}
         >
           <script
             type="application/ld+json"
@@ -233,11 +266,17 @@ export default async function SectionPage({ params }: Props) {
         title: findTreatment(v.href)!.title,
       }));
       return (
+        <>
+          {/* 검색엔진 · AI 가 이 페이지의 주제를 알 수 있게 하는 대표 제목 (화면에는 보이지 않음) */}
+          <h1 className="sr-only">
+            {`${areaOf(hospital.address)} ${t.title} — ${variants.map((v) => v.title).join(" · ")}`}
+          </h1>
         <TreatmentSwitch variants={variants}>
           {t.variants.map((v, i) =>
             build(findTreatment(v.href)!, variants[i].key, <HeroSwitch />),
           )}
         </TreatmentSwitch>
+        </>
       );
     }
     return build(t);

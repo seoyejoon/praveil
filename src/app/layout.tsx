@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "프라베일 맑고고운의원",
+    default: "인천 남동구 피부과 프라베일 맑고고운의원 | 리프팅 · 필러 · 보톡스 · 스킨부스터",
     template: "%s | 프라베일 맑고고운의원",
   },
   description:
@@ -32,10 +32,29 @@ const baseMetadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "프라베일 맑고고운의원",
-    images: ["/images/photos/hero-lobby.webp"],
+    images: [
+      {
+        url: "/images/photos/hero-lobby.webp",
+        alt: "프라베일 맑고고운의원 로비",
+      },
+    ],
   },
+  twitter: { card: "summary_large_image" },
   // 임시 확인용(Vercel)에서는 검색 노출 안 함
-  robots: isPreviewHost ? { index: false, follow: false } : undefined,
+  // 검색 결과에 큰 이미지 · 긴 요약을 허용
+  robots: isPreviewHost
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      },
 };
 
 // 검색 · 광고 사이트 소유 확인 값 (관리자 > 외부 서비스)
@@ -115,10 +134,25 @@ export default async function RootLayout({
         };
       })
       .filter((o) => o.dayOfWeek.length && o.closes),
-    founder: { "@type": "Physician", name: hospital.director },
+    founder: {
+      "@type": "Physician",
+      "@id": `${SITE_URL}/about/doctor#physician`,
+      name: hospital.director,
+    },
     ...(hospital.instagramUrl.startsWith("http") && {
       sameAs: [hospital.instagramUrl],
     }),
+  };
+
+  // 사이트 정보: 검색 결과에 사이트 이름을 정확히 보여 주도록
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: hospital.name,
+    inLanguage: "ko-KR",
+    publisher: { "@id": `${SITE_URL}/#clinic` },
   };
 
   return (
@@ -127,7 +161,7 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(clinicLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify([clinicLd, websiteLd]).replace(/</g, "\\u003c"),
           }}
         />
         <Header

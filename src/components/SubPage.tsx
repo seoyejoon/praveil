@@ -27,6 +27,7 @@ export default function SubPage({
   current,
   switcher,
   boldTitle = false,
+  headingAs: Heading = "h1",
   children,
 }: {
   en: string;
@@ -55,6 +56,8 @@ export default function SubPage({
   switcher?: React.ReactNode;
   /** 첫 화면 제목을 굵게 (병원소개 쪽) */
   boldTitle?: boolean;
+  /** 큰 제목 태그. 하위 시술을 묶은 페이지에서는 h2 (페이지 h1 은 따로) */
+  headingAs?: "h1" | "h2";
   children: React.ReactNode;
 }) {
   return (
@@ -96,7 +99,7 @@ export default function SubPage({
               )}
               <img
                 src={image}
-                alt=""
+                alt={`${title} 대표 이미지`}
                 fetchPriority="high"
                 style={
                   imagePosition ? { objectPosition: imagePosition } : undefined
@@ -142,11 +145,11 @@ export default function SubPage({
               <p className="mt-8 animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.3s_both] font-display text-[11px] font-light tracking-[0.4em] text-[#f1e2c6] uppercase md:text-xs">
                 {en}
               </p>
-              <h1
+              <Heading
                 className={`mt-4 animate-[slide-in_1.1s_cubic-bezier(.22,1,.36,1)_0.4s_both] text-[34px] leading-tight tracking-[-0.03em] md:text-[56px] 2xl:text-[64px] ${boldTitle ? "font-bold" : "font-light"}`}
               >
                 {title}
-              </h1>
+              </Heading>
               {description && (
                 <p className="mt-4 max-w-xl animate-[slide-in_1s_cubic-bezier(.22,1,.36,1)_0.55s_both] text-sm leading-relaxed text-white/70 md:text-base">
                   {description}

@@ -14,10 +14,10 @@ const faqLaserSun = {
 
 export const toning: Record<string, ProcedureDetail> = {
   "pico-toning": {
-    summary: "피코초 레이저로 기미, 잡티, 칙칙한 피부톤을 관리하는 토닝입니다.",
-    tags: ["기미", "잡티", "피부톤"],
+    summary: "피코초 레이저로 기미, 잡티, 칙칙한 피부 톤을 관리하는 토닝입니다.",
+    tags: ["기미", "잡티", "피부 톤"],
     recommend: [
-      "기미 · 잡티로 피부톤이 고르지 않은 분",
+      "기미 · 잡티로 피부 톤이 고르지 않은 분",
       "피부가 칙칙하고 맑지 않은 분",
       "다운타임 없이 꾸준히 관리하고 싶은 분",
     ],
@@ -51,11 +51,11 @@ export const toning: Record<string, ProcedureDetail> = {
   "body-toning": {
     summary:
       "겨드랑이, 팔꿈치, 무릎, 비키니 라인 등 몸의 어두운 착색을 관리합니다.",
-    tags: ["바디", "착색", "피부톤"],
+    tags: ["바디", "착색", "피부 톤"],
     recommend: [
       "겨드랑이 · 사타구니가 어둡게 착색된 분",
       "팔꿈치 · 무릎이 거뭇한 분",
-      "노출 시즌 전 피부톤을 정리하고 싶은 분",
+      "노출 시즌 전 피부 톤을 정리하고 싶은 분",
     ],
     principle:
       "마찰이나 제모 등으로 반복된 자극에 의해 생긴 색소를 토닝 레이저로 잘게 부숴 서서히 옅어지도록 돕습니다. 몸은 얼굴보다 회복이 느려 여러 회에 걸쳐 관리합니다.",
@@ -90,7 +90,7 @@ export const toning: Record<string, ProcedureDetail> = {
   "toning-package": {
     summary:
       "피부 상태에 맞춰 토닝 레이저와 진정 · 재생 관리를 묶어 진행하는 패키지입니다.",
-    tags: ["토닝", "패키지", "피부톤"],
+    tags: ["토닝", "패키지", "피부 톤"],
     recommend: [
       "꾸준한 토닝 관리를 계획하고 있는 분",
       "색소와 피부 컨디션을 함께 관리하고 싶은 분",
@@ -205,11 +205,11 @@ export const skinCare: Record<string, ProcedureDetail> = {
   },
   "vitamin-ionto": {
     summary:
-      "미세 전류로 비타민 성분의 흡수를 도와 칙칙한 피부톤을 관리합니다.",
-    tags: ["비타민", "미백", "피부톤"],
+      "미세 전류로 비타민 성분의 흡수를 도와 칙칙한 피부 톤을 관리합니다.",
+    tags: ["비타민", "미백", "피부 톤"],
     recommend: [
       "피부가 칙칙하고 생기가 없는 분",
-      "토닝과 함께 피부톤 관리를 원하는 분",
+      "토닝과 함께 피부 톤 관리를 원하는 분",
       "편안한 관리를 원하는 분",
     ],
     principle:
@@ -217,11 +217,11 @@ export const skinCare: Record<string, ProcedureDetail> = {
     points: [
       pointDoctor,
       "피부 상태에 맞춰 함께 사용할 성분을 정합니다.",
-      "토닝 · 필링과 묶어 피부톤 관리 계획을 세웁니다.",
+      "토닝 · 필링과 묶어 피부 톤 관리 계획을 세웁니다.",
     ],
     cautions: [
       "시술 중 가볍게 찌릿한 느낌이 들 수 있습니다.",
-      "금속 보형물 · 심장 박동기가 있다면 미리 알려주세요.",
+      "금속 보형물 · 심장 박동기가 있다면 미리 알려 주세요.",
       cautionCommon,
     ],
     faq: [
@@ -260,7 +260,7 @@ export const skinCare: Record<string, ProcedureDetail> = {
     ],
     cautions: [
       "시술 중 차가운 느낌과 약한 전기 자극이 느껴질 수 있습니다.",
-      "한랭 알레르기가 있거나 금속 보형물 · 심장 박동기가 있다면 미리 알려주세요.",
+      "한랭 알레르기가 있거나 금속 보형물 · 심장 박동기가 있다면 미리 알려 주세요.",
       cautionCommon,
     ],
     faq: [
@@ -312,7 +312,7 @@ export const scarPore: Record<string, ProcedureDetail> = {
     faq: [
       {
         q: "다운타임이 있나요?",
-        a: "강도에 따라 수일 정도 붉어짐과 각질이 있을 수 있습니다. 중요한 일정이 있다면 미리 알려주세요.",
+        a: "강도에 따라 수일 정도 붉어짐과 각질이 있을 수 있습니다. 중요한 일정이 있다면 미리 알려 주세요.",
       },
       {
         q: "몇 번 받아야 하나요?",
@@ -334,7 +334,7 @@ export const scarPore: Record<string, ProcedureDetail> = {
     recommend: [
       "다운타임은 줄이고 모공 · 피부결을 관리하고 싶은 분",
       "얕은 여드름 흉터가 있는 분",
-      "피부톤과 결을 함께 관리하고 싶은 분",
+      "피부 톤과 결을 함께 관리하고 싶은 분",
     ],
     principle:
       "피코초 레이저를 특수 렌즈로 아주 작은 점 단위로 나눠 피부 속에 전달합니다. 표면 손상은 줄이면서 피부 속에 미세한 자극을 만들어 재생 과정을 유도하는 방식입니다.",
@@ -546,7 +546,7 @@ export const acne: Record<string, ProcedureDetail> = {
     ],
     cautions: [
       ...cautionPeel.slice(0, 3),
-      "임신 중이라면 시술 전에 꼭 알려주세요.",
+      "임신 중이라면 시술 전에 꼭 알려 주세요.",
       cautionCommon,
     ],
     faq: [

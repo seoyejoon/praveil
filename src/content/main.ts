@@ -111,7 +111,7 @@ export const mainBest = {
     },
     {
       en: "Volume Filler",
-      name: "볼륨필러",
+      name: "볼륨 필러",
       category: "쁘띠시술",
       href: "/petit/filler",
       text: "꺼진 곳만 정확하게. 얼굴 비율에 맞춰 자연스러운 볼륨을 채웁니다.",
@@ -124,7 +124,7 @@ export const mainBest = {
     {
       en: "Retuo",
       name: "리투오",
-      category: "피부관리",
+      category: "피부 관리",
       href: "/skin/retuo",
       text: "피부 속부터 채우는 콜라겐부스터. 얇아진 피부에 밀도와 결을 더합니다.",
       // 기존 리투오 사진은 환자 얼굴이 깨져 있어, 얼굴을 고친 v3 수정본으로

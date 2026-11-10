@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: Props) {
       title={category.name}
       description={category.description}
       image={categoryImage(slug)}
-      crumbs={[{ label: "시술안내", href: "/treatments" }, { label: category.name }]}
+      crumbs={[{ label: "시술 안내", href: "/treatments" }, { label: category.name }]}
     >
       <CategoryTabs categories={categories} active={category.slug} />
 

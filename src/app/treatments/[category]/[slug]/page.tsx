@@ -36,7 +36,7 @@ export default async function ProcedurePage({ params }: Props) {
       description={procedure.summary ?? detail?.summary}
       image={categoryImage(categorySlug)}
       crumbs={[
-        { label: "시술안내", href: "/treatments" },
+        { label: "시술 안내", href: "/treatments" },
         { label: category.name, href: `/treatments/${category.slug}` },
         { label: procedure.name },
       ]}

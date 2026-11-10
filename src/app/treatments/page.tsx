@@ -8,14 +8,14 @@ import SubPage from "@/components/SubPage";
 import { categoryImage, treatmentsPage } from "@/content/pages";
 import { getCategories, getProcedures } from "@/lib/data";
 
-export const metadata: Metadata = { title: "시술안내" };
+export const metadata: Metadata = { title: "시술 안내" };
 
 export default async function TreatmentsPage() {
   const [categories, procedures] = await Promise.all([getCategories(), getProcedures()]);
   const { hero } = treatmentsPage;
 
   return (
-    <SubPage en={hero.en} title={hero.title} description={hero.description} image={hero.image} crumbs={[{ label: "시술안내" }]}>
+    <SubPage en={hero.en} title={hero.title} description={hero.description} image={hero.image} crumbs={[{ label: "시술 안내" }]}>
       <CategoryTabs categories={categories} />
 
       {/* 카테고리마다: 왼쪽 제목 · 사진 (스크롤해도 따라옴) / 오른쪽 시술 목록 */}

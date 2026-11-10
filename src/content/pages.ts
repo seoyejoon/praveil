@@ -19,14 +19,14 @@ export const aboutPage = {
     { name: "클라리티", en: "Clarity", type: "레이저" },
     { name: "피코 레이저", en: "Pico Laser", type: "색소 · 토닝" },
     { name: "프락셀", en: "Fraxel", type: "흉터 · 모공" },
-    { name: "LDM", en: "LDM", type: "피부관리" },
+    { name: "LDM", en: "LDM", type: "피부 관리" },
   ],
 };
 
 export const treatmentsPage = {
   hero: {
     en: "Treatments",
-    title: "시술안내",
+    title: "시술 안내",
     description: "11개 분야, 54가지 시술을 진행합니다.",
     image: images.pageHero.treatments,
   },

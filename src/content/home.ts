@@ -83,7 +83,7 @@ export const special = {
     },
     {
       title: "목적에 맞는 장비",
-      body: "피부 층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.",
+      body: "피부층과 고민에 맞춰 장비를 골라, 필요한 만큼만 정확하게 사용합니다.",
     },
     {
       title: "편안한 내원",
@@ -107,7 +107,7 @@ export const doctorQuote =
 // ⑨ 진료 분야 (분류 slug별 소개. 없는 분류는 관리자의 분류 설명을 쓴다)
 export const treatmentIntro = {
   en: "Praveil Department",
-  title: ["피부 속부터 라인까지,", "프라베일 진료분야"],
+  title: ["피부 속부터 라인까지,", "프라베일 진료 분야"],
   description:
     "어디서부터 시작해야 할지 고민되시나요?\n11개 분야, 54가지 시술 중 나에게 맞는 방법을 함께 찾습니다.",
 };
@@ -116,12 +116,12 @@ export const treatmentCopy: Record<string, string> = {
   lifting:
     "처진 윤곽과 탄력 고민을 피부 깊이와 두께에 맞춰 설계합니다. 초음파 · 고주파 · 실리프팅 중 필요한 방법을 골라 진행합니다.",
   botox:
-    "표정 주름부터 턱 · 승모근 · 종아리 라인까지, 근육의 움직임을 보며 필요한 부위에 필요한 만큼만 사용합니다.",
+    "표정주름부터 턱 · 승모근 · 종아리 라인까지, 근육의 움직임을 보며 필요한 부위에 필요한 만큼만 사용합니다.",
   filler:
     "꺼진 곳을 과하지 않게 채워 얼굴 전체의 균형을 맞춥니다. 부위별 특성에 맞는 제품과 깊이를 선택합니다.",
   "skin-booster":
     "피부 속 컨디션을 채워 결 · 탄력 · 광채를 가꿉니다. 피부 타입과 고민에 맞춰 부스터를 조합합니다.",
-  toning: "기미 · 잡티 · 색소 침착을 피부 자극을 줄이며 단계적으로 관리합니다.",
+  toning: "기미 · 잡티 · 색소침착을 피부 자극을 줄이며 단계적으로 관리합니다.",
   "skin-care":
     "진정 · 보습 · 결 관리를 위한 관리 프로그램으로, 시술 전후 피부 컨디션을 돕습니다.",
   "scar-pore":
@@ -129,7 +129,7 @@ export const treatmentCopy: Record<string, string> = {
   acne: "여드름 단계와 원인을 확인해 압출 · 필링 · 레이저를 단계별로 구성합니다.",
   injection: "영양 · 미백 · 바디 라인 등 목적에 맞는 주사 관리를 안내합니다.",
   "hair-removal":
-    "털의 굵기와 피부톤에 맞춰 여성 · 남성 레이저제모를 진행합니다.",
+    "털의 굵기와 피부 톤에 맞춰 여성 · 남성 레이저제모를 진행합니다.",
   "tattoo-removal":
     "눈썹 · 아이라인 문신을 색소 깊이에 맞춰 여러 회에 걸쳐 옅게 합니다.",
 };
@@ -168,7 +168,7 @@ export const images = {
     "hair-removal": photo("cat-hair-removal"),
     "tattoo-removal": photo("cat-tattoo-removal-model-a"),
   } as Record<string, string>,
-  // 시그니처 시술 (쿨소닉 · 쿨페이즈 · 볼륨필러 · 리투오 순)
+  // 시그니처 시술 (쿨소닉 · 쿨페이즈 · 볼륨 필러 · 리투오 순)
   signature: [1, 2, 3, 4].map((n) => photo(`signature-${n}`)),
   special: [1, 2, 3, 4, 5].map((n) => photo(`special-${n}`)),
   // 병원소개 > 보유 장비 (쿨소닉 · 쿨페이즈 외에는 원장님 확인 후 맞는 장비 사진으로 교체)

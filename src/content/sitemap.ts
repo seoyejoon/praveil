@@ -1,5 +1,5 @@
 // 2026.10 확정 사이트맵 (프라베일 맑고고운의원 홈페이지 제작 범위 확정서)
-// 총 16페이지 + 게시판 3개. 대표 시술(쿨소닉 · 쿨페이즈 · 볼륨필러 · 리투오)은 BEST 표기.
+// 총 16페이지 + 게시판 3개. 대표 시술(쿨소닉 · 쿨페이즈 · 볼륨 필러 · 리투오)은 BEST 표기.
 
 export type SitePage = {
   href: string;
@@ -38,7 +38,7 @@ export const sitemap: SiteSection[] = [
     en: "Lifting",
     href: "/lifting/coolsonic",
     treatment: true,
-    summary: "처진 윤곽과 탄력, 피부 층에 맞춘 리프팅",
+    summary: "처진 윤곽과 탄력, 피부층에 맞춘 리프팅",
     pages: [
       { href: "/lifting/coolsonic", label: "쿨소닉", best: true },
       { href: "/lifting/coolphase", label: "쿨페이즈", best: true },
@@ -96,7 +96,7 @@ export const sitemap: SiteSection[] = [
   },
   {
     key: "skin",
-    label: "피부관리",
+    label: "피부 관리",
     en: "Skin Care",
     href: "/skin/retuo",
     treatment: true,
@@ -144,7 +144,7 @@ export const sitemap: SiteSection[] = [
     en: "Removal",
     href: "/removal/hair",
     treatment: true,
-    summary: "레이저 제모와 눈썹 · 아이라인 문신제거",
+    summary: "레이저제모와 눈썹 · 아이라인 문신제거",
     pages: [
       { href: "/removal/hair", label: "레이저제모", items: ["여성", "남성"] },
       {

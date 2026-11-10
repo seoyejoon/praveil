@@ -44,7 +44,7 @@ export function mapApps(links: Hospital["mapLinks"], address: string, name?: str
   return [
     { key: "naver", label: "네이버지도", icon: <NaverIcon />, href: links.naver || `https://map.naver.com/p/search/${q}` },
     { key: "kakao", label: "카카오지도", icon: <KakaoIcon />, href: links.kakao || `https://map.kakao.com/?q=${q}` },
-    { key: "google", label: "구글지도", icon: <GoogleIcon />, href: links.google || `https://www.google.com/maps/search/?api=1&query=${q}` },
+    { key: "google", label: "구글 지도", icon: <GoogleIcon />, href: links.google || `https://www.google.com/maps/search/?api=1&query=${q}` },
     // 티맵은 휴대폰에 앱이 있어야 열린다
     { key: "tmap", label: "TMAP", icon: <TmapIcon />, href: links.tmap || `tmap://search?name=${encodeURIComponent(name || address)}` },
   ];

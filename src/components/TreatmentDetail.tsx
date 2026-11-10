@@ -736,7 +736,7 @@ export default function TreatmentDetail({
         </section>
       )}
 
-      {/* 효과 발현 기간 및 유지기간 */}
+      {/* 효과 발현 기간 및 유지 기간 */}
       <section
         id="result"
         className="scroll-mt-36 px-3 pt-16 md:scroll-mt-44 md:px-6 md:pt-24"
@@ -747,7 +747,7 @@ export default function TreatmentDetail({
             <SectionHead
               en="Result"
               tone="dark"
-              title={g.timelineTitle ?? `${t.title} 효과 발현 기간 및 유지기간`}
+              title={g.timelineTitle ?? `${t.title} 효과 발현 기간 및 유지 기간`}
             />
             {g.timelineLead && (
               <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-white/60 md:text-base">

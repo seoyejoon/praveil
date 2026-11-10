@@ -27,7 +27,7 @@ import {
 import { withCategoryKey } from "@/lib/before-after";
 import { SITE_URL } from "@/lib/site-url";
 
-// 사이트맵의 시술 페이지 (리프팅 · 쁘띠 · 피부관리 · 여드름모공 · 제모문신제거)
+// 사이트맵의 시술 페이지 (리프팅 · 쁘띠 · 피부 관리 · 여드름모공 · 제모문신제거)
 // 원고가 있으면 시술 상세, 없으면 '준비 중' 화면
 type Props = { params: Promise<{ section: string; slug?: string[] }> };
 

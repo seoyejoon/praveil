@@ -660,7 +660,7 @@ function HifuDiagram({
         </pattern>
       </defs>
 
-      {/* 피부 층 */}
+      {/* 피부층 */}
       {layers.map(([name, y1, y2, c]) => (
         <g key={name}>
           <rect x="20" y={y1} width="380" height={y2 - y1} fill={c} />

@@ -660,7 +660,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 및 시술 준비",
-        text: "피부 표면을 깨끗하게 정돈하고 유분기를 제거합니다. 통증 민감도와 피부 상태에 따라 맞춤 마취 또는 쿨링 사전 케어를 진행합니다.",
+        text: "피부 표면을 깨끗하게 정리하고 유분기를 제거합니다. 통증 민감도와 피부 상태에 따라 맞춤 마취 또는 쿨링 사전 케어를 진행합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },
@@ -766,13 +766,13 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "정품 · 정량 확인 및 투명한 원칙",
-        text: "국내외 승인을 거친 안전한 정품만을 사용하며, 정해진 희석 비율과 적정 용량을 엄격히 준수합니다.",
+        text: "국내외 승인을 거친 안정성 높은 정품만을 사용하며, 정해진 희석 비율과 적정 용량을 엄격히 준수합니다.",
         image: "/images/photos/special-3.webp",
         alt: "프라베일에 비치된 장비 공식 인증패",
       },
       {
         title: "표정 근육을 고려한 자연스러운 움직임",
-        text: "근육의 움직임과 힘의 방향을 정밀하게 분석하여 표정이 어색하게 굳지 않고 자연스럽게 정돈되도록 설계합니다.",
+        text: "근육의 움직임과 힘의 방향을 정밀하게 분석하여 표정이 어색하게 굳지 않고 자연스럽게 정리되도록 설계합니다.",
         image: "/images/photos/cat-botox-model-a-v3.webp",
         alt: "주입 시술의 계획을 설명하기 위한 기존 사진",
       },
@@ -785,7 +785,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "피부층과 근육층을 고려한 분할 주입",
-        text: "깊은 표정 주름을 완화하는 근육층 타깃과, 미세 잔주름 및 결을 정돈하는 얕은 진피층 타깃을 목적에 맞게 맞춤 적용합니다.",
+        text: "깊은 표정 주름을 완화하는 근육층 타깃과, 미세 잔주름 및 결을 개선하는 얕은 진피층 타깃을 목적에 맞게 맞춤 적용합니다.",
         image: "/images/photos/cat-injection-model-a.webp",
         alt: "주입 깊이를 설명하기 위한 기존 주사 시술 사진",
       },
@@ -800,7 +800,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "마취 진행",
-        text: "주사 부위를 깨끗하게 소독하고 정돈한 뒤, 따끔한 자극과 통증 부담을 덜어드릴 수 있도록 냉각 쿨링기나 마취 크림으로 피부를 준비합니다.",
+        text: "주사 부위를 깨끗하게 소독하고 정리한 뒤, 따끔한 자극과 통증 부담을 덜어드릴 수 있도록 냉각 쿨링기나 마취 크림으로 피부를 준비합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "피부 준비와 통증 관리를 설명하는 사진",
       },
@@ -959,7 +959,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 & 마취",
-        text: "피부 표면을 정돈한 뒤 통증 완화를 위한 마취 크림을 도포합니다.",
+        text: "피부 표면을 정리한 뒤 통증 완화를 위한 마취 크림을 도포합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 준비와 통증 관리를 진행하는 장면",
       },
@@ -1768,7 +1768,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 · 마취",
-        text: "표면 위생을 정돈한 뒤 주사 자극 완화를 위해 마취 크림을 도포합니다.",
+        text: "표면 위생을 정리한 뒤 주사 자극 완화를 위해 마취 크림을 도포합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
@@ -1899,7 +1899,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     features: [
       {
         title: "안정성 높은 생분해성 PDO 성분",
-        text: "수십 년간 외과 수술용 녹는 실로 사용되어 인체 안전성이 검증된 PDO(Polydioxanone) 성분을 사용합니다. 체내에 주입된 후 콜라겐 생성을 유도하고, 수개월에 걸쳐 물과 이산화탄소로 분해 · 배출되어 몸속 잔류 이물질에 대한 부담이 적습니다.",
+        text: "수십 년간 외과 수술용 녹는 실로 사용되어 인체 안정성이 검증된 PDO(Polydioxanone) 성분을 사용합니다. 체내에 주입된 후 콜라겐 생성을 유도하고, 수개월에 걸쳐 물과 이산화탄소로 분해 · 배출되어 몸속 잔류 이물질에 대한 부담이 적습니다.",
         image: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp",
         mediaSrcSet: "/images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2-800.webp 800w, /images/skin-features/ultracol/ultracol-point-01-pdo-particles-20261105-v2.webp 1200w",
         alt: "미세 구형 PDO 입자 — AI 설명용 모식도",
@@ -2157,7 +2157,7 @@ export const deviceStory: Record<string, DeviceStory> = {
         poster: "/images/shrink/shrink-device-clean-20261105-v2.webp",
         edge: "linear-gradient(#020707, #080d17)",
       },
-      text: "고강도 집속 초음파(HIFU) 에너지를 피하근막(SMAS)층과 진피층에 집중 전달해 미세 열응고점(TCP)을 형성하는 리프팅 장비입니다. 응고된 조직의 수축과 콜라겐 재생을 통해 늘어진 안면 윤곽을 정돈하며, 기존 점(Dot) 모드 외에 선 형태로 에너지를 촘촘하게 연속 전달하는 MP(Micro-Pulsed) 모드를 병행해 시술 정밀도와 속도를 높였습니다.",
+      text: "고강도 집속 초음파(HIFU) 에너지를 피하근막(SMAS)층과 진피층에 집중 전달해 미세 열응고점(TCP)을 형성하는 리프팅 장비입니다. 응고된 조직의 수축과 콜라겐 재생을 통해 늘어진 안면 윤곽을 정리하며, 기존 점(Dot) 모드 외에 선 형태로 에너지를 촘촘하게 연속 전달하는 MP(Micro-Pulsed) 모드를 병행해 시술 정밀도와 속도를 높였습니다.",
       specs: [
         { label: "시술 방식", value: "집속 초음파 (HIFU)" },
         { label: "조사 모드", value: "일반(Dot) · MP 모드" },
@@ -2290,7 +2290,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 및 마취 준비",
-        text: "시술 부위를 청결하게 정돈한 뒤 통증 부담을 줄이기 위해 마취 크림을 도포합니다.",
+        text: "시술 부위를 청결하게 정리한 뒤 통증 부담을 줄이기 위해 마취 크림을 도포합니다.",
         image: "/images/photos/process-shrink-anesthesia-model-a.webp",
         alt: "시술 전 얼굴에 마취 크림을 고르게 바른 모습",
       },
@@ -2450,7 +2450,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 및 마취 준비",
-        text: "피부 표면을 정돈하고 통증 부담을 덜어주는 마취 크림을 도포합니다.",
+        text: "피부 표면을 정리하고 통증 부담을 덜어주는 마취 크림을 도포합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "기존 마취 준비 사진",
       },
@@ -2527,7 +2527,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 재생 및 미세 혈관 타깃 복합 개선",
-        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 정돈하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은기와 피부 톤을 맑게 개선합니다.",
+        text: "새로운 콜라겐과 탄력 섬유 신생으로 피부 탄력과 늘어진 모공, 피부결을 쫀쫀하게 개선하며, 미세 붉은 혈관에 흡수되는 파장 특성으로 안면 붉은기와 피부 톤을 맑게 개선합니다.",
       },
     ],
     compare: {
@@ -3380,7 +3380,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     process: [
       {
         title: "상태 점검 및 시술 준비",
-        text: "제모 부위의 피부 상태와 털의 정돈 상태를 확인하고 표면을 깨끗하게 정리하며, 통증에 민감한 부위는 마취 크림이나 냉각 케어로 통증을 줄여줍니다.",
+        text: "제모 부위의 피부 상태와 털의 정리 상태를 확인하고 표면을 깨끗하게 정리하며, 통증에 민감한 부위는 마취 크림이나 냉각 케어로 통증을 줄여줍니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
       },
@@ -3598,7 +3598,7 @@ deviceStory["/petit/botox/body"] = {
   features: [
     {
       title: "정품 · 정량 확인 및 투명한 원칙",
-      text: "국내외 승인을 거친 안전한 정품만을 사용하며, 정해진 희석 비율과 적정 용량을 엄격히 준수합니다.",
+      text: "국내외 승인을 거친 안정성 높은 정품만을 사용하며, 정해진 희석 비율과 적정 용량을 엄격히 준수합니다.",
       image: "/images/photos/body-botox-special-01-authentic-preparation-20261105.webp",
       alt: "보톡스 제품 패키지와 바이알, 포장된 준비물을 배치한 AI 제작 설명 이미지",
     },
@@ -3630,7 +3630,7 @@ deviceStory["/petit/botox/body"] = {
     },
     {
       title: "쿨링 및 통증 제어",
-      text: "시술 부위를 소독하고 정돈한 뒤, 통증 민감도에 맞춰 쿨링 패드나 마취 크림으로 불편감을 줄입니다.",
+      text: "시술 부위를 소독하고 정리한 뒤, 통증 민감도에 맞춰 쿨링 패드나 마취 크림으로 불편감을 줄입니다.",
       image:
         "/images/photos/body-botox-process-02-shoulder-cooling-20261106-v1.webp",
       alt: "어깨 · 승모근 부위에 보호천으로 감싼 쿨링 패드를 대는 AI 제작 시술 준비 설명 이미지",

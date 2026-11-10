@@ -15,7 +15,8 @@ export default function StoryProtection({
   const [active, setActive] = useState(0);
   const items = protection.items;
   return (
-    <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-36">
+    // 바로 위 시술 과정 구역의 아래 여백을 이어 쓰므로 위 여백은 두지 않는다
+    <section className="mx-auto max-w-[1400px] px-5 pb-24 md:px-10 md:pb-36">
       <SectionHead en={protection.en} title={protection.title} />
       <div className="mt-10 grid gap-6 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-stretch lg:gap-8">
         <Reveal>

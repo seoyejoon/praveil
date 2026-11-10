@@ -484,7 +484,7 @@ export const treatments: Treatment[] = [
       { label: "회복 과정", value: "즉시 일상 복귀 가능" },
       {
         label: "권장 주기",
-        value: "2~3주 간격 · 3~5회 집중 시술 권장",
+        value: "2~4주 간격 · 3~5회 집중 시술 권장",
       },
     ],
     recommend: [

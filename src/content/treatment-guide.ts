@@ -1127,8 +1127,8 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       },
       {
         when: "유지 기간 및 권장 주기",
-        title: "4~8주 간격 · 3~5회 이상 권장",
-        text: "피부 진피층이 충분히 회복되고 남은 색소의 재배치가 끝나는 4~8주 간격으로 반복 시술을 진행합니다.",
+        title: "경과를 보고 결정",
+        text: "딱지가 떨어지고 피부가 충분히 회복된 뒤, 남은 색소의 상태를 확인해 다음 시술 시기를 정합니다.",
       },
     ],
     faq: [

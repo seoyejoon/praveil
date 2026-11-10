@@ -3529,7 +3529,7 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "클렌징 및 마취 준비",
-        text: "시술 부위의 메이크업과 유분기를 정리하고 통증 부담을 덜기 위해 시술 부위에 연고 마취를 진행합니다.",
+        text: "시술 부위의 메이크업과 유분기를 정리하고 통증 부담을 덜기 위해 시술 부위에 연고 마취를 진행합니다. 아이라인 · 언더라인 시술 시에는 안구보호렌즈를 착용해 눈을 보호합니다.",
         image: "/images/photos/process-anesthesia-model-a.webp",
         alt: "시술 전 마취 크림을 바르는 참고 사진",
       },

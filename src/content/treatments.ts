@@ -2081,13 +2081,13 @@ export const treatments: Treatment[] = [
         name: "아이라인 문신제거",
         image: "/images/page-assets/praveil-tattoo-eyeliner-v1.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
-        text: "번지거나 퍼진 아이라인입니다. 눈과 가까운 만큼 각막 보호구를 포함한 보호 조건을 먼저 확인한 뒤 진행합니다.",
+        text: "번지거나 퍼진 아이라인입니다. 시술 시 안구보호렌즈를 착용해 레이저로부터 눈을 보호한 뒤 진행합니다.",
       },
       {
         name: "언더라인 문신제거",
         image: "/images/page-assets/praveil-tattoo-lower-liner-v1.webp",
         caption: "AI로 제작한 시술 부위 설명용 이미지",
-        text: "진하게 남은 언더라인입니다. 눈 아래 피부가 얇아 조사 범위와 회복 상태를 특히 나누어 확인합니다.",
+        text: "진하게 남은 언더라인입니다. 시술 시 안구보호렌즈를 착용해 눈을 보호하고, 눈 아래 피부가 얇아 조사 범위와 회복 상태를 나누어 확인합니다.",
       },
     ],
     faq: [

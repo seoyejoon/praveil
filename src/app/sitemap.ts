@@ -5,7 +5,8 @@ import { getNotices } from "@/lib/data";
 import { SITE_URL as base } from "@/lib/site-url";
 
 // 검색엔진에 알려 줄 주소 목록: 메뉴(사이트맵)의 모든 페이지 + 전후사진 · 약관
-export const revalidate = 3600;
+// 공지 글은 DB에서 읽으므로 빌드 때가 아니라 요청 때 만든다 (DB 조회는 source-db.ts 에서 캐시)
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paths = new Set([

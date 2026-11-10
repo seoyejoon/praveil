@@ -3556,7 +3556,7 @@ export const deviceStory: Record<string, DeviceStory> = {
     ],
     protection: {
       en: "Eye protection",
-      title: "안구 손상 위험을 고려한 보호 시스템",
+      title: "안구 손상 위험을 차단하는 보호 시스템",
       items: [
         {
           title: "안구보호렌즈(아이실드)",

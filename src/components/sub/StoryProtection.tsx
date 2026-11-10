@@ -29,6 +29,9 @@ export default function StoryProtection({
                   <img
                     key={it.title}
                     src={it.image}
+                    // 같은 이름의 -800 파일을 모바일용으로 함께 둔다
+                    srcSet={`${it.image.replace(/\.webp$/, "-800.webp")} 800w, ${it.image} 1600w`}
+                    sizes="(min-width: 1024px) 58vw, 100vw"
                     alt={it.alt}
                     loading="lazy"
                     aria-hidden={i !== active}

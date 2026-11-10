@@ -3561,14 +3561,14 @@ export const deviceStory: Record<string, DeviceStory> = {
         {
           title: "안구보호렌즈(아이실드)",
           text: "점막과 가까운 아이라인 · 언더라인 시술 시에는 점안 마취 후 안구보호렌즈를 눈에 직접 착용해 레이저 빛이 각막과 망막에 닿지 않도록 차단합니다.",
-          alt: "아이라인 시술 시 착용하는 안구보호렌즈(아이실드)",
-          icon: "eye",
+          image: "/images/photos/tattoo-eye-shield-20261110.webp",
+          alt: "아이라인 문신제거 시 눈에 안구보호렌즈(아이실드)를 착용한 AI 연출 이미지",
         },
         {
           title: "레이저 보안경",
           text: "눈썹 부위 시술 시에는 레이저 파장에 맞춘 전용 보안경을 착용해 눈 주변으로 퍼지는 빛으로부터 눈을 보호합니다.",
-          alt: "눈썹 문신제거 시 착용하는 레이저 보안경",
-          icon: "glasses",
+          image: "/images/photos/tattoo-laser-goggles-20261110.webp",
+          alt: "눈썹 문신제거 시 레이저 보안경을 착용한 AI 연출 이미지",
         },
       ],
     },

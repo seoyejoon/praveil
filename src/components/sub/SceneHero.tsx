@@ -49,6 +49,7 @@ export default function SceneHero({
   facts,
   crumbs,
   switcher,
+  headingAs,
 }: {
   en: string;
   title: string;
@@ -57,6 +58,7 @@ export default function SceneHero({
   facts: { label: string; value: string }[];
   crumbs: Crumb[];
   switcher?: React.ReactNode;
+  headingAs?: "h1" | "h2";
 }) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -98,6 +100,7 @@ export default function SceneHero({
         facts={facts}
         crumbs={crumbs}
         switcher={switcher}
+        headingAs={headingAs}
       />
     );
   }
@@ -225,6 +228,7 @@ export default function SceneHero({
           facts={facts}
           crumbs={crumbs}
           switcher={switcher}
+          headingAs={headingAs}
           className="lg:ml-[5vw] lg:max-w-[42%] xl:ml-[9vw] xl:max-w-[36%]"
           wrap="lg:justify-center lg:pt-24 lg:pb-14 xl:pt-32 xl:pb-20"
         />
@@ -242,6 +246,7 @@ function FullFrameScene({
   facts,
   crumbs,
   switcher,
+  headingAs,
 }: {
   en: string;
   title: string;
@@ -250,6 +255,7 @@ function FullFrameScene({
   facts: { label: string; value: string }[];
   crumbs: Crumb[];
   switcher?: React.ReactNode;
+  headingAs?: "h1" | "h2";
 }) {
   return (
     <section
@@ -266,6 +272,7 @@ function FullFrameScene({
             facts={facts}
             crumbs={crumbs}
             switcher={switcher}
+            headingAs={headingAs}
             className="max-w-xl"
             wrap="!px-0 !pb-0"
           />

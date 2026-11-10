@@ -12,6 +12,7 @@ export default function LightHeroText({
   className = "md:max-w-[50%]",
   wrap = "",
   switcher,
+  headingAs: Heading = "h1",
 }: {
   en: string;
   title: string;
@@ -24,6 +25,8 @@ export default function LightHeroText({
   wrap?: string;
   /** 상담 예약 버튼 자리: 한 페이지 안 하위 시술 전환 버튼 */
   switcher?: React.ReactNode;
+  /** 큰 제목 태그 (하위 시술을 묶은 페이지는 h2) */
+  headingAs?: "h1" | "h2";
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
   return (
@@ -37,12 +40,12 @@ export default function LightHeroText({
         >
           {en}
         </p>
-        <h1
+        <Heading
           className="mt-4 text-[38px] leading-[1.15] font-semibold tracking-[-0.04em] md:mt-5 md:text-[60px] 2xl:text-[72px]"
           style={{ animation: `slide-in 1.1s ${ease} 0.4s both` }}
         >
           {title}
-        </h1>
+        </Heading>
         {description && (
           <p
             className="mt-3 text-[15px] leading-relaxed text-ink/70 md:mt-5 md:text-lg"

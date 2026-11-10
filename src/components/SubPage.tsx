@@ -72,6 +72,7 @@ export default function SubPage({
             facts={facts}
             crumbs={crumbs}
             switcher={switcher}
+            headingAs={Heading}
           />
         ) : device ? (
           <DeviceHero
@@ -81,6 +82,7 @@ export default function SubPage({
             device={device}
             facts={facts}
             crumbs={crumbs}
+            headingAs={Heading}
           />
         ) : (
           <section
@@ -205,6 +207,7 @@ function DeviceHero({
   device,
   facts,
   crumbs,
+  headingAs,
 }: {
   en: string;
   title: string;
@@ -212,6 +215,7 @@ function DeviceHero({
   device: HeroDevice;
   facts: { label: string; value: string }[];
   crumbs: Crumb[];
+  headingAs?: "h1" | "h2";
 }) {
   const ease = "cubic-bezier(.22,1,.36,1)";
   return (
@@ -259,6 +263,7 @@ function DeviceHero({
         description={description}
         facts={facts}
         crumbs={crumbs}
+        headingAs={headingAs}
       />
     </section>
   );

@@ -3123,14 +3123,14 @@ export const deviceStory: Record<string, DeviceStory> = {
       },
       {
         title: "콜라겐 재생을 통한 탄력 밀도 강화",
-        text: "삽입된 실이 서서히 흡수되는 동안 실 주변에서 자가 콜라겐 생성이 유도됩니다. 이에 따른 변화의 정도와 유지 기간에는 개인차가 있습니다.",
+        text: "삽입된 실이 서서히 흡수되는 동안 실 주변에서 자가 콜라겐 생성이 유도됩니다.",
         image: "/images/thread/features/jamber-point-03-blunt-cannula-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-03-blunt-cannula-v2-800.webp 800w, /images/thread/features/jamber-point-03-blunt-cannula-v2.webp 1200w",
         alt: "피부 조직과 둥근 캐뉼라 끝부분을 표현한 설명용 단면도",
       },
       {
         title: "이물감을 낮춘 부드러운 안착과 자연스러운 표정",
-        text: "피부 조직의 특성을 고려한 섬세한 자입(Insertion)으로 시술 후 과도한 당김이나 딱딱한 이물감을 줄이도록 시술하며, 느껴지는 정도는 사람마다 다릅니다.",
+        text: "피부 조직의 특성을 고려한 섬세한 자입(Insertion)으로 시술 후 과도한 당김이나 딱딱한 이물감을 줄이도록 시술합니다.",
         image: "/images/thread/features/jamber-point-04-collagen-matrix-v2.webp",
         mediaSrcSet: "/images/thread/features/jamber-point-04-collagen-matrix-v2-800.webp 800w, /images/thread/features/jamber-point-04-collagen-matrix-v2.webp 1200w",
         alt: "코일형 실과 주변 콜라겐 섬유의 관계를 표현한 설명용 모식도",

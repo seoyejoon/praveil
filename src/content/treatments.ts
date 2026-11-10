@@ -2241,6 +2241,6 @@ export const findTreatment = (href: string) =>
 export const treatmentSteps = [
   { title: "피부 진단", text: "피부 상태와 고민을 먼저 확인합니다." },
   { title: "1:1 상담", text: "원하는 변화와 생활을 듣고 계획을 세웁니다." },
-  { title: "대표원장 시술", text: "대표원장이 모든 시술을 직접 집도합니다." },
+  { title: "대표원장 시술", text: "대표원장이 모든 시술을 직접 진행합니다." },
   { title: "사후 관리", text: "경과를 확인하고 다음 관리를 안내합니다." },
 ];

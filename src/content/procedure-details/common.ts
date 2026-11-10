@@ -26,7 +26,7 @@ export type ProcedureDetail = {
 };
 
 // 프라베일 공통 포인트 (특장점 기반)
-export const pointDoctor = "모든 시술을 대표원장이 직접 집도합니다.";
+export const pointDoctor = "모든 시술을 대표원장이 직접 진행합니다.";
 export const pointConsult =
   "피부 상태와 고민을 1:1로 확인한 뒤 강도와 부위를 정합니다.";
 export const pointGenuine =

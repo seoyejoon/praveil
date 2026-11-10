@@ -95,7 +95,7 @@ export const special = {
 // ⑧ 원장 인사말
 export const doctorGreeting = {
   eyebrow: "The Praveil Standard",
-  quote: ["오랜 경험과 실력으로,", "모든 시술을 책임 집도합니다."],
+  quote: ["오랜 경험과 실력으로,", "모든 시술을 직접 진행합니다."],
   description:
     "같은 고민도 피부마다 답이 다릅니다.\n오랜 시간 쌓아 온 경험으로 피부를 먼저 읽고,\n꼭 맞는 방법만 정직하게 권하겠습니다.",
 };

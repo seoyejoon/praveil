@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const [h, d] = await Promise.all([getHospital(), getDoctor()]);
   return {
     title: "의료진소개",
-    description: `${h.name} ${d.title} ${d.name}. 페이닥터 없이 대표원장이 모든 시술을 직접 집도합니다.`,
+    description: `${h.name} ${d.title} ${d.name}. 페이닥터 없이 대표원장이 모든 시술을 직접 진행합니다.`,
     alternates: { canonical: "/about/doctor" },
     openGraph: og("/about/doctor"),
   };

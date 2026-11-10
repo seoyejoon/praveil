@@ -27,6 +27,7 @@ import {
   StoryProducts,
   StoryProcess,
 } from "@/components/sub/DeviceStory";
+import StoryProtection from "@/components/sub/StoryProtection";
 import type { DeviceStory } from "@/content/device-story";
 import TreatmentMedia from "@/components/sub/TreatmentMedia";
 import { treatmentMedia } from "@/content/treatment-media";
@@ -698,9 +699,14 @@ export default function TreatmentDetail({
         </section>
       )}
 
-      {/* 시술 과정 */}
+      {/* 시술 과정 (+ 보호 장비 안내) */}
       {story ? (
-        <StoryProcess title={t.title} story={story} />
+        <>
+          <StoryProcess title={t.title} story={story} />
+          {story.protection && (
+            <StoryProtection protection={story.protection} />
+          )}
+        </>
       ) : (
         <section className="bg-ivory px-5 py-24 md:px-10 md:py-32">
           <div className="mx-auto max-w-[1400px]">

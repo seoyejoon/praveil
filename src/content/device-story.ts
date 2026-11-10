@@ -176,6 +176,14 @@ export type DeviceStory = {
   }[];
   /** 시술 장면 영상 */
   video?: { src: string; poster: string; title: string[]; text: string };
+  /** 원리 구역 배치의 보호 장비 안내: 오른쪽 카드를 누르면 왼쪽 사진이 바뀜 (시술 과정 아래) */
+  protection?: {
+    en: string;
+    title: string;
+    note?: string;
+    /** 사진이 없으면 아이콘 패널로 대신 보여 줌 */
+    items: { title: string; text: string; image?: string; alt: string; icon?: "eye" | "glasses" }[];
+  };
 };
 
 // 사진을 바꿔도 이름이 같으면 브라우저가 30일 동안 옛 사진을 보여 줘, 첫 화면 사진에만 버전을 붙임
@@ -3546,6 +3554,24 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "프라베일 관리실",
       },
     ],
+    protection: {
+      en: "Eye protection",
+      title: "안구 손상 위험을 고려한 보호 시스템",
+      items: [
+        {
+          title: "안구보호렌즈(아이실드)",
+          text: "점막과 가까운 아이라인 · 언더라인 시술 시에는 점안 마취 후 안구보호렌즈를 눈에 직접 착용해 레이저 빛이 각막과 망막에 닿지 않도록 차단합니다.",
+          alt: "아이라인 시술 시 착용하는 안구보호렌즈(아이실드)",
+          icon: "eye",
+        },
+        {
+          title: "레이저 보안경",
+          text: "눈썹 부위 시술 시에는 레이저 파장에 맞춘 전용 보안경을 착용해 눈 주변으로 퍼지는 빛으로부터 눈을 보호합니다.",
+          alt: "눈썹 문신제거 시 착용하는 레이저 보안경",
+          icon: "glasses",
+        },
+      ],
+    },
     principleImage: {
       src: "/images/principles/pigment.webp?v=20261026b",
       alt: "피부 속 문신 색소와 레이저 작용으로 잘게 나뉜 입자를 구분한 입체 개념도",

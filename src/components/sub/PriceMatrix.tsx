@@ -1,7 +1,7 @@
 import type { Procedure } from "@/lib/data";
 
 // 부위 × 제품 가격표 (필러 · 보톡스처럼 부위마다 같은 제품 가격이 반복될 때 한 표로)
-// - 줄 이름에서 '1cc' 같은 단위를 빼고, '벨로테로 · 레스틸렌'처럼 묶인 줄은 두 칸에 같은 가격
+// - 줄 이름에서 '1cc' 같은 단위를 빼고, '벨로테로 · 레스틸렌'처럼 묶인 줄은 두 칸을 합쳐 가격 한 번
 // - 표에 맞지 않는 시술(다른 이름이 섞인 줄)은 rest 로 돌려줘 기존 카드로 보여 줌
 const clean = (label: string) => label.replace(/\s*\d+\s*cc\s*$/i, "").trim();
 const parts = (label: string) => clean(label).split(/\s*·\s*/);
@@ -70,8 +70,20 @@ export default function PriceMatrix({
           <tbody>
             {procedures.map((p) => {
               const cell = new Map<string, string>();
-              for (const r of p.prices)
-                for (const x of parts(r.label)) cell.set(x, r.price);
+              // 한 줄에 묶인 제품(예: "벨로테로 · 레스틸렌")이 표에서 나란히 있으면 한 칸으로 합쳐 가격을 한 번만
+              const span = new Map<string, number>();
+              const skip = new Set<string>();
+              for (const r of p.prices) {
+                const xs = parts(r.label);
+                for (const x of xs) cell.set(x, r.price);
+                const idx = xs.map((x) => columns.indexOf(x)).sort((a, b) => a - b);
+                const together =
+                  xs.length > 1 && idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+                if (together) {
+                  span.set(columns[idx[0]], xs.length);
+                  idx.slice(1).forEach((i) => skip.add(columns[i]));
+                }
+              }
               return (
                 <tr key={p.slug} className="group">
                   <th
@@ -80,9 +92,10 @@ export default function PriceMatrix({
                   >
                     {p.name}
                   </th>
-                  {columns.map((c) => (
+                  {columns.filter((c) => !skip.has(c)).map((c) => (
                     <td
                       key={c}
+                      colSpan={span.get(c)}
                       className={`border-t border-line px-4 py-4 text-center text-[15px] tracking-[-0.02em] whitespace-nowrap group-hover:bg-sand ${cell.has(c) ? "font-medium text-ink" : "text-ink/25"}`}
                     >
                       {cell.get(c) ?? "–"}

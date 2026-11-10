@@ -50,12 +50,12 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[70] items-center justify-center bg-ink/45 px-5 backdrop-blur-[2px] ${moCount ? "flex" : "hidden"} ${pcCount ? "md:flex" : "md:hidden"}`}
+      className={`fixed inset-0 z-[70] items-center justify-center overflow-y-auto bg-ink/45 px-5 py-6 backdrop-blur-[2px] ${moCount ? "flex" : "hidden"} ${pcCount ? "md:flex" : "md:hidden"}`}
       role="dialog"
       aria-modal="true"
       aria-label="병원 안내 팝업"
     >
-      <div className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-ivory shadow-2xl md:w-auto md:max-w-[calc(100vw-80px)]">
+      <div className="m-auto w-full max-w-[400px] overflow-hidden rounded-2xl bg-ivory shadow-2xl md:w-auto md:max-w-[calc(100vw-80px)]">
         <ul
           ref={listRef}
           onScroll={(e) => {
@@ -71,7 +71,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
               <img
                 src={p.imageUrl}
                 alt={p.title}
-                className="block h-auto max-h-[70svh] w-full object-contain md:max-h-[560px]"
+                className="block h-auto w-full md:max-h-[560px] md:object-contain"
               />
             ) : (
               <div className="flex min-h-[320px] flex-col justify-center px-8 py-10">

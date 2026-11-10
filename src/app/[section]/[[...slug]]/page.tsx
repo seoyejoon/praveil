@@ -61,7 +61,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : t.description;
   const title = `${t.title} | ${area} ${t.title}${sub ? `, ${sub}` : ""} - ${hospital.name}`;
   const description = clip(g.answer, 155);
-  const image = { url: t.image, alt: `${t.title} - ${hospital.name}` };
+  // 공유 미리보기는 모든 페이지 같은 프라베일 로고 이미지
+  const image = {
+    url: "/images/og-praveil-20261110.png",
+    width: 1200,
+    height: 630,
+    alt: `PRAVEIL ${hospital.name} 로고`,
+  };
   return {
     title: { absolute: title },
     description,

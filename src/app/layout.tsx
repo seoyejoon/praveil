@@ -34,8 +34,10 @@ const baseMetadata: Metadata = {
     siteName: "프라베일 맑고고운의원",
     images: [
       {
-        url: "/images/photos/hero-lobby.webp",
-        alt: "프라베일 맑고고운의원 로비",
+        url: "/images/og-praveil-20261110.png",
+        width: 1200,
+        height: 630,
+        alt: "PRAVEIL 프라베일 맑고고운의원 로고",
       },
     ],
   },

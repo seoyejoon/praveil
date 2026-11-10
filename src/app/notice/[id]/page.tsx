@@ -7,7 +7,7 @@ import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/sub/JsonLd";
 import { getDoctor, getHospital, getNotice, getNotices } from "@/lib/data";
 import { coverOf, eventStatus, formatDate } from "@/lib/notice";
-import { SITE_URL } from "@/lib/site-url";
+import { SITE_URL, og } from "@/lib/site-url";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -22,7 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? `이벤트 기간 ${notice.summary}. ${notice.title}`
         : notice.summary || notice.title,
     alternates: { canonical: `/notice/${notice.id}` },
-    openGraph: cover ? { images: [cover] } : undefined,
+    openGraph: og(`/notice/${notice.id}`, {
+      type: "article",
+      ...(cover && { images: [cover] }),
+    }),
   };
 }
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/site-url";
 import { Bus, Car, Building2, Phone } from "lucide-react";
 import { mapApps } from "@/components/MapLinks";
 import Reveal from "@/components/Reveal";
@@ -13,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "진료안내 · 오시는 길",
     description: `${h.address} ${h.addressDetail}. ${h.name} 진료시간 · 오시는 길 · 주차 안내.`,
     alternates: { canonical: "/location" },
+    openGraph: og("/location"),
   };
 }
 

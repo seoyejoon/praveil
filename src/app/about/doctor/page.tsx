@@ -11,7 +11,7 @@ import { doctorProfile } from "@/content/about";
 import { mainBest } from "@/content/main";
 import { areaOf } from "@/content/treatment-guide";
 import { getDoctor, getHospital } from "@/lib/data";
-import { SITE_URL } from "@/lib/site-url";
+import { SITE_URL, og } from "@/lib/site-url";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [h, d] = await Promise.all([getHospital(), getDoctor()]);
@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "의료진소개",
     description: `${h.name} ${d.title} ${d.name}. 페이닥터 없이 대표원장이 모든 시술을 직접 집도합니다.`,
     alternates: { canonical: "/about/doctor" },
+    openGraph: og("/about/doctor"),
   };
 }
 

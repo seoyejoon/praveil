@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/site-url";
 import ColumnList from "@/components/ColumnList";
 import EventGallery from "@/components/EventGallery";
 import NoticeList from "@/components/NoticeList";
@@ -47,12 +48,14 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const type = await boardOf(searchParams);
   const b = boards[type];
+  const url = type === "notice" ? "/notice" : `/notice?type=${type}`;
   return {
     title: b.title,
+    openGraph: og(url),
     description: `프라베일 맑고고운의원 ${b.title}. ${b.description}`,
     // 공지사항 · 이벤트는 같은 주소에 ?type 만 다름 → 각각을 대표 주소로 알려 중복으로 보이지 않게
     alternates: {
-      canonical: type === "notice" ? "/notice" : `/notice?type=${type}`,
+      canonical: url,
     },
   };
 }

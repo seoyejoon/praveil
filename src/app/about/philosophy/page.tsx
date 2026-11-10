@@ -19,7 +19,7 @@ import { mainCategoryImage } from "@/content/main";
 import { sitemap } from "@/content/sitemap";
 import { areaOf, josa } from "@/content/treatment-guide";
 import { getDoctor, getHospital } from "@/lib/data";
-import { SITE_URL } from "@/lib/site-url";
+import { SITE_URL, og } from "@/lib/site-url";
 
 export async function generateMetadata(): Promise<Metadata> {
   const h = await getHospital();
@@ -27,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "병원소개",
     description: `${h.name}은 ${areaOf(h.address)}에 위치한 피부 · 미용 의원입니다. ${aboutIntro.body.split(".")[0]}.`,
     alternates: { canonical: "/about/philosophy" },
+    openGraph: og("/about/philosophy"),
   };
 }
 

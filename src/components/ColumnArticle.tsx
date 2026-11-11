@@ -89,8 +89,8 @@ export default function ColumnArticle({
         <div
           className="relative mt-12"
         >
-          {/* 본문(620px)은 가운데, 목차는 본문 왼쪽 바깥에 — 관리자 칼럼 미리보기와 같은 배치 */}
-          <div className="mx-auto w-full max-w-[620px]">
+          {/* 본문(680px)은 가운데, 목차는 본문 왼쪽 바깥(간격 최대 80px) — 관리자 칼럼 미리보기와 같은 배치 */}
+          <div className="mx-auto w-full max-w-[680px]">
             {notice.summary && (
               <p className="mb-9 border-l-2 border-gold pl-5 text-[16px] leading-[1.9] text-ink/80 md:text-[17px]">
                 {notice.summary}
@@ -113,12 +113,15 @@ export default function ColumnArticle({
               aria-label="칼럼 작성 의료진"
               className="mt-8 flex items-center gap-5 rounded-[20px] border border-line px-6 py-6 md:px-8"
             >
-              <span
-                aria-hidden
-                className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-sand font-display text-lg text-mocha"
-              >
-                {doctor.name.slice(0, 1)}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/photos/doctor-avatar-20261111.webp"
+                alt={`${doctor.title} ${doctor.name}`}
+                width={64}
+                height={64}
+                loading="lazy"
+                className="h-16 w-16 shrink-0 rounded-full bg-sand object-cover"
+              />
               <div className="min-w-0">
                 <p className="text-xs text-muted">{hospital.name}</p>
                 <p className="mt-0.5 text-[17px] font-semibold tracking-[-0.02em]">
@@ -167,7 +170,7 @@ export default function ColumnArticle({
           </div>
 
           {headings.length > 0 && (
-            <aside className="absolute inset-y-0 right-[calc(50%+350px)] hidden w-[180px] xl:block">
+            <aside className="absolute inset-y-0 right-[calc(50%_+_340px_+_clamp(30px,_50%_-_490px,_80px))] hidden w-[180px] xl:block">
               <div className="sticky top-32">
               <p className="font-display text-[11px] tracking-[0.3em] text-mocha uppercase">
                 Contents
@@ -191,7 +194,7 @@ export default function ColumnArticle({
 
         <nav
           aria-label="다른 글"
-          className="mx-auto mt-16 max-w-[620px] border-t border-ink/80"
+          className="mx-auto mt-16 max-w-[680px] border-t border-ink/80"
         >
           {[
             { label: "다음 글", post: newer, Icon: ArrowLeft },

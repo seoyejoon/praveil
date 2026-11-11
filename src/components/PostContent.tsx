@@ -75,7 +75,7 @@ const calloutStyle: Record<string, { label: string; box: string }> = {
 function Callout({ kind, node, keyPrefix }: { kind: string; node: DocNode; keyPrefix: string }) {
   const style = calloutStyle[kind] ?? calloutStyle.point;
   return (
-    <aside className={`my-9 rounded-[20px] border px-6 py-6 md:px-8 md:py-7 ${style.box}`}>
+    <aside data-callout={kind} className={`my-9 rounded-[20px] border px-6 py-6 md:px-8 md:py-7 ${style.box}`}>
       <span className="font-display text-[11px] tracking-[0.3em] text-mocha uppercase">{style.label}</span>
       <div className="mt-3 [&>p:first-child]:mt-0 [&>p:last-child]:mb-0 [&>p]:my-2.5 [&>ul]:my-2.5">{children(node, keyPrefix)}</div>
     </aside>

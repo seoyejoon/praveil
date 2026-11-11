@@ -863,15 +863,145 @@ html[data-cur="image"] .cursor-dot-shape {
 .column-body > div > .overflow-x-auto {
   margin: 38px 0;
 }
-.column-body > div td,
-.column-body > div th {
-  padding: 15px 17px;
-  font-size: 14px;
-  line-height: 1.7;
+/* 표: 관리자 미리보기(.column-table)와 같은 테두리 · 머리칸 · 첫 열 */
+.column-body > div > .overflow-x-auto {
+  margin: 38px 0;
+  border: 1px solid #e8dfd8;
+  border-radius: 13px;
+  background: #fff;
 }
-.column-body > div td p,
-.column-body > div th p {
+.column-body > div tr {
+  border: 0;
+}
+.column-body > div :is(td, th) {
+  padding: 15px 17px;
+  border-bottom: 1px solid #eee8e3;
   font-size: 14px;
   line-height: 1.7;
-  min-height: 0;
+  text-align: left;
+  vertical-align: top;
+}
+.column-body > div th {
+  background: #fff4ec;
+  color: #ad4300;
+  font-weight: 760;
+}
+.column-body > div td:first-child {
+  background: #fbfaf9;
+  color: #342c26;
+  font-weight: 710;
+}
+.column-body > div :is(td, th) p {
+  margin: 0 0 20px;
+  font-weight: 400;
+}
+/* 핵심 요약 상자: 관리자 미리보기(.column-summary)와 같은 회색 상자 */
+.column-body > div > aside[data-callout="summary"] {
+  margin: 42px 0;
+  padding: 28px 30px;
+  border: 0;
+  border-radius: 15px;
+  background: #f6f6f6;
+}
+.column-body > div > aside[data-callout="summary"] > span {
+  display: block;
+  margin-bottom: 15px;
+  color: #161616;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 740;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+.column-body > div > aside[data-callout="summary"] > div {
+  margin-top: 0;
+}
+.column-body > div > aside[data-callout="summary"] > div > p {
+  margin: 0 0 20px;
+}
+.column-body > div > aside[data-callout="summary"] li {
+  padding: 3px 0;
+}
+.column-body > div > aside[data-callout="summary"] :is(ul, ol) {
+  margin: 0;
+  padding-left: 23px;
+  list-style: none;
+}
+.column-body > div > aside[data-callout="summary"] li > p {
+  margin: 0 0 20px;
+}
+/* 의료진 TIP 상자: 관리자 미리보기(.column-tip)와 같은 크기 · 간격 (색은 홈페이지 골드 계열) */
+.column-body > div > aside[data-callout="tip"] {
+  margin: 39px 0;
+  padding: 25px 27px;
+  border: 1px solid #ebe7e3;
+  border-top: 3px solid #c9ad80;
+  border-radius: 14px;
+  background: #faf9f7;
+}
+.column-body > div > aside[data-callout="tip"] > span {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--color-mocha);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 790;
+  line-height: 1.9;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.column-body > div > aside[data-callout="tip"] > div {
+  margin-top: 0;
+}
+.column-body > div > aside[data-callout="tip"] > div > p {
+  margin: 15px 0 20px;
+}
+/* Q&A: 관리자 미리보기(.column-faq-group)와 같은 줄 구성 · 간격 */
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] {
+  margin: 58px 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] > details {
+  border-top: 0;
+  border-bottom: 1px solid #e8ddcb;
+  background: #fff;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] summary {
+  align-items: center;
+  padding: 21px 0;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] summary > span:first-child {
+  color: var(--color-mocha);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 800;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] summary > strong {
+  color: #202020;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.55;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] summary > span:last-child {
+  color: #9a928c;
+  font-size: 23px;
+  line-height: 1.55;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] details > div {
+  padding: 2px 0 23px 3px;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] details > div > span {
+  color: var(--color-mocha);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 760;
+}
+.column-body > div > section[aria-label="자주 묻는 질문과 답변"] details > div > p {
+  margin: 0 0 20px;
+  color: #464646;
+  font-size: 17px;
+  line-height: 1.95;
 }

@@ -1,5 +1,7 @@
 // 홈페이지가 데이터를 읽는 유일한 통로.
 // DATABASE_URL 이 있으면 관리자 DB(source-db.ts)를, 없으면 임시 데이터(mock/)를 읽는다.
+import { createHash } from "node:crypto";
+import { cookies } from "next/headers";
 import { doctor, features, hospital } from "./mock/hospital";
 import { categories, procedures } from "./mock/procedures";
 import { notices, popups } from "./mock/board";
@@ -96,6 +98,32 @@ export async function getNotices() {
 
 export async function getNotice(id: number) {
   return (await getNotices()).find((n) => n.id === id);
+}
+
+// 관리자(admin.praveil.com)에 로그인한 브라우저면 '비공개 발행' 글도 섞어서 보여 준다.
+// 관리자 로그인 때 받은 pv_admin_preview 쿠키를 DB 세션과 대조해 확인한다.
+export async function isAdminViewer() {
+  if (!hasDatabase) return false;
+  const token = (await cookies()).get("pv_admin_preview")?.value;
+  if (!token || token.length > 200) return false;
+  return db
+    .isWebsiteAdminToken(createHash("sha256").update(token).digest("hex"))
+    .catch(() => false);
+}
+
+export async function getNoticesForViewer() {
+  const list = await getNotices();
+  if (!(await isAdminViewer())) return list;
+  const hidden = (await db.getPrivateNotices()).filter(
+    (n) => !isCheckSample(n.title),
+  );
+  return [...hidden, ...list].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
+}
+
+export async function getNoticeForViewer(id: number) {
+  return (await getNoticesForViewer()).find((n) => n.id === id);
 }
 
 export async function getPopups() {

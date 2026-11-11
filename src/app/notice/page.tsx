@@ -5,7 +5,7 @@ import EventGallery from "@/components/EventGallery";
 import NoticeList from "@/components/NoticeList";
 import SubPage from "@/components/SubPage";
 import { sitemap } from "@/content/sitemap";
-import { getNotices } from "@/lib/data";
+import { getNoticesForViewer } from "@/lib/data";
 
 type Props = { searchParams: Promise<{ type?: string }> };
 
@@ -65,7 +65,7 @@ export default async function NoticePage({ searchParams }: Props) {
   const type = await boardOf(searchParams);
   const b = boards[type];
   const community = sitemap.find((s) => s.key === "community")!;
-  const posts = (await getNotices()).filter((n) => n.type === type);
+  const posts = (await getNoticesForViewer()).filter((n) => n.type === type);
 
   return (
     <SubPage

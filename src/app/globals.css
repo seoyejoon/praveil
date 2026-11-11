@@ -819,3 +819,20 @@ html[data-cur="image"] .cursor-dot-shape {
     background: var(--hero-bg);
   }
 }
+
+/* 원장칼럼(관리자와 같은 모양) — 관리자 praveil-theme.css 의 같은 수정과 짝 */
+/* TIP 상자: 둥근 모서리에서 휘어 보이던 위쪽 굵은 금색 줄 없앰 */
+.pvc .doctor-column-article .column-tip {
+  border-top-width: 1px !important;
+  border-top-color: #ebe7e3 !important;
+}
+/* 형광펜: 고른 색만 칠하고 줄이 바뀌어도 칸마다 같은 모양 */
+.pvc .column-content mark {
+  margin: 0 !important;
+  padding: 0.06em 0.12em !important;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.pvc .column-content mark[style*="background"] {
+  background-image: none !important;
+}

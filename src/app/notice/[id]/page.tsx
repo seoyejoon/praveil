@@ -5,14 +5,19 @@ import { ArrowLeft, ArrowRight, CalendarCheck, List } from "lucide-react";
 import ColumnArticle from "@/components/ColumnArticle";
 import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/sub/JsonLd";
-import { getDoctor, getHospital, getNotice, getNotices } from "@/lib/data";
+import {
+  getDoctor,
+  getHospital,
+  getNoticeForViewer,
+  getNoticesForViewer,
+} from "@/lib/data";
 import { coverOf, eventStatus, formatDate } from "@/lib/notice";
 import { SITE_URL, og } from "@/lib/site-url";
 
 type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const notice = await getNotice(Number((await params).id));
+  const notice = await getNoticeForViewer(Number((await params).id));
   if (!notice) return {};
   const cover = coverOf(notice);
   return {
@@ -22,6 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? `이벤트 기간 ${notice.summary}. ${notice.title}`
         : notice.summary || notice.title,
     alternates: { canonical: `/notice/${notice.id}` },
+    // 비공개 글은 관리자 확인용이라 검색에 올리지 않는다
+    ...(notice.isPrivate && { robots: { index: false, follow: false } }),
     openGraph: og(`/notice/${notice.id}`, {
       type: "article",
       ...(cover && { images: [cover] }),
@@ -33,8 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function NoticeDetailPage({ params }: Props) {
   const id = Number((await params).id);
   const [notice, all, hospital, doctor] = await Promise.all([
-    getNotice(id),
-    getNotices(),
+    getNoticeForViewer(id),
+    getNoticesForViewer(),
     getHospital(),
     getDoctor(),
   ]);

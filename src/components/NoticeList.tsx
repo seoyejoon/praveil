@@ -71,6 +71,11 @@ export default function NoticeList({
                         NEW
                       </span>
                     )}
+                    {n.isPrivate && (
+                      <span className="shrink-0 rounded-full bg-ink/85 px-2 py-0.5 text-[11px] text-white">
+                        비공개
+                      </span>
+                    )}
                     <span className="line-clamp-2 md:line-clamp-1">{n.title}</span>
                   </span>
                   <span className="order-3 col-span-2 font-display text-xs tracking-widest text-muted md:order-none md:col-span-1 md:text-sm">

@@ -72,6 +72,11 @@ export default function ColumnList({ notices }: { notices: Notice[] }) {
                         NEW
                       </span>
                     )}
+                    {n.isPrivate && (
+                      <span className="absolute top-4 right-4 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] text-white">
+                        비공개 · 관리자만 보임
+                      </span>
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-center gap-2.5">

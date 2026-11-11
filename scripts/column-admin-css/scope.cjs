@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- 노드에서 바로 실행하는 도구 스크립트 */
 // 관리자 미리보기에서 뽑은 칼럼 규칙을 홈페이지의 .pvc 안으로만 한정하고, 주황 강조색을 프라베일 색으로 바꾼다.
 const fs = require("fs");
 const path = require("path");

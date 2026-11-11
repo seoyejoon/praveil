@@ -840,6 +840,13 @@
 .pvc .doctor-column-article .column-content a, .pvc .doctor-column-editor .column-content a { text-decoration-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article .column-content .column-table :is(td, th) p, .pvc .doctor-column-editor .column-content .column-table :is(td, th) p { min-height: 0px !important; margin: 0px !important; color: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; letter-spacing: inherit !important; }
 .pvc .doctor-column-article [class*="DoctorColumnArticle_articleTag__"] { min-height: 34px; padding: 0px 14px; font-size: 14px !important; line-height: 1.4 !important; }
+.pvc .column-preview-device.pvc-device .column-table :is(table, tbody, tr) { width: 100% !important; min-width: 0px !important; max-width: 100% !important; }
+.pvc .column-preview-device.pvc-device .column-table td { width: 100% !important; min-width: 0px !important; }
+.pvc .column-preview-device.pvc-device .column-table tr td:not(:first-child) { background: rgb(255, 255, 255) !important; }
+.pvc .column-preview-device.pvc-device .column-faq-item > summary { min-width: 0px; }
+.pvc .column-preview-device.pvc-device .column-faq-item > summary > strong { min-width: 0px; flex: 1 1 auto; }
+.pvc .column-preview-device.pvc-device .column-faq-item > summary > i { text-align: right; flex: 0 0 22px !important; width: 22px !important; margin-right: 0px !important; }
+.pvc .column-preview-device.pvc-device .column-content a { overflow-wrap: anywhere; word-break: break-all; }
 .pvc .DoctorColumnArticle_article__dsbjS * { box-sizing: border-box; }
 .pvc .DoctorColumnArticle_article__dsbjS a { color: inherit; text-decoration: none; }
 .pvc .DoctorColumnArticle_backLink__qYql5 { margin-bottom: 33px; display: inline-flex; align-items: center; gap: 9px; color: rgb(106, 106, 106); font-size: 14px; font-weight: 650; }

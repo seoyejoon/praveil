@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, List } from "lucide-react";
+import ColumnRich from "@/components/ColumnRich";
 import PostContent, { docHeadings } from "@/components/PostContent";
 import type { Doctor, Hospital, Notice } from "@/lib/data";
 import { coverOf, formatDate } from "@/lib/notice";
@@ -95,9 +96,11 @@ export default function ColumnArticle({
               </p>
             )}
 
-            <div className="column-body">
+            {notice.body.kind === "doc" ? (
+              <ColumnRich doc={notice.body.doc} />
+            ) : (
               <PostContent body={notice.body} />
-            </div>
+            )}
 
             <aside className="mt-12 rounded-[18px] bg-ivory px-6 py-5 text-[13px] leading-relaxed text-muted">
               ※ 본 글은 일반적인 건강 정보이며, 개인의 상태에 따라 치료 방법과

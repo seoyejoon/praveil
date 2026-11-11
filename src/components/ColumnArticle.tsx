@@ -118,7 +118,7 @@ export default function ColumnArticle({
                 loading="lazy"
                 className="h-16 w-16 shrink-0 rounded-full bg-sand object-cover"
               />
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 basis-[160px]">
                 <p className="text-xs text-muted">{hospital.name}</p>
                 <p className="mt-0.5 text-[17px] font-semibold tracking-[-0.02em]">
                   {doctor.title} {doctor.name}

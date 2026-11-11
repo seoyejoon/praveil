@@ -836,3 +836,10 @@ html[data-cur="image"] .cursor-dot-shape {
 .pvc .column-content mark[style*="background"] {
   background-image: none !important;
 }
+/* 줄간격: 본문 · 요약 · TIP · Q&A 글 모두 1.7 — 관리자 praveil-theme.css 의 같은 규칙과 짝. 표 안 글은 그대로 */
+.pvc .column-content :is(p, li):not(td *, th *) {
+  line-height: 1.7 !important;
+}
+.pvc .column-content > p {
+  min-height: 1.7em;
+}

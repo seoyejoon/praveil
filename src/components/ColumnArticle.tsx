@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, List } from "lucide-react";
+import ColumnActions from "@/components/ColumnActions";
 import ColumnRich from "@/components/ColumnRich";
 import PostContent, { docHeadings } from "@/components/PostContent";
 import type { Doctor, Hospital, Notice } from "@/lib/data";
@@ -106,7 +107,7 @@ export default function ColumnArticle({
 
             <section
               aria-label="칼럼 작성 의료진"
-              className="mt-8 flex items-center gap-5 rounded-[20px] border border-line px-6 py-6 md:px-8"
+              className="mt-8 flex flex-wrap items-center gap-5 rounded-[20px] border border-line px-6 py-6 md:flex-nowrap md:px-8"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -117,7 +118,7 @@ export default function ColumnArticle({
                 loading="lazy"
                 className="h-16 w-16 shrink-0 rounded-full bg-sand object-cover"
               />
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <p className="text-xs text-muted">{hospital.name}</p>
                 <p className="mt-0.5 text-[17px] font-semibold tracking-[-0.02em]">
                   {doctor.title} {doctor.name}
@@ -130,6 +131,7 @@ export default function ColumnArticle({
                   <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.6} />
                 </Link>
               </div>
+              <ColumnActions id={notice.id} title={notice.title} />
             </section>
 
             {related.length > 0 && (

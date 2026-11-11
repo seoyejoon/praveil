@@ -85,9 +85,10 @@ export default function ColumnArticle({
         </header>
 
         <div
-          className={`mt-12 gap-12 ${headings.length ? "lg:grid lg:grid-cols-[1fr_220px] lg:items-start" : "mx-auto max-w-3xl"}`}
+          className={`mt-12 gap-12 ${headings.length ? "lg:grid lg:grid-cols-[1fr_220px] lg:items-start" : "mx-auto max-w-[620px]"}`}
         >
-          <div className={headings.length ? "mx-auto w-full max-w-3xl" : ""}>
+          {/* 본문 폭: 관리자 칼럼 편집기 본문과 같은 폭(약 620px) */}
+          <div className={headings.length ? "mx-auto w-full max-w-[620px]" : ""}>
             {notice.summary && (
               <p className="mb-9 border-l-2 border-gold pl-5 text-[16px] leading-[1.9] text-ink/80 md:text-[17px]">
                 {notice.summary}
@@ -184,7 +185,7 @@ export default function ColumnArticle({
 
         <nav
           aria-label="다른 글"
-          className="mx-auto mt-16 max-w-3xl border-t border-ink/80"
+          className="mx-auto mt-16 max-w-[620px] border-t border-ink/80"
         >
           {[
             { label: "다음 글", post: newer, Icon: ArrowLeft },

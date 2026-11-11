@@ -91,12 +91,7 @@ export default function ColumnArticle({
         >
           {/* 본문(680px)은 가운데, 목차는 본문 왼쪽 바깥(간격 최대 80px) — 관리자 칼럼 미리보기와 같은 배치 */}
           <div className="mx-auto w-full max-w-[680px]">
-            {notice.summary && (
-              <p className="mb-9 border-l-2 border-gold pl-5 text-[16px] leading-[1.9] text-ink/80 md:text-[17px]">
-                {notice.summary}
-              </p>
-            )}
-
+            {/* 요약 칸은 목록 카드 · 검색 설명에만 쓰고 글 보기 본문 위에는 싣지 않는다 */}
             {notice.body.kind === "doc" ? (
               <ColumnRich doc={notice.body.doc} />
             ) : (

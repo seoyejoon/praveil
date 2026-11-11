@@ -367,7 +367,7 @@ const WRAPPERS: Array<[string, string]> = [
   ],
   [
     "div",
-    "column-preview-device desktop article-parity"
+    "column-preview-device pvc-device article-parity"
   ],
   [
     "div",

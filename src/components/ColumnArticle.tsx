@@ -86,10 +86,10 @@ export default function ColumnArticle({
         </header>
 
         <div
-          className={`mt-12 gap-12 ${headings.length ? "lg:grid lg:grid-cols-[1fr_220px] lg:items-start" : "mx-auto max-w-[620px]"}`}
+          className="relative mt-12"
         >
-          {/* 본문 폭: 관리자 칼럼 편집기 본문과 같은 폭(약 620px) */}
-          <div className={headings.length ? "mx-auto w-full max-w-[620px]" : ""}>
+          {/* 본문(620px)은 가운데, 목차는 본문 왼쪽 바깥에 — 관리자 칼럼 미리보기와 같은 배치 */}
+          <div className="mx-auto w-full max-w-[620px]">
             {notice.summary && (
               <p className="mb-9 border-l-2 border-gold pl-5 text-[16px] leading-[1.9] text-ink/80 md:text-[17px]">
                 {notice.summary}
@@ -166,7 +166,8 @@ export default function ColumnArticle({
           </div>
 
           {headings.length > 0 && (
-            <aside className="mt-12 hidden lg:sticky lg:top-32 lg:mt-0 lg:block">
+            <aside className="absolute inset-y-0 right-[calc(50%+350px)] hidden w-[180px] xl:block">
+              <div className="sticky top-32">
               <p className="font-display text-[11px] tracking-[0.3em] text-mocha uppercase">
                 Contents
               </p>
@@ -182,6 +183,7 @@ export default function ColumnArticle({
                   </li>
                 ))}
               </ol>
+              </div>
             </aside>
           )}
         </div>

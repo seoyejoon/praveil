@@ -450,6 +450,8 @@
 .pvc .doctor-column-article .column-tip, .pvc .doctor-column-editor .column-tip { border-top-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article .column-content > ul > li::before { background: rgb(246, 242, 236); }
 .pvc .doctor-column-article .column-content a, .pvc .doctor-column-editor .column-content a { text-decoration-color: rgb(201, 173, 128); }
+.pvc .doctor-column-article .column-content .column-table :is(td, th) p, .pvc .doctor-column-editor .column-content .column-table :is(td, th) p { min-height: 0px !important; margin: 0px !important; color: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; letter-spacing: inherit !important; }
+.pvc .doctor-column-article [class*="DoctorColumnArticle_articleTag__"] { min-height: 34px; padding: 0px 14px; font-size: 14px !important; line-height: 1.4 !important; }
 .pvc .DoctorColumnArticle_article__dsbjS * { box-sizing: border-box; }
 .pvc .DoctorColumnArticle_article__dsbjS a { color: inherit; text-decoration: none; }
 .pvc .DoctorColumnArticle_backLink__qYql5 { margin-bottom: 33px; display: inline-flex; align-items: center; gap: 9px; color: rgb(106, 106, 106); font-size: 14px; font-weight: 650; }
@@ -467,6 +469,7 @@
 .pvc .DoctorColumnArticle_headingDate__d51WR { margin-left: auto; }
 .pvc .DoctorColumnArticle_badge__7JL6J { width: fit-content; padding: 7px 10px; border-radius: 5px; background: var(--article-accent); color: rgb(255, 255, 255); font-size: 12px; font-weight: 700; }
 .pvc .DoctorColumnArticle_tocRail__mLy_4 { min-width: 0px; height: 100%; padding-top: 66px; }
+.pvc .DoctorColumnArticle_contentLayout__0U1f0.DoctorColumnArticle_hasToc__BmTmC > .DoctorColumnArticle_tocRail__mLy_4 { position: absolute; top: 0px; bottom: 0px; right: calc(50% + 350px); width: 180px; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 { position: sticky; top: 116px; display: grid; align-content: start; gap: 13px; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 > a { padding: 2px 0px 2px 11px; border-left: 2px solid transparent; color: rgb(154, 154, 154); font-size: 13px; font-weight: 470; line-height: 1.52; letter-spacing: -0.025em; transition: color 0.18s, border-color 0.18s; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 > a:hover { color: rgb(83, 83, 83); }
@@ -835,6 +838,8 @@
 .pvc .doctor-column-article .column-tip, .pvc .doctor-column-editor .column-tip { border-top-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article .column-content > ul > li::before { background: rgb(246, 242, 236); }
 .pvc .doctor-column-article .column-content a, .pvc .doctor-column-editor .column-content a { text-decoration-color: rgb(201, 173, 128); }
+.pvc .doctor-column-article .column-content .column-table :is(td, th) p, .pvc .doctor-column-editor .column-content .column-table :is(td, th) p { min-height: 0px !important; margin: 0px !important; color: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; letter-spacing: inherit !important; }
+.pvc .doctor-column-article [class*="DoctorColumnArticle_articleTag__"] { min-height: 34px; padding: 0px 14px; font-size: 14px !important; line-height: 1.4 !important; }
 .pvc .DoctorColumnArticle_article__dsbjS * { box-sizing: border-box; }
 .pvc .DoctorColumnArticle_article__dsbjS a { color: inherit; text-decoration: none; }
 .pvc .DoctorColumnArticle_backLink__qYql5 { margin-bottom: 33px; display: inline-flex; align-items: center; gap: 9px; color: rgb(106, 106, 106); font-size: 14px; font-weight: 650; }
@@ -852,6 +857,7 @@
 .pvc .DoctorColumnArticle_headingDate__d51WR { margin-left: auto; }
 .pvc .DoctorColumnArticle_badge__7JL6J { width: fit-content; padding: 7px 10px; border-radius: 5px; background: var(--article-accent); color: rgb(255, 255, 255); font-size: 12px; font-weight: 700; }
 .pvc .DoctorColumnArticle_tocRail__mLy_4 { min-width: 0px; height: 100%; padding-top: 66px; }
+.pvc .DoctorColumnArticle_contentLayout__0U1f0.DoctorColumnArticle_hasToc__BmTmC > .DoctorColumnArticle_tocRail__mLy_4 { position: absolute; top: 0px; bottom: 0px; right: calc(50% + 350px); width: 180px; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 { position: sticky; top: 116px; display: grid; align-content: start; gap: 13px; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 > a { padding: 2px 0px 2px 11px; border-left: 2px solid transparent; color: rgb(154, 154, 154); font-size: 13px; font-weight: 470; line-height: 1.52; letter-spacing: -0.025em; transition: color 0.18s, border-color 0.18s; }
 .pvc .DoctorColumnArticle_tableOfContents__KvsO5 > a:hover { color: rgb(83, 83, 83); }

@@ -29,7 +29,8 @@ export default function ColumnArticle({
 
   return (
     <article className="px-5 pt-32 pb-24 md:px-10 md:pt-40 md:pb-32">
-      <div className="mx-auto max-w-[1100px]">
+      {/* 관리자 칼럼 화면(.inner: 최대 1260px)과 같은 폭 */}
+      <div className="mx-auto max-w-[1260px]">
         <Link
           href={listHref}
           className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-ink"

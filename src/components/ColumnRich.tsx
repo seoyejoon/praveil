@@ -219,7 +219,8 @@ function renderRichNode(node: DocNode, key: string): ReactNode {
     const label = kind === "summary" ? "핵심 요약" : kind === "tip" ? "의료진 TIP" : kind === "faq" ? "Q&A" : "핵심 포인트";
     return (
       <aside className={`column-${kind}`} key={key}>
-        <span>{label}</span>
+        {/* 요약 상자는 글쓴이가 넣은 제목(예: '쿨소닉 핵심 요약')을 쓰므로 자동 이름표를 달지 않는다 */}
+        {kind !== "summary" && <span>{label}</span>}
         <div>{richChildren(node, key)}</div>
       </aside>
     );

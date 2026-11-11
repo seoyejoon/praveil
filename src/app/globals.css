@@ -840,3 +840,7 @@ html[data-cur="image"] .cursor-dot-shape {
 .pvc .column-content :is(p, li):not(td *, th *) {
   line-height: 1.7 !important;
 }
+/* 문단 사이(엔터) 간격 3px — 관리자 praveil-theme.css 의 같은 규칙과 짝. 상자 · 표 안 글은 그대로 */
+.pvc .column-content > p {
+  margin: 0 0 3px !important;
+}

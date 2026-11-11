@@ -840,6 +840,3 @@ html[data-cur="image"] .cursor-dot-shape {
 .pvc .column-content :is(p, li):not(td *, th *) {
   line-height: 1.7 !important;
 }
-.pvc .column-content > p {
-  min-height: 1.7em;
-}

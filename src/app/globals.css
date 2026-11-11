@@ -819,3 +819,59 @@ html[data-cur="image"] .cursor-dot-shape {
     background: var(--hero-bg);
   }
 }
+
+/* 원장칼럼 본문: 관리자 칼럼 편집기 · 미리보기와 같은 글자 · 간격 (쓰는 화면 = 발행 화면)
+   관리자 쪽 기준: DoctorColumnArticle.module.css + praveil-theme.css */
+.column-body {
+  color: #464646;
+}
+.column-body > div > :is(p, ul, ol) {
+  margin: 0 0 20px;
+}
+.column-body > div p,
+.column-body > div li {
+  color: #464646;
+  font-size: 17px;
+  line-height: 1.95;
+  letter-spacing: -0.015em;
+}
+/* 빈 줄도 편집기처럼 한 줄 높이 */
+.column-body > div > p {
+  min-height: 1.95em;
+}
+.column-body > div > :is(h2, h3) {
+  margin: 70px 0 22px;
+  color: #181818;
+  font-weight: 740;
+  line-height: 1.46;
+  letter-spacing: -0.045em;
+}
+.column-body > div > h2 {
+  font-size: clamp(23px, 2.35vw, 31px);
+}
+.column-body > div > h3 {
+  font-size: clamp(20px, 1.95vw, 26px);
+}
+.column-body > div > img,
+.column-body > div > .grid {
+  margin: 40px 0;
+  border-radius: 15px;
+}
+.column-body > div img {
+  border-radius: 15px;
+}
+.column-body > div > .overflow-x-auto {
+  margin: 38px 0;
+}
+.column-body > div td,
+.column-body > div th {
+  padding: 15px 17px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.column-body > div td p,
+.column-body > div th p {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 0;
+}

@@ -95,7 +95,7 @@ export default function ColumnArticle({
               </p>
             )}
 
-            <div className="text-[15px] leading-[1.9] text-muted md:text-base">
+            <div className="column-body">
               <PostContent body={notice.body} />
             </div>
 

@@ -844,3 +844,7 @@ html[data-cur="image"] .cursor-dot-shape {
 .pvc .column-content > p {
   margin: 0 0 3px !important;
 }
+/* 소제목 위 · 아래 여백 36px · 12px — 관리자 praveil-theme.css 의 같은 규칙과 짝 */
+.pvc .column-content > :is(h2, h3) {
+  margin: 36px 0 12px !important;
+}

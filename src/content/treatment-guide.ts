@@ -226,7 +226,7 @@ export const treatmentGuide: Record<string, TreatmentGuide> = {
       method: "집속 초음파 (HIFU)",
       depth: "1.5 · 2.0 · 3.0 · 4.5mm",
       concern: "처짐 · 탄력 · 윤곽",
-      pain: "열감 · 뼈 근처 찌릿함",
+      pain: "마취 없이 · 뼈 근처 찌릿함",
       recovery: "열감 · 부기 개인차",
       interval: "경과 확인 후 결정",
     },

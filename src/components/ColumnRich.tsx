@@ -215,12 +215,13 @@ function renderRichNode(node: DocNode, key: string): ReactNode {
   if (node.type === "tableHeader") return <th key={key}>{richChildren(node, key)}</th>;
   if (node.type === "tableCell") return <td key={key}>{richChildren(node, key)}</td>;
   if (node.type === "columnCallout") {
-    const kind = ["summary", "tip", "faq", "point"].includes(String(node.attrs?.kind)) ? String(node.attrs?.kind) : "point";
+    const kind = ["summary", "tip", "faq", "point", "refs", "related"].includes(String(node.attrs?.kind)) ? String(node.attrs?.kind) : "point";
     const label = kind === "summary" ? "핵심 요약" : kind === "tip" ? "의료진 TIP" : kind === "faq" ? "Q&A" : "핵심 포인트";
     return (
       <aside className={`column-${kind}`} key={key}>
         {/* 요약 상자는 글쓴이가 넣은 제목(예: '쿨소닉 핵심 요약')을 쓰므로 자동 이름표를 달지 않는다 */}
-        {kind !== "summary" && <span>{label}</span>}
+        {/* 근거 · 추천 글 상자도 글쓴이 제목을 쓴다 */}
+        {!["summary", "refs", "related"].includes(kind) && <span>{label}</span>}
         <div>{richChildren(node, key)}</div>
       </aside>
     );

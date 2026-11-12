@@ -25,7 +25,7 @@ export const hospital: Hospital = {
   directions: [
     {
       title: "건물 안내",
-      body: "투썸플레이스 · 홍콩반점이 있는 효명프라자 건물 4층 (엘리베이터 이용)",
+      body: "투썸플레이스 · 홍콩반점이 있는 효명프라자 건물 4층",
     },
     {
       title: "지하철",

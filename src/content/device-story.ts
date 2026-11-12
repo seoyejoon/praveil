@@ -343,12 +343,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         alt: "프라베일 상담실",
       },
       {
-        title: "마취",
-        text: "시술 부위에 마취 크림을 도포해 시술 중 불편감을 줄입니다.",
-        image: photo("process-anesthesia-model-a"),
-        alt: "시술 부위에 마취 크림을 바르는 모습",
-      },
-      {
         title: "시술",
         text: "피부 표면을 냉각하면서 상담 시 결정한 깊이에 맞춰 층별로 나누어 시술합니다.",
         image: doctorPhotos.coolsonic,
@@ -665,12 +659,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "피부 탄력 고민과 개선을 원하시는 부위, 이전 시술 이력을 확인한 후 시술 계획을 세웁니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
-      },
-      {
-        title: "클렌징 및 시술 준비",
-        text: "피부 클렌징 후, 통증 민감도와 피부 상태에 따라 마취 크림 도포 또는 사전 쿨링을 진행합니다.",
-        image: "/images/photos/process-anesthesia-model-a.webp",
-        alt: "피부 준비와 통증 관리를 설명하는 사진",
       },
       {
         title: "대표원장 1:1 맞춤 시술",
@@ -2295,12 +2283,6 @@ export const deviceStory: Record<string, DeviceStory> = {
         text: "처진 부위와 피부 두께, 이전 시술 이력을 확인하여 적합한 카트리지와 샷 수, 시술 범위를 결정합니다.",
         image: "/images/photos/clinic-3.webp",
         alt: "프라베일 상담실",
-      },
-      {
-        title: "클렌징 및 마취 준비",
-        text: "피부 클렌징 후 시술 통증 경감을 위해 마취 크림을 도포합니다.",
-        image: "/images/photos/process-shrink-anesthesia-model-a.webp",
-        alt: "시술 전 얼굴에 마취 크림을 고르게 바른 모습",
       },
       {
         title: "대표원장 맞춤 시술",

@@ -518,7 +518,7 @@ export function StoryProcess({
         en="Process"
         title={story.processTitle ?? `${title}, 어떻게 진행되나요?`}
       />
-      <ol className="no-scrollbar -mx-5 mt-12 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
+      <ol className={`no-scrollbar -mx-5 mt-12 flex scroll-px-5 gap-4 overflow-x-auto overscroll-x-contain px-5 md:mx-0 md:mt-16 md:grid ${story.process.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"} md:gap-5 md:overflow-visible md:px-0`}>
         {story.process.map((s, i) => (
           <Reveal
             as="li"

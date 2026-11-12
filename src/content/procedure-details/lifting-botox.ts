@@ -29,7 +29,7 @@ export const lifting: Record<string, ProcedureDetail> = {
     faq: [
       {
         q: "통증이 많이 있나요?",
-        a: "냉각 기능이 있어 기존 초음파 리프팅보다 부담이 적은 편이지만, 뼈에 가까운 부위는 뻐근함이 느껴질 수 있습니다. 필요하면 마취 크림을 사용합니다.",
+        a: "냉각 기능이 있어 기존 초음파 리프팅보다 부담이 적은 편이지만, 뼈에 가까운 부위는 뻐근함이 느껴질 수 있습니다. 마취 없이 진행합니다.",
       },
       {
         q: "효과는 언제부터 느껴지나요?",
@@ -42,7 +42,7 @@ export const lifting: Record<string, ProcedureDetail> = {
     ],
     info: {
       time: "약 20~40분",
-      anesthesia: "마취 크림 (필요 시)",
+      anesthesia: "마취 없이 진행",
       recovery: "바로 일상생활 가능",
       interval: "3~6개월 (상담 후 결정)",
     },
@@ -80,7 +80,7 @@ export const lifting: Record<string, ProcedureDetail> = {
     ],
     info: {
       time: "약 30~40분",
-      anesthesia: "마취 크림 (필요 시)",
+      anesthesia: "마취 없이 진행",
       recovery: "바로 일상생활 가능",
       interval: "6개월 ~ 1년 (상담 후 결정)",
     },
@@ -119,7 +119,7 @@ export const lifting: Record<string, ProcedureDetail> = {
     ],
     info: {
       time: "약 20~30분",
-      anesthesia: "마취 크림",
+      anesthesia: "마취 없이 진행",
       recovery: "바로 일상생활 가능",
       interval: "3~6개월 (상담 후 결정)",
     },

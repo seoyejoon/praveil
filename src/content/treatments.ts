@@ -104,7 +104,7 @@ export const treatments: Treatment[] = [
     photo: stock("coolsonic"),
     facts: [
       { label: "시술 시간", value: "약 30~40분" },
-      { label: "마취 방법", value: "마취 크림" },
+      { label: "마취 방법", value: "마취 없이 진행" },
       { label: "회복 과정", value: "일상생활 바로 가능" },
       // 본문 Result 와 같은 값으로 맞춤
       { label: "권장 주기", value: "3~6개월 간격 권장" },
@@ -146,7 +146,7 @@ export const treatments: Treatment[] = [
     faq: [
       {
         q: "아프지 않나요?",
-        a: "마취 크림을 바른 뒤 시술합니다. 뼈에 가까운 부위는 뻐근함이 느껴질 수 있으며, 에너지를 조절해 불편함을 줄입니다.",
+        a: "마취 없이 피부 표면을 냉각하면서 시술합니다. 뼈에 가까운 부위는 뻐근함이 느껴질 수 있으며, 에너지를 조절해 불편함을 줄입니다.",
       },
       {
         q: "효과는 언제부터 느껴지나요?",
@@ -201,8 +201,8 @@ export const treatments: Treatment[] = [
     photo: stock("coolphase"),
     facts: [
       { label: "시술 시간", value: "약 30분 내외" },
-      // FAQ · 시술 과정과 같은 값으로 맞춤 (냉각으로 진행하고, 필요할 때만 마취 크림)
-      { label: "마취 방법", value: "대부분 무마취 (필요 시 마취 크림)" },
+      // FAQ · 시술 과정과 같은 값으로 맞춤 (냉각으로 진행, 마취 없음)
+      { label: "마취 방법", value: "마취 없이 진행" },
       { label: "회복 과정", value: "당일 즉시 일상 복귀" },
       { label: "권장 주기", value: "3~6개월 주기 권장" },
     ],
@@ -352,7 +352,7 @@ export const treatments: Treatment[] = [
     photo: stock("laser"),
     facts: [
       { label: "시술 시간", value: "약 20~30분 소요" },
-      { label: "마취 방법", value: "마취 크림" },
+      { label: "마취 방법", value: "마취 없이 진행" },
       { label: "회복 과정", value: "즉시 일상 복귀 가능" },
       { label: "권장 주기", value: "3~6개월 간격 권장" },
     ],

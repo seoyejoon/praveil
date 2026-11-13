@@ -13,6 +13,7 @@ export default function ColumnArticle({
   newer,
   older,
   related,
+  thumbs = {},
   hospital,
   doctor,
   listHref,
@@ -21,6 +22,8 @@ export default function ColumnArticle({
   newer: Notice | null;
   older: Notice | null;
   related: Notice[];
+  /** 본문 '같이 보면 좋은 글' 상자의 섬네일 (/notice/글번호 → 대표 이미지) */
+  thumbs?: Record<string, string>;
   hospital: Hospital;
   doctor: Doctor;
   listHref: string;
@@ -87,14 +90,12 @@ export default function ColumnArticle({
           )}
         </header>
 
-        <div
-          className="relative mt-12"
-        >
+        <div className="relative mt-12">
           {/* 본문(680px)은 가운데, 목차는 본문 왼쪽 바깥(간격 최대 80px) — 관리자 칼럼 미리보기와 같은 배치 */}
           <div className="mx-auto w-full max-w-[680px]">
             {/* 요약 칸은 목록 카드 · 검색 설명에만 쓰고 글 보기 본문 위에는 싣지 않는다 */}
             {notice.body.kind === "doc" ? (
-              <ColumnRich doc={notice.body.doc} />
+              <ColumnRich doc={notice.body.doc} thumbs={thumbs} />
             ) : (
               <PostContent body={notice.body} />
             )}
@@ -169,21 +170,21 @@ export default function ColumnArticle({
           {headings.length > 0 && (
             <aside className="absolute inset-y-0 right-[calc(50%_+_340px_+_clamp(30px,_50%_-_490px,_80px))] hidden w-[180px] xl:block">
               <div className="sticky top-32">
-              <p className="font-display text-[11px] tracking-[0.3em] text-mocha uppercase">
-                Contents
-              </p>
-              <ol className="mt-4 space-y-2.5 border-l border-line pl-4">
-                {headings.map((heading) => (
-                  <li key={heading.id}>
-                    <a
-                      href={`#${heading.id}`}
-                      className="line-clamp-2 text-[13px] leading-relaxed text-muted transition hover:text-mocha"
-                    >
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-              </ol>
+                <p className="font-display text-[11px] tracking-[0.3em] text-mocha uppercase">
+                  Contents
+                </p>
+                <ol className="mt-4 space-y-2.5 border-l border-line pl-4">
+                  {headings.map((heading) => (
+                    <li key={heading.id}>
+                      <a
+                        href={`#${heading.id}`}
+                        className="line-clamp-2 text-[13px] leading-relaxed text-muted transition hover:text-mocha"
+                      >
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </aside>
           )}

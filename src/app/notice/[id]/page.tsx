@@ -69,6 +69,12 @@ export default async function NoticeDetailPage({ params }: Props) {
         newer={newer}
         older={older}
         related={same.filter((n) => n.id !== notice.id).slice(0, 3)}
+        thumbs={Object.fromEntries(
+          all.flatMap((n) => {
+            const c = coverOf(n);
+            return c ? [[`/notice/${n.id}`, c]] : [];
+          }),
+        )}
         hospital={hospital}
         doctor={doctor}
         listHref={listHref}

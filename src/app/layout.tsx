@@ -22,9 +22,6 @@ export const dynamic = "force-dynamic";
 
 const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    types: { "application/rss+xml": `${SITE_URL}/rss.xml` },
-  },
   title: {
     default: "인천 남동구 피부과 프라베일 맑고고운의원 | 리프팅 · 필러 · 보톡스 · 스킨부스터",
     template: "%s | 프라베일 맑고고운의원",
@@ -162,6 +159,15 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
+      <head>
+        {/* 각 페이지의 canonical 메타데이터가 있어도 RSS 발견 링크를 유지한다. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="프라베일 맑고고운의원 새 소식"
+          href={`${SITE_URL}/rss.xml`}
+        />
+      </head>
       <body>
         {!isPreviewHost && tracking.google_tag_manager && (
           <noscript>

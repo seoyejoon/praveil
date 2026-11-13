@@ -1,8 +1,8 @@
-// node scripts/check-rss.cjs
-const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const vm = require("node:vm");
-const ts = require("typescript");
+// node scripts/check-rss.mjs
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import vm from "node:vm";
+import ts from "typescript";
 const output = ts.transpileModule(fs.readFileSync("src/lib/rss.ts", "utf8"), {
   compilerOptions: {
     module: ts.ModuleKind.CommonJS,

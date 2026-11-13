@@ -75,6 +75,8 @@ export type Notice = {
   coverImageUrl: string;
   body: PostBody;
   createdAt: string;
+  /** RSS 발행 시각 (ISO 8601). 화면에 표시하는 날짜와 분리한다. */
+  publishedAt?: string;
   /** 관리자에서 '비공개 발행'한 글 — 관리자로 로그인했을 때만 보인다 */
   isPrivate?: boolean;
 };

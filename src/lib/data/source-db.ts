@@ -244,6 +244,7 @@ type PostRow = {
   coverImageUrl: string;
   content: string;
   publishedAt: string;
+  publishedAtIso?: string;
 };
 
 // visibility: "public" = 공개 글(발행 · 예약 시각 지난 글), "private" = 관리자에서 '비공개 발행'한 글
@@ -275,7 +276,8 @@ const queryNotices = async (
   };
   const rows = await sql<PostRow>(
     `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,
-       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt"
+       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt",
+       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "publishedAtIso"
      FROM posts
      WHERE hospital_id = $1 AND ${
        visibility === "private"
@@ -299,6 +301,7 @@ const queryNotices = async (
             coverImageUrl: row.coverImageUrl,
             body,
             createdAt: row.publishedAt,
+            publishedAt: row.publishedAtIso,
             ...(visibility === "private" && { isPrivate: true }),
           },
         ]
@@ -441,7 +444,7 @@ const trackingFormats: Record<string, RegExp> = {
   google_site_verification: /^[A-Za-z0-9_-]{10,160}$/,
   google_analytics: /^G-[A-Z0-9]{6,20}$/,
   naver_site_verification: /^[A-Za-z0-9_-]{10,128}$/,
-  naver_analytics: /^s_[A-Za-z0-9]{6,30}$/,
+  naver_analytics: /^(?:[A-Fa-f0-9]{6,30}|s_[A-Za-z0-9]{6,30})$/,
   meta_domain_verification: /^[A-Za-z0-9_-]{5,160}$/,
   meta_pixel: /^\d{5,20}$/,
   kakao_pixel: /^\d{5,20}$/,

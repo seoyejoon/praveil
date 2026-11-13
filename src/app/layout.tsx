@@ -22,6 +22,9 @@ export const dynamic = "force-dynamic";
 
 const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    types: { "application/rss+xml": `${SITE_URL}/rss.xml` },
+  },
   title: {
     default: "인천 남동구 피부과 프라베일 맑고고운의원 | 리프팅 · 필러 · 보톡스 · 스킨부스터",
     template: "%s | 프라베일 맑고고운의원",
@@ -160,6 +163,17 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body>
+        {!isPreviewHost && tracking.google_tag_manager && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${tracking.google_tag_manager}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

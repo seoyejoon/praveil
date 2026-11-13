@@ -11,7 +11,11 @@ export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paths = new Set([
     "",
-    ...pages.flatMap((s) => s.pages.map((p) => p.href.split("?")[0])),
+    ...pages.flatMap((s) =>
+      s.pages.map((p) =>
+        p.href === "/notice?type=notice" ? "/notice" : p.href,
+      ),
+    ),
     "/before-after",
     "/terms",
     "/privacy",
@@ -19,6 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
   // 컨펌 기간에는 공개 중인 페이지만 (준비 중 페이지는 검색엔진에 알리지 않음)
   return [...paths]
-    .filter((path) => isOpen(path))
+    .filter((path) => isOpen(new URL(path || "/", base).pathname))
     .map((path) => ({ url: `${base}${path}` }));
 }

@@ -836,14 +836,7 @@ html[data-cur="image"] .cursor-dot-shape {
 .pvc .column-content mark[style*="background"] {
   background-image: none !important;
 }
-/* 줄간격: 본문 · 요약 · TIP · Q&A 글 모두 1.7 — 관리자 praveil-theme.css 의 같은 규칙과 짝. 표 안 글은 그대로 */
-.pvc .column-content :is(p, li):not(td *, th *) {
-  line-height: 1.7 !important;
-}
-/* 문단 사이(엔터) 간격 3px — 관리자 praveil-theme.css 의 같은 규칙과 짝. 상자 · 표 안 글은 그대로 */
-.pvc .column-content > p {
-  margin: 0 0 3px !important;
-}
+/* 줄간격 · 문단 사이 간격: 11월 11일 이전 값(기본 CSS)으로 되돌림 — 덮어쓰는 규칙 없음 */
 /* 소제목 위 · 아래 여백 36px · 12px — 관리자 praveil-theme.css 의 같은 규칙과 짝 */
 .pvc .column-content > :is(h2, h3) {
   margin: 36px 0 12px !important;

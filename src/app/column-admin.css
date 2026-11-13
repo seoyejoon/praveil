@@ -445,7 +445,7 @@
 .pvc .doctor-column-article .column-content hr { margin: 44px 0px; border-width: 1px 0px 0px; border-style: solid none none; border-color: rgb(235, 230, 226) currentcolor currentcolor; border-image: none; }
 .pvc .doctor-column-article .column-content a, .pvc .doctor-column-editor .column-content a { color: var(--director-accent); text-decoration-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article :is(.column-image, .column-gallery, .column-video), .pvc .doctor-column-editor :is(.column-image, .column-gallery, .column-video) { border-color: rgb(236, 231, 227); box-shadow: none; }
-.pvc .column-preview-page .column-content > p { min-height: 1.7em; }
+.pvc .column-preview-page .column-content > p { min-height: 1.95em; }
 .pvc .doctor-column-article .column-table th, .pvc .doctor-column-article .column-table tr:has(th), .pvc .doctor-column-editor .column-table th, .pvc .doctor-column-editor .column-table tr:has(th) { background: rgb(246, 242, 236); }
 .pvc .doctor-column-article .column-tip, .pvc .doctor-column-editor .column-tip { border-top-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article .column-content > ul > li::before { background: rgb(246, 242, 236); }
@@ -833,7 +833,7 @@
 .pvc .doctor-column-article .column-content hr { margin: 44px 0px; border-width: 1px 0px 0px; border-style: solid none none; border-color: rgb(235, 230, 226) currentcolor currentcolor; border-image: none; }
 .pvc .doctor-column-article .column-content a, .pvc .doctor-column-editor .column-content a { color: var(--director-accent); text-decoration-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article :is(.column-image, .column-gallery, .column-video), .pvc .doctor-column-editor :is(.column-image, .column-gallery, .column-video) { border-color: rgb(236, 231, 227); box-shadow: none; }
-.pvc .column-preview-page .column-content > p { min-height: 1.7em; }
+.pvc .column-preview-page .column-content > p { min-height: 1.95em; }
 .pvc .doctor-column-article .column-table th, .pvc .doctor-column-article .column-table tr:has(th), .pvc .doctor-column-editor .column-table th, .pvc .doctor-column-editor .column-table tr:has(th) { background: rgb(246, 242, 236); }
 .pvc .doctor-column-article .column-tip, .pvc .doctor-column-editor .column-tip { border-top-color: rgb(201, 173, 128); }
 .pvc .doctor-column-article .column-content > ul > li::before { background: rgb(246, 242, 236); }

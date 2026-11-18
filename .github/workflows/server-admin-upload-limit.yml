@@ -1,0 +1,23 @@
+name: Admin upload limit off (one-off)
+# 일회용: 관리자(admin.praveil.com) Nginx 업로드 한도 20m → 0(없음). 바꾸기 전 백업, 설정 검사 실패면 되돌림. 실행 뒤 삭제.
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          F=/etc/nginx/sites-available/praveil-site
+          echo "== before"; grep -n "client_max_body_size" $F
+          cp -a $F /tmp/praveil-site.before-upload-limit
+          sed -i 's/client_max_body_size 20m;/client_max_body_size 0;/' $F
+          if nginx -t 2>&1; then systemctl reload nginx; echo "== reloaded"; else cp -a /tmp/praveil-site.before-upload-limit $F; echo "== restored (nginx -t failed)"; exit 1; fi
+          echo "== after"; grep -n "client_max_body_size" $F
+          REMOTE

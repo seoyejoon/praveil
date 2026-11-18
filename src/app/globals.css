@@ -934,3 +934,12 @@ html[data-cur="image"] .cursor-dot-shape {
     height: 48px;
   }
 }
+
+/* 원장칼럼 휴대폰: 낱말 단위로만 줄을 바꾸면(keep-all) 줄 끝이 크게 비어 보여서, 글자 단위로 줄을 바꿔 줄 끝을 채움
+   — 관리자 praveil-theme.css 의 미리보기 '모바일' 규칙과 짝 */
+@media (max-width: 767px) {
+  .pvc .column-content :is(p, li, td, th) {
+    word-break: normal !important;
+    overflow-wrap: anywhere;
+  }
+}

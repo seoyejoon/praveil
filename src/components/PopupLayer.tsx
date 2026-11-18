@@ -124,7 +124,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
       aria-modal="true"
       aria-label="병원 안내 팝업"
     >
-      {/* 팝업 사진(카드)을 화면 가운데에 두고, 제목 상자는 그 오른쪽 바깥에 붙임 */}
+      {/* 팝업 사진(카드)을 화면 가운데에 둠 */}
       <div className="relative m-auto w-full max-w-[400px] md:w-[420px] md:max-w-none">
         <div className="w-full">
           <div className="relative overflow-hidden rounded-2xl bg-ivory shadow-2xl">
@@ -145,7 +145,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
                     draggable={false}
                     src={p.imageUrl}
                     alt={p.title}
-                    className="mx-auto block h-auto max-h-[calc(100dvh-110px)] w-full object-contain"
+                    className="mx-auto block h-auto max-h-[calc(100dvh-110px)] w-full object-contain md:max-h-[calc(100dvh-180px)]"
                   />
                 ) : (
                   <div className="flex min-h-[320px] flex-col justify-center px-8 py-10">
@@ -212,6 +212,29 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
             )}
           </div>
 
+          {/* PC: 사진 아래에 팝업 제목 버튼을 옆으로 나란히 (누르면 그 팝업으로) */}
+          {items.length > 1 && (
+            <ul
+              className="mt-3 hidden gap-2 md:grid"
+              style={{
+                gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`,
+              }}
+              aria-label="팝업 목록"
+            >
+              {items.map((p, i) => (
+                <li key={p.id} className="min-w-0">
+                  <button
+                    type="button"
+                    onClick={() => goTo(i)}
+                    aria-current={slide === i}
+                    className={`h-full w-full rounded-lg border px-2.5 py-2 text-center text-[12.5px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
+                  >
+                    <span className="line-clamp-2">{p.title}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
           {/* 팝업 아래 어두운 바탕 위 흰 글씨 버튼 */}
           <div className="mt-3 flex items-center justify-between px-1 text-[15px] text-white">
             <button
@@ -232,26 +255,6 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
             </button>
           </div>
         </div>
-        {/* PC: 오른쪽에 팝업 제목 상자 (누르면 그 팝업으로) */}
-        {items.length > 1 && (
-          <ul
-            className="absolute top-0 left-full ml-3 hidden w-[150px] flex-col gap-1.5 lg:flex"
-            aria-label="팝업 목록"
-          >
-            {items.map((p, i) => (
-              <li key={p.id}>
-                <button
-                  type="button"
-                  onClick={() => goTo(i)}
-                  aria-current={slide === i}
-                  className={`w-full rounded-lg border px-3 py-2 text-left text-[12.5px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
-                >
-                  <span className="line-clamp-2">{p.title}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </div>
   );

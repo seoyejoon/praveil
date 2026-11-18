@@ -245,11 +245,15 @@ type PostRow = {
   content: string;
   publishedAt: string;
   publishedAtIso?: string;
+  status?: string;
+  scheduledLabel?: string | null;
 };
 
-// visibility: "public" = 공개 글(발행 · 예약 시각 지난 글), "private" = 관리자에서 '비공개 발행'한 글
+// visibility: "public" = 공개 글(발행 · 예약 시각 지난 글)
+//             "private" = 관리자에서 '비공개 발행'한 글 + 예약 시각이 아직 안 된 예약 글 (관리자 로그인 때만)
+//             { token } = 발행 전 확인용 링크 (상태와 상관없이 그 글 하나)
 const queryNotices = async (
-  visibility: "public" | "private",
+  visibility: "public" | "private" | { token: string },
 ): Promise<Notice[]> => {
   const [hospitalRow] = await sql<{ id: number; boards: unknown }>(
     `SELECT id, site_builder_config->'websiteAdmin'->'boards' AS boards FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1`,
@@ -278,14 +282,20 @@ const queryNotices = async (
     `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,
        to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt",
        to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "publishedAtIso"
+     , status,
+       CASE WHEN status = 'scheduled' THEN to_char(scheduled_at AT TIME ZONE 'Asia/Seoul', 'MM.DD HH24:MI') END AS "scheduledLabel"
      FROM posts
      WHERE hospital_id = $1 AND ${
-       visibility === "private"
-         ? "status = 'private'"
-         : "(status = 'published' OR (status = 'scheduled' AND scheduled_at <= CURRENT_TIMESTAMP))"
+       typeof visibility === "object"
+         ? "preview_token = $2"
+         : visibility === "private"
+           ? "(status = 'private' OR (status = 'scheduled' AND scheduled_at > CURRENT_TIMESTAMP))"
+           : "(status = 'published' OR (status = 'scheduled' AND scheduled_at <= CURRENT_TIMESTAMP))"
      }
      ORDER BY COALESCE(published_at, scheduled_at, created_at) DESC, id DESC LIMIT 300`,
-    [hospitalRow.id],
+    typeof visibility === "object"
+      ? [hospitalRow.id, visibility.token]
+      : [hospitalRow.id],
   );
   return rows.flatMap((row) => {
     const type = typeOf(row);
@@ -302,7 +312,10 @@ const queryNotices = async (
             body,
             createdAt: row.publishedAt,
             publishedAt: row.publishedAtIso,
-            ...(visibility === "private" && { isPrivate: true }),
+            ...(visibility !== "public" && { isPrivate: true }),
+            ...(visibility !== "public" &&
+              row.status === "scheduled" &&
+              row.scheduledLabel && { scheduledAt: row.scheduledLabel }),
           },
         ]
       : [];
@@ -314,8 +327,14 @@ export async function getNotices() {
   return loadNotices();
 }
 
-// 비공개 글은 관리자 확인 뒤에만 부르므로 캐시하지 않는다
+// 비공개 · 예약 글은 관리자 확인 뒤에만 부르므로 캐시하지 않는다
 export const getPrivateNotices = () => queryNotices("private");
+
+// 발행 전 확인용 링크로 글 하나 (캐시하지 않음)
+export async function getNoticeByPreviewToken(token: string) {
+  if (!/^[A-Za-z0-9_-]{20,64}$/.test(token)) return undefined;
+  return (await queryNotices({ token }))[0];
+}
 
 // 관리자 로그인 확인: 토큰을 직접 넘기지 않고 해시만 DB 함수에 묻는다 (홈페이지 계정은 세션 표를 못 읽음)
 export async function isWebsiteAdminToken(tokenHash: string) {

@@ -122,6 +122,12 @@ export async function getNoticesForViewer() {
   );
 }
 
+// 발행 전 확인용 링크 (/notice/preview/<값>) — 링크를 아는 사람은 로그인 없이 볼 수 있음
+export async function getNoticeByPreviewToken(token: string) {
+  if (!hasDatabase) return undefined;
+  return db.getNoticeByPreviewToken(token).catch(() => undefined);
+}
+
 export async function getNoticeForViewer(id: number) {
   return (await getNoticesForViewer()).find((n) => n.id === id);
 }

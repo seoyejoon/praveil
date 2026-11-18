@@ -74,7 +74,9 @@ export default function ColumnList({ notices }: { notices: Notice[] }) {
                     )}
                     {n.isPrivate && (
                       <span className="absolute top-4 right-4 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] text-white">
-                        비공개 · 관리자만 보임
+                        {n.scheduledAt
+                          ? `예약 ${n.scheduledAt} · 관리자만 보임`
+                          : "비공개 · 관리자만 보임"}
                       </span>
                     )}
                   </div>

@@ -79,6 +79,8 @@ export type Notice = {
   publishedAt?: string;
   /** 관리자에서 '비공개 발행'한 글 — 관리자로 로그인했을 때만 보인다 */
   isPrivate?: boolean;
+  /** 예약 발행 글(아직 시각 전): 예약 시각 'MM.DD HH:mm' — 관리자로 로그인했을 때만 보인다 */
+  scheduledAt?: string;
 };
 
 export type Popup = {

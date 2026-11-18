@@ -45,27 +45,28 @@ export default function ColumnArticle({
 
         <header className="mt-7">
           {cover ? (
-            <div className="relative overflow-hidden rounded-[24px] bg-ivory md:rounded-[32px]">
+            // 휴대폰: 사진만 크게 보이고 제목은 사진 아래 / PC: 사진 위에 제목
+            <div className="relative md:overflow-hidden md:rounded-[32px] md:bg-ivory">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={cover}
                 alt=""
-                className="aspect-[16/10] w-full object-cover md:aspect-[16/7]"
+                className="aspect-[16/10] w-full rounded-[20px] bg-ivory object-cover md:aspect-[16/7] md:rounded-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute right-6 bottom-6 left-6 text-white md:right-12 md:bottom-11 md:left-12">
+              <div className="absolute inset-0 hidden bg-gradient-to-t from-black/70 via-black/20 to-transparent md:block" />
+              <div className="mt-6 border-b border-ink/80 pb-8 md:absolute md:right-12 md:bottom-11 md:left-12 md:mt-0 md:border-0 md:pb-0 md:text-white">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="rounded-full border border-white/50 px-3 py-1 text-xs">
+                  <span className="rounded-full border border-gold/60 px-3 py-1 text-xs text-mocha md:border-white/50 md:text-white">
                     {notice.category || "건강정보"}
                   </span>
                   <time
                     dateTime={notice.createdAt}
-                    className="font-display text-xs tracking-widest text-white/75"
+                    className="font-display text-xs tracking-widest text-muted md:text-white/75"
                   >
                     {formatDate(notice.createdAt)}
                   </time>
                 </div>
-                <h1 className="mt-4 max-w-3xl text-[26px] leading-snug font-semibold tracking-[-0.03em] md:text-[40px]">
+                <h1 className="mt-4 max-w-3xl text-[24px] leading-snug font-semibold tracking-[-0.03em] md:text-[40px]">
                   {notice.title}
                 </h1>
               </div>

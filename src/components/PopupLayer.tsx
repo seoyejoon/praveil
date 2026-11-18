@@ -124,8 +124,9 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
       aria-modal="true"
       aria-label="병원 안내 팝업"
     >
-      <div className="m-auto flex w-full max-w-[400px] items-start gap-4 md:w-auto md:max-w-none">
-        <div className="w-full md:w-[420px]">
+      {/* 팝업 사진(카드)을 화면 가운데에 두고, 제목 상자는 그 오른쪽 바깥에 붙임 */}
+      <div className="relative m-auto w-full max-w-[400px] md:w-[420px] md:max-w-none">
+        <div className="w-full">
           <div className="relative overflow-hidden rounded-2xl bg-ivory shadow-2xl">
             <ul
               ref={listRef}
@@ -234,7 +235,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
         {/* PC: 오른쪽에 팝업 제목 상자 (누르면 그 팝업으로) */}
         {items.length > 1 && (
           <ul
-            className="hidden w-[200px] shrink-0 flex-col gap-2 md:flex"
+            className="absolute top-0 left-full ml-4 hidden w-[200px] flex-col gap-2 lg:flex"
             aria-label="팝업 목록"
           >
             {items.map((p, i) => (

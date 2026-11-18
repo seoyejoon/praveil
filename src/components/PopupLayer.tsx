@@ -235,7 +235,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
         {/* PC: 오른쪽에 팝업 제목 상자 (누르면 그 팝업으로) */}
         {items.length > 1 && (
           <ul
-            className="absolute top-0 left-full ml-4 hidden w-[200px] flex-col gap-2 lg:flex"
+            className="absolute top-0 left-full ml-3 hidden w-[150px] flex-col gap-1.5 lg:flex"
             aria-label="팝업 목록"
           >
             {items.map((p, i) => (
@@ -244,7 +244,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
                   type="button"
                   onClick={() => goTo(i)}
                   aria-current={slide === i}
-                  className={`w-full rounded-xl border px-4 py-3 text-left text-[14px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
+                  className={`w-full rounded-lg border px-3 py-2 text-left text-[12.5px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
                 >
                   <span className="line-clamp-2">{p.title}</span>
                 </button>

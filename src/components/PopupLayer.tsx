@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleCheck, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Popup } from "@/lib/data";
 
@@ -65,8 +65,8 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
       aria-modal="true"
       aria-label="병원 안내 팝업"
     >
-      <div className="m-auto w-full max-w-[400px] overflow-hidden rounded-2xl bg-ivory shadow-2xl md:max-w-[420px]">
-        <div className="relative">
+      <div className="m-auto w-full max-w-[400px] md:max-w-[420px]">
+        <div className="relative overflow-hidden rounded-2xl bg-ivory shadow-2xl">
           <ul
             ref={listRef}
             onScroll={(e) => {
@@ -83,7 +83,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
                 <img
                   src={p.imageUrl}
                   alt={p.title}
-                  className="mx-auto block h-auto max-h-[calc(100dvh-120px)] w-full object-contain"
+                  className="mx-auto block h-auto max-h-[calc(100dvh-110px)] w-full object-contain"
                 />
               ) : (
                 <div className="flex min-h-[320px] flex-col justify-center px-8 py-10">
@@ -167,20 +167,23 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
           )}
         </div>
 
-        <div className="grid grid-cols-2 border-t border-line bg-ivory text-sm">
+        {/* 팝업 아래 어두운 바탕 위 흰 글씨 버튼 */}
+        <div className="mt-3 flex items-center justify-between px-1 text-[15px] text-white">
           <button
             type="button"
             onClick={hideToday}
-            className="py-4 text-muted transition hover:text-ink"
+            className="inline-flex items-center gap-2 py-2 transition hover:opacity-80"
           >
+            <CircleCheck className="h-5 w-5" strokeWidth={1.6} />
             오늘 하루 보지 않기
           </button>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="border-l border-line py-4 font-medium text-ink"
+            className="inline-flex items-center gap-1.5 py-2 transition hover:opacity-80"
           >
             닫기
+            <X className="h-5 w-5" strokeWidth={1.8} />
           </button>
         </div>
       </div>

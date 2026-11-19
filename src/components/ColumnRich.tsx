@@ -117,6 +117,15 @@ function safeColor(value: unknown) {
     : undefined;
 }
 
+// 링크 카드 아래에 보이는 사이트 주소 (praveil.com)
+function linkHost(href: string) {
+  try {
+    return new URL(href, "https://praveil.com").hostname.replace(/^www./, "");
+  } catch {
+    return "";
+  }
+}
+
 function richStyle(node: DocNode): CSSProperties {
   const align = String(node.attrs?.textAlign ?? "");
   return ["left", "center", "right", "justify"].includes(align)
@@ -359,6 +368,38 @@ function renderRichNode(node: DocNode, key: string): ReactNode {
         )}
         <div>{richChildren(node, key)}</div>
       </aside>
+    );
+  }
+  // 링크 카드: 위에 사진, 아래에 제목 · 설명(2줄) · 사이트 주소. 관리자 ColumnContent.tsx 와 같은 HTML (스타일은 globals.css)
+  if (node.type === "columnLinkCard") {
+    const href = safeUrl(String(node.attrs?.href ?? ""));
+    const title = String(node.attrs?.title ?? "").trim();
+    if (!href || !title) return null;
+    const image = safeUrl(String(node.attrs?.image ?? ""));
+    const description = String(node.attrs?.description ?? "").trim();
+    return (
+      <a
+        className="column-link-card"
+        href={href}
+        target={
+          /^https?:/i.test(href) && !/praveil\.com/i.test(href)
+            ? "_blank"
+            : undefined
+        }
+        rel="noreferrer"
+        key={key}
+      >
+        <span className="column-link-card-thumb" aria-hidden="true">
+          {image ? <img src={image} alt="" loading="lazy" /> : null}
+        </span>
+        <span className="column-link-card-body">
+          <span className="column-link-card-title">{title}</span>
+          {description && (
+            <span className="column-link-card-desc">{description}</span>
+          )}
+          <span className="column-link-card-host">{linkHost(href)}</span>
+        </span>
+      </a>
     );
   }
   if (node.type === "columnImageSection" || node.type === "columnGallery") {

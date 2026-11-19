@@ -62,6 +62,14 @@ function nodeHtml(node: DocNode, base: string): string {
     const url = webUrl(node.attrs?.src, base);
     return url ? `<p><a href="${escapeXml(url)}">칼럼 영상</a></p>` : "";
   }
+  // 링크 카드: RSS 에는 제목 링크로
+  if (node.type === "columnLinkCard") {
+    const url = webUrl(node.attrs?.href, base);
+    const title = String(node.attrs?.title ?? "").trim();
+    return url && title
+      ? `<p><a href="${escapeXml(url)}">${escapeXml(title)}</a></p>`
+      : "";
+  }
   if (node.type === "hardBreak") return "<br />";
   if (node.type === "horizontalRule") return "<hr />";
   const children = (node.content ?? [])

@@ -145,7 +145,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
                     draggable={false}
                     src={p.imageUrl}
                     alt={p.title}
-                    className="mx-auto block h-auto max-h-[calc(100dvh-110px)] w-full object-contain md:max-h-[calc(100dvh-180px)]"
+                    className="mx-auto block h-auto max-h-[calc(100dvh-180px)] w-full object-contain"
                   />
                 ) : (
                   <div className="flex min-h-[320px] flex-col justify-center px-8 py-10">
@@ -212,10 +212,10 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
             )}
           </div>
 
-          {/* PC: 사진 아래에 팝업 제목 버튼을 옆으로 나란히 (누르면 그 팝업으로) */}
+          {/* PC · 모바일: 사진 아래에 팝업 제목 버튼을 옆으로 나란히 (누르면 그 팝업으로) */}
           {items.length > 1 && (
             <ul
-              className="mt-3 hidden gap-2 md:grid"
+              className="mt-3 grid gap-1.5 md:gap-2"
               style={{
                 gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`,
               }}
@@ -227,7 +227,7 @@ export default function PopupLayer({ popups }: { popups: Popup[] }) {
                     type="button"
                     onClick={() => goTo(i)}
                     aria-current={slide === i}
-                    className={`h-full w-full rounded-lg border px-2.5 py-2 text-center text-[12.5px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
+                    className={`h-full w-full rounded-lg border px-2 py-2 text-center text-[12px] md:px-2.5 md:text-[12.5px] leading-snug transition ${slide === i ? "border-white bg-white font-semibold text-ink shadow-lg" : "border-white/35 bg-ink/30 text-white/85 backdrop-blur-sm hover:border-white/70 hover:text-white"}`}
                   >
                     <span className="line-clamp-2">{p.title}</span>
                   </button>

@@ -943,3 +943,11 @@ html[data-cur="image"] .cursor-dot-shape {
     overflow-wrap: anywhere;
   }
 }
+
+/* 원장칼럼 휴대폰 본문 글자 15px → 16px (본문 · 목록 · 요약 · TIP · 강조 상자 · Q&A 답). 표 · 근거 자료 · 같이 보면 좋은 글은 그대로
+   — 관리자 praveil-theme.css 의 미리보기 '모바일' 규칙과 짝 */
+@media (max-width: 767px) {
+  .pvc .doctor-column-article .column-content :is(p, li):not(td *, th *, .column-refs *, .column-related *) {
+    font-size: 16px !important;
+  }
+}

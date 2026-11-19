@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, CalendarCheck, List } from "lucide-react";
-import ColumnArticle from "@/components/ColumnArticle";
 import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/sub/JsonLd";
 import {
-  getDoctor,
   getHospital,
   getNoticeForViewer,
   getNoticesForViewer,
@@ -39,11 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 공지 · 이벤트 글 보기: 분류 · 제목 · 날짜 → 본문 → 이전 · 다음 글 → 목록
 export default async function NoticeDetailPage({ params }: Props) {
   const id = Number((await params).id);
-  const [notice, all, hospital, doctor] = await Promise.all([
+  const [notice, all, hospital] = await Promise.all([
     getNoticeForViewer(id),
     getNoticesForViewer(),
     getHospital(),
-    getDoctor(),
   ]);
   if (!notice) notFound();
 
@@ -61,25 +58,8 @@ export default async function NoticeDetailPage({ params }: Props) {
   const older = idx >= 0 && idx < same.length - 1 ? same[idx + 1] : null;
   const status = event ? eventStatus(notice.summary) : null;
 
-  // 원장칼럼은 관리자 칼럼 편집기와 같은 구성으로 따로 그린다
-  if (notice.type === "column")
-    return (
-      <ColumnArticle
-        notice={notice}
-        newer={newer}
-        older={older}
-        related={same.filter((n) => n.id !== notice.id).slice(0, 3)}
-        thumbs={Object.fromEntries(
-          all.flatMap((n) => {
-            const c = coverOf(n);
-            return c ? [[`/notice/${n.id}`, c]] : [];
-          }),
-        )}
-        hospital={hospital}
-        doctor={doctor}
-        listHref={listHref}
-      />
-    );
+  // 원장칼럼은 /column/글번호 로 옮김 (예전 주소로 들어와도 새 주소로 넘김)
+  if (notice.type === "column") permanentRedirect(`/column/${notice.id}`);
 
   return (
     <article className="px-5 pt-32 pb-24 md:px-10 md:pt-44 md:pb-32">

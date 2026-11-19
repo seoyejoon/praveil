@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Notice } from "@/lib/data";
-import { formatDate } from "@/lib/notice";
+import { formatDate, postHref } from "@/lib/notice";
 
 const PER_PAGE = 10;
 
@@ -59,7 +59,7 @@ export default function NoticeList({
             return (
               <li key={n.id} className="border-b border-line">
                 <Link
-                  href={`/notice/${n.id}`}
+                  href={postHref(n)}
                   className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1.5 py-6 md:grid-cols-[4rem_1fr_7rem_2.5rem] md:py-7"
                 >
                   <span className="hidden font-display text-sm text-muted md:block">

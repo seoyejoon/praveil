@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Gift, Megaphone, PenLine } from "l
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Notice } from "@/lib/data";
-import { eventStatus } from "@/lib/notice";
+import { eventStatus, postHref } from "@/lib/notice";
 
 type Item = Pick<Notice, "id" | "type" | "title" | "summary" | "createdAt"> & { cover?: string };
 const tabs = [
@@ -122,7 +122,7 @@ export default function MainNews({ items }: { items: Item[] }) {
                 const { label, Icon } = kindOf(n.type);
                 return (
                 <li key={n.id} className="border-b border-black/10">
-                  <Link href={`/notice/${n.id}`} className="group grid grid-cols-[1fr_auto] items-center gap-4 py-5 md:grid-cols-[auto_1fr_auto] md:gap-10 md:py-8">
+                  <Link href={postHref(n)} className="group grid grid-cols-[1fr_auto] items-center gap-4 py-5 md:grid-cols-[auto_1fr_auto] md:gap-10 md:py-8">
                     <span className="hidden font-display text-base font-light tracking-[0.1em] text-black/45 md:block">{n.createdAt.replace(/-/g, ".")}</span>
                     <span className="min-w-0">
                       <span className="flex min-w-0 items-center">

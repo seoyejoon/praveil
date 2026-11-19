@@ -18,6 +18,8 @@ export const OPEN = [
   /^\/about\/(philosophy|doctor)\/?$/,
   /^\/location\/?$/,
   /^\/notice(\/.*)?$/,
+  // 2026-11-19 병원 요청: 원장칼럼 글 주소를 /column/글번호 로 (공지 · 이벤트는 /notice 그대로)
+  /^\/column(\/.*)?$/,
   /^\/before-after(\/.*)?$/,
   /^\/terms\/?$/,
   /^\/privacy\/?$/,

@@ -52,7 +52,7 @@ export default function ColumnList({ notices }: { notices: Notice[] }) {
               Date.now() - new Date(n.createdAt).getTime() < 7 * 86400000;
             return (
               <li key={n.id}>
-                <Link href={`/notice/${n.id}`} className="group block">
+                <Link href={`/column/${n.id}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-ivory">
                     {cover ? (
                       // eslint-disable-next-line @next/next/no-img-element

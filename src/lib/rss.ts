@@ -105,7 +105,7 @@ export function renderRss(
   const title = `프라베일 맑고고운의원${columnOnly ? " 원장칼럼" : " 새 소식"}`;
   const items = posts
     .map((post) => {
-      const url = `${base}/notice/${post.id}`;
+      const url = `${base}${post.type === "column" ? "/column" : "/notice"}/${post.id}`;
       const published = post.publishedAt ? new Date(post.publishedAt) : null;
       const date =
         published && Number.isFinite(published.getTime())

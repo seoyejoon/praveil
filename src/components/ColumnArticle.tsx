@@ -148,7 +148,7 @@ export default function ColumnArticle({
                   {related.map((post, i) => (
                     <li key={post.id} className="border-b border-line">
                       <Link
-                        href={`/notice/${post.id}`}
+                        href={`/column/${post.id}`}
                         className="group flex items-center gap-5 py-5"
                       >
                         <span className="font-display text-sm text-gold">
@@ -202,7 +202,7 @@ export default function ColumnArticle({
             <div key={label} className="border-b border-line">
               {post ? (
                 <Link
-                  href={`/notice/${post.id}`}
+                  href={`/column/${post.id}`}
                   className="group flex items-center gap-5 py-5"
                 >
                   <span className="w-14 shrink-0 text-sm text-gold">

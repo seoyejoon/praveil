@@ -35,3 +35,8 @@ export function coverOf(n: Notice) {
 }
 
 export const formatDate = (d: string) => d.replaceAll("-", ".");
+
+// 글 주소: 원장칼럼은 /column/글번호, 공지 · 이벤트는 /notice/글번호
+// (예전 /notice/글번호 원장칼럼 주소는 /column/글번호 로 넘겨 줌)
+export const postHref = (n: { id: number; type: string }) =>
+  n.type === "column" ? `/column/${n.id}` : `/notice/${n.id}`;

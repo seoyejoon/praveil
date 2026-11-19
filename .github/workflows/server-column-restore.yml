@@ -1,0 +1,50 @@
+name: Column restore empty lines (one-off)
+# 일회용: 2026-11-19 글 정리로 지운 빈 줄을 되돌림 (병원 요청)
+# - posts_tidy_backup 의 원본에서 다시 정리 (글자 크기 해제 · 사진 칸만, 빈 줄은 그대로)
+# - 정리 뒤 손으로 고친 글(수정 시각이 바뀐 글)은 건드리지 않음
+# - 기록에는 글 번호와 개수만 출력. 실행 뒤 이 파일 삭제.
+on:
+  workflow_dispatch:
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          APP=/opt/psbox-admin-only
+          grep -q "빈 줄(엔터만 친 문단)은 지우지 않는다" $APP/lib/column-normalize.ts || { echo "관리자 새 버전 배포 전"; exit 1; }
+          cat > $APP/restore-columns.mjs <<'JS'
+          import pg from "pg";
+          import { normalizeColumnDocument } from "./lib/column-normalize.ts";
+          import { parseColumnDocument, serializeColumnDocument } from "./lib/column-document.ts";
+          const c = new pg.Client({ connectionString: process.env.DATABASE_URL });
+          await c.connect();
+          const rows = await c.query(
+            "SELECT DISTINCT ON (b.post_id) b.post_id, b.content AS original, b.backed_up_at, p.updated_at, p.content AS current FROM posts_tidy_backup b JOIN posts p ON p.id = b.post_id ORDER BY b.post_id, b.backed_up_at ASC");
+          console.log(`백업 글 ${rows.rowCount}개`);
+          await c.query("BEGIN");
+          for (const r of rows.rows) {
+            if (Math.abs(new Date(r.updated_at) - new Date(r.backed_up_at)) > 5000) { console.log(`#${r.post_id} 건너뜀: 정리 뒤에 직접 고친 글 (원래대로 둠)`); continue; }
+            const doc = parseColumnDocument(r.original);
+            if (!doc) { console.log(`#${r.post_id} 건너뜀: 원본 형식 검사 실패`); continue; }
+            const { doc: out, report } = normalizeColumnDocument(doc);
+            const next = serializeColumnDocument(out);
+            if (!parseColumnDocument(next)) { console.log(`#${r.post_id} 건너뜀: 결과 형식 검사 실패`); continue; }
+            const empties = (s) => (s.match(/\{"type":"paragraph"\}/g) ?? []).length + (s.match(/"type":"paragraph","content":\[\]/g) ?? []).length;
+            await c.query("UPDATE posts SET content = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2", [next, r.post_id]);
+            console.log(`#${r.post_id} 빈 줄 되돌림 (빈 문단 ${empties(r.current)} → ${empties(next)}) · 글자 크기 ${report.fontSizes}곳 해제 · 사진 ${report.images}장 사진 칸 유지`);
+          }
+          await c.query("COMMIT");
+          await c.end();
+          JS
+          chown appuser:appuser $APP/restore-columns.mjs
+          sudo -u appuser -H env -u DATABASE_URL bash -c "cd $APP && node --env-file=.env.local restore-columns.mjs" || { rm -f $APP/restore-columns.mjs; exit 1; }
+          rm -f $APP/restore-columns.mjs
+          echo "== 완료 (백업 표는 그대로 둠)"
+          REMOTE

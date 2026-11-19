@@ -1,0 +1,54 @@
+name: Column tidy (one-off)
+# 일회용: 기존 원장칼럼 글에 관리자 편집기 '글 정리'와 같은 정리를 한 번 적용 (병원 요청 2026-11-19)
+# - 빈 줄 삭제 · 글자 크기 지정 해제 · 본문 사진 → 사진 칸
+# - 바꾸기 전 내용을 posts_tidy_backup 표에 백업, 형식 검사를 통과한 글만 바꿈
+# - 기록에는 글 번호와 바뀐 개수만 출력 (제목 · 본문 출력 없음). 실행 뒤 이 파일 삭제.
+on:
+  workflow_dispatch:
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y sshpass >/dev/null
+      - env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 "$USER@$HOST" 'bash -s' <<'REMOTE'
+          set -e
+          APP=/opt/psbox-admin-only
+          cat > $APP/tidy-columns.mjs <<'JS'
+          import pg from "pg";
+          import { normalizeColumnDocument } from "./lib/column-normalize.ts";
+          import { parseColumnDocument, serializeColumnDocument } from "./lib/column-document.ts";
+          const c = new pg.Client({ connectionString: process.env.DATABASE_URL });
+          await c.connect();
+          const h = await c.query("SELECT id, site_builder_config->'websiteAdmin'->'boards' AS boards FROM hospitals WHERE status = 'active' ORDER BY id LIMIT 1");
+          const hospitalId = h.rows[0]?.id;
+          const boards = (h.rows[0]?.boards ?? []).filter((b) => b.boardType === "column" || b.boardType === "doctor-column" || String(b.name ?? "").includes("칼럼"));
+          const posts = await c.query(
+            "SELECT id, content FROM posts WHERE hospital_id = $1 AND (board_id = ANY($2) OR (board_id IS NULL AND category = ANY($3))) AND content LIKE 'hs-column-json-v1:%' ORDER BY id",
+            [hospitalId, boards.map((b) => b.id), boards.map((b) => b.name)]);
+          console.log(`칼럼 게시판 ${boards.length}개, 대상 글 ${posts.rowCount}개`);
+          await c.query("BEGIN");
+          await c.query("CREATE TABLE IF NOT EXISTS posts_tidy_backup (post_id INTEGER NOT NULL, content TEXT NOT NULL, backed_up_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+          for (const row of posts.rows) {
+            const doc = parseColumnDocument(row.content);
+            if (!doc) { console.log(`#${row.id} 건너뜀: 형식 검사 실패 (원래대로 둠)`); continue; }
+            const { doc: out, report } = normalizeColumnDocument(doc);
+            if (!report.emptyParagraphs && !report.fontSizes && !report.images) { console.log(`#${row.id} 바꿀 것 없음`); continue; }
+            const next = serializeColumnDocument(out);
+            if (!parseColumnDocument(next)) { console.log(`#${row.id} 건너뜀: 정리 결과가 형식 검사 실패 (원래대로 둠)`); continue; }
+            await c.query("INSERT INTO posts_tidy_backup (post_id, content) VALUES ($1, $2)", [row.id, row.content]);
+            await c.query("UPDATE posts SET content = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2", [next, row.id]);
+            console.log(`#${row.id} 정리: 빈 줄 ${report.emptyParagraphs}개 삭제 · 글자 크기 ${report.fontSizes}곳 해제 · 사진 ${report.images}장 → 사진 칸`);
+          }
+          await c.query("COMMIT");
+          await c.end();
+          JS
+          chown appuser:appuser $APP/tidy-columns.mjs
+          sudo -u appuser -H env -u DATABASE_URL bash -c "cd $APP && node --env-file=.env.local tidy-columns.mjs" || { rm -f $APP/tidy-columns.mjs; exit 1; }
+          rm -f $APP/tidy-columns.mjs
+          echo "== 완료 (백업: posts_tidy_backup)"
+          REMOTE

@@ -247,6 +247,7 @@ type PostRow = {
   publishedAtIso?: string;
   status?: string;
   scheduledLabel?: string | null;
+  views?: number;
 };
 
 // visibility: "public" = 공개 글(발행 · 예약 시각 지난 글)
@@ -282,7 +283,7 @@ const queryNotices = async (
     `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,
        to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt",
        to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "publishedAtIso"
-     , status,
+     , status, views,
        CASE WHEN status = 'scheduled' THEN to_char(scheduled_at AT TIME ZONE 'Asia/Seoul', 'MM.DD HH24:MI') END AS "scheduledLabel"
      FROM posts
      WHERE hospital_id = $1 AND ${
@@ -312,6 +313,7 @@ const queryNotices = async (
             body,
             createdAt: row.publishedAt,
             publishedAt: row.publishedAtIso,
+            views: row.views ?? 0,
             ...(visibility !== "public" && { isPrivate: true }),
             ...(visibility !== "public" &&
               row.status === "scheduled" &&

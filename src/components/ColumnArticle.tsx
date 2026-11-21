@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, List } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, List } from "lucide-react";
 import ColumnActions from "@/components/ColumnActions";
 import ColumnRich from "@/components/ColumnRich";
 import PostContent, { docHeadings } from "@/components/PostContent";
@@ -65,6 +65,13 @@ export default function ColumnArticle({
                   >
                     {formatDate(notice.createdAt)}
                   </time>
+                  {typeof notice.views === "number" && (
+                    <span className="inline-flex items-center gap-1 font-display text-xs tracking-widest text-muted md:text-white/75">
+                      <Eye className="h-3.5 w-3.5" strokeWidth={1.6} />
+                      <span className="sr-only">조회수</span>
+                      {notice.views.toLocaleString("ko-KR")}
+                    </span>
+                  )}
                 </div>
                 <h1 className="mt-4 max-w-3xl text-[24px] leading-snug font-semibold tracking-[-0.03em] md:text-[40px]">
                   {notice.title}
@@ -83,6 +90,13 @@ export default function ColumnArticle({
                 >
                   {formatDate(notice.createdAt)}
                 </time>
+                {typeof notice.views === "number" && (
+                  <span className="inline-flex items-center gap-1 font-display text-xs tracking-widest text-muted">
+                    <Eye className="h-3.5 w-3.5" strokeWidth={1.6} />
+                    <span className="sr-only">조회수</span>
+                    {notice.views.toLocaleString("ko-KR")}
+                  </span>
+                )}
               </div>
               <h1 className="mt-5 text-[28px] leading-snug font-semibold tracking-[-0.03em] md:text-[42px]">
                 {notice.title}

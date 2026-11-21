@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Eye, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Notice } from "@/lib/data";
 import { coverOf, formatDate } from "@/lib/notice";
@@ -90,6 +90,13 @@ export default function ColumnList({ notices }: { notices: Notice[] }) {
                     <span className="font-display text-xs tracking-widest text-muted">
                       {formatDate(n.createdAt)}
                     </span>
+                    {typeof n.views === "number" && (
+                      <span className="inline-flex items-center gap-1 font-display text-xs tracking-widest text-muted">
+                        <Eye className="h-3.5 w-3.5" strokeWidth={1.6} />
+                        <span className="sr-only">조회수</span>
+                        {n.views.toLocaleString("ko-KR")}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="mt-2.5 line-clamp-2 text-[18px] leading-snug font-medium tracking-[-0.02em] transition-colors duration-500 group-hover:text-mocha md:text-[19px]">

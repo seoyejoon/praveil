@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import Views from "@/components/Views";
 import type { Notice } from "@/lib/data";
 import { formatDate, postHref } from "@/lib/notice";
 
@@ -60,7 +61,7 @@ export default function NoticeList({
               <li key={n.id} className="border-b border-line">
                 <Link
                   href={postHref(n)}
-                  className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1.5 py-6 md:grid-cols-[4rem_1fr_7rem_2.5rem] md:py-7"
+                  className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1.5 py-6 md:grid-cols-[4rem_1fr_auto_2.5rem] md:py-7"
                 >
                   <span className="hidden font-display text-sm text-muted md:block">
                     {String(no).padStart(2, "0")}
@@ -80,8 +81,9 @@ export default function NoticeList({
                       {n.title}
                     </span>
                   </span>
-                  <span className="order-3 col-span-2 font-display text-xs tracking-widest text-muted md:order-none md:col-span-1 md:text-sm">
+                  <span className="order-3 col-span-2 flex items-center gap-3 font-display text-xs tracking-widest text-muted md:order-none md:col-span-1 md:text-sm">
                     {formatDate(n.createdAt)}
+                    <Views count={n.views} />
                   </span>
                   <span className="row-span-2 grid h-10 w-10 place-items-center rounded-full border border-line transition group-hover:border-gold group-hover:bg-gold group-hover:text-white md:row-span-1">
                     <ArrowRight className="h-4 w-4" strokeWidth={1.6} />

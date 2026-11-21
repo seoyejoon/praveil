@@ -109,6 +109,8 @@ export type BeforeAfterCase = {
   summary: string;
   category: string;
   createdAt: string;
+  /** 조회수 (관리자 DB posts.views) */
+  views?: number;
   /** 대표로 보여 줄 경과 번호 */
   representative: number;
   stages: BeforeAfterStage[];

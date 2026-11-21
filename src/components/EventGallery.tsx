@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/components/Logo";
+import Views from "@/components/Views";
 import type { Notice } from "@/lib/data";
 import { coverOf, eventStatus, formatDate } from "@/lib/notice";
 
@@ -71,8 +72,11 @@ export default function EventGallery({ events }: { events: Notice[] }) {
                 <p className="mt-4 line-clamp-2 text-[15px] font-semibold tracking-[-0.02em] transition group-hover:text-mocha md:text-lg">
                   {e.title}
                 </p>
-                <p className="mt-1.5 text-xs text-muted md:text-sm">
-                  {e.summary ? `기간 ${e.summary}` : formatDate(e.createdAt)}
+                <p className="mt-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-xs text-muted md:text-sm">
+                  <span>
+                    {e.summary ? `기간 ${e.summary}` : formatDate(e.createdAt)}
+                  </span>
+                  <Views count={e.views} />
                 </p>
               </Link>
             </li>

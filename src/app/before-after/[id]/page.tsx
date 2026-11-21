@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, List } from "lucide-react";
 import { BaPair, Compare } from "@/components/BeforeAfterBoard";
+import Views from "@/components/Views";
 import { baCategories, withCategoryKey } from "@/lib/before-after";
 import { getBeforeAfterCases } from "@/lib/data";
 import { getMember } from "@/lib/member";
@@ -59,6 +60,7 @@ export default async function BeforeAfterDetail({ params }: Props) {
             {cat?.label ?? c.category}
           </span>
           <span className="text-xs text-muted">{formatDate(c.createdAt)}</span>
+          <Views count={c.views} className="text-xs text-muted" />
         </p>
         <h1 className="mt-5 text-[28px] leading-snug font-semibold tracking-[-0.03em] md:text-[42px]">
           {c.title}

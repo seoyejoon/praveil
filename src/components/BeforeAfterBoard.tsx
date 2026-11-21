@@ -3,6 +3,7 @@
 import ArrowSwap from "@/components/ArrowSwap";
 import Link from "next/link";
 import { Lock, MoveHorizontal } from "lucide-react";
+import Views from "@/components/Views";
 import { useRef, useState } from "react";
 import type { BeforeAfterCase, BeforeAfterStage } from "@/lib/data";
 
@@ -195,6 +196,7 @@ export default function BeforeAfterBoard({
                       · 경과 {c.stages.length}단계
                     </span>
                   )}
+                  <Views count={c.views} className="ml-auto text-muted" />
                 </p>
                 <p className="mt-1.5 line-clamp-1 text-lg font-semibold tracking-[-0.02em] transition group-hover:text-mocha">
                   {c.title}

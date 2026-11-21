@@ -118,6 +118,12 @@ export default async function NoticeDetailPage({ params }: Props) {
               </time>
             </dd>
           </div>
+          {typeof notice.views === "number" && (
+            <div className="flex gap-2">
+              <dt className="text-gold">조회</dt>
+              <dd>{notice.views.toLocaleString("ko-KR")}</dd>
+            </div>
+          )}
         </dl>
       </header>
 

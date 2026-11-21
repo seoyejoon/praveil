@@ -374,7 +374,7 @@ const loadBeforeAfter = cached(
     if (!boardIds.length) return [];
     const rows = await sql<PostRow>(
       `SELECT id, board_id AS "boardId", category, title, summary, cover_image_url AS "coverImageUrl", content,
-       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt"
+       to_char(COALESCE(published_at, scheduled_at, created_at) AT TIME ZONE 'Asia/Seoul', 'YYYY-MM-DD') AS "publishedAt", views
      FROM posts
      WHERE hospital_id = $1 AND board_id = ANY($2::text[])
        AND (status = 'published' OR (status = 'scheduled' AND scheduled_at <= CURRENT_TIMESTAMP))
@@ -409,6 +409,7 @@ const loadBeforeAfter = cached(
             summary: row.summary,
             category: row.category,
             createdAt: row.publishedAt,
+            views: row.views ?? 0,
             representative: rep,
             stages,
           },

@@ -44,6 +44,9 @@ const orFallback = <T>(list: T[], fallback: T[]) =>
 // 관리자 초기값으로 들어간 임시 번호(02-000-0000 같은)는 비어 있는 것으로 봄
 const real = (v: string) => (/^\d{2,3}-?0{3,4}-?0{4}$/.test(v) ? "" : v);
 
+// 관리자에 적은 링크: https 주소만 받는다
+const link = (v: unknown) => (/^https:\/\/\S+$/.test(str(v)) ? str(v) : "");
+
 export async function getHospital(): Promise<Hospital> {
   const row = await loadHospital();
   if (!row) return fallbackHospital;
@@ -91,13 +94,24 @@ export async function getHospital(): Promise<Hospital> {
         ? list
         : fallbackHospital.directions;
     })(),
-    // 길찾기 링크는 확정된 병원 링크(mock/hospital.ts)를 우선
+    // 길찾기 링크: 관리자에 넣은 주소가 우선, 비어 있으면 기본 링크(mock/hospital.ts)
     mapLinks: {
-      tmap: fallbackHospital.mapLinks.tmap || str(maps.tmap) || undefined,
-      naver: fallbackHospital.mapLinks.naver || str(maps.naver) || undefined,
-      kakao: fallbackHospital.mapLinks.kakao || str(maps.kakao) || undefined,
-      google: fallbackHospital.mapLinks.google || str(maps.google) || undefined,
+      tmap: link(maps.tmap) || fallbackHospital.mapLinks.tmap,
+      naver: link(maps.naver) || fallbackHospital.mapLinks.naver,
+      kakao: link(maps.kakao) || fallbackHospital.mapLinks.kakao,
+      google: link(maps.google) || fallbackHospital.mapLinks.google,
     },
+  };
+}
+
+// 사이트 제목 · 설명 · 사이트맵 사용 (관리자 > 웹사이트 정보). 비어 있으면 기본값(layout.tsx)을 쓴다
+export async function getWebsiteInfo() {
+  const row = await loadHospital();
+  const website = obj(obj(obj(row?.config).websiteAdmin).website);
+  return {
+    siteTitle: str(website.siteTitle).trim(),
+    siteDescription: str(website.siteDescription).trim(),
+    sitemapEnabled: website.sitemapEnabled !== false,
   };
 }
 

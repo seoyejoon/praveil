@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { sitemap as pages } from "@/content/sitemap";
 import { isOpen } from "@/lib/preview-lock";
-import { getNotices } from "@/lib/data";
+import { getNotices, getWebsiteInfo } from "@/lib/data";
 import { postHref } from "@/lib/notice";
 import { SITE_URL as base } from "@/lib/site-url";
 
@@ -10,6 +10,8 @@ import { SITE_URL as base } from "@/lib/site-url";
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // 관리자 > 웹사이트 정보에서 사이트맵을 끄면 주소 목록을 알리지 않는다
+  if (!(await getWebsiteInfo()).sitemapEnabled) return [];
   const paths = new Set([
     "",
     ...pages.flatMap((s) =>

@@ -17,6 +17,13 @@ export async function getHospital() {
   return hasDatabase ? db.getHospital() : hospital;
 }
 
+// 사이트 제목 · 설명 · 사이트맵 사용 (관리자 > 웹사이트 정보)
+export async function getWebsiteInfo() {
+  return hasDatabase
+    ? db.getWebsiteInfo()
+    : { siteTitle: "", siteDescription: "", sitemapEnabled: true };
+}
+
 // 이용약관 · 개인정보처리방침: 관리자에 입력한 글이 없으면 기본 문구
 export async function getPolicy(kind: "terms" | "privacy") {
   const h = await getHospital();

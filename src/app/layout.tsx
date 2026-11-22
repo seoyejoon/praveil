@@ -13,7 +13,12 @@ import CustomCursor from "@/components/CustomCursor";
 import PopupLayer from "@/components/PopupLayer";
 import Analytics from "@/components/Analytics";
 import TrackingTags from "@/components/TrackingTags";
-import { getHospital, getPopups, getTracking } from "@/lib/data";
+import {
+  getHospital,
+  getPopups,
+  getTracking,
+  getWebsiteInfo,
+} from "@/lib/data";
 import { getMember, getSignupSettings } from "@/lib/member";
 import { isPreviewHost, SITE_URL } from "@/lib/site-url";
 
@@ -59,9 +64,9 @@ const baseMetadata: Metadata = {
       },
 };
 
-// 검색 · 광고 사이트 소유 확인 값 (관리자 > 외부 서비스)
+// 사이트 제목 · 설명(관리자 > 웹사이트 정보)과 검색 · 광고 사이트 소유 확인 값(관리자 > 외부 서비스)
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTracking();
+  const [t, site] = await Promise.all([getTracking(), getWebsiteInfo()]);
   const other: Record<string, string> = {};
   if (t.naver_site_verification)
     other["naver-site-verification"] = t.naver_site_verification;
@@ -69,6 +74,13 @@ export async function generateMetadata(): Promise<Metadata> {
     other["facebook-domain-verification"] = t.meta_domain_verification;
   return {
     ...baseMetadata,
+    ...(site.siteTitle && {
+      title: {
+        default: site.siteTitle,
+        template: "%s | 프라베일 맑고고운의원",
+      },
+    }),
+    ...(site.siteDescription && { description: site.siteDescription }),
     verification: {
       ...(t.google_site_verification && { google: t.google_site_verification }),
       ...(Object.keys(other).length && { other }),

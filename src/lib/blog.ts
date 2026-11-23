@@ -1,6 +1,6 @@
 // 네이버 블로그 최신 글 (RSS) — 1시간마다 새로 가져옴, 실패하면 빈 목록
-export const BLOG_URL = "https://blog.naver.com/newrizzclinic";
-const RSS_URL = "https://rss.blog.naver.com/newrizzclinic.xml";
+export const BLOG_URL = "https://blog.naver.com/praveil";
+const RSS_URL = "https://rss.blog.naver.com/praveil.xml";
 
 export type BlogPost = {
   title: string;

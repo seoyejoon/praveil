@@ -944,6 +944,13 @@ html[data-cur="image"] .cursor-dot-shape {
   }
 }
 
+/* 원장칼럼 PC: 본문 · 소제목도 글자 단위로 줄을 바꿈 (관리자 작성창과 같은 줄바꿈). 표 칸은 낱말 단위 그대로
+   — 관리자 praveil-theme.css 의 같은 규칙과 짝 */
+.pvc .column-content :is(p, li, h2, h3):not(td *, th *) {
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
 /* 원장칼럼 휴대폰 본문 글자 15px → 16px (본문 · 목록 · 요약 · TIP · 강조 상자 · Q&A 답). 표 · 근거 자료 · 같이 보면 좋은 글은 그대로
    — 관리자 praveil-theme.css 의 미리보기 '모바일' 규칙과 짝 */
 @media (max-width: 767px) {
